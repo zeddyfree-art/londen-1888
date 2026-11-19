@@ -1,0 +1,14 @@
+[
+  { "id": "gewond", "naam": "Gewond", "soort": "Lichaam", "tekst": "Je hebt maar 1 actie per ronde. Verwijder bij het ziekenhuis (The City)." },
+  { "id": "verslaafd", "naam": "Verslaafd", "soort": "Lichaam", "tekst": "Aan het begin van elke ronde: betaal 1 Pond of verlies 1 Geest. Verwijder bij de gaarkeuken met een Overtuiging-test (9)." },
+  { "id": "gezocht", "naam": "Gezocht", "soort": "Wet", "tekst": "Je kunt niet winkelen. Verwijder bij de politie (Whitehall) door 2 Pond te betalen." },
+  { "id": "schuld", "naam": "Schuld", "soort": "Geld", "tekst": "Je kreeg 3 Pond. Aan het eind van het spel: betaal 4 Pond terug, of de schuldeiser stuurt iemand. Gooi elke ronde een dobbelsteen, bij 1 verlies je 1 Lichaam." },
+  { "id": "gezegend", "naam": "Gezegend", "soort": "Zegen", "tekst": "Eén keer per ronde: gooi één dobbelsteen opnieuw. Verdwijnt als je Vervloekt wordt." },
+  { "id": "vervloekt", "naam": "Vervloekt", "soort": "Vloek", "tekst": "Bij elke test is een 6 een 1. Verwijder in de kerk (Westminster). Verdwijnt als je Gezegend wordt." },
+  { "id": "verdwaald", "naam": "Verdwaald", "soort": "Reizen", "tekst": "Je staat op geen enkele plek. Volgende ronde: doe een Scherpte-test (8) om terug te keren naar een willekeurige plek." },
+  { "id": "waanzin-paranoia", "naam": "Waanzin: achtervolgingswaan", "soort": "Waanzin", "tekst": "Je kunt geen spullen ruilen met andere helden." },
+  { "id": "waanzin-slapeloos", "naam": "Waanzin: slapeloosheid", "soort": "Waanzin", "tekst": "Rusten herstelt geen Geest meer." },
+  { "id": "waanzin-stemmen", "naam": "Waanzin: de stemmen", "soort": "Waanzin", "tekst": "Elke spreuk kost 1 Geest extra, maar je gooit er 1 dobbelsteen extra bij." },
+  { "id": "waanzin-hoogmoed", "naam": "Waanzin: grootheidswaan", "soort": "Waanzin", "tekst": "Je moet elk monster op je plek aanvallen, ook als je dat niet wilt." },
+  { "id": "waanzin-tekenen", "naam": "Waanzin: het teken", "soort": "Waanzin", "tekst": "Je tekent overal hetzelfde symbool. Aan het eind van elke ronde: gooi een dobbelsteen, bij 1 opent er een Scheur op jouw plek." }
+]

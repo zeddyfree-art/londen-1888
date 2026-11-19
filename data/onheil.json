@@ -1,0 +1,18 @@
+[
+  { "id": "o1", "naam": "De mist komt op", "mist": 1, "scheur": 1, "monster": 0, "tekst": "Over de kades kruipt een gele walm. Wie buiten is, trekt zijn sjaal omhoog." },
+  { "id": "o2", "naam": "Een kist in de dokken", "mist": 1, "scheur": 0, "monster": 1, "extra": "Het nieuwe monster verschijnt in St Katharine Docks.", "tekst": "Een kist zonder afzender, en een wachter die niet meer praat." },
+  { "id": "o3", "naam": "Seance in Marylebone", "mist": 1, "scheur": 1, "monster": 0, "extra": "Leg 1 Aanwijzing op Marylebone.", "tekst": "De tafel kantelde, de kaarsen doofden en iemand antwoordde die niet was uitgenodigd." },
+  { "id": "o4", "naam": "Het nieuws van vandaag", "mist": 0, "scheur": 0, "monster": 0, "extra": "Leg 2 Aanwijzingen op willekeurige plekken.", "tekst": "De avondkrant spreekt van verdwijningen in drie wijken. Een leerling-journalist tekent een kaartje." },
+  { "id": "o5", "naam": "Klokken van Westminster", "mist": 1, "scheur": 1, "monster": 0, "extra": "Elke held verliest 1 Geest.", "tekst": "Om middernacht slaat de klok dertien keer, en niemand in de stad slaapt goed." },
+  { "id": "o6", "naam": "Een logebijeenkomst", "mist": 1, "scheur": 0, "monster": 2, "extra": "De nieuwe monsters zijn logebroeders als die er nog zijn.", "tekst": "Achter een deur in Soho staan witte gewaden klaar, en er wordt geteld." },
+  { "id": "o7", "naam": "Een expeditie keert terug", "mist": 0, "scheur": 1, "monster": 0, "extra": "Leg een Artefact klaar in Thebe, de Himalaya of Yucatán.", "tekst": "Een gebruind gezelschap komt aan wal met kisten en verhalen die niet kloppen." },
+  { "id": "o8", "naam": "Een rustige nacht", "mist": 1, "scheur": 0, "monster": 0, "extra": "Elke held herstelt 1 Geest.", "tekst": "De mist trekt op. Heel even is Londen gewoon Londen." },
+  { "id": "o9", "naam": "Waterstand", "mist": 1, "scheur": 1, "monster": 1, "extra": "Het monster verschijnt aan de rivier.", "tekst": "Het tij komt hoger dan de tijdtabellen beloven." },
+  { "id": "o10", "naam": "Gerucht: de verzamelaar", "mist": 0, "scheur": 0, "monster": 0, "gerucht": "Als er na 3 rondes nog geen held in Pall Mall is geweest, daalt de Mist met 2.", "tekst": "Sir Lucius Harrowgate betaalt contant voor scarabeeën, en hij vraagt niet waar ze vandaan komen." },
+  { "id": "o11", "naam": "Koorts in Whitechapel", "mist": 1, "scheur": 0, "monster": 0, "extra": "Elke held in Whitechapel of Spitalfields verliest 1 Lichaam.", "tekst": "De dokters spreken van een miasma. De buren spreken van iets ergers." },
+  { "id": "o12", "naam": "De sterren staan goed", "mist": 1, "scheur": 2, "monster": 0, "tekst": "Wie vannacht naar boven kijkt, ziet ze: rijen sterren als een open deur." },
+  { "id": "o13", "naam": "Hulp van de Bleke Lantaarn", "mist": 0, "scheur": 0, "monster": 0, "extra": "Elke held mag 1 spreuk trekken of 1 Aanwijzing nemen.", "tekst": "Een briefje onder de deur, in een sierlijk handschrift: ook wij zijn bang." },
+  { "id": "o14", "naam": "Opgepakt", "mist": 1, "scheur": 0, "monster": 0, "extra": "De held met de meeste Pond krijgt de toestand Gezocht.", "tekst": "Een agent heeft je gezicht te vaak gezien op de verkeerde plekken." },
+  { "id": "o15", "naam": "Monsters roeren zich", "mist": 1, "scheur": 0, "monster": 0, "extra": "Elk monster beweegt 1 plek naar de dichtstbijzijnde held.", "tekst": "Iets beweegt in de riolen, onder de vloeren, achter de spiegels." },
+  { "id": "o16", "naam": "Gerucht: het lied", "mist": 0, "scheur": 1, "monster": 0, "gerucht": "Leg 3 Aanwijzingen op Covent Garden. Zijn die na 3 rondes niet allemaal opgehaald, dan daalt de Mist met 2.", "tekst": "Overal in de stad neuriën mensen dezelfde melodie zonder te weten waarom." }
+]

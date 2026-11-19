@@ -1,0 +1,110 @@
+<title>Helden van Londen 1888</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=IM+Fell+English:ital@0;1&family=Alegreya+Sans:wght@400;500;700&display=swap">
+<style>
+/* Layout: a gallery of portrait cards like cabinet photographs; stats as short pip rows; prompts tucked behind a toggle. */
+:root{
+  --bg:#e9eeec; --paper:#f6f8f7; --ink:#18242a; --muted:#56656b; --line:#c3cfcc;
+  --accent:#23705f; --accent-ink:#fff; --seal:#8a3b2c; --tint:#dbe7e3; --pip:#c9d3d0;
+  --display:"IM Fell English SC","Iowan Old Style",Georgia,serif;
+  --letter:"IM Fell English","Iowan Old Style",Georgia,serif;
+  --body:"Alegreya Sans","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0d1416; --paper:#142024; --ink:#dde7e4; --muted:#93a5a3; --line:#2a3b3f;
+  --accent:#5fbfa6; --accent-ink:#08201a; --seal:#d98a72; --tint:#1b2e30; --pip:#2c3e41; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0d1416; --paper:#142024; --ink:#dde7e4; --muted:#93a5a3; --line:#2a3b3f;
+  --accent:#5fbfa6; --accent-ink:#08201a; --seal:#d98a72; --tint:#1b2e30; --pip:#2c3e41; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 64px}
+.wrap{max-width:1180px;margin:0 auto;display:grid;gap:28px}
+h1,h2{font-family:var(--display);font-weight:400;margin:0;line-height:1.15;text-wrap:balance}
+h1{font-size:clamp(30px,5vw,44px)}
+header p{margin:6px 0 0;color:var(--muted);max-width:68ch}
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.chip{appearance:none;border:1px solid var(--line);background:transparent;color:var(--ink);font:500 14px var(--body);padding:6px 12px;border-radius:999px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.card{background:var(--paper);border:1px solid var(--line);display:grid;grid-template-columns:110px minmax(0,1fr);gap:14px;padding:14px;align-content:start}
+.portrait{width:110px;aspect-ratio:3/4;max-width:100%;display:grid;place-items:center;font-family:var(--display);font-size:34px;color:#f1ece0;
+  border:3px double #b99a5b;box-shadow:inset 0 0 26px rgba(0,0,0,.55)}
+.portrait img{width:100%;height:100%;object-fit:cover}
+.meta{display:grid;gap:4px;min-width:0}
+.rol{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.card h2{font-size:21px}
+.sub{color:var(--muted);font-size:14px}
+.full{grid-column:1/-1;display:grid;gap:10px;min-width:0}
+.story{font-family:var(--letter);font-size:16.5px;margin:0}
+.stats{display:grid;grid-template-columns:auto 1fr;gap:3px 12px;font-size:14px;align-items:center}
+.pips{display:flex;gap:4px}
+.pips i{width:14px;height:8px;background:var(--pip)}
+.pips i.on{background:var(--accent)}
+.pools{display:flex;gap:16px;font-size:14px;font-variant-numeric:tabular-nums}
+.pools b{font-size:18px}
+.box{border-top:1px solid var(--line);padding-top:8px;font-size:14.5px}
+.box strong{font-weight:700}
+.ally{background:var(--tint);padding:8px 10px;font-size:14.5px}
+.gear{color:var(--muted);font-size:14px}
+details{font-size:13.5px}
+summary{cursor:pointer;color:var(--accent);font-weight:500}
+details pre{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);padding:8px;margin:8px 0 6px;font:12.5px/1.45 ui-monospace,Menlo,monospace;overflow-x:auto}
+.copy{appearance:none;border:1px solid var(--accent);background:transparent;color:var(--accent);font:500 13px var(--body);padding:5px 10px;cursor:pointer}
+button:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.empty{color:var(--muted)}
+</style>
+<div class="wrap">
+  <header>
+    <h1>Helden van Londen, 1888</h1>
+    <p>Achttien eigen onderzoekers voor ons spel. Elk heeft vier kenmerken die samen 10 punten zijn, en Lichaam en Geest die samen 12 zijn. Onder elke kaart staat de prompt voor een olieverfportret.</p>
+  </header>
+  <div class="filters" id="filters" role="group" aria-label="Filter op sterkste kenmerk"></div>
+  <div class="grid" id="grid"></div>
+</div>
+<script>
+const HELDEN = __DATA__;
+const KEN = [["kennis","Kennis"],["scherpte","Scherpte"],["kracht","Kracht"],["overtuiging","Overtuiging"]];
+const STIJL = "Oil painting, late Victorian academic portrait style, rich dark palette with warm gaslight highlights, visible brushstrokes, dramatic chiaroscuro, half-length portrait, portrait orientation 3:4, no text, no frame.";
+const TINTS = ["#4b3a2a","#2f3f45","#4a2b2b","#33402c","#3d334a","#47402a"];
+const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const initials = n => n.replace(/^(Professor|Dr\.|Madame|Lady|Sergeant|Detective Sergeant|Miss|Broeder|Constable)\s+/,"").replace(/".*?"\s*/,"").split(" ").map(w=>w[0]).slice(0,2).join("");
+let filter = null;
+function render(){
+  const f = document.getElementById("filters");
+  f.innerHTML = `<button class="chip" data-f="" aria-pressed="${!filter}">Alle (${HELDEN.length})</button>` +
+    KEN.map(([k,l])=>`<button class="chip" data-f="${k}" aria-pressed="${filter===k}">Sterk in ${l.toLowerCase()}</button>`).join("") +
+    `<button class="chip" data-f="dier" aria-pressed="${filter==="dier"}">Met dier</button>`;
+  const list = HELDEN.filter(h => !filter || (filter==="dier" ? h.bondgenoot : h.kenmerken[filter] >= 4));
+  document.getElementById("grid").innerHTML = list.length ? list.map((h,i)=>`
+    <article class="card">
+      <div class="portrait" style="background:radial-gradient(circle at 50% 35%, #8a6a3e55, transparent 60%), ${TINTS[HELDEN.indexOf(h)%TINTS.length]}">${esc(initials(h.naam))}</div>
+      <div class="meta">
+        <span class="rol">${esc(h.rol)}</span>
+        <h2>${esc(h.naam)}</h2>
+        ${h.bijnaam?`<span class="sub">${esc(h.bijnaam)}</span>`:""}
+        <span class="sub">${h.leeftijd} jaar · ${esc(h.beroep)}</span>
+        <span class="sub">Start: <b>${esc(h.start)}</b></span>
+      </div>
+      <div class="full">
+        <p class="story">${esc(h.achtergrond)}</p>
+        <div class="stats">${KEN.map(([k,l])=>`<span>${l}</span><span class="pips" aria-label="${l} ${h.kenmerken[k]} van 4">${[1,2,3,4].map(n=>`<i class="${n<=h.kenmerken[k]?"on":""}"></i>`).join("")}</span>`).join("")}</div>
+        <div class="pools"><span>Lichaam <b>${h.lichaam}</b></span><span>Geest <b>${h.geest}</b></span></div>
+        <div class="box"><strong>${esc(h.vermogen.naam)}.</strong> ${esc(h.vermogen.tekst)}</div>
+        ${h.bondgenoot?`<div class="ally"><strong>${esc(h.bondgenoot.naam)}</strong> (${esc(h.bondgenoot.soort)}). ${esc(h.bondgenoot.tekst)}</div>`:""}
+        <div class="gear"><b>Eigenaardigheid:</b> ${esc(h.eigenaardigheid)}<br><b>Uitrusting:</b> ${h.uitrusting.map(esc).join(", ")}</div>
+        <details><summary>Image-prompt</summary><pre id="p-${h.id}">${esc(h.prompt+". "+STIJL)}</pre><button class="copy" data-copy="${h.id}" type="button">Kopieer prompt</button></details>
+      </div>
+    </article>`).join("") : `<p class="empty">Geen helden met dit filter.</p>`;
+}
+document.addEventListener("click", async e => {
+  const c = e.target.closest("[data-f]");
+  if (c){ filter = c.dataset.f || null; render(); return; }
+  const b = e.target.closest("[data-copy]");
+  if (b){ const pre = document.getElementById("p-"+b.dataset.copy);
+    try { await navigator.clipboard.writeText(pre.textContent); b.textContent = "Gekopieerd"; }
+    catch { const r=document.createRange(); r.selectNodeContents(pre); const s=getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = "Geselecteerd"; }
+    setTimeout(()=>b.textContent="Kopieer prompt",1800); }
+});
+render();
+</script>

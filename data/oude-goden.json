@@ -1,0 +1,56 @@
+[
+  {
+    "id": "vathrun",
+    "naam": "Vathrûn",
+    "titel": "Die onder de rivier ademt",
+    "mist": 12,
+    "verhaal": "Al eeuwen ligt er iets in het slib onder de Theems. Elke vloed brengt een beetje van zijn adem mee: de gele mist die over de kades kruipt. Sinds de nieuwe riolen zijn gegraven, heeft die adem een weg naar boven gevonden. Wie de mist inademt, droomt van groene diepten en wordt met natte voeten wakker.",
+    "regel": "Elke keer dat er een Scheur opengaat op een plek aan de rivier, verschijnt daar ook een monster.",
+    "verdachten": "Het Genootschap van het Zevende Zegel: rivierwerkers en rioolmannen die offeren aan de vloed.",
+    "mysteries": [
+      { "naam": "Peil de diepte", "doel": "Breng samen 4 Aanwijzingen naar Wapping en doe daar een Kennis-test (9)." },
+      { "naam": "Sluit de oude riolen", "doel": "Sluit 2 Scheuren op plekken aan de rivier." },
+      { "naam": "De verdronken bisschop", "doel": "Versla het epische monster De Bisschop van het Slib, dat in Southwark verschijnt." }
+    ],
+    "ontwaken": "De Theems treedt buiten haar oevers en de mist slokt Londen op. Jullie verliezen.",
+    "monsters": ["rivierwiedde", "verdronkene", "rioolkruiper", "mistdwaler", "logebroeder"],
+    "episch": "bisschop-van-het-slib",
+    "prompt": "colossal shapeless presence beneath the river Thames at night, a vast pale eye opening in green murky water under a Victorian bridge, yellow fog rising from the surface, tiny gaslamps along the embankment for scale"
+  },
+  {
+    "id": "azh-ilareth",
+    "naam": "Azh-Ilareth",
+    "titel": "De ster die te veel is",
+    "mist": 11,
+    "verhaal": "Op een heldere novembernacht verscheen er een ster die op geen enkele kaart staat. Ze is wit met een rand van ziekelijk violet en komt elke nacht een fractie dichterbij. Wie te lang kijkt, gaat haar tekenen, op muren, in kantlijnen en in het zand. Dichters schrijven verzen die ze zich niet herinneren, en de spiegels in de salons van Mayfair tonen een hemel die niet boven Londen hangt.",
+    "regel": "Elke spreuk kost 1 Geest extra. Wie op Hampstead staat, mag elke ronde 1 Geest herstellen.",
+    "verdachten": "De Orde van de Bleke Lantaarn: een hermetische loge die de ster als een openbaring ziet.",
+    "mysteries": [
+      { "naam": "Bereken de baan", "doel": "Breng 3 Aanwijzingen naar Hampstead en doe daar een Kennis-test (9)." },
+      { "naam": "De spiegels van Mayfair", "doel": "Sluit een Scheur in Mayfair of Marylebone, en nog één ergens anders." },
+      { "naam": "Het licht uit het oosten", "doel": "Haal het Artefact uit het Klooster van de Witte Wolken en breng het naar Hampstead." }
+    ],
+    "ontwaken": "De ster staat in de hele nacht en Londen kijkt omhoog. Niemand kijkt ooit nog weg. Jullie verliezen.",
+    "monsters": ["sterrenkind", "spiegelgast", "lantaarndrager", "kraaienzwerm", "mistdwaler"],
+    "episch": "de-dichter-zonder-ogen",
+    "prompt": "an impossible white star with a sickly violet halo hanging low over Victorian London rooftops and chimneys at night, its light casting long strange shadows, a lone figure in a top hat staring upward from a rooftop"
+  },
+  {
+    "id": "nebet-ankhu",
+    "naam": "Nebet-Ankhu",
+    "titel": "De farao zonder gezicht",
+    "mist": 12,
+    "verhaal": "In de vallei bij Thebe ligt een graf dat geen farao ooit heeft gebouwd. Expedities brengen de kisten naar Londen, en de egyptomanie doet de rest: elke salon wil een mummie, elke loge een scarabee. In de pakhuizen van de dokken breekt iets de zegels van binnenuit. Het draagt steeds een ander gezicht, telkens van iemand die je kent.",
+    "regel": "Wie een Artefact heeft, krijgt +1 bij gevechten, maar verliest 1 Geest aan het begin van elke Onheilsfase.",
+    "verdachten": "Een rivaliserende expeditie onder leiding van de vermogende verzamelaar Sir Lucius Harrowgate.",
+    "mysteries": [
+      { "naam": "Het lege graf", "doel": "Reis naar Thebe en doe daar een Scherpte-test (9)." },
+      { "naam": "De gestolen zegels", "doel": "Breng 2 Artefacten naar Bloomsbury." },
+      { "naam": "De man met duizend gezichten", "doel": "Versla het epische monster De Gemaskerde Hogepriester, dat in St Katharine Docks verschijnt." }
+    ],
+    "ontwaken": "De farao neemt het gezicht van de koningin aan en het rijk buigt. Jullie verliezen.",
+    "monsters": ["shabti-wachter", "logebroeder", "sluierhond", "rioolkruiper", "kraaienzwerm"],
+    "episch": "gemaskerde-hogepriester",
+    "prompt": "a towering robed figure in ancient Egyptian regalia whose face is a smooth featureless golden mask, standing among opened wooden crates in a Victorian dockside warehouse, lantern light and swirling dust, hieroglyphs glowing faintly on the crates"
+  }
+]
