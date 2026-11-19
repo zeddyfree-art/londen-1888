@@ -34,14 +34,14 @@ Bij elke push bouwt de workflow `.github/workflows/pages.yml` de map `site/` en 
 2. Ga naar **Settings**, dan **Pages**, en kies bij **Source** de optie **GitHub Actions**.
 3. Ga naar **Actions**, kies **Webapp online zetten** en klik op **Run workflow**.
 
-Het spel staat daarna op `https://zeddyfree-art.github.io/<reponaam>/`.
+Het spel staat daarna op https://zeddyfree-art.github.io/londen-1888/.
 
 ## Alternatief: Cloudflare Pages
 
 Cloudflare Pages kan ook vanuit een privé-repo publiceren en zet de site bij elke push automatisch opnieuw online.
 
 1. Log in op dash.cloudflare.com en ga naar **Workers & Pages**, dan **Create**, dan het tabblad **Pages**, en kies **Connect to Git**.
-2. Koppel GitHub en kies de repo `Eldritch-Horror`.
+2. Koppel GitHub en kies de repo `londen-1888`.
 3. Vul in:
    - **Project name:** `londen-1888` (dit wordt het adres `londen-1888.pages.dev`)
    - **Production branch:** de branch waarop je wilt publiceren, bijvoorbeeld `main`
