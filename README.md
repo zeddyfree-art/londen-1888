@@ -26,9 +26,19 @@ cd site && python3 -m http.server 8000
 
 Open daarna http://localhost:8000.
 
-## Online zetten met Cloudflare Pages
+## Online zetten met GitHub Pages
 
-De repo is privé. Cloudflare Pages kan gratis vanuit een privé-repo publiceren en zet de site bij elke push automatisch opnieuw online.
+Bij elke push bouwt de workflow `.github/workflows/pages.yml` de map `site/` en zet die online. Dat gebeurt op de standaardbranch en op `main`. Eenmalig instellen:
+
+1. Zet de repo op openbaar: **Settings**, dan **General**, helemaal onderaan **Change visibility**, kies **Public**.
+2. Ga naar **Settings**, dan **Pages**, en kies bij **Source** de optie **GitHub Actions**.
+3. Ga naar **Actions**, kies **Webapp online zetten** en klik op **Run workflow**.
+
+Het spel staat daarna op `https://zeddyfree-art.github.io/<reponaam>/`.
+
+## Alternatief: Cloudflare Pages
+
+Cloudflare Pages kan ook vanuit een privé-repo publiceren en zet de site bij elke push automatisch opnieuw online.
 
 1. Log in op dash.cloudflare.com en ga naar **Workers & Pages**, dan **Create**, dan het tabblad **Pages**, en kies **Connect to Git**.
 2. Koppel GitHub en kies de repo `Eldritch-Horror`.
