@@ -1,34 +1,275 @@
 [
-  { "id": "webley", "naam": "Dienstrevolver", "soort": "Wapen", "prijs": 2, "tekst": "+2 bij gevechten." },
-  { "id": "olifantengeweer", "naam": "Olifantengeweer", "soort": "Wapen", "prijs": 4, "tekst": "+3 bij gevechten. Neemt beide handen in beslag." },
-  { "id": "wandelstokdegen", "naam": "Wandelstok met degen", "soort": "Wapen", "prijs": 2, "tekst": "+1 bij gevechten. Mag je ook meenemen naar plekken waar wapens verboden zijn." },
-  { "id": "ossenzweep", "naam": "Ossenzweep", "soort": "Wapen", "prijs": 1, "tekst": "+1 bij gevechten. Eén keer per ronde: gooi een mislukte Kracht-dobbelsteen opnieuw bij klimmen of springen." },
-  { "id": "dynamiet", "naam": "Staaf dynamiet", "soort": "Wapen", "prijs": 2, "tekst": "Leg af: versla meteen een gewoon monster op jouw plek. Je verliest zelf 1 Lichaam." },
-  { "id": "zilveren-kogels", "naam": "Zilveren kogels", "soort": "Wapen", "prijs": 2, "tekst": "Met een revolver of geweer: +2 extra tegen monsters met Gruwel 2 of meer. Leg af na het gevecht." },
-  { "id": "stormlantaarn", "naam": "Stormlantaarn", "soort": "Gereedschap", "prijs": 1, "tekst": "+1 bij Scherpte-tests 's nachts en in riolen, graven en kelders." },
-  { "id": "gladstonetas", "naam": "Gladstonetas", "soort": "Gereedschap", "prijs": 1, "tekst": "Je mag één spul extra dragen." },
-  { "id": "camera", "naam": "Reiscamera met platen", "soort": "Gereedschap", "prijs": 3, "tekst": "Na een gewonnen gevecht: krijg 1 Aanwijzing. Het bewijs staat op de plaat." },
-  { "id": "kompas", "naam": "Koperen kompas", "soort": "Gereedschap", "prijs": 1, "tekst": "Overzee: +1 bij alle tests." },
-  { "id": "breekijzer", "naam": "Breekijzer", "soort": "Gereedschap", "prijs": 1, "tekst": "+1 bij Kracht-tests om iets open te breken. +1 bij gevechten." },
-  { "id": "bradshaw", "naam": "Spoorboekje", "soort": "Reizen", "prijs": 1, "tekst": "Leg af: reis met de trein vanuit King's Cross zonder te betalen, of reis 2 extra stappen." },
-  { "id": "rijtuig", "naam": "Rijtuigkaart", "soort": "Reizen", "prijs": 1, "tekst": "Leg af: reis 2 extra stappen." },
-  { "id": "ondergronds", "naam": "Kaartje voor de Ondergrondse", "soort": "Reizen", "prijs": 1, "tekst": "Leg af: reis van een station van de Ondergrondse naar elk ander station." },
-  { "id": "laudanum", "naam": "Flesje laudanum", "soort": "Middel", "prijs": 1, "tekst": "Leg af: herstel 2 Geest. Gooi een dobbelsteen: bij 1 krijg je de toestand Verslaafd." },
-  { "id": "carbol", "naam": "Carbolzuur en verband", "soort": "Middel", "prijs": 1, "tekst": "Leg af: herstel 2 Lichaam van een held op jouw plek." },
-  { "id": "vlugzout", "naam": "Vlugzout", "soort": "Middel", "prijs": 1, "tekst": "Leg af wanneer je Geest zou verliezen: verlies 2 minder." },
-  { "id": "chloroform", "naam": "Chloroform", "soort": "Middel", "prijs": 2, "tekst": "Leg af: een menselijk monster op jouw plek is meteen verslagen." },
-  { "id": "boek-grimoire", "naam": "Een Vlaamse grimoire", "soort": "Boek", "prijs": 3, "tekst": "Doe een Kennis-test (8): trek een spreuk. Je verliest 1 Geest, gelukt of niet." },
-  { "id": "boek-reisverslag", "naam": "Reisverslag van een vermiste ontdekker", "soort": "Boek", "prijs": 2, "tekst": "Overzee: +2 bij één test. Daarna: krijg 1 Aanwijzing en leg dit boek af." },
-  { "id": "boek-astrologie", "naam": "Tabellen van de nachthemel", "soort": "Boek", "prijs": 2, "tekst": "+1 bij Kennis-tests. Eén keer per spel: kijk naar de bovenste Onheilskaart." },
-  { "id": "boek-egyptisch", "naam": "Woordenboek van het oud-Egyptisch", "soort": "Boek", "prijs": 2, "tekst": "+2 bij tests om inscripties te lezen, en in Thebe." },
-  { "id": "bondgenoot-straatjongens", "naam": "Bende straatjochies", "soort": "Bondgenoot", "prijs": 2, "tekst": "Eén keer per ronde: krijg 1 Aanwijzing van een plek op maximaal 2 stappen afstand. Ze willen een penny (1 Pond per 2 rondes)." },
-  { "id": "bondgenoot-journalist", "naam": "Journaliste van de avondkrant", "soort": "Bondgenoot", "prijs": 2, "tekst": "+1 bij Overtuiging-tests. Je mag een gerucht verwijderen door 2 Aanwijzingen in te leveren." },
-  { "id": "bondgenoot-koetsier", "naam": "Nachtkoetsier", "soort": "Bondgenoot", "prijs": 3, "tekst": "Elke ronde mag je 1 extra stap reizen." },
-  { "id": "bondgenoot-agent", "naam": "Agent op ronde", "soort": "Bondgenoot", "prijs": 0, "tekst": "+1 bij gevechten tegen menselijke monsters. Verlaat je als je de toestand Gezocht krijgt." },
-  { "id": "bondgenoot-gids", "naam": "Expeditiegids", "soort": "Bondgenoot", "prijs": 3, "tekst": "Overzee: +1 bij alle tests. Je mag zonder bootkaartje terugreizen naar Londen." },
-  { "id": "dier-raaf", "naam": "Raaf uit de Tower", "soort": "Dier", "prijs": 2, "tekst": "Eén keer per ronde: kijk welk monster als volgende verschijnt. Als de raaf vertrekt, stijgt de Mist met 1." },
-  { "id": "dier-terrier", "naam": "Rattenvanger-terriër", "soort": "Dier", "prijs": 1, "tekst": "+1 bij gevechten in riolen, kelders en aan de rivier." },
-  { "id": "dier-kanarie", "naam": "Kanarie in een kooitje", "soort": "Dier", "prijs": 1, "tekst": "Waarschuwt voor de adem van de diepte: verlies nooit Geest door de Mist zelf." },
-  { "id": "dier-kat", "naam": "Zwarte straatkat", "soort": "Dier", "prijs": 1, "tekst": "+1 bij Scherpte-tests 's nachts. Gezegend en Vervloekt hebben geen effect op jou zolang de kat bij je is." },
-  { "id": "dier-paard", "naam": "Trouwe ruin", "soort": "Dier", "prijs": 3, "tekst": "Elke ronde mag je 1 extra stap reizen. Overzee: +1 bij Kracht-tests." }
+  {
+    "id": "webley",
+    "naam": "Dienstrevolver",
+    "soort": "Wapen",
+    "prijs": 2,
+    "tekst": "+2 bij gevechten.",
+    "bonus": {
+      "gevecht": 2
+    }
+  },
+  {
+    "id": "olifantengeweer",
+    "naam": "Olifantengeweer",
+    "soort": "Wapen",
+    "prijs": 4,
+    "tekst": "+3 bij gevechten. Neemt beide handen in beslag.",
+    "bonus": {
+      "gevecht": 3
+    }
+  },
+  {
+    "id": "wandelstokdegen",
+    "naam": "Wandelstok met degen",
+    "soort": "Wapen",
+    "prijs": 2,
+    "tekst": "+1 bij gevechten. Mag je ook meenemen naar plekken waar wapens verboden zijn.",
+    "bonus": {
+      "gevecht": 1
+    }
+  },
+  {
+    "id": "ossenzweep",
+    "naam": "Ossenzweep",
+    "soort": "Wapen",
+    "prijs": 1,
+    "tekst": "+1 bij gevechten. Eén keer per ronde: gooi een mislukte Kracht-dobbelsteen opnieuw bij klimmen of springen.",
+    "bonus": {
+      "gevecht": 1
+    }
+  },
+  {
+    "id": "dynamiet",
+    "naam": "Staaf dynamiet",
+    "soort": "Wapen",
+    "prijs": 2,
+    "tekst": "Leg af: versla meteen een gewoon monster op jouw plek. Je verliest zelf 1 Lichaam.",
+    "gebruik": "dynamiet"
+  },
+  {
+    "id": "zilveren-kogels",
+    "naam": "Zilveren kogels",
+    "soort": "Wapen",
+    "prijs": 2,
+    "tekst": "Met een revolver of geweer: +2 extra tegen monsters met Gruwel 2 of meer. Leg af na het gevecht."
+  },
+  {
+    "id": "stormlantaarn",
+    "naam": "Stormlantaarn",
+    "soort": "Gereedschap",
+    "prijs": 1,
+    "tekst": "+1 bij Scherpte-tests 's nachts en in riolen, graven en kelders."
+  },
+  {
+    "id": "gladstonetas",
+    "naam": "Gladstonetas",
+    "soort": "Gereedschap",
+    "prijs": 1,
+    "tekst": "Je mag één spul extra dragen.",
+    "bonus": {
+      "draag": 1
+    }
+  },
+  {
+    "id": "camera",
+    "naam": "Reiscamera met platen",
+    "soort": "Gereedschap",
+    "prijs": 3,
+    "tekst": "Na een gewonnen gevecht: krijg 1 Aanwijzing. Het bewijs staat op de plaat."
+  },
+  {
+    "id": "kompas",
+    "naam": "Koperen kompas",
+    "soort": "Gereedschap",
+    "prijs": 1,
+    "tekst": "Overzee: +1 bij alle tests.",
+    "bonus": {
+      "overzee": 1
+    }
+  },
+  {
+    "id": "breekijzer",
+    "naam": "Breekijzer",
+    "soort": "Gereedschap",
+    "prijs": 1,
+    "tekst": "+1 bij Kracht-tests om iets open te breken. +1 bij gevechten.",
+    "bonus": {
+      "gevecht": 1
+    }
+  },
+  {
+    "id": "bradshaw",
+    "naam": "Spoorboekje",
+    "soort": "Reizen",
+    "prijs": 1,
+    "tekst": "Leg af: reis met de trein vanuit King's Cross zonder te betalen, of reis 2 extra stappen.",
+    "gebruik": "stappen2"
+  },
+  {
+    "id": "rijtuig",
+    "naam": "Rijtuigkaart",
+    "soort": "Reizen",
+    "prijs": 1,
+    "tekst": "Leg af: reis 2 extra stappen.",
+    "gebruik": "stappen2"
+  },
+  {
+    "id": "ondergronds",
+    "naam": "Kaartje voor de Ondergrondse",
+    "soort": "Reizen",
+    "prijs": 1,
+    "tekst": "Leg af: reis van een station van de Ondergrondse naar elk ander station.",
+    "gebruik": "ondergronds"
+  },
+  {
+    "id": "laudanum",
+    "naam": "Flesje laudanum",
+    "soort": "Middel",
+    "prijs": 1,
+    "tekst": "Leg af: herstel 2 Geest. Gooi een dobbelsteen: bij 1 krijg je de toestand Verslaafd.",
+    "gebruik": "laudanum"
+  },
+  {
+    "id": "carbol",
+    "naam": "Carbolzuur en verband",
+    "soort": "Middel",
+    "prijs": 1,
+    "tekst": "Leg af: herstel 2 Lichaam van een held op jouw plek.",
+    "gebruik": "carbol"
+  },
+  {
+    "id": "vlugzout",
+    "naam": "Vlugzout",
+    "soort": "Middel",
+    "prijs": 1,
+    "tekst": "Leg af wanneer je Geest zou verliezen: verlies 2 minder.",
+    "gebruik": "vlugzout"
+  },
+  {
+    "id": "chloroform",
+    "naam": "Chloroform",
+    "soort": "Middel",
+    "prijs": 2,
+    "tekst": "Leg af: een menselijk monster op jouw plek is meteen verslagen.",
+    "gebruik": "chloroform"
+  },
+  {
+    "id": "boek-grimoire",
+    "naam": "Een Vlaamse grimoire",
+    "soort": "Boek",
+    "prijs": 3,
+    "tekst": "Doe een Kennis-test (8): trek een spreuk. Je verliest 1 Geest, gelukt of niet.",
+    "gebruik": "grimoire"
+  },
+  {
+    "id": "boek-reisverslag",
+    "naam": "Reisverslag van een vermiste ontdekker",
+    "soort": "Boek",
+    "prijs": 2,
+    "tekst": "Overzee: +2 bij één test. Daarna: krijg 1 Aanwijzing en leg dit boek af."
+  },
+  {
+    "id": "boek-astrologie",
+    "naam": "Tabellen van de nachthemel",
+    "soort": "Boek",
+    "prijs": 2,
+    "tekst": "+1 bij Kennis-tests. Eén keer per spel: kijk naar de bovenste Onheilskaart.",
+    "bonus": {
+      "kennis": 1
+    }
+  },
+  {
+    "id": "boek-egyptisch",
+    "naam": "Woordenboek van het oud-Egyptisch",
+    "soort": "Boek",
+    "prijs": 2,
+    "tekst": "+2 bij tests om inscripties te lezen, en in Thebe."
+  },
+  {
+    "id": "bondgenoot-straatjongens",
+    "naam": "Bende straatjochies",
+    "soort": "Bondgenoot",
+    "prijs": 2,
+    "tekst": "Eén keer per ronde: krijg 1 Aanwijzing van een plek op maximaal 2 stappen afstand. Ze willen een penny (1 Pond per 2 rondes).",
+    "gebruik": "straatjongens"
+  },
+  {
+    "id": "bondgenoot-journalist",
+    "naam": "Journaliste van de avondkrant",
+    "soort": "Bondgenoot",
+    "prijs": 2,
+    "tekst": "+1 bij Overtuiging-tests. Je mag een gerucht verwijderen door 2 Aanwijzingen in te leveren.",
+    "bonus": {
+      "overtuiging": 1
+    }
+  },
+  {
+    "id": "bondgenoot-koetsier",
+    "naam": "Nachtkoetsier",
+    "soort": "Bondgenoot",
+    "prijs": 3,
+    "tekst": "Elke ronde mag je 1 extra stap reizen.",
+    "bonus": {
+      "stap": 1
+    }
+  },
+  {
+    "id": "bondgenoot-agent",
+    "naam": "Agent op ronde",
+    "soort": "Bondgenoot",
+    "prijs": 0,
+    "tekst": "+1 bij gevechten tegen menselijke monsters. Verlaat je als je de toestand Gezocht krijgt.",
+    "bonus": {
+      "gevechtMens": 1
+    }
+  },
+  {
+    "id": "bondgenoot-gids",
+    "naam": "Expeditiegids",
+    "soort": "Bondgenoot",
+    "prijs": 3,
+    "tekst": "Overzee: +1 bij alle tests. Je mag zonder bootkaartje terugreizen naar Londen.",
+    "bonus": {
+      "overzee": 1
+    }
+  },
+  {
+    "id": "dier-raaf",
+    "naam": "Raaf uit de Tower",
+    "soort": "Dier",
+    "prijs": 2,
+    "tekst": "Eén keer per ronde: kijk welk monster als volgende verschijnt. Als de raaf vertrekt, stijgt de Mist met 1."
+  },
+  {
+    "id": "dier-terrier",
+    "naam": "Rattenvanger-terriër",
+    "soort": "Dier",
+    "prijs": 1,
+    "tekst": "+1 bij gevechten in riolen, kelders en aan de rivier."
+  },
+  {
+    "id": "dier-kanarie",
+    "naam": "Kanarie in een kooitje",
+    "soort": "Dier",
+    "prijs": 1,
+    "tekst": "Waarschuwt voor de adem van de diepte: verlies nooit Geest door de Mist zelf."
+  },
+  {
+    "id": "dier-kat",
+    "naam": "Zwarte straatkat",
+    "soort": "Dier",
+    "prijs": 1,
+    "tekst": "+1 bij Scherpte-tests 's nachts. Gezegend en Vervloekt hebben geen effect op jou zolang de kat bij je is."
+  },
+  {
+    "id": "dier-paard",
+    "naam": "Trouwe ruin",
+    "soort": "Dier",
+    "prijs": 3,
+    "tekst": "Elke ronde mag je 1 extra stap reizen. Overzee: +1 bij Kracht-tests.",
+    "bonus": {
+      "stap": 1
+    }
+  }
 ]
