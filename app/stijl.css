@@ -128,3 +128,24 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);ou
 .effect{font-size:13.5px;padding:3px 8px;border:1px solid var(--line);background:var(--bg)}
 .effect.plus{border-color:var(--good);color:var(--good)} .effect.min{border-color:var(--bad);color:var(--bad)}
 @media (prefers-reduced-motion:no-preference){.dobbel.rol{animation:rol .35s ease-out}@keyframes rol{from{transform:rotate(-90deg) scale(.6)}to{transform:none}}}
+
+/* Tips, tutorial en handleiding */
+.tip{font-size:14.5px;background:var(--paper);border:1px dashed var(--accent);padding:8px 10px}
+.handboek{position:fixed;inset:0;z-index:40;background:var(--bg);display:grid;grid-template-rows:auto auto minmax(0,1fr);padding:max(12px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px))}
+.hb-kop{display:flex;justify-content:space-between;align-items:center;gap:12px;max-width:1100px;width:100%;margin:0 auto;padding-bottom:8px}
+.hb-kop h2{font-size:28px}
+.hb-tabs{display:flex;flex-wrap:wrap;gap:6px;max-width:1100px;width:100%;margin:0 auto;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.tab{appearance:none;border:1px solid var(--line);background:var(--paper);padding:7px 12px;cursor:pointer;font-size:14.5px;min-height:40px}
+.tab[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.hb-inhoud{overflow:auto;padding:16px 0 max(32px,env(safe-area-inset-bottom,0px))}
+.hb-inhoud > *{max-width:1100px;margin:0 auto}
+.tekst{max-width:760px !important;background:var(--paper);border:1px solid var(--line);padding:clamp(16px,3vw,32px)}
+.tekst h2{font-size:24px;margin:22px 0 6px} .tekst h2:first-child{margin-top:0}
+.tekst h3{font-size:19px;margin:14px 0 4px}
+.tekst p,.tekst li{max-width:68ch}
+.tabelvlak{overflow-x:auto}
+.tekst table{border-collapse:collapse;font-size:15px;margin:6px 0}
+.tekst td,.tekst th{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+.raster{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.raster .kaartje{background:var(--paper)}
+.mini-portret{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top;max-height:220px}

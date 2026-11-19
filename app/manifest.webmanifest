@@ -1,0 +1,17 @@
+{
+  "name": "Londen 1888",
+  "short_name": "Londen 1888",
+  "description": "Een coöperatief horrorspel in Victoriaans Londen.",
+  "lang": "nl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0d1416",
+  "theme_color": "#0d1416",
+  "icons": [
+    { "src": "icoon/icoon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icoon/icoon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icoon/icoon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

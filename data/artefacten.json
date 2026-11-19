@@ -1,11 +1,65 @@
 [
-  { "id": "zwarte-spiegel", "naam": "De zwarte spiegel", "herkomst": "Gepoetst obsidiaan, ooit van een hofastroloog", "tekst": "Eén keer per ronde: bekijk de bovenste Onheilskaart of de volgende Scheur. Gebruik je hem twee rondes achter elkaar, verlies dan 1 Geest.", "prompt": "a polished black obsidian scrying mirror in a worn leather case, reflecting a faint violet star, on a dark velvet cloth" },
-  { "id": "scarabee", "naam": "Scarabee van de dageraad", "herkomst": "Groene steen uit het lege graf bij Thebe", "tekst": "Als je Lichaam op 0 zou komen, leg de scarabee af en houd 1 Lichaam over.", "prompt": "an ancient green stone scarab amulet with gold-leaf wings, glowing faintly at dawn, resting in a museum specimen tray" },
-  { "id": "hand-van-glorie", "naam": "Hand van glorie", "herkomst": "Een gedroogde hand met kaarsen op de vingers", "tekst": "Zolang hij brandt, merkt niemand je op: je mag elke ronde één gevecht overslaan.", "prompt": "a dried withered human hand holding five lit candles on its fingertips, in a dark Victorian cabinet of curiosities" },
-  { "id": "klokkenbel", "naam": "Bel van de Witte Wolken", "herkomst": "Een bronzen tempelbel uit de Himalaya", "tekst": "Luid hem: alle helden op jouw plek herstellen 2 Geest, en alle monsters daar verliezen hun Gruwel tot het eind van de ronde.", "prompt": "an ornate bronze Himalayan temple bell with a carved dragon handle and prayer inscriptions, snow light from a monastery window" },
-  { "id": "jade-masker", "naam": "Jade dodenmasker", "herkomst": "Uit een kamer onder de piramide in Yucatán", "tekst": "+2 bij Overtuiging-tests. Als je hem draagt, geven monsters jou als laatste schade.", "prompt": "an ancient Mesoamerican jade mosaic death mask with shell and obsidian eyes, lying on wet jungle stones in torchlight" },
-  { "id": "sterrenkaart", "naam": "Kaart van de verkeerde hemel", "herkomst": "Een sterrenkaart met één ster te veel", "tekst": "Leg af: sluit een Scheur waar dan ook in Londen.", "prompt": "an old hand-drawn celestial chart on yellowed parchment with constellations in ink and one extra star painted in glowing violet" },
-  { "id": "verzegelde-kruik", "naam": "Verzegelde kruik", "herkomst": "Een canopenkruik waarvan de zegel nog heel is", "tekst": "Leg af: verwijder een episch monster van het bord. Het bijbehorende mysterie geldt als opgelost.", "prompt": "an ancient Egyptian canopic jar with a jackal-headed lid, sealed with intact dark wax and cord, on a dusty wooden crate" },
-  { "id": "kristallen-schedel", "naam": "Kristallen schedel", "herkomst": "Bergkristal, door niemand gemaakt", "tekst": "+2 bij Kennis-tests. Aan het begin van elke Onheilsfase: gooi een dobbelsteen, bij 1 verlies je 1 Geest.", "prompt": "a life-sized human skull carved from clear rock crystal, refracting candlelight into rainbow shards, on a black lacquered table" },
-  { "id": "vuurtoren-lens", "naam": "Lens van de verloren expeditie", "herkomst": "Teruggevonden in het ijs, aan boord van een verlaten schip", "tekst": "Je mag Scherpte gebruiken in plaats van Kennis om Scheuren te sluiten.", "prompt": "a heavy brass-framed glass lens covered in frost and cracks, recovered from Arctic ice, glowing pale blue" }
+  {
+    "id": "zwarte-spiegel",
+    "naam": "De zwarte spiegel",
+    "herkomst": "Gepoetst obsidiaan, ooit van een hofastroloog",
+    "tekst": "Eén keer per ronde: bekijk de bovenste Onheilskaart of de volgende Scheur. Gebruik je hem twee rondes achter elkaar, verlies dan 1 Geest.",
+    "prompt": "a polished black obsidian scrying mirror in a worn leather case, reflecting a faint violet star, on a dark velvet cloth"
+  },
+  {
+    "id": "scarabee",
+    "naam": "Scarabee van de dageraad",
+    "herkomst": "Groene steen uit het lege graf bij Thebe",
+    "tekst": "Als je Lichaam op 0 zou komen, leg de scarabee af en houd 1 Lichaam over.",
+    "prompt": "an ancient green stone scarab amulet with gold-leaf wings, glowing faintly at dawn, resting in a museum specimen tray"
+  },
+  {
+    "id": "hand-van-glorie",
+    "naam": "Hand van glorie",
+    "herkomst": "Een gedroogde hand met kaarsen op de vingers",
+    "tekst": "Eén keer per ronde mag je een gevecht ontwijken. Het monster blijft staan en je ontmoeting is voorbij.",
+    "prompt": "a dried withered human hand holding five lit candles on its fingertips, in a dark Victorian cabinet of curiosities"
+  },
+  {
+    "id": "klokkenbel",
+    "naam": "Bel van de Witte Wolken",
+    "herkomst": "Een bronzen tempelbel uit de Himalaya",
+    "tekst": "Eén keer per ronde: luid de bel. Alle helden op jouw plek herstellen 2 Geest, en de monsters daar hebben deze ronde geen Gruwel.",
+    "prompt": "an ornate bronze Himalayan temple bell with a carved dragon handle and prayer inscriptions, snow light from a monastery window"
+  },
+  {
+    "id": "jade-masker",
+    "naam": "Jade dodenmasker",
+    "herkomst": "Uit een kamer onder de piramide in Yucatán",
+    "tekst": "+2 bij Overtuiging-tests en bij Gruwel-tests.",
+    "prompt": "an ancient Mesoamerican jade mosaic death mask with shell and obsidian eyes, lying on wet jungle stones in torchlight"
+  },
+  {
+    "id": "sterrenkaart",
+    "naam": "Kaart van de verkeerde hemel",
+    "herkomst": "Een sterrenkaart met één ster te veel",
+    "tekst": "Leg af: sluit een Scheur waar dan ook in Londen.",
+    "prompt": "an old hand-drawn celestial chart on yellowed parchment with constellations in ink and one extra star painted in glowing violet"
+  },
+  {
+    "id": "verzegelde-kruik",
+    "naam": "Verzegelde kruik",
+    "herkomst": "Een canopenkruik waarvan de zegel nog heel is",
+    "tekst": "Leg af: verwijder een episch monster van het bord. Het bijbehorende mysterie geldt als opgelost.",
+    "prompt": "an ancient Egyptian canopic jar with a jackal-headed lid, sealed with intact dark wax and cord, on a dusty wooden crate"
+  },
+  {
+    "id": "kristallen-schedel",
+    "naam": "Kristallen schedel",
+    "herkomst": "Bergkristal, door niemand gemaakt",
+    "tekst": "+2 bij Kennis-tests. Aan het begin van elke Onheilsfase: gooi een dobbelsteen, bij 1 verlies je 1 Geest.",
+    "prompt": "a life-sized human skull carved from clear rock crystal, refracting candlelight into rainbow shards, on a black lacquered table"
+  },
+  {
+    "id": "vuurtoren-lens",
+    "naam": "Lens van de verloren expeditie",
+    "herkomst": "Teruggevonden in het ijs, aan boord van een verlaten schip",
+    "tekst": "Je mag Scherpte gebruiken in plaats van Kennis om Scheuren te sluiten.",
+    "prompt": "a heavy brass-framed glass lens covered in frost and cracks, recovered from Arctic ice, glowing pale blue"
+  }
 ]

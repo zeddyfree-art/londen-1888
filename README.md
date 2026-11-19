@@ -1,0 +1,59 @@
+# Londen 1888
+
+Een eigen coöperatief horrorspel voor 2 of 4 helden, gespeeld in Victoriaans Londen. Het draait als webapp op laptop en iPad.
+
+## Mappen
+
+| Map | Inhoud |
+|---|---|
+| `app/` | De broncode van de app: `spel.js`, `stijl.css`, `pagina.html`, manifest, service worker en iconen |
+| `data/` | Alle speldata: helden, bord, oude goden, monsters, kaarten, ontmoetingen en de handleiding |
+| `art/` | Afbeeldingen, gemaakt met `ontwerp/beeldopdracht.md` |
+| `ontwerp/` | Ontwerpkeuzes, spelregels, de wereld en de beeldopdracht |
+| `tools/` | Scripts voor bouwen, afbeeldingen ophalen en de beeldopdracht |
+
+## Bouwen
+
+```bash
+node tools/bouw.js
+```
+
+Dit maakt de map `site/`, met de complete webapp, klaar om online te zetten. Lokaal testen:
+
+```bash
+cd site && python3 -m http.server 8000
+```
+
+Open daarna http://localhost:8000.
+
+## Online zetten met Cloudflare Pages
+
+De repo is privé. Cloudflare Pages kan gratis vanuit een privé-repo publiceren en zet de site bij elke push automatisch opnieuw online.
+
+1. Log in op dash.cloudflare.com en ga naar **Workers & Pages**, dan **Create**, dan het tabblad **Pages**, en kies **Connect to Git**.
+2. Koppel GitHub en kies de repo `Eldritch-Horror`.
+3. Vul in:
+   - **Project name:** `londen-1888` (dit wordt het adres `londen-1888.pages.dev`)
+   - **Production branch:** de branch waarop je wilt publiceren, bijvoorbeeld `main`
+   - **Framework preset:** None
+   - **Build command:** `node tools/bouw.js`
+   - **Build output directory:** `site`
+4. Klik op **Save and Deploy**.
+
+Elke push naar die branch zet daarna automatisch een nieuwe versie online. Pushes naar andere branches krijgen een eigen voorbeeldadres.
+
+## Afbeeldingen toevoegen
+
+1. Maak de afbeeldingen met `ontwerp/beeldopdracht.md` en zet ze in de gedeelde Drive-map.
+2. Zet de Drive-bestands-ID's in `tools/art-drive.json`.
+3. Haal ze op en verklein ze:
+
+   ```bash
+   python3 -I tools/haal-art.py tools/art-drive.json
+   ```
+
+4. Bouw opnieuw en push.
+
+## Op de iPad
+
+Open de site in Safari, tik op het deelicoon en kies **Zet op beginscherm**. Het spel opent dan schermvullend als een eigen app, en het werkt ook offline.

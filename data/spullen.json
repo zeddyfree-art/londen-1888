@@ -34,7 +34,7 @@
     "naam": "Ossenzweep",
     "soort": "Wapen",
     "prijs": 1,
-    "tekst": "+1 bij gevechten. Eén keer per ronde: gooi een mislukte Kracht-dobbelsteen opnieuw bij klimmen of springen.",
+    "tekst": "+1 bij gevechten. Eén keer per ronde: gooi een Kracht-dobbelsteen opnieuw tijdens een ontmoeting.",
     "bonus": {
       "gevecht": 1
     }
@@ -59,7 +59,7 @@
     "naam": "Stormlantaarn",
     "soort": "Gereedschap",
     "prijs": 1,
-    "tekst": "+1 bij Scherpte-tests 's nachts en in riolen, graven en kelders."
+    "tekst": "+1 bij Scherpte-tests tijdens ontmoetingen (die spelen zich 's nachts af)."
   },
   {
     "id": "gladstonetas",
@@ -93,7 +93,7 @@
     "naam": "Breekijzer",
     "soort": "Gereedschap",
     "prijs": 1,
-    "tekst": "+1 bij Kracht-tests om iets open te breken. +1 bij gevechten.",
+    "tekst": "+1 bij gevechten, en +1 bij Kracht-tests tijdens ontmoetingen.",
     "bonus": {
       "gevecht": 1
     }
@@ -143,7 +143,7 @@
     "naam": "Vlugzout",
     "soort": "Middel",
     "prijs": 1,
-    "tekst": "Leg af wanneer je Geest zou verliezen: verlies 2 minder.",
+    "tekst": "Leg af: herstel 2 Geest.",
     "gebruik": "vlugzout"
   },
   {
@@ -167,7 +167,7 @@
     "naam": "Reisverslag van een vermiste ontdekker",
     "soort": "Boek",
     "prijs": 2,
-    "tekst": "Overzee: +2 bij één test. Daarna: krijg 1 Aanwijzing en leg dit boek af."
+    "tekst": "Overzee, na een mislukte test: +2 op die test. Daarna krijg je 1 Aanwijzing en leg je dit boek af."
   },
   {
     "id": "boek-astrologie",
@@ -184,14 +184,14 @@
     "naam": "Woordenboek van het oud-Egyptisch",
     "soort": "Boek",
     "prijs": 2,
-    "tekst": "+2 bij tests om inscripties te lezen, en in Thebe."
+    "tekst": "+2 bij alle tests in Thebe."
   },
   {
     "id": "bondgenoot-straatjongens",
     "naam": "Bende straatjochies",
     "soort": "Bondgenoot",
     "prijs": 2,
-    "tekst": "Eén keer per ronde: krijg 1 Aanwijzing van een plek op maximaal 2 stappen afstand. Ze willen een penny (1 Pond per 2 rondes).",
+    "tekst": "Eén keer per ronde: krijg 1 Aanwijzing van een plek op maximaal 2 stappen afstand. Om de twee rondes willen ze een Pond, anders gaan ze ervandoor.",
     "gebruik": "straatjongens"
   },
   {
@@ -229,7 +229,7 @@
     "naam": "Expeditiegids",
     "soort": "Bondgenoot",
     "prijs": 3,
-    "tekst": "Overzee: +1 bij alle tests. Je mag zonder bootkaartje terugreizen naar Londen.",
+    "tekst": "Overzee: +1 bij alle tests.",
     "bonus": {
       "overzee": 1
     }
@@ -239,28 +239,28 @@
     "naam": "Raaf uit de Tower",
     "soort": "Dier",
     "prijs": 2,
-    "tekst": "Eén keer per ronde: kijk welk monster als volgende verschijnt. Als de raaf vertrekt, stijgt de Mist met 1."
+    "tekst": "Eén keer per ronde: kijk welk monster als volgende verschijnt. Als je de raaf aflegt, daalt de Mist met 1."
   },
   {
     "id": "dier-terrier",
     "naam": "Rattenvanger-terriër",
     "soort": "Dier",
     "prijs": 1,
-    "tekst": "+1 bij gevechten in riolen, kelders en aan de rivier."
+    "tekst": "+1 bij gevechten op plekken aan de rivier."
   },
   {
     "id": "dier-kanarie",
     "naam": "Kanarie in een kooitje",
     "soort": "Dier",
     "prijs": 1,
-    "tekst": "Waarschuwt voor de adem van de diepte: verlies nooit Geest door de Mist zelf."
+    "tekst": "Waarschuwt voor kwade lucht: onheilskaarten kosten jou nooit Geest."
   },
   {
     "id": "dier-kat",
     "naam": "Zwarte straatkat",
     "soort": "Dier",
     "prijs": 1,
-    "tekst": "+1 bij Scherpte-tests 's nachts. Gezegend en Vervloekt hebben geen effect op jou zolang de kat bij je is."
+    "tekst": "+1 bij Scherpte-tests tijdens ontmoetingen. Gezegend en Vervloekt hebben geen effect op jou zolang de kat bij je is."
   },
   {
     "id": "dier-paard",
