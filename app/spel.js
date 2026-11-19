@@ -7,6 +7,7 @@ const KLEUREN = ["#b5552f", "#2d6e9e", "#7a8f2a", "#8a4fa3"];
 const KENMERKEN = [["kennis", "Kennis"], ["scherpte", "Scherpte"], ["kracht", "Kracht"], ["overtuiging", "Overtuiging"]];
 const KNAAM = Object.fromEntries(KENMERKEN);
 const STARTWAPENS = { "Bamboestok": 1, "Wandelstok met verborgen lemmet": 1, "Revolver": 2, "Damespistool": 1, "Dienstgeweer": 2, "Bijl van de opgraving": 1, "Gietijzeren pollepel": 1, "Wapenstok": 1, "Derringer in haar mof": 1 };
+const DIENSTLABEL = { sterrenwacht: "Sterrenwacht", seance: "Seance bijwonen", station: "Trein nemen", bibliotheek: "Studeren", "occulte-boekwinkel": "Spreuken kopen", salon: "Salon bezoeken", markt: "Winkelen", theater: "Optreden", club: "Gerucht kopen", universiteit: "Laten onderzoeken", ziekenhuis: "Ziekenhuis", gaarkeuken: "Gaarkeuken", logementen: "Geruchten horen", politie: "Politie", kerk: "Abdij bezoeken", kunstenaars: "Laten schilderen", haven: "Op expeditie", rivierpolitie: "Roeiboot lenen" };
 const STATIONS = ["marylebone", "kings-cross", "city", "westminster"];
 const MOEILIJKHEID = {
   ontspannen: { naam: "Ontspannen", mist: 0, nodig: 2, scheuren: 2, test: 0 },
@@ -351,6 +352,7 @@ function nieuwSpel(godId, moeilijkheid, heldIds) {
   activeerMysterie();
   log(`Het spel begint. ${g.naam} roert zich.`);
   startHeldenbeurt();
+  window.scrollTo(0, 0);
 }
 
 /* ---------- heldenfase ---------- */
@@ -969,7 +971,7 @@ function tekenPaneel() {
       <div class="kenm">${KENMERKEN.map(([k, l]) => `<div>${l}<b>${h.kenm[k]}${bonusVoor(h, k) ? `<small>+${bonusVoor(h, k)}</small>` : ""}</b></div>`).join("")}</div>
       ${isActief ? `<div class="acties">
         <button class="btn" data-act="rust" ${kanActie("rusten") ? "" : "disabled"}>Rusten</button>
-        <button class="btn" data-act="dienst" ${kanActie("dienst") && dienstNaam ? "" : "disabled"}>${dienstNaam ? esc(dienstNaam.replace(/-/g, " ")) : "Geen dienst"}</button>
+        <button class="btn" data-act="dienst" ${kanActie("dienst") && dienstNaam ? "" : "disabled"}>${dienstNaam ? esc(DIENSTLABEL[dienstNaam] || dienstNaam) : "Geen dienst"}</button>
         <button class="btn" data-act="ruil" ${kanActie("ruilen") && anderenHier ? "" : "disabled"}>Ruilen</button>
         ${isOverzee(h.plek) ? `<button class="btn" data-act="terug" ${kanActie("reizen") ? "" : "disabled"}>Terug naar de dokken</button>` : `<button class="btn" data-act="groei" ${h.trofee >= 3 ? "" : "disabled"}>Groeien (3 trofeeën)</button>`}
         ${ma ? `<button class="btn breed" data-act="mysterie" ${ma.kan && h.acties > 0 && !h.gebruikt.includes("mysterie") ? "" : "disabled"}>${esc(ma.label)}${ma.uitleg ? ` (${esc(ma.uitleg)})` : ""}</button>` : ""}
