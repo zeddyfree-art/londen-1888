@@ -400,6 +400,7 @@ function nieuwSpel(godId, moeilijkheid, heldIds, opties = {}) {
   activeerMysterie();
   log(`Het spel begint. ${g.naam} roert zich.`);
   startHeldenbeurt();
+  setTimeout(() => veilig(() => godIntro(true)), 10);
   window.scrollTo(0, 0);
 }
 
@@ -1150,6 +1151,16 @@ function tekenHandleiding() {
     <div class="hb-inhoud">${views[t]()}</div>`;
 }
 
+async function godIntro(begin) {
+  const g = god(), img = art(`art/goden/${g.id}.jpg`), mys = mysterie();
+  await venster({ soort: begin ? "Een nieuw spel begint" : "De oude god", titel: `${g.naam}, ${g.titel}`, breed: true,
+    html: `${img ? `<img class="godintro" src="${img}" alt="">` : ""}<p class="verhaal">${esc(g.verhaal)}</p>
+      <p><b>Speciale regel:</b> ${esc(g.regel)}</p><p><b>Tegenspelers:</b> ${esc(g.verdachten)}</p>
+      ${mys ? `<p><b>Eerste mysterie: ${esc(mys.naam)}.</b> ${esc(mys.doel)}</p>` : ""}
+      <p class="muted">Los ${S.nodig} mysteries op voordat de Mist (nu ${S.mist}) op 0 staat.</p>`,
+    knoppen: [{ label: begin ? "Aan de slag" : "Sluiten", waarde: true }] });
+}
+
 /* ---------- heldenprofiel bij de keuze ---------- */
 function profielHtml(h) {
   const img = art(`art/helden/${h.id}.jpg`);
@@ -1198,7 +1209,7 @@ function teken() {
   const g = god(), mys = mysterie();
   app.innerHTML = `<div class="spel">
     <header class="balk">
-      <h1>${esc(g.naam)}</h1>
+      <button class="godknop" data-act="god" title="Over ${esc(g.naam)}"><h1>${esc(g.naam)}</h1></button>
       <span class="stat">Ronde <b>${S.ronde}</b></span>
       <span class="stat">${{ helden: "Heldenfase", ontmoeting: "Ontmoetingen", onheil: "Onheil" }[S.fase]}</span>
       <span class="stat" title="Mist">Mist <b>${S.mist}</b></span>
@@ -1312,7 +1323,8 @@ function tekenAanpas(h) {
 }
 function tekenEinde() {
   const winst = S.einde === "winst", g = god();
-  app.innerHTML = `<div class="start"><span class="muted">Na ${S.ronde} rondes</span><h1>${winst ? "Londen is gered" : `${esc(g.naam)} ontwaakt`}</h1>
+  const gb = art(`art/goden/${g.id}.jpg`);
+  app.innerHTML = `<div class="start">${gb ? `<img class="hero-art${winst ? " gered" : ""}" src="${gb}" alt="">` : ""}<span class="muted">Na ${S.ronde} rondes</span><h1>${winst ? "Londen is gered" : `${esc(g.naam)} ontwaakt`}</h1>
     <p class="verhaal" style="font-family:var(--letter);font-size:20px;max-width:60ch">${winst ? "De Mist trekt op boven de Theems. De kranten schrijven morgen over een koude nacht, en verder over niets. Jullie weten beter." : esc(g.ontwaken)}</p>
     <div><button class="btn" data-act="nieuw">Nieuw spel</button></div></div>`;
 }
@@ -1325,7 +1337,7 @@ function tekenStart() {
     <div><span class="muted">Een coöperatief spel voor 2 of 4 helden</span><h1>Londen, 1888</h1></div>
     <div class="opties"><button class="btn" data-act="tutorial">Leer spelen (tutorial)</button><button class="btn ghost" data-act="handboek">Handleiding</button></div>
     ${opgeslagen && !opgeslagen.einde ? `<div class="hint">Er is een spel bezig tegen ${esc(byId(D.goden, opgeslagen.god)?.naam)}, ronde ${opgeslagen.ronde}. <button class="btn small" data-act="verder">Verder spelen</button></div>` : ""}
-    <section><h2>Tegen wie?</h2><div class="goden">${D.goden.map(g => `<button class="optie" data-god="${g.id}" aria-pressed="${u.god === g.id}"><b>${esc(g.naam)}</b><span class="muted">${esc(g.titel)}</span><span>${esc(g.regel)}</span></button>`).join("")}</div></section>
+    <section><h2>Tegen wie?</h2><div class="goden">${D.goden.map(g => `<button class="optie" data-god="${g.id}" aria-pressed="${u.god === g.id}">${art(`art/goden/${g.id}.jpg`) ? `<img class="godbeeld" src="art/goden/${g.id}.jpg" alt="">` : ""}<b>${esc(g.naam)}</b><span class="muted">${esc(g.titel)}</span><span>${esc(g.regel)}</span></button>`).join("")}</div></section>
     <section><h2>Moeilijkheid</h2><div class="opties">${Object.entries(MOEILIJKHEID).map(([k, m]) => `<button class="optie" data-moeilijk="${k}" aria-pressed="${u.moeilijkheid === k}">${m.naam}: ${m.nodig} mysteries</button>`).join("")}</div></section>
     <section><h2>Hoeveel helden?</h2><div class="opties">${[2, 4].map(n => `<button class="optie" data-aantal="${n}" aria-pressed="${u.aantal === n}">${n} helden</button>`).join("")}</div></section>
     <section><h2>Kies ${u.aantal} helden <span class="muted" style="font-size:16px">(${u.helden.length} gekozen)</span></h2>
@@ -1365,6 +1377,7 @@ app.addEventListener("click", e => {
     case "nieuw": wis(); S = null; UI.start.helden = []; return teken();
     case "tutorial": zaai(1888); nieuwSpel("vathrun", "ontspannen", ["hester-quayle", "silas-rook"], { tutorial: true }); rng = Math.random; return;
     case "handboek": UI.handboek = "handleiding"; return tekenHandleiding();
+    case "god": return veilig(() => godIntro(false));
     case "tips": if (S.tutorial) { S.tutorial = false; UI.tips = false; } else UI.tips = !UI.tips; opslaan(); return teken();
     case "stoppen": return veilig(async () => { if (await venster({ titel: "Stoppen?", html: "<p>Het spel blijft bewaard op dit apparaat. Je kunt later verder spelen.</p>", knoppen: [{ label: "Naar het beginscherm", waarde: true }, { label: "Doorspelen", waarde: false, ghost: true }] })) { opslaan(); S = null; } });
     case "regels": return veilig(() => venster({ soort: "Hoe werkt het?", titel: "Een ronde", html: `<ol><li><b>Heldenfase:</b> elke held doet 2 verschillende acties: reizen (tik op een plek), rusten, de dienst van de plek, ruilen, een spreuk of het mysterie.</li><li><b>Ontmoetingen:</b> vecht met monsters op je plek, ga door een Scheur, volg een Aanwijzing of trek een stadskaart.</li><li><b>Onheil:</b> de Mist daalt, Scheuren openen en monsters bewegen.</li></ol><p>Een test: 2 dobbelstenen plus je kenmerk, haal de moeilijkheid. Een Aanwijzing laat je bij Kennis en Scherpte één steen opnieuw gooien.</p><p>Los ${S.nodig} mysteries op voordat de Mist op 0 staat.</p>` }));
