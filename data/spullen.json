@@ -59,7 +59,7 @@
     "naam": "Stormlantaarn",
     "soort": "Gereedschap",
     "prijs": 1,
-    "tekst": "+1 bij Scherpte-tests tijdens ontmoetingen (die spelen zich 's nachts af)."
+    "tekst": "+1 bij Waarneming-tests tijdens ontmoetingen (die spelen zich 's nachts af)."
   },
   {
     "id": "gladstonetas",
@@ -199,7 +199,7 @@
     "naam": "Journaliste van de avondkrant",
     "soort": "Bondgenoot",
     "prijs": 2,
-    "tekst": "+1 bij Overtuiging-tests. Je mag een gerucht verwijderen door 2 Aanwijzingen in te leveren.",
+    "tekst": "+1 bij Charisma-tests. Je mag een gerucht verwijderen door 2 Aanwijzingen in te leveren.",
     "bonus": {
       "overtuiging": 1
     }
@@ -260,7 +260,7 @@
     "naam": "Zwarte straatkat",
     "soort": "Dier",
     "prijs": 1,
-    "tekst": "+1 bij Scherpte-tests tijdens ontmoetingen. Gezegend en Vervloekt hebben geen effect op jou zolang de kat bij je is."
+    "tekst": "+1 bij Waarneming-tests tijdens ontmoetingen. Gezegend en Vervloekt hebben geen effect op jou zolang de kat bij je is."
   },
   {
     "id": "dier-paard",

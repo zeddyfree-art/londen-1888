@@ -9,7 +9,7 @@
     "id": "verslaafd",
     "naam": "Verslaafd",
     "soort": "Lichaam",
-    "tekst": "Aan het begin van elke ronde: betaal 1 Pond of verlies 1 Geest. Verwijder bij de gaarkeuken met een Overtuiging-test (9)."
+    "tekst": "Aan het begin van elke ronde: betaal 1 Pond of verlies 1 Geest. Verwijder bij de gaarkeuken met een Charisma-test (9)."
   },
   {
     "id": "gezocht",
@@ -39,7 +39,7 @@
     "id": "verdwaald",
     "naam": "Verdwaald",
     "soort": "Reizen",
-    "tekst": "Je kunt niets doen en hebt geen ontmoetingen. In je beurt: doe een Scherpte-test (8) om terug te keren naar een willekeurige plek."
+    "tekst": "Je kunt niets doen en hebt geen ontmoetingen. In je beurt: doe een Waarneming-test (8) om terug te keren naar een willekeurige plek."
   },
   {
     "id": "waanzin-paranoia",

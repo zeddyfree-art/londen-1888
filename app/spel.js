@@ -4,7 +4,9 @@
 
 const OPSLAG = "londen1888-spel-v1";
 const KLEUREN = ["#b5552f", "#2d6e9e", "#7a8f2a", "#8a4fa3"];
-const KENMERKEN = [["kennis", "Kennis"], ["scherpte", "Scherpte"], ["kracht", "Kracht"], ["overtuiging", "Overtuiging"]];
+const KENMERKEN = [["kennis", "Kennis"], ["scherpte", "Waarneming"], ["kracht", "Kracht"], ["overtuiging", "Charisma"]];
+const KUITLEG = { kennis: "Boeken, oude talen, spreuken en gruwel doorstaan", scherpte: "Zoeken, opmerken en sporen volgen", kracht: "Vechten, klimmen en volhouden", overtuiging: "Praten, onderhandelen en indruk maken" };
+const RUSTIG = (() => { try { return matchMedia("(prefers-reduced-motion: reduce)").matches; } catch { return false; } })();
 const KNAAM = Object.fromEntries(KENMERKEN);
 const STARTWAPENS = { "Bamboestok": 1, "Wandelstok met verborgen lemmet": 1, "Revolver": 2, "Damespistool": 1, "Dienstgeweer": 2, "Bijl van de opgraving": 1, "Gietijzeren pollepel": 1, "Wapenstok": 1, "Derringer in haar mof": 1 };
 const DIENSTLABEL = { sterrenwacht: "Sterrenwacht", seance: "Seance bijwonen", station: "Trein nemen", bibliotheek: "Studeren", "occulte-boekwinkel": "Spreuken kopen", salon: "Salon bezoeken", markt: "Winkelen", theater: "Optreden", club: "Gerucht kopen", universiteit: "Laten onderzoeken", ziekenhuis: "Ziekenhuis", gaarkeuken: "Gaarkeuken", logementen: "Geruchten horen", politie: "Politie", kerk: "Abdij bezoeken", kunstenaars: "Laten schilderen", haven: "Op expeditie", rivierpolitie: "Roeiboot lenen" };
@@ -58,6 +60,39 @@ function art(pad) {
   return null;
 }
 
+/* ---------- geluid (zelf opgewekt, geen bestanden) ---------- */
+const Geluid = (() => {
+  let ctx = null, aan = true;
+  try { aan = localStorage.getItem("londen1888-geluid") !== "uit"; } catch {}
+  const c = () => { if (!aan || window.__bot) return null; try { ctx ??= new (window.AudioContext || window.webkitAudioContext)(); if (ctx.state === "suspended") ctx.resume(); return ctx; } catch { return null; } };
+  const toon = (f, t0, dur, type = "sine", vol = .15, f2) => {
+    const a = c(); if (!a) return; const t = a.currentTime + t0;
+    const o = a.createOscillator(), g = a.createGain(); o.type = type; o.frequency.setValueAtTime(f, t); if (f2) o.frequency.exponentialRampToValueAtTime(f2, t + dur);
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + .02); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g).connect(a.destination); o.start(t); o.stop(t + dur + .05);
+  };
+  const ruis = (t0, dur, freq, vol = .2, q = 1, freq2) => {
+    const a = c(); if (!a) return; const t = a.currentTime + t0;
+    const n = Math.max(1, Math.floor(a.sampleRate * dur)), buf = a.createBuffer(1, n, a.sampleRate), d = buf.getChannelData(0);
+    for (let i = 0; i < n; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / n);
+    const src = a.createBufferSource(); src.buffer = buf;
+    const f = a.createBiquadFilter(); f.type = "bandpass"; f.Q.value = q; f.frequency.setValueAtTime(freq, t); if (freq2) f.frequency.exponentialRampToValueAtTime(freq2, t + dur);
+    const g = a.createGain(); g.gain.value = vol; src.connect(f).connect(g).connect(a.destination); src.start(t);
+  };
+  return {
+    get aan() { return aan; },
+    wissel() { aan = !aan; try { localStorage.setItem("londen1888-geluid", aan ? "aan" : "uit"); } catch {} },
+    reis() { for (let i = 0; i < 5; i++) { ruis(i * .16, .06, 900, .4, 5); ruis(i * .16 + .07, .05, 650, .3, 5); } },
+    kaart() { ruis(0, .4, 300, .25, .8, 2600); },
+    dobbel() { for (let i = 0; i < 8; i++) ruis(i * .07 + Math.random() * .03, .03, 2400 + Math.random() * 1600, .35, 6); },
+    goed() { toon(523, 0, .3, "triangle", .12); toon(784, .13, .5, "triangle", .12); },
+    slecht() { toon(233, 0, .5, "sawtooth", .045, 150); },
+    monster() { toon(70, 0, 1.2, "sawtooth", .05, 46); ruis(0, 1.1, 180, .14, 1); },
+    onheil() { toon(98, 0, 2.2, "sine", .22); toon(146, .03, 1.8, "sine", .09); },
+    klik() { ruis(0, .03, 1800, .2, 3); }
+  };
+})();
+
 /* ---------- buren en afstanden ---------- */
 let BUREN = {};
 function maakBuren() {
@@ -82,29 +117,35 @@ function stapNaar(van, doel) {
 
 /* ---------- modaal venster ---------- */
 let modalResolve = null;
-function venster({ soort = "", titel = "", beeld = null, verhaal = "", html = "", breed = false, knoppen = [{ label: "Verder", waarde: true }] }) {
+function venster({ soort = "", titel = "", beeld = null, zij = false, verhaal = "", html = "", breed = false, achterkant = null, animeer = null, geluid = null, knoppen = [{ label: "Verder", waarde: true }] }) {
   if (knoppen.length && knoppen.every(k => k.uit)) knoppen = [...knoppen, { label: "Verder", waarde: null, ghost: true }];
   if (window.__bot) return Promise.resolve(window.__bot.kies({ soort, titel, knoppen: knoppen.filter(k => !k.uit) }));
   return new Promise(res => {
-    modalResolve = res;
     const m = document.getElementById("modal");
     const img = beeld ? art(beeld) : null;
-    m.innerHTML = `<div class="venster${breed ? " breed" : ""}" role="dialog" aria-modal="true" aria-label="${esc(titel)}">
-      ${img ? `<img class="beeld" src="${esc(img)}" alt="">` : ""}
-      <div class="inhoud">
-        ${soort ? `<span class="soort">${esc(soort)}</span>` : ""}
-        ${titel ? `<h2>${esc(titel)}</h2>` : ""}
-        ${verhaal ? `<p class="verhaal">${esc(verhaal)}</p>` : ""}
-        ${html}
-        <div class="knoppen">${knoppen.map((k, i) => `<button class="btn${k.ghost ? " ghost" : ""}" data-knop="${i}" ${k.uit ? "disabled" : ""}>${esc(k.label)}</button>`).join("")}</div>
-      </div></div>`;
+    const rug = achterkant && !RUSTIG ? art(`art/achterkanten/${achterkant}.jpg`) : null;
+    const toon = () => {
+      m.innerHTML = `<div class="venster${breed ? " breed" : ""}${zij && img ? " zij" : ""}${rug ? " draai-in" : " kom-op"}" role="dialog" aria-modal="true" aria-label="${esc(titel)}">
+        ${img ? `<img class="beeld" src="${esc(img)}" alt="">` : ""}
+        <div class="inhoud">
+          ${soort ? `<span class="soort">${esc(soort)}</span>` : ""}
+          ${titel ? `<h2>${esc(titel)}</h2>` : ""}
+          ${verhaal ? `<p class="verhaal">${esc(verhaal)}</p>` : ""}
+          ${html}
+          <div class="knoppen">${knoppen.map((k, i) => k.verberg ? "" : `<button class="btn${k.ghost ? " ghost" : ""}" data-knop="${i}" ${k.uit ? "disabled" : ""}>${esc(k.label)}</button>`).join("")}</div>
+        </div></div>`;
+      if (geluid) Geluid[geluid]?.();
+      if (animeer) animeer(m);
+      m.querySelector(".knoppen [data-knop]:not([disabled])")?.focus();
+    };
     m.hidden = false;
     m.onclick = e => {
-      const b = e.target.closest("[data-knop]"); if (!b) return;
-      m.hidden = true; m.innerHTML = ""; modalResolve = null;
+      const b = e.target.closest("[data-knop]"); if (!b || b.disabled || m.querySelector("[data-wacht]")) return;
+      m.hidden = true; m.innerHTML = "";
       res(knoppen[+b.dataset.knop].waarde);
     };
-    m.querySelector("[data-knop]")?.focus();
+    if (rug) { m.innerHTML = `<div class="kaartrug" aria-hidden="true"><img src="${esc(rug)}" alt=""></div>`; Geluid.kaart(); setTimeout(toon, 700); }
+    else toon();
   });
 }
 const melding = (titel, tekst, soort = "") => venster({ soort, titel, html: `<p>${esc(tekst)}</p>` });
@@ -129,8 +170,27 @@ function wapenBonus(h, mens) {
   return b;
 }
 function dobbelHtml(stenen, gehouden, extraBonus, doel, totaal) {
-  return `<div class="dobbels">${stenen.map((v, i) => `<span class="dobbel rol${gehouden.includes(i) ? "" : " uit"}">${v}</span>`).join("")}
-    <span class="som ${totaal >= doel ? "ok" : "nee"}">+ ${extraBonus} = <b>${totaal}</b> (nodig ${doel})</span></div>`;
+  return `<div class="dobbels">${stenen.map((v, i) => `<span class="dobbel${gehouden.includes(i) ? "" : " uit"}" data-waarde="${v}">${v}</span>`).join("")}
+    <span class="som ${totaal >= doel ? "ok" : "nee"}">+ ${extraBonus} = <b>${totaal}</b> (nodig ${doel})${totaal >= doel ? " · gelukt" : " · mislukt"}</span></div>`;
+}
+function rolDobbels(m) {
+  const stenen = [...m.querySelectorAll(".dobbel")], som = m.querySelector(".som"), doos = m.querySelector(".dobbels");
+  const klaar = () => som && (som.classList.contains("ok") ? Geluid.goed() : Geluid.slecht());
+  if (RUSTIG || !stenen.length) return klaar();
+  doos.setAttribute("data-wacht", ""); som.classList.add("verborgen"); stenen.forEach(x => x.classList.add("rolt"));
+  m.querySelectorAll(".knoppen .btn").forEach(b => b.classList.add("wacht"));
+  Geluid.dobbel();
+  let n = 0;
+  const t = setInterval(() => {
+    stenen.forEach(x => { x.textContent = 1 + Math.floor(Math.random() * 6); });
+    if (++n > 11) {
+      clearInterval(t);
+      stenen.forEach(x => { x.textContent = x.dataset.waarde; x.classList.remove("rolt"); });
+      doos.removeAttribute("data-wacht"); som.classList.remove("verborgen");
+      m.querySelectorAll(".knoppen .btn").forEach(b => b.classList.remove("wacht"));
+      klaar();
+    }
+  }, 70);
 }
 async function test(h, kenmerk, doel, titel, opt = {}) {
   const hd = heldDef(h);
@@ -161,7 +221,7 @@ async function test(h, kenmerk, doel, titel, opt = {}) {
       if (kenmerk === "kracht" && opt.context === "ontmoeting" && h.spullen.includes("ossenzweep") && !h.ronde.zweep) knoppen.push({ label: "Ossenzweep: opnieuw", waarde: "zweep", ghost: true });
       if (isOverzee(h.plek) && h.spullen.includes("boek-reisverslag")) knoppen.push({ label: "Reisverslag: +2", waarde: "reis", ghost: true });
     }
-    const keuze = await venster({ soort: `Test · ${KNAAM[kenmerk] || kenmerk}`, titel, html: `<p class="muted">${esc(korteNaam(hd.naam))} gooit ${stenen.length} dobbelstenen en telt de twee hoogste, plus ${kw}.</p>` + dobbelHtml(stenen, idx, kw, doel, totaal), knoppen });
+    const keuze = await venster({ soort: `Test · ${KNAAM[kenmerk] || kenmerk}`, titel, html: `<p class="muted">${esc(korteNaam(hd.naam))} gooit ${stenen.length} dobbelstenen en telt de twee hoogste, plus ${kw}.</p>` + dobbelHtml(stenen, idx, kw, doel, totaal), knoppen, animeer: rolDobbels });
     if (keuze === "ok") return gelukt;
     const i = laagste();
     if (keuze === "aanw") h.aanw--;
@@ -338,6 +398,7 @@ async function losOp() {
   S.opgelost++; log(`Mysterie opgelost: ${m.naam}`);
   if (S.opgelost >= S.nodig) { S.einde = "winst"; opslaan(); teken(); return; }
   S.mysterieIndex++; S.voortgang = { scheuren: [] };
+  Geluid.goed();
   await melding("Mysterie opgelost", `"${m.naam}" is opgelost. Het volgende mysterie: ${mysterie().naam}. ${mysterie().doel}`, `${S.opgelost} van ${S.nodig}`);
   activeerMysterie();
 }
@@ -462,6 +523,9 @@ function reis(doel) {
   if (!bereikbaar(h).includes(doel)) return;
   if (h.stappen > 0) h.stappen--;
   else { h.acties--; h.gebruikt.push("reizen"); }
+  const van = plekDef(h.plek);
+  UI.reis = { i: S.actief, van: { x: van.x, y: van.y }, naar: doel, t: Date.now() };
+  Geluid.reis(); verbergPlekInfo();
   h.plek = doel; log(`${korteNaam(heldDef(h).naam)} reist naar ${plekNaam(doel)}`);
   if (doel === "pall-mall") geruchtBezoek(doel);
   opslaan(); teken();
@@ -524,13 +588,14 @@ async function winkel(h, kaarten, soortNaam, prijsVan) {
     const knoppen = rest.map(id => {
       const d = soortNaam === "spreuk" ? spreukDef(id) : spulDef(id);
       const p = prijsVan(d);
-      return { label: `Koop ${d.naam} (${p} Pond)`, waarde: id, uit: p > h.pond || !kanDragen(h) };
+      return { label: `Koop ${d.naam} (${p} Pond)`, waarde: id, uit: p > h.pond || !kanDragen(h), verberg: true };
     });
     knoppen.push({ label: gekocht ? "Klaar" : "Niets kopen", waarde: null, ghost: true });
-    const html = `<p class="muted">Je hebt ${h.pond} Pond.${kanDragen(h) ? "" : " Je kunt niets meer dragen."}</p>` + rest.map(id => {
-      const d = soortNaam === "spreuk" ? spreukDef(id) : spulDef(id);
-      return `<div class="kaartje"><div class="k"><b>${esc(d.naam)}</b><span class="muted">${esc(d.soort)}</span></div><span>${esc(d.tekst)}</span></div>`;
-    }).join("");
+    const map = soortNaam === "spreuk" ? "spreuken" : "spullen";
+    const html = `<p class="muted">Je hebt <b>${h.pond} Pond</b>.${kanDragen(h) ? " Tik op een kaart om hem te kopen." : " Je kunt niets meer dragen."}</p><div class="winkelraster">` + rest.map((id, i) => {
+      const d = soortNaam === "spreuk" ? spreukDef(id) : spulDef(id), img = art(`art/${map}/${id}.jpg`), k = knoppen[i];
+      return `<button class="winkeltegel" data-knop="${i}" ${k.uit ? "disabled" : ""}>${img ? `<img src="${img}" alt="">` : ""}<b>${esc(d.naam)}</b><span class="muted">${esc(d.soort)}</span><span class="wt-tekst">${esc(d.tekst)}</span><span class="prijs">${prijsVan(d)} Pond${k.uit ? "" : " · kopen"}</span></button>`;
+    }).join("") + `</div>`;
     const keuze = await venster({ soort: "Winkelen", titel: plekNaam(h.plek), beeld: `art/plekken/${h.plek}.jpg`, html, knoppen });
     if (!keuze) break;
     const d = soortNaam === "spreuk" ? spreukDef(keuze) : spulDef(keuze);
@@ -577,7 +642,7 @@ async function dienst(h) {
     }
     case "theater": {
       await pasToe(h, [{ pond: 2 }]);
-      const k = await venster({ soort: "Theater", titel: "Je verdient 2 Pond", html: "<p>Wil je een extra nummer doen voor 1 Pond meer? (Overtuiging 9)</p>", knoppen: [{ label: "Ja", waarde: true }, { label: "Nee", waarde: false, ghost: true }] });
+      const k = await venster({ soort: "Theater", titel: "Je verdient 2 Pond", html: "<p>Wil je een extra nummer doen voor 1 Pond meer? (Charisma 9)</p>", knoppen: [{ label: "Ja", waarde: true }, { label: "Nee", waarde: false, ghost: true }] });
       if (k && await test(h, "overtuiging", 9, "Een extra nummer")) await pasToe(h, [{ pond: 1 }]);
       break;
     }
@@ -602,7 +667,7 @@ async function dienst(h) {
       break;
     }
     case "gaarkeuken": {
-      const extra = heeft(h, "verslaafd") ? [{ label: "Verslaving bestrijden (Overtuiging 9)", waarde: "v" }] : [];
+      const extra = heeft(h, "verslaafd") ? [{ label: "Verslaving bestrijden (Charisma 9)", waarde: "v" }] : [];
       const k = extra.length ? await venster({ soort: "Gaarkeuken", titel: p.naam, knoppen: [{ label: "Eten en rusten (+2 Geest)", waarde: "e" }, ...extra] }) : "e";
       if (k === "e") await venster({ soort: "Gaarkeuken", titel: p.naam, html: await pasToe(h, [{ geest: 2 }]) });
       else if (await test(h, "overtuiging", 9, "Afkicken")) await pasToe(h, [{ verwijder: "verslaafd" }]);
@@ -865,7 +930,7 @@ async function vecht(h, plek, m) {
   if (!ep && h.spullen.includes("dynamiet")) opties.push({ label: "Dynamiet", waarde: "dyn", ghost: true });
   if (d.mens && h.spullen.includes("chloroform")) opties.push({ label: "Chloroform", waarde: "chl", ghost: true });
   const kenmerk = d.vechtMet || "kracht";
-  const k = await venster({ soort: ep ? "Episch monster" : "Gevecht", titel: d.naam, beeld: `art/monsters/${d.id}.jpg`, verhaal: d.eigenschap,
+  const k = await venster({ soort: ep ? "Episch monster" : "Gevecht", titel: d.naam, beeld: `art/monsters/${d.id}.jpg`, zij: true, achterkant: "monster", geluid: "monster", verhaal: d.eigenschap,
     html: `<p>Gruwel <b>${d.gruwel}</b> · Taaiheid <b>${d.taaiheid}</b> · Schade <b>${d.schade}</b> · Leven <b>${m.leven}</b></p><p class="muted">${esc(naam)} vecht met ${KNAAM[kenmerk]}.</p>`, knoppen: opties });
   if (k === "dyn") { await gebruikSpul(h, "dynamiet"); return true; }
   if (k === "chl") { await gebruikSpul(h, "chloroform"); return true; }
@@ -937,10 +1002,10 @@ async function ontmoeting(h) {
   if (h.ronde.astraal) await melding("Astrale reis", `Je geest zweeft naar ${plekNaam(plek)}.`);
   if (isOverzee(plek)) {
     const kaart = kies1(D.ontmoetingen.expeditie.filter(e => e.plek === plek));
-    await speelKaart(h, kaart, "Expeditie", `art/plekken/${plek}.jpg`);
+    await speelKaart(h, kaart, "Expeditie", `art/plekken/${plek}.jpg`, "expeditie");
     if (S.overzee[plek].artefact || h.artefactGerucht) {
       S.overzee[plek].artefact = false; h.artefactGerucht = false;
-      await venster({ soort: "Vondst", titel: "Een artefact", html: await pasToe(h, [{ trek: "artefacten" }]) });
+      await venster({ soort: "Vondst", titel: "Een artefact", achterkant: "artefacten", html: await pasToe(h, [{ trek: "artefacten" }]) });
     }
     return;
   }
@@ -948,7 +1013,7 @@ async function ontmoeting(h) {
   if (p.scheur) {
     if (S.tutorial) await coach("scheur");
     const kaart = kies1(D.ontmoetingen.scheur);
-    await speelKaart(h, kaart, "Aan de andere kant", null);
+    await speelKaart(h, kaart, "Aan de andere kant", "art/fiches/scheur.jpg", "scheur");
     if ((h.plek !== plek && !h.ronde.astraal) || !p.scheur) return;
     const lens = h.artefacten.includes("vuurtoren-lens") && h.kenm.scherpte > h.kenm.kennis ? "scherpte" : "kennis";
     const k = await venster({ soort: "Scheur", titel: `De Scheur in ${plekNaam(plek)}`, html: `<p>Probeer je hem te sluiten? (${KNAAM[lens]})</p>`,
@@ -962,23 +1027,23 @@ async function ontmoeting(h) {
   }
   if (p.aanw > 0) {
     const kaart = kies1(D.ontmoetingen.aanwijzing);
-    const k = await venster({ soort: "Aanwijzing", titel: plekNaam(plek), beeld: `art/plekken/${plek}.jpg`, verhaal: kaart.tekst, knoppen: [{ label: "Onderzoeken (Scherpte 7)", waarde: true }] });
+    const k = await venster({ soort: "Aanwijzing", titel: plekNaam(plek), beeld: `art/plekken/${plek}.jpg`, achterkant: "mysterie", verhaal: kaart.tekst, knoppen: [{ label: "Onderzoeken (Waarneming 7)", waarde: true }] });
     if (k && await test(h, "scherpte", 7, "Een spoor volgen", { context: "ontmoeting" })) { p.aanw--; h.aanw++; log(`${naam} vindt een Aanwijzing in ${plekNaam(plek)}`); }
     return;
   }
   const kaarten = D.ontmoetingen.stad.filter(e => e.plek === plek && e.id !== S.laatsteKaart);
   const kaart = kies1(kaarten);
   S.laatsteKaart = kaart.id;
-  await speelKaart(h, kaart, plekNaam(plek), `art/plekken/${plek}.jpg`);
+  await speelKaart(h, kaart, plekNaam(plek), `art/plekken/${plek}.jpg`, "stad");
 }
-async function speelKaart(h, kaart, soort, beeld) {
+async function speelKaart(h, kaart, soort, beeld, rug) {
   const naam = korteNaam(heldDef(h).naam);
   if (!kaart.test) {
     const html = await pasToe(h, kaart.effect);
-    await venster({ soort, titel: naam, beeld, verhaal: kaart.tekst, html: (kaart.slot ? `<p class="verhaal">${esc(kaart.slot)}</p>` : "") + html });
+    await venster({ soort, titel: naam, beeld, achterkant: rug, verhaal: kaart.tekst, html: (kaart.slot ? `<p class="verhaal">${esc(kaart.slot)}</p>` : "") + html });
     await controleerHeld(h); return;
   }
-  await venster({ soort, titel: naam, beeld, verhaal: kaart.tekst, knoppen: [{ label: `${KNAAM[kaart.test.kenmerk]}-test (${kaart.test.moeilijkheid + MOEILIJKHEID[S.moeilijkheid].test})`, waarde: true }] });
+  await venster({ soort, titel: naam, beeld, achterkant: rug, verhaal: kaart.tekst, knoppen: [{ label: `${KNAAM[kaart.test.kenmerk]}-test (${kaart.test.moeilijkheid + MOEILIJKHEID[S.moeilijkheid].test})`, waarde: true }] });
   const ok = await test(h, kaart.test.kenmerk, kaart.test.moeilijkheid, kaart.test.kenmerk === "kracht" ? "Doorzetten" : "Wat doe je?", { context: "ontmoeting" });
   const uit = ok ? kaart.gelukt : kaart.mislukt;
   const html = await pasToe(h, uit.effect);
@@ -1012,7 +1077,7 @@ async function onheilsfase() {
   const knoppen = [{ label: "Uitvoeren", waarde: false }];
   if (odile && !S.voorgevoel) knoppen.push({ label: "Voorgevoel (Odile): negeren", waarde: true, ghost: true });
   const detail = [c.mist ? `Mist −${c.mist}` : "", c.scheur ? `${c.scheur} Scheur${c.scheur > 1 ? "en" : ""}` : "", c.monster ? `${c.monster} monster${c.monster > 1 ? "s" : ""}` : "", c.extra || "", c.gerucht ? "Gerucht: " + c.gerucht : ""].filter(Boolean).join(" · ");
-  if (await venster({ soort: `Onheil · ronde ${S.ronde}`, titel: c.naam, verhaal: c.tekst, html: `<p>${esc(detail)}</p>`, knoppen })) {
+  if (await venster({ soort: `Onheil · ronde ${S.ronde}`, titel: c.naam, beeld: "art/fiches/mist.jpg", zij: true, achterkant: "onheil", geluid: "onheil", verhaal: c.tekst, html: `<p>${esc(detail)}</p>`, knoppen })) {
     S.voorgevoel = true; S.onheilAfleg.push(id);
     if (!S.onheil.length) { S.onheil = schud(S.onheilAfleg); S.onheilAfleg = []; }
     id = S.onheil.pop(); c = byId(D.onheil, id);
@@ -1138,7 +1203,7 @@ const COACH = {
   beurt: ["Jouw beurt", `<p>Elke held doet <b>2 verschillende acties</b> per ronde. Plekken waar je heen kunt, lichten groen op: tik erop om te reizen.</p><p>De knoppen rechts zijn de andere acties: <b>rusten</b>, de <b>dienst</b> van de plek (winkelen, studeren, genezen…), <b>ruilen</b> met een held op dezelfde plek en het <b>mysterie</b>. Spreuken spreek je uit bij je kaarten.</p><p>Ben je klaar? Tik op <b>Beurt klaar</b>. Onder <b>Tip</b> zie je steeds een suggestie.</p>`],
   dienst: ["Diensten", `<p>Elke plek heeft een eigen dienst. In Bloomsbury studeer je spreuken, op markten koop je spullen, in The City laat je je verzorgen of leen je geld. In de handleiding staat het hele overzicht.</p>`],
   ontmoeting: ["Ontmoetingen", `<p>Na de heldenfase krijgt elke held een <b>ontmoeting</b> op de plek waar hij staat:</p><ol><li>Staat er een monster? Dan vecht je.</li><li>Is er een Scheur? Dan stap je erdoor, en daarna mag je hem proberen te sluiten.</li><li>Ligt er een Aanwijzing (groen bolletje)? Dan volg je het spoor.</li><li>Anders trek je een verhaal van die wijk. Lees het gerust hardop voor.</li></ol>`],
-  test: ["Een test", `<p>Bij een test gooi je <b>twee dobbelstenen</b> en tel je je <b>kenmerk</b> erbij, bijvoorbeeld Kennis of Kracht. Haal je het getal achter "nodig", dan lukt het.</p><p>Mislukt het? Soms kun je opnieuw gooien: met een <b>Aanwijzing</b> (bij Kennis en Scherpte), als je <b>Gezegend</b> bent of met een vermogen van je held.</p>`],
+  test: ["Een test", `<p>Bij een test gooi je <b>twee dobbelstenen</b> en tel je je <b>kenmerk</b> erbij, bijvoorbeeld Kennis of Kracht. Haal je het getal achter "nodig", dan lukt het.</p><p>Mislukt het? Soms kun je opnieuw gooien: met een <b>Aanwijzing</b> (bij Kennis en Waarneming), als je <b>Gezegend</b> bent of met een vermogen van je held.</p>`],
   gevecht: ["Een gevecht", `<p>Eerst de <b>Gruwel</b>: een Kennis-test. Mislukt die, dan verlies je Geest.</p><p>Daarna vecht je met <b>Kracht plus je wapens</b> tegen de <b>Taaiheid</b> van het monster. Win je, dan verliest het monster 1 leven. Verlies je, dan verlies je Lichaam. Een verslagen monster levert een <b>Trofee</b> op.</p>`],
   scheur: ["Een Scheur", `<p>Een paars omrande plek heeft een <b>Scheur</b>: een opening naar ergens anders. Na de ontmoeting mag je hem sluiten met een Kennis-test (8) en 1 Aanwijzing, of zonder Aanwijzing (10). Elke gesloten Scheur is een Trofee waard, en soms hoort het bij een mysterie.</p>`],
   onheil: ["Onheil", `<p>Aan het eind van elke ronde trekt de app een <b>Onheilskaart</b>. De Mist daalt, Scheuren gaan open, monsters verschijnen of bewegen. Soms komt er een <b>gerucht</b>: een opdracht met een deadline.</p>`],
@@ -1161,7 +1226,7 @@ function dichtsbij(h, filter) {
 }
 function advies(h) {
   const m = mysterie(), ma = mysterieActie(h), p = S.plekken[h.plek];
-  if (heeft(h, "verdwaald")) return "Je bent verdwaald. Doe de Scherpte-test om de weg terug te vinden.";
+  if (heeft(h, "verdwaald")) return "Je bent verdwaald. Doe de Waarneming-test om de weg terug te vinden.";
   if (ma && ma.kan) return `Je staat op de goede plek: gebruik de knop <b>${esc(ma.label)}</b>.`;
   if (p && p.monsters.length && (h.L <= 2 || h.G <= 2)) return "Er staat een monster op je plek en je bent verzwakt. Reis weg voordat de ontmoetingen beginnen.";
   if (h.L <= 2) return "Je Lichaam is laag. Rust, of laat je verzorgen in The City.";
@@ -1234,7 +1299,16 @@ async function godIntro(begin) {
 }
 
 function kiesGroei(h) {
-  return venster({ soort: "Groei", titel: "Kies een verbetering", knoppen: [...KENMERKEN.map(([k, l]) => ({ label: `+1 ${l}`, waarde: k, uit: h.kenm[k] >= 5 })), { label: "+1 max Lichaam", waarde: "L" }, { label: "+1 max Geest", waarde: "G" }, { label: "Een spreuk", waarde: "S" }, { label: "Toch niet", waarde: null, ghost: true }] });
+  const pips = (n, max = 5) => `<span class="pips">${Array.from({ length: max }, (_, i) => `<i class="${i < n ? "aan" : ""}"></i>`).join("")}</span>`;
+  const opties = [...KENMERKEN.map(([k, l]) => ({ label: l, waarde: k, nu: h.kenm[k], max: 5, uitleg: KUITLEG[k], pips: true })),
+    { label: "Lichaam", waarde: "L", nu: h.maxL, max: 12, uitleg: "Hoeveel klappen je kunt opvangen" },
+    { label: "Geest", waarde: "G", nu: h.maxG, max: 12, uitleg: "Hoeveel gruwel je kunt verdragen" }];
+  const knoppen = [...opties.map(o => ({ label: o.label, waarde: o.waarde, uit: o.nu >= o.max, verberg: true })), { label: "Een nieuwe spreuk", waarde: "S", ghost: true }, { label: "Toch niet", waarde: null, ghost: true }];
+  const html = `<p>Je hebt <b>${h.trofee} Trofeeën</b>. Voor 3 Trofeeën verhoog je één waarde met 1. Tik aan wat je wilt verbeteren.</p>
+    <div class="groeilijst">${opties.map((o, i) => `<button class="groeirij" data-knop="${i}" ${o.nu >= o.max ? "disabled" : ""}>
+      <span class="gn"><b>${o.label}</b><small>${esc(o.uitleg)}</small></span>${o.pips ? pips(o.nu) : `<span></span>`}
+      <span class="gw">${o.nu} → <b>${o.nu + 1}</b></span></button>`).join("")}</div>`;
+  return venster({ soort: "Groei", titel: `${korteNaam(heldDef(h).naam)} wordt sterker`, html, knoppen });
 }
 async function groei(h, k) {
   if (h.trofee < 3) return;
@@ -1257,7 +1331,7 @@ function profielHtml(h) {
       <p class="muted">${esc(h.rol)} · ${h.leeftijd} jaar · ${esc(h.beroep)}<br>Begint in <b>${esc(h.start)}</b></p>
       <p class="verhaal">${esc(h.achtergrond)}</p>
       <div class="profiel-stats">
-        ${KENMERKEN.map(([k, l]) => `<span>${l}</span>${pips(h.kenmerken[k])}<b>${h.kenmerken[k]}</b>`).join("")}
+        ${KENMERKEN.map(([k, l]) => `<span>${l}<small>${esc(KUITLEG[k])}</small></span>${pips(h.kenmerken[k])}<b>${h.kenmerken[k]}</b>`).join("")}
       </div>
       <div class="pools"><div>Lichaam<b>${h.lichaam}</b></div><div>Geest<b>${h.geest}</b></div><div>Pond<b>${2 + (h.uitrusting.some(u => /Pond$/.test(u)) ? parseInt(h.uitrusting.find(u => /Pond$/.test(u)), 10) : 0)}</b></div></div>
       <div class="vermogen"><b>Vermogen: ${esc(h.vermogen.naam)}.</b> ${esc(h.vermogen.tekst)}</div>
@@ -1297,49 +1371,129 @@ function teken() {
       <span class="stat" title="Mist">Mist <b>${S.mist}</b></span>
       <span class="mistbalk" aria-hidden="true">${Array.from({ length: S.mistStart || g.mist }, (_, i) => `<i class="${i < S.mist ? "" : "weg"}"></i>`).join("")}</span>
       <span class="stat">Mysteries <b>${S.opgelost}/${S.nodig}</b>${mys ? `: ${esc(mys.naam)}` : ""}</span>
-      <div class="rechts"><button class="btn small ghost" data-act="tips" aria-pressed="${!!(S.tutorial || UI.tips)}">${S.tutorial || UI.tips ? "Tips uit" : "Tips aan"}</button><button class="btn small ghost" data-act="handboek">Handleiding</button><button class="btn small ghost" data-act="stoppen">Stoppen</button></div>
+      ${S.fase === "helden" ? `<span class="stat beurtchip" style="--kleur:${KLEUREN[S.actief]}">Aan de beurt: <b>${esc(korteNaam(heldDef(actief()).naam))}</b></span>` : ""}
+      <div class="rechts"><button class="btn small ghost" data-act="geluid" aria-pressed="${Geluid.aan}">${Geluid.aan ? "Geluid uit" : "Geluid aan"}</button><button class="btn small ghost" data-act="tips" aria-pressed="${!!(S.tutorial || UI.tips)}">${S.tutorial || UI.tips ? "Tips uit" : "Tips aan"}</button><button class="btn small ghost" data-act="handboek">Handleiding</button><button class="btn small ghost" data-act="stoppen">Stoppen</button></div>
     </header>
-    <div class="bordvlak">${tekenBord()}</div>
+    <div class="bordvlak">${tekenBord()}<div id="plekinfo" class="plekinfo" hidden></div>${legendaHtml()}</div>
     <aside class="paneel">${tekenPaneel()}</aside>
   </div>`;
 }
 function tekenBord() {
   const b = D.bord, h = actief(), reik = bereikbaar(h);
   const bg = art("art/bord/londen.jpg");
-  const tokens = D.bord.plekken.map(p => {
-    const s = S.plekken[p.id], hier = S.helden.map((x, i) => [x, i]).filter(([x]) => x.plek === p.id);
-    const mons = s.monsters;
-    return `<g class="plek${p.rivier ? " rivier" : ""}${reik.includes(p.id) ? " bereik" : ""}" data-plek="${p.id}" ${reik.includes(p.id) ? `tabindex="0" role="button" aria-label="Reis naar ${esc(p.naam)}"` : ""}>
-      ${s.scheur ? `<circle class="scheurring" cx="${p.x}" cy="${p.y}" r="22"/>` : ""}
-      <circle class="kern" cx="${p.x}" cy="${p.y}" r="14"/>
-      <text x="${p.x}" y="${p.y + 36}" text-anchor="middle" font-size="16">${esc(p.naam)}</text>
-      ${s.aanw ? `<circle class="aanw" cx="${p.x - 22}" cy="${p.y - 18}" r="10"/><text class="aanw-t" x="${p.x - 22}" y="${p.y - 14}" text-anchor="middle">${s.aanw}</text>` : ""}
-      ${mons.map((m, i) => `<g><circle class="mon" cx="${p.x + 24 + i * 16}" cy="${p.y - 18}" r="9"/><text class="mon-t" x="${p.x + 24 + i * 16}" y="${p.y - 14}" text-anchor="middle">${byId(D.epische, m.id) ? "★" : esc(monsterDef(m.id).naam[0])}</text></g>`).join("")}
-      ${hier.map(([x, i], k) => heldFiche(x, i, p.x - 16 + k * 22, p.y + 2)).join("")}
+  const anim = UI.reis && Date.now() - UI.reis.t < 1500 ? UI.reis : null; UI.reis = null;
+  const P = Object.fromEntries(b.plekken.map(p => [p.id, p]));
+  const mistDikte = Math.max(0, Math.min(1, 1 - S.mist / (S.mistStart || 12)));
+  const tokens = b.plekken.map(p => {
+    const s = S.plekken[p.id], hier = S.helden.map((x, i) => [x, i]).filter(([x]) => x.plek === p.id && !x.uit);
+    const img = art(`art/plekken/${p.id}.jpg`), bereik = reik.includes(p.id);
+    return `<g class="plek${bereik ? " bereik" : ""}${s.scheur ? " open" : ""}" data-plek="${p.id}" tabindex="0" role="button" aria-label="${bereik ? "Reis naar " : ""}${esc(p.naam)}">
+      ${bereik ? `<circle class="reikring" cx="${p.x}" cy="${p.y}" r="28"/>` : ""}
+      ${s.scheur ? `<circle class="scheurgloed" cx="${p.x}" cy="${p.y}" r="31"/><circle class="scheurring" cx="${p.x}" cy="${p.y}" r="26"/>` : ""}
+      <clipPath id="pk-${p.id}"><circle cx="${p.x}" cy="${p.y}" r="19"/></clipPath>
+      <circle class="medaillon${p.rivier ? " rivier" : ""}" cx="${p.x}" cy="${p.y}" r="21"/>
+      ${img ? `<image href="${img}" x="${p.x - 19}" y="${p.y - 19}" width="38" height="38" clip-path="url(#pk-${p.id})" preserveAspectRatio="xMidYMid slice"/>` : `<circle class="kern" cx="${p.x}" cy="${p.y}" r="17"/>`}
+      <text class="plaatsnaam" x="${p.x}" y="${p.y + 40}" text-anchor="middle">${esc(p.naam)}</text>
+      ${STATIONS.includes(p.id) ? `<g class="station"><rect x="${p.x + 13}" y="${p.y - 31}" width="15" height="15" rx="3"/><text x="${p.x + 20.5}" y="${p.y - 19.5}" text-anchor="middle">U</text></g>` : ""}
+      ${s.aanw ? aanwToken(p.x - 27, p.y - 21, s.aanw, p.id) : ""}
+      ${s.monsters.map((m, i) => monsterToken(m, p.x + 27 + i * 21, p.y - 22)).join("")}
+      ${hier.map(([x, i], k) => heldFiche(x, i, p.x - 18 + k * 24, p.y + 6, anim)).join("")}
     </g>`;
   }).join("");
-  const overzee = D.bord.overzee.map((o, i) => {
-    const y = 40 + i * 62, hier = S.helden.map((x, j) => [x, j]).filter(([x]) => x.plek === o.id);
-    return `<g class="overzee${reik.includes(o.id) ? " bereik" : ""}" data-plek="${o.id}"><rect x="770" y="${y}" width="215" height="50" rx="4"/>
-      <text x="782" y="${y + 21}" font-size="15">${esc(o.naam.split(",")[0])}</text><text x="782" y="${y + 40}" font-size="12" style="font-family:var(--body);fill:var(--muted)">${S.overzee[o.id].artefact ? "Artefact ligt klaar" : "overzee"}</text>
-      ${hier.map(([x, j], k) => heldFiche(x, j, 960 - k * 24, y + 25)).join("")}</g>`;
+  const overzee = b.overzee.map((o, i) => {
+    const y = 34 + i * 70, hier = S.helden.map((x, j) => [x, j]).filter(([x]) => x.plek === o.id && !x.uit), img = art(`art/plekken/${o.id}.jpg`), bereik = reik.includes(o.id);
+    return `<g class="overzee${bereik ? " bereik" : ""}" data-plek="${o.id}" tabindex="0" role="button" aria-label="${esc(o.naam)}">
+      <clipPath id="oz-${o.id}"><rect x="772" y="${y}" width="212" height="58" rx="5"/></clipPath>
+      <rect class="oz-rand" x="770" y="${y - 2}" width="216" height="62" rx="6"/>
+      ${img ? `<image href="${img}" x="772" y="${y}" width="212" height="58" clip-path="url(#oz-${o.id})" preserveAspectRatio="xMidYMid slice"/>` : ""}
+      <rect class="oz-band" x="772" y="${y + 34}" width="212" height="24" clip-path="url(#oz-${o.id})"/>
+      <text class="oz-naam" x="782" y="${y + 51}">${esc(o.naam.split(",")[0])}</text>
+      ${S.overzee[o.id].artefact ? `<text class="oz-vondst" x="976" y="${y + 51}" text-anchor="end">artefact!</text>` : ""}
+      ${hier.map(([x, j], k) => heldFiche(x, j, 960 - k * 26, y + 18, anim)).join("")}</g>`;
   }).join("");
-  const P = Object.fromEntries(b.plekken.map(p => [p.id, p]));
+  const spoor = anim ? (() => { const naar = P[anim.naar] || { x: 870, y: 100 }; return `<line class="spoor" x1="${anim.van.x}" y1="${anim.van.y}" x2="${naar.x}" y2="${naar.y}"/>`; })() : "";
   return `<svg class="bord" viewBox="0 0 ${b.breedte} ${b.hoogte}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Speelbord van Londen">
-    ${bg ? `<image href="${bg}" x="0" y="0" width="${b.breedte}" height="${b.hoogte}" preserveAspectRatio="xMidYMid slice" opacity=".9"/>` : `<path d="${b.rivierpad}" fill="none" stroke="var(--river)" stroke-width="40" opacity=".75" stroke-linecap="round"/>`}
-    <line x1="${P["st-katharine-docks"].x}" y1="${P["st-katharine-docks"].y}" x2="770" y2="140" stroke="var(--road)" stroke-width="2" stroke-dasharray="6 6"/>
-    ${b.routes.map(([a, c]) => `<line class="weg" x1="${P[a].x}" y1="${P[a].y}" x2="${P[c].x}" y2="${P[c].y}"/>`).join("")}
-    ${STATIONS.map(id => `<rect x="${P[id].x + 9}" y="${P[id].y - 25}" width="11" height="11" fill="var(--seal)"><title>Station van de Ondergrondse</title></rect>`).join("")}
+    <defs>
+      <radialGradient id="vignet" cx="50%" cy="50%" r="70%"><stop offset="55%" stop-color="#000" stop-opacity="0"/><stop offset="100%" stop-color="#000" stop-opacity=".55"/></radialGradient>
+      <radialGradient id="mistvlek"><stop offset="0%" stop-color="#d9cf9a" stop-opacity=".55"/><stop offset="100%" stop-color="#d9cf9a" stop-opacity="0"/></radialGradient>
+    </defs>
+    ${bg ? `<image href="${bg}" x="0" y="0" width="${b.breedte}" height="${b.hoogte}" preserveAspectRatio="xMidYMid slice"/>` : `<rect width="${b.breedte}" height="${b.hoogte}" class="bordgrond"/><path d="${b.rivierpad}" fill="none" stroke="var(--river)" stroke-width="40" opacity=".75" stroke-linecap="round"/>`}
+    <rect width="${b.breedte}" height="${b.hoogte}" fill="url(#vignet)" pointer-events="none"/>
+    <line class="bootlijn" x1="${P["st-katharine-docks"].x}" y1="${P["st-katharine-docks"].y}" x2="770" y2="160"/>
+    ${b.routes.map(([a, c]) => `<line class="weg-onder" x1="${P[a].x}" y1="${P[a].y}" x2="${P[c].x}" y2="${P[c].y}"/><line class="weg" x1="${P[a].x}" y1="${P[a].y}" x2="${P[c].x}" y2="${P[c].y}"/>`).join("")}
+    ${spoor}
     ${tokens}${overzee}
+    <g class="mistlaag" pointer-events="none" style="opacity:${(0.12 + 0.55 * mistDikte).toFixed(2)}">
+      <ellipse class="mist1" cx="300" cy="420" rx="420" ry="160" fill="url(#mistvlek)"/>
+      <ellipse class="mist2" cx="700" cy="300" rx="380" ry="140" fill="url(#mistvlek)"/>
+      <ellipse class="mist3" cx="520" cy="600" rx="460" ry="120" fill="url(#mistvlek)"/>
+    </g>
   </svg>`;
 }
-function heldFiche(x, i, cx, cy) {
-  const img = art(`art/helden/${x.id}.jpg`), r = 13;
-  return `<g class="held${i === S.actief ? " actief" : ""}"><title>${esc(heldDef(x).naam)}</title>
-    <clipPath id="clip-${x.id}"><circle cx="${cx}" cy="${cy}" r="${r}"/></clipPath>
-    <circle cx="${cx}" cy="${cy}" r="${r + 2}" fill="${KLEUREN[i]}"/>
-    ${img ? `<image href="${img}" x="${cx - r}" y="${cy - r * 0.75}" width="${r * 2}" height="${r * 2.67}" clip-path="url(#clip-${x.id})" preserveAspectRatio="xMidYMin slice"/>` : `<text class="held-t" x="${cx}" y="${cy + 4}" text-anchor="middle">${esc(initialen(heldDef(x).naam))}</text>`}</g>`;
+function aanwToken(x, y, n, id) {
+  const img = art("art/fiches/aanwijzing.jpg");
+  return `<g class="aanwtoken"><clipPath id="aw-${id}"><circle cx="${x}" cy="${y}" r="11"/></clipPath>
+    ${img ? `<image href="${img}" x="${x - 14}" y="${y - 14}" width="28" height="28" clip-path="url(#aw-${id})"/>` : `<circle class="aanw" cx="${x}" cy="${y}" r="11"/>`}
+    <circle class="aanwrand" cx="${x}" cy="${y}" r="11"/>${n > 1 ? `<circle class="telbol" cx="${x - 9}" cy="${y - 9}" r="7"/><text class="teltekst" x="${x - 9}" y="${y - 5.5}" text-anchor="middle">${n}</text>` : ""}</g>`;
 }
+function monsterToken(m, x, y) {
+  const d = monsterDef(m.id), ep = !!byId(D.epische, m.id), r = ep ? 14 : 11, img = art(`art/monsters/${m.id}.jpg`);
+  return `<g class="montoken${ep ? " episch" : ""}"><title>${esc(d.naam)} (Gruwel ${d.gruwel}, Taaiheid ${d.taaiheid}, nog ${m.leven} leven)</title>
+    <clipPath id="mt-${m.uid}"><circle cx="${x}" cy="${y}" r="${r}"/></clipPath>
+    <circle class="monrand" cx="${x}" cy="${y}" r="${r + 2}"/>
+    ${img ? `<image href="${img}" x="${x - r}" y="${y - r}" width="${r * 2}" height="${r * 2}" clip-path="url(#mt-${m.uid})" preserveAspectRatio="xMidYMin slice"/>` : `<text class="mon-t" x="${x}" y="${y + 4}" text-anchor="middle">${ep ? "★" : esc(d.naam[0])}</text>`}</g>`;
+}
+function heldFiche(x, i, cx, cy, anim) {
+  const img = art(`art/helden/${x.id}.jpg`), beurt = i === S.actief && S.fase === "helden", r = beurt ? 16 : 12;
+  const reist = anim && anim.i === i;
+  return `<g class="held${beurt ? " beurt" : ""}${reist ? " reist" : ""}"${reist ? ` style="--dx:${(anim.van.x - cx).toFixed(1)}px;--dy:${(anim.van.y - cy).toFixed(1)}px"` : ""}><title>${esc(heldDef(x).naam)}${beurt ? " (aan de beurt)" : ""}</title>
+    ${beurt ? `<circle class="beurtgloed" cx="${cx}" cy="${cy}" r="${r + 8}" fill="${KLEUREN[i]}"/>` : ""}
+    <clipPath id="clip-${x.id}"><circle cx="${cx}" cy="${cy}" r="${r}"/></clipPath>
+    <circle class="heldrand" cx="${cx}" cy="${cy}" r="${r + 2.5}" fill="${KLEUREN[i]}"/>
+    ${img ? `<image href="${img}" x="${cx - r}" y="${cy - r * 0.8}" width="${r * 2}" height="${r * 2.67}" clip-path="url(#clip-${x.id})" preserveAspectRatio="xMidYMin slice"/>` : `<text class="held-t" x="${cx}" y="${cy + 4}" text-anchor="middle">${esc(initialen(heldDef(x).naam))}</text>`}</g>`;
+}
+function legendaHtml() {
+  const ico = inhoud => `<svg viewBox="-14 -14 28 28" width="24" height="24" aria-hidden="true">${inhoud}</svg>`;
+  const items = [
+    [ico(`<circle r="11" class="lg-beurt"/><circle r="7" fill="${KLEUREN[S.actief]}"/>`), "Held die aan de beurt is"],
+    [ico(`<circle r="10" class="lg-reik"/>`), "Hier kun je heen reizen"],
+    [ico(`<circle r="10" class="lg-scheur"/>`), "Scheur (open poort)"],
+    [ico(`<circle r="8" class="lg-aanw"/>`), "Aanwijzing"],
+    [ico(`<circle r="8" class="lg-mon"/>`), "Monster"],
+    [ico(`<circle r="10" class="lg-episch"/>`), "Episch monster"],
+    [ico(`<rect x="-7" y="-7" width="14" height="14" rx="3" class="lg-station"/>`), "Station van de Ondergrondse"],
+    [ico(`<circle r="9" class="lg-rivier"/>`), "Plek aan de Theems"],
+    [ico(`<line x1="-11" y1="0" x2="11" y2="0" class="lg-boot"/>`), "Bootroute naar overzee"]
+  ];
+  return `<div class="legenda" aria-label="Legenda">${items.map(([i, t]) => `<span>${i}${t}</span>`).join("")}<span class="muted">Mist wordt dikker naarmate de Mist daalt. Wijs of tik een plek aan voor uitleg.</span></div>`;
+}
+function plekInfoHtml(id) {
+  const p = plekDef(id), over = isOverzee(id), s = S.plekken[id], h = actief();
+  const img = art(`art/plekken/${id}.jpg`), bereik = bereikbaar(h).includes(id);
+  const hier = S.helden.filter(x => x.plek === id && !x.uit).map(x => korteNaam(heldDef(x).naam));
+  const afst = !over && !isOverzee(h.plek) ? afstanden(h.plek)[id] : null;
+  const status = [];
+  if (s?.scheur) status.push(`<li class="paars">Scheur: wie hier staat, stapt erdoor en kan hem sluiten.</li>`);
+  if (s?.aanw) status.push(`<li class="groen">${s.aanw} Aanwijzing${s.aanw > 1 ? "en" : ""}: sta hier bij de ontmoetingen om te zoeken.</li>`);
+  for (const m of s?.monsters || []) { const d = monsterDef(m.id); status.push(`<li class="rood">${esc(d.naam)}: Gruwel ${d.gruwel}, Taaiheid ${d.taaiheid}, nog ${m.leven} leven.</li>`); }
+  if (over && S.overzee[id].artefact) status.push(`<li class="groen">Hier ligt een artefact klaar.</li>`);
+  if (hier.length) status.push(`<li>Hier: ${hier.map(esc).join(", ")}</li>`);
+  return `<div class="pi-kop">${img ? `<img src="${img}" alt="">` : ""}<div><b>${esc(p.naam)}</b><span>${over ? "Overzee" : esc(DIENSTLABEL[p.dienst] || p.dienst)}${STATIONS.includes(id) ? " · station" : ""}${p.rivier ? " · aan de Theems" : ""}</span></div></div>
+    <p>${over ? "Expedities met kans op artefacten. Bereik je met een bootkaartje (2 Pond) vanaf St Katharine Docks." : esc(D.bord.diensten[p.dienst])}</p>
+    ${status.length ? `<ul class="pi-status">${status.join("")}</ul>` : ""}
+    <p class="pi-voet">${bereik ? "Tik om hierheen te reizen." : afst != null && afst > 0 ? `${afst} stap${afst > 1 ? "pen" : ""} van ${esc(korteNaam(heldDef(h).naam))}.` : ""}</p>`;
+}
+function toonPlekInfo(id, x, y, vast) {
+  const el = document.getElementById("plekinfo"), vlak = document.querySelector(".bordvlak"); if (!el || !vlak) return;
+  el.innerHTML = plekInfoHtml(id) + (vast ? `<button class="btn small ghost pi-sluit" data-act="pi-sluit">Sluiten</button>` : "");
+  el.hidden = false; el.classList.toggle("vast", !!vast);
+  const r = vlak.getBoundingClientRect(), w = el.offsetWidth, hgt = el.offsetHeight;
+  let left = x - r.left + 18, top = y - r.top + 18;
+  if (left + w > r.width - 8) left = Math.max(8, x - r.left - w - 18);
+  if (top + hgt > r.height - 8) top = Math.max(8, r.height - hgt - 8);
+  el.style.left = left + vlak.scrollLeft + "px"; el.style.top = top + vlak.scrollTop + "px";
+}
+function verbergPlekInfo() { const el = document.getElementById("plekinfo"); if (el) el.hidden = true; UI.plekVast = null; }
 function tekenPaneel() {
   const h = S.helden[UI.bekeken] || actief(), d = heldDef(h), isActief = h === actief() && S.fase === "helden";
   const portret = art(`art/helden/${h.id}.jpg`);
@@ -1352,8 +1506,14 @@ function tekenPaneel() {
   const hint = S.fase === "helden"
     ? (isActief ? `${korteNaam(d.naam)} heeft nog <b>${h.acties}</b> ${h.acties === 1 ? "actie" : "acties"}${h.stappen ? ` en ${h.stappen} gratis stap${h.stappen > 1 ? "pen" : ""}` : ""}. Tik op een oplichtende plek om te reizen.` : `Het is de beurt van ${esc(korteNaam(heldDef(actief()).naam))}.`)
     : "De ontmoetingen worden gespeeld.";
+  const beurtH = actief(), bi = S.helden.indexOf(beurtH), bimg = art(`art/helden/${beurtH.id}.jpg`);
+  const banner = S.fase === "helden" ? `<div class="beurtbanner" style="--kleur:${KLEUREN[bi]}">
+      <div class="bb-portret">${bimg ? `<img src="${bimg}" alt="">` : esc(initialen(heldDef(beurtH).naam))}</div>
+      <div><span class="bb-label">Aan de beurt</span><b>${esc(heldDef(beurtH).naam)}</b>
+        <span class="bb-acties">${Array.from({ length: heeft(beurtH, "gewond") ? 1 : 2 }, (_, k) => `<i class="${k < beurtH.acties ? "aan" : ""}"></i>`).join("")} ${beurtH.acties} ${beurtH.acties === 1 ? "actie" : "acties"} over${beurtH.stappen ? ` · ${beurtH.stappen} gratis stap${beurtH.stappen > 1 ? "pen" : ""}` : ""}</span></div></div>` : "";
   return `
-    <div class="heldentabs">${S.helden.map((x, i) => `<button class="heldentab" data-bekijk="${i}" aria-pressed="${i === UI.bekeken}"><span class="dot" style="background:${KLEUREN[i]}"></span>${esc(korteNaam(heldDef(x).naam))}</button>`).join("")}</div>
+    ${banner}
+    <div class="heldentabs">${S.helden.map((x, i) => `<button class="heldentab${i === S.actief && S.fase === "helden" ? " beurt" : ""}" data-bekijk="${i}" aria-pressed="${i === UI.bekeken}"><span class="dot" style="background:${KLEUREN[i]}"></span>${esc(korteNaam(heldDef(x).naam))}</button>`).join("")}</div>
     <div class="hint">${hint}</div>
     ${S.fase !== "helden" && !bezig ? `<button class="btn breed" data-act="doorgaan">Doorgaan met ${{ ontmoeting: "de ontmoetingen", onheil: "het onheil", finale: "de laatste nacht" }[S.fase]}</button>` : ""}
     ${(S.tutorial || UI.tips) && isActief ? `<div class="tip"><b>Tip.</b> ${advies(h)}</div>` : ""}
@@ -1367,8 +1527,8 @@ function tekenPaneel() {
       <div class="pools">
         <div>Lichaam<b>${h.L}/${h.maxL}</b></div><div>Geest<b>${h.G}/${h.maxG}</b></div><div>Pond<b>${h.pond}</b></div><div>Aanwijz.<b>${h.aanw}</b></div><div>Trofee<b>${h.trofee}</b></div>
       </div>
-      <div class="kenm">${KENMERKEN.map(([k, l]) => `<div>${l}<b>${h.kenm[k]}${bonusVoor(h, k) ? `<small>+${bonusVoor(h, k)}</small>` : ""}</b></div>`).join("")}</div>
-      ${isActief && heeft(h, "verdwaald") ? `<div class="acties"><button class="btn breed" data-act="zoekweg" ${h.acties > 0 ? "" : "disabled"}>Zoek de weg terug (Scherpte 8)</button><button class="btn ghost breed" data-act="klaar">Beurt klaar</button></div>` : isActief ? `<div class="acties">
+      <div class="kenm">${KENMERKEN.map(([k, l]) => `<div title="${esc(KUITLEG[k])}">${l}<b>${h.kenm[k]}${bonusVoor(h, k) ? `<small>+${bonusVoor(h, k)}</small>` : ""}</b></div>`).join("")}</div>
+      ${isActief && heeft(h, "verdwaald") ? `<div class="acties"><button class="btn breed" data-act="zoekweg" ${h.acties > 0 ? "" : "disabled"}>Zoek de weg terug (Waarneming 8)</button><button class="btn ghost breed" data-act="klaar">Beurt klaar</button></div>` : isActief ? `<div class="acties">
         <button class="btn" data-act="rust" ${kanActie("rusten") ? "" : "disabled"}>Rusten</button>
         <button class="btn" data-act="dienst" ${kanActie("dienst") && dienstNaam ? "" : "disabled"}>${dienstNaam ? esc(DIENSTLABEL[dienstNaam] || dienstNaam) : "Geen dienst"}</button>
         <button class="btn" data-act="ruil" ${kanActie("ruilen") && anderenHier && !heeft(h, "waanzin-paranoia") ? "" : "disabled"}>Ruilen</button>
@@ -1383,16 +1543,51 @@ function tekenPaneel() {
       ${d.bondgenoot ? `<div class="vermogen"><b>${esc(d.bondgenoot.naam)}</b> (${esc(d.bondgenoot.soort)}). ${esc(d.bondgenoot.tekst)}
         ${h.id === "bridie-kavanagh" && isActief && !h.ronde.molly && !heeft(h, "waanzin-paranoia") ? `<div><button class="btn small" data-act="molly">Molly sturen</button></div>` : ""}
         ${h.id === "albert-gosling" && isActief && !h.garibaldiGebruikt && !isOverzee(h.plek) ? `<div><button class="btn small" data-act="garibaldi">Garibaldi loslaten</button></div>` : ""}</div>` : ""}
-      ${sectie("Uitrusting", h.eigen.map(e => `<div class="kaartje"><div class="k"><b>${esc(e.naam)}</b>${e.gevecht ? `<span class="muted">+${e.gevecht} gevecht</span>` : ""}</div></div>`).join("") +
-        h.spullen.map(id => { const s = spulDef(id);
-          const extra = id === "dier-raaf" && !h.ronde.raaf ? `<button class="btn small" data-act="raaf">Vraag de raaf</button>` : id === "bondgenoot-journalist" && S.geruchten.length && h.aanw >= 2 ? `<button class="btn small" data-act="journalist">Gerucht weg</button>` : "";
-          return `<div class="kaartje"><div class="k"><b>${esc(s.naam)}</b>${s.gebruik ? `<button class="btn small" data-spul="${id}">Gebruik</button>` : extra || `<span class="muted">${esc(s.soort)}</span>`}</div><span>${esc(s.tekst)}</span></div>`; }).join(""))}
-      ${sectie("Spreuken", h.spreuken.map(id => { const s = spreukDef(id), p = spreukPrijs(h, s); return `<div class="kaartje"><div class="k"><b>${esc(s.naam)}</b>${isActief ? `<button class="btn small" data-spreuk="${id}" ${h.acties > 0 && !h.gebruikt.includes("spreuk") ? "" : "disabled"}>Uitspreken</button>` : ""}</div><span class="muted">${KNAAM[s.test]} ${s.moeilijkheid} · kost ${p.geest ? p.geest + " Geest" : p.lichaam ? p.lichaam + " Lichaam" : "niets"}</span><span>${esc(s.tekst)}</span></div>`; }).join(""))}
-      ${sectie("Artefacten", h.artefacten.map(id => `<div class="kaartje goed"><div class="k"><b>${esc(artDef(id).naam)}</b>${["zwarte-spiegel", "klokkenbel", "sterrenkaart", "verzegelde-kruik"].includes(id) ? `<button class="btn small" data-artefact="${id}">Gebruik</button>` : ""}</div><span>${esc(artDef(id).tekst)}</span></div>`).join("") + (h.mysterieVoorwerp ? `<div class="kaartje goed"><b>${esc(mysterie()?.voorwerp || "")}</b><span>Breng het naar ${esc(plekNaam(mysterie()?.naar))}.</span></div>` : ""))}
+      <div class="sectie"><h3>Tableau <span class="muted">· tik op een kaart</span></h3><div class="tableau">
+        ${h.eigen.map((e, i) => tegel("eigen", i, h)).join("")}${h.spullen.map(id => tegel("spullen", id, h)).join("")}${h.spreuken.map(id => tegel("spreuken", id, h)).join("")}${h.artefacten.map(id => tegel("artefacten", id, h)).join("")}
+        ${h.mysterieVoorwerp ? `<div class="tegel mysterie"><span class="tegel-leeg">✦</span><span class="tegel-naam">${esc(mysterie()?.voorwerp || "")}</span><span class="tegel-tag">Mysterie</span></div>` : ""}
+      </div></div>
       ${sectie("Toestanden", h.toestanden.map(id => `<div class="kaartje ${id === "gezegend" ? "goed" : "toestand"}"><b>${esc(toestDef(id).naam)}</b><span>${esc(toestDef(id).tekst)}</span></div>`).join(""))}
       <div class="sectie"><button class="btn small ghost" data-act="aanpas">${UI.aanpassen ? "Aanpassen sluiten" : "Aanpassen"}</button>${UI.aanpassen ? tekenAanpas(h) : ""}</div>
     </div>
     <div class="log" aria-label="Logboek">${S.log.slice(0, 30).map(l => `<span>${esc(l)}</span>`).join("")}</div>`;
+}
+function kaartDef(soort, id, h) {
+  if (soort === "eigen") { const e = h.eigen[+id]; return { naam: e.naam, soort: "Startuitrusting", tekst: e.gevecht ? `Een persoonlijk wapen: +${e.gevecht} bij gevechten. Je beste twee wapens tellen mee.` : "Een persoonlijk bezit van deze held. Het geeft geen spelvoordeel, maar hoort bij het verhaal." }; }
+  return soort === "spullen" ? spulDef(id) : soort === "spreuken" ? spreukDef(id) : artDef(id);
+}
+function tegel(soort, id, h) {
+  const d = kaartDef(soort, id, h), img = soort === "eigen" ? null : art(`art/${soort}/${id}.jpg`);
+  const tag = soort === "eigen" ? (h.eigen[+id].gevecht ? `+${h.eigen[+id].gevecht} gevecht` : "Bezit")
+    : soort === "spullen" ? (d.bonus?.gevecht ? `+${d.bonus.gevecht} gevecht` : d.gebruik ? "Te gebruiken" : d.soort)
+    : soort === "spreuken" ? `${KNAAM[d.test]} ${d.moeilijkheid}` : "Artefact";
+  return `<button class="tegel ${soort}" data-kaart="${soort}:${id}">${img ? `<img src="${img}" alt="">` : `<span class="tegel-leeg">${soort === "eigen" ? "◆" : "✦"}</span>`}<span class="tegel-naam">${esc(d.naam)}</span><span class="tegel-tag">${esc(tag)}</span></button>`;
+}
+async function toonKaart(h, soort, id) {
+  const d = kaartDef(soort, id, h), isActief = h === actief() && S.fase === "helden";
+  const knoppen = [];
+  let extra = "";
+  if (soort === "spullen") {
+    extra = `<p class="muted">${esc(d.soort)} · waarde ${d.prijs} Pond</p>`;
+    if (d.gebruik) knoppen.push({ label: "Gebruik", waarde: "gebruik" });
+    if (id === "dier-raaf" && !h.ronde.raaf) knoppen.push({ label: "Vraag de raaf", waarde: "raaf" });
+    if (id === "bondgenoot-journalist" && S.geruchten.length && h.aanw >= 2) knoppen.push({ label: "Gerucht ontkrachten (2 Aanwijzingen)", waarde: "journalist" });
+  } else if (soort === "spreuken") {
+    const pr = spreukPrijs(h, d);
+    extra = `<p class="muted">${esc(d.soort)} · test: ${KNAAM[d.test]} ${d.moeilijkheid} · kost ${pr.geest ? pr.geest + " Geest" : pr.lichaam ? pr.lichaam + " Lichaam" : "niets"} · kost een actie</p>`;
+    if (isActief && d.auto !== "gevecht") knoppen.push({ label: "Uitspreken", waarde: "spreek", uit: h.acties < 1 || h.gebruikt.includes("spreuk") });
+    if (d.auto === "gevecht") extra += `<p class="muted">Deze spreuk biedt het spel vanzelf aan tijdens een gevecht.</p>`;
+  } else if (soort === "artefacten") {
+    extra = `<p class="verhaal">${esc(d.herkomst)}.</p>`;
+    if (["zwarte-spiegel", "klokkenbel", "sterrenkaart", "verzegelde-kruik"].includes(id)) knoppen.push({ label: "Gebruik", waarde: "artefact" });
+  }
+  knoppen.push({ label: "Sluiten", waarde: null, ghost: true });
+  const k = await venster({ soort: soort === "eigen" ? "Startuitrusting" : { spullen: "Spul", spreuken: "Spreuk", artefacten: "Artefact" }[soort], titel: d.naam, beeld: soort === "eigen" ? null : `art/${soort}/${id}.jpg`, zij: true, html: extra + `<p>${esc(d.tekst)}</p>`, knoppen });
+  if (k === "gebruik") await gebruikSpul(h, id);
+  if (k === "spreek") await spreek(h, id);
+  if (k === "artefact") await gebruikArtefact(h, id);
+  if (k === "raaf") await raaf(h);
+  if (k === "journalist") await journalist(h);
 }
 const sectie = (titel, inhoud) => inhoud ? `<div class="sectie"><h3>${titel}</h3><div class="kaartjes">${inhoud}</div></div>` : "";
 function tekenAanpas(h) {
@@ -1446,9 +1641,15 @@ app.addEventListener("click", e => {
   if (t.dataset.aantal) { u.aantal = +t.dataset.aantal; u.helden = u.helden.slice(0, u.aantal); return teken(); }
   if (t.dataset.held) return veilig(() => toonHeld(t.dataset.held));
   if (t.dataset.bekijk) { UI.bekeken = +t.dataset.bekijk; return teken(); }
-  if (t.dataset.plek && S && !S.einde) return reis(t.dataset.plek);
+  if (t.dataset.plek && S && !S.einde) {
+    if (bereikbaar(actief()).includes(t.dataset.plek)) return reis(t.dataset.plek);
+    if (UI.plekVast === t.dataset.plek) return verbergPlekInfo();
+    UI.plekVast = t.dataset.plek; Geluid.klik();
+    const r = t.getBoundingClientRect(); return toonPlekInfo(t.dataset.plek, r.right, r.top, true);
+  }
   if (t.dataset.spul) return veilig(() => gebruikSpul(S.helden[UI.bekeken], t.dataset.spul));
   if (t.dataset.artefact) return veilig(() => gebruikArtefact(S.helden[UI.bekeken], t.dataset.artefact));
+  if (t.dataset.kaart) { const [soort, id] = t.dataset.kaart.split(":"); return veilig(() => toonKaart(S.helden[UI.bekeken], soort, id)); }
   if (t.dataset.spreuk) return veilig(() => spreek(actief(), t.dataset.spreuk));
   if (t.dataset.pas) { const [k, v] = t.dataset.pas.split(":"); const h = S.helden[UI.bekeken]; if (k === "mist") S.mist += +v; else h[k] = Math.max(0, h[k] + +v); opslaan(); return teken(); }
   const h = S ? S.helden[UI.bekeken] : null;
@@ -1462,7 +1663,7 @@ app.addEventListener("click", e => {
     case "god": return veilig(() => godIntro(false));
     case "tips": if (S.tutorial) { S.tutorial = false; UI.tips = false; } else UI.tips = !UI.tips; opslaan(); return teken();
     case "stoppen": return veilig(async () => { if (await venster({ titel: "Stoppen?", html: "<p>Het spel blijft bewaard op dit apparaat. Je kunt later verder spelen.</p>", knoppen: [{ label: "Naar het beginscherm", waarde: true }, { label: "Doorspelen", waarde: false, ghost: true }] })) { opslaan(); S = null; } });
-    case "regels": return veilig(() => venster({ soort: "Hoe werkt het?", titel: "Een ronde", html: `<ol><li><b>Heldenfase:</b> elke held doet 2 verschillende acties: reizen (tik op een plek), rusten, de dienst van de plek, ruilen, een spreuk of het mysterie.</li><li><b>Ontmoetingen:</b> vecht met monsters op je plek, ga door een Scheur, volg een Aanwijzing of trek een stadskaart.</li><li><b>Onheil:</b> de Mist daalt, Scheuren openen en monsters bewegen.</li></ol><p>Een test: 2 dobbelstenen plus je kenmerk, haal de moeilijkheid. Een Aanwijzing laat je bij Kennis en Scherpte één steen opnieuw gooien.</p><p>Los ${S.nodig} mysteries op voordat de Mist op 0 staat.</p>` }));
+    case "regels": return veilig(() => venster({ soort: "Hoe werkt het?", titel: "Een ronde", html: `<ol><li><b>Heldenfase:</b> elke held doet 2 verschillende acties: reizen (tik op een plek), rusten, de dienst van de plek, ruilen, een spreuk of het mysterie.</li><li><b>Ontmoetingen:</b> vecht met monsters op je plek, ga door een Scheur, volg een Aanwijzing of trek een stadskaart.</li><li><b>Onheil:</b> de Mist daalt, Scheuren openen en monsters bewegen.</li></ol><p>Een test: 2 dobbelstenen plus je kenmerk, haal de moeilijkheid. Een Aanwijzing laat je bij Kennis en Waarneming één steen opnieuw gooien.</p><p>Los ${S.nodig} mysteries op voordat de Mist op 0 staat.</p>` }));
     case "rust": return veilig(() => rust(actief()));
     case "dienst": return veilig(() => dienst(actief()));
     case "ruil": return veilig(() => ruil(actief()));
@@ -1482,6 +1683,8 @@ app.addEventListener("click", e => {
       const k = await kiesGroei(h); if (!k) return; await groei(h, k);
     });
     case "aanpas": UI.aanpassen = !UI.aanpassen; return teken();
+    case "pi-sluit": return verbergPlekInfo();
+    case "geluid": Geluid.wissel(); return teken();
     case "toestand-plus": { const v = document.getElementById("pas-toestand").value; if (!heeft(h, v)) h.toestanden.push(v); opslaan(); return teken(); }
     case "toestand-min": { const v = document.getElementById("pas-toestand").value; h.toestanden = h.toestanden.filter(x => x !== v); opslaan(); return teken(); }
     case "verplaats": h.plek = document.getElementById("pas-plek").value; opslaan(); return teken();
@@ -1495,6 +1698,18 @@ document.getElementById("handboek").addEventListener("click", e => {
   UI.handboek = b.dataset.hb === "sluit" ? null : b.dataset.hb; tekenHandleiding();
   if (UI.handboek) document.querySelector("#handboek .hb-inhoud")?.scrollTo(0, 0);
 });
+app.addEventListener("pointerover", e => {
+  if (e.pointerType !== "mouse" || UI.plekVast) return;
+  const g = e.target.closest?.("[data-plek]"); if (!g || !S) return;
+  toonPlekInfo(g.dataset.plek, e.clientX, e.clientY, false);
+});
+app.addEventListener("pointermove", e => {
+  if (e.pointerType !== "mouse" || UI.plekVast) return;
+  const g = e.target.closest?.("[data-plek]"), el = document.getElementById("plekinfo");
+  if (!g) { if (el) el.hidden = true; return; }
+  toonPlekInfo(g.dataset.plek, e.clientX, e.clientY, false);
+});
+app.addEventListener("pointerleave", () => { if (!UI.plekVast) { const el = document.getElementById("plekinfo"); if (el) el.hidden = true; } }, true);
 app.addEventListener("keydown", e => { const p = e.target.closest?.("[data-plek]"); if (p && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); reis(p.dataset.plek); } });
 
 /* ---------- laden ---------- */

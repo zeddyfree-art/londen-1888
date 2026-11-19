@@ -101,7 +101,7 @@
     "mysteries": [
       {
         "naam": "Het lege graf",
-        "doel": "Reis naar Thebe en doe daar een Scherpte-test (9).",
+        "doel": "Reis naar Thebe en doe daar een Waarneming-test (9).",
         "type": "test",
         "plek": "thebe",
         "kenmerk": "scherpte",

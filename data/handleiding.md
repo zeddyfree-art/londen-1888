@@ -47,7 +47,7 @@ Het spel speelt voor elke held één ontmoeting op zijn plek, in deze volgorde:
 
 1. **Monster:** je vecht met elk monster op je plek.
 2. **Scheur:** je stapt erdoor naar een andere wereld. Daarna mag je proberen hem te sluiten.
-3. **Aanwijzing:** je volgt het spoor met een Scherpte-test (7).
+3. **Aanwijzing:** je volgt het spoor met een Waarneming-test (7).
 4. **Anders:** een verhaal van die wijk, met een keuze of test. Overzee is het een expeditie.
 
 ### 3. Onheil
@@ -56,10 +56,10 @@ Het spel trekt een **Onheilskaart**. De Mist daalt, Scheuren gaan open, monsters
 
 ## Tests
 
-Gooi **2 dobbelstenen** en tel je **kenmerk** erbij: Kennis, Scherpte, Kracht of Overtuiging. Haal je het getal dat nodig is, dan lukt het.
+Gooi **2 dobbelstenen** en tel je **kenmerk** erbij: Kennis, Waarneming, Kracht of Charisma. Haal je het getal dat nodig is, dan lukt het.
 
 - **Extra dobbelsteen:** je gooit er één meer en de twee hoogste tellen.
-- **Aanwijzing uitgeven:** bij een mislukte Kennis- of Scherpte-test gooi je je laagste steen opnieuw.
+- **Aanwijzing uitgeven:** bij een mislukte Kennis- of Waarneming-test gooi je je laagste steen opnieuw.
 - **Gezegend:** één keer per ronde gooi je opnieuw.
 - **Vervloekt:** elke 6 telt als 1.
 - Sommige helden, spullen en dieren geven nog meer kansen. Het spel laat ze vanzelf zien als knop.

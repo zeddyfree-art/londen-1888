@@ -31,7 +31,7 @@
     "id": "jade-masker",
     "naam": "Jade dodenmasker",
     "herkomst": "Uit een kamer onder de piramide in Yucatán",
-    "tekst": "+2 bij Overtuiging-tests en bij Gruwel-tests.",
+    "tekst": "+2 bij Charisma-tests en bij Gruwel-tests.",
     "prompt": "an ancient Mesoamerican jade mosaic death mask with shell and obsidian eyes, lying on wet jungle stones in torchlight"
   },
   {
@@ -59,7 +59,7 @@
     "id": "vuurtoren-lens",
     "naam": "Lens van de verloren expeditie",
     "herkomst": "Teruggevonden in het ijs, aan boord van een verlaten schip",
-    "tekst": "Je mag Scherpte gebruiken in plaats van Kennis om Scheuren te sluiten.",
+    "tekst": "Je mag Waarneming gebruiken in plaats van Kennis om Scheuren te sluiten.",
     "prompt": "a heavy brass-framed glass lens covered in frost and cracks, recovered from Arctic ice, glowing pale blue"
   }
 ]
