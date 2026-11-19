@@ -53,10 +53,10 @@
     "mysteries": [
       {
         "naam": "Bereken de baan",
-        "doel": "Breng 3 Aanwijzingen naar Hampstead en doe daar een Kennis-test (9).",
+        "doel": "Breng samen 4 Aanwijzingen naar Hampstead en doe daar een Kennis-test (9).",
         "type": "aanwijzingen",
         "plek": "hampstead",
-        "aantal": 3,
+        "aantal": 4,
         "kenmerk": "kennis",
         "moeilijkheid": 9
       },
@@ -72,13 +72,11 @@
       },
       {
         "naam": "Het licht uit het oosten",
-        "doel": "Haal het Artefact uit het Klooster van de Witte Wolken en breng het naar Hampstead.",
-        "type": "breng",
-        "van": "himalaya",
-        "naar": "hampstead",
+        "doel": "Reis naar het Klooster van de Witte Wolken en ontcijfer daar de oude sterrenkaart (Kennis 8).",
+        "type": "test",
         "kenmerk": "kennis",
         "moeilijkheid": 8,
-        "voorwerp": "Het licht uit het oosten"
+        "plek": "himalaya"
       }
     ],
     "ontwaken": "De ster staat in de hele nacht en Londen kijkt omhoog. Niemand kijkt ooit nog weg. Jullie verliezen.",
@@ -111,10 +109,10 @@
       },
       {
         "naam": "De gestolen zegels",
-        "doel": "Breng 2 Artefacten naar Bloomsbury.",
+        "doel": "Breng een Artefact naar Bloomsbury.",
         "type": "artefacten",
         "plek": "bloomsbury",
-        "aantal": 2
+        "aantal": 1
       },
       {
         "naam": "De man met duizend gezichten",

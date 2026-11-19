@@ -5,7 +5,7 @@
 Londen, 1888. Onder de stad roert zich een oude god. Jullie spelen **samen** tegen het spel, met 2 of 4 helden.
 
 - **Jullie winnen** als jullie genoeg **mysteries** oplossen: 2 in de ontspannen stand, 3 in de normale en de genadeloze stand.
-- **Jullie verliezen** als de **Mist** op 0 komt. De Mist staat bovenin het scherm en daalt elke ronde.
+- Komt de **Mist** op 0, dan ontwaakt de oude god. Dan volgt nog **de laatste nacht**: één laatste kans (zie hieronder). In de genadeloze stand is het dan meteen voorbij.
 
 Een potje duurt ongeveer 45 minuten.
 
@@ -91,12 +91,27 @@ Het huidige mysterie staat rechts in het groene kader. Elke oude god heeft drie 
 - **Lichaam op 0:** je wordt Gewond naar het ziekenhuis in The City gebracht. Met Gewond heb je 1 actie per ronde, tot je het daar laat verwijderen.
 - **Geest op 0:** je krijgt een **Waanzin**-kaart en je Geest gaat terug naar de helft. In Chelsea kun je een waanzin laten wegschilderen.
 
+### Een held valt af
+
+- Komt je Lichaam op 0 terwijl je al **Gewond** bent, of komt je Geest op 0 terwijl je al **2 waanzinkaarten** hebt, dan valt je held af.
+- De Aanwijzingen van die held blijven achter op de plek, en de **Mist daalt met 1**.
+- Je kiest een nieuwe held uit vier willekeurige helden. Die begint in The City.
+
+## De laatste nacht
+
+Staat de Mist op 0, dan ontwaakt de oude god. Er is nog één kans:
+
+- De god heeft **verzet**: 3 per mysterie dat nog ontbreekt, plus 3 (met 4 helden 2 extra).
+- Om de beurt doorstaat elke held eerst de blik van de god: een Kennis-test (9), anders −2 Geest. Daarna valt de held aan: Kracht met wapens, of Kennis met +1 per spreuk (maximaal +2), tegen 10. In de normale stand is dat 11.
+- Elke geslaagde aanval kost de god 1 verzet. Na elke ronde verliest iedere held 1 Lichaam en 1 Geest. Wie op 0 komt, valt af.
+- Op 0 verzet hebben jullie op het nippertje gewonnen. Vallen alle helden, dan wint de god.
+
 ## Geld, winkelen en diensten
 
 - Ponden verdien je in het theater (Leicester Square), in salons, bij ontmoetingen of met een lening bij de bank in The City.
 - Op een **markt** (Covent Garden, Southwark, Limehouse) trek je 3 spullen en koop je wat je kunt betalen.
 - Spreuken koop je in de boekwinkel in **Soho**, of je bestudeert ze in **Bloomsbury**.
-- Je draagt maximaal 6 spullen en spreuken, 7 met een Gladstonetas.
+- Je draagt maximaal 6 spullen en spreuken, 7 met een Gladstonetas. Krijg je er meer, dan kies je zelf wat je aflegt.
 
 ## Overzee
 
@@ -118,10 +133,12 @@ Met **3 Trofeeën** tik je op **Groeien**: +1 op een kenmerk (maximaal 5), +1 ma
 | Stand | Mist | Mysteries nodig | Scheuren bij de start | Tests |
 |---|---|---|---|---|
 | Ontspannen | normaal | 2 | 2 | normaal |
-| Normaal | 2 lager | 3 | 2 | normaal |
-| Genadeloos | 3 lager | 3 | 3 | 1 moeilijker |
+| Normaal | 2 lager | 3 | 2 | normaal, laatste nacht zwaarder |
+| Genadeloos | 2 lager | 3 | 3 | 1 moeilijker, geen laatste nacht |
 
-Met 4 helden begint het spel met één Scheur extra.
+Met 4 helden begint de Mist 3 lager en is er één Scheur extra, want vier helden doen meer per ronde.
+
+Gemeten met een testspeler die honderden potjes speelde: ontspannen wint ongeveer 9 van de 10 potjes, normaal ongeveer 6 tot 8 van de 10 en genadeloos 1 tot 2 van de 10.
 
 ## Op de iPad installeren
 

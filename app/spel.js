@@ -11,8 +11,8 @@ const DIENSTLABEL = { sterrenwacht: "Sterrenwacht", seance: "Seance bijwonen", s
 const STATIONS = ["marylebone", "kings-cross", "city", "westminster"];
 const MOEILIJKHEID = {
   ontspannen: { naam: "Ontspannen", mist: 0, nodig: 2, scheuren: 2, test: 0 },
-  normaal: { naam: "Normaal", mist: -2, nodig: 3, scheuren: 2, test: 0 },
-  genadeloos: { naam: "Genadeloos", mist: -3, nodig: 3, scheuren: 3, test: 1 }
+  normaal: { naam: "Normaal", mist: -2, nodig: 3, scheuren: 2, test: 0, finale: 1 },
+  genadeloos: { naam: "Genadeloos", mist: -2, nodig: 3, scheuren: 3, test: 1 }
 };
 
 let D = null;      // speldata
@@ -43,7 +43,7 @@ const actief = () => S.helden[S.actief];
 const korteNaam = n => n.replace(/^(Professor|Dr\.|Madame|Lady|Sergeant|Detective Sergeant|Miss|Broeder|Constable)\s+/, "").replace(/"[^"]*"\s*/, "");
 const initialen = n => korteNaam(n).split(" ").map(w => w[0]).slice(0, 2).join("");
 const log = t => { S.log.unshift(`R${S.ronde}: ${t}`); S.log = S.log.slice(0, 80); };
-function opslaan() { try { localStorage.setItem(OPSLAG, JSON.stringify(S)); } catch {} }
+function opslaan() { if (window.__bot) return; try { localStorage.setItem(OPSLAG, JSON.stringify(S)); } catch {} }
 function laden() { try { return JSON.parse(localStorage.getItem(OPSLAG)); } catch { return null; } }
 function wis() { try { localStorage.removeItem(OPSLAG); } catch {} }
 
@@ -84,6 +84,7 @@ function stapNaar(van, doel) {
 let modalResolve = null;
 function venster({ soort = "", titel = "", beeld = null, verhaal = "", html = "", breed = false, knoppen = [{ label: "Verder", waarde: true }] }) {
   if (knoppen.length && knoppen.every(k => k.uit)) knoppen = [...knoppen, { label: "Verder", waarde: null, ghost: true }];
+  if (window.__bot) return Promise.resolve(window.__bot.kies({ soort, titel, knoppen: knoppen.filter(k => !k.uit) }));
   return new Promise(res => {
     modalResolve = res;
     const m = document.getElementById("modal");
@@ -251,6 +252,8 @@ async function controleerHeld(h) {
     h.artefacten = h.artefacten.filter(x => x !== "scarabee"); h.L = 1;
     await melding("De scarabee breekt", "Op het moment dat je valt, wordt de scarabee warm en barst. Je blijft overeind met 1 Lichaam.");
   }
+  if (h.L <= 0 && heeft(h, "gewond")) return valtAf(h, "lichaam");
+  if (h.G <= 0 && h.toestanden.filter(t => t.startsWith("waanzin")).length >= 2) return valtAf(h, "geest");
   if (h.L <= 0) {
     if (S.tutorial) await coach("lichaam0");
     h.L = 2; h.plek = "city"; if (!heeft(h, "gewond")) h.toestanden.push("gewond");
@@ -263,6 +266,27 @@ async function controleerHeld(h) {
     log(`${naam} krijgt waanzin: ${w}`);
     await melding(`${naam} verliest grip`, `Je krijgt de waanzin "${w}". Je Geest gaat terug naar ${h.G}.`, "Geest op 0");
   }
+  while (h.spullen.length + h.spreuken.length > 6 + (h.spullen.includes("gladstonetas") ? 1 : 0)) {
+    const k = await venster({ soort: "Te veel bagage", titel: `${naam} draagt te veel`, html: "<p>Je kunt maximaal 6 spullen en spreuken dragen (7 met een Gladstonetas). Wat leg je af?</p>",
+      knoppen: [...h.spullen.map(id => ({ label: spulDef(id).naam, waarde: ["spullen", id] })), ...h.spreuken.map(id => ({ label: spreukDef(id).naam, waarde: ["spreuken", id], ghost: true }))] });
+    const [soort, id] = k || ["spullen", h.spullen[0]];
+    h[soort] = h[soort].filter(x => x !== id); log(`${naam} legt ${soort === "spullen" ? spulDef(id).naam : spreukDef(id).naam} af`);
+  }
+}
+async function valtAf(h, oorzaak) {
+  const naam = korteNaam(heldDef(h).naam), idx = S.helden.indexOf(h), plek = isOverzee(h.plek) ? "st-katharine-docks" : h.plek;
+  S.plekken[plek].aanw += h.aanw;
+  S.mist -= 1; S.gevallen = (S.gevallen || 0) + 1;
+  (S.uitgevallen ??= []).push(h.id);
+  log(`${naam} valt af. De Mist daalt met 1.`);
+  const vrij = schud(D.helden.filter(x => !S.helden.some(y => y.id === x.id) && !S.uitgevallen.includes(x.id))).slice(0, 4);
+  const tekst = oorzaak === "lichaam" ? `${naam} is te zwaar gewond om nog verder te gaan.` : `${naam} wordt opgenomen in een gesticht en komt niet meer terug.`;
+  const nieuw = vrij.length ? await venster({ soort: "Een held valt af", titel: tekst, html: `<p>De Aanwijzingen van ${esc(naam)} blijven achter in ${esc(plekNaam(plek))}, en de Mist daalt met 1. Kies een nieuwe held. Die begint in The City.</p>`,
+    knoppen: vrij.map(x => ({ label: `${x.naam} (${x.rol})`, waarde: x.id })) }) : null;
+  if (nieuw) {
+    const n = maakHeld(nieuw); n.plek = "city"; n.acties = 0; S.helden[idx] = n;
+    log(`${korteNaam(heldDef(n).naam)} sluit zich aan in The City`);
+  } else { h.L = 1; h.G = 1; }
 }
 async function controleerAlles() { for (const h of S.helden) await controleerHeld(h); }
 
@@ -273,6 +297,7 @@ function trekScheurPlek() {
 }
 function openScheurOp(plek) {
   const p = S.plekken[plek];
+  if (!p) return;
   if (p.scheur) { spawnMonster(plek); S.mist -= 1; log(`Dubbele scheur in ${plekNaam(plek)}: extra monster en de Mist daalt`); return; }
   p.scheur = true; log(`Er opent een Scheur in ${plekNaam(plek)}`);
   if (S.god === "vathrun" && D.bord.rivier.includes(plek)) spawnMonster(plek);
@@ -319,6 +344,13 @@ async function losOp() {
 function activeerMysterie() {
   const m = mysterie();
   if (m.type === "episch") spawnEpisch(m.plek);
+  if (m.type === "scheuren") {
+    const past = p => (!m.rivier || D.bord.rivier.includes(p)) && (!m.minstensEen || m.minstensEen.includes(p));
+    if (!Object.keys(S.plekken).some(p => S.plekken[p].scheur && past(p))) {
+      const plek = kies1(D.bord.plekken.map(p => p.id).filter(past));
+      S.plekken[plek].scheur = true; log(`Er opent een Scheur in ${plekNaam(plek)}`);
+    }
+  }
 }
 function mysterieActie(h) {
   const m = mysterie(); if (!m) return null;
@@ -371,7 +403,7 @@ function scheurGesloten(plek) {
 function nieuwSpel(godId, moeilijkheid, heldIds, opties = {}) {
   const mo = MOEILIJKHEID[moeilijkheid], g = byId(D.goden, godId);
   S = {
-    versie: 1, god: godId, moeilijkheid, ronde: 1, mist: g.mist + mo.mist, nodig: mo.nodig, opgelost: 0, teller: 0,
+    versie: 1, god: godId, moeilijkheid, ronde: 1, mist: g.mist + mo.mist - (heldIds.length === 4 ? 3 : 0), nodig: mo.nodig, opgelost: 0, teller: 0,
     mysterieVolgorde: schud([0, 1, 2]), mysterieIndex: 0, voortgang: { scheuren: [] },
     plekken: Object.fromEntries(D.bord.plekken.map(p => [p.id, { aanw: 0, scheur: false, monsters: [] }])),
     overzee: Object.fromEntries(D.bord.overzee.map(o => [o.id, { artefact: false }])),
@@ -380,8 +412,20 @@ function nieuwSpel(godId, moeilijkheid, heldIds, opties = {}) {
     geruchten: [], rondeGebruikt: {}, fase: "helden", actief: 0, log: [], einde: null, voorgevoel: false,
     tutorial: !!opties.tutorial, coachGezien: []
   };
+  S.mistStart = S.mist;
   S.helden = [];
-  for (const id of heldIds) S.helden.push((() => {
+  for (const id of heldIds) S.helden.push(maakHeld(id));
+  const n = mo.scheuren + (heldIds.length === 4 ? 1 : 0);
+  for (let i = 0; i < n; i++) { const p = trekScheurPlek(); S.plekken[p].scheur = true; spawnMonster(p); }
+  legAanwijzing(3);
+  activeerMysterie();
+  log(`Het spel begint. ${g.naam} roert zich.`);
+  startHeldenbeurt();
+  if (!window.__bot) setTimeout(() => veilig(() => godIntro(true)), 10);
+  try { window.scrollTo(0, 0); } catch {}
+}
+function maakHeld(id) {
+  {
     const d = byId(D.helden, id);
     const h = { id, plek: null,
       L: d.lichaam, G: d.geest, maxL: d.lichaam, maxG: d.geest, pond: 2, aanw: 0, trofee: 0, kenm: { ...d.kenmerken },
@@ -393,15 +437,7 @@ function nieuwSpel(godId, moeilijkheid, heldIds, opties = {}) {
       else h.eigen.push({ naam: u, gevecht: STARTWAPENS[u] || 0 });
     }
     return h;
-  })());
-  const n = mo.scheuren + (heldIds.length === 4 ? 1 : 0);
-  for (let i = 0; i < n; i++) { const p = trekScheurPlek(); S.plekken[p].scheur = true; spawnMonster(p); }
-  legAanwijzing(3);
-  activeerMysterie();
-  log(`Het spel begint. ${g.naam} roert zich.`);
-  startHeldenbeurt();
-  setTimeout(() => veilig(() => godIntro(true)), 10);
-  window.scrollTo(0, 0);
+  }
 }
 
 /* ---------- heldenfase ---------- */
@@ -446,7 +482,7 @@ async function albertHandigheid(h) {
   if (!k) return;
   h.ronde.handigheid = true;
   if (k[0] === "geef") { h.spullen = h.spullen.filter(i => i !== k[1]); x.spullen.push(k[1]); } else { x.spullen = x.spullen.filter(i => i !== k[1]); h.spullen.push(k[1]); }
-  log(`Orsini laat ${spulDef(k[1]).naam} verdwijnen en weer opduiken`); opslaan();
+  log(`Orsini laat ${spulDef(k[1]).naam} verdwijnen en weer opduiken`); await controleerAlles(); opslaan();
 }
 async function molly(h) {
   const doel = S.helden.filter(x => x !== h && burenVan(null, h.plek).includes(x.plek));
@@ -454,7 +490,7 @@ async function molly(h) {
   const x = doel.length === 1 ? doel[0] : await venster({ soort: "Molly", titel: "Naar wie vliegt Molly?", knoppen: doel.map(x => ({ label: korteNaam(heldDef(x).naam), waarde: x })) });
   const id = await venster({ soort: "Molly", titel: "Wat brengt ze?", knoppen: [...h.spullen.map(i => ({ label: spulDef(i).naam, waarde: i })), { label: "Toch niet", waarde: null, ghost: true }] });
   if (!id) return;
-  h.ronde.molly = true; h.spullen = h.spullen.filter(i => i !== id); x.spullen.push(id); log(`Molly brengt ${spulDef(id).naam} naar ${korteNaam(heldDef(x).naam)}`); opslaan();
+  h.ronde.molly = true; h.spullen = h.spullen.filter(i => i !== id); x.spullen.push(id); log(`Molly brengt ${spulDef(id).naam} naar ${korteNaam(heldDef(x).naam)}`); await controleerAlles(); opslaan();
 }
 async function garibaldi(h) {
   const d = await venster({ soort: "Garibaldi", titel: "Waar brengt de duif je bericht?", knoppen: [...D.bord.plekken.filter(p => p.id !== h.plek).map(p => ({ label: p.naam, waarde: p.id })), { label: "Toch niet", waarde: null, ghost: true }] });
@@ -631,7 +667,7 @@ async function ruil(h) {
     else if (k[0] === "neem") { naar[k[1]] = naar[k[1]].filter(x => x !== k[2]); h[k[1]].push(k[2]); }
     else { h[k[0]] = h[k[0]].filter(x => x !== k[1]); naar[k[0]].push(k[1]); }
   }
-  opslaan(); teken();
+  await controleerAlles(); opslaan(); teken();
 }
 
 /* ---------- spullen en spreuken gebruiken ---------- */
@@ -967,7 +1003,7 @@ async function ontmoetingsfase(start = 0) {
 function geruchtBezoek(plek) { S.geruchten = S.geruchten.filter(g => !(g.soort === "bezoek" && g.plek === plek)); }
 async function onheilsfase() {
   S.fase = "onheil"; opslaan(); teken();
-  if (S.mist <= 0) return einde();
+  if (S.mist <= 0) return ontwaken();
   if (S.tutorial) await coach("onheil");
   if (!S.onheil.length) { S.onheil = schud(S.onheilAfleg); S.onheilAfleg = []; }
   let id = S.onheil.pop();
@@ -1029,7 +1065,7 @@ async function onheilsfase() {
     if (d) { violet.plek = d; log(`Violet glipt weg naar ${plekNaam(d)}`); }
   }
   await controleerAlles();
-  if (S.mist <= 0) return einde();
+  if (S.mist <= 0) return ontwaken();
   S.ronde++; S.rondeGebruikt = {};
   for (const h of S.helden) { h.ronde = { wake: h.ronde.wake }; }
   S.fase = "helden"; S.actief = 0;
@@ -1053,6 +1089,42 @@ function beweegMonsters(iedereen) {
   }
 }
 function einde() { S.einde = S.mist <= 0 ? "verlies" : "winst"; opslaan(); teken(); }
+async function ontwaken() {
+  const g = god();
+  if (S.moeilijkheid === "genadeloos") return einde();
+  S.fase = "finale";
+  if (S.verzet == null) {
+    S.verzet = (S.nodig - S.opgelost) * 3 + 3 + (S.helden.length === 4 ? 2 : 0);
+    log(`${g.naam} ontwaakt. De laatste nacht begint.`);
+    const img = art(`art/goden/${g.id}.jpg`);
+    await venster({ soort: "De Mist is op", titel: `${g.naam} ontwaakt`, breed: true, html: `${img ? `<img class="godintro" src="${img}" alt="">` : ""}
+      <p class="verhaal">${esc(g.ontwaken.replace(/ Jullie verliezen\.?$/, ""))}</p>
+      <p><b>De laatste nacht.</b> Er is nog één kans. ${esc(g.naam)} heeft <b>${S.verzet} verzet</b>. Om de beurt weerstaat elke held de blik van de god (Kennis 9, anders −2 Geest) en valt aan (Kracht met wapens, of Kennis met +1 per spreuk, tegen ${10 + (MOEILIJKHEID[S.moeilijkheid].finale || 0)}). Elke geslaagde aanval kost de god 1 verzet. Na elke ronde verliest iedereen 1 Lichaam en 1 Geest. Wie op 0 komt, valt af.</p>
+      <p class="muted">Elk opgelost mysterie maakt deze nacht makkelijker.</p>`, knoppen: [{ label: "De laatste nacht in", waarde: true }] });
+  }
+  opslaan(); teken();
+  const levend = () => S.helden.filter(h => !h.uit);
+  let veiligheid = 0;
+  while (S.verzet > 0 && levend().length && veiligheid++ < 30) {
+    for (const h of levend()) {
+      S.actief = S.helden.indexOf(h); UI.bekeken = S.actief; teken();
+      const naam = korteNaam(heldDef(h).naam);
+      if (!await test(h, "kennis", 9, `De blik van ${g.naam}`)) h.G -= 2;
+      if (h.G <= 0) { h.uit = true; await melding(`${naam} valt`, `${naam} kan de blik van ${g.naam} niet verdragen.`, "De laatste nacht"); continue; }
+      const spreuk = Math.min(2, h.spreuken.length);
+      const opties = [{ label: `Kracht + wapens (+${wapenBonus(h, false)})`, waarde: "kracht" }];
+      if (spreuk) opties.push({ label: `Kennis + spreuken (+${spreuk})`, waarde: "kennis" });
+      const k = opties.length > 1 ? await venster({ soort: "De laatste nacht", titel: `${naam} valt aan`, html: `<p>Nog <b>${S.verzet}</b> verzet.</p>`, knoppen: opties }) : "kracht";
+      if (await test(h, k, 10 + (MOEILIJKHEID[S.moeilijkheid].finale || 0), `Aanval op ${g.naam}`, { bonus: k === "kracht" ? wapenBonus(h, false) : spreuk })) { S.verzet--; log(`${naam} raakt ${g.naam}: nog ${S.verzet} verzet`); }
+      opslaan();
+      if (S.verzet <= 0) break;
+    }
+    if (S.verzet <= 0) break;
+    for (const h of levend()) { verliesLichaam(h, 1); h.G -= 1; if (h.L <= 0 || h.G <= 0) { h.uit = true; log(`${korteNaam(heldDef(h).naam)} valt in de laatste nacht`); } }
+    if (levend().length) await melding("De god slaat terug", `${g.naam} beukt op jullie in. Iedereen verliest 1 Lichaam en 1 Geest. Nog ${S.verzet} verzet.`, "De laatste nacht");
+  }
+  S.einde = S.verzet <= 0 ? "nipt" : "verlies"; opslaan(); teken();
+}
 
 /* ---------- beurtverloop ---------- */
 async function beurtKlaar() {
@@ -1161,6 +1233,16 @@ async function godIntro(begin) {
     knoppen: [{ label: begin ? "Aan de slag" : "Sluiten", waarde: true }] });
 }
 
+function kiesGroei(h) {
+  return venster({ soort: "Groei", titel: "Kies een verbetering", knoppen: [...KENMERKEN.map(([k, l]) => ({ label: `+1 ${l}`, waarde: k, uit: h.kenm[k] >= 5 })), { label: "+1 max Lichaam", waarde: "L" }, { label: "+1 max Geest", waarde: "G" }, { label: "Een spreuk", waarde: "S" }, { label: "Toch niet", waarde: null, ghost: true }] });
+}
+async function groei(h, k) {
+  if (h.trofee < 3) return;
+  h.trofee -= 3;
+  if (k === "L") { h.maxL++; h.L++; } else if (k === "G") { h.maxG++; h.G++; } else if (k === "S") await pasToe(h, [{ trek: "spreuken" }]); else h.kenm[k] = Math.min(5, h.kenm[k] + 1);
+  log(`${korteNaam(heldDef(h).naam)} groeit`); await controleerHeld(h); opslaan();
+}
+
 /* ---------- heldenprofiel bij de keuze ---------- */
 function profielHtml(h) {
   const img = art(`art/helden/${h.id}.jpg`);
@@ -1203,7 +1285,7 @@ async function toonHeld(id) {
 
 /* ---------- tekenen ---------- */
 function teken() {
-  if (!D) return;
+  if (!D || window.__bot) return;
   if (!S) return tekenStart();
   if (S.einde) return tekenEinde();
   const g = god(), mys = mysterie();
@@ -1211,9 +1293,9 @@ function teken() {
     <header class="balk">
       <button class="godknop" data-act="god" title="Over ${esc(g.naam)}"><h1>${esc(g.naam)}</h1></button>
       <span class="stat">Ronde <b>${S.ronde}</b></span>
-      <span class="stat">${{ helden: "Heldenfase", ontmoeting: "Ontmoetingen", onheil: "Onheil" }[S.fase]}</span>
+      <span class="stat">${{ helden: "Heldenfase", ontmoeting: "Ontmoetingen", onheil: "Onheil", finale: "De laatste nacht" }[S.fase]}</span>
       <span class="stat" title="Mist">Mist <b>${S.mist}</b></span>
-      <span class="mistbalk" aria-hidden="true">${Array.from({ length: g.mist + MOEILIJKHEID[S.moeilijkheid].mist }, (_, i) => `<i class="${i < S.mist ? "" : "weg"}"></i>`).join("")}</span>
+      <span class="mistbalk" aria-hidden="true">${Array.from({ length: S.mistStart || g.mist }, (_, i) => `<i class="${i < S.mist ? "" : "weg"}"></i>`).join("")}</span>
       <span class="stat">Mysteries <b>${S.opgelost}/${S.nodig}</b>${mys ? `: ${esc(mys.naam)}` : ""}</span>
       <div class="rechts"><button class="btn small ghost" data-act="tips" aria-pressed="${!!(S.tutorial || UI.tips)}">${S.tutorial || UI.tips ? "Tips uit" : "Tips aan"}</button><button class="btn small ghost" data-act="handboek">Handleiding</button><button class="btn small ghost" data-act="stoppen">Stoppen</button></div>
     </header>
@@ -1273,7 +1355,7 @@ function tekenPaneel() {
   return `
     <div class="heldentabs">${S.helden.map((x, i) => `<button class="heldentab" data-bekijk="${i}" aria-pressed="${i === UI.bekeken}"><span class="dot" style="background:${KLEUREN[i]}"></span>${esc(korteNaam(heldDef(x).naam))}</button>`).join("")}</div>
     <div class="hint">${hint}</div>
-    ${S.fase !== "helden" && !bezig ? `<button class="btn breed" data-act="doorgaan">Doorgaan met ${S.fase === "ontmoeting" ? "de ontmoetingen" : "het onheil"}</button>` : ""}
+    ${S.fase !== "helden" && !bezig ? `<button class="btn breed" data-act="doorgaan">Doorgaan met ${{ ontmoeting: "de ontmoetingen", onheil: "het onheil", finale: "de laatste nacht" }[S.fase]}</button>` : ""}
     ${(S.tutorial || UI.tips) && isActief ? `<div class="tip"><b>Tip.</b> ${advies(h)}</div>` : ""}
     ${mys ? `<div class="kaartje goed"><b>Mysterie: ${esc(mys.naam)}</b><span>${esc(mys.doel)}</span></div>` : ""}
     ${S.geruchten.map(g => `<div class="kaartje toestand"><b>${esc(g.naam)}</b><span>Nog ${g.rondes} ronde${g.rondes > 1 ? "s" : ""}. ${g.soort === "bezoek" ? `Bezoek ${plekNaam(g.plek)}.` : `Haal de Aanwijzingen in ${plekNaam(g.plek)} op.`}</span></div>`).join("")}
@@ -1322,10 +1404,10 @@ function tekenAanpas(h) {
     <div class="rij"><span>Monster op deze plek</span><span><button class="btn small ghost" data-act="mon-plus">+</button> <button class="btn small ghost" data-act="mon-min">−</button></span></div></div>`;
 }
 function tekenEinde() {
-  const winst = S.einde === "winst", g = god();
+  const winst = S.einde === "winst" || S.einde === "nipt", g = god();
   const gb = art(`art/goden/${g.id}.jpg`);
-  app.innerHTML = `<div class="start">${gb ? `<img class="hero-art${winst ? " gered" : ""}" src="${gb}" alt="">` : ""}<span class="muted">Na ${S.ronde} rondes</span><h1>${winst ? "Londen is gered" : `${esc(g.naam)} ontwaakt`}</h1>
-    <p class="verhaal" style="font-family:var(--letter);font-size:20px;max-width:60ch">${winst ? "De Mist trekt op boven de Theems. De kranten schrijven morgen over een koude nacht, en verder over niets. Jullie weten beter." : esc(g.ontwaken)}</p>
+  app.innerHTML = `<div class="start">${gb ? `<img class="hero-art${winst ? " gered" : ""}" src="${gb}" alt="">` : ""}<span class="muted">Na ${S.ronde} rondes</span><h1>${S.einde === "nipt" ? "Op het nippertje" : winst ? "Londen is gered" : `${esc(g.naam)} heeft gewonnen`}</h1>
+    <p class="verhaal" style="font-family:var(--letter);font-size:20px;max-width:60ch">${S.einde === "nipt" ? "In de laatste nacht drijven jullie het terug de diepte in. Londen zal nooit weten hoe dichtbij het was. " : ""}${winst ? "De Mist trekt op boven de Theems. De kranten schrijven morgen over een koude nacht, en verder over niets. Jullie weten beter." : esc(g.ontwaken)}</p>
     <div><button class="btn" data-act="nieuw">Nieuw spel</button></div></div>`;
 }
 function tekenStart() {
@@ -1373,7 +1455,7 @@ app.addEventListener("click", e => {
   switch (t.dataset.act) {
     case "willekeurig": u.helden = schud(D.helden.map(x => x.id)).slice(0, u.aantal); if (!u.god) u.god = kies1(D.goden).id; return teken();
     case "begin": nieuwSpel(u.god, u.moeilijkheid, u.helden); return;
-    case "verder": S = laden(); if (S.fase === "ontmoeting") veilig(() => ontmoetingsfase((S.ontmoetingIndex ?? -1) + 1)); else if (S.fase === "onheil") veilig(() => onheilsfase()); else teken(); return;
+    case "verder": S = laden(); if (S.fase === "finale") veilig(() => ontwaken()); else if (S.fase === "ontmoeting") veilig(() => ontmoetingsfase((S.ontmoetingIndex ?? -1) + 1)); else if (S.fase === "onheil") veilig(() => onheilsfase()); else teken(); return;
     case "nieuw": wis(); S = null; UI.start.helden = []; return teken();
     case "tutorial": zaai(1888); nieuwSpel("vathrun", "ontspannen", ["hester-quayle", "silas-rook"], { tutorial: true }); rng = Math.random; return;
     case "handboek": UI.handboek = "handleiding"; return tekenHandleiding();
@@ -1395,12 +1477,9 @@ app.addEventListener("click", e => {
     case "raaf": return veilig(() => raaf(h));
     case "journalist": return veilig(() => journalist(h));
     case "zoekweg": return veilig(() => zoekWeg(actief()));
-    case "doorgaan": UI.fout = null; return veilig(() => S.fase === "ontmoeting" ? ontmoetingsfase((S.ontmoetingIndex ?? -1) + 1) : onheilsfase());
+    case "doorgaan": UI.fout = null; return veilig(() => S.fase === "ontmoeting" ? ontmoetingsfase((S.ontmoetingIndex ?? -1) + 1) : S.fase === "finale" ? ontwaken() : onheilsfase());
     case "groei": return veilig(async () => {
-      const k = await venster({ soort: "Groei", titel: "Kies een verbetering", knoppen: [...KENMERKEN.map(([k, l]) => ({ label: `+1 ${l}`, waarde: k, uit: h.kenm[k] >= 5 })), { label: "+1 max Lichaam", waarde: "L" }, { label: "+1 max Geest", waarde: "G" }, { label: "Een spreuk", waarde: "S" }, { label: "Toch niet", waarde: null, ghost: true }] });
-      if (!k) return; h.trofee -= 3;
-      if (k === "L") { h.maxL++; h.L++; } else if (k === "G") { h.maxG++; h.G++; } else if (k === "S") await pasToe(h, [{ trek: "spreuken" }]); else h.kenm[k]++;
-      log(`${korteNaam(heldDef(h).naam)} groeit`); opslaan();
+      const k = await kiesGroei(h); if (!k) return; await groei(h, k);
     });
     case "aanpas": UI.aanpassen = !UI.aanpassen; return teken();
     case "toestand-plus": { const v = document.getElementById("pas-toestand").value; if (!heeft(h, v)) h.toestanden.push(v); opslaan(); return teken(); }
@@ -1426,7 +1505,8 @@ Promise.all(Object.entries(BESTANDEN).map(([k, f]) => fetch(`data/${f}.json`).th
   .then(lijst => { D = Object.fromEntries(lijst); maakBuren(); teken(); registreerSW(); })
   .catch(err => { app.innerHTML = `<div class="start"><h1>Londen, 1888</h1><p>De speldata kon niet worden geladen (${esc(err.message)}). Open het spel via een webserver, niet als los bestand.</p></div>`; });
 function registreerSW() {
-  try { if ("serviceWorker" in navigator && location.protocol === "https:" && !location.hostname.endsWith("claude.ai") && !location.hostname.endsWith("claudeusercontent.com")) navigator.serviceWorker.register("sw.js").catch(() => {}); } catch {}
+  try { if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost") && !location.hostname.endsWith("claude.ai") && !location.hostname.endsWith("claudeusercontent.com")) navigator.serviceWorker.register("sw.js").catch(() => {}); } catch {}
 }
-window.__spel = { get S() { return S; }, get D() { return D; }, get bezig() { return bezig; } };
+window.__spel = { get S() { return S; }, get D() { return D; }, get bezig() { return bezig; },
+  api: { nieuwSpel, zaai, reis, rust, dienst, doeMysterie, mysterieActie, beurtKlaar, gebruikActie, gebruikSpul, zoekWeg, bereikbaar, burenVan, afstanden, stapNaar, actief, groei, mysterie, heeft, isOverzee, spulDef, monsterDef, wapenBonus, plekDef } };
 })();
