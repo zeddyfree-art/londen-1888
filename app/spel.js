@@ -82,13 +82,13 @@ function stapNaar(van, doel) {
 
 /* ---------- modaal venster ---------- */
 let modalResolve = null;
-function venster({ soort = "", titel = "", beeld = null, verhaal = "", html = "", knoppen = [{ label: "Verder", waarde: true }] }) {
+function venster({ soort = "", titel = "", beeld = null, verhaal = "", html = "", breed = false, knoppen = [{ label: "Verder", waarde: true }] }) {
   if (knoppen.length && knoppen.every(k => k.uit)) knoppen = [...knoppen, { label: "Verder", waarde: null, ghost: true }];
   return new Promise(res => {
     modalResolve = res;
     const m = document.getElementById("modal");
     const img = beeld ? art(beeld) : null;
-    m.innerHTML = `<div class="venster" role="dialog" aria-modal="true" aria-label="${esc(titel)}">
+    m.innerHTML = `<div class="venster${breed ? " breed" : ""}" role="dialog" aria-modal="true" aria-label="${esc(titel)}">
       ${img ? `<img class="beeld" src="${esc(img)}" alt="">` : ""}
       <div class="inhoud">
         ${soort ? `<span class="soort">${esc(soort)}</span>` : ""}
@@ -1150,6 +1150,46 @@ function tekenHandleiding() {
     <div class="hb-inhoud">${views[t]()}</div>`;
 }
 
+/* ---------- heldenprofiel bij de keuze ---------- */
+function profielHtml(h) {
+  const img = art(`art/helden/${h.id}.jpg`);
+  const pips = n => `<span class="pips">${[1, 2, 3, 4, 5].map(i => `<i class="${i <= n ? "aan" : ""}"></i>`).join("")}</span>`;
+  const uitrusting = h.uitrusting.map(u => {
+    const w = STARTWAPENS[u];
+    return `<li>${esc(u)}${w ? ` <span class="muted">(+${w} bij gevechten)</span>` : /spreuk/.test(u) ? ` <span class="muted">(een willekeurige spreuk)</span>` : ""}</li>`;
+  }).join("");
+  return `<div class="profiel">
+    <div class="profiel-beeld">${img ? `<img src="${img}" alt="Portret van ${esc(h.naam)}">` : `<span class="leeg">${esc(initialen(h.naam))}</span>`}</div>
+    <div class="profiel-info">
+      <p class="muted">${esc(h.rol)} · ${h.leeftijd} jaar · ${esc(h.beroep)}<br>Begint in <b>${esc(h.start)}</b></p>
+      <p class="verhaal">${esc(h.achtergrond)}</p>
+      <div class="profiel-stats">
+        ${KENMERKEN.map(([k, l]) => `<span>${l}</span>${pips(h.kenmerken[k])}<b>${h.kenmerken[k]}</b>`).join("")}
+      </div>
+      <div class="pools"><div>Lichaam<b>${h.lichaam}</b></div><div>Geest<b>${h.geest}</b></div><div>Pond<b>${2 + (h.uitrusting.some(u => /Pond$/.test(u)) ? parseInt(h.uitrusting.find(u => /Pond$/.test(u)), 10) : 0)}</b></div></div>
+      <div class="vermogen"><b>Vermogen: ${esc(h.vermogen.naam)}.</b> ${esc(h.vermogen.tekst)}</div>
+      ${h.bondgenoot ? `<div class="vermogen"><b>${esc(h.bondgenoot.naam)}</b> (${esc(h.bondgenoot.soort)}). ${esc(h.bondgenoot.tekst)}</div>` : ""}
+      <div><b>Uitrusting</b><ul class="kort">${uitrusting}</ul></div>
+      <p><b>Eigenaardigheid:</b> ${esc(h.eigenaardigheid)}</p>
+    </div></div>`;
+}
+async function toonHeld(id) {
+  const u = UI.start;
+  while (id) {
+    const h = byId(D.helden, id), i = D.helden.indexOf(h);
+    const gekozen = u.helden.includes(id), vol = u.helden.length >= u.aantal;
+    const keuze = await venster({ soort: `Held ${i + 1} van ${D.helden.length}`, titel: h.naam, html: profielHtml(h), breed: true, knoppen: [
+      gekozen ? { label: "Niet meer kiezen", waarde: "uit", ghost: true } : { label: vol ? `Al ${u.aantal} helden gekozen` : "Kies deze held", waarde: "kies", uit: vol },
+      { label: "‹ Vorige", waarde: "vorige", ghost: true }, { label: "Volgende ›", waarde: "volgende", ghost: true }, { label: "Sluiten", waarde: null, ghost: true }] });
+    if (keuze === "kies") { u.helden = [...u.helden, id]; teken(); }
+    else if (keuze === "uit") { u.helden = u.helden.filter(x => x !== id); teken(); }
+    else if (keuze === "vorige") id = D.helden[(i - 1 + D.helden.length) % D.helden.length].id;
+    else if (keuze === "volgende") id = D.helden[(i + 1) % D.helden.length].id;
+    else id = null;
+    if (keuze === "kies" && u.helden.length >= u.aantal) id = null;
+  }
+}
+
 /* ---------- tekenen ---------- */
 function teken() {
   if (!D) return;
@@ -1290,7 +1330,12 @@ function tekenStart() {
     <section><h2>Hoeveel helden?</h2><div class="opties">${[2, 4].map(n => `<button class="optie" data-aantal="${n}" aria-pressed="${u.aantal === n}">${n} helden</button>`).join("")}</div></section>
     <section><h2>Kies ${u.aantal} helden <span class="muted" style="font-size:16px">(${u.helden.length} gekozen)</span></h2>
       <div class="opties"><button class="btn small ghost" data-act="willekeurig">Willekeurig kiezen</button></div>
-      <div class="heldenkeus">${D.helden.map(h => `<button class="optie" data-held="${h.id}" aria-pressed="${u.helden.includes(h.id)}">${art(`art/helden/${h.id}.jpg`) ? `<img class="mini" src="art/helden/${h.id}.jpg" alt="">` : ""}<span><b>${esc(h.naam)}</b><small>${esc(h.rol)} · ${esc(h.start)}</small></span></button>`).join("")}</div></section>
+      <p class="muted">Tik op een held om het verhaal, de kenmerken, het vermogen en de uitrusting te bekijken.</p>
+      <div class="heldenkeus">${D.helden.map(h => `<button class="optie heldkaart" data-held="${h.id}" aria-pressed="${u.helden.includes(h.id)}">
+        ${art(`art/helden/${h.id}.jpg`) ? `<img class="mini" src="art/helden/${h.id}.jpg" alt="">` : `<span class="mini leeg">${esc(initialen(h.naam))}</span>`}
+        <span class="info"><b>${esc(h.naam)}</b><small>${esc(h.rol)} · ${esc(h.start)}</small>
+        <small class="getallen">${KENMERKEN.map(([k, l]) => `${l.slice(0, 3)} ${h.kenmerken[k]}`).join(" · ")}<br>Lichaam ${h.lichaam} · Geest ${h.geest}${h.bondgenoot ? ` · met ${esc(h.bondgenoot.soort)}` : ""}</small></span>
+        ${u.helden.includes(h.id) ? `<span class="gekozen" aria-label="Gekozen">✓</span>` : ""}</button>`).join("")}</div></section>
     <div><button class="btn" data-act="begin" ${u.god && u.helden.length === u.aantal ? "" : "disabled"}>Begin het spel</button></div>
   </div>`;
 }
@@ -1305,7 +1350,7 @@ app.addEventListener("click", e => {
   if (t.dataset.god) { u.god = t.dataset.god; return teken(); }
   if (t.dataset.moeilijk) { u.moeilijkheid = t.dataset.moeilijk; return teken(); }
   if (t.dataset.aantal) { u.aantal = +t.dataset.aantal; u.helden = u.helden.slice(0, u.aantal); return teken(); }
-  if (t.dataset.held) { const id = t.dataset.held; u.helden = u.helden.includes(id) ? u.helden.filter(x => x !== id) : u.helden.length < u.aantal ? [...u.helden, id] : u.helden; return teken(); }
+  if (t.dataset.held) return veilig(() => toonHeld(t.dataset.held));
   if (t.dataset.bekijk) { UI.bekeken = +t.dataset.bekijk; return teken(); }
   if (t.dataset.plek && S && !S.einde) return reis(t.dataset.plek);
   if (t.dataset.spul) return veilig(() => gebruikSpul(S.helden[UI.bekeken], t.dataset.spul));

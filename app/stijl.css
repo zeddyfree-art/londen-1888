@@ -149,3 +149,24 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);ou
 .raster{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
 .raster .kaartje{background:var(--paper)}
 .mini-portret{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top;max-height:220px}
+
+/* Heldenkeuze en profiel */
+.heldenkeus{grid-template-columns:repeat(auto-fill,minmax(270px,1fr))}
+.heldkaart{position:relative;align-items:flex-start}
+.heldkaart .info{display:grid;gap:2px;min-width:0}
+.heldkaart .getallen{font-variant-numeric:tabular-nums;line-height:1.35}
+.heldkaart .mini{width:58px;height:78px}
+.heldkaart .mini.leeg,.profiel .leeg{display:grid;place-items:center;background:var(--tint);font-family:var(--display);font-size:22px}
+.heldkaart .gekozen{position:absolute;top:6px;right:8px;width:24px;height:24px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-weight:700;font-size:14px}
+.venster.breed{max-width:920px}
+.profiel{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:20px;align-items:start}
+.profiel-beeld img,.profiel-beeld .leeg{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;border:2px solid #b99a5b}
+.profiel-info{display:grid;gap:10px;min-width:0}
+.profiel-info p{margin:0}
+.profiel-stats{display:grid;grid-template-columns:auto 1fr auto;gap:4px 10px;align-items:center;font-size:15px}
+.pips{display:flex;gap:4px}
+.pips i{width:18px;height:9px;background:var(--line)}
+.pips i.aan{background:var(--accent)}
+.profiel .pools{grid-template-columns:repeat(3,minmax(0,1fr))}
+.kort{margin:4px 0 0;padding-left:20px}
+@media (max-width:700px){.profiel{grid-template-columns:1fr}.profiel-beeld{max-width:220px}}
