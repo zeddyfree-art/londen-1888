@@ -130,8 +130,10 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);ou
 /* Tips, tutorial en handleiding */
 .tip{font-size:14.5px;background:var(--paper);border:1px dashed var(--accent);padding:8px 10px}
 .handboek{position:fixed;inset:0;z-index:40;background:var(--bg);display:grid;grid-template-rows:auto auto minmax(0,1fr);padding:max(12px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px))}
-.hb-kop{display:flex;justify-content:space-between;align-items:center;gap:12px;max-width:1100px;width:100%;margin:0 auto;padding-bottom:8px}
+.hb-kop{display:flex;justify-content:flex-start;align-items:center;gap:12px;max-width:1100px;width:100%;margin:0 auto;padding-bottom:8px}
 .hb-kop h2{font-size:28px}
+.terug-boven{justify-self:start;font-size:16px;padding:8px 14px}
+.venster .terug-boven{position:sticky;top:0;z-index:2;background:var(--paper);margin-bottom:-4px}
 .hb-tabs{display:flex;flex-wrap:wrap;gap:6px;max-width:1100px;width:100%;margin:0 auto;padding-bottom:10px;border-bottom:1px solid var(--line)}
 .tab{appearance:none;border:1px solid var(--line);background:var(--paper);padding:7px 12px;cursor:pointer;font-size:14.5px;min-height:40px}
 .tab[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
@@ -337,3 +339,108 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);ou
 
 .pi-reis{justify-self:stretch}
 .terugknop{border-style:dashed}
+
+/* ---------- Overgangen voor ontmoetingen ---------- */
+.overgang{position:fixed;inset:0;z-index:55;overflow:hidden;display:grid;place-items:center;cursor:pointer;background:rgba(4,6,8,.86);animation:og-in .3s ease-out both;--violet:#b26ae6}
+.overgang.weg{animation:og-uit .22s ease-in both}
+.og-tekst{position:absolute;left:0;right:0;bottom:16%;margin:0;text-align:center;padding:0 16px;font-family:var(--display);font-size:clamp(26px,5vw,44px);color:#f2ead8;text-shadow:0 0 18px rgba(0,0,0,.9),0 0 30px rgba(0,0,0,.7);opacity:0;animation:og-tekst calc(var(--duur) * .8) ease-out .25s both}
+@keyframes og-in{from{opacity:0}to{opacity:1}}
+@keyframes og-uit{to{opacity:0}}
+@keyframes og-tekst{0%{opacity:0;transform:translateY(12px);letter-spacing:.2em}30%,80%{opacity:1;transform:none;letter-spacing:.04em}100%{opacity:.85}}
+
+/* Scheur: een barst scheurt open, wordt een kolk en zuigt je naar binnen */
+.og-scheur{background:radial-gradient(ellipse at center,#14081d 0%,#050307 70%)}
+.og-spleet{position:absolute;height:72vh;width:40px;filter:drop-shadow(0 0 6px var(--violet)) drop-shadow(0 0 18px var(--violet))}
+.og-spleet path{fill:none;stroke:#e9cdfc;stroke-width:3;stroke-linejoin:bevel;vector-effect:non-scaling-stroke;stroke-dasharray:500;stroke-dashoffset:500;animation:og-barst .55s ease-in .15s forwards,og-weg .3s ease-in .95s forwards}
+.og-kolk{position:absolute;width:min(70vmin,560px);aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle,#000 0 18%,transparent 19%),conic-gradient(from 0deg,#2a0f3d,#b26ae6,#3b145a,#e2b8ff,#2a0f3d,#8c3fc4,#2a0f3d);
+  -webkit-mask:radial-gradient(circle,#000 55%,transparent 71%);mask:radial-gradient(circle,#000 55%,transparent 71%);
+  box-shadow:0 0 80px 20px rgba(178,106,230,.35);transform:scale(.02,.6);opacity:0;animation:og-kolk var(--duur) cubic-bezier(.5,0,.6,1) both}
+@keyframes og-barst{to{stroke-dashoffset:0}}
+@keyframes og-weg{to{opacity:0}}
+@keyframes og-kolk{0%,35%{transform:scale(.02,.6) rotate(0);opacity:0}45%{transform:scale(.15,.9) rotate(60deg);opacity:1}65%{transform:scale(1) rotate(260deg);opacity:1}85%{transform:scale(1.15) rotate(420deg);opacity:1}100%{transform:scale(7) rotate(600deg);opacity:0}}
+.og-zuig{position:absolute;inset:0}
+.og-zuig i{position:absolute;left:50%;top:50%;width:6px;height:6px;margin:-3px;border-radius:50%;background:#e9cdfc;box-shadow:0 0 8px var(--violet);opacity:0;
+  animation:og-zuig 1s ease-in calc(var(--duur) * .4 + var(--v)) both}
+@keyframes og-zuig{0%{transform:rotate(var(--a)) translateX(60vmax) scale(1.6);opacity:0}20%{opacity:1}100%{transform:rotate(calc(var(--a) + 200deg)) translateX(0) scale(.2);opacity:0}}
+.og-flits{position:absolute;inset:0;background:radial-gradient(circle,#f6e9ff,#b26ae6 40%,transparent 75%);opacity:0;animation:og-flits var(--duur) ease-in both}
+@keyframes og-flits{0%,78%{opacity:0}90%{opacity:.95}100%{opacity:0}}
+.og-scheur .og-tekst{animation-delay:.9s;bottom:12%}
+
+/* Scheur sluit: de kolk krimpt tot een streep en dooft */
+.og-dicht{background:radial-gradient(ellipse at center,#14081d 0%,#050307 70%)}
+.og-dicht .og-kolk{animation:og-dicht var(--duur) cubic-bezier(.6,0,.4,1) both}
+.og-dicht .og-flits{animation:og-flits2 var(--duur) ease-out both}
+@keyframes og-dicht{0%{transform:scale(1) rotate(0);opacity:1}55%{transform:scale(.6,.9) rotate(-200deg);opacity:1}80%{transform:scale(.01,.7) rotate(-260deg);opacity:1}100%{transform:scale(0,0);opacity:0}}
+@keyframes og-flits2{0%,75%{opacity:0}82%{opacity:.8}100%{opacity:0}}
+
+/* Monster: rood waas, klauwsporen en een schok */
+.og-monster{background:rgba(10,2,2,.95);animation:og-in .2s both,og-schok .4s ease-out .35s}
+.og-vignet{position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 30%,rgba(150,15,10,.75) 100%);animation:og-puls .9s ease-in-out infinite alternate}
+.og-klauw{position:absolute;left:calc(50% - min(40vw,320px));top:calc(50% - 4px + (var(--i) - 1) * 46px);width:min(80vw,640px);height:9px;border-radius:50%;
+  background:linear-gradient(90deg,transparent,#ffd9cf 20%,#d32a1b 55%,transparent);box-shadow:0 0 14px #d32a1b;
+  transform:rotate(-28deg);clip-path:inset(0 100% 0 0);animation:og-klauw .22s ease-out calc(.2s + var(--i) * .07s) forwards}
+@keyframes og-klauw{to{clip-path:inset(0 0 0 0)}}
+@keyframes og-schok{0%,100%{transform:none}20%{transform:translate(-8px,4px)}40%{transform:translate(7px,-5px)}60%{transform:translate(-5px,3px)}80%{transform:translate(3px,-2px)}}
+@keyframes og-puls{from{opacity:.7}to{opacity:1}}
+
+/* Stad: mist drijft voorbij, een gaslantaarn gloeit op */
+.og-stad,.og-aanwijzing{background:radial-gradient(ellipse at center,#16242a 0%,#05090b 75%)}
+.og-mist{position:absolute;inset:-20%;background:radial-gradient(ellipse 40% 18% at 30% 60%,rgba(200,215,210,.28),transparent 70%),radial-gradient(ellipse 35% 15% at 70% 40%,rgba(200,215,210,.22),transparent 70%),radial-gradient(ellipse 50% 20% at 50% 80%,rgba(200,215,210,.2),transparent 70%);animation:og-drijf var(--duur) linear both}
+.og-mist.twee{animation-direction:reverse;opacity:.7;transform:scaleX(-1)}
+@keyframes og-drijf{from{transform:translateX(-12%)}to{transform:translateX(12%)}}
+.og-lamp{position:absolute;width:30vmin;aspect-ratio:1;border-radius:50%;top:22%;background:radial-gradient(circle,#ffe4a3 0 6%,rgba(255,190,90,.45) 18%,transparent 65%);opacity:0;animation:og-lamp var(--duur) ease-out both}
+@keyframes og-lamp{0%{opacity:0;transform:scale(.6)}35%{opacity:1;transform:scale(1)}70%{opacity:.8}100%{opacity:1}}
+
+/* Aanwijzing: voetstappen verschijnen, een loep zoekt */
+.og-stap{position:absolute;width:16px;height:26px;border-radius:50% 50% 45% 45%;background:rgba(95,207,145,.85);box-shadow:0 0 10px rgba(95,207,145,.6);
+  left:calc(22% + var(--i) * 15%);top:calc(58% - var(--i) * 5%);transform:rotate(62deg);opacity:0;animation:og-stap .3s ease-out calc(.15s + var(--i) * .17s) forwards}
+.og-stap:nth-child(odd){margin-top:22px}
+@keyframes og-stap{from{opacity:0;transform:rotate(62deg) scale(.4)}to{opacity:1;transform:rotate(62deg)}}
+.og-loep{position:absolute;width:20vmin;aspect-ratio:1;border-radius:50%;border:5px solid #d9c38a;box-shadow:0 0 0 2px rgba(0,0,0,.5),inset 0 0 30px rgba(255,240,200,.25);top:30%;left:10%;animation:og-loep var(--duur) ease-in-out both}
+.og-loep::after{content:"";position:absolute;width:6px;height:9vmin;background:#6b4a2b;border-radius:3px;left:100%;top:88%;transform:rotate(-45deg);transform-origin:top}
+@keyframes og-loep{0%{transform:translate(0,0);opacity:0}15%{opacity:1}100%{transform:translate(55vw,-4vh)}}
+
+/* Expeditie: zee en een draaiende kompasroos */
+.og-expeditie{background:linear-gradient(#0b1820,#06222c)}
+.og-zee{position:absolute;inset:auto -10% 0 -10%;height:45%;background:repeating-linear-gradient(170deg,rgba(120,180,200,.18) 0 6px,transparent 6px 26px);animation:og-golf var(--duur) ease-in-out both}
+@keyframes og-golf{from{transform:translateX(-4%)}to{transform:translateX(4%)}}
+.og-roos{position:absolute;width:min(40vmin,300px);top:18%;fill:none;stroke:#d9c38a;stroke-width:1.3;animation:og-roos var(--duur) cubic-bezier(.2,.8,.3,1) both}
+.og-roos path{fill:rgba(217,195,138,.18)}.og-roos .noord{fill:#c9473a;stroke:none}
+@keyframes og-roos{from{transform:rotate(-540deg) scale(.4);opacity:0}30%{opacity:1}to{transform:rotate(0) scale(1)}}
+
+/* ---------- Thema's voor ontmoetingskaarten ---------- */
+.venster[class*="thema-"]{border-width:2px;border-radius:6px}
+.venster.thema-monster{border-color:var(--bad);box-shadow:0 0 0 1px rgba(0,0,0,.3),0 0 40px rgba(163,57,42,.35)}
+.venster.thema-aanwijzing{border-color:var(--clue);box-shadow:0 0 30px rgba(44,138,90,.25)}
+.venster.thema-stad{border-color:var(--mist);box-shadow:0 0 30px rgba(181,154,60,.2)}
+.venster.thema-expeditie{border-color:var(--river);box-shadow:0 0 30px rgba(60,120,150,.3)}
+.venster.thema-scheur{--paper:#170d21;--ink:#efe6f6;--muted:#b9a7c8;--line:#4b2f60;--accent:#9b5cc4;--accent-ink:#fff;--tint:#24132f;
+  color:var(--ink);background:linear-gradient(180deg,#1d1029,#120a19);border:2px solid #8c4fbf;box-shadow:0 0 0 1px #000,0 0 50px rgba(178,106,230,.45),inset 0 0 40px rgba(120,60,170,.25)}
+.venster.thema-scheur .soort{color:#d6b4f2}
+.venster.thema-scheur .btn.ghost{color:#e2c8f7;border-color:#8c4fbf;background:transparent}
+.portaal{position:relative;height:clamp(250px,34vh,290px);display:grid;place-items:center;overflow:hidden;border-bottom:1px solid #4b2f60;
+  background:radial-gradient(ellipse at center,#3a1655 0%,#1a0b26 55%,#0b0610 100%)}
+.portaal-nevel{position:absolute;inset:-30%;background:conic-gradient(from 0deg,transparent,rgba(178,106,230,.25),transparent 30%,rgba(226,184,255,.15),transparent 60%,rgba(140,63,196,.3),transparent);filter:blur(14px)}
+.portaal-ring{position:absolute;width:min(226px,56vw);aspect-ratio:1;border-radius:50%;background:conic-gradient(#b26ae6,transparent 25%,#e2b8ff 50%,transparent 75%,#b26ae6);
+  -webkit-mask:radial-gradient(circle,transparent 62%,#000 64%);mask:radial-gradient(circle,transparent 62%,#000 64%);filter:drop-shadow(0 0 10px #b26ae6)}
+.portaal img{position:relative;width:min(196px,48vw);aspect-ratio:1;border-radius:50%;object-fit:cover;clip-path:circle(49.5%);transform-origin:center;box-shadow:0 0 30px rgba(178,106,230,.7),inset 0 0 20px #000}
+.portaal-vonken{position:absolute;inset:0}
+.portaal-vonken i{position:absolute;left:50%;top:50%;width:4px;height:4px;margin:-2px;border-radius:50%;background:#e9cdfc;box-shadow:0 0 6px #b26ae6;opacity:0}
+@media (prefers-reduced-motion:no-preference){
+  .portaal-nevel{animation:draai 14s linear infinite}
+  .portaal-ring{animation:draai 6s linear infinite}
+  .portaal img{animation:og-adem 3.5s ease-in-out infinite}
+  .portaal-vonken i{animation:og-vonk 2.6s ease-in var(--v) infinite}
+}
+.portaal img.fiche{clip-path:circle(45%)}
+@keyframes og-adem{0%,100%{box-shadow:0 0 24px rgba(178,106,230,.55),inset 0 0 20px #000;transform:scale(1)}50%{box-shadow:0 0 46px rgba(226,184,255,.85),inset 0 0 20px #000;transform:scale(1.03)}}
+@keyframes og-vonk{0%{transform:rotate(var(--a)) translateX(170px);opacity:0}25%{opacity:1}100%{transform:rotate(calc(var(--a) + 140deg)) translateX(20px);opacity:0}}
+
+/* Melding: er staat een nieuwe versie online */
+.updatebalk{position:fixed;z-index:70;left:50%;bottom:max(16px,env(safe-area-inset-bottom,0px));transform:translateX(-50%);width:max-content;max-width:calc(100vw - 32px);
+  display:flex;flex-wrap:wrap;gap:4px 8px;justify-content:center;align-items:baseline;padding:12px 18px;min-height:44px;cursor:pointer;text-align:center;
+  background:var(--accent);color:var(--accent-ink);border:1px solid var(--accent);box-shadow:0 10px 30px rgba(0,0,0,.35);font-size:16px}
+.updatebalk:hover{filter:brightness(1.08)}
+@media (prefers-reduced-motion:no-preference){.updatebalk{animation:update-in .4s ease-out both}}
+@keyframes update-in{from{transform:translate(-50%,30px);opacity:0}to{transform:translateX(-50%);opacity:1}}

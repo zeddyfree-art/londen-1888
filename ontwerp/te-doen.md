@@ -81,6 +81,8 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 
 ## Klaar
 
+- [x] Scheurkaart: vier geschilderde portalen in `art/scheur/` (algemeen en één per oude god), en een nieuwe favicon
+
 - [x] Spelregels, bord, oude goden, monsters, spullen, spreuken, artefacten en toestanden
 - [x] Speelbare webapp met tutorial, handleiding, offline en installeerbaar
 - [x] Alle 133 afbeeldingen
