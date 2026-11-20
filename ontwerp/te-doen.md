@@ -2,33 +2,33 @@
 
 Deze lijst werken we aan het einde van elk gesprek bij.
 
-*Laatst bijgewerkt: 20 november 2026 (vierde sessie)*
+*Laatst bijgewerkt: 20 november 2026 (vijfde sessie)*
 
-## Gemeten na de vierde sessie
+## Gemeten na de vijfde sessie
 
-Met `node tools/testbot.js 150` (balans) en `node tools/meet-variatie.js 100` (herhaling, normale stand).
+Met `node tools/testbot.js 150` (balans) en `node tools/meet-variatie.js 100` (herhaling, normale stand). In het spel: 50 stadskaarten, 36 verhaalkaarten, 30 onheilskaarten (24 per god).
 
 **Balans (winkans):**
 
 | God | Ontspannen 2 / 4 | Normaal 2 / 4 | Genadeloos 2 / 4 |
 |---|---|---|---|
-| Vathrûn | 95% / 98% | 61% / 83% | 21% / 17% |
-| Azh-Ilareth | 92% / 97% | 61% / 77% | 12% / 17% |
-| Nebet-Ankhu | 90% / 100% | 59% / 85% | 19% / 20% |
+| Vathrûn | 91% / 99% | 65% / 81% | 16% / 17% |
+| Azh-Ilareth | 91% / 100% | 61% / 82% | 9% / 17% |
+| Nebet-Ankhu | 95% / 100% | 53% / 79% | 16% / 22% |
 
-Bijna alles valt binnen het doel. Normaal met 4 helden zit bij Vathrûn en Nebet-Ankhu net boven de 80%.
+Bijna alles valt binnen het doel. Randgevallen: normaal met 4 helden 79–82% (doel tot 80%), Nebet-Ankhu normaal met 2 helden 53% (doel vanaf 55%) en Azh-Ilareth genadeloos met 2 helden 9% (doel vanaf 10%). Dat valt binnen de meetruis van 150 potjes.
 
-**Herhaling:**
+**Herhaling binnen één potje:**
 
-| God | Helden | Verhaalkaarten per potje | Herhaald | Onheilskaarten per potje | Deel van de stapel |
-|---|---|---|---|---|---|
-| Vathrûn | 2 / 4 | 4,2 / 7,0 | 8% / 19% | 9,9 / 7,1 | 41% / 29% van 24 |
-| Azh-Ilareth | 2 / 4 | 4,3 / 6,8 | 8% / 22% | 8,5 / 5,8 | 36% / 24% van 24 |
-| Nebet-Ankhu | 2 / 4 | 3,3 / 5,3 | 10% / 31% | 8,9 / 6,6 | 37% / 27% van 24 |
+| God | Helden | Overige ontmoetingen | Herhaald | Verhaalkaarten | Herhaald | Onheilskaarten | Deel van de stapel |
+|---|---|---|---|---|---|---|---|
+| Vathrûn | 2 / 4 | 14,3 / 20,9 | 3% / 7% | 3,8 / 5,7 | 4% / 13% | 9,6 / 7,1 | 40% / 30% |
+| Azh-Ilareth | 2 / 4 | 14,8 / 20,3 | 1% / 4% | 3,6 / 5,2 | 2% / 14% | 8,7 / 6,0 | 36% / 25% |
+| Nebet-Ankhu | 2 / 4 | 13,8 / 19,9 | 1% / 8% | 2,8 / 4,3 | 2% / 18% | 8,9 / 6,5 | 37% / 27% |
 
-Vroeger zag je elk potje ongeveer de helft van de 16 onheilskaarten. Nu is de stapel per god 24 kaarten en zie je er een kwart tot 40% van. De herhaling van verhaalkaarten met 4 helden ging van maximaal 39% naar 19–31%.
+Na de vierde en vijfde sessie is de herhaling sterk gedaald. Bij stadskaarten was ze 8–26% en is ze nu 1–8%. Bij verhaalkaarten was ze tot 39% en is ze nu hooguit 18%.
 
-## Waar extra kaarten het meest nodig zijn (meting derde sessie)
+## Waar extra kaarten het meest nodig waren (meting derde sessie)
 
 Gemeten met de testbot: 300 potjes in de normale stand, met 2 en met 4 helden.
 
@@ -49,7 +49,7 @@ Gemeten met de testbot: 300 potjes in de normale stand, met 2 en met 4 helden.
 
 1. ~~**Onheilskaarten (+10) en geruchten (+4).**~~ Gedaan in de vierde sessie. Elk potje trek je 7 tot 11 van de 16 onheilskaarten, dus na twee potjes ken je ze. Er zijn maar 2 geruchten. Dit geeft per potje de meeste nieuwe variatie.
 2. ~~**Verhaalkaarten op de drukke plekken (+2 per god).**~~ Gedaan in de vierde sessie. Met 4 helden zie je tegen Nebet-Ankhu 39% herhaling. Extra verhaalkaarten in The City, Bloomsbury en St Katharine Docks verhelpen dat het meest.
-3. **Algemene stadskaarten op de 5 drukste plekken (+2 per plek, samen 10).** The City, Bloomsbury, King's Cross, Soho en St Katharine Docks naar 4 kaarten per plek.
+3. ~~**Algemene stadskaarten op de 5 drukste plekken (+2 per plek, samen 10).**~~ Gedaan in de vijfde sessie. The City, Bloomsbury, King's Cross, Soho en St Katharine Docks naar 4 kaarten per plek.
 4. **Scheurkaarten (+6).** Weinig herhaling binnen een potje, maar je kent ze snel na een paar potjes.
 5. **Mysteries.** Elke god heeft er precies 3, en je speelt er elk potje 2 of 3. Een vierde mysterie per god, waarvan er per potje 3 willekeurig meedoen, maakt elk potje anders.
 
@@ -62,8 +62,7 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [ ] Beelden voor nieuwe kaarten (alleen nodig als er nieuwe personages of spullen bijkomen)
 
 ### Kaarten en verhaal
-- [ ] Algemene stadskaarten op de drukke plekken (prioriteit 3)
-- [ ] Verhaalkaarten bij Nebet-Ankhu: met 4 helden nog 31% herhaling. Eén of twee extra op Whitehall of Strand.
+- [ ] Verhaalkaarten bij Nebet-Ankhu: met 4 helden nog 18% herhaling, het hoogste van de drie. Eén of twee extra op Whitehall of Strand.
 - [ ] Extra scheurkaarten (prioriteit 4)
 - [ ] Een vierde mysterie per god (prioriteit 5)
 - [ ] De nieuwe teksten proeflezen: zijn ze samenhangend genoeg en lang genoeg?
@@ -71,7 +70,7 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 ### Spel
 - [ ] Testen: voelen de persoonlijke spullen nuttig, zonder te sterk te zijn?
 - [ ] Spelen met ieder een eigen scherm (gekozen in de keuzebrief, nog niet gebouwd)
-- [ ] Normaal met 4 helden is bij Vathrûn en Nebet-Ankhu net te makkelijk (83–85%). Eventueel bijstellen na echte potjes.
+- [ ] Normaal met 4 helden zit op de bovengrens (79–82%). Eventueel bijstellen na echte potjes.
 - [ ] Geruchten tellen af in de ronde waarin ze verschijnen, dus "3 rondes" is in de praktijk 2 hele rondes. Bewust zo laten, of de tekst aanpassen?
 - [ ] Testen: voelen de nieuwe geruchten (Scheur sluiten, monster verslaan) haalbaar?
 - [ ] De balans met echte potjes bijstellen: voelt ontspannen niet te makkelijk?
@@ -96,4 +95,6 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [x] 14 nieuwe onheilskaarten: 4 algemeen, per god 2 gebeurtenissen en 1 gerucht, plus 1 algemeen gerucht. Nieuwe acties en twee nieuwe soorten geruchten. Onheilskaarten tonen het portret van het personage.
 - [x] 6 nieuwe verhaalkaarten in The City, Bloomsbury en St Katharine Docks (2 per god)
 - [x] Lore-pagina Onheil en geruchten; meetscript `tools/meet-variatie.js` voor herhaling
+- [x] 10 nieuwe stadskaarten op The City, Bloomsbury, King's Cross, Soho en St Katharine Docks (nu 4 per plek), met Voss, Nell en de vaste bijfiguren
+- [x] Gecontroleerd: alle 156 afbeeldingen die het spel gebruikt, zijn er
 - [x] Legenda compact en inklapbaar; op de iPad eerst bekijken, dan reizen; Ongedaan maken voor reizen en rusten

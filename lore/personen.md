@@ -6,7 +6,7 @@ De vaste personages die in de verhaalkaarten terugkomen.
 
 ## Hoofdinspecteur Thaddeus Voss
 
-**Scotland Yard** · factie: Geen · verhaal: Alle verhalen · komt voor op 6 kaarten
+**Scotland Yard** · factie: Geen · verhaal: Alle verhalen · komt voor op 7 kaarten
 
 *Een vermoeide, eerlijke politieman die een dossier bijhoudt met de titel 'Onverklaard'.*
 
@@ -14,7 +14,7 @@ Voss is vijftig, weduwnaar en al dertig jaar bij de politie. Hij gelooft niet in
 
 ## Nell Farrow
 
-**Journaliste van The Evening Courier** · factie: Geen · verhaal: Alle verhalen · komt voor op 3 kaarten
+**Journaliste van The Evening Courier** · factie: Geen · verhaal: Alle verhalen · komt voor op 4 kaarten
 
 *Een snelle, nieuwsgierige verslaggeefster die altijd net te veel weet.*
 
