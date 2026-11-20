@@ -60,7 +60,9 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 ### Balans en tests (zie `tests-en-geluk.md`)
 - [ ] Verbanning lukt in 95% van de tests: doel 1 of 2 hoger, of zonder test.
 - [ ] Gevechten krijgen bijna geen hulp van herworpen (69% naar 72%). Een manier om je voor te bereiden?
-- [ ] Uitdagingen in de stijl van de Storm Bells van Wildfrost: zie [`klokken.md`](klokken.md). Wachten op keuze.
+- [ ] Beelden voor de klokken: `ontwerp/beeldopdracht-klokken.md` (wijzerplaat, toren, scorebord, 13 iconen). Het spel tekent de klok zelf zolang ze ontbreken.
+- [ ] Scorebord delen tussen apparaten? Nu staat het per browser.
+- [ ] Klokkenmodel opnieuw meten als de balans verandert: `node tools/meet-klokken.js 100`.
 
 ### Geluid
 - [ ] Geluid testen op de iPad: volume van effecten, sfeer en muziek ten opzichte van elkaar, de lus van de sfeer en de muziek, en de eerste tik.
@@ -87,6 +89,9 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [ ] Werken het geluid en de animaties goed op de iPad?
 
 ## Klaar
+
+- [x] De Klokken van Westminster: 13 uitdagingen, dreigingsmeter, punten en scorebord (`klokken.md`)
+- [x] Inzoomen op de kaart: scrollwiel, knijpen, slepen en knoppen
 
 - [x] De Ondergrondse: vanaf een station voor 1 Pond naar elk ander station
 

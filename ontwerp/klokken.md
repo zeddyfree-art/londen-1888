@@ -1,6 +1,38 @@
-# Voorstel: de Klokken van Westminster
+# De Klokken van Westminster
 
-*Een voorstel, nog niet gebouwd. Geïnspireerd op de Storm Bells van Wildfrost.*
+*Gebouwd op 20 november 2026. Geïnspireerd op de Storm Bells van Wildfrost. Anders dan in het oorspronkelijke voorstel hieronder zijn alle klokken meteen beschikbaar, zonder vrijspelen, mag je er zoveel aanzetten als je wilt, en komen de punten uit de geschatte winkans.*
+
+## Zoals gebouwd
+
+- **Keuze:** op het startscherm, op een wijzerplaat met dertien uren (I tot XIII) en in een lijst. De keuze wordt onthouden.
+- **Dreigingsmeter en winkans:** uit `data/klokken.json`, gemeten met `node tools/meet-klokken.js 100` (bijna 12.000 potjes). Per god, stand en aantal helden staat daar de winkans zonder klokken, en per klok het effect als logit. Effecten worden opgeteld. Controle met `--controle`: het model zit meestal binnen 5 procentpunt van echte potjes.
+- **Slagen:** de streepjes per klok, afgeleid uit het gemeten effect (1 slag per 0,35 logit, 1 tot 4).
+- **Punten:** 100 × ln(1 / winkans vooraf). Op het nippertje telt voor driekwart.
+- **Scorebord:** in `localStorage` van de browser, sleutel `londen1888-scores`. Potjes met handmatig aangepaste waarden tellen niet mee.
+
+**Gemeten effect per klok** (normale stand, zonder klokken 71%):
+
+| Klok | Met klok | Slagen |
+|---|---|---|
+| I Dikke mist | 46% | 3 |
+| II Lege zakken | 61% | 1 |
+| III Gesloten lijnen | 65% | 1 |
+| IV Zware benen | 68% | 1 |
+| V Zwijgende getuigen | 67% | 1 |
+| VI Taaie wezens | 65% | 1 |
+| VII Huiveringwekkend | 62% | 1 |
+| VIII Scheurende stad | 64% | 1 |
+| IX Slapeloze nachten | 54% | 2 |
+| X Geen tweede worp | 52% | 2 |
+| XI Ongeduldige god | 48% | 3 |
+| XII Dertien slagen | 39% | 4 |
+| XIII Geen genade | 51% | 2 |
+
+Twee klokken zijn tijdens het meten veranderd. *Huiveringwekkend* (eerst +1 en daarna +2 Gruwel) en *Slapeloze nachten* (eerst Lichaam óf Geest, daarna rusten kost de hele beurt) deden niets: helden vallen in de testpotjes bijna nooit om, dus Lichaam en Geest zijn zelden de echte druk. Nu geeft Huiveringwekkend monsters ook 1 Leven meer, en laat Slapeloze nachten de Mist elke derde ronde 1 extra dalen. Ook *Gesloten lijnen* is sterker gemaakt: de boot kost 4 Pond.
+
+---
+
+# Het oorspronkelijke voorstel
 
 ## Hoe Wildfrost het doet
 
