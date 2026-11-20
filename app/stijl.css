@@ -53,6 +53,12 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);ou
 .balk .rechts{margin-left:auto;display:flex;gap:6px}
 .bordvlak{position:relative;overflow:auto;min-height:0}
 .bordvlak > svg.bord{display:block;width:100%;height:100%;min-height:420px}
+.bordvlak > svg.bord{touch-action:pan-x pan-y}
+.bordvlak > svg.bord.ingezoomd{touch-action:none;cursor:grab}
+.bordvlak > svg.bord.ingezoomd:active{cursor:grabbing}
+.zoomknoppen{position:absolute;right:10px;bottom:10px;display:flex;gap:4px;z-index:3}
+.zoomknoppen .btn{background:var(--paper);min-width:36px;font-size:18px;font-weight:700;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.zoomknoppen .btn:last-child:not(:nth-child(2)){font-size:14px}
 .paneel{border-left:1px solid var(--line);background:var(--paper);overflow:auto;min-height:0;padding:12px max(12px,env(safe-area-inset-right,0px)) 24px 12px;display:grid;gap:12px;align-content:start}
 @media (max-width:900px), (orientation:portrait) and (max-width:1100px){
   .spel{grid-template-columns:1fr;grid-template-rows:auto auto auto;height:auto}
@@ -444,3 +450,87 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);ou
 .updatebalk:hover{filter:brightness(1.08)}
 @media (prefers-reduced-motion:no-preference){.updatebalk{animation:update-in .4s ease-out both}}
 @keyframes update-in{from{transform:translate(-50%,30px);opacity:0}to{transform:translateX(-50%);opacity:1}}
+
+/* ---------- De Klokken van Westminster ---------- */
+.klokken-sectie{--goud:#d9b45a;--violet:#b26ae6;position:relative;display:grid;gap:16px;padding:clamp(16px,3vw,28px);border:1px solid #3a2a48;border-radius:8px;color:#efe6f6;
+  background:linear-gradient(180deg,rgba(14,8,20,.92),rgba(8,6,12,.96)),var(--klokbeeld,none) center/cover,#0c0812;box-shadow:inset 0 0 60px rgba(120,60,170,.25)}
+.klokken-sectie h2{color:#f2e3c0}
+.klokken-sectie .muted{color:#b9a7c8}
+.klokkop p{max-width:70ch;margin:6px 0 0}
+.klokrij-boven{display:grid;grid-template-columns:minmax(0,340px) 56px minmax(0,1fr);gap:20px;align-items:center}
+.klokhouder{width:100%;max-width:340px;aspect-ratio:1}
+.klokvlak{width:100%;height:100%;display:block;filter:drop-shadow(0 10px 30px rgba(0,0,0,.6))}
+.kl-rand{fill:url(#kl-goud);stroke:#2b1e0b;stroke-width:2}
+.kl-schilderij{opacity:.9}
+.kl-traceer line,.kl-traceer circle{stroke:#d9b45a;stroke-opacity:.22;stroke-width:1;fill:none}
+.kl-streep .kl-fijn{stroke:#d9b45a;stroke-opacity:.45;stroke-width:1}.kl-streep .kl-grof{stroke:#f1d58a;stroke-width:2.2}
+.kl-ring{fill:none;stroke:#d9b45a;stroke-opacity:.6;stroke-width:1.2}
+.kl-dreiging{transition:opacity .5s}
+.klokslot{cursor:pointer;outline:none}
+.klokslot .kl-vak{fill:#120b19;stroke:#d9b45a;stroke-width:1.6;transition:fill .25s,stroke .25s}
+.klokslot .kl-gloed{fill:#b26ae6;opacity:0;transition:opacity .3s}
+.klokslot text{font-family:var(--display);font-size:13px;fill:#f1d58a;pointer-events:none;letter-spacing:.02em}
+.klokslot:hover .kl-vak,.klokslot:focus-visible .kl-vak{stroke:#fff3cf;stroke-width:2.4}
+.klokslot.aan .kl-vak{fill:#5b2482;stroke:#e2b8ff}
+.klokslot.aan .kl-gloed{opacity:.45;filter:blur(3px)}
+.klokslot.aan text{fill:#fff}
+.kl-wijzer{transition:transform .8s cubic-bezier(.3,1.4,.5,1)}
+.kl-wijzer path,.kl-wijzer circle{fill:url(#kl-goud);stroke:#2b1e0b;stroke-width:.8}
+.kl-wijzer.kort path{fill:#a77b2c}
+.kl-as{fill:url(#kl-goud);stroke:#2b1e0b}
+.kl-tal{font-family:var(--display);font-size:10px;letter-spacing:.2em;fill:#d9b45a}
+@media (prefers-reduced-motion:no-preference){
+  .klokslot.net .kl-gloed{animation:kl-slag .9s ease-out}
+  .klokslot.aan .kl-gloed{animation:kl-adem 3s ease-in-out infinite}
+}
+@keyframes kl-slag{0%{opacity:1;transform:scale(.6)}100%{opacity:.45;transform:scale(1)}}
+@keyframes kl-adem{0%,100%{opacity:.3}50%{opacity:.6}}
+.klokslot .kl-gloed{transform-box:fill-box;transform-origin:center}
+
+.dreiging{display:grid;justify-items:center;gap:6px;height:100%;min-height:240px}
+.dr-label{font-family:var(--display);font-size:13px;letter-spacing:.12em;color:#d9b45a;writing-mode:vertical-rl;transform:rotate(180deg)}
+.dr-buis{position:relative;width:22px;flex:1;height:100%;min-height:200px;border-radius:12px;border:2px solid #a77b2c;background:#0a070d;overflow:hidden;box-shadow:inset 0 0 8px #000}
+.dr-vulling{position:absolute;left:0;right:0;bottom:0;height:calc(var(--dreiging) * 100%);background:linear-gradient(0deg,#2c8a5a,#b59a3c 35%,#a3392a 65%,#b26ae6);background-size:100% calc(100% / max(var(--dreiging),.01));background-position:bottom;transition:height .6s cubic-bezier(.3,1.2,.5,1);box-shadow:0 0 12px rgba(178,106,230,.6)}
+.dr-buis i{position:absolute;left:0;right:0;height:1px;background:rgba(217,180,90,.35)}
+.dreiging{grid-template-rows:auto 1fr}
+
+.klokstand{display:grid;gap:12px;align-content:center}
+.klokstand .kans,.klokstand .punten,.eindscore .punten{display:grid;gap:2px}
+.klokstand .kans b{font-family:var(--display);font-size:clamp(34px,5vw,48px);line-height:1;color:#fff3cf}
+.klokstand .punten b{font-family:var(--display);font-size:26px;color:#f1d58a}
+.klokstand small{color:#b9a7c8}
+.klokstand .btn.ghost{color:#e2c8f7;border-color:#8c4fbf;background:transparent}
+.klokwaarschuwing{margin:0;color:#e2b8ff;font-family:var(--letter);font-size:17px}
+
+.kloklijst{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px}
+.klokkaart{appearance:none;display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:10px;align-items:center;text-align:left;padding:8px 10px;cursor:pointer;color:#efe6f6;
+  background:rgba(20,12,28,.85);border:1px solid #3a2a48;border-radius:6px;transition:border-color .2s,background .2s,box-shadow .2s}
+.klokkaart:hover{border-color:#8c4fbf}
+.klokkaart.aan{background:linear-gradient(90deg,rgba(91,36,130,.75),rgba(40,18,58,.85));border-color:#c58cf0;box-shadow:0 0 16px rgba(178,106,230,.35)}
+.klokkaart img{width:44px;height:44px;border-radius:50%;object-fit:cover;clip-path:circle(47%)}
+.klokcijfer{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-size:15px;color:#f1d58a;border:1.5px solid #a77b2c;background:#120b19}
+.klokkaart.aan .klokcijfer{background:#5b2482;color:#fff;border-color:#e2b8ff}
+.kk-tekst{display:grid;gap:1px}.kk-tekst small{color:#b9a7c8;font-size:13px;line-height:1.3}
+.klokpips{display:flex;gap:3px}.klokpips i{width:7px;height:16px;border-radius:2px;background:#d9b45a;opacity:.75}
+.klokkaart.aan .klokpips i{background:#e2b8ff;opacity:1}
+
+.klokchip{appearance:none;cursor:pointer;color:inherit;font:inherit;background:rgba(123,63,160,.15);border:1px solid var(--rift);border-radius:4px;padding:2px 8px}
+.klokchip b{font-family:var(--display);letter-spacing:.04em}
+.klokinfo{display:grid;gap:6px;padding-left:18px}
+
+.eindscore{display:grid;gap:12px;max-width:900px}
+.eindscore .punten.groot b{font-family:var(--display);font-size:56px;line-height:1}
+.naamrij{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.naamrij input{font:inherit;padding:8px 10px;min-height:40px;border:1px solid var(--line);background:var(--paper);color:var(--ink);min-width:min(260px,100%)}
+.scoretabel{border-collapse:collapse;font-size:15px;width:100%}
+.scoretabel th,.scoretabel td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+.scoretabel tr.licht td{background:rgba(123,63,160,.18)}
+.scoretabel td:nth-child(3) b{font-family:var(--display);font-size:18px}
+
+@media (max-width:760px){
+  .klokrij-boven{grid-template-columns:minmax(0,1fr) 44px}
+  .klokstand{grid-column:1 / -1;grid-template-columns:repeat(3,minmax(0,1fr));align-items:end}
+  .klokstand .opties,.klokwaarschuwing{grid-column:1 / -1}
+  .klokstand .kans b{font-size:32px}
+  .dreiging{min-height:200px}
+}

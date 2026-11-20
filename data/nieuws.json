@@ -1,5 +1,15 @@
 [
   {
+    "id": 7,
+    "datum": "20 november 2026",
+    "titel": "De Klokken van Westminster",
+    "punten": [
+      "Big Ben slaat dertien. Bij een nieuw spel kun je nu tot 13 klokken aanzetten, die het potje elk op een eigen manier zwaarder maken: dikke mist, taaie wezens, een ongeduldige god en meer. Tik op een uur van de grote klok of op een klok in de lijst.",
+      "Een dreigingsmeter naast de klok schat je winkans. Die schatting komt uit bijna 12.000 testpotjes.",
+      "Nieuw scorebord: win je, dan krijg je punten. Hoe kleiner je kans vooraf, hoe meer punten. Zet je naam erbij op het eindscherm. Het scorebord vind je op het startscherm."
+    ]
+  },
+  {
     "id": 6,
     "datum": "20 november 2026",
     "titel": "De Ondergrondse rijdt",

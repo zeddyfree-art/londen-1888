@@ -1,0 +1,226 @@
+{
+  "datum": "2026-11-20",
+  "potjesPerInstelling": 100,
+  "basis": {
+    "vathrun": {
+      "ontspannen": {
+        "2": 0.975,
+        "4": 0.975
+      },
+      "normaal": {
+        "2": 0.688,
+        "4": 0.787
+      },
+      "genadeloos": {
+        "2": 0.322,
+        "4": 0.183
+      }
+    },
+    "azh-ilareth": {
+      "ontspannen": {
+        "2": 0.936,
+        "4": 0.975
+      },
+      "normaal": {
+        "2": 0.678,
+        "4": 0.767
+      },
+      "genadeloos": {
+        "2": 0.134,
+        "4": 0.213
+      }
+    },
+    "nebet-ankhu": {
+      "ontspannen": {
+        "2": 0.936,
+        "4": 0.985
+      },
+      "normaal": {
+        "2": 0.599,
+        "4": 0.718
+      },
+      "genadeloos": {
+        "2": 0.183,
+        "4": 0.163
+      }
+    }
+  },
+  "basisRuw": {
+    "vathrun": {
+      "ontspannen": {
+        "2": {
+          "w": 98,
+          "n": 100
+        },
+        "4": {
+          "w": 98,
+          "n": 100
+        }
+      },
+      "normaal": {
+        "2": {
+          "w": 69,
+          "n": 100
+        },
+        "4": {
+          "w": 79,
+          "n": 100
+        }
+      },
+      "genadeloos": {
+        "2": {
+          "w": 32,
+          "n": 100
+        },
+        "4": {
+          "w": 18,
+          "n": 100
+        }
+      }
+    },
+    "azh-ilareth": {
+      "ontspannen": {
+        "2": {
+          "w": 94,
+          "n": 100
+        },
+        "4": {
+          "w": 98,
+          "n": 100
+        }
+      },
+      "normaal": {
+        "2": {
+          "w": 68,
+          "n": 100
+        },
+        "4": {
+          "w": 77,
+          "n": 100
+        }
+      },
+      "genadeloos": {
+        "2": {
+          "w": 13,
+          "n": 100
+        },
+        "4": {
+          "w": 21,
+          "n": 100
+        }
+      }
+    },
+    "nebet-ankhu": {
+      "ontspannen": {
+        "2": {
+          "w": 94,
+          "n": 100
+        },
+        "4": {
+          "w": 99,
+          "n": 100
+        }
+      },
+      "normaal": {
+        "2": {
+          "w": 60,
+          "n": 100
+        },
+        "4": {
+          "w": 72,
+          "n": 100
+        }
+      },
+      "genadeloos": {
+        "2": {
+          "w": 18,
+          "n": 100
+        },
+        "4": {
+          "w": 16,
+          "n": 100
+        }
+      }
+    }
+  },
+  "klokken": [
+    {
+      "id": "dikke-mist",
+      "logit": -1.064,
+      "normaalZonder": 71,
+      "normaalMet": 46
+    },
+    {
+      "id": "lege-zakken",
+      "logit": -0.434,
+      "normaalZonder": 71,
+      "normaalMet": 61
+    },
+    {
+      "id": "gesloten-lijnen",
+      "logit": -0.273,
+      "normaalZonder": 71,
+      "normaalMet": 65
+    },
+    {
+      "id": "zware-benen",
+      "logit": -0.11,
+      "normaalZonder": 71,
+      "normaalMet": 68
+    },
+    {
+      "id": "zwijgende-getuigen",
+      "logit": -0.197,
+      "normaalZonder": 71,
+      "normaalMet": 67
+    },
+    {
+      "id": "taaie-wezens",
+      "logit": -0.238,
+      "normaalZonder": 71,
+      "normaalMet": 65
+    },
+    {
+      "id": "huiveringwekkend",
+      "logit": -0.389,
+      "normaalZonder": 71,
+      "normaalMet": 62
+    },
+    {
+      "id": "scheurende-stad",
+      "logit": -0.307,
+      "normaalZonder": 71,
+      "normaalMet": 64
+    },
+    {
+      "id": "slapeloze-nachten",
+      "logit": -0.753,
+      "normaalZonder": 71,
+      "normaalMet": 54
+    },
+    {
+      "id": "geen-tweede-worp",
+      "logit": -0.817,
+      "normaalZonder": 71,
+      "normaalMet": 52
+    },
+    {
+      "id": "ongeduldige-god",
+      "logit": -0.982,
+      "normaalZonder": 71,
+      "normaalMet": 48
+    },
+    {
+      "id": "dertien-slagen",
+      "logit": -1.336,
+      "normaalZonder": 71,
+      "normaalMet": 39
+    },
+    {
+      "id": "geen-genade",
+      "logit": -0.871,
+      "normaalZonder": 71,
+      "normaalMet": 51
+    }
+  ]
+}

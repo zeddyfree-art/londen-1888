@@ -143,6 +143,35 @@ Met 4 helden begint de Mist 3 lager en is er één Scheur extra, want vier helde
 
 Gemeten met een testspeler die honderden potjes speelde: ontspannen wint ongeveer 9 van de 10 potjes, normaal ongeveer 6 tot 8 van de 10 en genadeloos 1 tot 2 van de 10.
 
+
+## De Klokken van Westminster
+
+Big Ben slaat dertien. Bij een nieuw spel kun je klokken aanzetten: tik op een uur van de grote klok of op een klok in de lijst. Elke klok maakt het potje op één manier zwaarder. Je mag er zoveel aanzetten als je wilt, ook als winnen dan bijna onmogelijk wordt.
+
+| | Klok | Wat hij doet |
+|---|---|---|
+| I | Dikke mist | De Mist begint 2 lager. |
+| II | Lege zakken | Helden beginnen zonder Pond. |
+| III | Gesloten lijnen | De Ondergrondse en de trein rijden niet, en een bootkaartje kost 4 Pond. |
+| IV | Zware benen | Je mag maar één actie per beurt aan reizen besteden. |
+| V | Zwijgende getuigen | Bij de start liggen er geen Aanwijzingen op het bord. |
+| VI | Taaie wezens | Elk monster heeft 1 Taaiheid meer. |
+| VII | Huiveringwekkend | Elk monster heeft 1 Leven en 1 Gruwel meer. |
+| VIII | Scheurende stad | Bij de start staat er 1 Scheur meer open, met monster. |
+| IX | Slapeloze nachten | Elke derde ronde daalt de Mist 1 extra. |
+| X | Geen tweede worp | Aanwijzingen geven geen herworp meer. |
+| XI | Ongeduldige god | Je moet 1 mysterie meer oplossen. |
+| XII | Dertien slagen | Elke test vraagt 1 meer. |
+| XIII | Geen genade | Geen laatste nacht: is de Mist op, dan is het voorbij. |
+
+De streepjes naast een klok (de slagen) laten zien hoe zwaar hij is. De **dreigingsmeter** naast de klok en het getal **Winkans** schatten hoe vaak je zo'n potje wint. Die schatting komt uit duizenden testpotjes van een voorzichtige computerspeler, dus goede spelers doen het vaak beter.
+
+## Scorebord
+
+Win je, dan krijg je punten. Hoe kleiner je kans vooraf, hoe meer punten: bij 90% kans zijn het er 11, bij 50% 69, bij 10% 230 en bij 1% 461. Win je pas in de laatste nacht, dan telt het voor driekwart. Je zet je naam erbij op het eindscherm.
+
+Het scorebord staat in de browser op dit apparaat. Op een ander apparaat of in een andere browser begin je met een leeg scorebord. Potjes waarin je spelwaarden met de hand hebt aangepast, tellen niet mee.
+
 ## Op de iPad installeren
 
 Open het spel in Safari, tik op het deelicoon en kies **Zet op beginscherm**. Het spel opent dan als een eigen app, schermvullend, en het werkt ook zonder internet.
