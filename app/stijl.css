@@ -534,3 +534,19 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);ou
   .klokstand .kans b{font-size:32px}
   .dreiging{min-height:200px}
 }
+
+/* Klok met schilderij, toren als kop, scorebord delen */
+.klokvlak.met-beeld .kl-vak{fill:transparent;stroke:transparent}
+.klokvlak.met-beeld .klokslot text{fill:#3b2608;font-weight:700;font-size:13.5px}
+.klokvlak.met-beeld .klokslot:hover .kl-vak,.klokvlak.met-beeld .klokslot:focus-visible .kl-vak{stroke:#fff3cf;stroke-width:2}
+.klokvlak.met-beeld .klokslot.aan .kl-vak{fill:rgba(91,36,130,.88);stroke:#e2b8ff;stroke-width:1.6}
+.klokvlak.met-beeld .klokslot.aan text{fill:#fff}
+.klokvlak.met-beeld .kl-tal{fill:#f1d58a;paint-order:stroke;stroke:#1a0d24;stroke-width:3px}
+.klokkop{position:relative;display:grid;gap:6px}
+.klokbanner{width:calc(100% + 2 * clamp(16px,3vw,28px));margin:calc(-1 * clamp(16px,3vw,28px)) calc(-1 * clamp(16px,3vw,28px)) 4px;aspect-ratio:16/5;object-fit:cover;object-position:center 30%;border-radius:8px 8px 0 0;
+  -webkit-mask:linear-gradient(#000 60%,transparent);mask:linear-gradient(#000 60%,transparent)}
+.klokbanner + h2{margin-top:-48px;position:relative;text-shadow:0 2px 12px #000}
+.klokinfo{list-style:none;padding:0}.klokinfo li{display:grid;grid-template-columns:48px 1fr;gap:10px;align-items:center}
+.klokinfo img{width:48px;height:48px;border-radius:50%;clip-path:circle(47%)}
+.gedeeld{color:var(--good);font-weight:700}
+.eindscore .fout{color:var(--bad);margin:0}

@@ -170,7 +170,7 @@ De streepjes naast een klok (de slagen) laten zien hoe zwaar hij is. De **dreigi
 
 Win je, dan krijg je punten. Hoe kleiner je kans vooraf, hoe meer punten: bij 90% kans zijn het er 11, bij 50% 69, bij 10% 230 en bij 1% 461. Win je pas in de laatste nacht, dan telt het voor driekwart. Je zet je naam erbij op het eindscherm.
 
-Het scorebord staat in de browser op dit apparaat. Op een ander apparaat of in een andere browser begin je met een leeg scorebord. Potjes waarin je spelwaarden met de hand hebt aangepast, tellen niet mee.
+Er zijn twee scoreborden. **Op dit apparaat** houdt de browser al je overwinningen bij. **Iedereen** is het gedeelde scorebord online: daar komt een overwinning alleen op als je op het eindscherm *Op het gedeelde scorebord zetten* kiest. Dan worden je naam, de god, de stand, de helden, de klokken en het aantal rondes gedeeld. De punten rekent de server zelf uit. Potjes waarin je spelwaarden met de hand hebt aangepast, tellen niet mee.
 
 ## Op de iPad installeren
 

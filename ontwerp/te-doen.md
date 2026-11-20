@@ -60,9 +60,8 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 ### Balans en tests (zie `tests-en-geluk.md`)
 - [ ] Verbanning lukt in 95% van de tests: doel 1 of 2 hoger, of zonder test.
 - [ ] Gevechten krijgen bijna geen hulp van herworpen (69% naar 72%). Een manier om je voor te bereiden?
-- [ ] Beelden voor de klokken: `ontwerp/beeldopdracht-klokken.md` (wijzerplaat, toren, scorebord, 13 iconen). Het spel tekent de klok zelf zolang ze ontbreken.
-- [ ] Scorebord delen tussen apparaten? Nu staat het per browser.
-- [ ] Klokkenmodel opnieuw meten als de balans verandert: `node tools/meet-klokken.js 100`.
+- [ ] Klokkenmodel opnieuw meten als de balans verandert: `node tools/meet-klokken.js 100`, en daarna `NODE_USE_ENV_PROXY=1 node tools/zet-scorebord-online.js`, zodat de server met hetzelfde model rekent.
+- [ ] Gedeeld scorebord: namen modereren als dat nodig wordt (verwijderen kan in de D1-database `londen1888-scorebord`).
 
 ### Geluid
 - [ ] Geluid testen op de iPad: volume van effecten, sfeer en muziek ten opzichte van elkaar, de lus van de sfeer en de muziek, en de eerste tik.
@@ -89,6 +88,9 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [ ] Werken het geluid en de animaties goed op de iPad?
 
 ## Klaar
+
+- [x] Beelden voor de klokken, de toren en het scorebord
+- [x] Gedeeld scorebord: Cloudflare Worker `londen1888-scorebord` met D1-database (`cloud/scorebord/`)
 
 - [x] De Klokken van Westminster: 13 uitdagingen, dreigingsmeter, punten en scorebord (`klokken.md`)
 - [x] Inzoomen op de kaart: scrollwiel, knijpen, slepen en knoppen
