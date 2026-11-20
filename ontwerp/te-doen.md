@@ -2,7 +2,7 @@
 
 Deze lijst werken we aan het einde van elk gesprek bij.
 
-*Laatst bijgewerkt: 20 november 2026 (tweede sessie)*
+*Laatst bijgewerkt: 20 november 2026 (derde sessie)*
 
 ## Waar extra kaarten het meest nodig zijn
 
@@ -34,8 +34,7 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 ## Open taken
 
 ### Beelden
-- [ ] Portretten van de 11 vaste personages maken met `ontwerp/beeldopdracht-personen.md` en in de Drive-map `personen/` zetten. Daarna haalt Claude ze op.
-- [ ] Plaatjes van de 32 persoonlijke spullen maken met `ontwerp/beeldopdracht-persoonlijk.md` en in de Drive-map `persoonlijk/` zetten.
+- [ ] Beelden voor nieuwe kaarten (alleen nodig als er nieuwe personages of spullen bijkomen)
 
 ### Kaarten en verhaal
 - [ ] Extra onheilskaarten en geruchten (zie prioriteit 1)
@@ -51,6 +50,7 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [ ] De balans met echte potjes bijstellen: voelt ontspannen niet te makkelijk?
 
 ### Op de iPad controleren
+- [ ] Werkt tikken goed: eerste tik toont de plek, Reis hierheen of tweede tik laat je reizen, Ongedaan maken zet het terug?
 - [ ] Installeren via Safari, Zet op beginscherm. Opent hij schermvullend?
 - [ ] Werken het geluid en de animaties goed op de iPad?
 
@@ -64,3 +64,5 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [x] 124 ontmoetingen, waarvan 30 verhaalkaarten, met vaste personages en keuzes
 - [x] Slimme testbot en balans
 - [x] Persoonlijke spullen van de helden: 32 kaarten met een eigen functie, in het tableau en het heldenprofiel
+- [x] Portretten van de 11 personages en plaatjes van de 32 persoonlijke spullen (176 afbeeldingen in totaal)
+- [x] Legenda compact en inklapbaar; op de iPad eerst bekijken, dan reizen; Ongedaan maken voor reizen en rusten

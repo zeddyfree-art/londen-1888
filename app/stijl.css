@@ -52,11 +52,11 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);ou
 .mistbalk i.weg{background:var(--line);opacity:1}
 .balk .rechts{margin-left:auto;display:flex;gap:6px}
 .bordvlak{position:relative;overflow:auto;min-height:0}
-.bordvlak svg{display:block;width:100%;height:100%;min-height:420px}
+.bordvlak > svg.bord{display:block;width:100%;height:100%;min-height:420px}
 .paneel{border-left:1px solid var(--line);background:var(--paper);overflow:auto;min-height:0;padding:12px max(12px,env(safe-area-inset-right,0px)) 24px 12px;display:grid;gap:12px;align-content:start}
 @media (max-width:900px), (orientation:portrait) and (max-width:1100px){
   .spel{grid-template-columns:1fr;grid-template-rows:auto auto auto;height:auto}
-  .bordvlak svg{height:auto;min-height:0}
+  .bordvlak > svg.bord{height:auto;min-height:0}
   .paneel{border-left:0;border-top:1px solid var(--line)}
 }
 
@@ -233,9 +233,15 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);ou
 
 /* Legenda en plekinfo */
 .bordvlak{position:relative}
-.legenda{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center;padding:8px max(12px,env(safe-area-inset-left,0px));background:var(--paper);border-top:1px solid var(--line);font-size:13.5px}
-.legenda span{display:inline-flex;align-items:center;gap:6px}
-.legenda svg{flex:none}
+.legenda{position:absolute;left:max(10px,env(safe-area-inset-left,0px));bottom:10px;z-index:15;background:color-mix(in srgb,var(--paper) 94%,transparent);border:1px solid var(--line);font-size:12.5px;line-height:1.25;max-width:min(330px,calc(100% - 20px));box-shadow:0 6px 18px rgba(0,0,0,.3)}
+.legenda summary{cursor:pointer;padding:6px 10px;font-weight:700;font-size:13px;list-style:none;display:flex;align-items:center;gap:6px;min-height:36px}
+.legenda summary::-webkit-details-marker{display:none}
+.legenda summary::after{content:"▾";margin-left:auto;color:var(--muted)}
+.legenda[open] summary::after{content:"▴"}
+.legenda .lg-lijst{display:grid;grid-template-columns:1fr 1fr;gap:4px 10px;padding:0 10px 8px}
+.legenda .lg-lijst span{display:flex;align-items:center;gap:6px;min-width:0}
+.legenda .lg-lijst svg{flex:none;width:16px;height:16px}
+.legenda .lg-noot{grid-column:1/-1;color:var(--muted);font-size:12px;padding-top:2px}
 .lg-beurt{fill:none;stroke:var(--ink);stroke-width:3}
 .lg-reik{fill:none;stroke:#2f9e7c;stroke-width:3}
 .lg-scheur{fill:none;stroke:#8a4fc7;stroke-width:3;stroke-dasharray:4 3}
@@ -328,3 +334,6 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);ou
 .tegel.persoonlijk{border-color:#b99a5b}
 .uitr-ico{width:28px;height:28px;object-fit:cover;vertical-align:middle;margin-right:6px;border:1px solid var(--line)}
 .kort li{margin-bottom:4px}
+
+.pi-reis{justify-self:stretch}
+.terugknop{border-style:dashed}

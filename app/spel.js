@@ -19,7 +19,7 @@ const MOEILIJKHEID = {
 
 let D = null;      // speldata
 let S = null;      // spelstand
-let UI = { bekeken: 0, aanpassen: false, start: { god: null, moeilijkheid: "ontspannen", aantal: 2, helden: [] } };
+let UI = { legendaOpen: (() => { try { return localStorage.getItem("londen1888-legenda") === "open"; } catch { return false; } })(), undo: [], bekeken: 0, aanpassen: false, start: { god: null, moeilijkheid: "ontspannen", aantal: 2, helden: [] } };
 const app = document.getElementById("app");
 
 /* ---------- hulpjes ---------- */
@@ -512,6 +512,7 @@ function maakHeld(id) {
 
 /* ---------- heldenfase ---------- */
 function startHeldenbeurt() {
+  UI.undo = [];
   const h = actief();
   h.acties = heeft(h, "gewond") ? 1 : 2; h.gebruikt = []; h.stappen = 0;
   if (h.id === "owen-marsh") h.stappen++;
@@ -530,6 +531,7 @@ function bereikbaar(h) {
 function reis(doel) {
   const h = actief();
   if (!bereikbaar(h).includes(doel)) return;
+  UI.undo.push({ staat: JSON.stringify(S), label: `reizen naar ${plekNaam(doel)}`, ronde: S.ronde, actief: S.actief });
   if (h.stappen > 0) h.stappen--;
   else { h.acties--; h.gebruikt.push("reizen"); }
   const van = plekDef(h.plek);
@@ -582,6 +584,7 @@ async function journalist(h) {
 }
 async function rust(h) {
   if (S.plekken[h.plek]?.monsters.length) return melding("Niet veilig", "Je kunt niet rusten met een monster op je plek.");
+  UI.undo.push({ staat: JSON.stringify(S), label: "rusten", ronde: S.ronde, actief: S.actief });
   gebruikActie(h, "rusten");
   h.L = Math.min(h.maxL, h.L + 1); if (!heeft(h, "waanzin-slapeloos")) h.G = Math.min(h.maxG, h.G + 1);
   if (h.id === "ezra-whitlock") for (const x of S.helden) if (x.plek === h.plek) x.L = Math.min(x.maxL, x.L + 1);
@@ -1525,7 +1528,7 @@ function legendaHtml() {
     [ico(`<circle r="9" class="lg-rivier"/>`), "Plek aan de Theems"],
     [ico(`<line x1="-11" y1="0" x2="11" y2="0" class="lg-boot"/>`), "Bootroute naar overzee"]
   ];
-  return `<div class="legenda" aria-label="Legenda">${items.map(([i, t]) => `<span>${i}${t}</span>`).join("")}<span class="muted">Mist wordt dikker naarmate de Mist daalt. Wijs of tik een plek aan voor uitleg.</span></div>`;
+  return `<details class="legenda"${UI.legendaOpen ? " open" : ""}><summary>Legenda</summary><div class="lg-lijst">${items.map(([i, t]) => `<span>${i}${t}</span>`).join("")}<span class="lg-noot">De mist wordt dikker naarmate de Mist daalt. Tik op een plek voor uitleg; tik nog een keer om erheen te reizen.</span></div></details>`;
 }
 function plekInfoHtml(id) {
   const p = plekDef(id), over = isOverzee(id), s = S.plekken[id], h = actief();
@@ -1541,7 +1544,8 @@ function plekInfoHtml(id) {
   return `<div class="pi-kop">${img ? `<img src="${img}" alt="">` : ""}<div><b>${esc(p.naam)}</b><span>${over ? "Overzee" : esc(DIENSTLABEL[p.dienst] || p.dienst)}${STATIONS.includes(id) ? " · station" : ""}${p.rivier ? " · aan de Theems" : ""}</span></div></div>
     <p>${over ? "Expedities met kans op artefacten. Bereik je met een bootkaartje (2 Pond) vanaf St Katharine Docks." : esc(D.bord.diensten[p.dienst])}</p>
     ${status.length ? `<ul class="pi-status">${status.join("")}</ul>` : ""}
-    <p class="pi-voet">${bereik ? "Tik om hierheen te reizen." : afst != null && afst > 0 ? `${afst} stap${afst > 1 ? "pen" : ""} van ${esc(korteNaam(heldDef(h).naam))}.` : ""}</p>`;
+    <p class="pi-voet">${bereik ? (UI.wijzer === "mouse" ? "Klik om hierheen te reizen." : "") : afst != null && afst > 0 ? `${afst} stap${afst > 1 ? "pen" : ""} van ${esc(korteNaam(heldDef(h).naam))}.` : ""}</p>
+    ${bereik && UI.plekVast === id ? `<button class="btn pi-reis" data-act="reis-hier" data-doel="${id}">Reis hierheen</button>` : ""}`;
 }
 function toonPlekInfo(id, x, y, vast) {
   const el = document.getElementById("plekinfo"), vlak = document.querySelector(".bordvlak"); if (!el || !vlak) return;
@@ -1594,6 +1598,7 @@ function tekenPaneel() {
         <button class="btn" data-act="ruil" ${kanActie("ruilen") && anderenHier && !heeft(h, "waanzin-paranoia") ? "" : "disabled"}>Ruilen</button>
         ${isOverzee(h.plek) ? `<button class="btn" data-act="terug" ${kanActie("reizen") ? "" : "disabled"}>Terug naar de dokken</button>` : `<button class="btn" data-act="groei" ${h.trofee >= 3 ? "" : "disabled"}>Groeien (3 trofeeën)</button>`}
         ${ma ? `<button class="btn breed" data-act="mysterie" ${ma.kan && h.acties > 0 && !h.gebruikt.includes("mysterie") ? "" : "disabled"}>${esc(ma.label)}${ma.uitleg ? ` (${esc(ma.uitleg)})` : ""}</button>` : ""}
+        ${UI.undo.length && UI.undo.at(-1).ronde === S.ronde && UI.undo.at(-1).actief === S.actief ? `<button class="btn ghost breed terugknop" data-act="undo">↶ Ongedaan maken: ${esc(UI.undo.at(-1).label)}</button>` : ""}
         <button class="btn ghost breed" data-act="klaar">Beurt klaar</button>
       </div>` : ""}
       <div class="vermogen"><b>${esc(d.vermogen.naam)}.</b> ${esc(d.vermogen.tekst)}
@@ -1692,7 +1697,7 @@ function tekenStart() {
 
 /* ---------- invoer ---------- */
 let bezig = false;
-async function veilig(fn) { if (bezig) return; bezig = true; try { await fn(); } catch (e) { console.error(e); UI.fout = String(e && e.message || e); } finally { bezig = false; teken(); if (UI.coachWacht) setTimeout(coachUitWachtrij, 30); } }
+async function veilig(fn) { if (bezig) return; bezig = true; UI.undo = []; try { await fn(); } catch (e) { console.error(e); UI.fout = String(e && e.message || e); } finally { bezig = false; teken(); if (UI.coachWacht) setTimeout(coachUitWachtrij, 30); } }
 function coachUitWachtrij() { const c = UI.coachWacht; if (!c || bezig) return; UI.coachWacht = null; veilig(() => coach(c)); }
 app.addEventListener("click", e => {
   const t = e.target.closest("button, [data-plek]"); if (!t) return;
@@ -1703,7 +1708,8 @@ app.addEventListener("click", e => {
   if (t.dataset.held) return veilig(() => toonHeld(t.dataset.held));
   if (t.dataset.bekijk) { UI.bekeken = +t.dataset.bekijk; return teken(); }
   if (t.dataset.plek && S && !S.einde) {
-    if (bereikbaar(actief()).includes(t.dataset.plek)) return reis(t.dataset.plek);
+    const kanReizen = bereikbaar(actief()).includes(t.dataset.plek);
+    if (kanReizen && (UI.wijzer === "mouse" || UI.plekVast === t.dataset.plek)) return reis(t.dataset.plek);
     if (UI.plekVast === t.dataset.plek) return verbergPlekInfo();
     UI.plekVast = t.dataset.plek; Geluid.klik();
     const r = t.getBoundingClientRect(); return toonPlekInfo(t.dataset.plek, r.right, r.top, true);
@@ -1745,6 +1751,8 @@ app.addEventListener("click", e => {
     });
     case "aanpas": UI.aanpassen = !UI.aanpassen; return teken();
     case "pi-sluit": return verbergPlekInfo();
+    case "reis-hier": { const d = t.dataset.doel; verbergPlekInfo(); return reis(d); }
+    case "undo": { const u = UI.undo.pop(); if (!u) return; S = JSON.parse(u.staat); verbergPlekInfo(); log(`Ongedaan gemaakt: ${u.label}`); opslaan(); return teken(); }
     case "geluid": Geluid.wissel(); return teken();
     case "toestand-plus": { const v = document.getElementById("pas-toestand").value; if (!heeft(h, v)) h.toestanden.push(v); opslaan(); return teken(); }
     case "toestand-min": { const v = document.getElementById("pas-toestand").value; h.toestanden = h.toestanden.filter(x => x !== v); opslaan(); return teken(); }
@@ -1759,6 +1767,8 @@ document.getElementById("handboek").addEventListener("click", e => {
   UI.handboek = b.dataset.hb === "sluit" ? null : b.dataset.hb; tekenHandleiding();
   if (UI.handboek) document.querySelector("#handboek .hb-inhoud")?.scrollTo(0, 0);
 });
+app.addEventListener("pointerdown", e => { UI.wijzer = e.pointerType; }, true);
+app.addEventListener("toggle", e => { if (e.target.classList?.contains("legenda")) { UI.legendaOpen = e.target.open; try { localStorage.setItem("londen1888-legenda", e.target.open ? "open" : "dicht"); } catch {} } }, true);
 app.addEventListener("pointerover", e => {
   if (e.pointerType !== "mouse" || UI.plekVast) return;
   const g = e.target.closest?.("[data-plek]"); if (!g || !S) return;
