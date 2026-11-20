@@ -97,11 +97,9 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [ ] Gedeeld scorebord: namen modereren als dat nodig wordt (verwijderen kan in de D1-database `londen1888-scorebord`).
 
 ### Geluid
-- [ ] Sfeerlussen voor Ysmara en Morghast maken in de ElevenLabs-flow (prompts staan in `geluidsopdracht.md`). Tot dan klinkt `sfeer-start`.
 - [ ] Op de iPad controleren: klinkt de sfeer nu zachter als de muziek aan staat? (Gaat via Web Audio, omdat Safari het gewone volume negeert.)
 
 ### Beelden
-- [ ] 25 nieuwe beelden maken met `ontwerp/beeldopdracht-uitbreiding.md`: 3 helden, 6 persoonlijke spullen, 2 goden, 8 monsters en 6 personages. Daarna de Drive-id's in `tools/art-drive.json`.
 
 ### Kaarten en verhaal
 - [ ] De teksten beoordelen we gaandeweg, tijdens het spelen.
@@ -117,6 +115,8 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 
 ## Klaar
 
+- [x] De 25 nieuwe beelden (helden, spullen, goden, monsters, personages) staan in het spel en in `tools/art-drive.json`
+- [x] Sfeerlussen voor Ysmara en Morghast uit de ElevenLabs-flow, op volume gebracht
 - [x] Twee nieuwe goden: Ysmara, de Doornkoningin, en Morghast, de Slaper in de knekelputten. Elk met regel, vier mysteries, episch monster, drie nieuwe monsters, drie personages, tien verhaalkaarten (met vervolg), drie scheurkaarten, twee aanwijzingen, vier onheilskaarten en een expeditie
 - [x] Drie nieuwe helden: Aggie Pruitt (kogelstootster), Lottie "Muis" Finch (dievegge) en Julian Hartwell (gevlucht uit de Bleke Lantaarn), elk met een eigen vermogen en twee persoonlijke spullen
 - [x] Thuisplekkaarten voor alle 21 helden (13 nieuw)
