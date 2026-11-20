@@ -72,7 +72,7 @@ if (fs.existsSync(loreDir)) {
 @media (prefers-color-scheme:dark){:root{--bg:#0d1416;--paper:#142024;--ink:#dde7e4;--muted:#93a5a3;--line:#2a3b3f;--accent:#5fbfa6;color-scheme:dark}}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 "Alegreya Sans","Segoe UI",system-ui,sans-serif}
 .kader{display:grid;grid-template-columns:240px minmax(0,1fr);gap:28px;max-width:1180px;margin:0 auto;padding:24px max(16px,env(safe-area-inset-right)) 60px max(16px,env(safe-area-inset-left))}
-nav{position:sticky;top:16px;align-self:start;display:grid;gap:2px;font-size:15px}nav a{color:var(--ink);text-decoration:none;padding:6px 10px;border-left:3px solid transparent}
+nav{position:sticky;top:80px;align-self:start;display:grid;gap:2px;font-size:15px}nav a{color:var(--ink);text-decoration:none;padding:6px 10px;border-left:3px solid transparent}
 nav a[aria-current]{border-left-color:var(--accent);background:var(--paper);font-weight:700}nav .terug{margin-top:12px;color:var(--accent)}
 nav .merk{font-family:"IM Fell English SC",Georgia,serif;font-size:22px;padding:0 10px 10px}
 article{background:var(--paper);border:1px solid var(--line);padding:clamp(18px,4vw,44px);min-width:0}
@@ -80,13 +80,16 @@ h1,h2,h3,h4{font-family:"IM Fell English SC","Iowan Old Style",Georgia,serif;fon
 p,li{max-width:70ch}em{font-family:"IM Fell English",Georgia,serif;font-size:1.05em}a{color:var(--accent)}code{font-size:.9em;background:var(--bg);padding:1px 5px}
 .tabel{overflow-x:auto}table{border-collapse:collapse;font-size:15px;margin:10px 0}th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
 blockquote{margin:12px 0;padding:8px 14px;border-left:3px solid var(--accent);background:var(--bg)}pre{background:var(--bg);padding:12px;overflow-x:auto;font-size:13px}
+.balk{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:16px;padding:10px max(16px,env(safe-area-inset-right)) 10px max(16px,env(safe-area-inset-left));padding-top:max(10px,env(safe-area-inset-top));background:var(--bg);border-bottom:1px solid var(--line)}
+.terug-boven{display:inline-flex;align-items:center;min-height:44px;padding:8px 16px;border:1px solid var(--accent);color:var(--accent);font-weight:700;text-decoration:none;background:var(--paper)}.terug-boven:hover{background:var(--accent);color:var(--paper)}
+.balk-titel{font-family:"IM Fell English SC",Georgia,serif;font-size:20px;color:var(--muted)}
 @media (max-width:800px){.kader{grid-template-columns:1fr}nav{position:static;grid-auto-flow:row}}`;
   for (const n of paginas) {
     const doel = n === "README" ? "index" : n;
     const nav = paginas.map(x => `<a href="${x === "README" ? "index" : x}.html"${x === n ? ' aria-current="page"' : ""}>${esc(x === "README" ? "Inhoud" : titel(x))}</a>`).join("");
     const html = `<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>${esc(titel(n))} · Lore-boek Londen 1888</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=IM+Fell+English:ital@0;1&family=Alegreya+Sans:wght@400;500;700&display=swap">
-<link rel="icon" href="../icoon/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="../icoon/favicon-32.png"><style>${stijl}</style></head><body><div class="kader"><nav><span class="merk">Lore-boek</span>${nav}<a class="terug" href="../index.html">Naar het spel</a><a class="terug" href="https://github.com/zeddyfree-art/londen-1888/tree/claude/charming-franklin-2x9p2x/lore">Bewerken op GitHub</a></nav>
+<link rel="icon" href="../icoon/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="../icoon/favicon-32.png"><style>${stijl}</style></head><body><header class="balk"><a class="terug-boven" href="../index.html">← Terug naar het spel</a><span class="balk-titel">Lore-boek</span></header><div class="kader"><nav><span class="merk">Lore-boek</span>${nav}<a class="terug" href="https://github.com/zeddyfree-art/londen-1888/tree/claude/charming-franklin-2x9p2x/lore">Bewerken op GitHub</a></nav>
 <article>${md(fs.readFileSync(path.join(loreDir, n + ".md"), "utf8"))}</article></div></body></html>\n`;
     fs.writeFileSync(path.join(site, "lore", doel + ".html"), html);
   }

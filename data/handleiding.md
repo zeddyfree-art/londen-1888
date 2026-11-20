@@ -28,7 +28,7 @@ Elke ronde heeft drie fasen.
 
 ### 1. Heldenfase
 
-Om de beurt doet elke held **2 verschillende acties**:
+Om de beurt doet elke held **2 acties**. Reizen mag je twee keer doen, dus je kunt twee stappen zetten. De andere acties doe je één keer per beurt:
 
 | Actie | Wat het doet |
 |---|---|

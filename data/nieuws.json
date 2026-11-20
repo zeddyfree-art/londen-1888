@@ -1,5 +1,14 @@
 [
   {
+    "id": 4,
+    "datum": "20 november 2026",
+    "titel": "Twee keer reizen en duidelijke terugknoppen",
+    "punten": [
+      "Je mag nu allebei je acties aan reizen uitgeven. Zo kom je in één beurt twee plekken verder.",
+      "De handleiding, het lore-boek, de spelregels en Wat is er nieuw hebben bovenaan een duidelijke knop ← Terug. De handleiding sluit ook met Escape."
+    ]
+  },
+  {
     "id": 3,
     "datum": "20 november 2026",
     "titel": "Geluid, muziek, nieuwe mysteries en meer kaarten",

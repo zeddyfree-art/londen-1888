@@ -165,7 +165,7 @@ function stapNaar(van, doel) {
 
 /* ---------- modaal venster ---------- */
 let modalResolve = null;
-function venster({ soort = "", titel = "", beeld = null, zij = false, verhaal = "", html = "", breed = false, achterkant = null, animeer = null, geluid = null, knoppen = [{ label: "Verder", waarde: true }] }) {
+function venster({ soort = "", titel = "", beeld = null, zij = false, verhaal = "", html = "", breed = false, achterkant = null, animeer = null, geluid = null, terug = false, knoppen = [{ label: "Verder", waarde: true }] }) {
   if (knoppen.length && knoppen.every(k => k.uit)) knoppen = [...knoppen, { label: "Verder", waarde: null, ghost: true }];
   if (window.__bot) return Promise.resolve(window.__bot.kies({ soort, titel, knoppen: knoppen.filter(k => !k.uit) }));
   return new Promise(res => {
@@ -176,6 +176,7 @@ function venster({ soort = "", titel = "", beeld = null, zij = false, verhaal = 
       m.innerHTML = `<div class="venster${breed ? " breed" : ""}${zij && img ? " zij" : ""}${rug ? " draai-in" : " kom-op"}" role="dialog" aria-modal="true" aria-label="${esc(titel)}">
         ${img ? `<img class="beeld" src="${esc(img)}" alt="">` : ""}
         <div class="inhoud">
+          ${terug ? `<button class="btn ghost terug-boven" data-knop="terug">← Terug</button>` : ""}
           ${soort ? `<span class="soort">${esc(soort)}</span>` : ""}
           ${titel ? `<h2>${esc(titel)}</h2>` : ""}
           ${verhaal ? `<p class="verhaal">${esc(verhaal)}</p>` : ""}
@@ -190,7 +191,7 @@ function venster({ soort = "", titel = "", beeld = null, zij = false, verhaal = 
     m.onclick = e => {
       const b = e.target.closest("[data-knop]"); if (!b || b.disabled || m.querySelector("[data-wacht]")) return;
       m.hidden = true; m.innerHTML = "";
-      res(knoppen[+b.dataset.knop].waarde);
+      res(b.dataset.knop === "terug" ? null : knoppen[+b.dataset.knop].waarde);
     };
     if (rug) { m.innerHTML = `<div class="kaartrug" aria-hidden="true"><img src="${esc(rug)}" alt=""></div>`; Geluid.kaart(); setTimeout(toon, 700); }
     else toon();
@@ -572,7 +573,7 @@ function startHeldenbeurt() {
 }
 function bereikbaar(h) {
   if (S.fase !== "helden" || h !== actief()) return [];
-  const kanActie = h.acties > 0 && !h.gebruikt.includes("reizen");
+  const kanActie = h.acties > 0; /* reizen mag met beide acties */
   if (h.stappen <= 0 && !kanActie) return [];
   return burenVan(h, h.plek);
 }
@@ -581,7 +582,7 @@ function reis(doel) {
   if (!bereikbaar(h).includes(doel)) return;
   UI.undo.push({ staat: JSON.stringify(S), label: `reizen naar ${plekNaam(doel)}`, ronde: S.ronde, actief: S.actief });
   if (h.stappen > 0) h.stappen--;
-  else { h.acties--; h.gebruikt.push("reizen"); }
+  else h.acties--;
   const van = plekDef(h.plek);
   UI.reis = { i: S.actief, van: { x: van.x, y: van.y }, naar: doel, t: Date.now() };
   Geluid.reis(); verbergPlekInfo();
@@ -1330,7 +1331,7 @@ async function beurtKlaar() {
 /* ---------- tutorial en tips ---------- */
 const COACH = {
   start: ["Welkom in Londen, 1888", `<p>Jullie spelen samen tegen <b>Vathrûn</b>, iets dat onder de Theems ademt. Bovenaan zie je de <b>Mist</b>: elke ronde daalt hij. Staat hij op 0, dan verliezen jullie.</p><p>Jullie winnen door <b>2 mysteries</b> op te lossen. Het huidige mysterie staat rechts, in het groene kader.</p><p>Je speelt met <b>Hester</b> (bibliothecaris) en <b>Silas</b> (detective). Hester is als eerste aan de beurt.</p>`],
-  beurt: ["Jouw beurt", `<p>Elke held doet <b>2 verschillende acties</b> per ronde. Plekken waar je heen kunt, lichten groen op: tik erop om te reizen.</p><p>De knoppen rechts zijn de andere acties: <b>rusten</b>, de <b>dienst</b> van de plek (winkelen, studeren, genezen…), <b>ruilen</b> met een held op dezelfde plek en het <b>mysterie</b>. Spreuken spreek je uit bij je kaarten.</p><p>Ben je klaar? Tik op <b>Beurt klaar</b>. Onder <b>Tip</b> zie je steeds een suggestie.</p>`],
+  beurt: ["Jouw beurt", `<p>Elke held doet <b>2 acties</b> per ronde. Reizen mag je twee keer doen; de andere acties één keer per beurt. Plekken waar je heen kunt, lichten groen op: tik erop om te reizen.</p><p>De knoppen rechts zijn de andere acties: <b>rusten</b>, de <b>dienst</b> van de plek (winkelen, studeren, genezen…), <b>ruilen</b> met een held op dezelfde plek en het <b>mysterie</b>. Spreuken spreek je uit bij je kaarten.</p><p>Ben je klaar? Tik op <b>Beurt klaar</b>. Onder <b>Tip</b> zie je steeds een suggestie.</p>`],
   dienst: ["Diensten", `<p>Elke plek heeft een eigen dienst. In Bloomsbury studeer je spreuken, op markten koop je spullen, in The City laat je je verzorgen of leen je geld. In de handleiding staat het hele overzicht.</p>`],
   ontmoeting: ["Ontmoetingen", `<p>Na de heldenfase krijgt elke held een <b>ontmoeting</b> op de plek waar hij staat:</p><ol><li>Staat er een monster? Dan vecht je.</li><li>Is er een Scheur? Dan stap je erdoor, en daarna mag je hem proberen te sluiten.</li><li>Ligt er een Aanwijzing (groen bolletje)? Dan volg je het spoor.</li><li>Anders trek je een verhaal van die wijk. Lees het gerust hardop voor.</li></ol>`],
   test: ["Een test", `<p>Bij een test gooi je <b>twee dobbelstenen</b> en tel je je <b>kenmerk</b> erbij, bijvoorbeeld Kennis of Kracht. Haal je het getal achter "nodig", dan lukt het.</p><p>Mislukt het? Soms kun je opnieuw gooien: met een <b>Aanwijzing</b> (bij Kennis en Waarneming), als je <b>Gezegend</b> bent of met een vermogen van je held.</p>`],
@@ -1413,7 +1414,7 @@ function tekenHandleiding() {
     toestanden: () => `<div class="raster">${D.toestanden.map(x => kaart(x.soort, x.naam, `<span>${esc(x.tekst)}</span>`)).join("")}</div>`
   };
   el.hidden = false;
-  el.innerHTML = `<div class="hb-kop"><h2>Handleiding</h2><button class="btn small" data-hb="sluit">Sluiten</button></div>
+  el.innerHTML = `<div class="hb-kop"><button class="btn ghost terug-boven" data-hb="sluit" aria-label="Terug">← Terug</button><h2>Handleiding</h2></div>
     <nav class="hb-tabs">${HTABS.map(([id, l]) => `<button class="tab" data-hb="${id}" aria-pressed="${t === id}">${l}</button>`).join("")}</nav>
     <div class="hb-inhoud">${views[t]()}</div>`;
 }
@@ -1668,7 +1669,7 @@ function tekenPaneel() {
         <button class="btn" data-act="rust" ${kanActie("rusten") ? "" : "disabled"}>Rusten</button>
         <button class="btn" data-act="dienst" ${kanActie("dienst") && dienstNaam ? "" : "disabled"}>${dienstNaam ? esc(DIENSTLABEL[dienstNaam] || dienstNaam) : "Geen dienst"}</button>
         <button class="btn" data-act="ruil" ${kanActie("ruilen") && anderenHier && !heeft(h, "waanzin-paranoia") ? "" : "disabled"}>Ruilen</button>
-        ${isOverzee(h.plek) ? `<button class="btn" data-act="terug" ${kanActie("reizen") ? "" : "disabled"}>Terug naar de dokken</button>` : `<button class="btn" data-act="groei" ${h.trofee >= 3 ? "" : "disabled"}>Groeien (3 trofeeën)</button>`}
+        ${isOverzee(h.plek) ? `<button class="btn" data-act="terug" ${isActief && h.acties > 0 ? "" : "disabled"}>Terug naar de dokken</button>` : `<button class="btn" data-act="groei" ${h.trofee >= 3 ? "" : "disabled"}>Groeien (3 trofeeën)</button>`}
         ${ma ? `<button class="btn breed" data-act="mysterie" ${ma.kan && h.acties > 0 && !h.gebruikt.includes("mysterie") ? "" : "disabled"}>${esc(ma.label)}${ma.uitleg ? ` (${esc(ma.uitleg)})` : ""}</button>` : ""}
         ${UI.undo.length && UI.undo.at(-1).ronde === S.ronde && UI.undo.at(-1).actief === S.actief ? `<button class="btn ghost breed terugknop" data-act="undo">↶ Ongedaan maken: ${esc(UI.undo.at(-1).label)}</button>` : ""}
         <button class="btn ghost breed" data-act="klaar">Beurt klaar</button>
@@ -1803,7 +1804,7 @@ app.addEventListener("click", e => {
     case "god": return veilig(() => godIntro(false));
     case "tips": if (S.tutorial) { S.tutorial = false; UI.tips = false; } else UI.tips = !UI.tips; opslaan(); return teken();
     case "stoppen": return veilig(async () => { if (await venster({ titel: "Stoppen?", html: "<p>Het spel blijft bewaard op dit apparaat. Je kunt later verder spelen.</p>", knoppen: [{ label: "Naar het beginscherm", waarde: true }, { label: "Doorspelen", waarde: false, ghost: true }] })) { opslaan(); S = null; } });
-    case "regels": return veilig(() => venster({ soort: "Hoe werkt het?", titel: "Een ronde", html: `<ol><li><b>Heldenfase:</b> elke held doet 2 verschillende acties: reizen (tik op een plek), rusten, de dienst van de plek, ruilen, een spreuk of het mysterie.</li><li><b>Ontmoetingen:</b> vecht met monsters op je plek, ga door een Scheur, volg een Aanwijzing of trek een stadskaart.</li><li><b>Onheil:</b> de Mist daalt, Scheuren openen en monsters bewegen.</li></ol><p>Een test: 2 dobbelstenen plus je kenmerk, haal de moeilijkheid. Een Aanwijzing laat je bij Kennis en Waarneming één steen opnieuw gooien.</p><p>Los ${S.nodig} mysteries op voordat de Mist op 0 staat.</p>` }));
+    case "regels": return veilig(() => venster({ soort: "Hoe werkt het?", titel: "Een ronde", terug: true, html: `<ol><li><b>Heldenfase:</b> elke held doet 2 acties: reizen (tik op een plek, mag twee keer), rusten, de dienst van de plek, ruilen, een spreuk of het mysterie.</li><li><b>Ontmoetingen:</b> vecht met monsters op je plek, ga door een Scheur, volg een Aanwijzing of trek een stadskaart.</li><li><b>Onheil:</b> de Mist daalt, Scheuren openen en monsters bewegen.</li></ol><p>Een test: 2 dobbelstenen plus je kenmerk, haal de moeilijkheid. Een Aanwijzing laat je bij Kennis en Waarneming één steen opnieuw gooien.</p><p>Los ${S.nodig} mysteries op voordat de Mist op 0 staat.</p>` }));
     case "rust": return veilig(() => rust(actief()));
     case "dienst": return veilig(() => dienst(actief()));
     case "ruil": return veilig(() => ruil(actief()));
@@ -1836,6 +1837,7 @@ app.addEventListener("click", e => {
     case "mon-min": if (!isOverzee(h.plek)) S.plekken[h.plek].monsters.pop(); opslaan(); return teken();
   }
 });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && UI.handboek) { UI.handboek = null; tekenHandleiding(); } });
 document.getElementById("handboek").addEventListener("click", e => {
   const b = e.target.closest("[data-hb]"); if (!b) return;
   UI.handboek = b.dataset.hb === "sluit" ? null : b.dataset.hb; tekenHandleiding();
@@ -1892,7 +1894,7 @@ async function toonNieuws(altijd) {
   }
   const tonen = altijd ? lijst.slice(0, 3) : lijst.filter(n => n.id > +gezien).slice(0, 3);
   try { localStorage.setItem(NIEUWS, String(nieuwste)); } catch {}
-  await venster({ soort: "Wat is er nieuw", titel: tonen[0].titel, breed: true,
+  await venster({ soort: "Wat is er nieuw", titel: tonen[0].titel, breed: true, terug: true,
     html: tonen.map((n, i) => `${i ? `<h3>${esc(n.titel)}</h3>` : ""}<p class="muted">${esc(n.datum)}</p><ul>${n.punten.map(p => `<li>${esc(p)}</li>`).join("")}</ul>`).join(""),
     knoppen: [{ label: "Verder", waarde: true }] });
 }
