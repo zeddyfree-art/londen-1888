@@ -419,12 +419,12 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);ou
   color:var(--ink);background:linear-gradient(180deg,#1d1029,#120a19);border:2px solid #8c4fbf;box-shadow:0 0 0 1px #000,0 0 50px rgba(178,106,230,.45),inset 0 0 40px rgba(120,60,170,.25)}
 .venster.thema-scheur .soort{color:#d6b4f2}
 .venster.thema-scheur .btn.ghost{color:#e2c8f7;border-color:#8c4fbf;background:transparent}
-.portaal{position:relative;height:clamp(180px,32vh,260px);display:grid;place-items:center;overflow:hidden;border-bottom:1px solid #4b2f60;
+.portaal{position:relative;height:clamp(250px,34vh,290px);display:grid;place-items:center;overflow:hidden;border-bottom:1px solid #4b2f60;
   background:radial-gradient(ellipse at center,#3a1655 0%,#1a0b26 55%,#0b0610 100%)}
 .portaal-nevel{position:absolute;inset:-30%;background:conic-gradient(from 0deg,transparent,rgba(178,106,230,.25),transparent 30%,rgba(226,184,255,.15),transparent 60%,rgba(140,63,196,.3),transparent);filter:blur(14px)}
-.portaal-ring{position:absolute;width:min(190px,48vw);aspect-ratio:1;border-radius:50%;background:conic-gradient(#b26ae6,transparent 25%,#e2b8ff 50%,transparent 75%,#b26ae6);
+.portaal-ring{position:absolute;width:min(226px,56vw);aspect-ratio:1;border-radius:50%;background:conic-gradient(#b26ae6,transparent 25%,#e2b8ff 50%,transparent 75%,#b26ae6);
   -webkit-mask:radial-gradient(circle,transparent 62%,#000 64%);mask:radial-gradient(circle,transparent 62%,#000 64%);filter:drop-shadow(0 0 10px #b26ae6)}
-.portaal img{position:relative;width:min(160px,40vw);aspect-ratio:1;border-radius:50%;object-fit:cover;clip-path:circle(45%);transform-origin:center;box-shadow:0 0 30px rgba(178,106,230,.7),inset 0 0 20px #000}
+.portaal img{position:relative;width:min(196px,48vw);aspect-ratio:1;border-radius:50%;object-fit:cover;clip-path:circle(45%);transform-origin:center;box-shadow:0 0 30px rgba(178,106,230,.7),inset 0 0 20px #000}
 .portaal-vonken{position:absolute;inset:0}
 .portaal-vonken i{position:absolute;left:50%;top:50%;width:4px;height:4px;margin:-2px;border-radius:50%;background:#e9cdfc;box-shadow:0 0 6px #b26ae6;opacity:0}
 @media (prefers-reduced-motion:no-preference){

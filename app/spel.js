@@ -200,6 +200,11 @@ function venster({ soort = "", titel = "", beeld = null, zij = false, verhaal = 
 const melding = (titel, tekst, soort = "") => venster({ soort, titel, html: `<p>${esc(tekst)}</p>` });
 
 /* ---------- overgangen: korte animatie voor elke ontmoeting ---------- */
+/* Beeld voor de Scheurkaart: eerst dat van de oude god, dan het algemene, anders de fiche. art() laadt op de achtergrond. */
+function scheurBeeld() {
+  const god = art(`art/scheur/${S.god}.jpg`), alg = art("art/scheur/portaal.jpg");
+  return god || alg || "art/fiches/scheur.jpg";
+}
 function portaalHtml(img) {
   const vonken = Array.from({ length: 14 }, (_, i) => `<i style="--a:${(i * 360 / 14).toFixed(0)}deg;--v:${(i * .37 % 2.6).toFixed(2)}s"></i>`).join("");
   return `<div class="portaal" aria-hidden="true"><div class="portaal-nevel"></div><div class="portaal-vonken">${vonken}</div><div class="portaal-ring"></div><img src="${esc(img)}" alt=""></div>`;
@@ -1144,11 +1149,12 @@ async function ontmoeting(h) {
   if (p.scheur) {
     if (S.tutorial) await coach("scheur");
     const kaart = trekKaart(D.ontmoetingen.scheur, () => true);
+    scheurBeeld();
     await overgang("scheur", `${naam} stapt door de Scheur`);
-    await speelKaart(h, kaart, "Aan de andere kant", "art/fiches/scheur.jpg", "scheur");
+    await speelKaart(h, kaart, "Aan de andere kant", scheurBeeld(), "scheur");
     if ((h.plek !== plek && !h.ronde.astraal) || !p.scheur) return;
     const lens = h.artefacten.includes("vuurtoren-lens") && h.kenm.scherpte > h.kenm.kennis ? "scherpte" : "kennis";
-    const k = await venster({ soort: "Scheur", thema: "scheur", portaal: true, beeld: "art/fiches/scheur.jpg", titel: `De Scheur in ${plekNaam(plek)}`, html: `<p>Probeer je hem te sluiten? (${KNAAM[lens]})</p>`,
+    const k = await venster({ soort: "Scheur", thema: "scheur", portaal: true, beeld: scheurBeeld(), titel: `De Scheur in ${plekNaam(plek)}`, html: `<p>Probeer je hem te sluiten? (${KNAAM[lens]})</p>`,
       knoppen: [{ label: `Sluiten met 1 Aanwijzing (8)`, waarde: "a", uit: h.aanw < 1 }, { label: "Sluiten zonder Aanwijzing (10)", waarde: "z" }, { label: "Laten", waarde: null, ghost: true }] });
     if (k) {
       if (k === "a") h.aanw--;
@@ -1198,6 +1204,7 @@ async function speelKaart(h, kaart, soort, beeld, rug) {
 }
 async function ontmoetingsfase(start = 0) {
   S.fase = "ontmoeting";
+  scheurBeeld();
   if (start === 0) S.ontmoetingIndex = -1;
   for (let i = start; i < S.helden.length; i++) {
     if (S.einde) return;
@@ -1938,5 +1945,5 @@ function registreerSW() {
   try { if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost") && !location.hostname.endsWith("claude.ai") && !location.hostname.endsWith("claudeusercontent.com")) navigator.serviceWorker.register("sw.js").catch(() => {}); } catch {}
 }
 window.__spel = { get S() { return S; }, get D() { return D; }, get bezig() { return bezig; },
-  api: { overgang, venster, speelKaart, onheilsfase, nieuwSpel, zaai, reis, rust, dienst, doeMysterie, mysterieActie, beurtKlaar, gebruikActie, gebruikSpul, zoekWeg, bereikbaar, burenVan, afstanden, stapNaar, actief, groei, mysterie, heeft, isOverzee, spulDef, monsterDef, wapenBonus, plekDef } };
+  api: { overgang, venster, scheurBeeld, speelKaart, onheilsfase, nieuwSpel, zaai, reis, rust, dienst, doeMysterie, mysterieActie, beurtKlaar, gebruikActie, gebruikSpul, zoekWeg, bereikbaar, burenVan, afstanden, stapNaar, actief, groei, mysterie, heeft, isOverzee, spulDef, monsterDef, wapenBonus, plekDef } };
 })();

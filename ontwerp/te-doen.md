@@ -62,6 +62,7 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 ### Beelden
 - [ ] De nieuwe portretten van Odile en Cordelia staan in `art/helden/`, maar in Drive staan nog de oude. Vervang ze daar ook. Daarna kunnen ze met hun nieuwe Drive-id terug in `tools/art-drive.json`.
 - [ ] Beelden voor nieuwe kaarten (alleen nodig als er nieuwe personages of spullen bijkomen)
+- [ ] Beelden voor de Scheurkaart: `ontwerp/beeldopdracht-scheur.md` (1 algemeen beeld nodig, 3 per oude god mogen). Daarna in `tools/art-drive.json` en ophalen met `tools/haal-art.py`
 
 ### Kaarten en verhaal
 - [ ] De nieuwe teksten proeflezen: zijn ze samenhangend genoeg en lang genoeg?
