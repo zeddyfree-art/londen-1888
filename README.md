@@ -12,6 +12,14 @@ Een eigen coöperatief horrorspel voor 2 of 4 helden, gespeeld in Victoriaans Lo
 | `ontwerp/` | Ontwerpkeuzes, spelregels, de wereld en de beeldopdracht |
 | `tools/` | Scripts voor bouwen, afbeeldingen ophalen en de beeldopdracht |
 
+## Lore-boek
+
+De wereld, facties, verhaallijnen en personen staan in [`lore/`](lore/README.md). Online: https://zeddyfree-art.github.io/londen-1888/lore/
+
+## Te doen
+
+Zie [`ontwerp/te-doen.md`](ontwerp/te-doen.md).
+
 ## Bouwen
 
 ```bash

@@ -1,0 +1,112 @@
+[
+  {
+    "id": "thaddeus-voss",
+    "naam": "Hoofdinspecteur Thaddeus Voss",
+    "rol": "Scotland Yard",
+    "factie": "Geen",
+    "god": null,
+    "kort": "Een vermoeide, eerlijke politieman die een dossier bijhoudt met de titel 'Onverklaard'.",
+    "beschrijving": "Voss is vijftig, weduwnaar en al dertig jaar bij de politie. Hij gelooft niet in geesten, maar hij gelooft wel in patronen, en de patronen van dit najaar bevallen hem niet. Hij houdt een eigen dossier bij met zaken die hij niet kan verklaren en deelt dat alleen met mensen die hij vertrouwt. Hij helpt de helden zolang ze de wet niet al te grof breken.",
+    "prompt": "weary Victorian police chief inspector around fifty, grey moustache, heavy dark overcoat and bowler hat, holding a thick bundled case file, standing in a gaslit stone corridor of a police headquarters"
+  },
+  {
+    "id": "nell-farrow",
+    "naam": "Nell Farrow",
+    "rol": "Journaliste van The Evening Courier",
+    "factie": "Geen",
+    "god": null,
+    "kort": "Een snelle, nieuwsgierige verslaggeefster die altijd net te veel weet.",
+    "beschrijving": "Nell is achtentwintig en schrijft onder een mannelijk pseudoniem voor de avondkrant. Ze volgt dezelfde sporen als de helden, soms een stap voor, soms een stap achter. Ze ruilt informatie tegen informatie en heeft een neus voor wie er liegt. Ze wil het grote verhaal schrijven, maar ze is niet roekeloos.",
+    "prompt": "sharp-eyed young Victorian woman journalist in her late twenties, straw boater hat, dark jacket, notebook and pencil in hand, standing in a busy newspaper office with printing presses and hanging proofs, lamplight"
+  },
+  {
+    "id": "josiah-penhallow",
+    "naam": "Josiah Penhallow",
+    "rol": "Ingenieur van de nieuwe riolen, vermist",
+    "factie": "Geen",
+    "god": "vathrun",
+    "kort": "De ingenieur die onder de Theems iets vond wat hij niet had mogen vinden.",
+    "beschrijving": "Penhallow leidde in 1887 het graafwerk aan een nieuwe overstortleiding onder Wapping. Zijn ploeg stuitte op een gemetselde kamer die ouder was dan de stad, met zeven zegels in de deur. Hij liet de kamer dichtmetselen en verdween drie weken later. Sindsdien vinden mensen zijn handschrift op plekken waar hij niet geweest kan zijn.",
+    "prompt": "earnest Victorian civil engineer in his forties, muddy waistcoat and rolled shirtsleeves, oil lamp and rolled blueprints, standing in a brick sewer tunnel with dark water, an ancient sealed stone door behind him"
+  },
+  {
+    "id": "martha-penhallow",
+    "naam": "Martha Penhallow",
+    "rol": "Dochter van Josiah, roeister op de Theems",
+    "factie": "Geen",
+    "god": "vathrun",
+    "kort": "Een koppige jonge vrouw die haar vader terug wil, levend of niet.",
+    "beschrijving": "Martha is twintig en roeit al sinds haar twaalfde over de rivier. Ze kent elke trap, elk getij en elke smokkelaar tussen Chelsea en Limehouse. Sinds haar vader verdween, zoekt ze hem op de plekken waar het water vreemd doet. Ze vertrouwt de politie niet, maar ze vertrouwt mensen die haar helpen zoeken.",
+    "prompt": "determined young Victorian waterwoman of about twenty, practical dark dress with rolled sleeves, oilskin coat, holding oars in a small rowing boat on the foggy Thames at dawn, river stairs behind her"
+  },
+  {
+    "id": "moeder-brine",
+    "naam": "Moeder Brine",
+    "rol": "Hoofd van het Genootschap van het Zevende Zegel",
+    "factie": "Genootschap van het Zevende Zegel",
+    "god": "vathrun",
+    "kort": "Een oude wasvrouw uit Southwark die de rivier als een god aanbidt.",
+    "beschrijving": "Iedereen aan de zuidoever kent Moeder Brine: ze verzorgt zieken, bemiddelt bij ruzies en helpt bij bevallingen. Weinigen weten dat ze ook het Genootschap leidt, een kring van rivierwerkers die gelooft dat de vloed hen zal belonen als de oude deur weer opengaat. Ze is niet wreed. Ze is overtuigd, en dat is gevaarlijker.",
+    "prompt": "elderly Victorian washerwoman with a kindly but unsettling face, shawl and apron, sleeves rolled, standing in a steam-filled riverside laundry, a string of seven wax seals hanging from her belt, green lamplight"
+  },
+  {
+    "id": "aurelian-croft",
+    "naam": "Magister Aurelian Croft",
+    "rol": "Leider van de Orde van de Bleke Lantaarn",
+    "factie": "Orde van de Bleke Lantaarn",
+    "god": "azh-ilareth",
+    "kort": "Een charmante, geleerde occultist die denkt dat de nieuwe ster een openbaring is.",
+    "beschrijving": "Croft is arts, verzamelaar van oude handschriften en een begenadigd spreker. Hij richtte de Orde op als studiekring, maar sinds de nieuwe ster verscheen, is de kring een beweging geworden. Hij gelooft oprecht dat de ster de mensheid wil verlichten. Hij luistert alleen niet meer naar wie het daar niet mee eens is.",
+    "prompt": "charismatic Victorian occultist in his fifties, silver hair swept back, white ceremonial robe over an evening suit, holding a pale violet lantern, in an ornate lodge temple with painted pillars and star charts"
+  },
+  {
+    "id": "ivy-lisle",
+    "naam": "Ivy Lisle",
+    "rol": "Leerling van de Orde, twijfelt",
+    "factie": "Orde van de Bleke Lantaarn",
+    "god": "azh-ilareth",
+    "kort": "Een jonge illustratrice die de Orde van binnenuit ziet veranderen.",
+    "beschrijving": "Ivy is tweeëntwintig en tekent sterrenkaarten voor de Orde. Ze trad toe uit nieuwsgierigheid en bleef uit vriendschap. Nu ziet ze dat haar vrienden niet meer slapen en dat Croft rituelen houdt achter spiegels. Ze zoekt iemand buiten de Orde aan wie ze kan vertellen wat ze weet, zonder dat het haar leven kost.",
+    "prompt": "anxious young Victorian woman artist of twenty-two, ink-stained fingers, plain grey dress with a small pale lantern brooch, holding a rolled star chart, in a dim attic studio with a skylight showing a strange violet star"
+  },
+  {
+    "id": "lucan-vey",
+    "naam": "Lucan Vey",
+    "rol": "Dichter",
+    "factie": "Orde van de Bleke Lantaarn",
+    "god": "azh-ilareth",
+    "kort": "Een gevierde jonge dichter die verzen schrijft die hij zich niet herinnert.",
+    "beschrijving": "Vey was de lieveling van de literaire salons van Mayfair. Sinds de ster verscheen, schrijft hij elke nacht een gedicht in een taal die niemand kent, en elke ochtend is hij een beetje minder zichzelf. Wie zijn verzen voorleest, ziet de ster ook overdag. Als de Orde haar zin krijgt, wordt hij de stem van de ster: de Dichter zonder Ogen.",
+    "prompt": "pale handsome young Victorian poet with dark curls, loosened cravat and velvet smoking jacket, shadows under his eyes, writing feverishly by candlelight, sheets of paper covered in strange glowing violet script"
+  },
+  {
+    "id": "lucius-harrowgate",
+    "naam": "Sir Lucius Harrowgate",
+    "rol": "Verzamelaar en financier van expedities",
+    "factie": "De expeditie-Harrowgate",
+    "god": "nebet-ankhu",
+    "kort": "Een rijke, kille verzamelaar die alles koopt wat oud en zeldzaam is.",
+    "beschrijving": "Harrowgate financierde de opgraving in de vallei bij Thebe en liet de vondsten naar zijn pakhuis in St Katharine Docks verschepen. Hij is een man die gewend is zijn zin te krijgen. Sinds de kisten zijn aangekomen, hebben zijn bedienden het over hoe anders hij is geworden: hij kijkt niet meer in spiegels en zijn gezicht lijkt elke dag een tikje vreemder.",
+    "prompt": "cold aristocratic Victorian collector in his sixties, impeccable black frock coat, silver-topped cane, standing among opened Egyptian crates in a gaslit warehouse, his face partly in shadow and subtly wrong"
+  },
+  {
+    "id": "philippa-moss",
+    "naam": "Dr. Philippa Moss",
+    "rol": "Archeologe van de expeditie-Harrowgate",
+    "factie": "De expeditie-Harrowgate",
+    "god": "nebet-ankhu",
+    "kort": "Een kundige archeologe die spijt heeft van wat ze heeft opgegraven.",
+    "beschrijving": "Moss leidde het graafwerk bij Thebe en las als eerste de inscripties in het lege graf. Ze begreep te laat dat het geen graf was, maar een gevangenis. Nu probeert ze de zegels van de expeditie in veiligheid te brengen voordat Harrowgate ze verkoopt. Ze heeft hulp nodig, en ze kan niet openlijk vragen.",
+    "prompt": "capable Victorian woman archaeologist in her late thirties, sun-browned face, khaki field jacket over a blouse, magnifying glass and notebook, examining a broken clay seal in a lamplit museum storeroom"
+  },
+  {
+    "id": "youssef-hamdi",
+    "naam": "Raïs Youssef Hamdi",
+    "rol": "Voorman van de opgraving bij Thebe",
+    "factie": "Geen",
+    "god": "nebet-ankhu",
+    "kort": "De ervaren voorman die de expeditie waarschuwde en niet werd gehoord.",
+    "beschrijving": "Hamdi leidt al twintig jaar opgravingen in de vallei en kent elke rots. Hij weigerde het lege graf te openen en vertrok met zijn mannen toen Harrowgate toch doorzette. Wie bij Thebe aankomt en hem met respect benadert, hoort het verhaal dat de dorpelingen al eeuwen vertellen over de koning zonder gezicht.",
+    "prompt": "dignified Egyptian excavation foreman in his fifties, white turban and dark galabiya, weathered wise face, standing at the entrance of a rock-cut tomb in the Theban hills at sunset, lantern in hand"
+  }
+]

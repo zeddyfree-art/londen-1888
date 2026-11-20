@@ -1,0 +1,1230 @@
+[
+  {
+    "id": "v-vat-1",
+    "god": "vathrun",
+    "plek": "wapping",
+    "persoon": "martha-penhallow",
+    "tekst": "Aan de voet van de trap ligt een roeiboot met een jonge vrouw aan de riemen. Martha Penhallow kijkt je onderzoekend aan. 'Jij bent degene die vragen stelt over de riolen,' zegt ze. 'Mijn vader groef ze. Hij vond iets onder deze trap, en drie weken later was hij weg.' Ze biedt aan je te laten zien waar het water 's nachts verkeerd stroomt.",
+    "keuzes": [
+      {
+        "label": "Meevaren (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Midden op de rivier draait het kompas van Martha langzaam rond. Onder de boot zie je een rij bellen opstijgen, recht boven een plek waar volgens haar de oude overstortleiding loopt. Je noteert de plek precies.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De stroming grijpt de boot en jullie draaien twee keer rond voordat Martha hem weer onder controle heeft. Je bent doornat en misselijk.",
+          "effect": [
+            {
+              "lichaam": -1
+            },
+            {
+              "aanwijzing": 1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Haar vragen naar haar vader (Charisma 7)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 7
+        },
+        "gelukt": {
+          "tekst": "Ze vertelt over de laatste avond: haar vader kwam thuis met klei onder zijn nagels en zei dat de deur 'warm' was. Ze geeft je zijn oude zakhorloge. Het loopt nog, maar achteruit.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "geest": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Ze klapt dicht. 'Je bent net als de politie,' zegt ze, en roeit weg.",
+          "effect": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "v-vat-2",
+    "god": "vathrun",
+    "plek": "southwark",
+    "persoon": "moeder-brine",
+    "tekst": "In de wasserij aan Bankside zit een oude vrouw bij het vuur, met een kom soep op schoot. Iedereen noemt haar Moeder Brine, en iedereen groet haar met respect. Ze kijkt je vriendelijk aan. 'De rivier geeft en de rivier neemt,' zegt ze. 'Jij lijkt me iemand die te veel wil weten. Ga zitten. Eet wat.' Aan haar riem hangen zeven zegels van was, drie ervan gebroken.",
+    "keuzes": [
+      {
+        "label": "Meeëten en luisteren (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Ze praat over de armen van Londen, over vloed en vergelding, en over 'de deur die zich zal openen voor wie geduld heeft'. Ze zegt meer dan ze wil. Als je weggaat, weet je dat het Genootschap de zegels één voor één breekt.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "lichaam": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De soep is zout, heel zout. Na een paar happen voel je je zwaar en slaperig. Je droomt kort van groen water en wordt wakker op straat.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "Naar de gebroken zegels vragen (Kennis 9)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Je herkent het teken op de zegels uit een oud kerkboek: het wapen van de bisschoppen van Southwark. Brine glimlacht niet meer. 'Dan weet je wie er komt,' zegt ze zacht.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "mist": -1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Ze lacht om je vraag en roept iets naar achteren. Twee mannen met natte mouwen begeleiden je naar buiten.",
+          "effect": [
+            {
+              "lichaam": -1
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "v-vat-3",
+    "god": "vathrun",
+    "plek": "city",
+    "tekst": "Bij het kantoor van de Metropolitan Board of Works vraag je naar de rapporten van Josiah Penhallow. Een klerk zegt dat ze nooit zijn binnengekomen. Een oudere tekenaar trekt je even later apart in de gang. Hij heeft een kopie van één tekening bewaard, uit voorzorg. 'Ik heb het nooit aan iemand laten zien,' zegt hij. 'Ik wist niet aan wie.'",
+    "test": {
+      "kenmerk": "kennis",
+      "moeilijkheid": 8
+    },
+    "gelukt": {
+      "tekst": "De tekening toont een doorsnede onder Wapping: de nieuwe leiding, en daaronder een ronde kamer met een deur. In de marge staat in Penhallows hand: 'zeven zegels, Romeins of ouder, warm aan de hand'.",
+      "effect": [
+        {
+          "aanwijzing": 2
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "De tekening is zo technisch dat je er weinig van begrijpt. Je neemt hem toch mee, maar hij blijft raadselachtig.",
+      "effect": [
+        {
+          "aanwijzing": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "v-vat-4",
+    "god": "vathrun",
+    "plek": "whitehall",
+    "persoon": "thaddeus-voss",
+    "tekst": "Hoofdinspecteur Voss heeft een lijst op zijn bureau: zeventien rioolwerkers en bootlieden die sinds de zomer als vermist zijn opgegeven. Ze kwamen allemaal uit dezelfde drie straten aan de zuidoever. 'Niemand mist ze,' zegt hij, 'behalve hun vrouwen, en die praten niet met de politie. Misschien wel met jou.'",
+    "test": {
+      "kenmerk": "scherpte",
+      "moeilijkheid": 8
+    },
+    "gelukt": {
+      "tekst": "Je ziet wat Voss gemist heeft: bij elke vermiste staat in het verslag dat hij 'op donderdag naar de wasserij ging'. Voss knikt langzaam en schrijft een naam op: Brine.",
+      "effect": [
+        {
+          "aanwijzing": 1
+        },
+        {
+          "trofee": 1
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "Je kijkt naar de lijst tot de namen door elkaar lopen. Voss zucht en bergt hem op. 'Kom terug als je iets weet.'",
+      "effect": []
+    }
+  },
+  {
+    "id": "v-vat-5",
+    "god": "vathrun",
+    "plek": "bloomsbury",
+    "tekst": "In de leeszaal vind je een kroniek van de abdij van Bermondsey, vertaald uit het Latijn. Bij het jaar 1348 staat een korte passage over bisschop Aldric, 'die in de zwarte dood naar de rivier ging om het water te bezweren, en niet terugkwam'. Iemand heeft de bladzijde eerder gelezen: er zit nog een natte vingerafdruk op.",
+    "test": {
+      "kenmerk": "kennis",
+      "moeilijkheid": 8
+    },
+    "gelukt": {
+      "tekst": "Je leest verder en vindt de bezwering die Aldric meenam: een gebed om de zeven zegels te sluiten. Het helpt je te begrijpen waarom de Bisschop nu terugkomt. Hij was het eerste slot.",
+      "effect": [
+        {
+          "aanwijzing": 1
+        },
+        {
+          "trek": "spreuken"
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "Het oude Latijn is te moeilijk. Je ruikt alleen de rivier, zelfs hier, midden in Bloomsbury.",
+      "effect": [
+        {
+          "geest": -1
+        }
+      ]
+    }
+  },
+  {
+    "id": "v-vat-6",
+    "god": "vathrun",
+    "plek": "westminster",
+    "tekst": "Onder Westminster Bridge staat een rooster open dat 's nachts dicht hoort te zijn. Er hangt een slot aan, maar het is doorgeknipt. Uit de tunnel komt een warme, zoute lucht en het geluid van stromend water, terwijl het tij laag staat. Op de muur staat met krijt een golf getekend, met zeven streepjes.",
+    "keuzes": [
+      {
+        "label": "Naar binnen gaan (Kracht 8)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je baant je een weg door de tunnel en vindt een plek waar het Genootschap offers heeft achtergelaten: munten, brood en een zegel van was. Je neemt het zegel mee en trekt het rooster achter je dicht.",
+          "effect": [
+            {
+              "trofee": 1
+            },
+            {
+              "aanwijzing": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Het water stijgt sneller dan het tij kan verklaren. Je komt eruit, maar niet alleen.",
+          "effect": [
+            {
+              "lichaam": -1
+            },
+            {
+              "monster": "hier"
+            }
+          ]
+        }
+      },
+      {
+        "label": "Het rooster sluiten en Voss waarschuwen",
+        "tekst": "Je sluit het rooster met je eigen ketting. Voss laat er de volgende ochtend een agent bij zetten. Het is geen oplossing, maar het geeft de stad een nacht rust.",
+        "effect": [
+          {
+            "mist": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "v-vat-7",
+    "god": "vathrun",
+    "plek": "st-katharine-docks",
+    "persoon": "josiah-penhallow",
+    "tekst": "Tussen de pakhuizen loopt een man in de kleren van een ingenieur, doorweekt, met een lamp die niet brandt. Hij lijkt op de foto die Martha je liet zien. Als je hem roept, draait hij zich langzaam om. 'Ik heb hem dichtgemetseld,' zegt hij, 'maar hij ademt erdoorheen.' Dan stapt hij achteruit, het water in, en is weg.",
+    "test": {
+      "kenmerk": "kennis",
+      "moeilijkheid": 9
+    },
+    "gelukt": {
+      "tekst": "Je dwingt jezelf om niet weg te kijken en onthoudt zijn woorden. Op de kade ligt een natte notitie: een rij getallen, de dieptes waarop de zegels zitten. Penhallow helpt je nog steeds, op zijn manier.",
+      "effect": [
+        {
+          "aanwijzing": 2
+        },
+        {
+          "geest": -1
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "Je rent naar de rand van de kade. Er is niets, alleen kringen in het water. Je handen trillen nog uren.",
+      "effect": [
+        {
+          "geest": -2
+        }
+      ]
+    }
+  },
+  {
+    "id": "v-vat-8",
+    "god": "vathrun",
+    "plek": "limehouse",
+    "tekst": "Aan de oever van Limehouse Reach staat bij eb een groep mensen in een kring in het slik. Ze laten één voor één iets in het water vallen: een munt, een ring, een kinderschoen. Ze zingen zachtjes. Een vrouw in de kring ziet je en wenkt je om erbij te komen staan.",
+    "keuzes": [
+      {
+        "label": "De kring verstoren (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je spreekt ze aan als een dominee op een zondag. Een paar mensen schrikken wakker uit hun gezang en lopen weg. De kring valt uiteen en het water trekt zich terug.",
+          "effect": [
+            {
+              "trofee": 1
+            },
+            {
+              "mist": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Ze kijken je alleen aan en zingen door. Het tij komt opeens op, en de kring blijft staan terwijl jij terugrent.",
+          "effect": [
+            {
+              "lichaam": -1
+            },
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Ongezien toekijken (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je ziet wie de kring leidt: een jonge man met zeven wassen zegels om zijn nek. Je volgt hem naar huis en weet nu waar het Genootschap in Limehouse samenkomt.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Iemand ziet je staan. De kring draait zich zwijgend naar je om. Je loopt weg, en je hoort voetstappen achter je tot aan de hoofdstraat.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "v-vat-9",
+    "god": "vathrun",
+    "plek": "chelsea",
+    "tekst": "Op de oever bij Battersea Reach ligt iets aangespoeld: een stuk paars brokaat, rot en zwaar van het slik, met gouden draad. Een bisschopsmijter. Een visser die het vond, wil er niets meer mee te maken hebben. 'Gisteren lag het verder in het water,' zegt hij. 'Het komt naar ons toe.'",
+    "test": {
+      "kenmerk": "kennis",
+      "moeilijkheid": 8
+    },
+    "gelukt": {
+      "tekst": "In de voering is een stuk perkament genaaid, waarop in Latijn staat hoe de bisschop ooit werd tegengehouden: 'met licht, met zout, en met wie zijn naam kent'. Je weet nu hoe je hem kunt verzwakken.",
+      "effect": [
+        {
+          "aanwijzing": 1
+        },
+        {
+          "toestand": "gezegend"
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "Als je de mijter optilt, druppelt er rivierwater uit dat niet ophoudt. Je laat hem vallen. Hij ligt de volgende ochtend weer verder op de oever.",
+      "effect": [
+        {
+          "geest": -1
+        },
+        {
+          "mist": -1
+        }
+      ]
+    }
+  },
+  {
+    "id": "v-vat-10",
+    "god": "vathrun",
+    "plek": "strand",
+    "persoon": "nell-farrow",
+    "tekst": "Nell Farrow van The Evening Courier wacht je op bij de Embankment. Ze heeft een verhaal over vermiste rioolwerkers dat haar redacteur niet wil plaatsen. 'Te somber,' zei hij. Ze wil weten wat jij weet, en ze heeft zelf ook iets: een foto van een groep mannen in een tunnel, met in hun midden Josiah Penhallow.",
+    "test": {
+      "kenmerk": "overtuiging",
+      "moeilijkheid": 7
+    },
+    "gelukt": {
+      "tekst": "Jullie wisselen aantekeningen uit. Op de foto zie je achter de mannen de deur, met zeven ronde vlakken. Twee ervan zijn al zwart. Nell belooft je te waarschuwen als ze meer hoort.",
+      "effect": [
+        {
+          "aanwijzing": 1
+        },
+        {
+          "trek": "bondgenoot"
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "Nell vindt dat je te weinig teruggeeft en houdt de foto bij zich. 'Kom terug als je eerlijk wilt praten.'",
+      "effect": []
+    }
+  },
+  {
+    "id": "v-azh-1",
+    "god": "azh-ilareth",
+    "plek": "soho",
+    "persoon": "ivy-lisle",
+    "tekst": "Achter de occulte boekwinkel wacht een jonge vrouw met inktvlekken op haar vingers. Ze draagt een speldje van een bleke lantaarn, maar ze houdt haar sjaal eroverheen. 'Ik ben Ivy,' zegt ze snel. 'Ik teken de sterrenkaarten voor de Orde. Mijn vrienden slapen niet meer. Magister Croft zegt dat dat goed is. Ik denk het niet.'",
+    "keuzes": [
+      {
+        "label": "Haar vertrouwen winnen (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Ivy laat je haar laatste kaart zien. De ster staat erop, met een lijn naar een datum in december en de woorden 'de nacht van de nabijheid'. Ze belooft je meer te vertellen als het veilig kan.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Een rijtuig stopt aan het einde van de steeg. Ivy schrikt en verdwijnt zonder nog iets te zeggen.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Haar een uitweg aanbieden (Kennis 8)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je leert haar een eenvoudige bescherming tegen het licht van de ster. Ze huilt van opluchting en geeft je een spreuk die ze uit Crofts boeken heeft overgeschreven.",
+          "effect": [
+            {
+              "trek": "spreuken"
+            },
+            {
+              "geest": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Ze begrijpt je uitleg niet goed en wordt er alleen banger van.",
+          "effect": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "v-azh-2",
+    "god": "azh-ilareth",
+    "plek": "marylebone",
+    "persoon": "aurelian-croft",
+    "tekst": "In een zaal aan Harley Street geeft Magister Aurelian Croft een openbare lezing: 'Over het licht dat komt'. Het publiek bestaat uit dames in avondjurken, artsen en studenten. Croft is charmant, geestig en overtuigend. Aan het einde vraagt hij of er vragen zijn, en hij kijkt jou recht aan.",
+    "keuzes": [
+      {
+        "label": "Een kritische vraag stellen (Charisma 9)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Je vraagt waarom zijn leerlingen niet meer slapen. Het blijft stil in de zaal. Een paar mensen staan op en gaan weg. Croft glimlacht, maar zijn ogen niet. Je hebt hem verzwakt, en je hebt een vijand gemaakt.",
+          "effect": [
+            {
+              "trofee": 1
+            },
+            {
+              "mist": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Croft beantwoordt je vraag zo innemend dat de zaal om jou lacht. Je voelt je klein en vreemd verward.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "Zwijgen en zijn woorden noteren (Kennis 8)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Tussen de mooie zinnen door noemt hij drie bronnen: een Perzisch handschrift, een Tibetaanse kroniek en een sterrenkaart 'uit het oosten'. Je schrijft ze op.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Zijn stem is zo prettig dat je wegdroomt. Als je opschrikt, is de zaal leeg.",
+          "effect": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "v-azh-3",
+    "god": "azh-ilareth",
+    "plek": "mayfair",
+    "persoon": "lucan-vey",
+    "tekst": "In de salon van lady Pembury leest de dichter Lucan Vey zijn nieuwste werk voor. Hij is bleek, mager en wonderschoon. De gasten luisteren ademloos. Het gedicht is in het Engels, maar halverwege glijdt het over in een taal die niemand kent. Een dame bij het raam begint zachtjes te huilen.",
+    "keuzes": [
+      {
+        "label": "Lucan na afloop aanspreken (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "In de gang grijpt hij je pols. 'Ik herinner me niet dat ik het geschreven heb,' fluistert hij. 'Elke nacht een vers. Elke ochtend ben ik minder.' Hij geeft je het manuscript. 'Neem het mee, alsjeblieft.'",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "geest": -1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Croft staat naast Lucan voordat je bij hem bent en leidt hem weg. Je hoort alleen nog de vreemde slotregel in je hoofd.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Het gedicht onderbreken (Kracht 7)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 7
+        },
+        "gelukt": {
+          "tekst": "Je stoot 'per ongeluk' een tafel om. Het glas breekt, de betovering ook. Lucan kijkt je dankbaar aan, en de gasten zijn hun verwarring snel vergeten.",
+          "effect": [
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je wordt door twee bedienden naar buiten gebracht. Het gedicht gaat zonder jou verder.",
+          "effect": [
+            {
+              "lichaam": -1
+            },
+            {
+              "mist": -1
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "v-azh-4",
+    "god": "azh-ilareth",
+    "plek": "hampstead",
+    "tekst": "In de koepel van de sterrenwacht is het ijskoud. Door het geopende dak zie je de ster, wit met een violette rand. Op de werktafel liggen de berekeningen van de afgelopen weken, keurig bijgehouden door iemand die er nu niet meer is. Er ontbreekt één vel: de laatste.",
+    "test": {
+      "kenmerk": "kennis",
+      "moeilijkheid": 9
+    },
+    "gelukt": {
+      "tekst": "Je maakt de berekening zelf af. De ster komt niet zomaar dichterbij: hij wordt getrokken, door iets op aarde dat hem roept. De curve wijst naar Mayfair.",
+      "effect": [
+        {
+          "aanwijzing": 1
+        },
+        {
+          "geest": 1
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "Je kijkt door de kijker om een waarde te controleren. De ster kijkt terug. Je zit een kwartier op de vloer voordat je weer kunt opstaan.",
+      "effect": [
+        {
+          "geest": -2
+        },
+        {
+          "aanwijzing": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "v-azh-5",
+    "god": "azh-ilareth",
+    "plek": "bloomsbury",
+    "tekst": "Een conservator van de oosterse afdeling laat je een Tibetaanse rol zien, lang geleden door een missionaris meegebracht. Er staat een sterrenhemel op met één ster in rood. Een vertaling in potlood in de marge zegt: 'De gast die te vroeg komt. De monniken van de Witte Wolken weten hoe hij vertrekt.'",
+    "test": {
+      "kenmerk": "kennis",
+      "moeilijkheid": 8
+    },
+    "gelukt": {
+      "tekst": "Je vergelijkt de rol met de hemel van vannacht. Het is dezelfde ster. Wie wil weten hoe hij weer verdwijnt, moet naar het klooster in de Himalaya.",
+      "effect": [
+        {
+          "aanwijzing": 1
+        },
+        {
+          "trofee": 1
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "Je ziet alleen een mooie oude rol. De conservator rolt hem teleurgesteld weer op.",
+      "effect": []
+    }
+  },
+  {
+    "id": "v-azh-6",
+    "god": "azh-ilareth",
+    "plek": "leicester-square",
+    "tekst": "In het theater wordt een nieuw toneelstuk gerepeteerd, 'De Ster van Bethlehem', met een decor van spiegels en een gaslamp achter violet glas. De regisseur heeft het geld gekregen van 'een vereniging van liefhebbers'. De acteurs klagen over hoofdpijn en dromen. De première is over een week.",
+    "keuzes": [
+      {
+        "label": "Het decor saboteren (Kracht 8)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je breekt 's nachts de spiegels en draait de gaskraan dicht. De première wordt uitgesteld, en de acteurs slapen voor het eerst in weken.",
+          "effect": [
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De nachtwaker betrapt je met een hamer in je hand.",
+          "effect": [
+            {
+              "toestand": "gezocht"
+            }
+          ]
+        }
+      },
+      {
+        "label": "Uitzoeken wie betaalt (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "In het kantoor van de regisseur ligt een kwitantie met het zegel van de Bleke Lantaarn en een adres in Mayfair.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "pond": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De regisseur is achterdochtig en stuurt je weg.",
+          "effect": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "v-azh-7",
+    "god": "azh-ilareth",
+    "plek": "chelsea",
+    "tekst": "Een jonge schilderes heeft in haar atelier dezelfde ster wel twintig keer geschilderd, op doeken, op de muur en op de achterkant van een deur. Ze weet niet meer wanneer ze begon. Haar handen zijn rood van het schilderen. 'Hij wil dat ik hem goed teken,' zegt ze. 'Dan kan hij de weg vinden.'",
+    "keuzes": [
+      {
+        "label": "De schilderijen overschilderen (Kennis 8)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je schildert over elke ster een eenvoudig teken van afweer. De schilderes valt in slaap op de bank, voor het eerst in dagen.",
+          "effect": [
+            {
+              "trofee": 1
+            },
+            {
+              "geest": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je kwast weigert over de violette verf te gaan. Je begrijpt waarom ze niet kan stoppen.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Haar meenemen naar de kerk",
+        "tekst": "Je brengt haar naar koster Hobbs in Westminster, die haar onderdak geeft. Je neemt één schilderij mee: de ster staat er preciezer op dan op welke kaart dan ook.",
+        "effect": [
+          {
+            "aanwijzing": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "v-azh-8",
+    "god": "azh-ilareth",
+    "plek": "kings-cross",
+    "tekst": "Op het perron van de nachttrein naar Edinburgh staan drie leden van de Orde met een zware kist. Ze zijn op weg naar een sterrenwacht in de Schotse heuvels, die hoger ligt en een helderdere hemel heeft. Alfie de kruier knipoogt naar je: de kist moet nog worden ingeladen, en dat is zijn werk.",
+    "test": {
+      "kenmerk": "scherpte",
+      "moeilijkheid": 8
+    },
+    "gelukt": {
+      "tekst": "Terwijl Alfie de kist op een karretje zet, til je het deksel op. Een grote ronde spiegel in een gouden lijst. Je stoot hem 'per ongeluk' van het karretje. De Orde vloekt, de spiegel ligt in scherven.",
+      "effect": [
+        {
+          "trofee": 1
+        },
+        {
+          "aanwijzing": 1
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "Een van de mannen ziet je kijken en zet zijn hand op de kist. De trein vertrekt, met de spiegel.",
+      "effect": [
+        {
+          "mist": -1
+        }
+      ]
+    }
+  },
+  {
+    "id": "v-azh-9",
+    "god": "azh-ilareth",
+    "plek": "strand",
+    "tekst": "Bij de Society of Arts in John Adam Street, vlak bij de Strand, mag je een brief afgeven voor de secretaris. Je krijgt een kort antwoord: de Society 'neemt geen kennis van onbevestigde waarnemingen'. Een jonge assistent loopt je achterna. Hij heeft de ster ook gezien, en hij is bang.",
+    "test": {
+      "kenmerk": "overtuiging",
+      "moeilijkheid": 7
+    },
+    "gelukt": {
+      "tekst": "De assistent geeft je kopieën van drie waarnemingen uit Parijs, Berlijn en Kaapstad. De ster is overal te zien, en overal komt hij dichterbij.",
+      "effect": [
+        {
+          "aanwijzing": 1
+        },
+        {
+          "geest": 1
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "De assistent schrikt van een deur die opengaat en loopt weg zonder iets te geven.",
+      "effect": []
+    }
+  },
+  {
+    "id": "v-azh-10",
+    "god": "azh-ilareth",
+    "plek": "whitehall",
+    "persoon": "thaddeus-voss",
+    "tekst": "Hoofdinspecteur Voss heeft een dossier dat hij 'De tekenaars' noemt: mensen die zijn opgepakt omdat ze een symbool op muren schilderden, steeds hetzelfde. Een ster met een violette rand. Geen van hen weet waarom. 'Eén van hen,' zegt Voss, 'is mijn eigen agent. Hij doet het in zijn slaap.'",
+    "test": {
+      "kenmerk": "kennis",
+      "moeilijkheid": 8
+    },
+    "gelukt": {
+      "tekst": "Je herkent het symbool als een stuk van de sterrenkaart van de Orde. De tekenaars wonen allemaal binnen zicht van Mayfair. Voss belooft de spiegels daar te laten weghalen, 'op een technische grond'.",
+      "effect": [
+        {
+          "aanwijzing": 1
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "Je kijkt lang naar de tekeningen. Die nacht word je wakker met een stuk krijt in je hand.",
+      "effect": [
+        {
+          "geest": -1
+        },
+        {
+          "toestand": "vervloekt"
+        }
+      ]
+    }
+  },
+  {
+    "id": "v-neb-1",
+    "god": "nebet-ankhu",
+    "plek": "bloomsbury",
+    "persoon": "philippa-moss",
+    "tekst": "In een opslagruimte van het museum ontmoet je Dr. Philippa Moss, archeologe van de expeditie-Harrowgate. Ze ziet er moe uit. Ze heeft drie zegels uit het graf weten te redden. Harrowgate verkoopt de rest. 'Het was geen graf,' zegt ze. 'Het was een gevangenis. Elk zegel dat hij verkoopt, is een slot minder.'",
+    "keuzes": [
+      {
+        "label": "Aanbieden haar te helpen (Charisma 7)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 7
+        },
+        "gelukt": {
+          "tekst": "Ze geeft je een lijst met de kopers van de verkochte zegels, en vraagt je er één terug te halen. 'Breng het hier. Het museum is het veiligste slot dat ik heb.'",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Ze twijfelt of ze je kan vertrouwen en houdt de lijst voorlopig voor zichzelf.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            }
+          ]
+        }
+      },
+      {
+        "label": "De inscripties met haar lezen (Kennis 9)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Samen lezen jullie de tekst op een zegel: 'Hier slaapt hij die geen gezicht heeft. Wie hem een gezicht geeft, geeft hem een troon.' Moss wordt wit. 'Harrowgate,' fluistert ze.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "geest": -1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De tekens zijn te verweerd. Moss bedankt je toch, maar je ziet dat ze teleurgesteld is.",
+          "effect": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "v-neb-2",
+    "god": "nebet-ankhu",
+    "plek": "pall-mall",
+    "persoon": "lucius-harrowgate",
+    "tekst": "Sir Lucius Harrowgate ontvangt je in zijn club, in een kamer waar alle spiegels zijn afgedekt met zwart laken. Hij praat over zijn verzameling en zijn kopers. Zijn stem is dezelfde als vorige week, maar zijn gezicht is het niet helemaal. Zijn neus is smaller, zijn ogen staan verder uit elkaar. Hij lijkt het zelf niet te merken.",
+    "keuzes": [
+      {
+        "label": "Het laken van een spiegel trekken (Kracht 8)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "In de spiegel zie je Harrowgate zonder gezicht, alleen een gladde gouden vlakte. Hij schreeuwt, en het masker in de spiegel schreeuwt niet mee. Je bent weg voordat de bedienden komen, en je weet wat je bevecht.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "geest": -1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Twee bedienden houden je tegen voordat je bij de spiegel bent. Ze zetten je op straat, en Harrowgate laat de politie bellen.",
+          "effect": [
+            {
+              "toestand": "gezocht"
+            }
+          ]
+        }
+      },
+      {
+        "label": "Naar zijn kopers vragen (Charisma 9)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Zijn ijdelheid wint van zijn voorzichtigheid. Hij noemt een lady in Mayfair, een bankier in de City en 'een vereniging in Marylebone'. Drie zegels, drie adressen.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "pond": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij glimlacht met een mond die even niet de zijne is. Het gesprek is voorbij.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "v-neb-3",
+    "god": "nebet-ankhu",
+    "plek": "st-katharine-docks",
+    "tekst": "Nachtwaker Tobias Finch staat buiten het pakhuis van Harrowgate in de regen. Hij wil niet meer naar binnen. 'Er staat iemand tussen de kisten,' zegt hij. 'Elke nacht. Hij draagt elke nacht een ander gezicht, en gisteren was het het mijne.'",
+    "keuzes": [
+      {
+        "label": "Naar binnen gaan (Kracht 8)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Tussen de kisten vind je geen figuur, wel een geopende kist met een gebroken zegel en een stuk goud in de vorm van een masker. Je neemt het mee voordat het iemand anders vindt.",
+          "effect": [
+            {
+              "trek": "artefacten"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Iets beweegt tussen de kisten, met jouw gezicht. Je struikelt achteruit naar buiten.",
+          "effect": [
+            {
+              "geest": -2
+            },
+            {
+              "monster": "hier"
+            }
+          ]
+        }
+      },
+      {
+        "label": "Finch ondervragen (Waarneming 7)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 7
+        },
+        "gelukt": {
+          "tekst": "Finch vertelt dat de figuur elke nacht naar de rivier loopt, naar het westen, naar de lichten van de City. Je weet nu welke kant hij op gaat.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Finch is te bang om nog iets zinnigs te zeggen.",
+          "effect": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "v-neb-4",
+    "god": "nebet-ankhu",
+    "plek": "whitechapel",
+    "tekst": "In een smalle steeg ontmoet je een man die je kent, Alfie de kruier van King's Cross. Hij groet je niet. Hij staat stil onder een gaslamp en kijkt naar zijn handen alsof hij ze voor het eerst ziet. Als je zijn naam noemt, schrikt hij. 'Is dat mijn naam?' vraagt hij, met een stem die net niet de zijne is.",
+    "test": {
+      "kenmerk": "kennis",
+      "moeilijkheid": 9
+    },
+    "gelukt": {
+      "tekst": "Je spreekt hem aan met zijn naam, zijn moeders naam en de naam van zijn straat. Langzaam keert Alfie terug in zijn eigen gezicht. Wat hem droeg, trekt zich terug in de mist.",
+      "effect": [
+        {
+          "trofee": 1
+        },
+        {
+          "geest": -1
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "Hij glimlacht met Alfies mond en loopt de mist in. De echte Alfie wordt de volgende ochtend verward gevonden in Wapping.",
+      "effect": [
+        {
+          "geest": -1
+        },
+        {
+          "mist": -1
+        }
+      ]
+    }
+  },
+  {
+    "id": "v-neb-5",
+    "god": "nebet-ankhu",
+    "plek": "mayfair",
+    "tekst": "Lady Fenwick ontvangt je in haar salon, waar op de schoorsteenmantel een groene scarabee onder een glazen stolp staat. Ze kocht hem van Sir Lucius voor een fortuin. 'Sinds hij hier staat,' zegt ze, 'verandert mijn man. Hij herkent de kinderen niet meer.' Ze wil de scarabee kwijt, en ze is bang voor Harrowgate.",
+    "keuzes": [
+      {
+        "label": "De scarabee meenemen (Charisma 7)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 7
+        },
+        "gelukt": {
+          "tekst": "Je belooft haar dat Harrowgate er nooit achter komt. Ze geeft je de stolp met trillende handen. Het zegel is nog heel, en Dr. Moss zal er blij mee zijn.",
+          "effect": [
+            {
+              "trek": "artefacten"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Ze krijgt op het laatste moment spijt en laat je uit, met de scarabee nog op de schoorsteen.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Haar man onderzoeken (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Lord Fenwick zit in de bibliotheek en draait zijn gezicht steeds van het licht weg. Je ziet de gouden glans onder zijn huid. Je weet nu hoe de farao zich verspreidt: via zijn zegels en via hun eigenaars.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "geest": -1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Lord Fenwick ziet je kijken en zegt iets in een taal die geen Engels is.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "v-neb-6",
+    "god": "nebet-ankhu",
+    "plek": "covent-garden",
+    "tekst": "In een veilinghuis aan King Street worden vandaag 'Egyptische oudheden uit een particuliere collectie' geveild. Je herkent de stempels van de expeditie-Harrowgate. Op de lijst staat een kavel zonder beschrijving: 'Zegel, klei, gebroken'. De zaal is vol verzamelaars, en een van hen draagt een bleke lantaarn op zijn revers.",
+    "keuzes": [
+      {
+        "label": "Meebieden (3 Pond)",
+        "tekst": "Je biedt mee, verbaast de zaal en wint het kavel. Het gebroken zegel is nog warm. Dr. Moss zal weten wat ermee moet.",
+        "effect": [
+          {
+            "pond": -3
+          },
+          {
+            "trek": "artefacten"
+          }
+        ]
+      },
+      {
+        "label": "De veilingmeester ompraten (Charisma 9)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Je fluistert dat het kavel gestolen is en dat Scotland Yard onderweg is. Het kavel wordt teruggetrokken en aan jou meegegeven, 'ter verificatie'.",
+          "effect": [
+            {
+              "trek": "artefacten"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De veilingmeester laat je door twee mannen naar buiten begeleiden. Het kavel gaat naar de man met de lantaarn.",
+          "effect": [
+            {
+              "mist": -1
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "v-neb-7",
+    "god": "nebet-ankhu",
+    "plek": "strand",
+    "tekst": "Professor Hallam van King's College heeft een afgietsel gekregen van een inscriptie uit Thebe, gestuurd door een collega in Caïro. Het is dezelfde tekst als op de zegels van Harrowgate. De collega schrijft dat de dorpen in de vallei 's nachts weer vuren branden 'om de koning zonder gezicht buiten te houden'.",
+    "test": {
+      "kenmerk": "kennis",
+      "moeilijkheid": 8
+    },
+    "gelukt": {
+      "tekst": "Je leest samen met Hallam de tekst van het afgietsel. Het is een instructie: zonder zegels is de wachter het enige slot dat overblijft. Versla de wachter en de farao blijft zonder dienaar.",
+      "effect": [
+        {
+          "aanwijzing": 1
+        },
+        {
+          "trofee": 1
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "De tekst blijft duister. Hallam schenkt je een glas sherry voor de moeite.",
+      "effect": [
+        {
+          "geest": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "v-neb-8",
+    "god": "nebet-ankhu",
+    "plek": "city",
+    "tekst": "Bij een verzekeringskantoor in Lombard Street ligt de claim van de expeditie-Harrowgate: één kist, verloren tijdens het lossen. De klerk vertelt dat de kist nooit is gevonden, maar dat de lossers allemaal hetzelfde verhaal vertelden: de kist liep weg.",
+    "test": {
+      "kenmerk": "scherpte",
+      "moeilijkheid": 8
+    },
+    "gelukt": {
+      "tekst": "In het dossier staat een schets van de kist met een gat in de zijkant, van binnenuit opengebroken. De lossers wonen in Wapping. Je hebt hun namen.",
+      "effect": [
+        {
+          "aanwijzing": 2
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "De klerk mag je het dossier niet laten zien zonder volmacht. Je vertrekt met weinig.",
+      "effect": []
+    }
+  },
+  {
+    "id": "v-neb-9",
+    "god": "nebet-ankhu",
+    "plek": "whitehall",
+    "persoon": "thaddeus-voss",
+    "tekst": "Hoofdinspecteur Voss legt drie foto's voor je neer. Ze tonen drie verschillende mannen die in drie verschillende wijken zijn opgepakt voor inbraak. Op alle drie de foto's draagt de verdachte dezelfde gouden ring met een scarabee. 'Dezelfde ring,' zegt Voss, 'en in de cel was hij telkens weg. Net als de man.'",
+    "test": {
+      "kenmerk": "kennis",
+      "moeilijkheid": 8
+    },
+    "gelukt": {
+      "tekst": "Je legt Voss uit wat je weet over de farao en zijn dienaar. Hij gelooft je half, en dat is genoeg: hij geeft je een agent mee voor de nacht.",
+      "effect": [
+        {
+          "aanwijzing": 1
+        },
+        {
+          "trek": "bondgenoot"
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "Voss schudt zijn hoofd. 'Een ring die rondloopt. Ik moet met pensioen.' Hij stuurt je weg.",
+      "effect": []
+    }
+  },
+  {
+    "id": "v-neb-10",
+    "god": "nebet-ankhu",
+    "plek": "limehouse",
+    "tekst": "Op een binnenplaats in Limehouse staan zes kleine blauwe beeldjes in een rij op de vensterbank van een pandjeshuis, oud en geglazuurd. De pandjesbaas, mevrouw Quill, kocht ze van een losser uit de dokken. 's Nachts staan ze steeds anders, zegt ze. Vanochtend stonden ze met hun gezicht naar de deur.",
+    "keuzes": [
+      {
+        "label": "Ze kopen en vernietigen (2 Pond)",
+        "tekst": "Je koopt de beeldjes en slaat ze kapot op de kade. In elk beeldje zit een klein rolletje papyrus. Mevrouw Quill is blij dat ze weg zijn.",
+        "effect": [
+          {
+            "pond": -2
+          },
+          {
+            "trofee": 1
+          },
+          {
+            "aanwijzing": 1
+          }
+        ]
+      },
+      {
+        "label": "Ze laten staan en de wacht houden (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Om middernacht draaien de beeldjes zich langzaam naar het oosten, naar de dokken. Je weet nu waar hun meester zich verstopt.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je valt in slaap. Als je wakker wordt, staan de beeldjes om je heen op de vloer.",
+          "effect": [
+            {
+              "geest": -2
+            },
+            {
+              "monster": "hier"
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

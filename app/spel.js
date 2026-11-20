@@ -978,6 +978,18 @@ async function sluitScheur(h, plek = h.plek) {
   if (scheurGesloten(plek)) await losOp();
 }
 
+/* ---------- kaarten trekken ---------- */
+function trekKaart(lijst, filter) {
+  S.gespeeld ??= [];
+  const past = lijst.filter(e => (!e.god || e.god === S.god) && filter(e));
+  const vers = past.filter(e => !S.gespeeld.includes(e.id));
+  const pool = vers.length ? vers : past;
+  const gewogen = pool.flatMap(e => e.god ? [e, e, e] : [e]);
+  const kaart = kies1(gewogen);
+  if (kaart) { S.gespeeld.push(kaart.id); if (S.gespeeld.length > 60) S.gespeeld.shift(); }
+  return kaart;
+}
+
 /* ---------- ontmoetingsfase ---------- */
 async function ontmoeting(h) {
   const naam = korteNaam(heldDef(h).naam);
@@ -1001,7 +1013,7 @@ async function ontmoeting(h) {
   const plek = h.ronde.astraal || h.plek;
   if (h.ronde.astraal) await melding("Astrale reis", `Je geest zweeft naar ${plekNaam(plek)}.`);
   if (isOverzee(plek)) {
-    const kaart = kies1(D.ontmoetingen.expeditie.filter(e => e.plek === plek));
+    const kaart = trekKaart(D.ontmoetingen.expeditie, e => e.plek === plek);
     await speelKaart(h, kaart, "Expeditie", `art/plekken/${plek}.jpg`, "expeditie");
     if (S.overzee[plek].artefact || h.artefactGerucht) {
       S.overzee[plek].artefact = false; h.artefactGerucht = false;
@@ -1012,7 +1024,7 @@ async function ontmoeting(h) {
   const p = S.plekken[plek];
   if (p.scheur) {
     if (S.tutorial) await coach("scheur");
-    const kaart = kies1(D.ontmoetingen.scheur);
+    const kaart = trekKaart(D.ontmoetingen.scheur, () => true);
     await speelKaart(h, kaart, "Aan de andere kant", "art/fiches/scheur.jpg", "scheur");
     if ((h.plek !== plek && !h.ronde.astraal) || !p.scheur) return;
     const lens = h.artefacten.includes("vuurtoren-lens") && h.kenm.scherpte > h.kenm.kennis ? "scherpte" : "kennis";
@@ -1026,29 +1038,41 @@ async function ontmoeting(h) {
     return;
   }
   if (p.aanw > 0) {
-    const kaart = kies1(D.ontmoetingen.aanwijzing);
+    const kaart = trekKaart(D.ontmoetingen.aanwijzing, () => true);
     const k = await venster({ soort: "Aanwijzing", titel: plekNaam(plek), beeld: `art/plekken/${plek}.jpg`, achterkant: "mysterie", verhaal: kaart.tekst, knoppen: [{ label: "Onderzoeken (Waarneming 7)", waarde: true }] });
     if (k && await test(h, "scherpte", 7, "Een spoor volgen", { context: "ontmoeting" })) { p.aanw--; h.aanw++; log(`${naam} vindt een Aanwijzing in ${plekNaam(plek)}`); }
     return;
   }
-  const kaarten = D.ontmoetingen.stad.filter(e => e.plek === plek && e.id !== S.laatsteKaart);
-  const kaart = kies1(kaarten);
-  S.laatsteKaart = kaart.id;
+  const kaart = trekKaart(D.ontmoetingen.stad, e => e.plek === plek);
   await speelKaart(h, kaart, plekNaam(plek), `art/plekken/${plek}.jpg`, "stad");
 }
 async function speelKaart(h, kaart, soort, beeld, rug) {
   const naam = korteNaam(heldDef(h).naam);
+  const persoon = kaart.persoon ? byId(D.personen, kaart.persoon) : null;
+  const pBeeld = persoon && art(`art/personen/${persoon.id}.jpg`) ? `art/personen/${persoon.id}.jpg` : null;
+  const kop = { soort, titel: naam, beeld: pBeeld || beeld, zij: !!pBeeld, achterkant: rug, verhaal: kaart.tekst };
+  const metWie = persoon ? `<p class="persoonregel"><b>${esc(persoon.naam)}</b> · ${esc(persoon.rol)}</p>` : "";
+  const uitkomst = async (ok, uit) => {
+    const html = await pasToe(h, uit.effect || []);
+    await venster({ soort: ok === null ? soort : ok ? "Gelukt" : "Mislukt", titel: naam, beeld: pBeeld, zij: !!pBeeld, verhaal: uit.tekst, html });
+    await controleerHeld(h);
+  };
+  const doeTest = async t => test(h, t.kenmerk, t.moeilijkheid, t.kenmerk === "kracht" ? "Doorzetten" : "Wat doe je?", { context: "ontmoeting" });
+  if (kaart.keuzes) {
+    const i = await venster({ ...kop, html: metWie + `<p class="muted">Wat doe je?</p>`, knoppen: kaart.keuzes.map((k, i) => ({ label: k.test ? k.label.replace(/\((\w+) (\d+)\)/, (_, kn, n) => `(${kn} ${+n + MOEILIJKHEID[S.moeilijkheid].test})`) : k.label, waarde: i, uit: !k.test && (k.effect || []).some(e => e.pond < 0 && -e.pond > h.pond) })) });
+    const k = kaart.keuzes[i ?? 0];
+    if (!k.test) return uitkomst(null, { tekst: k.tekst, effect: k.effect });
+    const ok = await doeTest(k.test);
+    return uitkomst(ok, ok ? k.gelukt : k.mislukt);
+  }
   if (!kaart.test) {
     const html = await pasToe(h, kaart.effect);
-    await venster({ soort, titel: naam, beeld, achterkant: rug, verhaal: kaart.tekst, html: (kaart.slot ? `<p class="verhaal">${esc(kaart.slot)}</p>` : "") + html });
+    await venster({ ...kop, html: metWie + (kaart.slot ? `<p class="verhaal">${esc(kaart.slot)}</p>` : "") + html });
     await controleerHeld(h); return;
   }
-  await venster({ soort, titel: naam, beeld, achterkant: rug, verhaal: kaart.tekst, knoppen: [{ label: `${KNAAM[kaart.test.kenmerk]}-test (${kaart.test.moeilijkheid + MOEILIJKHEID[S.moeilijkheid].test})`, waarde: true }] });
-  const ok = await test(h, kaart.test.kenmerk, kaart.test.moeilijkheid, kaart.test.kenmerk === "kracht" ? "Doorzetten" : "Wat doe je?", { context: "ontmoeting" });
-  const uit = ok ? kaart.gelukt : kaart.mislukt;
-  const html = await pasToe(h, uit.effect);
-  await venster({ soort: ok ? "Gelukt" : "Mislukt", titel: naam, verhaal: uit.tekst, html });
-  await controleerHeld(h);
+  await venster({ ...kop, html: metWie, knoppen: [{ label: `${KNAAM[kaart.test.kenmerk]}-test (${kaart.test.moeilijkheid + MOEILIJKHEID[S.moeilijkheid].test})`, waarde: true }] });
+  const ok = await doeTest(kaart.test);
+  await uitkomst(ok, ok ? kaart.gelukt : kaart.mislukt);
 }
 async function ontmoetingsfase(start = 0) {
   S.fase = "ontmoeting";
@@ -1612,7 +1636,7 @@ function tekenStart() {
   app.innerHTML = `<div class="start">
     ${titel ? `<img class="hero-art" src="${titel}" alt="">` : ""}
     <div><span class="muted">Een coöperatief spel voor 2 of 4 helden</span><h1>Londen, 1888</h1></div>
-    <div class="opties"><button class="btn" data-act="tutorial">Leer spelen (tutorial)</button><button class="btn ghost" data-act="handboek">Handleiding</button></div>
+    <div class="opties"><button class="btn" data-act="tutorial">Leer spelen (tutorial)</button><button class="btn ghost" data-act="handboek">Handleiding</button><a class="btn ghost" href="lore/index.html">Lore-boek</a></div>
     ${opgeslagen && !opgeslagen.einde ? `<div class="hint">Er is een spel bezig tegen ${esc(byId(D.goden, opgeslagen.god)?.naam)}, ronde ${opgeslagen.ronde}. <button class="btn small" data-act="verder">Verder spelen</button></div>` : ""}
     <section><h2>Tegen wie?</h2><div class="goden">${D.goden.map(g => `<button class="optie" data-god="${g.id}" aria-pressed="${u.god === g.id}">${art(`art/goden/${g.id}.jpg`) ? `<img class="godbeeld" src="art/goden/${g.id}.jpg" alt="">` : ""}<b>${esc(g.naam)}</b><span class="muted">${esc(g.titel)}</span><span>${esc(g.regel)}</span></button>`).join("")}</div></section>
     <section><h2>Moeilijkheid</h2><div class="opties">${Object.entries(MOEILIJKHEID).map(([k, m]) => `<button class="optie" data-moeilijk="${k}" aria-pressed="${u.moeilijkheid === k}">${m.naam}: ${m.nodig} mysteries</button>`).join("")}</div></section>
@@ -1714,14 +1738,19 @@ app.addEventListener("keydown", e => { const p = e.target.closest?.("[data-plek]
 
 /* ---------- laden ---------- */
 const BESTANDEN_MD = { handleiding: "handleiding" };
-const BESTANDEN = { bord: "bord", helden: "helden", goden: "oude-goden", monsters: "monsters", epische: "epische-monsters", spullen: "spullen", spreuken: "spreuken", artefacten: "artefacten", toestanden: "toestanden", onheil: "onheil", ontmoetingen: "ontmoetingen" };
+const BESTANDEN = { bord: "bord", helden: "helden", goden: "oude-goden", monsters: "monsters", epische: "epische-monsters", spullen: "spullen", spreuken: "spreuken", artefacten: "artefacten", toestanden: "toestanden", onheil: "onheil", personen: "personen",
+  o_stad: "ontmoetingen/stad", o_verhaal: "ontmoetingen/verhaal", o_expeditie: "ontmoetingen/expeditie", o_scheur: "ontmoetingen/scheur", o_aanwijzing: "ontmoetingen/aanwijzing" };
 Promise.all(Object.entries(BESTANDEN).map(([k, f]) => fetch(`data/${f}.json`).then(r => { if (!r.ok) throw new Error(f); return r.json(); }).then(j => [k, j])))
   .then(lijst => Promise.all(Object.entries(BESTANDEN_MD).map(([k, f]) => fetch(`data/${f}.md`).then(r => r.ok ? r.text() : "").then(t => [k, t]))).then(md => [...lijst, ...md]))
-  .then(lijst => { D = Object.fromEntries(lijst); maakBuren(); teken(); registreerSW(); })
+  .then(lijst => {
+    D = Object.fromEntries(lijst);
+    D.ontmoetingen = { stad: [...D.o_stad, ...D.o_verhaal], expeditie: D.o_expeditie, scheur: D.o_scheur, aanwijzing: D.o_aanwijzing };
+    maakBuren(); teken(); registreerSW();
+  })
   .catch(err => { app.innerHTML = `<div class="start"><h1>Londen, 1888</h1><p>De speldata kon niet worden geladen (${esc(err.message)}). Open het spel via een webserver, niet als los bestand.</p></div>`; });
 function registreerSW() {
   try { if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost") && !location.hostname.endsWith("claude.ai") && !location.hostname.endsWith("claudeusercontent.com")) navigator.serviceWorker.register("sw.js").catch(() => {}); } catch {}
 }
 window.__spel = { get S() { return S; }, get D() { return D; }, get bezig() { return bezig; },
-  api: { nieuwSpel, zaai, reis, rust, dienst, doeMysterie, mysterieActie, beurtKlaar, gebruikActie, gebruikSpul, zoekWeg, bereikbaar, burenVan, afstanden, stapNaar, actief, groei, mysterie, heeft, isOverzee, spulDef, monsterDef, wapenBonus, plekDef } };
+  api: { speelKaart, nieuwSpel, zaai, reis, rust, dienst, doeMysterie, mysterieActie, beurtKlaar, gebruikActie, gebruikSpul, zoekWeg, bereikbaar, burenVan, afstanden, stapNaar, actief, groei, mysterie, heeft, isOverzee, spulDef, monsterDef, wapenBonus, plekDef } };
 })();
