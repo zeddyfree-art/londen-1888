@@ -631,5 +631,44 @@
         "straf": 1
       }
     ]
+  },
+  {
+    "id": "o37",
+    "naam": "Gerucht: de koorts van de stad",
+    "mist": 0,
+    "scheur": 0,
+    "monster": 0,
+    "gerucht": "Er verschijnt een monster in The City. Is het na 2 rondes niet verslagen, dan daalt de Mist met 2.",
+    "tekst": "In Barts liggen de zieken op de gangen. De dokters zeggen dat het tyfus is, maar de zusters weten beter: elke nacht loopt er iets langs de bedden dat niemand ziet binnenkomen. De directeur heeft laten weten dat hij het ziekenhuis sluit als het niet ophoudt.",
+    "acties": [
+      {
+        "type": "gerucht",
+        "soort": "verslaan",
+        "plek": "city",
+        "id": "mistdwaler",
+        "rondes": 3,
+        "straf": 2
+      }
+    ]
+  },
+  {
+    "id": "o38",
+    "naam": "Een koetsier vertelt",
+    "mist": 1,
+    "scheur": 0,
+    "monster": 0,
+    "extra": "Leg 1 Aanwijzing op King's Cross. Een koetsier biedt jullie zijn diensten aan: een van jullie krijgt binnenkort een ontmoeting met hem.",
+    "tekst": "In de schuilhutten van de koetsiers, waar ze 's nachts koffie drinken, gaat het verhaal rond van een vrachtje dat Alfie gisteravond niet wilde vervoeren. Alfie zelf zegt er niets over. Maar hij laat weten dat hij best eens wil rijden voor wie daar iets aan doet.",
+    "acties": [
+      {
+        "type": "vlag",
+        "vlag": "koetsier"
+      },
+      {
+        "type": "aanwijzingOp",
+        "plek": "kings-cross",
+        "aantal": 1
+      }
+    ]
   }
 ]

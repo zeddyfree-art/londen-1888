@@ -59,6 +59,7 @@ for (const o of data("onheil.json")) {
     if (a.type === "vlag") gezet.add(a.vlag);
     if (a.plek && !plekken.has(a.plek)) fout(o.id, `onbekende plek ${a.plek}`);
     if (a.type === "monsterOp" && a.id && !monsterIds.has(a.id)) fout(o.id, `onbekend monster ${a.id}`);
+    if (a.soort === "verslaan" && !monsterIds.has(a.id)) fout(o.id, `gerucht zonder bekend monster: ${a.id}`);
   }
   if (o.persoon && !persoonIds.has(o.persoon)) fout(o.id, `onbekend persoon ${o.persoon}`);
 }
