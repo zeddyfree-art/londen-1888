@@ -184,10 +184,10 @@
     "id": "odile-fairweather",
     "naam": "Madame Odile Fairweather",
     "leeftijd": 45,
-    "beroep": "Spiritistisch medium in Marylebone",
+    "beroep": "Spiritistisch medium uit New Orleans, nu in Marylebone",
     "rol": "Medium",
     "start": "Marylebone",
-    "achtergrond": "Haar seances zijn voor de helft toneel: verborgen draden, een tafel die kraakt op commando. Over de andere helft praat ze liever niet. Een stem die ze nooit heeft uitgenodigd, komt nu elke seance terug en noemt de namen van mensen die nog leven.",
+    "achtergrond": "Ze groeide op in het Franse Kwartier van New Orleans, bij een grootmoeder die de doden bij naam aansprak. In Londen zijn haar seances voor de helft toneel: verborgen draden, een tafel die kraakt op commando. Over de andere helft praat ze liever niet. Een stem die ze nooit heeft uitgenodigd, komt nu elke seance terug en noemt de namen van mensen die nog leven.",
     "kenmerken": {
       "kennis": 3,
       "scherpte": 3,
@@ -206,7 +206,7 @@
       "Seancetafeltje"
     ],
     "bondgenoot": null,
-    "prompt": "Victorian spiritualist medium in her forties, dark velvet gown with jet beads, lace shawl, kohl-rimmed eyes, hands resting on a crystal ball, a darkened seance parlour lit by a single candle, faint ghostly mist at the edges"
+    "prompt": "Creole woman of colour from New Orleans in her mid-forties, warm brown skin, high cheekbones, knowing half-smile, a tall tignon headwrap of saffron and emerald silk, heavy gold hoop earrings, a deep plum gown with gold embroidery and a fringed paisley shawl, a small gris-gris charm bag on a cord at her wrist, seated at a round seance table with her ringed hands spread around a crystal ball, tarot cards fanned beside it, warm red-gold candlelight from below, dried herbs and a painted saint's candle on a shelf behind her, faint ghostly mist curling at the edges"
   },
   {
     "id": "cordelia-vane",
@@ -234,7 +234,7 @@
       "3 Pond"
     ],
     "bondgenoot": null,
-    "prompt": "elegant aristocratic widow in her early thirties, 1888, black silk mourning gown with a high lace collar, pearl earrings, holding a ship's logbook, a tall Mayfair drawing room with a ship painting above the fireplace, cool window light"
+    "prompt": "pale aristocratic English widow of thirty-one, standing upright and composed, striking auburn hair swept up under a small black mourning bonnet with a short veil pushed back, cool grey eyes, severe black bombazine mourning gown with a high crape collar and a single cameo brooch, a ship's logbook held closed against her chest with gloved hands, behind her a tall rain-streaked window of a Mayfair shipping office with masts faint in the fog, cold silver-blue daylight from the side, no candles"
   },
   {
     "id": "silas-rook",
