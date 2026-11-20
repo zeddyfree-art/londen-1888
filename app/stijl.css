@@ -424,7 +424,7 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);ou
 .portaal-nevel{position:absolute;inset:-30%;background:conic-gradient(from 0deg,transparent,rgba(178,106,230,.25),transparent 30%,rgba(226,184,255,.15),transparent 60%,rgba(140,63,196,.3),transparent);filter:blur(14px)}
 .portaal-ring{position:absolute;width:min(226px,56vw);aspect-ratio:1;border-radius:50%;background:conic-gradient(#b26ae6,transparent 25%,#e2b8ff 50%,transparent 75%,#b26ae6);
   -webkit-mask:radial-gradient(circle,transparent 62%,#000 64%);mask:radial-gradient(circle,transparent 62%,#000 64%);filter:drop-shadow(0 0 10px #b26ae6)}
-.portaal img{position:relative;width:min(196px,48vw);aspect-ratio:1;border-radius:50%;object-fit:cover;clip-path:circle(45%);transform-origin:center;box-shadow:0 0 30px rgba(178,106,230,.7),inset 0 0 20px #000}
+.portaal img{position:relative;width:min(196px,48vw);aspect-ratio:1;border-radius:50%;object-fit:cover;clip-path:circle(49.5%);transform-origin:center;box-shadow:0 0 30px rgba(178,106,230,.7),inset 0 0 20px #000}
 .portaal-vonken{position:absolute;inset:0}
 .portaal-vonken i{position:absolute;left:50%;top:50%;width:4px;height:4px;margin:-2px;border-radius:50%;background:#e9cdfc;box-shadow:0 0 6px #b26ae6;opacity:0}
 @media (prefers-reduced-motion:no-preference){
@@ -433,5 +433,6 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);ou
   .portaal img{animation:og-adem 3.5s ease-in-out infinite}
   .portaal-vonken i{animation:og-vonk 2.6s ease-in var(--v) infinite}
 }
+.portaal img.fiche{clip-path:circle(45%)}
 @keyframes og-adem{0%,100%{box-shadow:0 0 24px rgba(178,106,230,.55),inset 0 0 20px #000;transform:scale(1)}50%{box-shadow:0 0 46px rgba(226,184,255,.85),inset 0 0 20px #000;transform:scale(1.03)}}
 @keyframes og-vonk{0%{transform:rotate(var(--a)) translateX(170px);opacity:0}25%{opacity:1}100%{transform:rotate(calc(var(--a) + 140deg)) translateX(20px);opacity:0}}

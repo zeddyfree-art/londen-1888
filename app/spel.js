@@ -207,7 +207,7 @@ function scheurBeeld() {
 }
 function portaalHtml(img) {
   const vonken = Array.from({ length: 14 }, (_, i) => `<i style="--a:${(i * 360 / 14).toFixed(0)}deg;--v:${(i * .37 % 2.6).toFixed(2)}s"></i>`).join("");
-  return `<div class="portaal" aria-hidden="true"><div class="portaal-nevel"></div><div class="portaal-vonken">${vonken}</div><div class="portaal-ring"></div><img src="${esc(img)}" alt=""></div>`;
+  return `<div class="portaal" aria-hidden="true"><div class="portaal-nevel"></div><div class="portaal-vonken">${vonken}</div><div class="portaal-ring"></div><img${img.includes("fiches/") ? ' class="fiche"' : ""} src="${esc(img)}" alt=""></div>`;
 }
 const OVERGANG = {
   scheur: { duur: 2300, html: t => `<svg class="og-spleet" viewBox="0 0 100 400" preserveAspectRatio="none"><path d="M50 0 L44 50 L56 95 L41 150 L58 205 L45 260 L55 315 L47 360 L50 400"/></svg>
