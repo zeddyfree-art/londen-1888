@@ -257,3 +257,45 @@ Hij roeit 's nachts patrouille op de Theems en vist meer uit het water dan hem l
 - **Admiraal** (Newfoundlander). Eén keer per ronde mag Admiraal 1 Lichaamsschade overnemen van een held op jouw plek.
 - **Eigenaardigheid:** Kan niet zwemmen. Vertelt dat aan niemand.
 - **Uitrusting:** Wapenstok (+1 bij gevechten, en nog +1 extra tegen menselijke tegenstanders); Stormlantaarn (+1 Waarneming tijdens ontmoetingen)
+
+## Agnes "Aggie" Pruitt
+
+**Kogelstootster** · 27 jaar · Kogelstootster en krachtvrouw op de kermis bij King's Cross · begint in King's Cross
+
+Aggie is groter dan de meeste mannen en breder dan de deur van haar woonwagen. Op de kermis aan de Caledonian Road stoot ze een kogel van zestien pond verder dan wie ook, en tilt ze twee smidsknechten tegelijk op. Na de voorstelling breit ze sjaals voor de kinderen van de kermis. Sinds de kleine Tommy van de schiettent 's nachts wegliep in de richting van het spoor, gaat ze elke avond zelf de rails langs, met een lantaarn en haar kogel in een netje over haar schouder.
+
+| Kennis | Waarneming | Kracht | Charisma | Lichaam | Geest |
+|---|---|---|---|---|---|
+| 1 | 2 | 4 | 3 | 8 | 4 |
+
+- **Brede schouders.** Verliest een andere held op jouw plek Lichaam in een gevecht, dan mag jij de klap opvangen: jij verliest het Lichaam in zijn plaats.
+- **Eigenaardigheid:** Breit sjaals voor iedereen die ze tegenkomt, ook voor de agenten die haar wegsturen.
+- **Uitrusting:** IJzeren kogel (+1 bij gevechten. Eén keer per ronde: gooi bij een mislukte Kracht-test één dobbelsteen opnieuw); Breiwerk (Eén keer per ronde: geef een held op jouw plek een warme sjaal. Hij herstelt 1 Geest)
+
+## Lottie "Muis" Finch
+
+**Dievegge** · 15 jaar · Zakkenroller en informant van Silas Rook · begint in The City
+
+Lottie rolt zakken in de drukte rond de Bank of England, zo snel dat de heren het pas thuis merken. Voor een shilling per week vertelt ze Silas Rook wat ze hoort: wie met wie praat, wie er 's nachts pakketjes brengt, wie er niet meer terugkomt. Ze kent elke achterdeur, elk dak en elke kelder van The City. De laatste tijd verdwijnen er kinderen van de straat, en Lottie houdt een lijstje bij van hun namen.
+
+| Kennis | Waarneming | Kracht | Charisma | Lichaam | Geest |
+|---|---|---|---|---|---|
+| 1 | 4 | 2 | 3 | 6 | 6 |
+
+- **Verstoppen.** Eén keer per ronde: staat er een monster op je plek, dan mag je je verstoppen. Je vecht niet, maar je hebt wel je ontmoeting.
+- **Eigenaardigheid:** Neemt altijd iets mee, ook als ze het niet nodig heeft. Geeft het meestal later terug.
+- **Uitrusting:** Lopers en haarspelden (+1 Waarneming bij ontmoetingen. Eén keer per ronde: gooi bij een mislukte Waarneming-test één dobbelsteen opnieuw); Gestolen zakhorloge (Eén keer per spel: verkoop het aan een heler. Je krijgt 3 Pond)
+
+## Julian Hartwell
+
+**Occultist** · 31 jaar · Voormalig adept van de Orde van de Bleke Lantaarn · begint in Soho
+
+Julian geloofde dat magie de mensheid kon verheffen. Zeven jaar lang klom hij op in de Orde van de Bleke Lantaarn, tot de nacht in Marylebone waarin hij zag wat Aurelian Croft met de nieuwe leerlingen deed. Hij vluchtte met het zwaard en het boek van zijn graad, en woont nu in een kamer achter een boekwinkel in Soho. Hij droomt nog steeds van een betere wereld. Hij slaapt alleen niet meer.
+
+| Kennis | Waarneming | Kracht | Charisma | Lichaam | Geest |
+|---|---|---|---|---|---|
+| 4 | 2 | 2 | 2 | 6 | 6 |
+
+- **Zwaard van licht.** Je vecht met Kennis in plaats van Kracht, en je wapens tellen mee. Maar wat je in de Orde zag, laat je niet los: mislukt een Gruwel-test, dan verlies je 1 Geest extra.
+- **Eigenaardigheid:** Draagt zijn witte gewaad nog onder zijn jas, en schaamt zich ervoor.
+- **Uitrusting:** Zwaard van de Orde (+1 bij gevechten. Julian vecht er met Kennis mee); Het Witte Boek (+1 bij het uitspreken van spreuken); 1 spreuk

@@ -239,3 +239,55 @@ Je hospita zegt dat je vanmiddag al thuis bent geweest. Je hebt boven iets gehaa
 *Met Sir Lucius Harrowgate.* Bij Christie's in King Street worden 'oudheden uit een particuliere verzameling' geveild. Iedereen weet van wie: Lucius Harrowgate verkoopt de helft van wat hij uit Thebe meenam. Wie een stuk koopt, hoort er 's nachts iets in krabben. De catalogus is uitverkocht.
 
 **In het spel:** Er ligt een artefact klaar overzee. · Als er na 2 rondes nog geen held in Pall Mall is geweest, daalt de Mist met 1.
+
+## Ysmara
+
+### De meidoorn bloeit
+
+In heel Londen bloeit 's nachts de meidoorn, in parken, op kerkhoven en tussen de straatstenen. De geur is zo zoet dat mensen ervan huilen. In Chelsea staat de tuin van het weeshuis wit van de bloesem, en de kinderen staan aan het hek te zingen.
+
+**In het spel:** Mist −1 · 1 Scheur · Leg 1 Aanwijzing op Chelsea.
+
+### De lege bedden
+
+*Met Mrs. Lavinia Greaves.* In één nacht zijn uit zeven huizen in Londen kinderen verdwenen. Hun bedden zijn warm, de ramen zijn dicht, en op elk kussen ligt een blaadje meidoorn. Mrs. Greaves zet een advertentie in The Times: ze biedt de ouders troost aan, en een plek om te rouwen, in haar tuin.
+
+**In het spel:** Mist −1 · Elke held verliest 1 Geest.
+
+### De jacht gaat
+
+Boven Hampstead klinkt een hoorn, drie keer. De honden van Londen blaffen tegelijk en houden dan op. Wie die nacht buiten is, ziet gestalten met geweien over de daken springen, en hoort lachen dat niet van mensen komt.
+
+**In het spel:** Mist −1 · 1 monster · Alle monsters bewegen.
+
+### Gerucht: het rijmpje
+
+*Met Oude Nan Mossop.* Overal op straat zingen kinderen een nieuw couplet van het aftelrijmpje, een couplet dat Oude Nan nog nooit heeft gehoord. Ze laat jullie weten dat ze het moet horen van iemand die het kan opschrijven, en snel, voordat de kinderen het weer vergeten.
+
+**In het spel:** Leg 2 Aanwijzingen op Covent Garden. Zijn die na 2 rondes niet allemaal opgehaald, dan daalt de Mist met 2.
+
+## Morghast
+
+### De putten gaan open
+
+Op drie plekken in de City zakt 's nachts de straat in. Uit de gaten komt een geur van kalk en oude aarde. Bij Spitalfields kruipt er iets uit dat de agenten eerst voor een dronkaard houden, tot het zijn hoofd omdraait.
+
+**In het spel:** Mist −1 · 1 Scheur · Er verschijnt een Knekelman in Spitalfields.
+
+### De anatomieles
+
+*Met Dr. Lionel Grieve.* Dr. Grieve geeft een openbare demonstratie in Guy's. Er komen tweehonderd toeschouwers, en wat ze zien, staat de volgende dag in geen enkele krant. Wel staan er die nacht in Southwark en de City mensen voor hun raam, die niet meer weten hoe ze moeten gaan liggen.
+
+**In het spel:** Mist −1 · Elke held in Southwark of The City verliest 1 Lichaam. Leg 1 Aanwijzing op Southwark.
+
+### Cholera
+
+In Soho en Whitechapel breekt de cholera weer uit, voor het eerst in jaren. De dokters sluiten de pompen. Zuster Prudence laat weten dat de zieken die sterven, 's nachts allemaal tegelijk hun ogen openen en naar het oosten kijken.
+
+**In het spel:** Mist −1 · Elke held verliest 1 Geest. Leg 1 Aanwijzing op The City.
+
+### Gerucht: de opgraving
+
+*Met Jebediah Sallow.* Jebediah Sallow laat via een straatjongen weten dat het Genootschap vannacht de diepste put opengraaft, onder de kerk van St Giles-without-Cripplegate. 'Als ze daar doorbreken,' schrijft hij in kromme letters, 'dan wordt hij wakker.'
+
+**In het spel:** Er opent een Scheur in The City. Is die na 2 rondes niet gesloten, dan daalt de Mist met 2.

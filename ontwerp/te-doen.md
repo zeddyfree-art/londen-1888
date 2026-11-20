@@ -2,7 +2,21 @@
 
 Deze lijst werken we aan het einde van elk gesprek bij. Zet bij elke update die spelers merken een nieuw bericht bovenaan `data/nieuws.json` (met een hoger `id`): dat verschijnt één keer als "Wat is er nieuw" als de app opent.
 
-*Laatst bijgewerkt: 20 november 2026 (negende sessie)*
+*Laatst bijgewerkt: 21 november 2026 (tiende sessie)*
+
+## Gemeten na de tiende sessie (vijf goden, 21 helden)
+
+Met `node tools/testbot.js 150` en `node tools/meet-klokken.js 100`. De Mist van Ysmara staat op 12 en die van Morghast op 11; met 11 en 12 was Ysmara te zwaar (normaal 49 tot 57%) en Morghast te makkelijk (normaal 83 tot 85%).
+
+| God | Ontspannen 2 / 4 | Normaal 2 / 4 | Genadeloos 2 / 4 |
+|---|---|---|---|
+| Vathrûn | 93% / 99% | 73% / 83% | 31% / 31% |
+| Azh-Ilareth | 95% / 99% | 69% / 74% | 21% / 13% |
+| Nebet-Ankhu | 95% / 100% | 76% / 79% | 29% / 17% |
+| Ysmara | 91% / 98% | 57% / 75% | 11% / 9% |
+| Morghast | 96% / 99% | 77% / 75% | 31% / 13% |
+
+De meetruis is ongeveer 4 tot 5 procentpunt per vakje. Ysmara op genadeloos zat in een eerdere meting op 16 tot 18%; nu op 9 tot 11%. Echte spelers hebben tegen Ysmara een voordeel dat de testbot niet benut: bij elkaar blijven.
 
 ## Gemeten na de negende sessie (Voorbereiden, bijna zeventig nieuwe kaarten)
 
@@ -83,21 +97,30 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [ ] Gedeeld scorebord: namen modereren als dat nodig wordt (verwijderen kan in de D1-database `londen1888-scorebord`).
 
 ### Geluid
+- [ ] Sfeerlussen voor Ysmara en Morghast maken in de ElevenLabs-flow (prompts staan in `geluidsopdracht.md`). Tot dan klinkt `sfeer-start`.
 - [ ] Op de iPad controleren: klinkt de sfeer nu zachter als de muziek aan staat? (Gaat via Web Audio, omdat Safari het gewone volume negeert.)
 
 ### Beelden
-- [ ] Beelden voor nieuwe kaarten (alleen nodig als er nieuwe personages of spullen bijkomen)
+- [ ] 25 nieuwe beelden maken met `ontwerp/beeldopdracht-uitbreiding.md`: 3 helden, 6 persoonlijke spullen, 2 goden, 8 monsters en 6 personages. Daarna de Drive-id's in `tools/art-drive.json`.
 
 ### Kaarten en verhaal
 - [ ] De teksten beoordelen we gaandeweg, tijdens het spelen.
-- [ ] Na een paar potjes: welke ★-keuzes (heldkeuzes) en vervolgverhalen vallen op, en willen we er meer? Nu hebben 8 helden een thuisplekkaart; de andere 10 nog niet (wel ★-keuzes op andere kaarten).
+- [ ] Na een paar potjes: welke ★-keuzes (heldkeuzes) en vervolgverhalen vallen op, en willen we er meer?
+- [ ] Ysmara en Morghast hebben 10 verhaalkaarten elk, de oude goden 16 tot 17. Na een paar potjes kijken of er meer nodig zijn.
 
 ### Spel
+- [ ] Testen met echte potjes: Aggie (klap opvangen), Lottie (verstoppen) en Julian (Kennis in gevechten). Is Julian niet te sterk met Kennis 4 en een zwaard?
+- [ ] Besluiten over het voorstel "overal iets te doen" (zie hieronder bij D).
 - [ ] Testen: voelen de persoonlijke spullen nuttig, zonder te sterk te zijn?
 - [ ] Balans met echte potjes controleren, vooral de nieuwe mysteries: Het verloren rapport (Southwark → Whitehall), De Dichter zonder Ogen (Mayfair → Westminster) en Het verhaal van de voorman (Whitechapel → Bloomsbury).
 - [ ] Testen: voelen de nieuwe geruchten (Scheur sluiten, monster verslaan) haalbaar?
 
 ## Klaar
+
+- [x] Twee nieuwe goden: Ysmara, de Doornkoningin, en Morghast, de Slaper in de knekelputten. Elk met regel, vier mysteries, episch monster, drie nieuwe monsters, drie personages, tien verhaalkaarten (met vervolg), drie scheurkaarten, twee aanwijzingen, vier onheilskaarten en een expeditie
+- [x] Drie nieuwe helden: Aggie Pruitt (kogelstootster), Lottie "Muis" Finch (dievegge) en Julian Hartwell (gevlucht uit de Bleke Lantaarn), elk met een eigen vermogen en twee persoonlijke spullen
+- [x] Thuisplekkaarten voor alle 21 helden (13 nieuw)
+- [x] Meet- en testscripts lezen de goden uit `data/oude-goden.json`; klokkenmodel en scorebord kennen vijf goden
 
 - [x] Sfeergeluid zachter als de muziek speelt
 - [x] Verbanning zonder +2; nieuwe actie Voorbereiden en de zwakke plek (Aanwijzing in gevecht); monsters 1 taaier

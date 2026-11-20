@@ -1217,7 +1217,7 @@ async function vecht(h, plek, m) {
   const aggie = S.helden.find(x => x.id === "aggie-pruitt" && x !== h && x.plek === plek && x.L > 0);
   const vanger = aggie && await venster({ soort: "Brede schouders", titel: "Vangt Aggie de klap op?", html: `<p>${esc(d.naam)} raakt ${esc(naam)} voor ${d.schade} Lichaam. Aggie heeft ${aggie.L} Lichaam.</p>`, knoppen: [{ label: "Aggie vangt hem op", waarde: true }, { label: "Nee", waarde: false, ghost: true }] }) ? aggie : h;
   const verloren = verliesLichaam(vanger, d.schade); log(`${korteNaam(heldDef(vanger).naam)} verliest ${verloren} Lichaam tegen ${d.naam}`);
-  if (vanger !== h) { await melding("Brede schouders", `Aggie stapt ervoor en vangt de klap op: −${verloren} Lichaam.`, "Gevecht"); await controleerHeld(vanger); return false; }
+  if (vanger !== h) { log(`Aggie vangt de klap op voor ${naam}`); await melding("Brede schouders", `Aggie stapt ervoor en vangt de klap op: −${verloren} Lichaam.`, "Gevecht"); await controleerHeld(vanger); return false; }
   let extra = "";
   if (d.verliesWaanzin) extra = ` Je krijgt waanzin: ${geefWaanzin(h)}.`;
   if (d.verliesPond && h.pond > 0) { h.pond = Math.max(0, h.pond - d.verliesPond); extra += ` Het steelt ${d.verliesPond} Pond.`; }

@@ -9,7 +9,7 @@
 *Heide, mist in de holtes, een koperen koepel op de heuvel.*
 
 - **Dienst (Sterrenwacht):** Bekijk de bovenste 2 Onheilskaarten. Leg ze terug in een volgorde naar keuze.
-- 3 algemene ontmoetingen, verhaalkaarten: Azh-Ilareth.
+- 3 algemene ontmoetingen, verhaalkaarten: Azh-Ilareth, Ysmara.
 
 ### Marylebone
 
@@ -23,21 +23,21 @@
 *Stoom, rook en het gebulder van de nachttrein naar het noorden.*
 
 - **Dienst (Station):** Neem de trein: reis naar een plek met een Scheur, waar ook in Londen (1 Pond).
-- Station van de Ondergrondse. 6 algemene ontmoetingen, verhaalkaarten: Azh-Ilareth.
+- Station van de Ondergrondse. 7 algemene ontmoetingen, verhaalkaarten: Azh-Ilareth, Ysmara, Morghast.
 
 ### Bloomsbury
 
 *Het British Museum en de ronde leeszaal, vol boeken die niet allemaal in de catalogus staan.*
 
 - **Dienst (Bibliotheek):** Studeer: doe een Kennis-test (8). Gelukt: trek 2 spreuken en houd er één.
-- 6 algemene ontmoetingen, verhaalkaarten: Vathrûn, Azh-Ilareth, Nebet-Ankhu, Vathrûn, Nebet-Ankhu, Azh-Ilareth.
+- 7 algemene ontmoetingen, verhaalkaarten: Vathrûn, Azh-Ilareth, Nebet-Ankhu, Vathrûn, Nebet-Ankhu, Azh-Ilareth, Ysmara, Morghast.
 
 ### Soho
 
 *Smalle straatjes, buitenlandse cafés en een boekwinkel die alleen 's avonds opengaat.*
 
 - **Dienst (Occulte boekwinkel):** Koop spreuken: trek 3 spreuken, koop er één voor 2 Pond.
-- 6 algemene ontmoetingen, verhaalkaarten: Azh-Ilareth.
+- 8 algemene ontmoetingen, verhaalkaarten: Azh-Ilareth, Ysmara.
 
 ### Mayfair
 
@@ -51,7 +51,7 @@
 *Bloemenkoopvrouwen, groentekramen, de opera en het gedrang van de nachtmarkt.*
 
 - **Dienst (Markt):** Winkelen: trek 3 spullen en koop wat je kunt betalen.
-- 2 algemene ontmoetingen, verhaalkaarten: Nebet-Ankhu.
+- 3 algemene ontmoetingen, verhaalkaarten: Nebet-Ankhu, Ysmara.
 
 ### Leicester Square
 
@@ -65,35 +65,35 @@
 *Herenclubs met leren stoelen, waar men na het diner over expedities praat.*
 
 - **Dienst (Club):** Ruil 3 Pond voor een Artefact-gerucht: trek een Artefact als je deze ronde naar een overzeese plek reist.
-- 2 algemene ontmoetingen, verhaalkaarten: Nebet-Ankhu.
+- 3 algemene ontmoetingen, verhaalkaarten: Nebet-Ankhu.
 
 ### Strand
 
 *King's College, kranten, koffiehuizen en de nieuwe Embankment langs het water.*
 
 - **Dienst (Universiteit):** Laat een Artefact of Boek onderzoeken: krijg 1 Aanwijzing.
-- Aan de Theems. 2 algemene ontmoetingen, verhaalkaarten: Vathrûn, Azh-Ilareth, Nebet-Ankhu.
+- Aan de Theems. 3 algemene ontmoetingen, verhaalkaarten: Vathrûn, Azh-Ilareth, Nebet-Ankhu.
 
 ### The City
 
 *Banken, St Paul's en het oude ziekenhuis van Barts.*
 
 - **Dienst (Ziekenhuis en bank):** Laat je verzorgen (alle Lichaam voor 1 Pond), laat Gewond verwijderen, of leen 3 Pond bij de bank (Schuld) en los later 4 Pond af.
-- Aan de Theems. Station van de Ondergrondse. 7 algemene ontmoetingen, verhaalkaarten: Vathrûn, Nebet-Ankhu, Vathrûn, Azh-Ilareth.
+- Aan de Theems. Station van de Ondergrondse. 8 algemene ontmoetingen, verhaalkaarten: Vathrûn, Nebet-Ankhu, Vathrûn, Azh-Ilareth, Ysmara, Morghast, Morghast.
 
 ### Spitalfields
 
 *Een overdekte markt, zijdewevers op zolders en een lange rij voor de gaarkeuken.*
 
 - **Dienst (Gaarkeuken):** Eet en rust: herstel 2 Geest.
-- 4 algemene ontmoetingen, verhaalkaarten: Vathrûn, Azh-Ilareth, Nebet-Ankhu.
+- 5 algemene ontmoetingen, verhaalkaarten: Vathrûn, Azh-Ilareth, Nebet-Ankhu, Morghast.
 
 ### Whitechapel
 
 *Overvolle logementen, slagers en nauwe steegjes waar je beter niet alleen loopt.*
 
 - **Dienst (Logementen):** Hoor geruchten: kijk welke plek als volgende een Scheur krijgt.
-- 4 algemene ontmoetingen, verhaalkaarten: Nebet-Ankhu, Nebet-Ankhu.
+- 4 algemene ontmoetingen, verhaalkaarten: Nebet-Ankhu, Nebet-Ankhu, Morghast.
 
 ### Whitehall
 
@@ -107,28 +107,28 @@
 *De abdij, het Parlement en een klok die soms één slag te veel slaat.*
 
 - **Dienst (Abdij):** Verwijder de toestand Vervloekt, of krijg Gezegend als je die nog niet hebt.
-- Aan de Theems. Station van de Ondergrondse. 4 algemene ontmoetingen, verhaalkaarten: Vathrûn, Azh-Ilareth.
+- Aan de Theems. Station van de Ondergrondse. 4 algemene ontmoetingen, verhaalkaarten: Vathrûn, Azh-Ilareth, Morghast.
 
 ### Chelsea
 
 *Ateliers, schilders aan de oever en het tehuis voor oud-soldaten.*
 
 - **Dienst (Ateliers):** Laat je portret schilderen: herstel 1 Geest en verwijder één Waanzin-kaart (Kennis-test 9).
-- Aan de Theems. 2 algemene ontmoetingen, verhaalkaarten: Vathrûn, Azh-Ilareth.
+- Aan de Theems. 3 algemene ontmoetingen, verhaalkaarten: Vathrûn, Azh-Ilareth, Ysmara.
 
 ### Southwark
 
 *De zuidoever: brouwerijen, wasserijen en het oude Borough-marktplein.*
 
 - **Dienst (Markt):** Winkelen: trek 3 spullen en koop wat je kunt betalen.
-- Aan de Theems. 5 algemene ontmoetingen, verhaalkaarten: Vathrûn, Vathrûn.
+- Aan de Theems. 6 algemene ontmoetingen, verhaalkaarten: Vathrûn, Vathrûn, Ysmara, Morghast.
 
 ### St Katharine Docks
 
 *Pakhuizen vol kisten uit verre landen, en schepen naar Alexandrië, Calcutta en Veracruz.*
 
 - **Dienst (Haven):** Koop een bootkaartje (2 Pond) naar een overzeese plek.
-- Aan de Theems. 7 algemene ontmoetingen, verhaalkaarten: Vathrûn, Nebet-Ankhu, Azh-Ilareth, Nebet-Ankhu, Vathrûn, Nebet-Ankhu.
+- Aan de Theems. 8 algemene ontmoetingen, verhaalkaarten: Vathrûn, Nebet-Ankhu, Azh-Ilareth, Nebet-Ankhu, Vathrûn, Nebet-Ankhu, Ysmara, Morghast.
 
 ### Wapping
 
@@ -142,7 +142,7 @@
 *Chinese winkeltjes, touwslagerijen en de walm van thee en kolen.*
 
 - **Dienst (Markt):** Winkelen: trek 3 spullen en koop wat je kunt betalen.
-- Aan de Theems. 2 algemene ontmoetingen, verhaalkaarten: Vathrûn, Nebet-Ankhu, Azh-Ilareth.
+- Aan de Theems. 3 algemene ontmoetingen, verhaalkaarten: Vathrûn, Nebet-Ankhu, Azh-Ilareth.
 
 ## Overzee
 

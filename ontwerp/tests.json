@@ -1,112 +1,112 @@
 {
   "datum": "2026-11-20",
-  "potjesPerInstelling": 60,
-  "totaal": 36869,
+  "potjesPerInstelling": 40,
+  "totaal": 40274,
   "perStand": {
     "ontspannen": {
-      "aantal": 9748,
-      "eersteWorp": 77,
-      "naHerworp": 86,
-      "perPotje": 27.1
+      "aantal": 10435,
+      "eersteWorp": 76,
+      "naHerworp": 85,
+      "perPotje": 26.1
     },
     "normaal": {
-      "aantal": 14774,
+      "aantal": 16073,
       "eersteWorp": 74,
       "naHerworp": 84,
-      "perPotje": 41
+      "perPotje": 40.2
     },
     "genadeloos": {
-      "aantal": 12347,
-      "eersteWorp": 64,
-      "naHerworp": 74,
-      "perPotje": 34.3
+      "aantal": 13766,
+      "eersteWorp": 65,
+      "naHerworp": 73,
+      "perPotje": 34.4
     }
   },
   "perSoort": {
     "Ontmoeting": {
-      "aantal": 16642,
+      "aantal": 17777,
       "eersteWorp": 74,
-      "naHerworp": 82,
+      "naHerworp": 81,
       "gemDoel": 8.2,
-      "gemPlus": 2.7
+      "gemPlus": 2.6
     },
     "Gevecht": {
-      "aantal": 5335,
-      "eersteWorp": 70,
-      "naHerworp": 80,
+      "aantal": 6295,
+      "eersteWorp": 72,
+      "naHerworp": 81,
       "gemDoel": 9.5,
-      "gemPlus": 3.1
+      "gemPlus": 3.2
     },
     "Gruwel (Geest)": {
-      "aantal": 4903,
+      "aantal": 5742,
       "eersteWorp": 73,
       "naHerworp": 84,
       "gemDoel": 8.4,
-      "gemPlus": 2.7
+      "gemPlus": 2.6
+    },
+    "Scheur sluiten": {
+      "aantal": 4428,
+      "eersteWorp": 64,
+      "naHerworp": 75,
+      "gemDoel": 8.9,
+      "gemPlus": 2.5
     },
     "Laatste nacht": {
-      "aantal": 3896,
-      "eersteWorp": 62,
-      "naHerworp": 77,
+      "aantal": 3524,
+      "eersteWorp": 60,
+      "naHerworp": 76,
       "gemDoel": 9.9,
       "gemPlus": 3.3
     },
-    "Scheur sluiten": {
-      "aantal": 3801,
-      "eersteWorp": 66,
-      "naHerworp": 76,
-      "gemDoel": 8.8,
-      "gemPlus": 2.6
-    },
     "Mysterie of spreuk": {
-      "aantal": 825,
-      "eersteWorp": 67,
-      "naHerworp": 86,
-      "gemDoel": 9,
+      "aantal": 902,
+      "eersteWorp": 63,
+      "naHerworp": 80,
+      "gemDoel": 9.2,
       "gemPlus": 2.7
     },
     "Overig": {
-      "aantal": 736,
-      "eersteWorp": 81,
-      "naHerworp": 84,
-      "gemDoel": 7.7,
+      "aantal": 819,
+      "eersteWorp": 80,
+      "naHerworp": 83,
+      "gemDoel": 7.8,
       "gemPlus": 2.7
     },
     "Dienst": {
-      "aantal": 674,
-      "eersteWorp": 77,
-      "naHerworp": 86,
-      "gemDoel": 8.6,
-      "gemPlus": 2.9
+      "aantal": 723,
+      "eersteWorp": 75,
+      "naHerworp": 85,
+      "gemDoel": 8.7,
+      "gemPlus": 2.8
     },
     "Verbanning (spreuk)": {
-      "aantal": 57,
-      "eersteWorp": 81,
-      "naHerworp": 84,
-      "gemDoel": 9.5,
-      "gemPlus": 3.6
+      "aantal": 64,
+      "eersteWorp": 69,
+      "naHerworp": 78,
+      "gemDoel": 9.6,
+      "gemPlus": 3.7
     }
   },
   "perKenmerkwaarde": {
     "1": {
-      "aantal": 6627,
+      "aantal": 7727,
       "eersteWorp": 49,
-      "naHerworp": 63
+      "naHerworp": 62
     },
     "2": {
-      "aantal": 11259,
-      "eersteWorp": 65,
+      "aantal": 11957,
+      "eersteWorp": 66,
       "naHerworp": 77
     },
     "3": {
-      "aantal": 11761,
-      "eersteWorp": 79,
+      "aantal": 12175,
+      "eersteWorp": 80,
       "naHerworp": 87
     },
     "4": {
-      "aantal": 7222,
-      "eersteWorp": 89,
-      "naHerworp": 94
+      "aantal": 8415,
+      "eersteWorp": 88,
+      "naHerworp": 93
     }
   },
   "perMarge": {
@@ -123,75 +123,75 @@
       "theorie2d6": 100
     },
     "-10": {
-      "aantal": 539,
-      "eersteWorp": 17,
-      "naHerworp": 25,
+      "aantal": 624,
+      "eersteWorp": 22,
+      "naHerworp": 28,
       "theorie2d6": 17
     },
     "-9": {
-      "aantal": 1191,
-      "eersteWorp": 28,
-      "naHerworp": 40,
+      "aantal": 1457,
+      "eersteWorp": 33,
+      "naHerworp": 43,
       "theorie2d6": 28
     },
     "-8": {
-      "aantal": 3361,
+      "aantal": 3856,
       "eersteWorp": 45,
       "naHerworp": 60,
       "theorie2d6": 42
     },
     "-7": {
-      "aantal": 7141,
-      "eersteWorp": 58,
+      "aantal": 7889,
+      "eersteWorp": 59,
       "naHerworp": 72,
       "theorie2d6": 58
     },
     "-6": {
-      "aantal": 9262,
+      "aantal": 9918,
       "eersteWorp": 73,
       "naHerworp": 83,
       "theorie2d6": 72
     },
     "-5": {
-      "aantal": 8597,
-      "eersteWorp": 83,
-      "naHerworp": 91,
+      "aantal": 9243,
+      "eersteWorp": 84,
+      "naHerworp": 90,
       "theorie2d6": 83
     },
     "-4": {
-      "aantal": 5163,
-      "eersteWorp": 93,
+      "aantal": 5556,
+      "eersteWorp": 92,
       "naHerworp": 96,
       "theorie2d6": 92
     },
     "-3": {
-      "aantal": 1304,
-      "eersteWorp": 97,
+      "aantal": 1370,
+      "eersteWorp": 98,
       "naHerworp": 99,
       "theorie2d6": 97
     },
     "-2": {
-      "aantal": 287,
+      "aantal": 325,
       "eersteWorp": 100,
       "naHerworp": 100,
       "theorie2d6": 100
     },
     "-1": {
-      "aantal": 20,
+      "aantal": 32,
       "eersteWorp": 100,
       "naHerworp": 100,
       "theorie2d6": 100
     }
   },
   "variantie": {
-    "kenmerkwaarde": 0.97,
-    "bonussen": 0.29,
-    "plusTotaal": 1.42,
-    "doel": 1.1,
-    "plusMinDoel": 2.2,
-    "dobbelstenen": 5.89,
-    "aandeelDobbel": 73,
-    "aandeelKenmerkEnDoel": 27
+    "kenmerkwaarde": 1.02,
+    "bonussen": 0.27,
+    "plusTotaal": 1.49,
+    "doel": 1.09,
+    "plusMinDoel": 2.26,
+    "dobbelstenen": 5.93,
+    "aandeelDobbel": 72,
+    "aandeelKenmerkEnDoel": 28
   },
   "dobbelKeertOm": 26,
   "zekerOfKansloos": {
@@ -199,7 +199,7 @@
     "kansloos": 0
   },
   "herworpen": {
-    "gebruikt": 13,
-    "gered": 33
+    "gebruikt": 12,
+    "gered": 32
   }
 }
