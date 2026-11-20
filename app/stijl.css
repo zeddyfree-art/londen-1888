@@ -436,3 +436,11 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);ou
 .portaal img.fiche{clip-path:circle(45%)}
 @keyframes og-adem{0%,100%{box-shadow:0 0 24px rgba(178,106,230,.55),inset 0 0 20px #000;transform:scale(1)}50%{box-shadow:0 0 46px rgba(226,184,255,.85),inset 0 0 20px #000;transform:scale(1.03)}}
 @keyframes og-vonk{0%{transform:rotate(var(--a)) translateX(170px);opacity:0}25%{opacity:1}100%{transform:rotate(calc(var(--a) + 140deg)) translateX(20px);opacity:0}}
+
+/* Melding: er staat een nieuwe versie online */
+.updatebalk{position:fixed;z-index:70;left:50%;bottom:max(16px,env(safe-area-inset-bottom,0px));transform:translateX(-50%);width:max-content;max-width:calc(100vw - 32px);
+  display:flex;flex-wrap:wrap;gap:4px 8px;justify-content:center;align-items:baseline;padding:12px 18px;min-height:44px;cursor:pointer;text-align:center;
+  background:var(--accent);color:var(--accent-ink);border:1px solid var(--accent);box-shadow:0 10px 30px rgba(0,0,0,.35);font-size:16px}
+.updatebalk:hover{filter:brightness(1.08)}
+@media (prefers-reduced-motion:no-preference){.updatebalk{animation:update-in .4s ease-out both}}
+@keyframes update-in{from{transform:translate(-50%,30px);opacity:0}to{transform:translateX(-50%);opacity:1}}

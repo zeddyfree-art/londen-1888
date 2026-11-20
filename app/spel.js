@@ -1942,8 +1942,27 @@ async function toonNieuws(altijd) {
     knoppen: [{ label: "Verder", waarde: true }] });
 }
 function registreerSW() {
-  try { if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost") && !location.hostname.endsWith("claude.ai") && !location.hostname.endsWith("claudeusercontent.com")) navigator.serviceWorker.register("sw.js").catch(() => {}); } catch {}
+  try {
+    if (!("serviceWorker" in navigator) || !(location.protocol === "https:" || location.hostname === "localhost") || location.hostname.endsWith("claude.ai") || location.hostname.endsWith("claudeusercontent.com")) return;
+    /* Had de pagina al een service worker? Dan betekent een nieuwe controller: er staat een nieuwe versie online. */
+    const hadVersie = !!navigator.serviceWorker.controller;
+    navigator.serviceWorker.addEventListener("controllerchange", () => { if (hadVersie) toonUpdate(); });
+    navigator.serviceWorker.register("sw.js").then(reg => {
+      /* Een app die lang openstaat (iPad-beginscherm) kijkt bij terugkomen en elk halfuur of er een update is. */
+      const kijk = () => reg.update().catch(() => {});
+      document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") kijk(); });
+      setInterval(kijk, 30 * 60 * 1000);
+    }).catch(() => {});
+  } catch {}
+}
+function toonUpdate() {
+  if (document.getElementById("updatebalk")) return;
+  const el = document.createElement("button");
+  el.id = "updatebalk"; el.className = "updatebalk"; el.type = "button";
+  el.innerHTML = `<b>Er is een nieuwe versie.</b> <span>Tik hier om hem te laden. Je spel blijft bewaard.</span>`;
+  el.addEventListener("click", () => { opslaan(); location.reload(); });
+  document.body.appendChild(el);
 }
 window.__spel = { get S() { return S; }, get D() { return D; }, get bezig() { return bezig; },
-  api: { overgang, venster, scheurBeeld, speelKaart, onheilsfase, nieuwSpel, zaai, reis, rust, dienst, doeMysterie, mysterieActie, beurtKlaar, gebruikActie, gebruikSpul, zoekWeg, bereikbaar, burenVan, afstanden, stapNaar, actief, groei, mysterie, heeft, isOverzee, spulDef, monsterDef, wapenBonus, plekDef } };
+  api: { overgang, venster, scheurBeeld, toonUpdate, speelKaart, onheilsfase, nieuwSpel, zaai, reis, rust, dienst, doeMysterie, mysterieActie, beurtKlaar, gebruikActie, gebruikSpul, zoekWeg, bereikbaar, burenVan, afstanden, stapNaar, actief, groei, mysterie, heeft, isOverzee, spulDef, monsterDef, wapenBonus, plekDef } };
 })();
