@@ -60,6 +60,7 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [ ] Geluiden die niet bevallen opnieuw maken in de ElevenLabs-flow (prompt aanpassen, daarna ophalen en `sh tools/normaliseer-geluid.sh`).
 
 ### Beelden
+- [ ] App-icoon en favicon maken met `ontwerp/beeldopdracht-icoon.md` en omzetten met `tools/maak-iconen.py`.
 - [ ] De nieuwe portretten van Odile en Cordelia staan in `art/helden/`, maar in Drive staan nog de oude. Vervang ze daar ook. Daarna kunnen ze met hun nieuwe Drive-id terug in `tools/art-drive.json`.
 - [ ] Beelden voor nieuwe kaarten (alleen nodig als er nieuwe personages of spullen bijkomen)
 

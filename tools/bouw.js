@@ -28,7 +28,7 @@ kopieer("app/manifest.webmanifest", "manifest.webmanifest");
 const kop = `<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0d1416"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Londen 1888">
-<link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icoon/icoon-180.png"><link rel="icon" href="icoon/icoon-192.png">
+<link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icoon/icoon-180.png"><link rel="icon" href="icoon/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="icoon/favicon-32.png"><link rel="icon" type="image/png" sizes="192x192" href="icoon/icoon-192.png">
 <style>:root{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}body{margin:0}</style></head><body>`;
 const html = kop + pagina + "</body></html>\n";
 fs.writeFileSync(path.join(site, "index.html"), html);
@@ -84,7 +84,7 @@ blockquote{margin:12px 0;padding:8px 14px;border-left:3px solid var(--accent);ba
     const nav = paginas.map(x => `<a href="${x === "README" ? "index" : x}.html"${x === n ? ' aria-current="page"' : ""}>${esc(x === "README" ? "Inhoud" : titel(x))}</a>`).join("");
     const html = `<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>${esc(titel(n))} · Lore-boek Londen 1888</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=IM+Fell+English:ital@0;1&family=Alegreya+Sans:wght@400;500;700&display=swap">
-<link rel="icon" href="../icoon/icoon-192.png"><style>${stijl}</style></head><body><div class="kader"><nav><span class="merk">Lore-boek</span>${nav}<a class="terug" href="../index.html">Naar het spel</a><a class="terug" href="https://github.com/zeddyfree-art/londen-1888/tree/claude/charming-franklin-2x9p2x/lore">Bewerken op GitHub</a></nav>
+<link rel="icon" href="../icoon/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="../icoon/favicon-32.png"><style>${stijl}</style></head><body><div class="kader"><nav><span class="merk">Lore-boek</span>${nav}<a class="terug" href="../index.html">Naar het spel</a><a class="terug" href="https://github.com/zeddyfree-art/londen-1888/tree/claude/charming-franklin-2x9p2x/lore">Bewerken op GitHub</a></nav>
 <article>${md(fs.readFileSync(path.join(loreDir, n + ".md"), "utf8"))}</article></div></body></html>\n`;
     fs.writeFileSync(path.join(site, "lore", doel + ".html"), html);
   }
