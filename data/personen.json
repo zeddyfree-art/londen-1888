@@ -108,5 +108,65 @@
     "kort": "De ervaren voorman die de expeditie waarschuwde en niet werd gehoord.",
     "beschrijving": "Hamdi leidt al twintig jaar opgravingen in de vallei en kent elke rots. Hij weigerde het lege graf te openen en vertrok met zijn mannen toen Harrowgate toch doorzette. Toen de kisten naar Londen werden verscheept, reisde hij ze achterna om Harrowgate nog één keer te waarschuwen. Nu woont hij in een logement in Whitechapel. Wie hem met respect benadert, hoort het verhaal dat de dorpelingen al eeuwen vertellen over de koning zonder gezicht.",
     "prompt": "dignified Egyptian excavation foreman in his fifties, white turban and dark galabiya, weathered wise face, standing at the entrance of a rock-cut tomb in the Theban hills at sunset, lantern in hand"
+  },
+  {
+    "id": "lavinia-greaves",
+    "naam": "Mrs. Lavinia Greaves",
+    "rol": "Weldoenster van het Greaves-weeshuis",
+    "factie": "Het Meidoornhof",
+    "god": "ysmara",
+    "kort": "Een vriendelijke weduwe die arme kinderen een thuis geeft, en ze aan de Doornkoningin belooft.",
+    "beschrijving": "Mrs. Greaves verloor haar eigen zoontje aan de difterie, en kreeg hem terug, zegt ze, in een droom onder een meidoorn. Sindsdien bestuurt ze een weeshuis in Chelsea, met een tuin waar in november de bloesem bloeit. Ze is warm, attent en volkomen overtuigd: wat de Koningin neemt, krijgt een beter leven. Ze noteert de namen van haar kinderen in een boek met een groene kaft.",
+    "prompt": "a gentle-looking Victorian widow in her late forties in dark green mourning silk, kind smile, holding a green leather ledger, standing in an orphanage garden where a hawthorn tree blooms white in November fog"
+  },
+  {
+    "id": "nan-mossop",
+    "naam": "Oude Nan Mossop",
+    "rol": "Bloemenverkoopster in Covent Garden",
+    "factie": "Geen",
+    "god": "ysmara",
+    "kort": "Een oude bloemenvrouw die alle aftelrijmpjes van Londen kent, en weet wat ze betekenen.",
+    "beschrijving": "Nan verkoopt al zestig jaar viooltjes onder de zuilen van Covent Garden. Ze kent de oude rijmpjes die kinderen op straat zingen, en weet dat ze ouder zijn dan de stad. Ze heeft zelf een zus verloren aan 'de Groene Dame', toen ze negen was. Ze helpt de helden, maar ze wil iets terug: dat iemand haar zus zoekt.",
+    "prompt": "a wrinkled old Covent Garden flower seller in her seventies, shawl and battered straw bonnet, basket of violets on her arm, sharp knowing blue eyes, sitting under the market colonnade at dawn"
+  },
+  {
+    "id": "kleine-robin",
+    "naam": "Kleine Robin",
+    "rol": "Een kind dat terugkwam",
+    "factie": "Het Meidoornhof",
+    "god": "ysmara",
+    "kort": "Een jongen die drie dagen weg was, en terugkwam met groene ogen en een lied dat hij niet kan stoppen.",
+    "beschrijving": "Robin is acht. Hij liep op een nacht weg uit het weeshuis van Mrs. Greaves, en werd drie dagen later gevonden op Hampstead Heath, droog, warm en glimlachend. Zijn ogen zijn sindsdien groen. Hij weet dingen die hij niet kan weten, en soms helpt hij de helden. Niemand weet of het nog Robin is.",
+    "prompt": "an eight-year-old Victorian orphan boy in a grey smock, unsettlingly calm face, bright green eyes, a crown of hawthorn twigs in his messy hair, standing barefoot on wet heathland at dusk"
+  },
+  {
+    "id": "lionel-grieve",
+    "naam": "Dr. Lionel Grieve",
+    "rol": "Chirurg aan Guy's Hospital",
+    "factie": "Het Hunteriaans Genootschap",
+    "god": "morghast",
+    "kort": "Een briljante chirurg die gelooft dat de dood een ziekte is, en dat hij de genezing heeft gevonden.",
+    "beschrijving": "Grieve is de beste anatoom van Londen, en hij weet het. Na de dood van zijn vrouw aan de cholera richtte hij het Hunteriaans Genootschap op: chirurgen en studenten die 's nachts lichamen kopen van lijkenrovers. Wat ze in de knekelputten onder de City vonden, praat tegen hem. Het belooft hem zijn vrouw terug.",
+    "prompt": "a tall gaunt Victorian surgeon in his fifties, immaculate black frock coat with a blood-spotted apron over it, silver hair swept back, cold brilliant grey eyes, holding a scalpel, in an anatomy theatre lit by a skylight"
+  },
+  {
+    "id": "jebediah-sallow",
+    "naam": "Jebediah Sallow",
+    "rol": "Lijkenrover",
+    "factie": "Geen",
+    "god": "morghast",
+    "kort": "Een lijkenrover die voor het Genootschap graaft, en nu bang is voor wat hij heeft opgegraven.",
+    "beschrijving": "Sallow graaft al twintig jaar lichamen op voor de anatomielessen. Het is smerig werk, maar eerlijk betaald. Sinds het Genootschap hem naar de oude pestputten stuurde, slaapt hij met een spade naast zijn bed. Wat hij daar zag, bewoog. Hij wil eruit, maar Grieve laat niemand gaan die weet waar de putten liggen.",
+    "prompt": "a wiry, frightened Victorian gravedigger in his forties, battered top hat, muddy greatcoat, clutching a spade, unshaven face lit by a shuttered lantern in a churchyard in Spitalfields"
+  },
+  {
+    "id": "prudence-ashdown",
+    "naam": "Zuster Prudence Ashdown",
+    "rol": "Verpleegster in Barts",
+    "factie": "Geen",
+    "god": "morghast",
+    "kort": "Een nuchtere nachtzuster die zag hoe een overleden patiënt opstond, en het niet kan vergeten.",
+    "beschrijving": "Prudence werkt al tien jaar op de nachtdienst in St Bartholomew's. Ze is niet bijgelovig en ze is niet snel bang. Maar vorige week stond een man op die ze zelf had afgelegd, en liep hij de zaal uit naar de kelders. Niemand gelooft haar. Ze houdt sindsdien een lijst bij van de doden die 's nachts verdwijnen.",
+    "prompt": "a sensible Victorian hospital nurse in her thirties in a grey uniform with white cap and apron, tired determined face, holding a lamp in a long dark hospital ward at night"
   }
 ]

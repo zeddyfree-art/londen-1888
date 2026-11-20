@@ -519,5 +519,90 @@
       "tekst": "Eén keer per ronde mag Admiraal 1 Lichaamsschade overnemen van een held op jouw plek."
     },
     "prompt": "young Irish river police constable in his mid-twenties, 1888, dark caped uniform and helmet, holding a storm lantern, standing in a rowing boat on the night-black Thames, a huge black Newfoundland dog at his side, fog and distant dock lights"
+  },
+  {
+    "id": "aggie-pruitt",
+    "naam": "Agnes \"Aggie\" Pruitt",
+    "leeftijd": 27,
+    "beroep": "Kogelstootster en krachtvrouw op de kermis bij King's Cross",
+    "rol": "Kogelstootster",
+    "start": "King's Cross",
+    "achtergrond": "Aggie is groter dan de meeste mannen en breder dan de deur van haar woonwagen. Op de kermis aan de Caledonian Road stoot ze een kogel van zestien pond verder dan wie ook, en tilt ze twee smidsknechten tegelijk op. Na de voorstelling breit ze sjaals voor de kinderen van de kermis. Sinds de kleine Tommy van de schiettent 's nachts wegliep in de richting van het spoor, gaat ze elke avond zelf de rails langs, met een lantaarn en haar kogel in een netje over haar schouder.",
+    "kenmerken": {
+      "kennis": 1,
+      "scherpte": 2,
+      "kracht": 4,
+      "overtuiging": 3
+    },
+    "lichaam": 8,
+    "geest": 4,
+    "vermogen": {
+      "naam": "Brede schouders",
+      "tekst": "Verliest een andere held op jouw plek Lichaam in een gevecht, dan mag jij de klap opvangen: jij verliest het Lichaam in zijn plaats."
+    },
+    "eigenaardigheid": "Breit sjaals voor iedereen die ze tegenkomt, ook voor de agenten die haar wegsturen.",
+    "uitrusting": [
+      "IJzeren kogel",
+      "Breiwerk"
+    ],
+    "bondgenoot": null,
+    "prompt": "very tall, broad-shouldered and powerfully built woman in her late twenties, 1888 travelling fair near King's Cross, round friendly freckled face with a shy warm smile, thick auburn hair pinned up, sleeves rolled over muscular forearms, striped strongwoman's leotard under a patched wool skirt and knitted shawl, holding a heavy iron shot ball in one hand and a half-finished scarf on knitting needles in the other, fairground lanterns and a railway viaduct in the fog behind her"
+  },
+  {
+    "id": "lottie-finch",
+    "naam": "Lottie \"Muis\" Finch",
+    "leeftijd": 15,
+    "beroep": "Zakkenroller en informant van Silas Rook",
+    "rol": "Dievegge",
+    "start": "The City",
+    "achtergrond": "Lottie rolt zakken in de drukte rond de Bank of England, zo snel dat de heren het pas thuis merken. Voor een shilling per week vertelt ze Silas Rook wat ze hoort: wie met wie praat, wie er 's nachts pakketjes brengt, wie er niet meer terugkomt. Ze kent elke achterdeur, elk dak en elke kelder van The City. De laatste tijd verdwijnen er kinderen van de straat, en Lottie houdt een lijstje bij van hun namen.",
+    "kenmerken": {
+      "kennis": 1,
+      "scherpte": 4,
+      "kracht": 2,
+      "overtuiging": 3
+    },
+    "lichaam": 6,
+    "geest": 6,
+    "vermogen": {
+      "naam": "Verstoppen",
+      "tekst": "Eén keer per ronde: staat er een monster op je plek, dan mag je je verstoppen. Je vecht niet, maar je hebt wel je ontmoeting."
+    },
+    "eigenaardigheid": "Neemt altijd iets mee, ook als ze het niet nodig heeft. Geeft het meestal later terug.",
+    "uitrusting": [
+      "Lopers en haarspelden",
+      "Gestolen zakhorloge"
+    ],
+    "bondgenoot": null,
+    "prompt": "wiry street girl of about fifteen, 1888 City of London, sharp clever eyes and a crooked grin, smudged cheeks, short dark hair under a too-large flat cap, oversized boy's jacket with many pockets over a patched dress, fingerless gloves, a gold pocket watch dangling from her fingers as if by magic, crouched on a rooftop ledge above a foggy street with the dome of St Paul's faint behind her"
+  },
+  {
+    "id": "julian-hartwell",
+    "naam": "Julian Hartwell",
+    "leeftijd": 31,
+    "beroep": "Voormalig adept van de Orde van de Bleke Lantaarn",
+    "rol": "Occultist",
+    "start": "Soho",
+    "achtergrond": "Julian geloofde dat magie de mensheid kon verheffen. Zeven jaar lang klom hij op in de Orde van de Bleke Lantaarn, tot de nacht in Marylebone waarin hij zag wat Aurelian Croft met de nieuwe leerlingen deed. Hij vluchtte met het zwaard en het boek van zijn graad, en woont nu in een kamer achter een boekwinkel in Soho. Hij droomt nog steeds van een betere wereld. Hij slaapt alleen niet meer.",
+    "kenmerken": {
+      "kennis": 4,
+      "scherpte": 2,
+      "kracht": 2,
+      "overtuiging": 2
+    },
+    "lichaam": 6,
+    "geest": 6,
+    "vermogen": {
+      "naam": "Zwaard van licht",
+      "tekst": "Je vecht met Kennis in plaats van Kracht, en je wapens tellen mee. Maar wat je in de Orde zag, laat je niet los: mislukt een Gruwel-test, dan verlies je 1 Geest extra."
+    },
+    "eigenaardigheid": "Draagt zijn witte gewaad nog onder zijn jas, en schaamt zich ervoor.",
+    "uitrusting": [
+      "Zwaard van de Orde",
+      "Het Witte Boek",
+      "1 spreuk"
+    ],
+    "bondgenoot": null,
+    "prompt": "idealistic but haunted man in his early thirties, 1888 Soho, pale gentle face with dark shadows under dreamy grey eyes, light brown hair falling over his brow, a white ceremonial robe with faded silver embroidery worn under an open dark overcoat, holding a slender straight sword whose blade glows faintly white and a white leather-bound book against his chest, standing in the back room of an occult bookshop among candles and stacked grimoires"
   }
 ]

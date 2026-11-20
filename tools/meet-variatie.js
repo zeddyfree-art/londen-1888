@@ -18,7 +18,7 @@ const server = http.createServer((req, res) => {
   await page.waitForFunction(() => window.__spel && window.__spel.D);
   await page.addScriptTag({ content: fs.readFileSync(path.join(__dirname, "testbot-strategie.js"), "utf8") });
   console.log("God          helden  overig/potje herhaald  verhaal/potje  herhaald  onheil/potje  van stapel");
-  for (const god of ["vathrun", "azh-ilareth", "nebet-ankhu"]) for (const aantal of [2, 4]) {
+  for (const god of JSON.parse(fs.readFileSync(path.join(root, "data", "oude-goden.json"), "utf8")).map(g => g.id)) for (const aantal of [2, 4]) {
     const r = await page.evaluate(async ([god, aantal, n]) => {
       const D = window.__spel.D, verhaal = new Set(D.o_verhaal.map(k => k.id));
       const stapel = D.onheil.filter(o => !o.god || o.god === god).length;

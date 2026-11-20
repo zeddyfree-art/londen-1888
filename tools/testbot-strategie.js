@@ -47,6 +47,7 @@ window.__testbot = async function speel(godId, moeilijkheid, heldIds, seed) {
       if (soort === "De abdij") return w.includes("v") ? "v" : w.includes("z") ? "z" : null;
       if (soort === "Hulp van de Bleke Lantaarn") return "a";
       if (soort === "Doorvechter") return h.L > 3;
+      if (soort === "Brede schouders") { const ag = S().helden.find(x => x.id === "aggie-pruitt"); return !!ag && ag.L > 3; }
       if (soort === "Onderschepping") return w[0];
       if (soort === "Te veel bagage") return w[w.length - 1];
       if (soort.startsWith("Onheil") && w.includes(true)) return true;

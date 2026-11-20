@@ -170,7 +170,8 @@ const Geluid = (() => {
     if (naam === sfeerNaam && !opnieuw && (sfeerEl || !naam)) return;
     if (sfeerEl) { sfeerEl.pause(); sfeerEl = null; }
     sfeerNaam = naam;
-    const b = naam && bestand[naam];
+    /* een god zonder eigen sfeerlus krijgt de algemene */
+    const b = naam && (bestand[naam] || bestand["sfeer-start"]);
     if (!aan || !b?.ok) return;
     sfeerEl = b.el; sfeerEl.loop = true; zetVolume(sfeerEl, sfeerVolume()); sfeerEl.currentTime = 0; sfeerEl.play().catch(() => { sfeerEl = null; });
   }
@@ -1006,6 +1007,14 @@ async function gebruikSpul(h, id) {
       if (!doel.length) return melding(s.naam, "Er is hier geen menselijke tegenstander.");
       weg(); verwijderMonster(h.plek, doel[0].uid); await melding(s.naam, `De ${monsterDef(doel[0].id).naam} hoort het fluitje en slaat op de vlucht.`); break;
     }
+    case "breien": {
+      if (h.ronde.breien) return melding(s.naam, "Eén keer per ronde.");
+      const doel = S.helden.filter(x => x.plek === h.plek && x.G < x.maxG);
+      if (!doel.length) return melding(s.naam, "Niemand hier heeft het koud.");
+      const x = doel.length === 1 ? doel[0] : await venster({ soort: s.naam, titel: "Voor wie is de sjaal?", knoppen: doel.map(x => ({ label: korteNaam(heldDef(x).naam), waarde: x })) });
+      h.ronde.breien = true; x.G = Math.min(x.maxG, x.G + 1); await melding(s.naam, `${korteNaam(heldDef(x).naam)} slaat de warme sjaal om en herstelt 1 Geest.`); break;
+    }
+    case "horloge": weg(); h.pond += 3; await melding(s.naam, "Een heler in Petticoat Lane bekijkt het horloge met een loep en telt drie pond uit. Hij vraagt niet waar het vandaan komt."); break;
     case "brood": {
       const x = await kiesHeldBereik(h, s.naam); weg(); geefToestand(x, "gezegend"); x.L = Math.min(x.maxL, x.L + 1);
       await melding(s.naam, `${korteNaam(heldDef(x).naam)} eet van het brood en is Gezegend.`); break;
@@ -1151,7 +1160,9 @@ async function monsterVerslagen(h, plek, m) {
   if (!d.geenTrofee) h.trofee++;
   if (d.beloning) await pasToe(h, Object.entries(d.beloning).map(([k, v]) => ({ [k]: v })));
   log(`${naam} verslaat ${d.naam}`);
-  if (d.komtTerug && d6() <= 2) { const p = kies1(D.bord.rivier); S.plekken[p].monsters.push({ uid: ++S.teller, id: m.id, leven: d.leven }); log(`${d.naam} komt terug in ${plekNaam(p)}`); }
+  /* Morghast: de doden blijven niet liggen */
+  if (S.god === "morghast" && !byId(D.epische, m.id) && !d.komtTerug && d6() === 1) { const p = kies1(D.bord.plekken).id; S.plekken[p].monsters.push({ uid: ++S.teller, id: m.id, leven: d.leven }); log(`${d.naam} staat weer op in ${plekNaam(p)}`); await melding("De doden blijven niet liggen", `${d.naam} staat weer op, in ${plekNaam(p)}.`); }
+  if (d.komtTerug && d6() <= 2) { const p = d.id === "knekelman" ? kies1(D.bord.plekken).id : kies1(D.bord.rivier); S.plekken[p].monsters.push({ uid: ++S.teller, id: m.id, leven: d.leven }); log(`${d.naam} komt terug in ${plekNaam(p)}`); }
   const mys = mysterie();
   if (byId(D.epische, m.id) && mys?.type === "episch") await losOp();
 }
@@ -1165,12 +1176,13 @@ async function vecht(h, plek, m) {
   if (h.spreuken.includes("verbanning")) opties.push({ label: "Hermetische verbanning", waarde: "verban" });
   if (!ep && h.spullen.includes("dynamiet")) opties.push({ label: "Dynamiet", waarde: "dyn", ghost: true });
   if (d.mens && h.spullen.includes("chloroform")) opties.push({ label: "Chloroform", waarde: "chl", ghost: true });
-  const kenmerk = d.vechtMet || "kracht";
+  const zwaard = h.id === "julian-hartwell" && !d.vechtMet; /* Zwaard van licht: Kennis in plaats van Kracht, wapens tellen mee */
+  const kenmerk = d.vechtMet || (zwaard ? "kennis" : "kracht");
   const nebet = S.god === "nebet-ankhu" && h.artefacten.length ? 1 : 0;
   const vuurwapen = h.spullen.some(x => x === "webley" || x === "olifantengeweer" || spulDef(x)?.vuurwapen) || h.eigen.some(e => /Revolver|geweer|pistool|Derringer/i.test(e.naam));
-  const kogels = kenmerk === "kracht" && vuurwapen && d.gruwel >= 2 && h.spullen.includes("zilveren-kogels") ? 2 : 0;
+  const kogels = (kenmerk === "kracht" || zwaard) && vuurwapen && d.gruwel >= 2 && h.spullen.includes("zilveren-kogels") ? 2 : 0;
   const terrier = h.spullen.includes("dier-terrier") && D.bord.rivier.includes(plek) ? 1 : 0;
-  const bonus = (kenmerk === "kracht" ? wapenBonus(h, d.mens) : 0) + nebet + kogels + terrier;
+  const bonus = (kenmerk === "kracht" || zwaard ? wapenBonus(h, d.mens) : 0) + nebet + kogels + terrier;
   const voorbereid = h.ronde.voorbereid ? 1 : 0;
   const gruwel = S.plekken[plek]?.belRonde === S.ronde ? 0 : d.gruwel;
   const gruwelOpt = () => ({ extra: h.ronde.pentagram ? 1 : 0, bonus: (h.artefacten.includes("jade-masker") ? 2 : 0) + h.spullen.reduce((t, id) => t + (spulDef(id)?.bonus?.gruwel || 0), 0) });
@@ -1183,7 +1195,7 @@ async function vecht(h, plek, m) {
   if (k === "glorie") { h.ronde.glorie = true; log(`${naam} glipt ongezien langs ${d.naam}`); return false; }
   if (gruwel > 0 && !h.ronde.wake) {
     const go = gruwelOpt(); delete h.ronde.pentagram;
-    if (!await test(h, "kennis", 8, `Gruwel van ${d.naam}`, go)) { h.G -= gruwel; log(`${naam} verliest ${gruwel} Geest door gruwel`); }
+    if (!await test(h, "kennis", 8, `Gruwel van ${d.naam}`, go)) { const g = gruwel + (h.id === "julian-hartwell" ? 1 : 0); h.G -= g; log(`${naam} verliest ${g} Geest door gruwel`); }
     await controleerHeld(h);
     if (h.plek !== plek) return false;
   }
@@ -1201,9 +1213,15 @@ async function vecht(h, plek, m) {
     await melding("Raak", `${d.naam} is gewond maar staat nog (${m.leven} leven).`, "Gevecht");
     return false;
   }
-  const verloren = verliesLichaam(h, d.schade); log(`${naam} verliest ${verloren} Lichaam tegen ${d.naam}`);
+  /* Brede schouders: Aggie mag de klap opvangen voor een andere held op haar plek */
+  const aggie = S.helden.find(x => x.id === "aggie-pruitt" && x !== h && x.plek === plek && x.L > 0);
+  const vanger = aggie && await venster({ soort: "Brede schouders", titel: "Vangt Aggie de klap op?", html: `<p>${esc(d.naam)} raakt ${esc(naam)} voor ${d.schade} Lichaam. Aggie heeft ${aggie.L} Lichaam.</p>`, knoppen: [{ label: "Aggie vangt hem op", waarde: true }, { label: "Nee", waarde: false, ghost: true }] }) ? aggie : h;
+  const verloren = verliesLichaam(vanger, d.schade); log(`${korteNaam(heldDef(vanger).naam)} verliest ${verloren} Lichaam tegen ${d.naam}`);
+  if (vanger !== h) { await melding("Brede schouders", `Aggie stapt ervoor en vangt de klap op: −${verloren} Lichaam.`, "Gevecht"); await controleerHeld(vanger); return false; }
   let extra = "";
   if (d.verliesWaanzin) extra = ` Je krijgt waanzin: ${geefWaanzin(h)}.`;
+  if (d.verliesPond && h.pond > 0) { h.pond = Math.max(0, h.pond - d.verliesPond); extra += ` Het steelt ${d.verliesPond} Pond.`; }
+  if (d.herstelt && m.leven < d.leven + (S.helden.length === 4 && byId(D.epische, m.id) ? 2 : 0)) { m.leven += d.herstelt; extra += ` ${d.naam} naait zichzelf dicht: +${d.herstelt} leven.`; }
   if (d.id === "rivierwiedde") { const r = burenVan(null, plek).filter(x => D.bord.rivier.includes(x)); if (r.length) { h.plek = kies1(r); extra += ` Je wordt meegesleurd naar ${plekNaam(h.plek)}.`; } }
   await melding("Verloren", `${d.naam} raakt je: −${verloren} Lichaam.${extra}`, "Gevecht");
   await controleerHeld(h);
@@ -1248,7 +1266,11 @@ async function ontmoeting(h) {
   if (heeft(h, "verdwaald")) { await melding(`${naam} is verdwaald`, "Je dwaalt door straten die niet op de kaart staan. Deze ronde geen ontmoeting."); return; }
   if (S.tutorial) await coach("ontmoeting");
   const eigen = S.plekken[h.plek];
-  if (eigen && eigen.monsters.length && !(h.ronde.doodsmasker && !heeft(h, "waanzin-hoogmoed"))) {
+  if (eigen && eigen.monsters.length && h.id === "lottie-finch" && !h.ronde.verstopt && !heeft(h, "waanzin-hoogmoed")) {
+    const v = await venster({ soort: "Verstoppen", titel: "Verstopt Lottie zich?", html: `<p>Er staat een monster op je plek. Verstop je je, dan vecht je niet, maar heb je wel je ontmoeting. Eén keer per ronde.</p>`, knoppen: [{ label: "Verstoppen", waarde: true }, { label: "Vechten", waarde: false, ghost: true }] });
+    if (v) { h.ronde.verstopt = true; log(`${naam} verstopt zich`); }
+  }
+  if (eigen && eigen.monsters.length && !h.ronde.verstopt && !(h.ronde.doodsmasker && !heeft(h, "waanzin-hoogmoed"))) {
     await overgang("monster", eigen.monsters.length > 1 ? "Monsters!" : monsterDef(eigen.monsters[0].id).naam);
     for (const m of [...eigen.monsters]) {
       if (S.einde) return;
@@ -1422,6 +1444,7 @@ async function onheilsfase() {
   for (const h of S.helden) {
     if (S.god === "nebet-ankhu" && h.artefacten.length) h.G--;
     if (S.god === "azh-ilareth" && h.plek === "hampstead") h.G = Math.min(h.maxG, h.G + 1);
+    if (S.god === "ysmara" && !isOverzee(h.plek) && S.helden.filter(x => x.plek === h.plek).length === 1) { h.G--; log(`${korteNaam(heldDef(h).naam)} staat alleen en hoort de Doornkoningin roepen: −1 Geest`); }
     if (h.artefacten.includes("kristallen-schedel") && d6() === 1) h.G--;
     if (heeft(h, "verslaafd")) { if (h.pond > 0) h.pond--; else h.G--; }
     if (heeft(h, "schuld") && d6() === 1) verliesLichaam(h, 1);

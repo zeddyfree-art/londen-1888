@@ -14,7 +14,7 @@ const server = http.createServer((req, res) => {
   res.writeHead(200, { "content-type": TYPES[path.extname(p)] || "application/octet-stream" });
   fs.createReadStream(p).pipe(res);
 });
-const GODEN = ["vathrun", "azh-ilareth", "nebet-ankhu"], STANDEN = ["ontspannen", "normaal", "genadeloos"];
+const GODEN = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "oude-goden.json"), "utf8")).map(g => g.id), STANDEN = ["ontspannen", "normaal", "genadeloos"];
 /* logit met een kleine correctie, zodat 0% en 100% eindig blijven */
 const logit = (w, n) => Math.log((w + 0.5) / (n - w + 0.5));
 

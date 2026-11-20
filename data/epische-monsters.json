@@ -38,5 +38,32 @@
     "beweging": {
       "type": "springNaarHeld"
     }
+  },
+  {
+    "id": "groene-jager",
+    "naam": "De Groene Jager",
+    "oudegod": "ysmara",
+    "gruwel": 2,
+    "taaiheid": 9,
+    "schade": 2,
+    "leven": 3,
+    "eigenschap": "De jager van de Doornkoningin. Na elke Onheilsfase loopt hij 1 plek naar de dichtstbijzijnde held. Met 4 helden heeft hij 2 leven extra.",
+    "prompt": "a towering antlered hunter wrapped in moss and hawthorn, face hidden by a mask of bark, carrying a bow of black wood, stalking across foggy Hampstead Heath under a pale moon",
+    "beweging": {
+      "type": "naarHeld",
+      "stappen": 1
+    }
+  },
+  {
+    "id": "de-anatoom",
+    "naam": "De Anatoom",
+    "oudegod": "morghast",
+    "gruwel": 3,
+    "taaiheid": 10,
+    "schade": 2,
+    "leven": 3,
+    "eigenschap": "Wat ooit Dr. Lionel Grieve was. Elke keer dat hij een gevecht wint, naait hij zichzelf dicht: hij krijgt 1 leven terug. Met 4 helden heeft hij 2 leven extra.",
+    "prompt": "a towering surgeon in a blood-stiffened frock coat, his body stitched together from many corpses, a dozen surgical instruments in too many hands, standing in the old operating theatre of Guy's Hospital lit by skylight",
+    "herstelt": 1
   }
 ]

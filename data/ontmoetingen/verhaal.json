@@ -2318,5 +2318,1215 @@
         }
       }
     ]
+  },
+  {
+    "id": "v-ysm-1",
+    "god": "ysmara",
+    "plek": "chelsea",
+    "persoon": "lavinia-greaves",
+    "tekst": "Het weeshuis van Mrs. Greaves in Chelsea ruikt naar zeep en bloesem. In de tuin bloeit een meidoorn, midden in november. Mrs. Lavinia Greaves schenkt je thee en vertelt hoe goed haar kinderen slapen sinds ze onder de boom spelen. 'Ze dromen allemaal hetzelfde,' zegt ze stralend. 'Van een groene dame die ze naar huis brengt.'",
+    "keuzes": [
+      {
+        "label": "Vragen of je de kinderen mag spreken (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Ze laat je even alleen in de speelzaal. Een meisje fluistert dat Ada, de kleinste, al drie nachten in de tuin slaapt en niet meer naar binnen wil. Ze tekent de boom voor je, met een deur in de stam.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Mrs. Greaves glimlacht en zegt dat de kinderen rusten. Het gesprek is voorbij voordat je het merkt.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Het boek met de groene kaft bekijken (Waarneming 9)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Terwijl ze de thee bijschenkt, lees je de laatste bladzijde: namen van kinderen, en achter elke naam een datum en een geperst blaadje meidoorn. Achter drie namen staat: 'thuisgekomen'.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Ze ziet waar je naar kijkt en klapt het boek dicht. 'Dat is privé,' zegt ze, nog steeds glimlachend.",
+          "effect": [
+            {
+              "geest": -1
+            },
+            {
+              "mist": -1
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "v-ysm-2",
+    "god": "ysmara",
+    "plek": "covent-garden",
+    "persoon": "nan-mossop",
+    "tekst": "Onder de zuilen van Covent Garden zit Oude Nan Mossop tussen haar viooltjes. Ze zingt zacht een aftelrijmpje voor zich uit: 'Een, twee, de doorn is nieuw, drie, vier, de koningin is hier.' Als ze je ziet, stopt ze. 'Jij hoort het ook,' zegt ze. 'Niet iedereen hoort het nog.'",
+    "keuzes": [
+      {
+        "label": "Haar het hele rijmpje laten zingen (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Ze zingt het helemaal, zeven coupletten. In elk couplet zit een straatnaam, en samen vormen ze een route door Londen, die eindigt op de heide van Hampstead.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Halverwege houdt ze op en kijkt angstig om zich heen. 'Niet hier,' zegt ze. 'Ze luistert mee.'",
+          "effect": [
+            {
+              "aanwijzing": 1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Een bosje viooltjes kopen",
+        "tekst": "Ze geeft je het bosje en drukt je hand. 'Viooltjes houden haar weg,' zegt ze. 'Niet lang, maar lang genoeg.' Je voelt je lichter.",
+        "effect": [
+          {
+            "pond": -1
+          },
+          {
+            "geest": 2
+          }
+        ]
+      },
+      {
+        "label": "Het rijmpje meezingen in de oude melodie",
+        "tekst": "Je kent de melodie: je moeder zong hem, en haar moeder ook. Nan kijkt je aan alsof ze een geest ziet. Dan vertelt ze je wat de laatste regel betekent, die niemand meer zingt.",
+        "effect": [
+          {
+            "aanwijzing": 2
+          },
+          {
+            "trofee": 1
+          }
+        ],
+        "held": [
+          "esme-valentine",
+          "bridie-kavanagh",
+          "clementine-ashby"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "v-ysm-3",
+    "god": "ysmara",
+    "plek": "hampstead",
+    "persoon": "kleine-robin",
+    "tekst": "Op de heide van Hampstead staat een jongen op blote voeten in het natte gras, met een kroontje van meidoorntwijgen. Het is Kleine Robin, de jongen die drie dagen weg was. Zijn ogen zijn groen. 'Ze vraagt naar jou,' zegt hij vriendelijk. 'Ze vraagt of je komt spelen.'",
+    "keuzes": [
+      {
+        "label": "Vragen waar ze is (Kennis 9)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Je stelt je vraag zoals in de oude verhalen: drie keer, en zonder haar naam te noemen. Robin moet antwoorden. Hij wijst naar een kring paddenstoelen en zegt een datum, en daarna huilt hij, als een gewoon kind.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je noemt haar naam. Robin glimlacht breed. Ergens op de heide gaat een hoorn.",
+          "effect": [
+            {
+              "geest": -2
+            },
+            {
+              "monster": 1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Hem meenemen naar de stad (Kracht 8)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Hij spartelt niet. Hij is licht als een bundel takjes. Bij de eerste gaslantaarn knippert hij, en heel even zijn zijn ogen weer bruin.",
+          "effect": [
+            {
+              "trofee": 1
+            },
+            {
+              "geest": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je grijpt hem, maar je houdt een bos twijgen in je handen. Robin staat tien passen verder en zwaait.",
+          "effect": [
+            {
+              "geest": -1
+            },
+            {
+              "lichaam": -1
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "v-ysm-4",
+    "god": "ysmara",
+    "plek": "bloomsbury",
+    "tekst": "In de leeszaal van het British Museum ligt een middeleeuws kruidenboek open op een lessenaar. Niemand heeft het aangevraagd. Op de bladzijde staat een meidoorn getekend, met wortels die uitlopen in een kaart van een stad die op Londen lijkt, maar dan zonder huizen.",
+    "keuzes": [
+      {
+        "label": "De kaart overtekenen (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je tekent de wortels over op een blad papier. Thuis leg je het op een kaart van Londen. Drie wortels eindigen precies onder drie parken.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De inkt van de tekening lijkt te bewegen. Je tekent een wortel te veel, en hij groeit door op je papier.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Het Latijn lezen (Kennis 8)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Het is een bezwering tegen 'de Groene Dame', geschreven door een monnik van Westminster. Je leert de woorden uit je hoofd.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "trek": "spreuken"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Het Latijn is oud en vreemd. Halverwege merk je dat je de woorden achterstevoren leest, en dat het boek dat leuk vindt.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "v-ysm-5",
+    "god": "ysmara",
+    "plek": "city",
+    "tekst": "Op de stoep voor de Bank of England is 's nachts een meidoorn door de straatstenen gegroeid. Hij staat in volle bloei. De agenten durven er niet aan te komen. Een klerk die er een takje van brak, zit nu te huilen op de trap en weet zijn eigen naam niet meer.",
+    "keuzes": [
+      {
+        "label": "De klerk helpen (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je praat zacht met hem tot hij zich zijn naam herinnert, en daarna zijn vrouw, en daarna de weg naar huis. Het takje heeft hij nog. Er hangt een druppel aan die niet opdroogt.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "geest": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij kijkt je aan zonder je te zien. Je laat hem achter bij een agent.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "De boom omhakken (Kracht 9)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Het kost je een uur en een geleende bijl. Bij elke slag gilt er ergens in de stad een kind in zijn slaap. Als de boom valt, wordt het stil, en de Mist trekt een beetje op.",
+          "effect": [
+            {
+              "mist": 1
+            },
+            {
+              "lichaam": -1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De bijl kaatst terug van het hout alsof het steen is. Je arm is dagen gevoelloos.",
+          "effect": [
+            {
+              "lichaam": -2
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "v-ysm-6",
+    "god": "ysmara",
+    "plek": "st-katharine-docks",
+    "tekst": "In de dokken staat een schip uit Ierland dat een lading turf brengt. Tussen de turf zitten wortels van meidoorn, nog levend, en ze groeien. De stuurman, een oude man uit Connemara, wil ze verbranden, maar de kapitein zegt dat er voor betaald is, door een dame uit Chelsea.",
+    "keuzes": [
+      {
+        "label": "De stuurman helpen de wortels te verbranden (Kracht 8)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Jullie stoken een vuur op de kade. De wortels krullen en piepen. De stuurman bekruist zich en geeft je een amulet van gevlochten stro.",
+          "effect": [
+            {
+              "trofee": 1
+            },
+            {
+              "toestand": "gezegend"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De kapitein laat jullie wegsturen door de havenpolitie.",
+          "effect": [
+            {
+              "toestand": "gezocht"
+            }
+          ]
+        }
+      },
+      {
+        "label": "De vrachtbrief bekijken (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Afzender: een klooster in Galway dat al tweehonderd jaar leegstaat. Ontvanger: Mrs. L. Greaves, Chelsea. Het adres is onderstreept.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De vrachtbrief is in een taal die je niet kent, en de letters kronkelen als ranken.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Hem groeten in het Iers",
+        "tekst": "De stuurman lacht voor het eerst. Hij vertelt je het verhaal van de Sí, de mensen onder de heuvel, en wat je moet doen als ze je roepen: nooit eten, nooit je naam zeggen, nooit omkijken.",
+        "effect": [
+          {
+            "aanwijzing": 1
+          },
+          {
+            "geest": 2
+          }
+        ],
+        "held": [
+          "bridie-kavanagh",
+          "paddy-flynn"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "v-ysm-7",
+    "god": "ysmara",
+    "plek": "kings-cross",
+    "tekst": "Op perron één van King's Cross staat een rij kinderen met kaartjes om hun nek, zoals evacués of weesjes die naar het platteland gaan. Er staat geen trein. Ze kijken allemaal naar het donker aan het eind van het perron, waar iets groens gloeit tussen de rails.",
+    "keuzes": [
+      {
+        "label": "De kinderen terugbrengen naar de hal (Charisma 9)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Je doet alsof je de conducteur bent en roept dat de trein vertraging heeft. Ze volgen je, gehoorzaam, naar de wachtkamer. Op een van de kaartjes staat een adres: het weeshuis in Chelsea.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Ze horen je niet. Je moet ze een voor een wegdragen, en als je terugkomt, staan er weer evenveel.",
+          "effect": [
+            {
+              "lichaam": -1
+            },
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Langs de rails naar het licht lopen (Waarneming 9)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Tussen de rails groeit een kring van witte bloemen. Je stapt er niet in. Je ziet wel wat erin ligt: een oude kaart van de spoorlijn, met een station dat niet bestaat.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je stapt in de kring zonder het te merken. Als je eruit komt, is het ochtend.",
+          "effect": [
+            {
+              "geest": -1
+            },
+            {
+              "toestand": "verdwaald"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "v-ysm-8",
+    "god": "ysmara",
+    "plek": "southwark",
+    "tekst": "Op de markt van Southwark verkoopt een vrouw appels die te mooi zijn voor november: rood, glanzend, zonder één vlekje. Ze vraagt er geen geld voor, alleen 'iets kleins'. Een haar, een knoop, je naam. De kinderen staan in een rij.",
+    "keuzes": [
+      {
+        "label": "De kinderen wegjagen (Kracht 7)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 7
+        },
+        "gelukt": {
+          "tekst": "Je stapt tussen de rij en de kraam en klapt in je handen. De kinderen schrikken en rennen weg. Als je je omdraait, is de kraam leeg, op één appel na, die verrot.",
+          "effect": [
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De vrouw kijkt je aan en de kinderen kijken mee. Je bent ineens heel moe.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "Een appel aannemen en je naam geven",
+        "tekst": "Hij smaakt naar zomer. Je weet dat het fout is, maar het voelt goed. 's Nachts droom je van een feest onder de bomen, en als je wakker wordt, weet je waar het feest zal zijn.",
+        "effect": [
+          {
+            "aanwijzing": 2
+          },
+          {
+            "toestand": "vervloekt"
+          }
+        ]
+      },
+      {
+        "label": "Zout over de appels strooien",
+        "tekst": "Je strooit een handvol uit je schortzak, en de appels worden bruin en zacht. De vrouw sist en is weg, en de kinderen staan verdwaasd te knipperen.",
+        "effect": [
+          {
+            "trofee": 1
+          },
+          {
+            "aanwijzing": 1
+          }
+        ],
+        "held": [
+          "bridie-kavanagh"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "v-ysm-9",
+    "god": "ysmara",
+    "plek": "soho",
+    "persoon": "kleine-robin",
+    "tekst": "Kleine Robin staat in de deuropening alsof hij je opwachtte. Hij geeft je een twijg meidoorn, met één bloesem eraan. 'Als ze je roept,' zegt hij, 'breek dan de bloem. Dan laat ze je één keer gaan.' Hij kijkt even heel verdrietig, en loopt dan weg zonder voetstappen.",
+    "keuzes": [
+      {
+        "label": "De twijg aannemen",
+        "tekst": "Je stopt hem in je knoopsgat. Hij verwelkt niet. Hij ruikt naar zoete melk en naar iets dat bederft.",
+        "effect": [
+          {
+            "vlag": "doorntwijg"
+          }
+        ]
+      },
+      {
+        "label": "Robin vragen mee te komen",
+        "tekst": "Hij schudt zijn hoofd. 'Ik hoor daar nu,' zegt hij. Toch laat hij de twijg in je hand achter, en een kleine knikker van groen glas.",
+        "effect": [
+          {
+            "vlag": "doorntwijg"
+          },
+          {
+            "geest": -1
+          },
+          {
+            "aanwijzing": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "v-ysm-10",
+    "god": "ysmara",
+    "plek": "overal",
+    "persoon": "kleine-robin",
+    "vlag": "doorntwijg",
+    "tekst": "Je hoort muziek, van fluiten en een trom, waar geen muziek hoort. De straat om je heen wordt smaller en groener. Tussen de huizen staan bomen die er net nog niet stonden, en tussen de bomen dansen kinderen in een kring. Iemand roept je naam, met een stem als wind in bladeren. Om je knoopsgat bloeit de twijg van Robin.",
+    "keuzes": [
+      {
+        "label": "De bloem breken",
+        "tekst": "De bloesem knakt, en het is alsof er een deur dichtvalt. De muziek stopt, de bomen zijn lantaarnpalen, de kinderen staan verdwaasd in hun nachthemd op straat. Je brengt ze naar huis, en één van hen weet waar de Koningin haar hof houdt.",
+        "effect": [
+          {
+            "aanwijzing": 2
+          },
+          {
+            "trofee": 1
+          },
+          {
+            "wisVlag": "doorntwijg"
+          }
+        ]
+      },
+      {
+        "label": "Meedansen, en onthouden (Kennis 10)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 10
+        },
+        "gelukt": {
+          "tekst": "Je danst één ronde mee, en tel je stappen. Bij de laatste stap trek je je los, met de hele route in je hoofd: waar de kring begint, en waar hij eindigt.",
+          "effect": [
+            {
+              "aanwijzing": 3
+            },
+            {
+              "wisVlag": "doorntwijg"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je danst, en je vergeet te tellen. Als je bijkomt, ligt de twijg verdord in je hand.",
+          "effect": [
+            {
+              "geest": -2
+            },
+            {
+              "mist": -1
+            },
+            {
+              "wisVlag": "doorntwijg"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "v-mor-1",
+    "god": "morghast",
+    "plek": "city",
+    "persoon": "prudence-ashdown",
+    "tekst": "Op de nachtzaal van Barts houdt Zuster Prudence Ashdown je staande bij de deur. Ze is bleek en houdt een lijst vast. 'Elf,' zegt ze. 'Elf doden in drie weken die ik zelf heb afgelegd, en die er 's ochtends niet meer waren. De portier zegt dat ze zijn opgehaald. Door wie, zegt hij niet.'",
+    "keuzes": [
+      {
+        "label": "Met haar de nacht doorwaken (Kennis 8)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Om drie uur gaat de kelderdeur open. Twee studenten met een brancard, en een briefje met het stempel van Guy's. Je schrijft de namen op die erop staan.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Om drie uur zit je te knikkebollen. Je wordt wakker van een bed dat leeg is, en een laken dat nog warm is.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "De portier ondervragen (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Een paar shilling en een vriendelijk woord doen wonderen. Hij krijgt een pond per lichaam, van een heer met zilver haar, en hij is bang voor hem.",
+          "effect": [
+            {
+              "pond": -1
+            },
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij laat je wegsturen en zegt tegen de directeur dat je dronken was.",
+          "effect": [
+            {
+              "toestand": "gezocht"
+            }
+          ]
+        }
+      },
+      {
+        "label": "Haar lijst naast de jouwe leggen",
+        "tekst": "Jij houdt ook een lijst bij, van verdwenen kinderen. Twee namen staan op allebei. Prudence wordt stil, en geeft je dan een sleutel van de kelder.",
+        "effect": [
+          {
+            "aanwijzing": 2
+          },
+          {
+            "trofee": 1
+          }
+        ],
+        "held": [
+          "lottie-finch",
+          "winnie-lusk"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "v-mor-2",
+    "god": "morghast",
+    "plek": "southwark",
+    "persoon": "lionel-grieve",
+    "tekst": "In het oude operatietheater onder het dak van Guy's Hospital geeft Dr. Lionel Grieve een lezing voor zijn studenten. Op de tafel ligt een lichaam onder een laken. 'De dood,' zegt Grieve, 'is slechts een ziekte die we nog niet begrijpen.' Het laken beweegt. De studenten applaudisseren.",
+    "keuzes": [
+      {
+        "label": "Een vraag stellen vanaf de bank (Kennis 9)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Je vraagt naar de bron van zijn lichamen. Grieve antwoordt zonder te knipperen, en daarmee verraadt hij zich: hij noemt een begraafplaats die al tweehonderd jaar dicht is.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij antwoordt zo welbespraakt dat je even denkt dat hij gelijk heeft. Die nacht droom je dat je op de tafel ligt.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "Na afloop de tafel bekijken (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Onder het laken ligt een man met een litteken van oor tot oor, netjes dichtgenaaid. Zijn hart klopt niet. Zijn ogen volgen je wel. In zijn hand zit een kaartje van een lijkenrover.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Een student betrapt je en roept de dokter. Grieve onthoudt je gezicht.",
+          "effect": [
+            {
+              "mist": -1
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "v-mor-3",
+    "god": "morghast",
+    "plek": "spitalfields",
+    "persoon": "jebediah-sallow",
+    "tekst": "Achter de kerk van Christ Church zit Jebediah Sallow op een grafsteen met een fles gin. Hij is een lijkenrover, en hij is bang. 'Ik graaf al twintig jaar,' zegt hij. 'Maar wat ik vorige week opgroef, lag niet in een kist. Het lag onder de kisten. En het greep naar mijn spade.'",
+    "keuzes": [
+      {
+        "label": "Hem laten vertellen waar (Charisma 7)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 7
+        },
+        "gelukt": {
+          "tekst": "Hij tekent het voor je in de modder: een put onder een oude pestkerk, waar de nieuwe spoortunnel doorheen loopt. Hij smeekt je om niet te zeggen van wie je het hebt.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij drinkt te veel om nog samenhangend te praten. Hij roept alleen steeds een naam: Grieve.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Hem je gin aanbieden en luisteren",
+        "tekst": "Je geeft hem je fles en zegt niets. Na een uur vertelt hij alles: de prijzen, de namen van de studenten, en de put. Hij huilt als hij klaar is.",
+        "effect": [
+          {
+            "pond": -1
+          },
+          {
+            "aanwijzing": 2
+          },
+          {
+            "geest": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "v-mor-4",
+    "god": "morghast",
+    "plek": "whitechapel",
+    "tekst": "In het London Hospital aan Whitechapel Road wordt een man binnengebracht die al twee dagen dood is, volgens zijn familie. Hij praat, maar alleen in getallen: aantallen doden, per straat, per jaar. De dokter die hem onderzoekt, schrijft ze op, en wordt steeds stiller.",
+    "keuzes": [
+      {
+        "label": "Meeschrijven en de getallen ontcijferen (Kennis 9)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Het zijn de doden van de pest van 1665, per parochie, in de volgorde waarin ze in de putten gingen. De laatste parochie die hij noemt, heeft nog geen getal. Nog niet.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De getallen worden groter en groter. Ergens noemt hij jouw straat.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "Hem laten zwijgen (Kracht 8)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je drukt een doek op zijn mond tot hij stil is. Zijn ogen sluiten zich, opgelucht. De dokter knikt je dankbaar toe.",
+          "effect": [
+            {
+              "geest": 1
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij bijt door de doek heen, in je hand.",
+          "effect": [
+            {
+              "lichaam": -2
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "v-mor-5",
+    "god": "morghast",
+    "plek": "bloomsbury",
+    "tekst": "In het British Museum is een nieuwe vitrine geplaatst met 'Curiosa uit de nieuwe spoortunnels': kleipijpen, munten, een pestbel, en een schedel met een gat in het voorhoofd waar iets uit kwam, niet in ging. Het bordje zegt dat de schedel geschonken is door Dr. L. Grieve.",
+    "keuzes": [
+      {
+        "label": "De schedel bestuderen (Kennis 8)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Het gat is van binnenuit gemaakt. Rond de rand staan krasjes, als tellingen. Je telt ze: het zijn er net zo veel als er pestputten onder de City liggen.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je kijkt te lang in het gat. Het kijkt terug.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "De conservator naar de schenker vragen (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "De conservator vertelt dat Grieve nog meer heeft aangeboden: een complete wervelkolom die 'niet stil wil liggen'. Hij heeft hem geweigerd. Hij geeft je het adres.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De conservator wil er niets over zeggen en vraagt je te vertrekken.",
+          "effect": []
+        }
+      },
+      {
+        "label": "Het kaartje lezen in de catalogus",
+        "tekst": "In de aanwinstencatalogus staat de schedel, en twee regels lager iets dat niet bij de rest hoort: een register van begraafplaatsen uit 1665, in bruikleen bij Dr. Grieve. Nooit teruggebracht.",
+        "effect": [
+          {
+            "aanwijzing": 2
+          }
+        ],
+        "held": [
+          "hester-quayle"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "v-mor-6",
+    "god": "morghast",
+    "plek": "st-katharine-docks",
+    "tekst": "Een vrachtschip uit Hamburg lost kisten met 'medisch materiaal' voor Guy's Hospital. Een van de kisten is gevallen en opengebarsten. Er zit kalk in, en tussen de kalk een hand die langzaam open en dicht gaat. De sjouwers staan in een kring en niemand durft iets te doen.",
+    "keuzes": [
+      {
+        "label": "De kist dichtspijkeren (Kracht 8)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je timmert het deksel dicht terwijl de hand ertegen klopt. Op het deksel staat het adres van een pakhuis in Southwark. Je schrijft het op.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De hand grijpt je pols. Het kost twee sjouwers om je los te trekken.",
+          "effect": [
+            {
+              "lichaam": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "De vrachtpapieren lezen (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Dertig kisten, betaald door het Hunteriaans Genootschap, af te leveren 's nachts, via de achteringang. Onder de handtekening staat een zegel: een schedel met een lancet.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De papieren zijn nat en onleesbaar, en de havenmeester wil je weg hebben.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "v-mor-7",
+    "god": "morghast",
+    "plek": "kings-cross",
+    "tekst": "Bij King's Cross graven de mannen van de Metropolitan Railway een nieuwe tunnel. Vandaag zijn ze gestopt. De voorman staat bij de ingang met zijn pet in zijn handen. 'We zijn door een muur gegaan,' zegt hij. 'Daarachter liggen ze, honderden. En ze liggen niet meer zoals we ze vonden.'",
+    "keuzes": [
+      {
+        "label": "Met een lamp naar binnen gaan (Kracht 9)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "De tunnel komt uit in een gewelf vol beenderen, keurig gestapeld, schedels naar buiten. Midden in het gewelf staat er één rechtop, alsof hij wacht. Je haalt hem neer met je schouder en vlucht met het register dat aan zijn voeten lag.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De lamp gaat uit. Je vindt de weg terug op de tast, langs ribben en schouderbladen die bewegen als je ze aanraakt.",
+          "effect": [
+            {
+              "lichaam": -1
+            },
+            {
+              "geest": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "De voorman overhalen de tunnel te dichten (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je praat met hem tot hij de muur laat dichtmetselen. 'Mijn baas wordt woedend,' zegt hij. 'Maar mijn vrouw slaapt beter.'",
+          "effect": [
+            {
+              "mist": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij zegt dat de spoorweg niet wacht voor spoken. Morgen gaan ze verder.",
+          "effect": [
+            {
+              "mist": -1
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "v-mor-8",
+    "god": "morghast",
+    "plek": "westminster",
+    "tekst": "In de Abdij van Westminster wordt een graf geopend voor een herbegrafenis. Het graf is leeg, op een briefje na, in een handschrift dat nog geen week oud is: 'Ontvangen in goede staat. Met dank, L.G.' De deken van de abdij is zo wit als zijn kraag.",
+    "keuzes": [
+      {
+        "label": "Het handschrift vergelijken (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je hebt dit handschrift eerder gezien, op een kaartje bij een schenking aan het museum. Je weet nu zeker wie de graven leeghaalt, en waar hij ze heen brengt.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De letters zeggen je niets, en de deken wil het briefje terug.",
+          "effect": []
+        }
+      },
+      {
+        "label": "De deken bijstaan (Charisma 7)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 7
+        },
+        "gelukt": {
+          "tekst": "Je bidt met hem, en daarna vertelt hij je dat er de afgelopen maand vier graven zijn geopend. Hij geeft je zijn zegen, en een fles wijwater.",
+          "effect": [
+            {
+              "toestand": "gezegend"
+            },
+            {
+              "aanwijzing": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij wil alleen zijn.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Een mis opdragen voor de verdwenen dode",
+        "tekst": "Je zegt de oude woorden, en de abdij is stil. Bij het laatste amen voel je het gewicht van een hand op je schouder, en een stem die dank zegt. Ergens onder de stad verliest iets een beetje greep.",
+        "effect": [
+          {
+            "mist": 1
+          },
+          {
+            "trofee": 1
+          }
+        ],
+        "held": [
+          "ezra-whitlock",
+          "odile-fairweather"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "v-mor-9",
+    "god": "morghast",
+    "plek": "city",
+    "persoon": "jebediah-sallow",
+    "tekst": "Jebediah Sallow trekt je een portiek in. Hij stinkt naar aarde en angst. Hij drukt je een vuil, gevouwen papier in handen. 'Een kaart van de putten,' fluistert hij. 'Alle putten. Grieve wil hem terug. Bewaar hem voor me, ik haal hem op als het veilig is.' Dan rent hij weg.",
+    "keuzes": [
+      {
+        "label": "De kaart bewaren",
+        "tekst": "Je stopt hem diep in je binnenzak. Hij is koud, alsof hij net uit de grond komt.",
+        "effect": [
+          {
+            "vlag": "sallow-kaart"
+          }
+        ]
+      },
+      {
+        "label": "Hem achterna gaan (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je volgt hem tot een kroeg in Smithfield, waar hij een kamer huurt onder een andere naam. Je weet nu waar hij slaapt, en je hebt de kaart nog steeds.",
+          "effect": [
+            {
+              "vlag": "sallow-kaart"
+            },
+            {
+              "aanwijzing": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je bent hem kwijt in de mist. De kaart heb je nog.",
+          "effect": [
+            {
+              "vlag": "sallow-kaart"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "v-mor-10",
+    "god": "morghast",
+    "plek": "overal",
+    "persoon": "lionel-grieve",
+    "vlag": "sallow-kaart",
+    "tekst": "Twee jonge mannen in studentenjassen komen naast je lopen, een aan elke kant. Ze ruiken naar carbol en formaline. 'Dr. Grieve laat vragen of u iets van hem heeft,' zegt de ene beleefd. 'Een kaart.' De andere houdt zijn hand in zijn zak, om iets dat op een lancet lijkt.",
+    "keuzes": [
+      {
+        "label": "Ze afschudden en de kaart naar Voss brengen (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je duikt een slagerij in, door de koelcel, de achterdeur uit. Diezelfde middag spreidt Voss de kaart uit op zijn bureau, en zet een kruis bij elke put. 'Dit,' zegt hij, 'is het eerste bewijs dat ik kan gebruiken.'",
+          "effect": [
+            {
+              "aanwijzing": 3
+            },
+            {
+              "wisVlag": "sallow-kaart"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Ze zijn sneller. In een steeg nemen ze je de kaart af, en een van hen snijdt je in je arm, als waarschuwing.",
+          "effect": [
+            {
+              "lichaam": -2
+            },
+            {
+              "wisVlag": "sallow-kaart"
+            }
+          ]
+        }
+      },
+      {
+        "label": "Ze laten zien wie ze voor zich hebben (Kracht 8)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je grijpt de eerste bij zijn kraag en drukt hem tegen een muur. De ander rent weg. De eerste vertelt alles, en daarna bedankt hij je, omdat hij nu een reden heeft om te stoppen.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trofee": 1
+            },
+            {
+              "wisVlag": "sallow-kaart"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De lancet is sneller dan jij.",
+          "effect": [
+            {
+              "lichaam": -2
+            },
+            {
+              "wisVlag": "sallow-kaart"
+            }
+          ]
+        }
+      },
+      {
+        "label": "Ze de kaart geven",
+        "tekst": "Ze nemen hem aan en tikken tegen hun hoed. Je bent ervan af. Een week later vindt men Jebediah Sallow in de Theems.",
+        "effect": [
+          {
+            "geest": -2
+          },
+          {
+            "mist": -1
+          },
+          {
+            "wisVlag": "sallow-kaart"
+          }
+        ]
+      }
+    ]
   }
 ]
