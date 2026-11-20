@@ -2,21 +2,23 @@
 
 Deze lijst werken we aan het einde van elk gesprek bij. Zet bij elke update die spelers merken een nieuw bericht bovenaan `data/nieuws.json` (met een hoger `id`): dat verschijnt één keer als "Wat is er nieuw" als de app opent.
 
-*Laatst bijgewerkt: 20 november 2026 (zevende sessie)*
+*Laatst bijgewerkt: 20 november 2026 (achtste sessie)*
 
-## Gemeten na de zevende sessie
+## Gemeten na de achtste sessie (twee keer reizen)
 
-Met `node tools/testbot.js 150` (balans) en `node tools/meet-variatie.js 100` (herhaling, normale stand). In het spel: 50 stadskaarten, 40 verhaalkaarten, 20 scheurkaarten, 30 onheilskaarten (24 per god) en 4 mysteries per god, waarvan er per potje 3 meedoen.
+Met `node tools/testbot.js 150`. Tests, vaardigheid en geluk: zie [`tests-en-geluk.md`](tests-en-geluk.md) (`node tools/meet-tests.js 100`).
 
 **Balans (winkans):**
 
 | God | Ontspannen 2 / 4 | Normaal 2 / 4 | Genadeloos 2 / 4 |
 |---|---|---|---|
-| Vathrûn | 97% / 97% | 71% / 79% | 22% / 11% |
-| Azh-Ilareth | 94% / 99% | 55% / 75% | 15% / 19% |
-| Nebet-Ankhu | 92% / 97% | 57% / 79% | 17% / 13% |
+| Vathrûn | 96% / 99% | 74% / 75% | 37% / 26% |
+| Azh-Ilareth | 94% / 98% | 67% / 71% | 24% / 29% |
+| Nebet-Ankhu | 97% / 97% | 61% / 73% | 21% / 29% |
 
-Alles valt binnen het doel.
+Ontspannen en normaal vallen binnen het doel. **Genadeloos is te makkelijk geworden** (doel 10 tot 20%, was 11 tot 22%, nu 21 tot 37%): twee keer reizen helpt vooral daar.
+
+## Gemeten na de zevende sessie
 
 **Herhaling binnen één potje:**
 
@@ -54,6 +56,13 @@ Gemeten met de testbot: 300 potjes in de normale stand, met 2 en met 4 helden.
 Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (kort en weinig opvallend).
 
 ## Open taken
+
+### Balans en tests (zie `tests-en-geluk.md`)
+- [ ] Genadeloos weer naar 10 tot 20% winst brengen. Twee keer reizen maakte het te makkelijk.
+- [ ] De kans bij de testknop laten zien, bijvoorbeeld *Kennis-test (8) · 72%*.
+- [ ] Verbanning lukt in 95% van de tests: doel 1 of 2 hoger, of zonder test.
+- [ ] Gevechten krijgen bijna geen hulp van herworpen (69% naar 72%). Een manier om je voor te bereiden?
+- [ ] De stations (U) doen alleen iets met het Kaartje voor de Ondergrondse, dat je toevallig op een markt kunt trekken. Meer betekenis geven?
 
 ### Geluid
 - [ ] Geluid testen op de iPad: volume van effecten, sfeer en muziek ten opzichte van elkaar, de lus van de sfeer en de muziek, en de eerste tik.

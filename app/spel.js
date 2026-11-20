@@ -294,9 +294,12 @@ async function test(h, kenmerk, doel, titel, opt = {}) {
     return { idx, totaal: idx.reduce((s, i) => s + stenen[i], 0) + kw };
   };
   const laagste = () => stenen.indexOf(Math.min(...stenen));
+  /* meting voor tools/meet-tests.js: alleen actief als de meetlijst bestaat */
+  const meting = window.__testlog ? { kenmerk, waarde: h.kenm[kenmerk], kw, doel, stenen: stenen.length, titel, held: h.id, herworpen: 0, eerste: null } : null;
   while (true) {
     const { idx, totaal } = reken();
     const gelukt = totaal >= doel;
+    if (meting && meting.eerste === null) meting.eerste = totaal;
     const knoppen = [{ label: gelukt ? "Gelukt, verder" : "Accepteren", waarde: "ok" }];
     if (!gelukt) {
       const winnie = S.helden.find(x => x.id === "winnie-lusk" && x.plek === h.plek && !S.rondeGebruikt["kruisverwijzing"]);
@@ -309,7 +312,8 @@ async function test(h, kenmerk, doel, titel, opt = {}) {
       if (isOverzee(h.plek) && h.spullen.includes("boek-reisverslag")) knoppen.push({ label: "Reisverslag: +2", waarde: "reis", ghost: true });
     }
     const keuze = await venster({ soort: `Test · ${KNAAM[kenmerk] || kenmerk}`, titel, html: `<p class="muted">${esc(korteNaam(hd.naam))} gooit ${stenen.length} dobbelstenen en telt de twee hoogste, plus ${kw}.</p>` + dobbelHtml(stenen, idx, kw, doel, totaal), knoppen, animeer: rolDobbels });
-    if (keuze === "ok") return gelukt;
+    if (keuze === "ok") { if (meting) { meting.kw = kw; meting.totaal = totaal; meting.gelukt = gelukt; window.__testlog.push(meting); } return gelukt; }
+    if (meting) meting.herworpen++;
     const i = laagste();
     if (keuze === "aanw") h.aanw--;
     if (keuze === "zegen") h.ronde.gezegend = true;
