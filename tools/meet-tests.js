@@ -33,7 +33,7 @@ const soortVan = t => /^Gevecht/.test(t) ? "Gevecht" : /^Gruwel/.test(t) ? "Gruw
   await page.evaluate(v => { window.__doelPlus = v; }, doelPlus);
 
   const alle = [], perStand = {};
-  for (const god of ["vathrun", "azh-ilareth", "nebet-ankhu"]) for (const stand of ["ontspannen", "normaal", "genadeloos"]) for (const aantal of [2, 4]) {
+  for (const god of JSON.parse(fs.readFileSync(path.join(root, "data", "oude-goden.json"), "utf8")).map(g => g.id)) for (const stand of ["ontspannen", "normaal", "genadeloos"]) for (const aantal of [2, 4]) {
     const r = await page.evaluate(async ([god, stand, aantal, n]) => {
       const helden = window.__spel.D.helden.map(h => h.id), tests = [], potjes = [];
       for (let i = 0; i < n; i++) {

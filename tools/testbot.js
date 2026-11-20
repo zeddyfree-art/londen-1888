@@ -31,7 +31,7 @@ const server = http.createServer((req, res) => {
   const doelPlus = +(process.env.DOELPLUS || 0);
   await page.evaluate(v => { window.__doelPlus = v; }, doelPlus);
 
-  const goden = ["vathrun", "azh-ilareth", "nebet-ankhu"];
+  const goden = process.env.GODEN ? process.env.GODEN.split(",") : JSON.parse(fs.readFileSync(path.join(root, "data", "oude-goden.json"), "utf8")).map(g => g.id);
   const standen = ["ontspannen", "normaal", "genadeloos"];
   const rijen = [], mys = {};
   for (const god of goden) for (const stand of standen) for (const aantal of [2, 4]) {

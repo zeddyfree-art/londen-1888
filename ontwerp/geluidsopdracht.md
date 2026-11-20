@@ -48,6 +48,8 @@ Ze spelen zacht op de achtergrond zolang het potje duurt, één per oude god, pl
 | `sfeer-vathrun.mp3` | Potje tegen Vathrûn | 22 s | `seamless loop, water dripping in an old brick sewer, slow river lapping against stone steps, distant foghorn, faint deep breathing under the water, damp and ominous, no music` |
 | `sfeer-azh-ilareth.mp3` | Potje tegen Azh-Ilareth | 22 s | `seamless loop, cold night wind over an open heath, a faint high shimmering drone like starlight, an old clock ticking in an empty salon, very faint wordless choir, eerie, no music` |
 | `sfeer-nebet-ankhu.mp3` | Potje tegen Nebet-Ankhu | 22 s | `seamless loop, creaking wooden crates in a dark dockside warehouse, ropes and ship timbers groaning, faint desert wind, distant whispering voices, ominous, no music` |
+| `sfeer-ysmara.mp3` | Potje tegen Ysmara (nog te maken; tot dan klinkt `sfeer-start`) | 22 s | `seamless loop, wind rustling through leaves and hawthorn branches at night, distant children softly singing a nursery rhyme, faint wooden flute far away, a creaking garden gate, enchanting and eerie, no music` |
+| `sfeer-morghast.mp3` | Potje tegen Morghast (nog te maken; tot dan klinkt `sfeer-start`) | 22 s | `seamless loop, a deep underground vault, slow dripping water, a shovel scraping in earth far away, bones shifting softly, a very slow deep breathing below, a distant hospital bell, dread, no music` |
 
 ## Achtergrondmuziek
 

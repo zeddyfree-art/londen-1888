@@ -10,11 +10,13 @@ Ons verhaal speelt zich af in de laag eronder. Daar weet een handvol mensen dat 
 
 ## Wat er aan de hand is
 
-Er zijn dingen die ouder zijn dan de mensheid. Ze slapen, en hun slaap is niet altijd even diep. In 1888 komen er drie tegelijk in beweging. In elk potje is er één die ontwaakt:
+Er zijn dingen die ouder zijn dan de mensheid. Ze slapen, en hun slaap is niet altijd even diep. In 1888 komen er vijf tegelijk in beweging. In elk potje is er één die ontwaakt:
 
 - **Vathrûn**, die onder de Theems ademt. Het nieuwe graafwerk heeft een oude deur geraakt.
 - **Azh-Ilareth**, de ster die te veel is. Een ster die op geen enkele kaart staat, komt elke nacht dichterbij.
 - **Nebet-Ankhu**, de farao zonder gezicht. Een expeditie heeft uit Egypte iets meegenomen dat opgesloten had moeten blijven.
+- **Ysmara**, de Doornkoningin. Onder de stad ligt een woud dat nooit echt is gekapt, en zij roept de kinderen terug.
+- **Morghast**, de Slaper in de knekelputten. De nieuwe spoortunnels graven dwars door de pestputten van 1665.
 
 Wat deze machten gemeen hebben: ze werken via **mensen**. Via wie ze aanbidt, wie ze wil bestuderen of wie ze wil bezitten. De gevaarlijkste tegenstanders in dit spel zijn daarom geen monsters, maar overtuigde, slimme mensen.
 

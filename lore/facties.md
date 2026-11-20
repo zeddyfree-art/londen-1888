@@ -29,6 +29,26 @@ De expeditie groef in 1887 in de vallei bij Thebe een graf op dat geen farao ooi
 
 **In het spel:** Shabti-wachters, Sluierhonden en de Gemaskerde Hogepriester komen uit deze kisten. Dr. Moss probeert de zegels terug te krijgen, wat in het spel het mysterie "De gestolen zegels" is.
 
+## Het Meidoornhof
+
+**Wie:** bloemenverkoopsters, parkwachters, kindermeisjes en tuinmannen, en een paar rijke weldoeners.
+**Leider:** Mrs. Lavinia Greaves, die een weeshuis in Chelsea bestuurt.
+**Herkenningsteken:** een takje meidoorn, ook in november in bloei, op de hoed of in het knoopsgat.
+
+Het Meidoornhof gelooft dat de Doornkoningin Ysmara de kinderen van Londen naar een betere wereld brengt, weg van roet, honger en ziekte. Ze helpen haar door kinderen 'voor te bereiden': ze leren ze de oude rijmpjes, laten ze onder de meidoorn spelen en schrijven hun namen in een groen boek.
+
+**In het spel:** Wisselkinderen, Doornridders en Dwaallichten horen bij deze verhaallijn, en de Groene Jager is de jager van de Koningin.
+
+## Het Hunteriaans Genootschap
+
+**Wie:** chirurgen, anatomiestudenten en de lijkenrovers die voor hen graven.
+**Leider:** Dr. Lionel Grieve, chirurg aan Guy's Hospital.
+**Herkenningsteken:** een zegel met een schedel en een lancet.
+
+Het Genootschap is genoemd naar de beroemde anatoom John Hunter, en het wil verder gaan dan hij: het gelooft dat de dood een ziekte is die te genezen valt. In de oude pestputten onder de City vonden ze het bewijs. Wat daar slaapt, praat tegen Grieve, en het belooft veel.
+
+**In het spel:** Knekelmannen, Lijkenrovers en Pestdokters horen bij deze verhaallijn, en De Anatoom is wat er van Grieve over is.
+
 ## Scotland Yard
 
 **Contact:** Hoofdinspecteur Thaddeus Voss.

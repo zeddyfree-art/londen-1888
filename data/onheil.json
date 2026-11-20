@@ -670,5 +670,159 @@
         "aantal": 1
       }
     ]
+  },
+  {
+    "id": "o39",
+    "naam": "De meidoorn bloeit",
+    "god": "ysmara",
+    "mist": 1,
+    "scheur": 1,
+    "monster": 0,
+    "extra": "Leg 1 Aanwijzing op Chelsea.",
+    "tekst": "In heel Londen bloeit 's nachts de meidoorn, in parken, op kerkhoven en tussen de straatstenen. De geur is zo zoet dat mensen ervan huilen. In Chelsea staat de tuin van het weeshuis wit van de bloesem, en de kinderen staan aan het hek te zingen.",
+    "acties": [
+      {
+        "type": "aanwijzingOp",
+        "plek": "chelsea",
+        "aantal": 1
+      }
+    ]
+  },
+  {
+    "id": "o40",
+    "naam": "De lege bedden",
+    "god": "ysmara",
+    "persoon": "lavinia-greaves",
+    "mist": 1,
+    "scheur": 0,
+    "monster": 0,
+    "extra": "Elke held verliest 1 Geest.",
+    "tekst": "In één nacht zijn uit zeven huizen in Londen kinderen verdwenen. Hun bedden zijn warm, de ramen zijn dicht, en op elk kussen ligt een blaadje meidoorn. Mrs. Greaves zet een advertentie in The Times: ze biedt de ouders troost aan, en een plek om te rouwen, in haar tuin.",
+    "acties": [
+      {
+        "type": "geestAlle",
+        "waarde": -1
+      }
+    ]
+  },
+  {
+    "id": "o41",
+    "naam": "De jacht gaat",
+    "god": "ysmara",
+    "mist": 1,
+    "scheur": 0,
+    "monster": 1,
+    "extra": "Alle monsters bewegen.",
+    "tekst": "Boven Hampstead klinkt een hoorn, drie keer. De honden van Londen blaffen tegelijk en houden dan op. Wie die nacht buiten is, ziet gestalten met geweien over de daken springen, en hoort lachen dat niet van mensen komt.",
+    "acties": [
+      {
+        "type": "monstersBewegen"
+      }
+    ]
+  },
+  {
+    "id": "o42",
+    "naam": "Gerucht: het rijmpje",
+    "god": "ysmara",
+    "persoon": "nan-mossop",
+    "mist": 0,
+    "scheur": 0,
+    "monster": 0,
+    "gerucht": "Leg 2 Aanwijzingen op Covent Garden. Zijn die na 2 rondes niet allemaal opgehaald, dan daalt de Mist met 2.",
+    "tekst": "Overal op straat zingen kinderen een nieuw couplet van het aftelrijmpje, een couplet dat Oude Nan nog nooit heeft gehoord. Ze laat jullie weten dat ze het moet horen van iemand die het kan opschrijven, en snel, voordat de kinderen het weer vergeten.",
+    "acties": [
+      {
+        "type": "gerucht",
+        "soort": "ophalen",
+        "plek": "covent-garden",
+        "aantal": 2,
+        "rondes": 3,
+        "straf": 2
+      }
+    ]
+  },
+  {
+    "id": "o43",
+    "naam": "De putten gaan open",
+    "god": "morghast",
+    "mist": 1,
+    "scheur": 1,
+    "monster": 0,
+    "extra": "Er verschijnt een Knekelman in Spitalfields.",
+    "tekst": "Op drie plekken in de City zakt 's nachts de straat in. Uit de gaten komt een geur van kalk en oude aarde. Bij Spitalfields kruipt er iets uit dat de agenten eerst voor een dronkaard houden, tot het zijn hoofd omdraait.",
+    "acties": [
+      {
+        "type": "monsterOp",
+        "plek": "spitalfields",
+        "id": "knekelman"
+      }
+    ]
+  },
+  {
+    "id": "o44",
+    "naam": "De anatomieles",
+    "god": "morghast",
+    "persoon": "lionel-grieve",
+    "mist": 1,
+    "scheur": 0,
+    "monster": 0,
+    "extra": "Elke held in Southwark of The City verliest 1 Lichaam. Leg 1 Aanwijzing op Southwark.",
+    "tekst": "Dr. Grieve geeft een openbare demonstratie in Guy's. Er komen tweehonderd toeschouwers, en wat ze zien, staat de volgende dag in geen enkele krant. Wel staan er die nacht in Southwark en de City mensen voor hun raam, die niet meer weten hoe ze moeten gaan liggen.",
+    "acties": [
+      {
+        "type": "lichaamOp",
+        "plekken": [
+          "southwark",
+          "city"
+        ],
+        "waarde": -1
+      },
+      {
+        "type": "aanwijzingOp",
+        "plek": "southwark",
+        "aantal": 1
+      }
+    ]
+  },
+  {
+    "id": "o45",
+    "naam": "Cholera",
+    "god": "morghast",
+    "mist": 1,
+    "scheur": 0,
+    "monster": 0,
+    "extra": "Elke held verliest 1 Geest. Leg 1 Aanwijzing op The City.",
+    "tekst": "In Soho en Whitechapel breekt de cholera weer uit, voor het eerst in jaren. De dokters sluiten de pompen. Zuster Prudence laat weten dat de zieken die sterven, 's nachts allemaal tegelijk hun ogen openen en naar het oosten kijken.",
+    "acties": [
+      {
+        "type": "geestAlle",
+        "waarde": -1
+      },
+      {
+        "type": "aanwijzingOp",
+        "plek": "city",
+        "aantal": 1
+      }
+    ]
+  },
+  {
+    "id": "o46",
+    "naam": "Gerucht: de opgraving",
+    "god": "morghast",
+    "persoon": "jebediah-sallow",
+    "mist": 0,
+    "scheur": 0,
+    "monster": 0,
+    "gerucht": "Er opent een Scheur in The City. Is die na 2 rondes niet gesloten, dan daalt de Mist met 2.",
+    "tekst": "Jebediah Sallow laat via een straatjongen weten dat het Genootschap vannacht de diepste put opengraaft, onder de kerk van St Giles-without-Cripplegate. 'Als ze daar doorbreken,' schrijft hij in kromme letters, 'dan wordt hij wakker.'",
+    "acties": [
+      {
+        "type": "gerucht",
+        "soort": "sluiten",
+        "plek": "city",
+        "rondes": 3,
+        "straf": 2
+      }
+    ]
   }
 ]
