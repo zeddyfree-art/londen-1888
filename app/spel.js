@@ -62,8 +62,8 @@ function art(pad) {
 
 /* ---------- geluid (zelf opgewekt, geen bestanden) ---------- */
 const Geluid = (() => {
-  let ctx = null, aan = true;
-  try { aan = localStorage.getItem("londen1888-geluid") !== "uit"; } catch {}
+  let ctx = null, aan = true, muziekAan = true;
+  try { aan = localStorage.getItem("londen1888-geluid") !== "uit"; muziekAan = localStorage.getItem("londen1888-muziek") !== "uit"; } catch {}
   const c = () => { if (!aan || window.__bot) return null; try { ctx ??= new (window.AudioContext || window.webkitAudioContext)(); if (ctx.state === "suspended") ctx.resume(); return ctx; } catch { return null; } };
   const toon = (f, t0, dur, type = "sine", vol = .15, f2) => {
     const a = c(); if (!a) return; const t = a.currentTime + t0;
@@ -89,7 +89,7 @@ const Geluid = (() => {
   function laadEen(naam) {
     const el = new Audio(); el.preload = "auto";
     const b = bestand[naam] = { el, ok: false };
-    el.addEventListener("canplaythrough", () => { b.ok = true; if (naam === sfeerNaam) sfeer(sfeerNaam.replace("sfeer-", ""), true); }, { once: true });
+    el.addEventListener("canplaythrough", () => { b.ok = true; if (naam === sfeerNaam) sfeer(sfeerNaam.replace("sfeer-", ""), true); if (naam === "muziek" && muziekGewenst) muziek(true, true); }, { once: true });
     el.addEventListener("error", () => { b.ok = false; }, { once: true });
     el.src = `art/geluid/${naam}.mp3`;
   }
@@ -110,10 +110,22 @@ const Geluid = (() => {
     if (!aan || !b?.ok) return;
     sfeerEl = b.el; sfeerEl.loop = true; sfeerEl.volume = .25; sfeerEl.currentTime = 0; sfeerEl.play().catch(() => { sfeerEl = null; });
   }
+  /* achtergrondmuziek: één lange, zachte track onder de sfeer */
+  let muziekGewenst = false, muziekEl = null;
+  function muziek(spelen, opnieuw) {
+    muziekGewenst = spelen;
+    const b = bestand.muziek;
+    if (!spelen || !aan || !muziekAan || !b?.ok) { if (muziekEl) { muziekEl.pause(); muziekEl = null; } return; }
+    if (muziekEl && !opnieuw) return;
+    muziekEl = b.el; muziekEl.loop = true; muziekEl.volume = .18; muziekEl.play().catch(() => { muziekEl = null; });
+  }
   return {
     get aan() { return aan; },
-    laad, sfeer,
-    wissel() { aan = !aan; try { localStorage.setItem("londen1888-geluid", aan ? "aan" : "uit"); } catch {} if (!aan && sfeerEl) { sfeerEl.pause(); sfeerEl = null; } else if (aan && sfeerNaam) sfeer(sfeerNaam.replace("sfeer-", ""), true); },
+    get muziekAan() { return muziekAan; },
+    get heeftMuziek() { return !!bestand.muziek?.ok; },
+    laad, sfeer, muziek,
+    wisselMuziek() { muziekAan = !muziekAan; try { localStorage.setItem("londen1888-muziek", muziekAan ? "aan" : "uit"); } catch {} muziek(muziekGewenst, true); },
+    wissel() { aan = !aan; try { localStorage.setItem("londen1888-geluid", aan ? "aan" : "uit"); } catch {} if (!aan && sfeerEl) { sfeerEl.pause(); sfeerEl = null; } else if (aan && sfeerNaam) sfeer(sfeerNaam.replace("sfeer-", ""), true); muziek(muziekGewenst, true); },
     reis() { speel("reis", () => { for (let i = 0; i < 5; i++) { ruis(i * .16, .06, 900, .4, 5); ruis(i * .16 + .07, .05, 650, .3, 5); } }); },
     kaart() { speel("kaart", () => ruis(0, .4, 300, .25, .8, 2600)); },
     dobbel() { speel("dobbel", () => { for (let i = 0; i < 8; i++) ruis(i * .07 + Math.random() * .03, .03, 2400 + Math.random() * 1600, .35, 6); }); },
@@ -1481,6 +1493,7 @@ async function toonHeld(id) {
 function teken() {
   if (!D || window.__bot) return;
   Geluid.sfeer(!S ? "start" : S.einde ? null : S.god);
+  Geluid.muziek(!S || !S.einde);
   if (!S) return tekenStart();
   if (S.einde) { if (UI.eindeGeluid !== S.einde) { UI.eindeGeluid = S.einde; S.einde === "verlies" ? Geluid.verlies() : Geluid.winst(); } return tekenEinde(); }
   UI.eindeGeluid = null;
@@ -1494,7 +1507,7 @@ function teken() {
       <span class="mistbalk" aria-hidden="true">${Array.from({ length: S.mistStart || g.mist }, (_, i) => `<i class="${i < S.mist ? "" : "weg"}"></i>`).join("")}</span>
       <span class="stat">Mysteries <b>${S.opgelost}/${S.nodig}</b>${mys ? `: ${esc(mys.naam)}` : ""}</span>
       ${S.fase === "helden" ? `<span class="stat beurtchip" style="--kleur:${KLEUREN[S.actief]}">Aan de beurt: <b>${esc(korteNaam(heldDef(actief()).naam))}</b></span>` : ""}
-      <div class="rechts"><button class="btn small ghost" data-act="geluid" aria-pressed="${Geluid.aan}">${Geluid.aan ? "Geluid uit" : "Geluid aan"}</button><button class="btn small ghost" data-act="tips" aria-pressed="${!!(S.tutorial || UI.tips)}">${S.tutorial || UI.tips ? "Tips uit" : "Tips aan"}</button><button class="btn small ghost" data-act="handboek">Handleiding</button><button class="btn small ghost" data-act="stoppen">Stoppen</button></div>
+      <div class="rechts"><button class="btn small ghost" data-act="geluid" aria-pressed="${Geluid.aan}">${Geluid.aan ? "Geluid uit" : "Geluid aan"}</button>${Geluid.heeftMuziek && Geluid.aan ? `<button class="btn small ghost" data-act="muziek" aria-pressed="${Geluid.muziekAan}">${Geluid.muziekAan ? "Muziek uit" : "Muziek aan"}</button>` : ""}<button class="btn small ghost" data-act="tips" aria-pressed="${!!(S.tutorial || UI.tips)}">${S.tutorial || UI.tips ? "Tips uit" : "Tips aan"}</button><button class="btn small ghost" data-act="handboek">Handleiding</button><button class="btn small ghost" data-act="stoppen">Stoppen</button></div>
     </header>
     <div class="bordvlak">${tekenBord()}<div id="plekinfo" class="plekinfo" hidden></div>${legendaHtml()}</div>
     <aside class="paneel">${tekenPaneel()}</aside>
@@ -1814,6 +1827,7 @@ app.addEventListener("click", e => {
     case "reis-hier": { const d = t.dataset.doel; verbergPlekInfo(); return reis(d); }
     case "undo": { const u = UI.undo.pop(); if (!u) return; S = JSON.parse(u.staat); verbergPlekInfo(); log(`Ongedaan gemaakt: ${u.label}`); opslaan(); return teken(); }
     case "geluid": Geluid.wissel(); return teken();
+    case "muziek": Geluid.wisselMuziek(); return teken();
     case "toestand-plus": { const v = document.getElementById("pas-toestand").value; if (!heeft(h, v)) h.toestanden.push(v); opslaan(); return teken(); }
     case "toestand-min": { const v = document.getElementById("pas-toestand").value; h.toestanden = h.toestanden.filter(x => x !== v); opslaan(); return teken(); }
     case "verplaats": h.plek = document.getElementById("pas-plek").value; opslaan(); return teken();

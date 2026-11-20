@@ -49,6 +49,14 @@ Ze spelen zacht op de achtergrond zolang het potje duurt, één per oude god, pl
 | `sfeer-azh-ilareth.mp3` | Potje tegen Azh-Ilareth | 22 s | `seamless loop, cold night wind over an open heath, a faint high shimmering drone like starlight, an old clock ticking in an empty salon, very faint wordless choir, eerie, no music` |
 | `sfeer-nebet-ankhu.mp3` | Potje tegen Nebet-Ankhu | 22 s | `seamless loop, creaking wooden crates in a dark dockside warehouse, ropes and ship timbers groaning, faint desert wind, distant whispering voices, ominous, no music` |
 
+## Achtergrondmuziek
+
+| Bestand | Wanneer | Duur | Prompt (model: Music) |
+|---|---|---|---|
+| `muziek.mp3` | Startscherm en tijdens het spel, zacht onder de sfeer | 3 min | `Slow dark Victorian gothic ambient score, eerie and atmospheric, very slow tempo with no drums. A solo cello and muted strings hold long sustained minor chords over a deep drone, with a faint music box melody and a distant harmonium appearing and fading away. The energy stays low and even throughout, subtle swells and quiet passages, so it can loop softly under a game without drawing attention.` |
+
+Kies bij Music voor **instrumental**. Eén take van 3 minuten kost ongeveer 2.700 credits.
+
 ## Aanleveren
 
 1. Maak in de Drive-map `Londen1888-art` een submap **`geluid`**.
@@ -66,7 +74,8 @@ Je hoeft niet alles in één keer te maken. Begin bijvoorbeeld met `onheil`, `mo
 
 ## Hoe het spel ze gebruikt
 
-- **Volume:** effecten spelen op 50–80%, sfeerlussen op 25%, zodat ze nooit boven de rest uitkomen.
+- **Volume:** effecten spelen op 50–80%, sfeerlussen op 25% en de muziek op 18%. Met de knop *Muziek uit* zet je alleen de muziek uit. Zo komen ze nooit boven de rest uit.
+- **Snel:** via de ElevenLabs-connector kan Claude ze ook zelf maken en ophalen, in de flow "Londen 1888 geluiden".
 - **Geluid uit:** de knop *Geluid uit* zet alles uit, ook de sfeer.
 - **iPad:** Safari laat pas geluid toe na de eerste tik. De sfeer begint dus pas na je eerste tik op het scherm.
 - **Offline:** de geluiden worden bewaard, net als de afbeeldingen, zodat het spel ook zonder internet geluid heeft.

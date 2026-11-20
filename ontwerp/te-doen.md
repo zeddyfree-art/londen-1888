@@ -56,8 +56,8 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 ## Open taken
 
 ### Geluid
-- [ ] Nog 11 geluiden genereren in de ElevenLabs-flow "Londen 1888 geluiden" (alles staat klaar; het gratis plan was druk). Klaar: `dobbel`, `onheil`, `klik`, `reis` en `kaart`.
-- [ ] Geluid testen op de iPad: volume, sfeerlus en de eerste tik.
+- [ ] Geluid testen op de iPad: volume van effecten, sfeer en muziek ten opzichte van elkaar, de lus van de sfeer en de muziek, en de eerste tik.
+- [ ] Geluiden die niet bevallen opnieuw maken in de ElevenLabs-flow (prompt aanpassen, daarna ophalen en `sh tools/normaliseer-geluid.sh`).
 
 ### Beelden
 - [ ] De nieuwe portretten van Odile en Cordelia staan in `art/helden/`, maar in Drive staan nog de oude. Vervang ze daar ook. Daarna kunnen ze met hun nieuwe Drive-id terug in `tools/art-drive.json`.
@@ -94,6 +94,7 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [x] 6 nieuwe verhaalkaarten in The City, Bloomsbury en St Katharine Docks (2 per god)
 - [x] Lore-pagina Onheil en geruchten; meetscript `tools/meet-variatie.js` voor herhaling
 - [x] 10 nieuwe stadskaarten op The City, Bloomsbury, King's Cross, Soho en St Katharine Docks (nu 4 per plek), met Voss, Nell en de vaste bijfiguren
+- [x] Alle 16 geluiden en een achtergrondmuziek van 3 minuten uit ElevenLabs (flow "Londen 1888 geluiden"), met een aparte knop Muziek uit
 - [x] Scherm "Wat is er nieuw": verschijnt één keer na een update, en via de knop op het startscherm
 - [x] Eerste ElevenLabs-geluiden (dobbelstenen en onheilsklok) via de connector; `tools/normaliseer-geluid.sh` brengt het volume gelijk
 - [x] Geruchten zeggen nu "na 2 rondes", zoals ze in het spel ook werken
