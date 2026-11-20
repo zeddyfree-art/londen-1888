@@ -8,15 +8,15 @@ Deze lijst werken we aan het einde van elk gesprek bij. Zet bij elke update die 
 
 Met `node tools/testbot.js 150`. Tests, vaardigheid en geluk, en wat er gebeurt als elke test 1 hoger vraagt: zie [`tests-en-geluk.md`](tests-en-geluk.md).
 
-**Balans (winkans):**
+**Balans (winkans), met de Ondergrondse (1 Pond tussen stations):**
 
 | God | Ontspannen 2 / 4 | Normaal 2 / 4 | Genadeloos 2 / 4 |
 |---|---|---|---|
-| Vathrûn | 95% / 98% | 71% / 79% | 20% / 18% |
-| Azh-Ilareth | 91% / 99% | 60% / 81% | 13% / 17% |
-| Nebet-Ankhu | 94% / 99% | 67% / 74% | 27% / 15% |
+| Vathrûn | 98% / 97% | 70% / 83% | 25% / 26% |
+| Azh-Ilareth | 94% / 99% | 68% / 77% | 17% / 19% |
+| Nebet-Ankhu | 92% / 99% | 67% / 76% | 19% / 15% |
 
-Twee keer reizen maakte genadeloos te makkelijk (21 tot 37%). Met de Mist 1 lager is het 13 tot 27%, bijna overal binnen het doel van 10 tot 20%. Alleen Nebet-Ankhu met 2 helden zit er nog iets boven. Azh-Ilareth met 4 helden op normaal (81%) zit net boven het doel van de helft tot driekwart.
+De Ondergrondse maakt het spel een paar procentpunt makkelijker, binnen de meetruis van ongeveer 4 procentpunt. Vathrûn zit op normaal met 4 helden (83%) en op genadeloos (25 en 26%) net boven het doel. De anderen zitten erbinnen. Zonder Ondergrondse, met genadeloos Mist 1 lager: genadeloos 13 tot 27%, normaal 60 tot 81%.
 
 ## Gemeten na de zevende sessie
 
@@ -60,7 +60,7 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 ### Balans en tests (zie `tests-en-geluk.md`)
 - [ ] Verbanning lukt in 95% van de tests: doel 1 of 2 hoger, of zonder test.
 - [ ] Gevechten krijgen bijna geen hulp van herworpen (69% naar 72%). Een manier om je voor te bereiden?
-- [ ] De stations (U) doen alleen iets met het Kaartje voor de Ondergrondse, dat je toevallig op een markt kunt trekken. Meer betekenis geven?
+- [ ] Uitdagingen in de stijl van de Storm Bells van Wildfrost: zie [`klokken.md`](klokken.md). Wachten op keuze.
 
 ### Geluid
 - [ ] Geluid testen op de iPad: volume van effecten, sfeer en muziek ten opzichte van elkaar, de lus van de sfeer en de muziek, en de eerste tik.
@@ -87,6 +87,8 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [ ] Werken het geluid en de animaties goed op de iPad?
 
 ## Klaar
+
+- [x] De Ondergrondse: vanaf een station voor 1 Pond naar elk ander station
 
 - [x] Genadeloos: Mist 1 lager, weer 13 tot 27% winst
 - [x] Kans bij elke testknop en in het gevecht

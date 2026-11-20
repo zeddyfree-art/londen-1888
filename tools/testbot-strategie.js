@@ -128,9 +128,14 @@ window.__testbot = async function speel(godId, moeilijkheid, heldIds, seed) {
         } else if (!isPlek(d)) {
           if (h.plek === "st-katharine-docks") {
             if (h.pond >= 2 && h.acties > 0 && !h.gebruikt.includes("dienst")) { havenDoel = d; await A.dienst(h); continue; }
-          } else if (A.bereikbaar(h).length) { A.reis(A.stapNaar(h.plek, "st-katharine-docks")); continue; }
+          } else if (A.bereikbaar(h).length) {
+            const metro = A.metroDoelen(h).map(x => [x, dist(x, "st-katharine-docks")]).sort((a, b) => a[1] - b[1])[0];
+            A.reis(metro && metro[1] + 1 < dist(h.plek, "st-katharine-docks") ? metro[0] : A.stapNaar(h.plek, "st-katharine-docks")); continue;
+          }
         } else {
           if (A.plekDef(h.plek).dienst === "station" && S().plekken[d]?.scheur && h.pond >= 1 && dist(h.plek, d) > 2 && h.acties > 0 && !h.gebruikt.includes("dienst")) { stationDoel = d; await A.dienst(h); continue; }
+          const metro = A.metroDoelen(h).map(x => [x, dist(x, d)]).sort((a, b) => a[1] - b[1])[0];
+          if (metro && metro[1] + 1 < dist(h.plek, d) && A.bereikbaar(h).length) { A.reis(metro[0]); continue; }
           if (A.bereikbaar(h).length) { A.reis(A.stapNaar(h.plek, d)); continue; }
         }
       }

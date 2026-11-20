@@ -18,7 +18,7 @@ Een potje duurt ongeveer 45 minuten.
 ## Het scherm
 
 - **Bovenbalk:** de oude god, de ronde, de fase, de Mist en de mysteries.
-- **Het bord:** Londen met twintig plekken. De Theems is de blauwe band, de rode vierkantjes zijn stations van de Ondergrondse. Rechtsboven liggen de bestemmingen overzee.
+- **Het bord:** Londen met twintig plekken. De Theems is de blauwe band, de rode vierkantjes met een U zijn stations van de Ondergrondse: daartussen reis je voor 1 Pond in één stap. Rechtsboven liggen de bestemmingen overzee.
 - **Op het bord:** een paarse stippelring is een **Scheur**, een groen bolletje met een getal is het aantal **Aanwijzingen**, een rood bolletje is een **monster** (een ster is een episch monster), en de ronde portretjes zijn de **helden**.
 - **Rechts:** de held die aan de beurt is, met acties, vermogen, spullen, spreuken, artefacten en toestanden. Met de tabs bovenaan bekijk je de andere helden.
 
@@ -32,7 +32,7 @@ Om de beurt doet elke held **2 acties**. Reizen mag je twee keer doen, dus je ku
 
 | Actie | Wat het doet |
 |---|---|
-| Reizen | Tik op een groen oplichtende plek: één stap over een straat. |
+| Reizen | Tik op een groen oplichtende plek: één stap over een straat. Sta je op een station van de Ondergrondse (rood vierkantje met U), dan reis je voor 1 Pond in één stap naar elk ander station. |
 | Rusten | +1 Lichaam en +1 Geest. Niet als er een monster op je plek staat. |
 | Dienst | De dienst van je plek, zie de tab **Plekken**. |
 | Ruilen | Geef of neem spullen, Ponden en Aanwijzingen van een held op je plek. |
