@@ -499,5 +499,137 @@
         "straf": 2
       }
     ]
+  },
+  {
+    "id": "o31",
+    "naam": "Een tip voor de helden",
+    "persoon": "thaddeus-voss",
+    "mist": 1,
+    "scheur": 0,
+    "monster": 0,
+    "extra": "Leg 1 Aanwijzing op Whitehall. Een bron van Voss zoekt jullie op: een van jullie krijgt binnenkort een ontmoeting met hem.",
+    "tekst": "Op Scotland Yard is iemand binnengelopen met een verhaal dat te gek is om op te schrijven. Hoofdinspecteur Voss heeft het toch opgeschreven, in zijn eigen dossier, en daarna de man zijn eigen hand laten schudden. 'Ik ken iemand die u gelooft,' zei hij. 'Ik stuur ze naar u toe.'",
+    "acties": [
+      {
+        "type": "vlag",
+        "vlag": "voss-tip"
+      },
+      {
+        "type": "aanwijzingOp",
+        "plek": "whitehall",
+        "aantal": 1
+      }
+    ]
+  },
+  {
+    "id": "o32",
+    "naam": "Een rijtuig zonder koetsier",
+    "mist": 1,
+    "scheur": 0,
+    "monster": 0,
+    "extra": "Alle monsters bewegen. Leg 1 Aanwijzing op een willekeurige plek.",
+    "tekst": "Om drie uur 's nachts rijdt een zwart rijtuig door de stad, zonder koetsier en zonder lantaarns. De paarden zijn zo wit als kalk. Waar het stopt, gaat een deur open en stapt er iemand in die er de volgende ochtend niet meer is. Bij de laatste stop blijft er iets achter op de stoep.",
+    "acties": [
+      {
+        "type": "monstersBewegen"
+      },
+      {
+        "type": "aanwijzingWillekeurig",
+        "aantal": 1
+      }
+    ]
+  },
+  {
+    "id": "o33",
+    "naam": "Koorts in de logementen",
+    "mist": 1,
+    "scheur": 0,
+    "monster": 0,
+    "extra": "Elke held in Whitechapel of Spitalfields verliest 1 Geest. Leg 1 Aanwijzing op Spitalfields.",
+    "tekst": "In de logementen van Whitechapel en Spitalfields breekt een koorts uit die de dokters niet kennen. De zieken liggen met open ogen en praten in hun slaap allemaal over hetzelfde: een deur die openstaat. Broeder Ezra zet zijn gaarkeuken open als ziekenzaal en vraagt iedereen die kan, te helpen.",
+    "acties": [
+      {
+        "type": "geestOp",
+        "plekken": [
+          "whitechapel",
+          "spitalfields"
+        ],
+        "waarde": -1
+      },
+      {
+        "type": "aanwijzingOp",
+        "plek": "spitalfields",
+        "aantal": 1
+      }
+    ]
+  },
+  {
+    "id": "o34",
+    "naam": "Het riool stroomt achteruit",
+    "god": "vathrun",
+    "persoon": "moeder-brine",
+    "mist": 1,
+    "scheur": 0,
+    "monster": 0,
+    "extra": "Er verschijnt een Rioolkruiper in Southwark. Leg 1 Aanwijzing op Southwark.",
+    "tekst": "In de hele stad stromen de riolen achteruit. Uit de putten in Southwark welt zout water op, en de kelders van Bankside lopen vol. Mannen van de Board of Works staan ratteloos boven een open put. In de verte, onder de straat, klinkt een stem die zingt zonder melodie.",
+    "acties": [
+      {
+        "type": "monsterOp",
+        "plek": "southwark",
+        "id": "rioolkruiper"
+      },
+      {
+        "type": "aanwijzingOp",
+        "plek": "southwark",
+        "aantal": 1
+      }
+    ]
+  },
+  {
+    "id": "o35",
+    "naam": "De lezing in de leeszaal",
+    "god": "azh-ilareth",
+    "persoon": "aurelian-croft",
+    "mist": 1,
+    "scheur": 0,
+    "monster": 0,
+    "extra": "Elke held verliest 1 Geest. Leg 1 Aanwijzing op Bloomsbury.",
+    "tekst": "Aurelian Croft houdt een openbare lezing in de grote zaal van het British Museum, 'Over het licht dat komt'. De zaal zit vol. Na afloop lopen tientallen toehoorders zwijgend naar buiten en blijven op de stoep staan, met hun gezichten naar de hemel, tot de politie ze wegstuurt.",
+    "acties": [
+      {
+        "type": "geestAlle",
+        "waarde": -1
+      },
+      {
+        "type": "aanwijzingOp",
+        "plek": "bloomsbury",
+        "aantal": 1
+      }
+    ]
+  },
+  {
+    "id": "o36",
+    "naam": "Gerucht: de veiling",
+    "god": "nebet-ankhu",
+    "persoon": "lucius-harrowgate",
+    "mist": 0,
+    "scheur": 0,
+    "monster": 0,
+    "extra": "Er ligt een artefact klaar overzee.",
+    "gerucht": "Als er na 2 rondes nog geen held in Pall Mall is geweest, daalt de Mist met 1.",
+    "tekst": "Bij Christie's in King Street worden 'oudheden uit een particuliere verzameling' geveild. Iedereen weet van wie: Lucius Harrowgate verkoopt de helft van wat hij uit Thebe meenam. Wie een stuk koopt, hoort er 's nachts iets in krabben. De catalogus is uitverkocht.",
+    "acties": [
+      {
+        "type": "artefactKlaar"
+      },
+      {
+        "type": "gerucht",
+        "soort": "bezoek",
+        "plek": "pall-mall",
+        "rondes": 3,
+        "straf": 1
+      }
+    ]
   }
 ]

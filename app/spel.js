@@ -150,6 +150,19 @@ const Geluid = (() => {
     if (b?.ok) { const k = b.el.cloneNode(); k.volume = EFFECTEN[naam] ?? .7; k.play().catch(() => synth?.()); }
     else synth?.();
   };
+  /* Volume van de lange lussen. Safari op iPad negeert el.volume, dus waar het kan loopt het
+     via een GainNode van Web Audio; anders via el.volume. */
+  const mengers = new Map();
+  /* iOS zet de AudioContext stil na het vergrendelen: elke tik maakt hem weer wakker */
+  if (typeof document !== "undefined") document.addEventListener("pointerdown", () => { if (ctx && ctx.state !== "running") ctx.resume().catch(() => {}); }, true);
+  function zetVolume(el, vol) {
+    const a = c();
+    if (a && !mengers.has(el)) { try { const g = a.createGain(); a.createMediaElementSource(el).connect(g).connect(a.destination); mengers.set(el, g); } catch {} }
+    const g = mengers.get(el);
+    if (g) { el.volume = 1; g.gain.setTargetAtTime(vol, a.currentTime, .4); } else el.volume = vol;
+  }
+  /* de sfeer gaat zachter als de muziek eronder speelt, zodat ze niet botsen */
+  const sfeerVolume = () => muziekEl ? .1 : .25;
   /* sfeer: een zachte achtergrondlus per oude god, of op het startscherm */
   let sfeerNaam = null, sfeerEl = null;
   function sfeer(id, opnieuw) {
@@ -159,16 +172,17 @@ const Geluid = (() => {
     sfeerNaam = naam;
     const b = naam && bestand[naam];
     if (!aan || !b?.ok) return;
-    sfeerEl = b.el; sfeerEl.loop = true; sfeerEl.volume = .25; sfeerEl.currentTime = 0; sfeerEl.play().catch(() => { sfeerEl = null; });
+    sfeerEl = b.el; sfeerEl.loop = true; zetVolume(sfeerEl, sfeerVolume()); sfeerEl.currentTime = 0; sfeerEl.play().catch(() => { sfeerEl = null; });
   }
   /* achtergrondmuziek: één lange, zachte track onder de sfeer */
   let muziekGewenst = false, muziekEl = null;
   function muziek(spelen, opnieuw) {
     muziekGewenst = spelen;
     const b = bestand.muziek;
-    if (!spelen || !aan || !muziekAan || !b?.ok) { if (muziekEl) { muziekEl.pause(); muziekEl = null; } return; }
+    if (!spelen || !aan || !muziekAan || !b?.ok) { if (muziekEl) { muziekEl.pause(); muziekEl = null; } if (sfeerEl) zetVolume(sfeerEl, sfeerVolume()); return; }
     if (muziekEl && !opnieuw) return;
-    muziekEl = b.el; muziekEl.loop = true; muziekEl.volume = .18; muziekEl.play().catch(() => { muziekEl = null; });
+    muziekEl = b.el; muziekEl.loop = true; zetVolume(muziekEl, .18); muziekEl.play().catch(() => { muziekEl = null; if (sfeerEl) zetVolume(sfeerEl, sfeerVolume()); });
+    if (sfeerEl) zetVolume(sfeerEl, sfeerVolume());
   }
   return {
     get aan() { return aan; },
@@ -376,7 +390,7 @@ async function test(h, kenmerk, doel, titel, opt = {}) {
     const knoppen = [{ label: gelukt ? "Gelukt, verder" : "Accepteren", waarde: "ok" }];
     if (!gelukt) {
       const winnie = S.helden.find(x => x.id === "winnie-lusk" && x.plek === h.plek && !S.rondeGebruikt["kruisverwijzing"]);
-      if (h.aanw > 0 && !klok("geen-tweede-worp") && (kenmerk === "kennis" || kenmerk === "scherpte" || h.id === "silas-rook")) knoppen.push({ label: "Aanwijzing uitgeven: opnieuw", waarde: "aanw", ghost: true });
+      if (h.aanw > 0 && !klok("geen-tweede-worp") && (kenmerk === "kennis" || kenmerk === "scherpte" || opt.gevecht || h.id === "silas-rook")) knoppen.push({ label: opt.gevecht && kenmerk === "kracht" ? "Aanwijzing: je kent zijn zwakke plek, opnieuw" : "Aanwijzing uitgeven: opnieuw", waarde: "aanw", ghost: true });
       if (heeft(h, "gezegend") && !kat && !h.ronde.gezegend) knoppen.push({ label: "Gezegend: opnieuw", waarde: "zegen", ghost: true });
       if (h.id === "hu-yiping" && kenmerk === "kracht" && !h.ronde.adem) knoppen.push({ label: "Ademdiscipline: opnieuw", waarde: "adem", ghost: true });
       if (winnie) knoppen.push({ label: "Kruisverwijzing (Winnie): opnieuw", waarde: "winnie", ghost: true });
@@ -458,6 +472,8 @@ async function pasToe(h, effecten) {
     else if (k === "monster") { const m = spawnMonster(h.plek); if (m) regels.push([-1, `${monsterDef(m).naam} verschijnt`]); }
     else if (k === "scheur") { openScheurOp(h.plek); regels.push([-1, "Er opent een Scheur"]); }
     else if (k === "reis") { h.plek = v; regels.push([0, `Naar ${plekNaam(v)}`]); }
+    else if (k === "vlag") { (S.vlaggen ??= {})[v] = true; regels.push([0, "Dit verhaal is nog niet af"]); }
+    else if (k === "wisVlag") { if (S.vlaggen) delete S.vlaggen[v]; }
     else if (k === "trek") {
       if (v === "artefacten") { regels.push([1, "Artefact: " + await geefArtefact(h)]); }
       else if (v === "spreuken") { const id = trekUit("spreuken"); if (id) { h.spreuken.push(id); regels.push([1, "Spreuk: " + spreukDef(id).naam]); } }
@@ -755,6 +771,13 @@ async function raaf(h) {
 async function journalist(h) {
   const g = S.geruchten.length === 1 ? S.geruchten[0] : await venster({ soort: "Journaliste", titel: "Welk gerucht ontkracht je?", knoppen: S.geruchten.map(g => ({ label: g.naam, waarde: g })) });
   h.aanw -= 2; S.geruchten = S.geruchten.filter(x => x !== g); log(`De avondkrant ontkracht "${g.naam}"`); opslaan();
+}
+async function voorbereiden(h) {
+  UI.undo.push({ staat: JSON.stringify(S), label: "voorbereiden", ronde: S.ronde, actief: S.actief });
+  gebruikActie(h, "voorbereiden");
+  h.ronde.voorbereid = true;
+  log(`${korteNaam(heldDef(h).naam)} bereidt zich voor op een gevecht`);
+  opslaan(); teken();
 }
 async function rust(h) {
   if (S.plekken[h.plek]?.monsters.length) return melding("Niet veilig", "Je kunt niet rusten met een monster op je plek.");
@@ -1148,12 +1171,13 @@ async function vecht(h, plek, m) {
   const kogels = kenmerk === "kracht" && vuurwapen && d.gruwel >= 2 && h.spullen.includes("zilveren-kogels") ? 2 : 0;
   const terrier = h.spullen.includes("dier-terrier") && D.bord.rivier.includes(plek) ? 1 : 0;
   const bonus = (kenmerk === "kracht" ? wapenBonus(h, d.mens) : 0) + nebet + kogels + terrier;
+  const voorbereid = h.ronde.voorbereid ? 1 : 0;
   const gruwel = S.plekken[plek]?.belRonde === S.ronde ? 0 : d.gruwel;
   const gruwelOpt = () => ({ extra: h.ronde.pentagram ? 1 : 0, bonus: (h.artefacten.includes("jade-masker") ? 2 : 0) + h.spullen.reduce((t, id) => t + (spulDef(id)?.bonus?.gruwel || 0), 0) });
-  const kansen = [gruwel > 0 && !h.ronde.wake ? `gruwel weerstaan ${kans(h, "kennis", 8, gruwelOpt())}%` : "", `raken ${kans(h, kenmerk, d.taaiheid, { bonus })}%`].filter(Boolean).join(" · ");
-  if (h.spreuken.includes("verbanning")) opties.find(o => o.waarde === "verban").label += kansTxt(h, "kennis", d.taaiheid, { bonus: 2 + nebet, spreuk: true });
+  const kansen = [gruwel > 0 && !h.ronde.wake ? `gruwel weerstaan ${kans(h, "kennis", 8, gruwelOpt())}%` : "", `raken ${kans(h, kenmerk, d.taaiheid, { bonus, extra: voorbereid })}%`].filter(Boolean).join(" · ");
+  if (h.spreuken.includes("verbanning")) opties.find(o => o.waarde === "verban").label += kansTxt(h, "kennis", d.taaiheid, { bonus: nebet, spreuk: true, extra: voorbereid });
   const k = await venster({ soort: ep ? "Episch monster" : "Gevecht", thema: "monster", titel: d.naam, beeld: `art/monsters/${d.id}.jpg`, zij: true, achterkant: "monster", geluid: "monster", verhaal: d.eigenschap,
-    html: `<p>Gruwel <b>${d.gruwel}</b> · Taaiheid <b>${d.taaiheid}</b> · Schade <b>${d.schade}</b> · Leven <b>${m.leven}</b></p><p class="muted">${esc(naam)} vecht met ${KNAAM[kenmerk]}. Kans: ${kansen}.</p>`, knoppen: opties });
+    html: `<p>Gruwel <b>${d.gruwel}</b> · Taaiheid <b>${d.taaiheid}</b> · Schade <b>${d.schade}</b> · Leven <b>${m.leven}</b></p><p class="muted">${esc(naam)} vecht met ${KNAAM[kenmerk]}${voorbereid ? ", voorbereid (+1 dobbelsteen)" : ""}. Kans: ${kansen}.${h.aanw > 0 && !klok("geen-tweede-worp") ? " Mislukt je worp, dan mag je een Aanwijzing uitgeven om opnieuw te gooien." : ""}</p>`, knoppen: opties });
   if (k === "dyn") { await gebruikSpul(h, "dynamiet"); return true; }
   if (k === "chl") { await gebruikSpul(h, "chloroform"); return true; }
   if (k === "glorie") { h.ronde.glorie = true; log(`${naam} glipt ongezien langs ${d.naam}`); return false; }
@@ -1166,10 +1190,10 @@ async function vecht(h, plek, m) {
   let gelukt;
   if (k === "verban") {
     const p = spreukPrijs(h, spreukDef("verbanning")); h.G -= p.geest;
-    gelukt = await test(h, "kennis", d.taaiheid, `Verbanning tegen ${d.naam}`, { bonus: 2 + nebet, spreuk: true });
+    gelukt = await test(h, "kennis", d.taaiheid, `Verbanning tegen ${d.naam}`, { bonus: nebet, spreuk: true, extra: voorbereid, gevecht: true });
   } else {
     if (kogels) { h.spullen = h.spullen.filter(x => x !== "zilveren-kogels"); log(`${naam} laadt zilveren kogels`); }
-    gelukt = await test(h, kenmerk, d.taaiheid, `Gevecht tegen ${d.naam}`, { bonus });
+    gelukt = await test(h, kenmerk, d.taaiheid, `Gevecht tegen ${d.naam}`, { bonus, extra: voorbereid, gevecht: true });
   }
   if (gelukt) {
     m.leven--;
@@ -1196,12 +1220,23 @@ async function sluitScheur(h, plek = h.plek) {
 }
 
 /* ---------- kaarten trekken ---------- */
+/* Voorwaarden op een kaart: vlag (een eerdere kaart zette een verhaal in gang), nietVlag,
+   mistTot (pas als de Mist zo laag staat: de stad wordt grimmiger) en vanafRonde. */
+function kaartMagMee(e) {
+  const v = S.vlaggen || {};
+  if (e.vlag && !v[e.vlag]) return false;
+  if (e.nietVlag && v[e.nietVlag]) return false;
+  if (e.mistTot != null && S.mist > e.mistTot) return false;
+  if (e.vanafRonde != null && S.ronde < e.vanafRonde) return false;
+  return true;
+}
 function trekKaart(lijst, filter) {
   S.gespeeld ??= [];
-  const past = lijst.filter(e => (!e.god || e.god === S.god) && filter(e));
+  const past = lijst.filter(e => (!e.god || e.god === S.god) && kaartMagMee(e) && filter(e));
   const vers = past.filter(e => !S.gespeeld.includes(e.id));
-  const pool = vers.length ? vers : past;
-  const gewogen = pool.flatMap(e => e.god ? [e, e, e] : [e]);
+  const pool = vers.length ? vers : past.filter(e => !e.vlag);
+  /* verhaalkaarten van deze god tellen 3 keer, vervolgkaarten 4 keer: een verhaal dat loopt, komt snel terug */
+  const gewogen = pool.flatMap(e => e.vlag ? [e, e, e, e] : e.god ? [e, e, e] : [e]);
   const kaart = kies1(gewogen);
   if (kaart) { S.gespeeld.push(kaart.id); if (S.gespeeld.length > 60) S.gespeeld.shift(); }
   return kaart;
@@ -1261,11 +1296,15 @@ async function ontmoeting(h) {
   if (p.aanw > 0) {
     const kaart = trekKaart(D.ontmoetingen.aanwijzing, () => true);
     await overgang("aanwijzing", "Een spoor");
-    const k = await venster({ soort: "Aanwijzing", thema: "aanwijzing", titel: plekNaam(plek), beeld: `art/plekken/${plek}.jpg`, achterkant: "mysterie", verhaal: kaart.tekst, knoppen: [{ label: `Onderzoeken (Waarneming ${metStand(7)}${kansTxt(h, "scherpte", 7, { context: "ontmoeting" })})`, waarde: true }] });
-    if (k && await test(h, "scherpte", 7, "Een spoor volgen", { context: "ontmoeting" })) { p.aanw--; h.aanw++; log(`${naam} vindt een Aanwijzing in ${plekNaam(plek)}`); }
+    /* een aanwijzingskaart kan een eigen test hebben (een getuige: Charisma, een geheimschrift: Kennis); anders Waarneming 7 */
+    const t = kaart.test || { kenmerk: "scherpte", moeilijkheid: 7 };
+    const k = await venster({ soort: "Aanwijzing", thema: "aanwijzing", titel: plekNaam(plek), beeld: `art/plekken/${plek}.jpg`, achterkant: "mysterie", verhaal: kaart.tekst, knoppen: [{ label: `${kaart.actie || "Onderzoeken"} (${KNAAM[t.kenmerk]} ${metStand(t.moeilijkheid)}${kansTxt(h, t.kenmerk, t.moeilijkheid, { context: "ontmoeting" })})`, waarde: true }] });
+    if (k && await test(h, t.kenmerk, t.moeilijkheid, "Een spoor volgen", { context: "ontmoeting" })) { p.aanw--; h.aanw++; log(`${naam} vindt een Aanwijzing in ${plekNaam(plek)}`); }
+    else if (k && kaart.mislukt) await venster({ soort: "Mislukt", titel: naam, thema: "aanwijzing", verhaal: kaart.mislukt.tekst, html: await pasToe(h, kaart.mislukt.effect || []) }), await controleerHeld(h);
     return;
   }
-  const kaart = trekKaart(D.ontmoetingen.stad, e => e.plek === plek);
+  /* plek "overal": vervolgkaarten die je vinden waar je ook bent */
+  const kaart = trekKaart(D.ontmoetingen.stad, e => e.plek === plek || e.plek === "overal");
   await overgang("stad", plekNaam(plek));
   await speelKaart(h, kaart, plekNaam(plek), `art/plekken/${plek}.jpg`, "stad");
 }
@@ -1282,7 +1321,10 @@ async function speelKaart(h, kaart, soort, beeld, rug) {
   };
   const doeTest = async t => test(h, t.kenmerk, t.moeilijkheid, t.kenmerk === "kracht" ? "Doorzetten" : "Wat doe je?", { context: "ontmoeting" });
   if (kaart.keuzes) {
-    const i = await venster({ ...kop, html: metWie + `<p class="muted">Wat doe je?</p>`, knoppen: kaart.keuzes.map((k, i) => ({ label: k.test ? k.label.replace(/\((\w+) (\d+)\)/, (_, kn, n) => `(${kn} ${metStand(+n)}${kansTxt(h, k.test.kenmerk, k.test.moeilijkheid, { context: "ontmoeting" })})`) : k.label, waarde: i, uit: !k.test && (k.effect || []).some(e => e.pond < 0 && -e.pond > h.pond) })) });
+    /* een keuze met "held" verschijnt alleen voor die helden, een keuze met "spul" alleen als je het bij je hebt */
+    const mag = k => (!k.held || k.held.includes(h.id)) && (!k.spul || h.spullen.includes(k.spul) || h.eigen.some(e => e.id === k.spul));
+    const teKort = k => !k.test && (k.effect || []).some(e => (e.pond < 0 && -e.pond > h.pond) || (e.aanwijzing < 0 && -e.aanwijzing > h.aanw));
+    const i = await venster({ ...kop, html: metWie + `<p class="muted">Wat doe je?</p>`, knoppen: kaart.keuzes.map((k, i) => [k, i]).filter(([k]) => mag(k)).map(([k, i]) => ({ label: (k.held || k.spul ? "★ " : "") + (k.test ? k.label.replace(/\((\w+) (\d+)\)/, (_, kn, n) => `(${kn} ${metStand(+n)}${kansTxt(h, k.test.kenmerk, k.test.moeilijkheid, { context: "ontmoeting" })})`) : k.label), waarde: i, uit: teKort(k) })) });
     const k = kaart.keuzes[i ?? 0];
     if (!k.test) return uitkomst(null, { tekst: k.tekst, effect: k.effect });
     const ok = await doeTest(k.test);
@@ -1347,6 +1389,7 @@ async function onheilsfase() {
   for (const a of c.acties) {
     const opPlek = h => (a.plekken === "rivier" ? D.bord.rivier : a.plekken).includes(h.plek);
     if (a.type === "monsterOp") spawnMonster(a.plek, a.id);
+    if (a.type === "vlag") (S.vlaggen ??= {})[a.vlag] = true;
     if (a.type === "scheurOp") openScheurOp(a.plek);
     if (a.type === "geestOp") for (const h of S.helden) if (opPlek(h)) h.G = Math.min(h.maxG, h.G + a.waarde);
     if (a.type === "aanwijzingOpHelden") for (const h of S.helden) if (opPlek(h)) h.aanw += a.aantal;
@@ -1809,6 +1852,7 @@ function tekenPaneel() {
       <div class="kenm">${KENMERKEN.map(([k, l]) => `<div title="${esc(KUITLEG[k])}">${l}<b>${h.kenm[k]}${bonusVoor(h, k) ? `<small>+${bonusVoor(h, k)}</small>` : ""}</b></div>`).join("")}</div>
       ${isActief && heeft(h, "verdwaald") ? `<div class="acties"><button class="btn breed" data-act="zoekweg" ${h.acties > 0 ? "" : "disabled"}>Zoek de weg terug (Waarneming 8)</button><button class="btn ghost breed" data-act="klaar">Beurt klaar</button></div>` : isActief ? `<div class="acties">
         <button class="btn" data-act="rust" ${kanActie("rusten") ? "" : "disabled"}>Rusten</button>
+        <button class="btn" data-act="voorbereiden" ${kanActie("voorbereiden") && !h.ronde.voorbereid ? "" : "disabled"} title="+1 dobbelsteen in je gevechten tot het eind van de ronde">${h.ronde.voorbereid ? "Voorbereid" : "Voorbereiden"}</button>
         <button class="btn" data-act="dienst" ${kanActie("dienst") && dienstNaam ? "" : "disabled"}>${dienstNaam ? esc(DIENSTLABEL[dienstNaam] || dienstNaam) : "Geen dienst"}</button>
         <button class="btn" data-act="ruil" ${kanActie("ruilen") && anderenHier && !heeft(h, "waanzin-paranoia") ? "" : "disabled"}>Ruilen</button>
         ${isOverzee(h.plek) ? `<button class="btn" data-act="terug" ${isActief && h.acties > 0 ? "" : "disabled"}>Terug naar de dokken</button>` : `<button class="btn" data-act="groei" ${h.trofee >= 3 ? "" : "disabled"}>Groeien (3 trofeeën)</button>`}
@@ -2080,6 +2124,7 @@ app.addEventListener("click", e => {
     case "stoppen": return veilig(async () => { if (await venster({ titel: "Stoppen?", html: "<p>Het spel blijft bewaard op dit apparaat. Je kunt later verder spelen.</p>", knoppen: [{ label: "Naar het beginscherm", waarde: true }, { label: "Doorspelen", waarde: false, ghost: true }] })) { opslaan(); S = null; } });
     case "regels": return veilig(() => venster({ soort: "Hoe werkt het?", titel: "Een ronde", terug: true, html: `<ol><li><b>Heldenfase:</b> elke held doet 2 acties: reizen (tik op een plek, mag twee keer), rusten, de dienst van de plek, ruilen, een spreuk of het mysterie.</li><li><b>Ontmoetingen:</b> vecht met monsters op je plek, ga door een Scheur, volg een Aanwijzing of trek een stadskaart.</li><li><b>Onheil:</b> de Mist daalt, Scheuren openen en monsters bewegen.</li></ol><p>Een test: 2 dobbelstenen plus je kenmerk, haal de moeilijkheid. Een Aanwijzing laat je bij Kennis en Waarneming één steen opnieuw gooien.</p><p>Los ${S.nodig} mysteries op voordat de Mist op 0 staat.</p>` }));
     case "rust": return veilig(() => rust(actief()));
+    case "voorbereiden": return veilig(() => voorbereiden(actief()));
     case "dienst": return veilig(() => dienst(actief()));
     case "ruil": return veilig(() => ruil(actief()));
     case "terug": { const a = actief(); gebruikActie(a, "reizen"); a.plek = "st-katharine-docks"; log(`${korteNaam(heldDef(a).naam)} keert terug naar de dokken`); opslaan(); return teken(); }
@@ -2248,5 +2293,5 @@ function toonUpdate() {
   document.body.appendChild(el);
 }
 window.__spel = { KLOKKEN, get S() { return S; }, get D() { return D; }, get bezig() { return bezig; },
-  api: { bootPrijs, metroDoelen, overgang, venster, scheurBeeld, toonUpdate, kans, speelKaart, onheilsfase, nieuwSpel, zaai, reis, rust, dienst, doeMysterie, mysterieActie, beurtKlaar, gebruikActie, gebruikSpul, zoekWeg, bereikbaar, burenVan, afstanden, stapNaar, actief, groei, mysterie, heeft, isOverzee, spulDef, monsterDef, wapenBonus, plekDef } };
+  api: { voorbereiden, bootPrijs, metroDoelen, overgang, venster, scheurBeeld, toonUpdate, kans, speelKaart, onheilsfase, nieuwSpel, zaai, reis, rust, dienst, doeMysterie, mysterieActie, beurtKlaar, gebruikActie, gebruikSpul, zoekWeg, bereikbaar, burenVan, afstanden, stapNaar, actief, groei, mysterie, heeft, isOverzee, spulDef, monsterDef, wapenBonus, plekDef } };
 })();

@@ -34,6 +34,7 @@ Om de beurt doet elke held **2 acties**. Reizen mag je twee keer doen, dus je ku
 |---|---|
 | Reizen | Tik op een groen oplichtende plek: één stap over een straat. Sta je op een station van de Ondergrondse (rood vierkantje met U), dan reis je voor 1 Pond in één stap naar elk ander station. |
 | Rusten | +1 Lichaam en +1 Geest. Niet als er een monster op je plek staat. |
+| Voorbereiden | Je laadt je revolver, zoekt dekking en zet je schrap. Tot het eind van de ronde gooi je in gevechten 1 dobbelsteen extra (de twee hoogste tellen). Handig als er een monster op je plek staat of als je er een gaat opzoeken. |
 | Dienst | De dienst van je plek, zie de tab **Plekken**. |
 | Ruilen | Geef of neem spullen, Ponden en Aanwijzingen van een held op je plek. |
 | Spreuk | Spreek een spreuk uit. Dat kost Geest, en je doet een test. |
@@ -61,7 +62,7 @@ Gooi **2 dobbelstenen** en tel je **kenmerk** erbij: Kennis, Waarneming, Kracht 
 Bij de knop van een test staat je kans, bijvoorbeeld *Kennis 8 · 72%*. Dat is de kans dat je eerste worp lukt, met je kenmerk en spullen meegerekend. Herworpen tellen niet mee, dus je echte kans is vaak iets hoger. In een gevecht staat de kans bij het monster.
 
 - **Extra dobbelsteen:** je gooit er één meer en de twee hoogste tellen.
-- **Aanwijzing uitgeven:** bij een mislukte Kennis- of Waarneming-test gooi je je laagste steen opnieuw.
+- **Aanwijzing uitgeven:** bij een mislukte Kennis- of Waarneming-test, of in een gevecht, gooi je je laagste steen opnieuw. In een gevecht ken je dan de zwakke plek van het monster.
 - **Gezegend:** één keer per ronde gooi je opnieuw.
 - **Vervloekt:** elke 6 telt als 1.
 - Sommige helden, spullen en dieren geven nog meer kansen. Het spel laat ze vanzelf zien als knop.
@@ -74,6 +75,8 @@ Bij de knop van een test staat je kans, bijvoorbeeld *Kennis 8 · 72%*. Dat is d
    - Mislukt: je verliest Lichaam gelijk aan de **Schade** van het monster.
 
 Sommige monsters bevecht je met Kennis in plaats van Kracht. Ook dat regelt het spel.
+
+**Voorbereiden helpt.** Met de actie *Voorbereiden* gooi je deze ronde in gevechten een dobbelsteen extra. En mislukt je worp, dan mag je een Aanwijzing uitgeven om opnieuw te gooien: je kent de zwakke plek van het monster. De Hermetische verbanning laat je vechten met Kennis in plaats van Kracht.
 
 ## Scheuren
 
