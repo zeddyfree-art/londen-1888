@@ -24,10 +24,12 @@ def main(icoon, favicon=None):
     groot = vierkant(icoon)
     for n in (180, 192, 512):
         groot.resize((n, n), Image.LANCZOS).save(os.path.join(UIT, f"icoon-{n}.png"), optimize=True)
-    # maskable: Android snijdt tot 20% weg, dus het beeld krimpt naar 80% op de achtergrondkleur van de hoek
+    # maskable: Android snijdt tot 20% weg. Het bronbeeld heeft al een ruime rand, dus het krimpt maar licht (90%)
+    # op de achtergrondkleur van de hoek; verlaag 0.9 naar 0.8 als het onderwerp tot aan de rand loopt.
     rand = groot.getpixel((4, 4))
     m = Image.new("RGB", (512, 512), rand)
-    m.paste(groot.resize((410, 410), Image.LANCZOS), (51, 51))
+    z = int(512 * 0.9)
+    m.paste(groot.resize((z, z), Image.LANCZOS), ((512 - z) // 2, (512 - z) // 2))
     m.save(os.path.join(UIT, "icoon-maskable-512.png"), optimize=True)
     klein = vierkant(favicon) if favicon else groot
     for n in (16, 32):

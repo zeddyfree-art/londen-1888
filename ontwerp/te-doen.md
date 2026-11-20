@@ -60,7 +60,6 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [ ] Geluiden die niet bevallen opnieuw maken in de ElevenLabs-flow (prompt aanpassen, daarna ophalen en `sh tools/normaliseer-geluid.sh`).
 
 ### Beelden
-- [ ] App-icoon en favicon maken met `ontwerp/beeldopdracht-icoon.md` en omzetten met `tools/maak-iconen.py`.
 - [ ] De nieuwe portretten van Odile en Cordelia staan in `art/helden/`, maar in Drive staan nog de oude. Vervang ze daar ook. Daarna kunnen ze met hun nieuwe Drive-id terug in `tools/art-drive.json`.
 - [ ] Beelden voor nieuwe kaarten (alleen nodig als er nieuwe personages of spullen bijkomen)
 
@@ -75,6 +74,7 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [ ] De balans met echte potjes bijstellen: voelt ontspannen niet te makkelijk?
 
 ### Op de iPad controleren
+- [ ] Ziet het nieuwe icoon er goed uit op het beginscherm (eerst het oude verwijderen)?
 - [ ] Werkt tikken goed: eerste tik toont de plek, Reis hierheen of tweede tik laat je reizen, Ongedaan maken zet het terug?
 - [ ] Installeren via Safari, Zet op beginscherm. Opent hij schermvullend?
 - [ ] Werken het geluid en de animaties goed op de iPad?
@@ -96,6 +96,7 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [x] Lore-pagina Onheil en geruchten; meetscript `tools/meet-variatie.js` voor herhaling
 - [x] 10 nieuwe stadskaarten op The City, Bloomsbury, King's Cross, Soho en St Katharine Docks (nu 4 per plek), met Voss, Nell en de vaste bijfiguren
 - [x] Alle 16 geluiden en een achtergrondmuziek van 3 minuten uit ElevenLabs (flow "Londen 1888 geluiden"), met een aparte knop Muziek uit
+- [x] App-icoon en favicon (gaslantaarn), in alle maten via `tools/maak-iconen.py`
 - [x] Scherm "Wat is er nieuw": verschijnt één keer na een update, en via de knop op het startscherm
 - [x] Eerste ElevenLabs-geluiden (dobbelstenen en onheilsklok) via de connector; `tools/normaliseer-geluid.sh` brengt het volume gelijk
 - [x] Geruchten zeggen nu "na 2 rondes", zoals ze in het spel ook werken
