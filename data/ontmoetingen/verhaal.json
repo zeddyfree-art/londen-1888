@@ -1226,5 +1226,353 @@
         }
       }
     ]
+  },
+  {
+    "id": "v-vat-11",
+    "god": "vathrun",
+    "plek": "city",
+    "persoon": "moeder-brine",
+    "tekst": "In de armenzaal van Barts liggen zes rivierwerkers met dezelfde koorts. Ze praten in hun slaap over groen licht en een deur die warm aanvoelt. Aan het voeteneind van het laatste bed zit Moeder Brine, met een kom bouillon en een natte doek. Ze knikt vriendelijk naar je, alsof ze je verwacht had. 'Ze zijn niet ziek,' zegt ze zacht. 'Ze worden geroepen.'",
+    "keuzes": [
+      {
+        "label": "Met Moeder Brine praten (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Ze praat over de rivier zoals een ander over een oude vriend praat. 'Drie zegels hebben we al,' zegt ze terloops. 'De vierde naad is de zwakste, onder de oude trap.' Pas als ze weg is, besef je hoeveel ze je verteld heeft.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Ze glimlacht en blijft glimlachen, zo lang dat je als eerste wegkijkt. Als je weer opkijkt, is ze vertrokken. De zieken zingen zacht een lied zonder melodie.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "De zieken onderzoeken (Kennis 7)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 7
+        },
+        "gelukt": {
+          "tekst": "Onder de nagels van elke patiënt zit dezelfde grijze klei, en hun longen klinken alsof ze half vol water staan. Je laat de verpleegster ze droog leggen en warm houden. Tegen de ochtend slaapt de eerste rustig.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "mist": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Een van de mannen grijpt je pols en trekt je naar zich toe. Zijn adem ruikt naar slib. Je hoort de rivier in je eigen oren tot de volgende avond.",
+          "effect": [
+            {
+              "geest": -1
+            },
+            {
+              "lichaam": -1
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "v-vat-12",
+    "god": "vathrun",
+    "plek": "bloomsbury",
+    "persoon": "martha-penhallow",
+    "tekst": "In de kaartenzaal van het museum zit Martha Penhallow, met natte laarzen en een stapel bouwtekeningen van het riolenbureau. Ze heeft de bewaker omgekocht met een makreel en haar mooiste glimlach. 'Dit zijn de tekeningen van mijn vader,' zegt ze. 'Alleen staat er een gang op die hij nooit gegraven heeft.' Ze schuift een vel naar je toe waarop een lijn in een vreemde inkt naar de rivier loopt.",
+    "keuzes": [
+      {
+        "label": "De tekeningen vergelijken (Kennis 8)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "De vreemde lijn volgt geen straat, maar een oude loop van de Fleet, van voor de Romeinen. Waar hij de Theems raakt, staat een klein teken: zeven streepjes in een cirkel. Martha schrijft de plek over in haar logboek.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De lijnen schuiven voor je ogen heen en weer, als water. Als je opkijkt, is het buiten al donker en heeft Martha de tekeningen alleen opgeborgen.",
+          "effect": [
+            {
+              "geest": -1
+            },
+            {
+              "aanwijzing": 1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Haar helpen de kaart mee te nemen (Waarneming 7)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 7
+        },
+        "gelukt": {
+          "tekst": "Terwijl de bewaker zijn makreel inpakt, rol jij het vel op in je jas. Buiten op de trappen geeft Martha je een stevige hand. 'Jij hebt een eerlijk gezicht,' zegt ze. 'Dat komt goed uit.'",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Een suppoost ziet de bobbel in je jas en zet jullie allebei op straat. Martha lacht erom, maar de kaart ligt nu achter slot en grendel.",
+          "effect": [
+            {
+              "toestand": "gezocht"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "v-azh-11",
+    "god": "azh-ilareth",
+    "plek": "city",
+    "persoon": "ivy-lisle",
+    "tekst": "Ivy Lisle heeft je gevraagd naar de Fluistergalerij in de koepel van St Paul's te komen. Ze staat aan de overkant, zo ver mogelijk weg, en praat tegen de muur. Haar stem komt zacht en helder naast je oor aan. 'Hier hoort niemand van de Orde ons,' fluistert ze. 'Maar sinds een week fluistert er nog iemand mee, en het is niet een van ons.'",
+    "keuzes": [
+      {
+        "label": "Naar Ivy luisteren (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Ivy beschrijft de rituelen achter de spiegels, de namen van de leden die niet meer slapen en de nacht waarop Croft de ster wil 'binnenlaten'. Onder haar woorden hoor je de andere stem, die getallen opnoemt. Het zijn afstanden, en ze worden kleiner.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "geest": -1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De andere stem komt steeds dichterbij, tot je niet meer weet welke woorden van Ivy zijn. Ze rent de trap af voordat je haar kunt volgen.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "Haar mee naar buiten nemen (Charisma 7)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 7
+        },
+        "gelukt": {
+          "tekst": "Op de trappen van de kathedraal, tussen de duiven en de koetsen, komt Ivy op adem. Ze geeft je een opgevouwen sterrenkaart. 'Hiermee kun je zien waar hij morgen staat,' zegt ze. 'Ik wil hem niet meer zien.'",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "geest": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Ivy schudt haar hoofd en blijft staan waar ze staat. 'Als ik nu wegloop, weten ze het,' fluistert de muur. Je laat haar daar achter.",
+          "effect": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "v-azh-12",
+    "god": "azh-ilareth",
+    "plek": "st-katharine-docks",
+    "persoon": "aurelian-croft",
+    "tekst": "Op de kade wordt een schip uit Calcutta gelost, en tussen de theekisten staat Magister Croft in een lange grijze jas. Hij onderhandelt met een matroos over een opgerolde gebedsvlag, vaal en gerafeld. Op de stof staat een ster geborduurd, met daaronder een lange rij kleinere sterren die steeds verder uiteenlopen. Croft ziet je en heft beleefd zijn hoed. 'Een souvenir uit het Klooster van de Witte Wolken,' zegt hij. 'Ik ben er zeer benieuwd naar.'",
+    "keuzes": [
+      {
+        "label": "Croft overbieden (3 Pond)",
+        "tekst": "De matroos kijkt van de een naar de ander en kiest voor het snelste geld. Croft buigt zonder een spoor van boosheid. 'U hebt goede smaak,' zegt hij. 'Ik hoop dat u ook de moed hebt om er goed naar te kijken.'",
+        "effect": [
+          {
+            "pond": -3
+          },
+          {
+            "trek": "artefacten"
+          }
+        ]
+      },
+      {
+        "label": "De matroos apart nemen (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "In de kroeg op de hoek vertelt de matroos wat de monniken zeiden toen ze hem de vlag gaven: dat de ster ooit eerder kwam, en weer verdween toen men ophield met kijken. Croft heeft de vlag, maar jij hebt het verhaal.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De matroos heeft Crofts geld al in zijn zak en wil van niets weten. Croft groet je nog eens als hij in zijn rijtuig stapt, met de vlag op schoot.",
+          "effect": [
+            {
+              "mist": -1
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "v-neb-11",
+    "god": "nebet-ankhu",
+    "plek": "bloomsbury",
+    "persoon": "nell-farrow",
+    "tekst": "In de Egyptische zaal van het museum staat Nell Farrow voor een granieten beeld, haar notitieboek open. 'Kijk eens naar zijn gezicht,' zegt ze zonder op te kijken. Het beeld is drieduizend jaar oud, maar de neus en de mond zijn die van de suppoost die er gisteren nog dienst had. Volgens de directie is de man met verlof. Nell gelooft daar niets van.",
+    "keuzes": [
+      {
+        "label": "Het beeld onderzoeken (Kennis 8)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "In de hiërogliefen op de sokkel herken je een vloek die niet bij het beeld hoort: iemand heeft hem er kort geleden ingekrast. Hij noemt de koning zonder gezicht, en een plaats waar hij 'zijn gezichten bewaart'. Nell schrijft alles op en geeft je een kopie.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hoe langer je kijkt, hoe meer het gezicht op dat van jou gaat lijken. Nell trekt je aan je mouw weg. 'Genoeg voor vandaag,' zegt ze.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "Met Nell de suppoost zoeken (Waarneming 7)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 7
+        },
+        "gelukt": {
+          "tekst": "In de kelder van het museum vinden jullie de suppoost, levend, achter een rij kratten. Hij heeft geen gezicht meer om iets mee te zeggen, maar zijn handen schrijven één woord: Harrowgate. Nell brengt hem naar Barts.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "trofee": 1
+            },
+            {
+              "geest": -1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De kelder is groter dan hij hoort te zijn. Jullie vinden de trap pas na een uur terug, en Nell praat de rest van de avond niet meer.",
+          "effect": [
+            {
+              "lichaam": -1
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "v-neb-12",
+    "god": "nebet-ankhu",
+    "plek": "st-katharine-docks",
+    "persoon": "lucius-harrowgate",
+    "tekst": "Laat in de avond staat Sir Lucius Harrowgate zelf bij zijn pakhuis, met de kraag van zijn jas omhoog. Hij geeft bevelen aan twee mannen die een kist naar een wachtende sloep dragen. Als hij zich omdraait, schrik je: zijn gezicht is dat van een jongere man, en de ogen passen er niet goed in. 'Ik ken u,' zegt hij rustig. 'U bent degene die vragen stelt over mijn eigendom.'",
+    "keuzes": [
+      {
+        "label": "Hem confronteren (Charisma 9)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Je noemt de namen van de zegels die hij verkocht heeft, en de prijs die hij er werkelijk voor betaalt. Even zakt het geleende gezicht weg en zie je de oude Harrowgate, doodsbang. 'Neem er dan één,' fluistert hij. 'Neem er één en laat mij met rust.'",
+          "effect": [
+            {
+              "trek": "artefacten"
+            },
+            {
+              "geest": -1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Harrowgate glimlacht met een mond die niet de zijne is. Zijn mannen zetten de kist neer en komen op je af. Je haalt de straat, maar niet zonder kleerscheuren.",
+          "effect": [
+            {
+              "lichaam": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "De sloep volgen (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "De sloep vaart naar een schip met Hollandse vlag. Je onthoudt de naam en de vertrektijd en geeft ze de volgende ochtend door aan Voss. De kist wordt in beslag genomen voordat het schip uitvaart.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "mist": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "In de mist verlies je de sloep uit het oog. Achter je hoor je voetstappen die precies in de maat van de jouwe lopen.",
+          "effect": [
+            {
+              "geest": -1
+            },
+            {
+              "monster": "hier"
+            }
+          ]
+        }
+      }
+    ]
   }
 ]

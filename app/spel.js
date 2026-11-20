@@ -474,7 +474,7 @@ function nieuwSpel(godId, moeilijkheid, heldIds, opties = {}) {
     plekken: Object.fromEntries(D.bord.plekken.map(p => [p.id, { aanw: 0, scheur: false, monsters: [] }])),
     overzee: Object.fromEntries(D.bord.overzee.map(o => [o.id, { artefact: false }])),
     scheurStapel: schud(D.bord.plekken.map(p => p.id)),
-    onheil: schud(D.onheil.map(o => o.id)), onheilAfleg: [],
+    onheil: schud(D.onheil.filter(o => !o.god || o.god === godId).map(o => o.id)), onheilAfleg: [],
     geruchten: [], rondeGebruikt: {}, fase: "helden", actief: 0, log: [], einde: null, voorgevoel: false,
     tutorial: !!opties.tutorial, coachGezien: []
   };
@@ -1126,6 +1126,10 @@ async function ontmoetingsfase(start = 0) {
 }
 
 /* ---------- onheilsfase ---------- */
+function geruchtDoel(g) {
+  const p = plekNaam(g.plek);
+  return { bezoek: `Bezoek ${p}.`, ophalen: `Haal de Aanwijzingen in ${p} op.`, sluiten: `Sluit de Scheur in ${p}.`, verslaan: `Versla het monster in ${p}.` }[g.soort] || "";
+}
 function geruchtBezoek(plek) { S.geruchten = S.geruchten.filter(g => !(g.soort === "bezoek" && g.plek === plek)); }
 async function onheilsfase() {
   S.fase = "onheil"; opslaan(); teken();
@@ -1137,12 +1141,14 @@ async function onheilsfase() {
   const odile = S.helden.find(h => h.id === "odile-fairweather");
   const knoppen = [{ label: "Uitvoeren", waarde: false }];
   if (odile && !S.voorgevoel) knoppen.push({ label: "Voorgevoel (Odile): negeren", waarde: true, ghost: true });
+  const onheilBeeld = c => { const p = c.persoon && byId(D.personen, c.persoon); return p ? `art/personen/${p.id}.jpg` : "art/fiches/mist.jpg"; };
+  const metWie = c => { const p = c.persoon && byId(D.personen, c.persoon); return p ? `<p class="persoonregel"><b>${esc(p.naam)}</b> · ${esc(p.rol)}</p>` : ""; };
   const detail = [c.mist ? `Mist −${c.mist}` : "", c.scheur ? `${c.scheur} Scheur${c.scheur > 1 ? "en" : ""}` : "", c.monster ? `${c.monster} monster${c.monster > 1 ? "s" : ""}` : "", c.extra || "", c.gerucht ? "Gerucht: " + c.gerucht : ""].filter(Boolean).join(" · ");
-  if (await venster({ soort: `Onheil · ronde ${S.ronde}`, titel: c.naam, beeld: "art/fiches/mist.jpg", zij: true, achterkant: "onheil", geluid: "onheil", verhaal: c.tekst, html: `<p>${esc(detail)}</p>`, knoppen })) {
+  if (await venster({ soort: `Onheil · ronde ${S.ronde}`, titel: c.naam, beeld: onheilBeeld(c), zij: true, achterkant: "onheil", geluid: "onheil", verhaal: c.tekst, html: `${metWie(c)}<p>${esc(detail)}</p>`, knoppen })) {
     S.voorgevoel = true; S.onheilAfleg.push(id);
     if (!S.onheil.length) { S.onheil = schud(S.onheilAfleg); S.onheilAfleg = []; }
     id = S.onheil.pop(); c = byId(D.onheil, id);
-    await venster({ soort: "Nieuwe onheilskaart", titel: c.naam, verhaal: c.tekst, html: `<p>${esc([c.mist ? `Mist −${c.mist}` : "", c.extra || "", c.gerucht ? "Gerucht: " + c.gerucht : ""].filter(Boolean).join(" · "))}</p>` });
+    await venster({ soort: "Nieuwe onheilskaart", titel: c.naam, beeld: onheilBeeld(c), zij: true, verhaal: c.tekst, html: `${metWie(c)}<p>${esc([c.mist ? `Mist −${c.mist}` : "", c.extra || "", c.gerucht ? "Gerucht: " + c.gerucht : ""].filter(Boolean).join(" · "))}</p>` });
   }
   S.onheilAfleg.push(id);
   S.mist -= c.mist;
@@ -1152,7 +1158,15 @@ async function onheilsfase() {
   const scheurPlekken = () => Object.keys(S.plekken).filter(p => S.plekken[p].scheur);
   for (let i = 0; i < c.monster; i++) { const sp = scheurPlekken(); spawnMonster(sp.length ? kies1(sp) : kies1(D.bord.plekken).id, voorkeur); }
   for (const a of c.acties) {
-    if (a.type === "monsterOp") spawnMonster(a.plek);
+    const opPlek = h => (a.plekken === "rivier" ? D.bord.rivier : a.plekken).includes(h.plek);
+    if (a.type === "monsterOp") spawnMonster(a.plek, a.id);
+    if (a.type === "scheurOp") openScheurOp(a.plek);
+    if (a.type === "geestOp") for (const h of S.helden) if (opPlek(h)) h.G = Math.min(h.maxG, h.G + a.waarde);
+    if (a.type === "aanwijzingOpHelden") for (const h of S.helden) if (opPlek(h)) h.aanw += a.aantal;
+    if (a.type === "pondAlle") for (const h of S.helden) h.pond = Math.max(0, h.pond + a.waarde);
+    if (a.type === "verwijderAlle") for (const h of S.helden) h.toestanden = h.toestanden.filter(t => t !== a.toestand);
+    if (a.type === "geestMetSpreuk") for (const h of S.helden) if (h.spreuken.length) h.G = Math.min(h.maxG, h.G + a.waarde);
+    if (a.type === "aanwijzingRijkste") { const h = [...S.helden].sort((x, y) => y.aanw - x.aanw)[0]; if (h && h.aanw > 0) { h.aanw = Math.max(0, h.aanw + a.waarde); log(`${korteNaam(heldDef(h).naam)} raakt een Aanwijzing kwijt`); } }
     if (a.type === "monsterRivier") spawnMonster(kies1(D.bord.rivier));
     if (a.type === "aanwijzingOp") S.plekken[a.plek].aanw += a.aantal;
     if (a.type === "aanwijzingWillekeurig") legAanwijzing(a.aantal);
@@ -1165,7 +1179,12 @@ async function onheilsfase() {
       const k = await venster({ soort: "Hulp van de Bleke Lantaarn", titel: korteNaam(heldDef(h).naam), knoppen: [{ label: "Een spreuk", waarde: "s", uit: !kanDragen(h) }, { label: "Een Aanwijzing", waarde: "a" }] });
       await pasToe(h, [k === "s" ? { trek: "spreuken" } : { aanwijzing: 1 }]);
     }
-    if (a.type === "gerucht") { S.geruchten.push({ ...a, naam: c.naam }); if (a.soort === "ophalen") S.plekken[a.plek].aanw += a.aantal; }
+    if (a.type === "gerucht") {
+      S.geruchten.push({ ...a, naam: c.naam });
+      if (a.soort === "ophalen") S.plekken[a.plek].aanw += a.aantal;
+      if (a.soort === "sluiten" && !S.plekken[a.plek].scheur) openScheurOp(a.plek);
+      if (a.soort === "verslaan") { const p = beschermd(a.plek) ? null : a.plek; if (p) S.plekken[p].monsters.push({ uid: ++S.teller, id: a.id, leven: monsterDef(a.id).leven }); else spawnMonster(a.plek, a.id); }
+    }
   }
   /* vaste gevolgen elke ronde */
   beweegMonsters(false);
@@ -1181,6 +1200,8 @@ async function onheilsfase() {
   }
   for (const g of S.geruchten) {
     if (g.soort === "ophalen" && S.plekken[g.plek].aanw === 0) g.klaar = true;
+    if (g.soort === "sluiten" && !S.plekken[g.plek].scheur) g.klaar = true;
+    if (g.soort === "verslaan" && !S.plekken[g.plek].monsters.length) g.klaar = true;
     g.rondes--;
     if (!g.klaar && g.rondes <= 0) { S.mist -= g.straf; log(`Gerucht "${g.naam}" loopt slecht af: Mist −${g.straf}`); await melding("Een gerucht wordt waar", `${g.naam}: de Mist daalt met ${g.straf}.`); }
   }
@@ -1582,7 +1603,7 @@ function tekenPaneel() {
     ${S.fase !== "helden" && !bezig ? `<button class="btn breed" data-act="doorgaan">Doorgaan met ${{ ontmoeting: "de ontmoetingen", onheil: "het onheil", finale: "de laatste nacht" }[S.fase]}</button>` : ""}
     ${(S.tutorial || UI.tips) && isActief ? `<div class="tip"><b>Tip.</b> ${advies(h)}</div>` : ""}
     ${mys ? `<div class="kaartje goed"><b>Mysterie: ${esc(mys.naam)}</b><span>${esc(mys.doel)}</span></div>` : ""}
-    ${S.geruchten.map(g => `<div class="kaartje toestand"><b>${esc(g.naam)}</b><span>Nog ${g.rondes} ronde${g.rondes > 1 ? "s" : ""}. ${g.soort === "bezoek" ? `Bezoek ${plekNaam(g.plek)}.` : `Haal de Aanwijzingen in ${plekNaam(g.plek)} op.`}</span></div>`).join("")}
+    ${S.geruchten.map(g => `<div class="kaartje toestand"><b>${esc(g.naam)}</b><span>Nog ${g.rondes} ronde${g.rondes > 1 ? "s" : ""}. ${geruchtDoel(g)}</span></div>`).join("")}
     <div class="blad">
       <div class="kop">
         <div class="portret" style="background:${KLEUREN[idx]}">${portret ? `<img src="${esc(portret)}" alt="">` : esc(initialen(d.naam))}</div>
@@ -1794,11 +1815,13 @@ Promise.all(Object.entries(BESTANDEN).map(([k, f]) => fetch(`data/${f}.json`).th
     D.spullen = [...D.spullen, ...D.persoonlijk.map(x => ({ ...x, persoonlijk: true, prijs: 0 }))];
     D.ontmoetingen = { stad: [...D.o_stad, ...D.o_verhaal], expeditie: D.o_expeditie, scheur: D.o_scheur, aanwijzing: D.o_aanwijzing };
     maakBuren(); teken(); registreerSW();
+    /* portretten en het mistfiche vooraf laden, zodat ze al bij de eerste kaart verschijnen */
+    if (!window.__bot) { for (const p of D.personen) art(`art/personen/${p.id}.jpg`); art("art/fiches/mist.jpg"); }
   })
   .catch(err => { app.innerHTML = `<div class="start"><h1>Londen, 1888</h1><p>De speldata kon niet worden geladen (${esc(err.message)}). Open het spel via een webserver, niet als los bestand.</p></div>`; });
 function registreerSW() {
   try { if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost") && !location.hostname.endsWith("claude.ai") && !location.hostname.endsWith("claudeusercontent.com")) navigator.serviceWorker.register("sw.js").catch(() => {}); } catch {}
 }
 window.__spel = { get S() { return S; }, get D() { return D; }, get bezig() { return bezig; },
-  api: { speelKaart, nieuwSpel, zaai, reis, rust, dienst, doeMysterie, mysterieActie, beurtKlaar, gebruikActie, gebruikSpul, zoekWeg, bereikbaar, burenVan, afstanden, stapNaar, actief, groei, mysterie, heeft, isOverzee, spulDef, monsterDef, wapenBonus, plekDef } };
+  api: { speelKaart, onheilsfase, nieuwSpel, zaai, reis, rust, dienst, doeMysterie, mysterieActie, beurtKlaar, gebruikActie, gebruikSpul, zoekWeg, bereikbaar, burenVan, afstanden, stapNaar, actief, groei, mysterie, heeft, isOverzee, spulDef, monsterDef, wapenBonus, plekDef } };
 })();

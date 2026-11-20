@@ -15,14 +15,16 @@ Alles over de wereld van ons spel: wat er aan de hand is, wie erbij betrokken is
 | [Plekken](plekken.md) | Twintig plekken in Londen en drie bestemmingen overzee |
 | [Monsters](monsters.md) | Alle monsters en de drie epische monsters |
 | [Artefacten en spreuken](artefacten-en-spreuken.md) | Wat je onderweg kunt vinden en leren |
+| [Onheil en geruchten](onheil.md) | Wat er elke nacht in de stad gebeurt, per verhaallijn |
 
 ## Aanpassen
 
 - **Handgeschreven pagina's** (wereld, facties, verhaallijnen, tijdlijn) kun je direct op GitHub aanpassen met het potloodje rechtsboven.
-- **Gegenereerde pagina's** (personen, helden, plekken, monsters, artefacten en spreuken) komen uit de speldata in `data/`. Pas daar de tekst aan, of vraag het Claude, en draai daarna `node tools/maak-lore.js`.
+- **Gegenereerde pagina's** (personen, helden, plekken, monsters, artefacten en spreuken, onheil) komen uit de speldata in `data/`. Pas daar de tekst aan, of vraag het Claude, en draai daarna `node tools/maak-lore.js`.
 
 ## In cijfers
 
 - 3 oude goden, 18 helden, 11 vaste personages
-- 40 algemene stadskaarten en 30 verhaalkaarten
+- 40 algemene stadskaarten en 36 verhaalkaarten
+- 30 onheilskaarten, waarvan 6 geruchten
 - 11 monsters en 3 epische monsters, 9 artefacten, 14 spreuken

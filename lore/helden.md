@@ -91,9 +91,9 @@ Hij ontcijferde drie dode talen en schreef er zeven boeken over die niemand las.
 
 ## Madame Odile Fairweather
 
-**Medium** · 45 jaar · Spiritistisch medium in Marylebone · begint in Marylebone
+**Medium** · 45 jaar · Spiritistisch medium uit New Orleans, nu in Marylebone · begint in Marylebone
 
-Haar seances zijn voor de helft toneel: verborgen draden, een tafel die kraakt op commando. Over de andere helft praat ze liever niet. Een stem die ze nooit heeft uitgenodigd, komt nu elke seance terug en noemt de namen van mensen die nog leven.
+Ze groeide op in het Franse Kwartier van New Orleans, bij een grootmoeder die de doden bij naam aansprak. In Londen zijn haar seances voor de helft toneel: verborgen draden, een tafel die kraakt op commando. Over de andere helft praat ze liever niet. Een stem die ze nooit heeft uitgenodigd, komt nu elke seance terug en noemt de namen van mensen die nog leven.
 
 | Kennis | Waarneming | Kracht | Charisma | Lichaam | Geest |
 |---|---|---|---|---|---|

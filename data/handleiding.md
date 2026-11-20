@@ -52,7 +52,7 @@ Het spel speelt voor elke held één ontmoeting op zijn plek, in deze volgorde:
 
 ### 3. Onheil
 
-Het spel trekt een **Onheilskaart**. De Mist daalt, Scheuren gaan open, monsters verschijnen of verplaatsen zich, of er komt een **gerucht**: een opdracht die je binnen een paar rondes moet halen.
+Het spel trekt een **Onheilskaart**. De Mist daalt, Scheuren gaan open, monsters verschijnen of verplaatsen zich, of er komt een **gerucht**: een opdracht die je binnen een paar rondes moet halen. Er zijn vier soorten geruchten: een plek bezoeken, Aanwijzingen ophalen, een Scheur sluiten of een monster verslaan. Sommige onheilskaarten horen bij een verhaallijn en doen alleen mee tegen die god.
 
 ## Tests
 

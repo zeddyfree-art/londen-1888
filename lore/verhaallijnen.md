@@ -51,4 +51,5 @@ Elke oude god heeft een eigen verhaallijn. De verhaalkaarten in het spel horen b
 
 - **Hoofdinspecteur Voss** en **Nell Farrow** komen in alle drie de verhalen voor. Ze zien de sporen, maar niet het geheel.
 - De **Bleke Lantaarn** heeft spijt van haar ster, het **Genootschap** wil de deur open, en **Harrowgate** wil alles bezitten. Elke god heeft dus mensen die hem helpen.
+- Elke verhaallijn heeft eigen **onheilskaarten**: twee gebeurtenissen en één gerucht, die alleen meedoen tegen die god. Vathrûn brengt springtij, de offerande van Moeder Brine en de ademende deur onder Wapping. Azh-Ilareth brengt de verzen van Lucan Vey, de spiegels van lady Pembury en de waarschuwing van Ivy Lisle. Nebet-Ankhu brengt iemand met jouw gezicht, de map van Dr. Moss en de wachter in Harrowgates pakhuis. Zie [Onheil en geruchten](onheil.md).
 - In elk potje ontwaakt maar één god. De andere twee verhalen zijn er dan op de achtergrond, als gerucht.

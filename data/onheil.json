@@ -234,5 +234,270 @@
         "straf": 2
       }
     ]
+  },
+  {
+    "id": "o17",
+    "naam": "Extra editie",
+    "persoon": "nell-farrow",
+    "mist": 1,
+    "scheur": 0,
+    "monster": 0,
+    "extra": "Elke held in Strand, The City of Covent Garden krijgt 1 Aanwijzing.",
+    "tekst": "Om vier uur 's middags roepen de krantenjongens een extra editie van The Evening Courier om. Op de voorpagina staat een kaart van de verdwijningen, getekend door een zekere 'N. Farrow'. De stad leest mee en wordt banger. Maar wie Nell kent, ziet in de kantlijn kleine kruisjes staan, alleen bedoeld voor wie verder zoekt.",
+    "acties": [
+      {
+        "type": "aanwijzingOpHelden",
+        "plekken": [
+          "strand",
+          "city",
+          "covent-garden"
+        ],
+        "aantal": 1
+      }
+    ]
+  },
+  {
+    "id": "o18",
+    "naam": "Het dossier Onverklaard",
+    "persoon": "thaddeus-voss",
+    "mist": 1,
+    "scheur": 0,
+    "monster": 0,
+    "extra": "Geen enkele held is nog Gezocht. Leg 1 Aanwijzing op Whitehall.",
+    "tekst": "Hoofdinspecteur Voss laat een stapel opsporingsberichten in de kachel van zijn kantoor verdwijnen. 'Administratieve vergissing,' zegt hij tegen zijn sergeant, zonder op te kijken. Daarna legt hij een dun dossier op de hoek van zijn bureau, waar iedereen het kan zien. Op de rug staat in zijn hanenpoten één woord: Onverklaard.",
+    "acties": [
+      {
+        "type": "verwijderAlle",
+        "toestand": "gezocht"
+      },
+      {
+        "type": "aanwijzingOp",
+        "plek": "whitehall",
+        "aantal": 1
+      }
+    ]
+  },
+  {
+    "id": "o19",
+    "naam": "Zwarte regen",
+    "mist": 1,
+    "scheur": 1,
+    "monster": 0,
+    "extra": "Elke held op een plek aan de Theems verliest 1 Geest.",
+    "tekst": "De regen die vannacht valt, is zwart van het roet en ruikt naar iets ouders dan steenkool. Op de kades blijft hij in plassen staan die niet weglopen. Wie erin kijkt, ziet zijn spiegelbeeld een tel te laat bewegen. De bootlieden trekken hun mutsen diep over de ogen en kijken alleen nog naar hun voeten.",
+    "acties": [
+      {
+        "type": "geestOp",
+        "plekken": "rivier",
+        "waarde": -1
+      }
+    ]
+  },
+  {
+    "id": "o20",
+    "naam": "Huurdag",
+    "mist": 1,
+    "scheur": 0,
+    "monster": 0,
+    "extra": "Elke held verliest 1 Pond.",
+    "tekst": "Het is huurdag, en in heel Londen kloppen hospita's op deuren. Ook jullie ontkomen er niet aan: kamers, stalling, een paar oude schulden bij de kruidenier. In Whitechapel worden gezinnen met hun meubels op straat gezet. Het is gewone ellende, en juist daarom zo moeilijk om naast al het andere te dragen.",
+    "acties": [
+      {
+        "type": "pondAlle",
+        "waarde": -1
+      }
+    ]
+  },
+  {
+    "id": "o21",
+    "naam": "Springtij",
+    "god": "vathrun",
+    "persoon": "martha-penhallow",
+    "mist": 1,
+    "scheur": 0,
+    "monster": 0,
+    "extra": "Er verschijnt een monster aan de rivier. Leg 1 Aanwijzing op Wapping.",
+    "tekst": "Martha Penhallow bonst voor zonsopgang op de deur. 'Het tij is twee voet te hoog, en het is geen springtij,' zegt ze buiten adem. Bij de trap van Wapping staan de natte voetsporen van iets dat uit het water kwam en niet terugging. Martha heeft de plek met een stuk krijt gemarkeerd, voordat het water het wist.",
+    "acties": [
+      {
+        "type": "monsterRivier"
+      },
+      {
+        "type": "aanwijzingOp",
+        "plek": "wapping",
+        "aantal": 1
+      }
+    ]
+  },
+  {
+    "id": "o22",
+    "naam": "De offerande van Moeder Brine",
+    "god": "vathrun",
+    "persoon": "moeder-brine",
+    "mist": 1,
+    "scheur": 0,
+    "monster": 0,
+    "extra": "Er verschijnt een Verdronkene in Southwark.",
+    "tekst": "Bij eb lopen de leden van het Genootschap in een lange rij het slik van Southwark op. Moeder Brine gaat voorop, met een mand vol munten, brood en wassen zegels. Ze zet de mand neer waar het water straks terugkomt en zingt een lied zonder melodie. Als de vloed opkomt, staat er één figuur meer op het slik dan er vertrokken.",
+    "acties": [
+      {
+        "type": "monsterOp",
+        "plek": "southwark",
+        "id": "verdronkene"
+      }
+    ]
+  },
+  {
+    "id": "o23",
+    "naam": "Gerucht: de deur ademt",
+    "god": "vathrun",
+    "persoon": "josiah-penhallow",
+    "mist": 0,
+    "scheur": 0,
+    "monster": 0,
+    "gerucht": "Er opent een Scheur in Wapping. Is die na 3 rondes niet gesloten, dan daalt de Mist met 2.",
+    "tekst": "Op de muur van een rioolschacht in Wapping staat een nieuwe aantekening, in het handschrift van Josiah Penhallow. 'De vierde naad geeft mee. Ik hoor haar ademen.' De inkt is nog nat, al is hij al maanden vermist. Rioolwerkers weigeren nog af te dalen, en uit de putten stijgt een warme, zoute damp.",
+    "acties": [
+      {
+        "type": "gerucht",
+        "soort": "sluiten",
+        "plek": "wapping",
+        "rondes": 3,
+        "straf": 2
+      }
+    ]
+  },
+  {
+    "id": "o24",
+    "naam": "Verzen bij ochtendlicht",
+    "god": "azh-ilareth",
+    "persoon": "lucan-vey",
+    "mist": 1,
+    "scheur": 1,
+    "monster": 0,
+    "extra": "Elke held met een spreuk verliest 1 Geest.",
+    "tekst": "Een uitgever in Soho heeft de nieuwe verzen van Lucan Vey gedrukt, en de bundel is binnen een ochtend uitverkocht. Wie ze leest, ziet de ster ook overdag, bleek achter de wolken. Bij wie zich met spreuken bezighoudt, klinken de regels nog na als het boek allang dicht is. Vey zelf is sinds de uitgave door niemand meer gezien.",
+    "acties": [
+      {
+        "type": "geestMetSpreuk",
+        "waarde": -1
+      }
+    ]
+  },
+  {
+    "id": "o25",
+    "naam": "Spiegels in Mayfair",
+    "god": "azh-ilareth",
+    "mist": 1,
+    "scheur": 0,
+    "monster": 0,
+    "extra": "Er opent een Scheur in Mayfair en er verschijnt een Spiegelgast.",
+    "tekst": "In de salon van lady Pembury hangen sinds gisteren zeven spiegels, schuin tegenover elkaar. De Orde noemt het een lichtgalerij. Om middernacht weerkaatsen de spiegels een licht dat niet van de kaarsen komt. De bedienden vluchten de straat op en zeggen dat er in de spiegels iemand meeloopt die niet in de kamer staat.",
+    "acties": [
+      {
+        "type": "scheurOp",
+        "plek": "mayfair"
+      },
+      {
+        "type": "monsterOp",
+        "plek": "mayfair",
+        "id": "spiegelgast"
+      }
+    ]
+  },
+  {
+    "id": "o26",
+    "naam": "Gerucht: de waarschuwing van Ivy",
+    "god": "azh-ilareth",
+    "persoon": "ivy-lisle",
+    "mist": 0,
+    "scheur": 0,
+    "monster": 0,
+    "gerucht": "Er opent een Scheur in Marylebone. Is die na 3 rondes niet gesloten, dan daalt de Mist met 2.",
+    "tekst": "Onder je deur ligt een sterrenkaart, met potlood bijgetekend in een fijne, bevende hand. Ivy Lisle schrijft dat Magister Croft over drie nachten in Marylebone een ritueel houdt om 'het venster open te zetten'. Ze durft er zelf niet heen. 'Als jullie niets doen,' schrijft ze, 'zal ik moeten kijken. Ze laten niemand weg die niet kijkt.'",
+    "acties": [
+      {
+        "type": "gerucht",
+        "soort": "sluiten",
+        "plek": "marylebone",
+        "rondes": 3,
+        "straf": 2
+      }
+    ]
+  },
+  {
+    "id": "o27",
+    "naam": "Iemand met jouw gezicht",
+    "god": "nebet-ankhu",
+    "mist": 1,
+    "scheur": 0,
+    "monster": 0,
+    "extra": "De held met de meeste Aanwijzingen verliest er 1.",
+    "tekst": "Je hospita zegt dat je vanmiddag al thuis bent geweest. Je hebt boven iets gehaald en bent zonder groeten weer vertrokken. Op je kamer ligt alles keurig op zijn plaats, behalve een paar van je aantekeningen. Op de spiegel boven de wastafel staat een vingerafdruk, aan de binnenkant van het glas.",
+    "acties": [
+      {
+        "type": "aanwijzingRijkste",
+        "waarde": -1
+      }
+    ]
+  },
+  {
+    "id": "o28",
+    "naam": "Dr. Moss vraagt om hulp",
+    "god": "nebet-ankhu",
+    "persoon": "philippa-moss",
+    "mist": 1,
+    "scheur": 0,
+    "monster": 0,
+    "extra": "Leg 2 Aanwijzingen op Bloomsbury.",
+    "tekst": "In de leeszaal van het British Museum laat Dr. Philippa Moss een map achter op een tafel bij de Egyptische afdeling. Er zitten overtrekken in van de inscripties uit het lege graf, met haar vertalingen in de marge. Ze kijkt niet om als ze weggaat. Een suppoost zegt later dat een heer met een onbestemd gezicht naar haar heeft gevraagd.",
+    "acties": [
+      {
+        "type": "aanwijzingOp",
+        "plek": "bloomsbury",
+        "aantal": 2
+      }
+    ]
+  },
+  {
+    "id": "o29",
+    "naam": "Gerucht: de wachter in het pakhuis",
+    "god": "nebet-ankhu",
+    "persoon": "lucius-harrowgate",
+    "mist": 0,
+    "scheur": 0,
+    "monster": 0,
+    "gerucht": "Er verschijnt een Shabti-wachter in St Katharine Docks. Staat daar na 3 rondes nog een monster, dan daalt de Mist met 2.",
+    "tekst": "Sir Lucius Harrowgate heeft zijn pakhuis laten bewaken door iets dat hij uit een kist heeft gehaald. De havenarbeiders zien het 's nachts tussen de balen staan, roerloos en van blauw aardewerk. Morgen gaan de kisten met de zegels aan boord van een schip naar Amsterdam. Wat daar verkocht wordt, krijg je nooit meer terug.",
+    "acties": [
+      {
+        "type": "gerucht",
+        "soort": "verslaan",
+        "plek": "st-katharine-docks",
+        "id": "shabti-wachter",
+        "rondes": 3,
+        "straf": 2
+      }
+    ]
+  },
+  {
+    "id": "o30",
+    "naam": "Gerucht: de verdwenen agent",
+    "persoon": "thaddeus-voss",
+    "mist": 0,
+    "scheur": 0,
+    "monster": 0,
+    "gerucht": "Leg 2 Aanwijzingen op Spitalfields. Zijn die na 3 rondes niet allemaal opgehaald, dan daalt de Mist met 2.",
+    "tekst": "Constable Harris is niet teruggekomen van zijn ronde door Spitalfields. Zijn fluitje ligt in een steeg achter de markthallen, en zijn lantaarn brandt nog. Hoofdinspecteur Voss vraagt jullie in stilte om te gaan kijken voordat de kranten het horen. 'Drie dagen,' zegt hij. 'Daarna wordt het een zaak, en dan kan ik niets meer voor hem doen.'",
+    "acties": [
+      {
+        "type": "gerucht",
+        "soort": "ophalen",
+        "plek": "spitalfields",
+        "aantal": 2,
+        "rondes": 3,
+        "straf": 2
+      }
+    ]
   }
 ]

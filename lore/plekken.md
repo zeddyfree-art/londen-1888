@@ -30,7 +30,7 @@
 *Het British Museum en de ronde leeszaal, vol boeken die niet allemaal in de catalogus staan.*
 
 - **Dienst (Bibliotheek):** Studeer: doe een Kennis-test (8). Gelukt: trek 2 spreuken en houd er één.
-- 2 algemene ontmoetingen, verhaalkaarten: Vathrûn, Azh-Ilareth, Nebet-Ankhu.
+- 2 algemene ontmoetingen, verhaalkaarten: Vathrûn, Azh-Ilareth, Nebet-Ankhu, Vathrûn, Nebet-Ankhu.
 
 ### Soho
 
@@ -79,7 +79,7 @@
 *Banken, St Paul's en het oude ziekenhuis van Barts.*
 
 - **Dienst (Ziekenhuis en bank):** Laat je verzorgen (alle Lichaam voor 1 Pond), laat Gewond verwijderen, of leen 3 Pond bij de bank (Schuld) en los later 4 Pond af.
-- Aan de Theems. Station van de Ondergrondse. 2 algemene ontmoetingen, verhaalkaarten: Vathrûn, Nebet-Ankhu.
+- Aan de Theems. Station van de Ondergrondse. 2 algemene ontmoetingen, verhaalkaarten: Vathrûn, Nebet-Ankhu, Vathrûn, Azh-Ilareth.
 
 ### Spitalfields
 
@@ -128,7 +128,7 @@
 *Pakhuizen vol kisten uit verre landen, en schepen naar Alexandrië, Calcutta en Veracruz.*
 
 - **Dienst (Haven):** Koop een bootkaartje (2 Pond) naar een overzeese plek.
-- Aan de Theems. 2 algemene ontmoetingen, verhaalkaarten: Vathrûn, Nebet-Ankhu.
+- Aan de Theems. 2 algemene ontmoetingen, verhaalkaarten: Vathrûn, Nebet-Ankhu, Azh-Ilareth, Nebet-Ankhu.
 
 ### Wapping
 

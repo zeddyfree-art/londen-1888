@@ -6,7 +6,7 @@ De vaste personages die in de verhaalkaarten terugkomen.
 
 ## Hoofdinspecteur Thaddeus Voss
 
-**Scotland Yard** · factie: Geen · verhaal: Alle verhalen · komt voor op 4 kaarten
+**Scotland Yard** · factie: Geen · verhaal: Alle verhalen · komt voor op 6 kaarten
 
 *Een vermoeide, eerlijke politieman die een dossier bijhoudt met de titel 'Onverklaard'.*
 
@@ -14,7 +14,7 @@ Voss is vijftig, weduwnaar en al dertig jaar bij de politie. Hij gelooft niet in
 
 ## Nell Farrow
 
-**Journaliste van The Evening Courier** · factie: Geen · verhaal: Alle verhalen · komt voor op 1 kaart
+**Journaliste van The Evening Courier** · factie: Geen · verhaal: Alle verhalen · komt voor op 3 kaarten
 
 *Een snelle, nieuwsgierige verslaggeefster die altijd net te veel weet.*
 
@@ -22,7 +22,7 @@ Nell is achtentwintig en schrijft onder een mannelijk pseudoniem voor de avondkr
 
 ## Josiah Penhallow
 
-**Ingenieur van de nieuwe riolen, vermist** · factie: Geen · verhaal: Vathrûn · komt voor op 1 kaart
+**Ingenieur van de nieuwe riolen, vermist** · factie: Geen · verhaal: Vathrûn · komt voor op 2 kaarten
 
 *De ingenieur die onder de Theems iets vond wat hij niet had mogen vinden.*
 
@@ -30,7 +30,7 @@ Penhallow leidde in 1887 het graafwerk aan een nieuwe overstortleiding onder Wap
 
 ## Martha Penhallow
 
-**Dochter van Josiah, roeister op de Theems** · factie: Geen · verhaal: Vathrûn · komt voor op 1 kaart
+**Dochter van Josiah, roeister op de Theems** · factie: Geen · verhaal: Vathrûn · komt voor op 3 kaarten
 
 *Een koppige jonge vrouw die haar vader terug wil, levend of niet.*
 
@@ -38,7 +38,7 @@ Martha is twintig en roeit al sinds haar twaalfde over de rivier. Ze kent elke t
 
 ## Moeder Brine
 
-**Hoofd van het Genootschap van het Zevende Zegel** · factie: Genootschap van het Zevende Zegel · verhaal: Vathrûn · komt voor op 1 kaart
+**Hoofd van het Genootschap van het Zevende Zegel** · factie: Genootschap van het Zevende Zegel · verhaal: Vathrûn · komt voor op 3 kaarten
 
 *Een oude wasvrouw uit Southwark die de rivier als een god aanbidt.*
 
@@ -46,7 +46,7 @@ Iedereen aan de zuidoever kent Moeder Brine: ze verzorgt zieken, bemiddelt bij r
 
 ## Magister Aurelian Croft
 
-**Leider van de Orde van de Bleke Lantaarn** · factie: Orde van de Bleke Lantaarn · verhaal: Azh-Ilareth · komt voor op 1 kaart
+**Leider van de Orde van de Bleke Lantaarn** · factie: Orde van de Bleke Lantaarn · verhaal: Azh-Ilareth · komt voor op 2 kaarten
 
 *Een charmante, geleerde occultist die denkt dat de nieuwe ster een openbaring is.*
 
@@ -54,7 +54,7 @@ Croft is arts, verzamelaar van oude handschriften en een begenadigd spreker. Hij
 
 ## Ivy Lisle
 
-**Leerling van de Orde, twijfelt** · factie: Orde van de Bleke Lantaarn · verhaal: Azh-Ilareth · komt voor op 1 kaart
+**Leerling van de Orde, twijfelt** · factie: Orde van de Bleke Lantaarn · verhaal: Azh-Ilareth · komt voor op 3 kaarten
 
 *Een jonge illustratrice die de Orde van binnenuit ziet veranderen.*
 
@@ -62,7 +62,7 @@ Ivy is tweeëntwintig en tekent sterrenkaarten voor de Orde. Ze trad toe uit nie
 
 ## Lucan Vey
 
-**Dichter** · factie: Orde van de Bleke Lantaarn · verhaal: Azh-Ilareth · komt voor op 1 kaart
+**Dichter** · factie: Orde van de Bleke Lantaarn · verhaal: Azh-Ilareth · komt voor op 2 kaarten
 
 *Een gevierde jonge dichter die verzen schrijft die hij zich niet herinnert.*
 
@@ -70,7 +70,7 @@ Vey was de lieveling van de literaire salons van Mayfair. Sinds de ster verschee
 
 ## Sir Lucius Harrowgate
 
-**Verzamelaar en financier van expedities** · factie: De expeditie-Harrowgate · verhaal: Nebet-Ankhu · komt voor op 1 kaart
+**Verzamelaar en financier van expedities** · factie: De expeditie-Harrowgate · verhaal: Nebet-Ankhu · komt voor op 3 kaarten
 
 *Een rijke, kille verzamelaar die alles koopt wat oud en zeldzaam is.*
 
@@ -78,7 +78,7 @@ Harrowgate financierde de opgraving in de vallei bij Thebe en liet de vondsten n
 
 ## Dr. Philippa Moss
 
-**Archeologe van de expeditie-Harrowgate** · factie: De expeditie-Harrowgate · verhaal: Nebet-Ankhu · komt voor op 1 kaart
+**Archeologe van de expeditie-Harrowgate** · factie: De expeditie-Harrowgate · verhaal: Nebet-Ankhu · komt voor op 2 kaarten
 
 *Een kundige archeologe die spijt heeft van wat ze heeft opgegraven.*
 

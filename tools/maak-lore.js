@@ -7,7 +7,7 @@ const schrijf = (f, t) => fs.writeFileSync(path.join(root, "lore", f), t.trim() 
 const KN = { kennis: "Kennis", scherpte: "Waarneming", kracht: "Kracht", overtuiging: "Charisma" };
 const helden = lees("helden.json"), personen = lees("personen.json"), bord = lees("bord.json"), goden = lees("oude-goden.json");
 const monsters = lees("monsters.json"), epische = lees("epische-monsters.json"), artefacten = lees("artefacten.json"), spreuken = lees("spreuken.json");
-const verhaal = lees("ontmoetingen/verhaal.json"), stad = lees("ontmoetingen/stad.json"), persoonlijk = lees("persoonlijk.json");
+const verhaal = lees("ontmoetingen/verhaal.json"), stad = lees("ontmoetingen/stad.json"), persoonlijk = lees("persoonlijk.json"), onheil = lees("onheil.json");
 const gen = "*Deze pagina wordt gegenereerd uit de speldata (`tools/maak-lore.js`). Pas de data aan, niet deze pagina.*";
 const godNaam = id => goden.find(g => g.id === id)?.naam || "Alle verhalen";
 
@@ -18,7 +18,7 @@ ${gen}
 De vaste personages die in de verhaalkaarten terugkomen.
 
 ${personen.map(p => {
-  const kaarten = [...verhaal, ...stad].filter(k => k.persoon === p.id).length;
+  const kaarten = [...verhaal, ...stad, ...onheil].filter(k => k.persoon === p.id).length;
   return `## ${p.naam}
 
 **${p.rol}** · factie: ${p.factie} · verhaal: ${godNaam(p.god)} · komt voor op ${kaarten} kaart${kaarten === 1 ? "" : "en"}
@@ -107,6 +107,27 @@ ${a.tekst}`).join("\n\n")}
 |---|---|---|---|---|
 ${spreuken.map(s => `| ${s.naam} | ${s.soort} | ${KN[s.test]} ${s.moeilijkheid} | ${s.prijs} | ${s.tekst} |`).join("\n")}`);
 
+const onheilKaart = o => {
+  const p = personen.find(x => x.id === o.persoon);
+  const regel = [o.mist ? `Mist −${o.mist}` : "", o.scheur ? `${o.scheur} Scheur${o.scheur > 1 ? "en" : ""}` : "", o.monster ? `${o.monster} monster${o.monster > 1 ? "s" : ""}` : "", o.extra || "", o.gerucht || ""].filter(Boolean).join(" · ");
+  return `### ${o.naam}
+
+${p ? `*Met ${p.naam}.* ` : ""}${o.tekst}
+
+**In het spel:** ${regel || "geen extra gevolgen"}`;
+};
+schrijf("onheil.md", `# Onheil en geruchten
+
+${gen}
+
+Aan het eind van elke ronde trekt het spel een Onheilskaart. Algemene kaarten zitten altijd in de stapel. Kaarten van een verhaallijn doen alleen mee als die god ontwaakt. Een **gerucht** is een opdracht met een deadline: lukt het niet op tijd, dan daalt de Mist.
+
+## Altijd in de stapel
+
+${onheil.filter(o => !o.god).map(onheilKaart).join("\n\n")}
+
+${goden.map(g => `## ${g.naam}\n\n${onheil.filter(o => o.god === g.id).map(onheilKaart).join("\n\n")}`).join("\n\n")}`);
+
 schrijf("README.md", `# Lore-boek: Londen 1888
 
 Alles over de wereld van ons spel: wat er aan de hand is, wie erbij betrokken is en waar het zich afspeelt. Dit boek is de bron voor de kaarten. Verandert er hier iets, dan passen we de kaarten erop aan.
@@ -124,15 +145,17 @@ Alles over de wereld van ons spel: wat er aan de hand is, wie erbij betrokken is
 | [Plekken](plekken.md) | Twintig plekken in Londen en drie bestemmingen overzee |
 | [Monsters](monsters.md) | Alle monsters en de drie epische monsters |
 | [Artefacten en spreuken](artefacten-en-spreuken.md) | Wat je onderweg kunt vinden en leren |
+| [Onheil en geruchten](onheil.md) | Wat er elke nacht in de stad gebeurt, per verhaallijn |
 
 ## Aanpassen
 
 - **Handgeschreven pagina's** (wereld, facties, verhaallijnen, tijdlijn) kun je direct op GitHub aanpassen met het potloodje rechtsboven.
-- **Gegenereerde pagina's** (personen, helden, plekken, monsters, artefacten en spreuken) komen uit de speldata in \`data/\`. Pas daar de tekst aan, of vraag het Claude, en draai daarna \`node tools/maak-lore.js\`.
+- **Gegenereerde pagina's** (personen, helden, plekken, monsters, artefacten en spreuken, onheil) komen uit de speldata in \`data/\`. Pas daar de tekst aan, of vraag het Claude, en draai daarna \`node tools/maak-lore.js\`.
 
 ## In cijfers
 
 - ${goden.length} oude goden, ${helden.length} helden, ${personen.length} vaste personages
 - ${stad.length} algemene stadskaarten en ${verhaal.length} verhaalkaarten
+- ${onheil.length} onheilskaarten, waarvan ${onheil.filter(o => o.gerucht).length} geruchten
 - ${monsters.length} monsters en ${epische.length} epische monsters, ${artefacten.length} artefacten, ${spreuken.length} spreuken`);
 console.log("Lore-pagina's gegenereerd");

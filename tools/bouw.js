@@ -59,7 +59,7 @@ if (fs.existsSync(loreDir)) {
     }
     flush(); return out.join("\n");
   };
-  const paginas = ["README", "wereld", "facties", "verhaallijnen", "personen", "tijdlijn", "helden", "plekken", "monsters", "artefacten-en-spreuken"].filter(n => fs.existsSync(path.join(loreDir, n + ".md")));
+  const paginas = ["README", "wereld", "facties", "verhaallijnen", "personen", "tijdlijn", "helden", "plekken", "monsters", "artefacten-en-spreuken", "onheil"].filter(n => fs.existsSync(path.join(loreDir, n + ".md")));
   const titel = n => (fs.readFileSync(path.join(loreDir, n + ".md"), "utf8").match(/^# (.*)/m) || [, n])[1].replace("Lore-boek: ", "");
   fs.mkdirSync(path.join(site, "lore"), { recursive: true });
   const stijl = `:root{--bg:#e9eeec;--paper:#f6f8f7;--ink:#18242a;--muted:#56656b;--line:#c3cfcc;--accent:#23705f}
