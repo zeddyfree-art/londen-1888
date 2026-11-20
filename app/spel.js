@@ -1737,7 +1737,7 @@ function tekenStart() {
   app.innerHTML = `<div class="start">
     ${titel ? `<img class="hero-art" src="${titel}" alt="">` : ""}
     <div><span class="muted">Een coöperatief spel voor 2 of 4 helden</span><h1>Londen, 1888</h1></div>
-    <div class="opties"><button class="btn" data-act="tutorial">Leer spelen (tutorial)</button><button class="btn ghost" data-act="handboek">Handleiding</button><a class="btn ghost" href="lore/index.html">Lore-boek</a></div>
+    <div class="opties"><button class="btn" data-act="tutorial">Leer spelen (tutorial)</button><button class="btn ghost" data-act="handboek">Handleiding</button><a class="btn ghost" href="lore/index.html">Lore-boek</a><button class="btn ghost" data-act="nieuws">Wat is er nieuw</button></div>
     ${opgeslagen && !opgeslagen.einde ? `<div class="hint">Er is een spel bezig tegen ${esc(byId(D.goden, opgeslagen.god)?.naam)}, ronde ${opgeslagen.ronde}. <button class="btn small" data-act="verder">Verder spelen</button></div>` : ""}
     <section><h2>Tegen wie?</h2><div class="goden">${D.goden.map(g => `<button class="optie" data-god="${g.id}" aria-pressed="${u.god === g.id}">${art(`art/goden/${g.id}.jpg`) ? `<img class="godbeeld" src="art/goden/${g.id}.jpg" alt="">` : ""}<b>${esc(g.naam)}</b><span class="muted">${esc(g.titel)}</span><span>${esc(g.regel)}</span></button>`).join("")}</div></section>
     <section><h2>Moeilijkheid</h2><div class="opties">${Object.entries(MOEILIJKHEID).map(([k, m]) => `<button class="optie" data-moeilijk="${k}" aria-pressed="${u.moeilijkheid === k}">${m.naam}: ${m.nodig} mysteries</button>`).join("")}</div></section>
@@ -1786,6 +1786,7 @@ app.addEventListener("click", e => {
     case "nieuw": wis(); S = null; UI.start.helden = []; return teken();
     case "tutorial": zaai(1888); nieuwSpel("vathrun", "ontspannen", ["hester-quayle", "silas-rook"], { tutorial: true }); rng = Math.random; return;
     case "handboek": UI.handboek = "handleiding"; return tekenHandleiding();
+    case "nieuws": return toonNieuws(true);
     case "god": return veilig(() => godIntro(false));
     case "tips": if (S.tutorial) { S.tutorial = false; UI.tips = false; } else UI.tips = !UI.tips; opslaan(); return teken();
     case "stoppen": return veilig(async () => { if (await venster({ titel: "Stoppen?", html: "<p>Het spel blijft bewaard op dit apparaat. Je kunt later verder spelen.</p>", knoppen: [{ label: "Naar het beginscherm", waarde: true }, { label: "Doorspelen", waarde: false, ghost: true }] })) { opslaan(); S = null; } });
@@ -1844,7 +1845,7 @@ app.addEventListener("keydown", e => { const p = e.target.closest?.("[data-plek]
 
 /* ---------- laden ---------- */
 const BESTANDEN_MD = { handleiding: "handleiding" };
-const BESTANDEN = { bord: "bord", helden: "helden", goden: "oude-goden", monsters: "monsters", epische: "epische-monsters", spullen: "spullen", spreuken: "spreuken", artefacten: "artefacten", toestanden: "toestanden", onheil: "onheil", personen: "personen", persoonlijk: "persoonlijk",
+const BESTANDEN = { bord: "bord", helden: "helden", goden: "oude-goden", monsters: "monsters", epische: "epische-monsters", spullen: "spullen", spreuken: "spreuken", artefacten: "artefacten", toestanden: "toestanden", onheil: "onheil", personen: "personen", persoonlijk: "persoonlijk", nieuws: "nieuws",
   o_stad: "ontmoetingen/stad", o_verhaal: "ontmoetingen/verhaal", o_expeditie: "ontmoetingen/expeditie", o_scheur: "ontmoetingen/scheur", o_aanwijzing: "ontmoetingen/aanwijzing" };
 Promise.all(Object.entries(BESTANDEN).map(([k, f]) => fetch(`data/${f}.json`).then(r => { if (!r.ok) throw new Error(f); return r.json(); }).then(j => [k, j])))
   .then(lijst => Promise.all(Object.entries(BESTANDEN_MD).map(([k, f]) => fetch(`data/${f}.md`).then(r => r.ok ? r.text() : "").then(t => [k, t]))).then(md => [...lijst, ...md]))
@@ -1854,9 +1855,33 @@ Promise.all(Object.entries(BESTANDEN).map(([k, f]) => fetch(`data/${f}.json`).th
     D.ontmoetingen = { stad: [...D.o_stad, ...D.o_verhaal], expeditie: D.o_expeditie, scheur: D.o_scheur, aanwijzing: D.o_aanwijzing };
     maakBuren(); teken(); registreerSW();
     /* portretten en het mistfiche vooraf laden, zodat ze al bij de eerste kaart verschijnen */
-    if (!window.__bot) { for (const p of D.personen) art(`art/personen/${p.id}.jpg`); art("art/fiches/mist.jpg"); Geluid.laad(); }
+    if (!window.__bot) { for (const p of D.personen) art(`art/personen/${p.id}.jpg`); art("art/fiches/mist.jpg"); Geluid.laad(); setTimeout(() => toonNieuws(false), 400); }
   })
   .catch(err => { app.innerHTML = `<div class="start"><h1>Londen, 1888</h1><p>De speldata kon niet worden geladen (${esc(err.message)}). Open het spel via een webserver, niet als los bestand.</p></div>`; });
+/* Wat is er nieuw: na een update één keer tonen, daarna via de knop op het startscherm */
+const NIEUWS = "londen1888-nieuws-gezien";
+async function toonNieuws(altijd) {
+  const lijst = D.nieuws || []; if (!lijst.length) return;
+  const nieuwste = lijst[0].id;
+  let gezien = null;
+  try { gezien = localStorage.getItem(NIEUWS); } catch {}
+  if (!altijd) {
+    if (gezien === null) {
+      /* nieuwe speler: niets tonen; terugkerende speler zonder vinkje: alleen het laatste nieuws */
+      let eerder = false;
+      try { eerder = Object.keys(localStorage).some(k => k.startsWith("londen1888-") && k !== NIEUWS); } catch {}
+      if (!eerder) { try { localStorage.setItem(NIEUWS, String(nieuwste)); } catch {} return; }
+      gezien = String(nieuwste - 1);
+    }
+    if (+gezien >= nieuwste) return;
+    if (document.querySelector("#modal .venster")) return;
+  }
+  const tonen = altijd ? lijst.slice(0, 3) : lijst.filter(n => n.id > +gezien).slice(0, 3);
+  try { localStorage.setItem(NIEUWS, String(nieuwste)); } catch {}
+  await venster({ soort: "Wat is er nieuw", titel: tonen[0].titel, breed: true,
+    html: tonen.map((n, i) => `${i ? `<h3>${esc(n.titel)}</h3>` : ""}<p class="muted">${esc(n.datum)}</p><ul>${n.punten.map(p => `<li>${esc(p)}</li>`).join("")}</ul>`).join(""),
+    knoppen: [{ label: "Verder", waarde: true }] });
+}
 function registreerSW() {
   try { if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost") && !location.hostname.endsWith("claude.ai") && !location.hostname.endsWith("claudeusercontent.com")) navigator.serviceWorker.register("sw.js").catch(() => {}); } catch {}
 }

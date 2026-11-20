@@ -1,6 +1,6 @@
 # Te doen
 
-Deze lijst werken we aan het einde van elk gesprek bij.
+Deze lijst werken we aan het einde van elk gesprek bij. Zet bij elke update die spelers merken een nieuw bericht bovenaan `data/nieuws.json` (met een hoger `id`): dat verschijnt één keer als "Wat is er nieuw" als de app opent.
 
 *Laatst bijgewerkt: 20 november 2026 (zevende sessie)*
 
@@ -56,7 +56,8 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 ## Open taken
 
 ### Geluid
-- [ ] Geluiden maken in ElevenLabs met `ontwerp/geluidsopdracht.md` (12 effecten en 4 sfeerlussen) en in de Drive-map `geluid/` zetten. Daarna ophalen en testen op de iPad.
+- [ ] Nog 14 geluiden genereren in de ElevenLabs-flow "Londen 1888 geluiden" (alles staat klaar; het gratis plan was druk). Klaar: `dobbel` en `onheil`.
+- [ ] Geluid testen op de iPad: volume, sfeerlus en de eerste tik.
 
 ### Beelden
 - [ ] De nieuwe portretten van Odile en Cordelia staan in `art/helden/`, maar in Drive staan nog de oude. Vervang ze daar ook. Daarna kunnen ze met hun nieuwe Drive-id terug in `tools/art-drive.json`.
@@ -93,6 +94,8 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [x] 6 nieuwe verhaalkaarten in The City, Bloomsbury en St Katharine Docks (2 per god)
 - [x] Lore-pagina Onheil en geruchten; meetscript `tools/meet-variatie.js` voor herhaling
 - [x] 10 nieuwe stadskaarten op The City, Bloomsbury, King's Cross, Soho en St Katharine Docks (nu 4 per plek), met Voss, Nell en de vaste bijfiguren
+- [x] Scherm "Wat is er nieuw": verschijnt één keer na een update, en via de knop op het startscherm
+- [x] Eerste ElevenLabs-geluiden (dobbelstenen en onheilsklok) via de connector; `tools/normaliseer-geluid.sh` brengt het volume gelijk
 - [x] Geruchten zeggen nu "na 2 rondes", zoals ze in het spel ook werken
 - [x] 4 verhaalkaarten op de plekken van de nieuwe mysteries: Martha in Southwark, raïs Hamdi in Whitechapel, een rivierloods in Limehouse, Lucan Vey in Westminster
 - [x] Het spel speelt geluidsbestanden uit `art/geluid/` af (met de ingebouwde klanken als terugval), plus een sfeerlus per god. Handleiding: `ontwerp/geluidsopdracht.md`
