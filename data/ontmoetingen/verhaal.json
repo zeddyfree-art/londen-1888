@@ -1574,5 +1574,220 @@
         }
       }
     ]
+  },
+  {
+    "id": "v-vat-13",
+    "god": "vathrun",
+    "plek": "southwark",
+    "persoon": "martha-penhallow",
+    "tekst": "Achter de wasserijen van Southwark hangen lange lijnen met lakens over het slik. Martha Penhallow staat ertussen met een laken in haar handen, wit weggetrokken. 'Kijk,' zegt ze. Op het linnen staat, half uitgewassen, het handschrift van haar vader: cijfers, een schets van een deur en de woorden 'aan de Hoofdinspecteur'. De vrouwen van het Genootschap wassen hier ook papieren uit, zegt ze. Ze weet alleen niet wat ze ermee doen.",
+    "keuzes": [
+      {
+        "label": "De andere lakens doorzoeken (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Tussen de lakens hangen drie natte vellen papier, met knijpers vastgezet alsof het was is. Het zijn bladzijden van het rapport van Josiah, half leesbaar. Martha vouwt ze voorzichtig in haar oliejas. 'De rest heeft Brine,' zegt ze zacht.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Een van de wasvrouwen ziet jullie en begint te zingen, en de anderen vallen in. Het lied heeft geen melodie. Martha trekt je mee voordat je het kunt verstaan.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Martha naar huis brengen (Charisma 7)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 7
+        },
+        "gelukt": {
+          "tekst": "Onderweg vertelt ze over haar vader, over zijn bulderende lach en zijn slechte zangstem. Bij haar deur geeft ze je het laken mee. 'Jij weet beter dan ik wat ermee moet.' Je slaapt die nacht beter dan in weken.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "geest": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Martha wil niet weg en blijft tussen de lakens staan tot het donker wordt. Je laat haar alleen, met tegenzin.",
+          "effect": []
+        }
+      }
+    ]
+  },
+  {
+    "id": "v-neb-13",
+    "god": "nebet-ankhu",
+    "plek": "whitechapel",
+    "persoon": "youssef-hamdi",
+    "tekst": "In de gemeenschappelijke keuken van een logement in Flower and Dean Street zit een lange man in een versleten kaftan bij het vuur, met een kom thee in zijn handen. Het is raïs Youssef Hamdi. Hij kijkt niet verrast als je zijn naam noemt. 'Ik ben de kisten gevolgd,' zegt hij. 'Iemand moest Harrowgate nog één keer zeggen wat hij heeft gedaan. Hij wilde me niet ontvangen.' Hij schuift een kruk naar je toe.",
+    "keuzes": [
+      {
+        "label": "Met respect luisteren (Charisma 7)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 7
+        },
+        "gelukt": {
+          "tekst": "Hij vertelt het verhaal van de dorpen bij Thebe: over een koning die geen eigen gezicht had en dat van zijn priesters droeg, en over de zeven wachters die hem met spiegels van gepolijst brons opsloten. 'Een spiegel die niets terugkaatst,' zegt hij, 'is een deur die dicht is.'",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je stelt je vragen te snel, als een journalist. Hamdi kijkt naar het vuur en zegt beleefd dat hij moe is. Je mag morgen terugkomen.",
+          "effect": []
+        }
+      },
+      {
+        "label": "Hem beschermen tegen de mannen in de gang (Kracht 8)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "In de gang staan twee mannen van Harrowgate te wachten. Na een korte worsteling vluchten ze de straat op. Hamdi buigt zijn hoofd. 'Dan ben ik je iets schuldig,' zegt hij, en geeft je een amulet van blauw aardewerk.",
+          "effect": [
+            {
+              "trofee": 1
+            },
+            {
+              "toestand": "gezegend"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Een van de mannen heeft een ploertendoder. Je zit met een bloedende hoofdwond op de trap als Hamdi je verbindt.",
+          "effect": [
+            {
+              "lichaam": -2
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "v-azh-13",
+    "god": "azh-ilareth",
+    "plek": "limehouse",
+    "tekst": "Op de kade van Limehouse staat een oude rivierloods naar de lucht te kijken, met zijn pet in zijn hand. Hij vaart al veertig jaar schepen de Theems op, op het getij en op de sterren. 'Mijn kompas wijst niet meer naar het noorden,' zegt hij. 'Het wijst naar hem.' Hij knikt naar de nieuwe ster, laag boven de schoorstenen. Achter hem liggen drie schepen aan de grond die nooit aan de grond hadden mogen lopen.",
+    "keuzes": [
+      {
+        "label": "Zijn kompas en logboek bestuderen (Kennis 8)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "De afwijking van het kompas wordt elke nacht een fractie groter, en de loods heeft het keurig bijgehouden. Met zijn cijfers kun je uitrekenen hoe snel de ster nadert. Je schrijft het over en bedankt hem.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De cijfers dansen. Je blijft naar de ster kijken terwijl de loods doorpraat, en je hoort hem pas weer als hij je bij je mouw trekt.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "Hem een gewoon kompas geven (2 Pond)",
+        "tekst": "Je koopt bij een scheepsleverancier een nieuw kompas en geeft het hem. Het wijst gewoon naar het noorden, voorlopig. De loods drukt je de hand en belooft dat hij geen schepen meer laat stranden zolang hij vaart.",
+        "effect": [
+          {
+            "pond": -2
+          },
+          {
+            "mist": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "v-azh-14",
+    "god": "azh-ilareth",
+    "plek": "westminster",
+    "persoon": "lucan-vey",
+    "tekst": "In de Dichtershoek van Westminster Abbey staat Lucan Vey voor het graf van een dichter die al vijfhonderd jaar dood is. Hij is magerder dan ooit en zijn ogen zijn half dicht, alsof het licht in de kerk te fel is. 'Hier zou ik veilig moeten zijn,' zegt hij zonder om te kijken. 'Maar zelfs hier hoor ik de verzen. Ze willen dat ik ze hardop zeg.' Zijn lippen bewegen al.",
+    "keuzes": [
+      {
+        "label": "Met hem bidden of zwijgen (Kennis 8)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je spreekt een oud gebed uit het getijdenboek, en Lucan zegt het mee, woord voor woord. Zijn lippen stoppen met bewegen. 'Dat was het eerste vers in weken dat van mij was,' fluistert hij. Hij geeft je een vel met regels die hij niet wil houden.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "geest": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Halverwege het gebed zegt Lucan een regel die niet in het boek staat. Het licht door de rozetvensters wordt een tel lang violet.",
+          "effect": [
+            {
+              "geest": -1
+            },
+            {
+              "mist": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Hem meenemen naar de koster (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Koster Hobbs geeft Lucan een kamer boven de sacristie, zonder spiegels en met dikke gordijnen. 'Hier vindt de Orde hem niet,' zegt Hobbs. Lucan valt in slaap voordat de deur dicht is.",
+          "effect": [
+            {
+              "trofee": 1
+            },
+            {
+              "aanwijzing": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Lucan rukt zich los en loopt de kerk uit, de mist in. Je hoort hem nog lang in de verte zachtjes praten.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      }
+    ]
   }
 ]

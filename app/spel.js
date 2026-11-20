@@ -79,17 +79,53 @@ const Geluid = (() => {
     const f = a.createBiquadFilter(); f.type = "bandpass"; f.Q.value = q; f.frequency.setValueAtTime(freq, t); if (freq2) f.frequency.exponentialRampToValueAtTime(freq2, t + dur);
     const g = a.createGain(); g.gain.value = vol; src.connect(f).connect(g).connect(a.destination); src.start(t);
   };
+  /* Geluidsbestanden: art/geluid/<naam>.mp3. Ontbreekt een bestand, dan klinkt de ingebouwde klank. */
+  const EFFECTEN = { klik: .5, reis: .6, kaart: .6, dobbel: .7, goed: .7, slecht: .7, monster: .8, onheil: .8, mysterie: .8, scheur: .8, winst: .8, verlies: .8 };
+  const bestand = {};
+  function laad() {
+    if (window.__bot || typeof Audio === "undefined") return;
+    fetch("data/geluiden.json").then(r => r.ok ? r.json() : []).catch(() => []).then(namen => { for (const naam of namen) laadEen(naam); });
+  }
+  function laadEen(naam) {
+    const el = new Audio(); el.preload = "auto";
+    const b = bestand[naam] = { el, ok: false };
+    el.addEventListener("canplaythrough", () => { b.ok = true; if (naam === sfeerNaam) sfeer(sfeerNaam.replace("sfeer-", ""), true); }, { once: true });
+    el.addEventListener("error", () => { b.ok = false; }, { once: true });
+    el.src = `art/geluid/${naam}.mp3`;
+  }
+  const speel = (naam, synth) => {
+    if (!aan || window.__bot) return;
+    const b = bestand[naam];
+    if (b?.ok) { const k = b.el.cloneNode(); k.volume = EFFECTEN[naam] ?? .7; k.play().catch(() => synth?.()); }
+    else synth?.();
+  };
+  /* sfeer: een zachte achtergrondlus per oude god, of op het startscherm */
+  let sfeerNaam = null, sfeerEl = null;
+  function sfeer(id, opnieuw) {
+    const naam = id ? `sfeer-${id}` : null;
+    if (naam === sfeerNaam && !opnieuw && (sfeerEl || !naam)) return;
+    if (sfeerEl) { sfeerEl.pause(); sfeerEl = null; }
+    sfeerNaam = naam;
+    const b = naam && bestand[naam];
+    if (!aan || !b?.ok) return;
+    sfeerEl = b.el; sfeerEl.loop = true; sfeerEl.volume = .25; sfeerEl.currentTime = 0; sfeerEl.play().catch(() => { sfeerEl = null; });
+  }
   return {
     get aan() { return aan; },
-    wissel() { aan = !aan; try { localStorage.setItem("londen1888-geluid", aan ? "aan" : "uit"); } catch {} },
-    reis() { for (let i = 0; i < 5; i++) { ruis(i * .16, .06, 900, .4, 5); ruis(i * .16 + .07, .05, 650, .3, 5); } },
-    kaart() { ruis(0, .4, 300, .25, .8, 2600); },
-    dobbel() { for (let i = 0; i < 8; i++) ruis(i * .07 + Math.random() * .03, .03, 2400 + Math.random() * 1600, .35, 6); },
-    goed() { toon(523, 0, .3, "triangle", .12); toon(784, .13, .5, "triangle", .12); },
-    slecht() { toon(233, 0, .5, "sawtooth", .045, 150); },
-    monster() { toon(70, 0, 1.2, "sawtooth", .05, 46); ruis(0, 1.1, 180, .14, 1); },
-    onheil() { toon(98, 0, 2.2, "sine", .22); toon(146, .03, 1.8, "sine", .09); },
-    klik() { ruis(0, .03, 1800, .2, 3); }
+    laad, sfeer,
+    wissel() { aan = !aan; try { localStorage.setItem("londen1888-geluid", aan ? "aan" : "uit"); } catch {} if (!aan && sfeerEl) { sfeerEl.pause(); sfeerEl = null; } else if (aan && sfeerNaam) sfeer(sfeerNaam.replace("sfeer-", ""), true); },
+    reis() { speel("reis", () => { for (let i = 0; i < 5; i++) { ruis(i * .16, .06, 900, .4, 5); ruis(i * .16 + .07, .05, 650, .3, 5); } }); },
+    kaart() { speel("kaart", () => ruis(0, .4, 300, .25, .8, 2600)); },
+    dobbel() { speel("dobbel", () => { for (let i = 0; i < 8; i++) ruis(i * .07 + Math.random() * .03, .03, 2400 + Math.random() * 1600, .35, 6); }); },
+    goed() { speel("goed", () => { toon(523, 0, .3, "triangle", .12); toon(784, .13, .5, "triangle", .12); }); },
+    slecht() { speel("slecht", () => toon(233, 0, .5, "sawtooth", .045, 150)); },
+    monster() { speel("monster", () => { toon(70, 0, 1.2, "sawtooth", .05, 46); ruis(0, 1.1, 180, .14, 1); }); },
+    onheil() { speel("onheil", () => { toon(98, 0, 2.2, "sine", .22); toon(146, .03, 1.8, "sine", .09); }); },
+    mysterie() { speel("mysterie", () => { toon(392, 0, .4, "triangle", .12); toon(523, .15, .4, "triangle", .12); toon(659, .3, .8, "triangle", .12); }); },
+    scheur() { speel("scheur", () => ruis(0, 1.4, 120, .3, 1.5, 900)); },
+    winst() { speel("winst", () => { toon(523, 0, .5, "triangle", .12); toon(659, .2, .5, "triangle", .12); toon(784, .4, 1.2, "triangle", .12); }); },
+    verlies() { speel("verlies", () => { toon(147, 0, 2.5, "sine", .2, 98); }); },
+    klik() { speel("klik", () => ruis(0, .03, 1800, .2, 3)); }
   };
 })();
 
@@ -364,7 +400,7 @@ function openScheurOp(plek) {
   const p = S.plekken[plek];
   if (!p) return;
   if (p.scheur) { spawnMonster(plek); S.mist -= 1; log(`Dubbele scheur in ${plekNaam(plek)}: extra monster en de Mist daalt`); return; }
-  p.scheur = true; log(`Er opent een Scheur in ${plekNaam(plek)}`);
+  p.scheur = true; log(`Er opent een Scheur in ${plekNaam(plek)}`); Geluid.scheur();
   if (S.god === "vathrun" && D.bord.rivier.includes(plek)) spawnMonster(plek);
 }
 function beschermd(plek) { return S.plekken[plek]?.beschermd === S.ronde; }
@@ -403,7 +439,7 @@ async function losOp() {
   S.opgelost++; log(`Mysterie opgelost: ${m.naam}`);
   if (S.opgelost >= S.nodig) { S.einde = "winst"; opslaan(); teken(); return; }
   S.mysterieIndex++; S.voortgang = { scheuren: [] };
-  Geluid.goed();
+  Geluid.mysterie();
   await melding("Mysterie opgelost", `"${m.naam}" is opgelost. Het volgende mysterie: ${mysterie().naam}. ${mysterie().doel}`, `${S.opgelost} van ${S.nodig}`);
   activeerMysterie();
 }
@@ -1444,8 +1480,10 @@ async function toonHeld(id) {
 /* ---------- tekenen ---------- */
 function teken() {
   if (!D || window.__bot) return;
+  Geluid.sfeer(!S ? "start" : S.einde ? null : S.god);
   if (!S) return tekenStart();
-  if (S.einde) return tekenEinde();
+  if (S.einde) { if (UI.eindeGeluid !== S.einde) { UI.eindeGeluid = S.einde; S.einde === "verlies" ? Geluid.verlies() : Geluid.winst(); } return tekenEinde(); }
+  UI.eindeGeluid = null;
   const g = god(), mys = mysterie();
   app.innerHTML = `<div class="spel">
     <header class="balk">
@@ -1816,7 +1854,7 @@ Promise.all(Object.entries(BESTANDEN).map(([k, f]) => fetch(`data/${f}.json`).th
     D.ontmoetingen = { stad: [...D.o_stad, ...D.o_verhaal], expeditie: D.o_expeditie, scheur: D.o_scheur, aanwijzing: D.o_aanwijzing };
     maakBuren(); teken(); registreerSW();
     /* portretten en het mistfiche vooraf laden, zodat ze al bij de eerste kaart verschijnen */
-    if (!window.__bot) { for (const p of D.personen) art(`art/personen/${p.id}.jpg`); art("art/fiches/mist.jpg"); }
+    if (!window.__bot) { for (const p of D.personen) art(`art/personen/${p.id}.jpg`); art("art/fiches/mist.jpg"); Geluid.laad(); }
   })
   .catch(err => { app.innerHTML = `<div class="start"><h1>Londen, 1888</h1><p>De speldata kon niet worden geladen (${esc(err.message)}). Open het spel via een webserver, niet als los bestand.</p></div>`; });
 function registreerSW() {

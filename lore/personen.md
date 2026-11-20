@@ -30,7 +30,7 @@ Penhallow leidde in 1887 het graafwerk aan een nieuwe overstortleiding onder Wap
 
 ## Martha Penhallow
 
-**Dochter van Josiah, roeister op de Theems** · factie: Geen · verhaal: Vathrûn · komt voor op 3 kaarten
+**Dochter van Josiah, roeister op de Theems** · factie: Geen · verhaal: Vathrûn · komt voor op 4 kaarten
 
 *Een koppige jonge vrouw die haar vader terug wil, levend of niet.*
 
@@ -62,7 +62,7 @@ Ivy is tweeëntwintig en tekent sterrenkaarten voor de Orde. Ze trad toe uit nie
 
 ## Lucan Vey
 
-**Dichter** · factie: Orde van de Bleke Lantaarn · verhaal: Azh-Ilareth · komt voor op 2 kaarten
+**Dichter** · factie: Orde van de Bleke Lantaarn · verhaal: Azh-Ilareth · komt voor op 3 kaarten
 
 *Een gevierde jonge dichter die verzen schrijft die hij zich niet herinnert.*
 
@@ -86,7 +86,7 @@ Moss leidde het graafwerk bij Thebe en las als eerste de inscripties in het lege
 
 ## Raïs Youssef Hamdi
 
-**Voorman van de opgraving bij Thebe** · factie: Geen · verhaal: Nebet-Ankhu · komt voor op 0 kaarten
+**Voorman van de opgraving bij Thebe** · factie: Geen · verhaal: Nebet-Ankhu · komt voor op 1 kaart
 
 *De ervaren voorman die de expeditie waarschuwde en niet werd gehoord.*
 

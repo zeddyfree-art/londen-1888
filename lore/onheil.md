@@ -64,7 +64,7 @@ Het tij komt hoger dan de tijdtabellen beloven.
 
 Sir Lucius Harrowgate betaalt contant voor scarabeeën, en hij vraagt niet waar ze vandaan komen.
 
-**In het spel:** Als er na 3 rondes nog geen held in Pall Mall is geweest, daalt de Mist met 2.
+**In het spel:** Als er na 2 rondes nog geen held in Pall Mall is geweest, daalt de Mist met 2.
 
 ### Koorts in Whitechapel
 
@@ -100,7 +100,7 @@ Iets beweegt in de riolen, onder de vloeren, achter de spiegels.
 
 Overal in de stad neuriën mensen dezelfde melodie zonder te weten waarom.
 
-**In het spel:** 1 Scheur · Leg 3 Aanwijzingen op Covent Garden. Zijn die na 3 rondes niet allemaal opgehaald, dan daalt de Mist met 2.
+**In het spel:** 1 Scheur · Leg 3 Aanwijzingen op Covent Garden. Zijn die na 2 rondes niet allemaal opgehaald, dan daalt de Mist met 2.
 
 ### Extra editie
 
@@ -130,7 +130,7 @@ Het is huurdag, en in heel Londen kloppen hospita's op deuren. Ook jullie ontkom
 
 *Met Hoofdinspecteur Thaddeus Voss.* Constable Harris is niet teruggekomen van zijn ronde door Spitalfields. Zijn fluitje ligt in een steeg achter de markthallen, en zijn lantaarn brandt nog. Hoofdinspecteur Voss vraagt jullie in stilte om te gaan kijken voordat de kranten het horen. 'Drie dagen,' zegt hij. 'Daarna wordt het een zaak, en dan kan ik niets meer voor hem doen.'
 
-**In het spel:** Leg 2 Aanwijzingen op Spitalfields. Zijn die na 3 rondes niet allemaal opgehaald, dan daalt de Mist met 2.
+**In het spel:** Leg 2 Aanwijzingen op Spitalfields. Zijn die na 2 rondes niet allemaal opgehaald, dan daalt de Mist met 2.
 
 ## Vathrûn
 
@@ -150,7 +150,7 @@ Het is huurdag, en in heel Londen kloppen hospita's op deuren. Ook jullie ontkom
 
 *Met Josiah Penhallow.* Op de muur van een rioolschacht in Wapping staat een nieuwe aantekening, in het handschrift van Josiah Penhallow. 'De vierde naad geeft mee. Ik hoor haar ademen.' De inkt is nog nat, al is hij al maanden vermist. Rioolwerkers weigeren nog af te dalen, en uit de putten stijgt een warme, zoute damp.
 
-**In het spel:** Er opent een Scheur in Wapping. Is die na 3 rondes niet gesloten, dan daalt de Mist met 2.
+**In het spel:** Er opent een Scheur in Wapping. Is die na 2 rondes niet gesloten, dan daalt de Mist met 2.
 
 ## Azh-Ilareth
 
@@ -170,7 +170,7 @@ In de salon van lady Pembury hangen sinds gisteren zeven spiegels, schuin tegeno
 
 *Met Ivy Lisle.* Onder je deur ligt een sterrenkaart, met potlood bijgetekend in een fijne, bevende hand. Ivy Lisle schrijft dat Magister Croft over drie nachten in Marylebone een ritueel houdt om 'het venster open te zetten'. Ze durft er zelf niet heen. 'Als jullie niets doen,' schrijft ze, 'zal ik moeten kijken. Ze laten niemand weg die niet kijkt.'
 
-**In het spel:** Er opent een Scheur in Marylebone. Is die na 3 rondes niet gesloten, dan daalt de Mist met 2.
+**In het spel:** Er opent een Scheur in Marylebone. Is die na 2 rondes niet gesloten, dan daalt de Mist met 2.
 
 ## Nebet-Ankhu
 
@@ -190,4 +190,4 @@ Je hospita zegt dat je vanmiddag al thuis bent geweest. Je hebt boven iets gehaa
 
 *Met Sir Lucius Harrowgate.* Sir Lucius Harrowgate heeft zijn pakhuis laten bewaken door iets dat hij uit een kist heeft gehaald. De havenarbeiders zien het 's nachts tussen de balen staan, roerloos en van blauw aardewerk. Morgen gaan de kisten met de zegels aan boord van een schip naar Amsterdam. Wat daar verkocht wordt, krijg je nooit meer terug.
 
-**In het spel:** Er verschijnt een Shabti-wachter in St Katharine Docks. Staat daar na 3 rondes nog een monster, dan daalt de Mist met 2.
+**In het spel:** Er verschijnt een Shabti-wachter in St Katharine Docks. Staat daar na 2 rondes nog een monster, dan daalt de Mist met 2.

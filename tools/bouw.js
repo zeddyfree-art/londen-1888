@@ -17,7 +17,11 @@ const lijst = dir => fs.existsSync(path.join(root, dir)) ? fs.readdirSync(path.j
 
 const bestanden = [];
 for (const f of lijst("data")) { kopieer(f, f); bestanden.push(f); }
-for (const f of lijst("art")) { if (/\.(jpg|png|webp)$/i.test(f)) { kopieer(f, f); bestanden.push(f); } }
+for (const f of lijst("art")) { if (/\.(jpg|png|webp|mp3)$/i.test(f)) { kopieer(f, f); bestanden.push(f); } }
+/* lijst van aanwezige geluiden, zodat het spel alleen bestaande bestanden laadt */
+const geluiden = lijst("art/geluid").filter(f => f.endsWith(".mp3")).map(f => path.basename(f, ".mp3")).sort();
+fs.mkdirSync(path.join(site, "data"), { recursive: true });
+fs.writeFileSync(path.join(site, "data/geluiden.json"), JSON.stringify(geluiden) + "\n"); bestanden.push("data/geluiden.json");
 for (const f of lijst("app/icoon")) { const doel = f.replace(/^app\//, ""); kopieer(f, doel); bestanden.push(doel); }
 kopieer("app/manifest.webmanifest", "manifest.webmanifest");
 

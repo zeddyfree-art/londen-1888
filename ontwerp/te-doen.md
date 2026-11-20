@@ -2,31 +2,29 @@
 
 Deze lijst werken we aan het einde van elk gesprek bij.
 
-*Laatst bijgewerkt: 20 november 2026 (zesde sessie)*
+*Laatst bijgewerkt: 20 november 2026 (zevende sessie)*
 
-## Gemeten na de zesde sessie
+## Gemeten na de zevende sessie
 
-Met `node tools/testbot.js 150` (balans) en `node tools/meet-variatie.js 100` (herhaling, normale stand). In het spel: 50 stadskaarten, 36 verhaalkaarten, 20 scheurkaarten (14 algemeen + 2 per god), 30 onheilskaarten (24 per god) en 4 mysteries per god, waarvan er per potje 3 meedoen.
+Met `node tools/testbot.js 150` (balans) en `node tools/meet-variatie.js 100` (herhaling, normale stand). In het spel: 50 stadskaarten, 40 verhaalkaarten, 20 scheurkaarten, 30 onheilskaarten (24 per god) en 4 mysteries per god, waarvan er per potje 3 meedoen.
 
 **Balans (winkans):**
 
 | God | Ontspannen 2 / 4 | Normaal 2 / 4 | Genadeloos 2 / 4 |
 |---|---|---|---|
-| Vathrûn | 91% / 99% | 71% / 82% | 17% / 17% |
-| Azh-Ilareth | 93% / 98% | 54% / 75% | 11% / 19% |
-| Nebet-Ankhu | 91% / 97% | 51% / 72% | 13% / 9% |
+| Vathrûn | 97% / 97% | 71% / 79% | 22% / 11% |
+| Azh-Ilareth | 94% / 99% | 55% / 75% | 15% / 19% |
+| Nebet-Ankhu | 92% / 97% | 57% / 79% | 17% / 13% |
 
-Bijna alles valt binnen het doel. De randen schommelen tussen de metingen met ±5% (Nebet-Ankhu normaal met 2 helden kwam in de vorige meting op 63%).
-
-**Mysteries (opgelost / bleef op hangen, over alle potjes):** alle twaalf mysteries liggen tussen 68% en 84% opgelost. Het makkelijkst is De spiegels van Mayfair, het moeilijkst De gestolen zegels en Het verhaal van de voorman.
+Alles valt binnen het doel.
 
 **Herhaling binnen één potje:**
 
 | God | Helden | Overige ontmoetingen | Herhaald | Verhaalkaarten | Herhaald | Onheilskaarten | Deel van de stapel |
 |---|---|---|---|---|---|---|---|
-| Vathrûn | 2 / 4 | 14,0 / 20,3 | 3% / 5% | 3,6 / 5,8 | 1% / 13% | 8,9 / 6,8 | 37% / 28% |
-| Azh-Ilareth | 2 / 4 | 13,9 / 18,8 | 1% / 4% | 3,8 / 4,9 | 3% / 10% | 8,2 / 5,4 | 34% / 23% |
-| Nebet-Ankhu | 2 / 4 | 14,8 / 21,1 | 3% / 6% | 2,6 / 3,9 | 2% / 6% | 9,1 / 6,6 | 38% / 28% |
+| Vathrûn | 2 / 4 | 13,5 / 21,3 | 1% / 6% | 4,1 / 6,3 | 2% / 9% | 9,3 / 6,8 | 39% / 28% |
+| Azh-Ilareth | 2 / 4 | 13,6 / 17,6 | 0% / 3% | 3,8 / 5,1 | 2% / 8% | 8,1 / 5,1 | 34% / 21% |
+| Nebet-Ankhu | 2 / 4 | 14,7 / 20,7 | 3% / 9% | 2,7 / 4,4 | 2% / 11% | 9,3 / 6,5 | 39% / 27% |
 
 ## Waar extra kaarten het meest nodig waren (meting derde sessie)
 
@@ -57,19 +55,20 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 
 ## Open taken
 
+### Geluid
+- [ ] Geluiden maken in ElevenLabs met `ontwerp/geluidsopdracht.md` (12 effecten en 4 sfeerlussen) en in de Drive-map `geluid/` zetten. Daarna ophalen en testen op de iPad.
+
 ### Beelden
-- [ ] De nieuwe portretten van Odile en Cordelia staan in `art/helden/`, maar in Drive staan nog de oude. Vervang ze daar ook. Daarna kunnen ze terug in `tools/art-drive.json` (ze zijn er nu uit gehaald, zodat `haal-art.py` de oude niet terugzet).
+- [ ] De nieuwe portretten van Odile en Cordelia staan in `art/helden/`, maar in Drive staan nog de oude. Vervang ze daar ook. Daarna kunnen ze met hun nieuwe Drive-id terug in `tools/art-drive.json`.
 - [ ] Beelden voor nieuwe kaarten (alleen nodig als er nieuwe personages of spullen bijkomen)
 
 ### Kaarten en verhaal
-- [ ] Verhaalkaarten: de herhaling is nu overal laag (hooguit 13%). Eventueel later 1 of 2 verhaalkaarten in Southwark, Whitechapel en Limehouse, waar de nieuwe mysteries naartoe leiden.
 - [ ] De nieuwe teksten proeflezen: zijn ze samenhangend genoeg en lang genoeg?
 
 ### Spel
 - [ ] Testen: voelen de persoonlijke spullen nuttig, zonder te sterk te zijn?
 - [ ] Spelen met ieder een eigen scherm (gekozen in de keuzebrief, nog niet gebouwd)
 - [ ] Balans met echte potjes controleren, vooral de nieuwe mysteries: Het verloren rapport (Southwark → Whitehall), De Dichter zonder Ogen (Mayfair → Westminster) en Het verhaal van de voorman (Whitechapel → Bloomsbury).
-- [ ] Geruchten tellen af in de ronde waarin ze verschijnen, dus "3 rondes" is in de praktijk 2 hele rondes. Bewust zo laten, of de tekst aanpassen?
 - [ ] Testen: voelen de nieuwe geruchten (Scheur sluiten, monster verslaan) haalbaar?
 - [ ] De balans met echte potjes bijstellen: voelt ontspannen niet te makkelijk?
 
@@ -94,6 +93,9 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [x] 6 nieuwe verhaalkaarten in The City, Bloomsbury en St Katharine Docks (2 per god)
 - [x] Lore-pagina Onheil en geruchten; meetscript `tools/meet-variatie.js` voor herhaling
 - [x] 10 nieuwe stadskaarten op The City, Bloomsbury, King's Cross, Soho en St Katharine Docks (nu 4 per plek), met Voss, Nell en de vaste bijfiguren
+- [x] Geruchten zeggen nu "na 2 rondes", zoals ze in het spel ook werken
+- [x] 4 verhaalkaarten op de plekken van de nieuwe mysteries: Martha in Southwark, raïs Hamdi in Whitechapel, een rivierloods in Limehouse, Lucan Vey in Westminster
+- [x] Het spel speelt geluidsbestanden uit `art/geluid/` af (met de ingebouwde klanken als terugval), plus een sfeerlus per god. Handleiding: `ontwerp/geluidsopdracht.md`
 - [x] Nieuwe portretten van Odile (New Orleans) en Cordelia in het spel
 - [x] 6 nieuwe scheurkaarten: 3 algemeen (stille brand, theater van je leven, regen omhoog) en 1 per god
 - [x] Een vierde mysterie per god, van het type "breng"; elk potje doen er 3 van de 4 mee. Raïs Hamdi is nu in Londen (Whitechapel).

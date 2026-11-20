@@ -93,7 +93,7 @@
 *Overvolle logementen, slagers en nauwe steegjes waar je beter niet alleen loopt.*
 
 - **Dienst (Logementen):** Hoor geruchten: kijk welke plek als volgende een Scheur krijgt.
-- 2 algemene ontmoetingen, verhaalkaarten: Nebet-Ankhu.
+- 2 algemene ontmoetingen, verhaalkaarten: Nebet-Ankhu, Nebet-Ankhu.
 
 ### Whitehall
 
@@ -107,7 +107,7 @@
 *De abdij, het Parlement en een klok die soms één slag te veel slaat.*
 
 - **Dienst (Abdij):** Verwijder de toestand Vervloekt, of krijg Gezegend als je die nog niet hebt.
-- Aan de Theems. Station van de Ondergrondse. 2 algemene ontmoetingen, verhaalkaarten: Vathrûn.
+- Aan de Theems. Station van de Ondergrondse. 2 algemene ontmoetingen, verhaalkaarten: Vathrûn, Azh-Ilareth.
 
 ### Chelsea
 
@@ -121,7 +121,7 @@
 *De zuidoever: brouwerijen, wasserijen en het oude Borough-marktplein.*
 
 - **Dienst (Markt):** Winkelen: trek 3 spullen en koop wat je kunt betalen.
-- Aan de Theems. 2 algemene ontmoetingen, verhaalkaarten: Vathrûn.
+- Aan de Theems. 2 algemene ontmoetingen, verhaalkaarten: Vathrûn, Vathrûn.
 
 ### St Katharine Docks
 
@@ -142,7 +142,7 @@
 *Chinese winkeltjes, touwslagerijen en de walm van thee en kolen.*
 
 - **Dienst (Markt):** Winkelen: trek 3 spullen en koop wat je kunt betalen.
-- Aan de Theems. 2 algemene ontmoetingen, verhaalkaarten: Vathrûn, Nebet-Ankhu.
+- Aan de Theems. 2 algemene ontmoetingen, verhaalkaarten: Vathrûn, Nebet-Ankhu, Azh-Ilareth.
 
 ## Overzee
 

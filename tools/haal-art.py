@@ -3,6 +3,8 @@
 Gebruik: python3 -I tools/haal-art.py tools/art-drive.json
 art-drive.json bevat {"helden/hu-yiping": "<drive-bestands-id>", ...}.
 Elke afbeelding wordt art/<map>/<naam>.jpg, maximaal 1024 px hoog (bord: 2400 px breed).
+Geluiden (geluid/<naam>) worden ongewijzigd opgeslagen als art/geluid/<naam>.mp3.
+Bestaande bestanden worden overgeslagen: verwijder eerst het oude bestand om het te vervangen.
 """
 import io, json, os, sys, urllib.request
 from PIL import Image
@@ -13,11 +15,19 @@ MAX = {"bord": (2400, 2400), "goden": (1600, 1600), "plekken": (1400, 1400), "sc
        "achterkanten": (600, 800), "fiches": (256, 256)}
 
 def haal(doel, fid):
-        uit = os.path.join(ROOT, "art", doel + ".jpg")
+        geluid = doel.startswith("geluid/")
+        uit = os.path.join(ROOT, "art", doel + (".mp3" if geluid else ".jpg"))
         if os.path.exists(uit):
             return
         url = f"https://drive.usercontent.google.com/download?id={fid}&export=download"
         data = urllib.request.urlopen(url, timeout=120).read()
+        if geluid:
+            if not (data[:3] == b"ID3" or data[:2] in (b"\xff\xfb", b"\xff\xf3", b"\xff\xf2")):
+                raise ValueError(f"{doel}: geen mp3-bestand")
+            os.makedirs(os.path.dirname(uit), exist_ok=True)
+            open(uit, "wb").write(data)
+            print(f"{doel}: {len(data) // 1024} KB", flush=True)
+            return
         img = Image.open(io.BytesIO(data)).convert("RGB")
         img.thumbnail(MAX.get(doel.split("/")[0], (768, 1024)), Image.LANCZOS)
         os.makedirs(os.path.dirname(uit), exist_ok=True)

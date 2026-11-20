@@ -133,7 +133,7 @@
     "mist": 0,
     "scheur": 0,
     "monster": 0,
-    "gerucht": "Als er na 3 rondes nog geen held in Pall Mall is geweest, daalt de Mist met 2.",
+    "gerucht": "Als er na 2 rondes nog geen held in Pall Mall is geweest, daalt de Mist met 2.",
     "tekst": "Sir Lucius Harrowgate betaalt contant voor scarabeeën, en hij vraagt niet waar ze vandaan komen.",
     "acties": [
       {
@@ -222,7 +222,7 @@
     "mist": 0,
     "scheur": 1,
     "monster": 0,
-    "gerucht": "Leg 3 Aanwijzingen op Covent Garden. Zijn die na 3 rondes niet allemaal opgehaald, dan daalt de Mist met 2.",
+    "gerucht": "Leg 3 Aanwijzingen op Covent Garden. Zijn die na 2 rondes niet allemaal opgehaald, dan daalt de Mist met 2.",
     "tekst": "Overal in de stad neuriën mensen dezelfde melodie zonder te weten waarom.",
     "acties": [
       {
@@ -355,7 +355,7 @@
     "mist": 0,
     "scheur": 0,
     "monster": 0,
-    "gerucht": "Er opent een Scheur in Wapping. Is die na 3 rondes niet gesloten, dan daalt de Mist met 2.",
+    "gerucht": "Er opent een Scheur in Wapping. Is die na 2 rondes niet gesloten, dan daalt de Mist met 2.",
     "tekst": "Op de muur van een rioolschacht in Wapping staat een nieuwe aantekening, in het handschrift van Josiah Penhallow. 'De vierde naad geeft mee. Ik hoor haar ademen.' De inkt is nog nat, al is hij al maanden vermist. Rioolwerkers weigeren nog af te dalen, en uit de putten stijgt een warme, zoute damp.",
     "acties": [
       {
@@ -413,7 +413,7 @@
     "mist": 0,
     "scheur": 0,
     "monster": 0,
-    "gerucht": "Er opent een Scheur in Marylebone. Is die na 3 rondes niet gesloten, dan daalt de Mist met 2.",
+    "gerucht": "Er opent een Scheur in Marylebone. Is die na 2 rondes niet gesloten, dan daalt de Mist met 2.",
     "tekst": "Onder je deur ligt een sterrenkaart, met potlood bijgetekend in een fijne, bevende hand. Ivy Lisle schrijft dat Magister Croft over drie nachten in Marylebone een ritueel houdt om 'het venster open te zetten'. Ze durft er zelf niet heen. 'Als jullie niets doen,' schrijft ze, 'zal ik moeten kijken. Ze laten niemand weg die niet kijkt.'",
     "acties": [
       {
@@ -467,7 +467,7 @@
     "mist": 0,
     "scheur": 0,
     "monster": 0,
-    "gerucht": "Er verschijnt een Shabti-wachter in St Katharine Docks. Staat daar na 3 rondes nog een monster, dan daalt de Mist met 2.",
+    "gerucht": "Er verschijnt een Shabti-wachter in St Katharine Docks. Staat daar na 2 rondes nog een monster, dan daalt de Mist met 2.",
     "tekst": "Sir Lucius Harrowgate heeft zijn pakhuis laten bewaken door iets dat hij uit een kist heeft gehaald. De havenarbeiders zien het 's nachts tussen de balen staan, roerloos en van blauw aardewerk. Morgen gaan de kisten met de zegels aan boord van een schip naar Amsterdam. Wat daar verkocht wordt, krijg je nooit meer terug.",
     "acties": [
       {
@@ -487,7 +487,7 @@
     "mist": 0,
     "scheur": 0,
     "monster": 0,
-    "gerucht": "Leg 2 Aanwijzingen op Spitalfields. Zijn die na 3 rondes niet allemaal opgehaald, dan daalt de Mist met 2.",
+    "gerucht": "Leg 2 Aanwijzingen op Spitalfields. Zijn die na 2 rondes niet allemaal opgehaald, dan daalt de Mist met 2.",
     "tekst": "Constable Harris is niet teruggekomen van zijn ronde door Spitalfields. Zijn fluitje ligt in een steeg achter de markthallen, en zijn lantaarn brandt nog. Hoofdinspecteur Voss vraagt jullie in stilte om te gaan kijken voordat de kranten het horen. 'Drie dagen,' zegt hij. 'Daarna wordt het een zaak, en dan kan ik niets meer voor hem doen.'",
     "acties": [
       {
