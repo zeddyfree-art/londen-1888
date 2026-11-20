@@ -58,6 +58,8 @@ Het spel trekt een **Onheilskaart**. De Mist daalt, Scheuren gaan open, monsters
 
 Gooi **2 dobbelstenen** en tel je **kenmerk** erbij: Kennis, Waarneming, Kracht of Charisma. Haal je het getal dat nodig is, dan lukt het.
 
+Bij de knop van een test staat je kans, bijvoorbeeld *Kennis 8 · 72%*. Dat is de kans dat je eerste worp lukt, met je kenmerk en spullen meegerekend. Herworpen tellen niet mee, dus je echte kans is vaak iets hoger. In een gevecht staat de kans bij het monster.
+
 - **Extra dobbelsteen:** je gooit er één meer en de twee hoogste tellen.
 - **Aanwijzing uitgeven:** bij een mislukte Kennis- of Waarneming-test gooi je je laagste steen opnieuw.
 - **Gezegend:** één keer per ronde gooi je opnieuw.
@@ -135,7 +137,7 @@ Met **3 Trofeeën** tik je op **Groeien**: +1 op een kenmerk (maximaal 5), +1 ma
 |---|---|---|---|---|
 | Ontspannen | normaal | 2 | 2 | normaal |
 | Normaal | 2 lager | 3 | 2 | normaal, laatste nacht zwaarder |
-| Genadeloos | 2 lager | 3 | 3 | 1 moeilijker, geen laatste nacht |
+| Genadeloos | 3 lager | 3 | 3 | 1 moeilijker, geen laatste nacht |
 
 Met 4 helden begint de Mist 3 lager en is er één Scheur extra, want vier helden doen meer per ronde.
 

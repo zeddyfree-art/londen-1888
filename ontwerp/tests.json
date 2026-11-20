@@ -1,0 +1,211 @@
+{
+  "datum": "2026-11-20",
+  "potjesPerInstelling": 100,
+  "totaal": 67938,
+  "perStand": {
+    "ontspannen": {
+      "aantal": 17701,
+      "eersteWorp": 77,
+      "naHerworp": 84,
+      "perPotje": 29.5
+    },
+    "normaal": {
+      "aantal": 25881,
+      "eersteWorp": 76,
+      "naHerworp": 84,
+      "perPotje": 43.1
+    },
+    "genadeloos": {
+      "aantal": 24356,
+      "eersteWorp": 65,
+      "naHerworp": 74,
+      "perPotje": 40.6
+    }
+  },
+  "perSoort": {
+    "Ontmoeting": {
+      "aantal": 30859,
+      "eersteWorp": 76,
+      "naHerworp": 83,
+      "gemDoel": 8.2,
+      "gemPlus": 2.8
+    },
+    "Gevecht": {
+      "aantal": 10228,
+      "eersteWorp": 69,
+      "naHerworp": 72,
+      "gemDoel": 8.9,
+      "gemPlus": 3.1
+    },
+    "Gruwel (Geest)": {
+      "aantal": 9401,
+      "eersteWorp": 74,
+      "naHerworp": 85,
+      "gemDoel": 8.4,
+      "gemPlus": 2.7
+    },
+    "Scheur sluiten": {
+      "aantal": 7451,
+      "eersteWorp": 67,
+      "naHerworp": 77,
+      "gemDoel": 8.9,
+      "gemPlus": 2.6
+    },
+    "Laatste nacht": {
+      "aantal": 6055,
+      "eersteWorp": 63,
+      "naHerworp": 77,
+      "gemDoel": 9.9,
+      "gemPlus": 3.4
+    },
+    "Mysterie of spreuk": {
+      "aantal": 1381,
+      "eersteWorp": 68,
+      "naHerworp": 86,
+      "gemDoel": 9,
+      "gemPlus": 2.8
+    },
+    "Overig": {
+      "aantal": 1250,
+      "eersteWorp": 80,
+      "naHerworp": 84,
+      "gemDoel": 7.7,
+      "gemPlus": 2.7
+    },
+    "Dienst": {
+      "aantal": 1096,
+      "eersteWorp": 73,
+      "naHerworp": 85,
+      "gemDoel": 8.7,
+      "gemPlus": 2.9
+    },
+    "Verbanning (spreuk)": {
+      "aantal": 217,
+      "eersteWorp": 95,
+      "naHerworp": 99,
+      "gemDoel": 8.8,
+      "gemPlus": 5.2
+    }
+  },
+  "perKenmerkwaarde": {
+    "1": {
+      "aantal": 10985,
+      "eersteWorp": 47,
+      "naHerworp": 56
+    },
+    "2": {
+      "aantal": 20772,
+      "eersteWorp": 66,
+      "naHerworp": 77
+    },
+    "3": {
+      "aantal": 22855,
+      "eersteWorp": 80,
+      "naHerworp": 87
+    },
+    "4": {
+      "aantal": 13326,
+      "eersteWorp": 89,
+      "naHerworp": 95
+    }
+  },
+  "perMarge": {
+    "0": {
+      "aantal": 30,
+      "eersteWorp": 100,
+      "naHerworp": 100,
+      "theorie2d6": 100
+    },
+    "1": {
+      "aantal": 6,
+      "eersteWorp": 100,
+      "naHerworp": 100,
+      "theorie2d6": 100
+    },
+    "2": {
+      "aantal": 2,
+      "eersteWorp": 100,
+      "naHerworp": 100,
+      "theorie2d6": 100
+    },
+    "-10": {
+      "aantal": 676,
+      "eersteWorp": 16,
+      "naHerworp": 16,
+      "theorie2d6": 17
+    },
+    "-9": {
+      "aantal": 1798,
+      "eersteWorp": 27,
+      "naHerworp": 30,
+      "theorie2d6": 28
+    },
+    "-8": {
+      "aantal": 5369,
+      "eersteWorp": 41,
+      "naHerworp": 51,
+      "theorie2d6": 42
+    },
+    "-7": {
+      "aantal": 12627,
+      "eersteWorp": 57,
+      "naHerworp": 70,
+      "theorie2d6": 58
+    },
+    "-6": {
+      "aantal": 16784,
+      "eersteWorp": 72,
+      "naHerworp": 83,
+      "theorie2d6": 72
+    },
+    "-5": {
+      "aantal": 16340,
+      "eersteWorp": 84,
+      "naHerworp": 91,
+      "theorie2d6": 83
+    },
+    "-4": {
+      "aantal": 10342,
+      "eersteWorp": 92,
+      "naHerworp": 95,
+      "theorie2d6": 92
+    },
+    "-3": {
+      "aantal": 3064,
+      "eersteWorp": 97,
+      "naHerworp": 99,
+      "theorie2d6": 97
+    },
+    "-2": {
+      "aantal": 718,
+      "eersteWorp": 100,
+      "naHerworp": 100,
+      "theorie2d6": 100
+    },
+    "-1": {
+      "aantal": 182,
+      "eersteWorp": 100,
+      "naHerworp": 100,
+      "theorie2d6": 100
+    }
+  },
+  "variantie": {
+    "kenmerkwaarde": 0.94,
+    "bonussen": 0.38,
+    "plusTotaal": 1.53,
+    "doel": 0.97,
+    "plusMinDoel": 2.35,
+    "dobbelstenen": 5.87,
+    "aandeelDobbel": 71,
+    "aandeelKenmerkEnDoel": 29
+  },
+  "dobbelKeertOm": 25,
+  "zekerOfKansloos": {
+    "altijdGelukt": 1,
+    "kansloos": 0
+  },
+  "herworpen": {
+    "gebruikt": 11,
+    "gered": 29
+  }
+}

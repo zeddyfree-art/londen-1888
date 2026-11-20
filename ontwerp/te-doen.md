@@ -2,21 +2,23 @@
 
 Deze lijst werken we aan het einde van elk gesprek bij. Zet bij elke update die spelers merken een nieuw bericht bovenaan `data/nieuws.json` (met een hoger `id`): dat verschijnt één keer als "Wat is er nieuw" als de app opent.
 
-*Laatst bijgewerkt: 20 november 2026 (zevende sessie)*
+*Laatst bijgewerkt: 20 november 2026 (achtste sessie)*
 
-## Gemeten na de zevende sessie
+## Gemeten na de achtste sessie (twee keer reizen, genadeloos Mist 1 lager)
 
-Met `node tools/testbot.js 150` (balans) en `node tools/meet-variatie.js 100` (herhaling, normale stand). In het spel: 50 stadskaarten, 40 verhaalkaarten, 20 scheurkaarten, 30 onheilskaarten (24 per god) en 4 mysteries per god, waarvan er per potje 3 meedoen.
+Met `node tools/testbot.js 150`. Tests, vaardigheid en geluk, en wat er gebeurt als elke test 1 hoger vraagt: zie [`tests-en-geluk.md`](tests-en-geluk.md).
 
 **Balans (winkans):**
 
 | God | Ontspannen 2 / 4 | Normaal 2 / 4 | Genadeloos 2 / 4 |
 |---|---|---|---|
-| Vathrûn | 97% / 97% | 71% / 79% | 22% / 11% |
-| Azh-Ilareth | 94% / 99% | 55% / 75% | 15% / 19% |
-| Nebet-Ankhu | 92% / 97% | 57% / 79% | 17% / 13% |
+| Vathrûn | 95% / 98% | 71% / 79% | 20% / 18% |
+| Azh-Ilareth | 91% / 99% | 60% / 81% | 13% / 17% |
+| Nebet-Ankhu | 94% / 99% | 67% / 74% | 27% / 15% |
 
-Alles valt binnen het doel.
+Twee keer reizen maakte genadeloos te makkelijk (21 tot 37%). Met de Mist 1 lager is het 13 tot 27%, bijna overal binnen het doel van 10 tot 20%. Alleen Nebet-Ankhu met 2 helden zit er nog iets boven. Azh-Ilareth met 4 helden op normaal (81%) zit net boven het doel van de helft tot driekwart.
+
+## Gemeten na de zevende sessie
 
 **Herhaling binnen één potje:**
 
@@ -55,6 +57,11 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 
 ## Open taken
 
+### Balans en tests (zie `tests-en-geluk.md`)
+- [ ] Verbanning lukt in 95% van de tests: doel 1 of 2 hoger, of zonder test.
+- [ ] Gevechten krijgen bijna geen hulp van herworpen (69% naar 72%). Een manier om je voor te bereiden?
+- [ ] De stations (U) doen alleen iets met het Kaartje voor de Ondergrondse, dat je toevallig op een markt kunt trekken. Meer betekenis geven?
+
 ### Geluid
 - [ ] Geluid testen op de iPad: volume van effecten, sfeer en muziek ten opzichte van elkaar, de lus van de sfeer en de muziek, en de eerste tik.
 - [ ] Geluiden die niet bevallen opnieuw maken in de ElevenLabs-flow (prompt aanpassen, daarna ophalen en `sh tools/normaliseer-geluid.sh`).
@@ -80,6 +87,9 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [ ] Werken het geluid en de animaties goed op de iPad?
 
 ## Klaar
+
+- [x] Genadeloos: Mist 1 lager, weer 13 tot 27% winst
+- [x] Kans bij elke testknop en in het gevecht
 
 - [x] Scheurkaart: vier geschilderde portalen in `art/scheur/` (algemeen en één per oude god), en een nieuwe favicon
 
