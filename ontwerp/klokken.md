@@ -103,3 +103,10 @@ Een eenvoudigere eerste versie kan zonder vrijspelen en gouden randen: alleen de
 ## Bronnen
 
 - [Wildfrost Wiki: Bells](https://wildfrostwiki.com/Bells) (via een zoekmachine, de pagina zelf kon ik vanuit deze omgeving niet openen)
+
+## Gedeeld scorebord
+
+- **Server:** Cloudflare Worker `londen1888-scorebord` op https://londen1888-scorebord.zeddyfree.workers.dev/scores, met de D1-database `londen1888-scorebord`. De code staat in `cloud/scorebord/`.
+- **Online zetten:** `NODE_USE_ENV_PROXY=1 node tools/zet-scorebord-online.js`. Dat zet het klokkenmodel uit `data/klokken.json` in de Worker. Draai het opnieuw als het model verandert.
+- **Eerlijkheid:** de server rekent de winkans en de punten zelf uit. Wat het apparaat als kans of punten meestuurt, wordt genegeerd. Hij weigert ongeldige goden, helden en klokken, en hetzelfde potje twee keer. Per afzender mogen er 20 inzendingen per uur zijn. Een gewonnen potje zelf kan de server niet controleren: dat blijft op vertrouwen.
+- **Privacy:** een potje komt alleen online als de speler daar op het eindscherm voor kiest. Van de afzender wordt alleen een hash bewaard, voor de limiet per uur.

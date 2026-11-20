@@ -67,6 +67,19 @@ const puntenVoor = (kans, nipt) => Math.max(1, Math.round(100 * Math.log(1 / Mat
 const SCORES = "londen1888-scores", KLOKKEUZE = "londen1888-klokken", SPELERNAAM = "londen1888-naam";
 const leesScores = () => { try { return JSON.parse(localStorage.getItem(SCORES)) || []; } catch { return []; } };
 const schrijfScores = l => { try { localStorage.setItem(SCORES, JSON.stringify(l.slice(-200))); } catch {} };
+const SCOREBORD_URL = "https://londen1888-scorebord.zeddyfree.workers.dev/scores";
+const apparaat = () => { try { let a = localStorage.getItem("londen1888-apparaat"); if (!a) { a = Math.random().toString(36).slice(2, 12) + Date.now().toString(36); localStorage.setItem("londen1888-apparaat", a); } return a; } catch { return "onbekend" + Date.now(); } };
+async function haalGedeeld() {
+  const c = new AbortController(), t = setTimeout(() => c.abort(), 6000);
+  try { const r = await fetch(`${SCOREBORD_URL}?limiet=25`, { signal: c.signal }); if (!r.ok) throw new Error(r.status); return (await r.json()).scores; } catch { return null; } finally { clearTimeout(t); }
+}
+async function deelUitslag(e) {
+  try {
+    const r = await fetch(SCOREBORD_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ naam: e.naam, god: e.god, stand: e.stand, helden: e.helden, klokken: e.klokken, ronde: e.ronde, uitslag: e.uitslag, datum: e.datum, sleutel: `${apparaat()}-${e.id}` }) });
+    const d = await r.json().catch(() => ({}));
+    return r.ok ? d : { fout: d.fout || `Het scorebord antwoordt niet (${r.status}).` };
+  } catch { return { fout: "Geen verbinding met het gedeelde scorebord. Probeer het later opnieuw." }; }
+}
 const ranglijst = () => leesScores().filter(x => x.punten > 0 && !x.aangepast).sort((a, b) => b.punten - a.punten || a.ronde - b.ronde);
 const monsterBasis = id => byId(D.monsters, id) || byId(D.epische, id);
 const monsterDef = id => {
@@ -1874,7 +1887,9 @@ function tekenEinde() {
   const scoreHtml = !mijn ? "" : `<section class="eindscore">
     ${winst ? `<div class="punten groot"><span class="muted">Punten</span><b>${mijn.punten}</b><small>winkans vooraf ≈ ${Math.round((mijn.kans || 0) * 100)}%${S.einde === "nipt" ? ", op het nippertje: driekwart" : ""}${mijn.klokken.length ? ` · ${mijn.klokken.length} ${mijn.klokken.length === 1 ? "klok" : "klokken"}` : ""}</small></div>
       ${mijn.aangepast ? `<p class="muted">Je hebt spelwaarden met de hand aangepast, dus dit potje telt niet mee voor het scorebord.</p>` : `<p><b>Plaats ${plaats}</b> op het scorebord van dit apparaat.</p>
-      <div class="naamrij"><label for="spelernaam">Naam op het scorebord</label><input id="spelernaam" maxlength="30" value="${esc(mijn.naam || naam)}" placeholder="Wie speelde er?"><button class="btn small" data-act="naam-bewaar">${UI.naamBewaard ? "Bewaard" : "Bewaar"}</button></div>`}
+      <div class="naamrij"><label for="spelernaam">Naam op het scorebord</label><input id="spelernaam" maxlength="30" value="${esc(mijn.naam || naam)}" placeholder="Wie speelde er?"><button class="btn small ghost" data-act="naam-bewaar">${UI.naamBewaard ? "Bewaard" : "Bewaar"}</button>
+        ${mijn.gedeeld ? `<span class="gedeeld">Staat op het gedeelde scorebord${mijn.gedeeldPlaats ? `: plaats ${mijn.gedeeldPlaats}` : ""}.</span>` : `<button class="btn small" data-act="deel-score" ${UI.deelBezig ? "disabled" : ""}>${UI.deelBezig ? "Bezig…" : "Op het gedeelde scorebord zetten"}</button>`}</div>
+      ${UI.deelFout ? `<p class="fout">${esc(UI.deelFout)}</p>` : ""}`}
       ${scoreTabel(lijst.slice(0, 10), mijn.id)}` : `<p class="muted">Geen punten voor dit potje. Je winkans was ongeveer ${Math.round((mijn.kans || 0) * 100)}%.</p>`}
   </section>`;
   const gb = art(`art/goden/${g.id}.jpg`);
@@ -1918,10 +1933,10 @@ function wisselKlok(id) {
 }
 function klokSvg(aan, laatst) {
   const slagen = aan.reduce((t, id) => t + klokSlagen(id), 0);
-  const R = 118, n = KLOKKEN.length;
+  const beeld = art("art/scherm/klok.jpg");
+  const R = beeld ? 117 : 118, n = KLOKKEN.length; /* op het schilderij staan de dertien vakken op 74% van de straal (158) */
   const hoek = i => ((i + 1) / n) * 2 * Math.PI - Math.PI / 2; /* XIII staat bovenaan */
   const pos = (i, r) => [Math.cos(hoek(i)) * r, Math.sin(hoek(i)) * r];
-  const beeld = art("art/scherm/klok.jpg");
   const streepjes = Array.from({ length: n * 5 }, (_, j) => { const a = (j / (n * 5)) * 2 * Math.PI - Math.PI / 2, l = j % 5 ? 4 : 9; return `<line x1="${(Math.cos(a) * 146).toFixed(1)}" y1="${(Math.sin(a) * 146).toFixed(1)}" x2="${(Math.cos(a) * (146 - l)).toFixed(1)}" y2="${(Math.sin(a) * (146 - l)).toFixed(1)}" class="${j % 5 ? "kl-fijn" : "kl-grof"}"/>`; }).join("");
   const traceer = Array.from({ length: n }, (_, i) => { const [x1, y1] = pos(i + 0.5, 40), [x2, y2] = pos(i + 0.5, 96); return `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}"/>`; }).join("");
   const vakken = KLOKKEN.map((k, i) => { const [x, y] = pos(i, R), op = aan.includes(k.id);
@@ -1930,18 +1945,19 @@ function klokSvg(aan, laatst) {
       <circle class="kl-gloed" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="25"/><circle class="kl-vak" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="19"/>
       <text x="${x.toFixed(1)}" y="${(y + 5).toFixed(1)}" text-anchor="middle">${ROMEINS[i]}</text></g>`; }).join("");
   const wijzer = (aan.length / n) * 360, kort = aan.length ? ((KLOKKEN.findIndex(k => k.id === aan.at(-1)) + 1) / n) * 360 : 0;
-  return `<svg class="klokvlak" viewBox="-160 -160 320 320" role="group" aria-label="De klokken van Westminster">
+  return `<svg class="klokvlak${beeld ? " met-beeld" : ""}" viewBox="-160 -160 320 320" role="group" aria-label="De klokken van Westminster">
     <defs>
       <radialGradient id="kl-plaat"><stop offset="0" stop-color="#2a1338"/><stop offset=".55" stop-color="#140c1c"/><stop offset="1" stop-color="#07060a"/></radialGradient>
       <radialGradient id="kl-dreig"><stop offset="0" stop-color="#c58cf0" stop-opacity=".85"/><stop offset=".6" stop-color="#7b3fa0" stop-opacity=".25"/><stop offset="1" stop-color="#7b3fa0" stop-opacity="0"/></radialGradient>
       <linearGradient id="kl-goud" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f1d58a"/><stop offset=".5" stop-color="#a77b2c"/><stop offset="1" stop-color="#5e4316"/></linearGradient>
-      <clipPath id="kl-rond"><circle r="150"/></clipPath>
+      <clipPath id="kl-rond"><circle r="157"/></clipPath>
     </defs>
-    <circle r="158" class="kl-rand"/><circle r="150" fill="url(#kl-plaat)"/>
-    ${beeld ? `<image href="${beeld}" x="-150" y="-150" width="300" height="300" clip-path="url(#kl-rond)" class="kl-schilderij"/>` : ""}
-    <circle r="150" fill="url(#kl-dreig)" class="kl-dreiging" style="opacity:${(aan.length / n * 0.9 + 0.1).toFixed(2)}"/>
-    <g class="kl-traceer">${traceer}<circle r="96"/><circle r="40"/></g>
-    <g class="kl-streep">${streepjes}</g><circle r="146" class="kl-ring"/>
+    ${beeld ? `<image href="${beeld}" x="-158" y="-158" width="316" height="316" clip-path="url(#kl-rond)" class="kl-schilderij"/>
+      <circle r="78" fill="url(#kl-dreig)" class="kl-dreiging" style="opacity:${(aan.length / n * 0.95).toFixed(2)}"/>`
+    : `<circle r="158" class="kl-rand"/><circle r="150" fill="url(#kl-plaat)"/>
+      <circle r="150" fill="url(#kl-dreig)" class="kl-dreiging" style="opacity:${(aan.length / n * 0.9 + 0.1).toFixed(2)}"/>
+      <g class="kl-traceer">${traceer}<circle r="96"/><circle r="40"/></g>
+      <g class="kl-streep">${streepjes}</g><circle r="146" class="kl-ring"/>`}
     ${vakken}
     <g class="kl-wijzer kort" style="transform:rotate(${kort}deg)"><path d="M0 12 L-5 0 L0 -62 L5 0 Z"/><circle cy="-50" r="5"/></g>
     <g class="kl-wijzer lang" style="transform:rotate(${wijzer}deg)"><path d="M0 16 L-3.5 0 L0 -92 L3.5 0 Z"/><path d="M0 -70 l6 -8 l-6 -8 l-6 8 z"/></g>
@@ -1954,8 +1970,8 @@ function klokSectie(u) {
   const slagen = u.klokken.reduce((t, id) => t + klokSlagen(id), 0);
   const pips = n => `<span class="klokpips" aria-label="${n} ${n === 1 ? "slag" : "slagen"}">${"<i></i>".repeat(n)}</span>`;
   const bg = art("art/scherm/big-ben.jpg");
-  return `<section class="klokken-sectie"${bg ? ` style="--klokbeeld:url('${bg}')"` : ""}>
-    <div class="klokkop"><h2>De Klokken van Westminster</h2><p class="muted">Big Ben slaat dertien. Zet klokken aan voor een zwaarder potje: tik op een uur van de klok of op een klok in de lijst. Hoe kleiner je kans, hoe meer punten je verdient als je wint.</p></div>
+  return `<section class="klokken-sectie">
+    <div class="klokkop">${bg ? `<img class="klokbanner" src="${bg}" alt="">` : ""}<h2>De Klokken van Westminster</h2><p class="muted">Big Ben slaat dertien. Zet klokken aan voor een zwaarder potje: tik op een uur van de klok of op een klok in de lijst. Hoe kleiner je kans, hoe meer punten je verdient als je wint.</p></div>
     <div class="klokrij-boven">
       <div class="klokhouder">${klokSvg(u.klokken, u.klokLaatst)}</div>
       <div class="dreiging" style="--dreiging:${dreig.toFixed(3)}" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pct ?? 0}" aria-label="Winkans">
@@ -1977,7 +1993,7 @@ function klokSectie(u) {
 }
 async function toonKlokkenInfo() {
   await venster({ soort: "De Klokken van Westminster", titel: `${S.klokken.length} ${S.klokken.length === 1 ? "klok luidt" : "klokken luiden"}`, breed: true,
-    html: `<ul class="klokinfo">${S.klokken.map(id => { const i = KLOKKEN.findIndex(k => k.id === id), k = KLOKKEN[i]; return `<li><b>${ROMEINS[i]} · ${esc(k.naam)}.</b> ${esc(k.tekst)}</li>`; }).join("")}</ul>
+    html: `<ul class="klokinfo">${S.klokken.map(id => { const i = KLOKKEN.findIndex(k => k.id === id), k = KLOKKEN[i], ic = art(`art/klokken/${id}.jpg`); return `<li>${ic ? `<img src="${ic}" alt="">` : `<span class="klokcijfer">${ROMEINS[i]}</span>`}<span><b>${ROMEINS[i]} · ${esc(k.naam)}.</b> ${esc(k.tekst)}</span></li>`; }).join("")}</ul>
       ${S.kans != null ? `<p class="muted">Winkans bij de start: ongeveer ${Math.round(S.kans * 100)}%. Winnen levert ${puntenVoor(S.kans, false)} punten op.</p>` : ""}` });
 }
 
@@ -1991,19 +2007,20 @@ function bewaarUitslag() {
     ronde: S.ronde, uitslag: S.einde, kans: kans == null ? null : +kans.toFixed(3), punten: winst && kans != null ? puntenVoor(kans, S.einde === "nipt") : 0, aangepast: !!S.aangepast };
   S.uitslagId = e.id; const l = leesScores(); l.push(e); schrijfScores(l); opslaan();
 }
-function scoreTabel(rijen, licht) {
-  if (!rijen.length) return `<p class="muted">Nog geen overwinningen op dit apparaat.</p>`;
+function scoreTabel(rijen, licht, leeg = "Nog geen overwinningen op dit apparaat.") {
+  if (!rijen.length) return `<p class="muted">${leeg}</p>`;
   return `<div class="tabelvlak"><table class="scoretabel"><tr><th>#</th><th>Naam</th><th>Punten</th><th>Tegen</th><th>Stand</th><th>Klokken</th><th>Helden</th><th>Rondes</th><th>Datum</th></tr>
     ${rijen.map((x, i) => `<tr class="${x.id === licht ? "licht" : ""}"><td>${i + 1}</td><td>${esc(x.naam || "Naamloos")}</td><td><b>${x.punten}</b></td><td>${esc(byId(D.goden, x.god)?.naam || x.god)}</td><td>${esc(MOEILIJKHEID[x.stand]?.naam || x.stand)}</td>
       <td title="${esc(x.klokken.map(id => KLOKKEN.find(k => k.id === id)?.naam).join(", "))}">${x.klokken.length ? x.klokken.map(id => ROMEINS[KLOKKEN.findIndex(k => k.id === id)]).join(" ") : "–"}</td>
       <td>${x.helden.map(id => esc(korteNaam(heldDef({ id }).naam))).join(", ")}</td><td>${x.ronde}</td><td>${esc(x.datum)}</td></tr>`).join("")}</table></div>`;
 }
 async function toonScorebord() {
-  const r = ranglijst(), alle = leesScores();
-  await venster({ soort: "Het register van de Club", titel: "Scorebord", breed: true, terug: true,
-    html: `${scoreTabel(r.slice(0, 15))}
+  const r = ranglijst(), alle = leesScores(), gedeeld = await haalGedeeld();
+  await venster({ soort: "Het register van de Club", titel: "Scorebord", breed: true, terug: true, beeld: "art/scherm/scorebord.jpg",
+    html: `<h3>Iedereen</h3>${gedeeld ? scoreTabel(gedeeld.map((x, i) => ({ ...x, id: "g" + i })), null, "Nog niemand heeft een overwinning gedeeld. Win een potje en zet het erop.") : `<p class="muted">Het gedeelde scorebord is nu niet bereikbaar.</p>`}
+      <h3>Op dit apparaat</h3>${scoreTabel(r.slice(0, 15))}
       <p class="muted">${alle.length} ${alle.length === 1 ? "potje" : "potjes"} gespeeld op dit apparaat, ${r.length} gewonnen. Punten krijg je alleen voor een overwinning: hoe kleiner je kans vooraf, hoe meer punten. Op het nippertje (in de laatste nacht) telt voor driekwart. Potjes waarin je spelwaarden met de hand hebt aangepast, tellen niet mee.</p>
-      <p class="muted">Het scorebord staat in deze browser op dit apparaat. Op een ander apparaat of in een andere browser begin je met een leeg scorebord.</p>` });
+      <p class="muted">Het scorebord van dit apparaat staat in deze browser. Een overwinning komt alleen op het gedeelde scorebord als je dat op het eindscherm zelf kiest. Daar staan dan je naam, de god, de stand, de helden, de klokken en het aantal rondes. De punten rekent de server zelf uit.</p>` });
 }
 
 /* ---------- invoer ---------- */
@@ -2043,9 +2060,18 @@ app.addEventListener("click", e => {
     case "klokken-alle": u.klokken = KLOKKEN.map(k => k.id); bewaarKlokkeuze(); return teken();
     case "klokken-info": return veilig(toonKlokkenInfo);
     case "scorebord": return veilig(() => toonScorebord());
+    case "deel-score": {
+      const v = (document.getElementById("spelernaam")?.value || "").trim().slice(0, 30);
+      if (!v) { UI.deelFout = "Vul eerst een naam in."; return teken(); }
+      try { localStorage.setItem(SPELERNAAM, v); } catch {}
+      const l = leesScores(), e = l.find(x => x.id === S.uitslagId); if (!e) return;
+      e.naam = v; schrijfScores(l); UI.deelBezig = true; UI.deelFout = null; teken();
+      return deelUitslag(e).then(d => { UI.deelBezig = false; const l2 = leesScores(), e2 = l2.find(x => x.id === S.uitslagId);
+        if (d.ok || /al op het scorebord/.test(d.fout || "")) { e2.gedeeld = true; e2.gedeeldPlaats = d.plaats || null; schrijfScores(l2); } else UI.deelFout = d.fout; teken(); });
+    }
     case "naam-bewaar": { const v = (document.getElementById("spelernaam")?.value || "").trim().slice(0, 30); try { localStorage.setItem(SPELERNAAM, v); } catch {} const l = leesScores(); const e = l.find(x => x.id === S.uitslagId); if (e) { e.naam = v; schrijfScores(l); } UI.naamBewaard = true; return teken(); }
     case "verder": S = laden(); if (S.fase === "finale") veilig(() => ontwaken()); else if (S.fase === "ontmoeting") veilig(() => ontmoetingsfase((S.ontmoetingIndex ?? -1) + 1)); else if (S.fase === "onheil") veilig(() => onheilsfase()); else teken(); return;
-    case "nieuw": wis(); S = null; UI.zoom = null; UI.start.helden = []; UI.naamBewaard = false; return teken();
+    case "nieuw": wis(); S = null; UI.zoom = null; UI.start.helden = []; UI.naamBewaard = false; UI.deelFout = null; return teken();
     case "tutorial": zaai(1888); nieuwSpel("vathrun", "ontspannen", ["hester-quayle", "silas-rook"], { tutorial: true }); rng = Math.random; return;
     case "handboek": UI.handboek = "handleiding"; return tekenHandleiding();
     case "nieuws": return toonNieuws(true);
@@ -2172,7 +2198,7 @@ Promise.all(Object.entries(BESTANDEN).map(([k, f]) => fetch(`data/${f}.json`).th
     D.ontmoetingen = { stad: [...D.o_stad, ...D.o_verhaal], expeditie: D.o_expeditie, scheur: D.o_scheur, aanwijzing: D.o_aanwijzing };
     maakBuren(); teken(); registreerSW();
     /* portretten en het mistfiche vooraf laden, zodat ze al bij de eerste kaart verschijnen */
-    if (!window.__bot) { for (const p of D.personen) art(`art/personen/${p.id}.jpg`); art("art/fiches/mist.jpg"); Geluid.laad(); setTimeout(() => toonNieuws(false), 400); }
+    if (!window.__bot) { for (const p of D.personen) art(`art/personen/${p.id}.jpg`); art("art/fiches/mist.jpg"); art("art/scherm/scorebord.jpg"); Geluid.laad(); setTimeout(() => toonNieuws(false), 400); }
   })
   .catch(err => { app.innerHTML = `<div class="start"><h1>Londen, 1888</h1><p>De speldata kon niet worden geladen (${esc(err.message)}). Open het spel via een webserver, niet als los bestand.</p></div>`; });
 /* Wat is er nieuw: na een update één keer tonen, daarna via de knop op het startscherm */
