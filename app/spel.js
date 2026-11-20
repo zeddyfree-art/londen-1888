@@ -14,7 +14,7 @@ const STATIONS = ["marylebone", "kings-cross", "city", "westminster"];
 const MOEILIJKHEID = {
   ontspannen: { naam: "Ontspannen", mist: 0, nodig: 2, scheuren: 2, test: 0 },
   normaal: { naam: "Normaal", mist: -2, nodig: 3, scheuren: 2, test: 0, finale: 1 },
-  genadeloos: { naam: "Genadeloos", mist: -2, nodig: 3, scheuren: 3, test: 1 }
+  genadeloos: { naam: "Genadeloos", mist: -3, nodig: 3, scheuren: 3, test: 1 }
 };
 
 let D = null;      // speldata
@@ -277,15 +277,37 @@ function rolDobbels(m) {
     }
   }, 70);
 }
-async function test(h, kenmerk, doel, titel, opt = {}) {
-  const hd = heldDef(h);
-  doel += MOEILIJKHEID[S.moeilijkheid].test;
+/* Wat telt er bij een test op, en met hoeveel stenen gooi je? Gedeeld door test() en kans(). */
+function testOpzet(h, kenmerk, doel, opt = {}) {
+  doel += MOEILIJKHEID[S.moeilijkheid].test + (window.__doelPlus || 0);
   let extra = opt.extra || 0;
   if (kenmerk === "kennis" && h.id === "septimus-crane") extra += Math.min(2, h.aanw);
   if (heeft(h, "waanzin-stemmen") && opt.spreuk) extra += 1;
-  if (S.tutorial) await coach("test");
   let kw = h.kenm[kenmerk] + bonusVoor(h, kenmerk, opt.context) + (opt.bonus || 0);
   if (opt.spreuk) for (const id of h.spullen) kw += spulDef(id)?.bonus?.spreuk || 0;
+  const vloek = heeft(h, "vervloekt") && !h.spullen.includes("dier-kat");
+  return { doel, kw, stenen: 2 + extra, vloek };
+}
+/* Kans in procenten dat de eerste worp lukt (zonder herworpen). */
+function kans(h, kenmerk, doel, opt = {}) {
+  const o = testOpzet(h, kenmerk, doel, opt);
+  let goed = 0, alle = 0;
+  const loop = (rest, worp) => {
+    if (!rest) { const t = worp.sort((a, b) => b - a); alle++; if (t[0] + t[1] + o.kw >= o.doel) goed++; return; }
+    for (let v = 1; v <= 6; v++) loop(rest - 1, [...worp, o.vloek && v === 6 ? 1 : v]);
+  };
+  loop(Math.min(o.stenen, 5), []);
+  return Math.round(100 * goed / alle);
+}
+const kansTxt = (h, kenmerk, doel, opt) => ` · ${kans(h, kenmerk, doel, opt)}%`;
+const metStand = doel => doel + MOEILIJKHEID[S.moeilijkheid].test;
+async function test(h, kenmerk, doel, titel, opt = {}) {
+  const hd = heldDef(h);
+  if (S.tutorial) await coach("test");
+  const opzet = testOpzet(h, kenmerk, doel, opt);
+  doel = opzet.doel;
+  let kw = opzet.kw;
+  const extra = opzet.stenen - 2;
   const kat = h.spullen.includes("dier-kat");
   const gooi = () => { let v = d6(); if (heeft(h, "vervloekt") && !kat && v === 6) v = 1; return v; };
   let stenen = Array.from({ length: 2 + extra }, gooi);
@@ -1055,29 +1077,32 @@ async function vecht(h, plek, m) {
   if (!ep && h.spullen.includes("dynamiet")) opties.push({ label: "Dynamiet", waarde: "dyn", ghost: true });
   if (d.mens && h.spullen.includes("chloroform")) opties.push({ label: "Chloroform", waarde: "chl", ghost: true });
   const kenmerk = d.vechtMet || "kracht";
+  const nebet = S.god === "nebet-ankhu" && h.artefacten.length ? 1 : 0;
+  const vuurwapen = h.spullen.some(x => x === "webley" || x === "olifantengeweer" || spulDef(x)?.vuurwapen) || h.eigen.some(e => /Revolver|geweer|pistool|Derringer/i.test(e.naam));
+  const kogels = kenmerk === "kracht" && vuurwapen && d.gruwel >= 2 && h.spullen.includes("zilveren-kogels") ? 2 : 0;
+  const terrier = h.spullen.includes("dier-terrier") && D.bord.rivier.includes(plek) ? 1 : 0;
+  const bonus = (kenmerk === "kracht" ? wapenBonus(h, d.mens) : 0) + nebet + kogels + terrier;
+  const gruwel = S.plekken[plek]?.belRonde === S.ronde ? 0 : d.gruwel;
+  const gruwelOpt = () => ({ extra: h.ronde.pentagram ? 1 : 0, bonus: (h.artefacten.includes("jade-masker") ? 2 : 0) + h.spullen.reduce((t, id) => t + (spulDef(id)?.bonus?.gruwel || 0), 0) });
+  const kansen = [gruwel > 0 && !h.ronde.wake ? `gruwel weerstaan ${kans(h, "kennis", 8, gruwelOpt())}%` : "", `raken ${kans(h, kenmerk, d.taaiheid, { bonus })}%`].filter(Boolean).join(" · ");
+  if (h.spreuken.includes("verbanning")) opties.find(o => o.waarde === "verban").label += kansTxt(h, "kennis", d.taaiheid, { bonus: 2 + nebet, spreuk: true });
   const k = await venster({ soort: ep ? "Episch monster" : "Gevecht", thema: "monster", titel: d.naam, beeld: `art/monsters/${d.id}.jpg`, zij: true, achterkant: "monster", geluid: "monster", verhaal: d.eigenschap,
-    html: `<p>Gruwel <b>${d.gruwel}</b> · Taaiheid <b>${d.taaiheid}</b> · Schade <b>${d.schade}</b> · Leven <b>${m.leven}</b></p><p class="muted">${esc(naam)} vecht met ${KNAAM[kenmerk]}.</p>`, knoppen: opties });
+    html: `<p>Gruwel <b>${d.gruwel}</b> · Taaiheid <b>${d.taaiheid}</b> · Schade <b>${d.schade}</b> · Leven <b>${m.leven}</b></p><p class="muted">${esc(naam)} vecht met ${KNAAM[kenmerk]}. Kans: ${kansen}.</p>`, knoppen: opties });
   if (k === "dyn") { await gebruikSpul(h, "dynamiet"); return true; }
   if (k === "chl") { await gebruikSpul(h, "chloroform"); return true; }
   if (k === "glorie") { h.ronde.glorie = true; log(`${naam} glipt ongezien langs ${d.naam}`); return false; }
-  const gruwel = S.plekken[plek]?.belRonde === S.ronde ? 0 : d.gruwel;
   if (gruwel > 0 && !h.ronde.wake) {
-    const extra = h.ronde.pentagram ? 1 : 0; delete h.ronde.pentagram;
-    if (!await test(h, "kennis", 8, `Gruwel van ${d.naam}`, { extra, bonus: (h.artefacten.includes("jade-masker") ? 2 : 0) + h.spullen.reduce((t, id) => t + (spulDef(id)?.bonus?.gruwel || 0), 0) })) { h.G -= gruwel; log(`${naam} verliest ${gruwel} Geest door gruwel`); }
+    const go = gruwelOpt(); delete h.ronde.pentagram;
+    if (!await test(h, "kennis", 8, `Gruwel van ${d.naam}`, go)) { h.G -= gruwel; log(`${naam} verliest ${gruwel} Geest door gruwel`); }
     await controleerHeld(h);
     if (h.plek !== plek) return false;
   }
   let gelukt;
-  const nebet = S.god === "nebet-ankhu" && h.artefacten.length ? 1 : 0;
   if (k === "verban") {
     const p = spreukPrijs(h, spreukDef("verbanning")); h.G -= p.geest;
     gelukt = await test(h, "kennis", d.taaiheid, `Verbanning tegen ${d.naam}`, { bonus: 2 + nebet, spreuk: true });
   } else {
-    const vuurwapen = h.spullen.some(x => x === "webley" || x === "olifantengeweer" || spulDef(x)?.vuurwapen) || h.eigen.some(e => /Revolver|geweer|pistool|Derringer/i.test(e.naam));
-    const kogels = kenmerk === "kracht" && vuurwapen && d.gruwel >= 2 && h.spullen.includes("zilveren-kogels") ? 2 : 0;
     if (kogels) { h.spullen = h.spullen.filter(x => x !== "zilveren-kogels"); log(`${naam} laadt zilveren kogels`); }
-    const terrier = h.spullen.includes("dier-terrier") && D.bord.rivier.includes(plek) ? 1 : 0;
-    const bonus = (kenmerk === "kracht" ? wapenBonus(h, d.mens) : 0) + nebet + kogels + terrier;
     gelukt = await test(h, kenmerk, d.taaiheid, `Gevecht tegen ${d.naam}`, { bonus });
   }
   if (gelukt) {
@@ -1159,7 +1184,7 @@ async function ontmoeting(h) {
     if ((h.plek !== plek && !h.ronde.astraal) || !p.scheur) return;
     const lens = h.artefacten.includes("vuurtoren-lens") && h.kenm.scherpte > h.kenm.kennis ? "scherpte" : "kennis";
     const k = await venster({ soort: "Scheur", thema: "scheur", portaal: true, beeld: scheurBeeld(), titel: `De Scheur in ${plekNaam(plek)}`, html: `<p>Probeer je hem te sluiten? (${KNAAM[lens]})</p>`,
-      knoppen: [{ label: `Sluiten met 1 Aanwijzing (8)`, waarde: "a", uit: h.aanw < 1 }, { label: "Sluiten zonder Aanwijzing (10)", waarde: "z" }, { label: "Laten", waarde: null, ghost: true }] });
+      knoppen: [{ label: `Sluiten met 1 Aanwijzing (${metStand(8)}${kansTxt(h, lens, 8)})`, waarde: "a", uit: h.aanw < 1 }, { label: `Sluiten zonder Aanwijzing (${metStand(10)}${kansTxt(h, lens, 10)})`, waarde: "z" }, { label: "Laten", waarde: null, ghost: true }] });
     if (k) {
       if (k === "a") h.aanw--;
       if (await test(h, lens, k === "a" ? 8 : 10, "De Scheur sluiten")) await sluitScheur(h, plek);
@@ -1170,7 +1195,7 @@ async function ontmoeting(h) {
   if (p.aanw > 0) {
     const kaart = trekKaart(D.ontmoetingen.aanwijzing, () => true);
     await overgang("aanwijzing", "Een spoor");
-    const k = await venster({ soort: "Aanwijzing", thema: "aanwijzing", titel: plekNaam(plek), beeld: `art/plekken/${plek}.jpg`, achterkant: "mysterie", verhaal: kaart.tekst, knoppen: [{ label: "Onderzoeken (Waarneming 7)", waarde: true }] });
+    const k = await venster({ soort: "Aanwijzing", thema: "aanwijzing", titel: plekNaam(plek), beeld: `art/plekken/${plek}.jpg`, achterkant: "mysterie", verhaal: kaart.tekst, knoppen: [{ label: `Onderzoeken (Waarneming ${metStand(7)}${kansTxt(h, "scherpte", 7, { context: "ontmoeting" })})`, waarde: true }] });
     if (k && await test(h, "scherpte", 7, "Een spoor volgen", { context: "ontmoeting" })) { p.aanw--; h.aanw++; log(`${naam} vindt een Aanwijzing in ${plekNaam(plek)}`); }
     return;
   }
@@ -1191,7 +1216,7 @@ async function speelKaart(h, kaart, soort, beeld, rug) {
   };
   const doeTest = async t => test(h, t.kenmerk, t.moeilijkheid, t.kenmerk === "kracht" ? "Doorzetten" : "Wat doe je?", { context: "ontmoeting" });
   if (kaart.keuzes) {
-    const i = await venster({ ...kop, html: metWie + `<p class="muted">Wat doe je?</p>`, knoppen: kaart.keuzes.map((k, i) => ({ label: k.test ? k.label.replace(/\((\w+) (\d+)\)/, (_, kn, n) => `(${kn} ${+n + MOEILIJKHEID[S.moeilijkheid].test})`) : k.label, waarde: i, uit: !k.test && (k.effect || []).some(e => e.pond < 0 && -e.pond > h.pond) })) });
+    const i = await venster({ ...kop, html: metWie + `<p class="muted">Wat doe je?</p>`, knoppen: kaart.keuzes.map((k, i) => ({ label: k.test ? k.label.replace(/\((\w+) (\d+)\)/, (_, kn, n) => `(${kn} ${+n + MOEILIJKHEID[S.moeilijkheid].test}${kansTxt(h, k.test.kenmerk, k.test.moeilijkheid, { context: "ontmoeting" })})`) : k.label, waarde: i, uit: !k.test && (k.effect || []).some(e => e.pond < 0 && -e.pond > h.pond) })) });
     const k = kaart.keuzes[i ?? 0];
     if (!k.test) return uitkomst(null, { tekst: k.tekst, effect: k.effect });
     const ok = await doeTest(k.test);
@@ -1202,7 +1227,7 @@ async function speelKaart(h, kaart, soort, beeld, rug) {
     await venster({ ...kop, html: metWie + (kaart.slot ? `<p class="verhaal">${esc(kaart.slot)}</p>` : "") + html });
     await controleerHeld(h); return;
   }
-  await venster({ ...kop, html: metWie, knoppen: [{ label: `${KNAAM[kaart.test.kenmerk]}-test (${kaart.test.moeilijkheid + MOEILIJKHEID[S.moeilijkheid].test})`, waarde: true }] });
+  await venster({ ...kop, html: metWie, knoppen: [{ label: `${KNAAM[kaart.test.kenmerk]}-test (${kaart.test.moeilijkheid + MOEILIJKHEID[S.moeilijkheid].test}${kansTxt(h, kaart.test.kenmerk, kaart.test.moeilijkheid, { context: "ontmoeting" })})`, waarde: true }] });
   const ok = await doeTest(kaart.test);
   await uitkomst(ok, ok ? kaart.gelukt : kaart.mislukt);
 }
@@ -1968,5 +1993,5 @@ function toonUpdate() {
   document.body.appendChild(el);
 }
 window.__spel = { get S() { return S; }, get D() { return D; }, get bezig() { return bezig; },
-  api: { overgang, venster, scheurBeeld, toonUpdate, speelKaart, onheilsfase, nieuwSpel, zaai, reis, rust, dienst, doeMysterie, mysterieActie, beurtKlaar, gebruikActie, gebruikSpul, zoekWeg, bereikbaar, burenVan, afstanden, stapNaar, actief, groei, mysterie, heeft, isOverzee, spulDef, monsterDef, wapenBonus, plekDef } };
+  api: { overgang, venster, scheurBeeld, toonUpdate, kans, speelKaart, onheilsfase, nieuwSpel, zaai, reis, rust, dienst, doeMysterie, mysterieActie, beurtKlaar, gebruikActie, gebruikSpul, zoekWeg, bereikbaar, burenVan, afstanden, stapNaar, actief, groei, mysterie, heeft, isOverzee, spulDef, monsterDef, wapenBonus, plekDef } };
 })();

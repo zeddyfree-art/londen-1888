@@ -4,19 +4,19 @@ Deze lijst werken we aan het einde van elk gesprek bij. Zet bij elke update die 
 
 *Laatst bijgewerkt: 20 november 2026 (achtste sessie)*
 
-## Gemeten na de achtste sessie (twee keer reizen)
+## Gemeten na de achtste sessie (twee keer reizen, genadeloos Mist 1 lager)
 
-Met `node tools/testbot.js 150`. Tests, vaardigheid en geluk: zie [`tests-en-geluk.md`](tests-en-geluk.md) (`node tools/meet-tests.js 100`).
+Met `node tools/testbot.js 150`. Tests, vaardigheid en geluk, en wat er gebeurt als elke test 1 hoger vraagt: zie [`tests-en-geluk.md`](tests-en-geluk.md).
 
 **Balans (winkans):**
 
 | God | Ontspannen 2 / 4 | Normaal 2 / 4 | Genadeloos 2 / 4 |
 |---|---|---|---|
-| Vathrûn | 96% / 99% | 74% / 75% | 37% / 26% |
-| Azh-Ilareth | 94% / 98% | 67% / 71% | 24% / 29% |
-| Nebet-Ankhu | 97% / 97% | 61% / 73% | 21% / 29% |
+| Vathrûn | 95% / 98% | 71% / 79% | 20% / 18% |
+| Azh-Ilareth | 91% / 99% | 60% / 81% | 13% / 17% |
+| Nebet-Ankhu | 94% / 99% | 67% / 74% | 27% / 15% |
 
-Ontspannen en normaal vallen binnen het doel. **Genadeloos is te makkelijk geworden** (doel 10 tot 20%, was 11 tot 22%, nu 21 tot 37%): twee keer reizen helpt vooral daar.
+Twee keer reizen maakte genadeloos te makkelijk (21 tot 37%). Met de Mist 1 lager is het 13 tot 27%, bijna overal binnen het doel van 10 tot 20%. Alleen Nebet-Ankhu met 2 helden zit er nog iets boven. Azh-Ilareth met 4 helden op normaal (81%) zit net boven het doel van de helft tot driekwart.
 
 ## Gemeten na de zevende sessie
 
@@ -58,8 +58,6 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 ## Open taken
 
 ### Balans en tests (zie `tests-en-geluk.md`)
-- [ ] Genadeloos weer naar 10 tot 20% winst brengen. Twee keer reizen maakte het te makkelijk.
-- [ ] De kans bij de testknop laten zien, bijvoorbeeld *Kennis-test (8) · 72%*.
 - [ ] Verbanning lukt in 95% van de tests: doel 1 of 2 hoger, of zonder test.
 - [ ] Gevechten krijgen bijna geen hulp van herworpen (69% naar 72%). Een manier om je voor te bereiden?
 - [ ] De stations (U) doen alleen iets met het Kaartje voor de Ondergrondse, dat je toevallig op een markt kunt trekken. Meer betekenis geven?
@@ -89,6 +87,9 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [ ] Werken het geluid en de animaties goed op de iPad?
 
 ## Klaar
+
+- [x] Genadeloos: Mist 1 lager, weer 13 tot 27% winst
+- [x] Kans bij elke testknop en in het gevecht
 
 - [x] Scheurkaart: vier geschilderde portalen in `art/scheur/` (algemeen en één per oude god), en een nieuwe favicon
 

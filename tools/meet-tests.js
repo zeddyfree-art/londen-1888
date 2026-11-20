@@ -28,6 +28,9 @@ const soortVan = t => /^Gevecht/.test(t) ? "Gevecht" : /^Gruwel/.test(t) ? "Gruw
   await page.goto(`http://localhost:${server.address().port}/index.html`);
   await page.waitForFunction(() => window.__spel && window.__spel.D);
   await page.addScriptTag({ content: fs.readFileSync(path.join(__dirname, "testbot-strategie.js"), "utf8") });
+  /* experiment: DOELPLUS=1 maakt elke test 1 moeilijker; de uitslag gaat dan naar een apart bestand */
+  const doelPlus = +(process.env.DOELPLUS || 0);
+  await page.evaluate(v => { window.__doelPlus = v; }, doelPlus);
 
   const alle = [], perStand = {};
   for (const god of ["vathrun", "azh-ilareth", "nebet-ankhu"]) for (const stand of ["ontspannen", "normaal", "genadeloos"]) for (const aantal of [2, 4]) {
@@ -69,7 +72,7 @@ const soortVan = t => /^Gevecht/.test(t) ? "Gevecht" : /^Gruwel/.test(t) ? "Gruw
   uit.dobbelKeertOm = pct(omgekeerd, tweeSt.length);
   uit.zekerOfKansloos = { altijdGelukt: pct(tweeSt.filter(t => t.kw + 2 >= t.doel).length, tweeSt.length), kansloos: pct(tweeSt.filter(t => t.kw + 12 < t.doel).length, tweeSt.length) };
   uit.herworpen = { gebruikt: pct(alle.filter(t => t.herworpen).length, alle.length), gered: pct(alle.filter(t => t.herworpen && t.gelukt && t.eerste < t.doel).length, alle.filter(t => t.eerste < t.doel).length) };
-  fs.writeFileSync(path.join(root, "ontwerp", "tests.json"), JSON.stringify(uit, null, 2) + "\n");
+  fs.writeFileSync(path.join(root, "ontwerp", doelPlus ? `tests-doelplus${doelPlus}.json` : "tests.json"), JSON.stringify(uit, null, 2) + "\n");
   console.log(JSON.stringify(uit, null, 2));
   await browser.close(); server.close();
 })();

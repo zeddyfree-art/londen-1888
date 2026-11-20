@@ -1,5 +1,6 @@
 // Laat de slimme testspeler honderden potjes spelen en meet de winkans.
 // Gebruik: node tools/bouw.js && node tools/testbot.js [potjes per instelling, standaard 40]
+// Experiment: DOELPLUS=1 node tools/testbot.js 100 (elke test 1 moeilijker, uitslag in ontwerp/balans-doelplus1.json)
 // Vereist Playwright met Chromium.
 const http = require("http"), fs = require("fs"), path = require("path");
 const { chromium } = require("playwright");
@@ -26,6 +27,9 @@ const server = http.createServer((req, res) => {
   await page.goto(url);
   await page.waitForFunction(() => window.__spel && window.__spel.D);
   await page.addScriptTag({ content: fs.readFileSync(path.join(__dirname, "testbot-strategie.js"), "utf8") });
+  /* experiment: DOELPLUS=1 maakt elke test 1 moeilijker; de uitslag gaat dan naar een apart bestand */
+  const doelPlus = +(process.env.DOELPLUS || 0);
+  await page.evaluate(v => { window.__doelPlus = v; }, doelPlus);
 
   const goden = ["vathrun", "azh-ilareth", "nebet-ankhu"];
   const standen = ["ontspannen", "normaal", "genadeloos"];
@@ -57,7 +61,7 @@ const server = http.createServer((req, res) => {
     const r = rijen.at(-1);
     console.log(`${god.padEnd(12)} ${stand.padEnd(11)} ${aantal} helden: winst ${String(r.winst).padStart(3)}% (nipt ${r.nipt}%), ${r.rondes} rondes, ${r.mysteries} mysteries, ${r.gevallen} gevallen${r.vast ? `, ${r.vast} vast` : ""}${r.fouten.length ? "  FOUT: " + r.fouten[0] : ""}`);
   }
-  fs.writeFileSync(path.join(root, "ontwerp", "balans.json"), JSON.stringify({ datum: new Date().toISOString().slice(0, 10), potjesPerInstelling: n, rijen }, null, 2) + "\n");
+  fs.writeFileSync(path.join(root, "ontwerp", doelPlus ? `balans-doelplus${doelPlus}.json` : "balans.json"), JSON.stringify({ datum: new Date().toISOString().slice(0, 10), potjesPerInstelling: n, rijen }, null, 2) + "\n");
   console.log("\nPer mysterie (opgelost / bleef op hangen):");
   for (const [m, v] of Object.entries(mys)) console.log(`  ${m.padEnd(28)} ${v.opgelost} / ${v.vast}`);
   if (fouten.length) console.log("Paginafouten:", [...new Set(fouten)].slice(0, 5));

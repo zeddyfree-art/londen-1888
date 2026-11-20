@@ -68,6 +68,40 @@ Per test is het dus vooral geluk. Maar over een heel potje heb je zo'n 40 tests,
 
 Herworpen: in 11% van de tests gebruikt de speler een herworp. Die redt 29% van de mislukte worpen.
 
+## Wat als elke test 1 hoger vraagt?
+
+Gemeten met `DOELPLUS=1 node tools/testbot.js 150` en `DOELPLUS=1 node tools/meet-tests.js 100`, na de aanpassing van de genadeloze stand. De cijfers staan in `balans-doelplus1.json` en `tests-doelplus1.json`.
+
+**Per test:**
+
+| | Nu | Elke test +1 |
+|---|---|---|
+| Lukt bij eerste worp (normaal) | 76% | 61% |
+| Lukt na herworpen (normaal) | 84% | 72% |
+| Kenmerk 1 | 47% | 33% |
+| Kenmerk 4 | 89% | 80% |
+| Gevecht | 69% | 58% |
+| Scheur sluiten | 67% | 52% |
+| Verbanning | 95% | 81% |
+| Tests per potje (normaal) | 43 | 48 |
+| Stenen keren de verwachting om | 25% | 31% |
+
+**Winkans:**
+
+| Stand | Nu | Elke test +1 |
+|---|---|---|
+| Ontspannen | 91 tot 99% | 81 tot 89% |
+| Normaal | 60 tot 81% | 31 tot 47% |
+| Genadeloos | 13 tot 27% | 4 tot 13% |
+
+Wat dit laat zien:
+- **Eén punt op alle tests is een grote ingreep.** Elke test lukt 12 tot 15 procentpunt minder vaak, en in de normale stand zakt de winkans met ongeveer 30 procentpunt. Dat is meer dan het verschil tussen normaal en genadeloos nu.
+- **Zwakke helden worden harder geraakt.** Met kenmerk 1 verlies je 14 procentpunt (van 47 naar 33), met kenmerk 4 maar 9 (van 89 naar 80). Het kenmerk gaat dus zwaarder wegen: je kunt minder tests "aan wie toevallig daar staat" overlaten.
+- **De verhouding geluk en vaardigheid blijft gelijk** (70% dobbelsteen per test). Wel vallen er meer tests tegen je verwachting uit (31% in plaats van 25%), omdat meer tests in het midden van de klok liggen.
+- **Potjes duren langer** (meer tests en rondes), want je mislukt vaker en moet het opnieuw proberen.
+
+Voor de afstelling betekent dit: het doel van tests is een grove knop. Om fijn bij te stellen werk je beter per soort test (bijvoorbeeld alleen Verbanning of alleen Scheuren sluiten), of met de Mist.
+
 ## Wat zeggen ontwerpers en theorie?
 
 **Invoer- en uitvoerwillekeur (Geoff Engelstein).** Engelstein onderscheidt willekeur vóór je keuze (je trekt kaarten en kiest wat je ermee doet) en willekeur ná je keuze (je kiest een aanval en gooit dan). Willekeur vooraf geeft je iets om op te plannen. Willekeur achteraf kan je plan onderuithalen. Onze tests zijn bijna helemaal willekeur achteraf. Wat ze strategisch maakt, zijn de keuzes eromheen: welke held welke test doet, wanneer je een Aanwijzing uitgeeft, of je een Scheur nu sluit of eerst Aanwijzingen haalt. Volgens zijn redenering is het goed om die keuzes zichtbaar en zinvol te houden. Spelers verdragen willekeur vooraf over het algemeen beter dan willekeur achteraf.
