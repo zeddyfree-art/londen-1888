@@ -56,7 +56,7 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 ## Open taken
 
 ### Geluid
-- [ ] Nog 14 geluiden genereren in de ElevenLabs-flow "Londen 1888 geluiden" (alles staat klaar; het gratis plan was druk). Klaar: `dobbel` en `onheil`.
+- [ ] Nog 11 geluiden genereren in de ElevenLabs-flow "Londen 1888 geluiden" (alles staat klaar; het gratis plan was druk). Klaar: `dobbel`, `onheil`, `klik`, `reis` en `kaart`.
 - [ ] Geluid testen op de iPad: volume, sfeerlus en de eerste tik.
 
 ### Beelden
