@@ -165,7 +165,7 @@ function stapNaar(van, doel) {
 
 /* ---------- modaal venster ---------- */
 let modalResolve = null;
-function venster({ soort = "", titel = "", beeld = null, zij = false, verhaal = "", html = "", breed = false, achterkant = null, animeer = null, geluid = null, terug = false, knoppen = [{ label: "Verder", waarde: true }] }) {
+function venster({ soort = "", titel = "", beeld = null, zij = false, verhaal = "", html = "", breed = false, achterkant = null, animeer = null, geluid = null, terug = false, thema = "", portaal = false, knoppen = [{ label: "Verder", waarde: true }] }) {
   if (knoppen.length && knoppen.every(k => k.uit)) knoppen = [...knoppen, { label: "Verder", waarde: null, ghost: true }];
   if (window.__bot) return Promise.resolve(window.__bot.kies({ soort, titel, knoppen: knoppen.filter(k => !k.uit) }));
   return new Promise(res => {
@@ -173,8 +173,8 @@ function venster({ soort = "", titel = "", beeld = null, zij = false, verhaal = 
     const img = beeld ? art(beeld) : null;
     const rug = achterkant && !RUSTIG ? art(`art/achterkanten/${achterkant}.jpg`) : null;
     const toon = () => {
-      m.innerHTML = `<div class="venster${breed ? " breed" : ""}${zij && img ? " zij" : ""}${rug ? " draai-in" : " kom-op"}" role="dialog" aria-modal="true" aria-label="${esc(titel)}">
-        ${img ? `<img class="beeld" src="${esc(img)}" alt="">` : ""}
+      m.innerHTML = `<div class="venster${breed ? " breed" : ""}${thema ? ` thema-${thema}` : ""}${zij && img && !portaal ? " zij" : ""}${rug ? " draai-in" : " kom-op"}" role="dialog" aria-modal="true" aria-label="${esc(titel)}">
+        ${beeld && portaal ? portaalHtml(img || beeld) : img ? `<img class="beeld" src="${esc(img)}" alt="">` : ""}
         <div class="inhoud">
           ${terug ? `<button class="btn ghost terug-boven" data-knop="terug">← Terug</button>` : ""}
           ${soort ? `<span class="soort">${esc(soort)}</span>` : ""}
@@ -198,6 +198,36 @@ function venster({ soort = "", titel = "", beeld = null, zij = false, verhaal = 
   });
 }
 const melding = (titel, tekst, soort = "") => venster({ soort, titel, html: `<p>${esc(tekst)}</p>` });
+
+/* ---------- overgangen: korte animatie voor elke ontmoeting ---------- */
+function portaalHtml(img) {
+  const vonken = Array.from({ length: 14 }, (_, i) => `<i style="--a:${(i * 360 / 14).toFixed(0)}deg;--v:${(i * .37 % 2.6).toFixed(2)}s"></i>`).join("");
+  return `<div class="portaal" aria-hidden="true"><div class="portaal-nevel"></div><div class="portaal-vonken">${vonken}</div><div class="portaal-ring"></div><img src="${esc(img)}" alt=""></div>`;
+}
+const OVERGANG = {
+  scheur: { duur: 2300, html: t => `<svg class="og-spleet" viewBox="0 0 100 400" preserveAspectRatio="none"><path d="M50 0 L44 50 L56 95 L41 150 L58 205 L45 260 L55 315 L47 360 L50 400"/></svg>
+    <div class="og-kolk"></div><div class="og-zuig">${Array.from({ length: 18 }, (_, i) => `<i style="--a:${i * 20}deg;--v:${(i % 6) * .08}s"></i>`).join("")}</div><div class="og-flits"></div><p class="og-tekst">${esc(t)}</p>`, geluid: "scheur" },
+  dicht: { duur: 1500, html: t => `<div class="og-kolk"></div><div class="og-flits"></div><p class="og-tekst">${esc(t)}</p>` },
+  monster: { duur: 1300, html: t => `<div class="og-vignet"></div>${[0, 1, 2].map(i => `<span class="og-klauw" style="--i:${i}"></span>`).join("")}<p class="og-tekst">${esc(t)}</p>` },
+  stad: { duur: 1500, html: t => `<div class="og-mist"></div><div class="og-mist twee"></div><div class="og-lamp"></div><p class="og-tekst">${esc(t)}</p>` },
+  aanwijzing: { duur: 1500, html: t => `<div class="og-mist"></div>${[0, 1, 2, 3].map(i => `<span class="og-stap" style="--i:${i}"></span>`).join("")}<div class="og-loep"></div><p class="og-tekst">${esc(t)}</p>` },
+  expeditie: { duur: 1600, html: t => `<div class="og-zee"></div><svg class="og-roos" viewBox="-50 -50 100 100"><circle r="44"/><circle r="36"/><path d="M0-46 6-6 46 0 6 6 0 46-6 6-46 0-6-6Z"/><path class="noord" d="M0-46 6-6-6-6Z"/></svg><p class="og-tekst">${esc(t)}</p>` }
+};
+function overgang(soort, tekst = "") {
+  const o = OVERGANG[soort];
+  if (!o || RUSTIG || window.__bot) return Promise.resolve();
+  return new Promise(res => {
+    const el = document.createElement("div");
+    el.className = `overgang og-${soort}`; el.setAttribute("aria-live", "polite"); el.style.setProperty("--duur", o.duur + "ms");
+    el.innerHTML = o.html(tekst);
+    let klaar = false;
+    const stop = () => { if (klaar) return; klaar = true; el.classList.add("weg"); setTimeout(() => { el.remove(); res(); }, 220); };
+    el.addEventListener("click", stop);
+    document.body.appendChild(el);
+    if (o.geluid) Geluid[o.geluid]?.();
+    setTimeout(stop, o.duur);
+  });
+}
 
 /* ---------- tests ---------- */
 function bonusVoor(h, kenmerk, ctx) {
@@ -1016,7 +1046,7 @@ async function vecht(h, plek, m) {
   if (!ep && h.spullen.includes("dynamiet")) opties.push({ label: "Dynamiet", waarde: "dyn", ghost: true });
   if (d.mens && h.spullen.includes("chloroform")) opties.push({ label: "Chloroform", waarde: "chl", ghost: true });
   const kenmerk = d.vechtMet || "kracht";
-  const k = await venster({ soort: ep ? "Episch monster" : "Gevecht", titel: d.naam, beeld: `art/monsters/${d.id}.jpg`, zij: true, achterkant: "monster", geluid: "monster", verhaal: d.eigenschap,
+  const k = await venster({ soort: ep ? "Episch monster" : "Gevecht", thema: "monster", titel: d.naam, beeld: `art/monsters/${d.id}.jpg`, zij: true, achterkant: "monster", geluid: "monster", verhaal: d.eigenschap,
     html: `<p>Gruwel <b>${d.gruwel}</b> · Taaiheid <b>${d.taaiheid}</b> · Schade <b>${d.schade}</b> · Leven <b>${m.leven}</b></p><p class="muted">${esc(naam)} vecht met ${KNAAM[kenmerk]}.</p>`, knoppen: opties });
   if (k === "dyn") { await gebruikSpul(h, "dynamiet"); return true; }
   if (k === "chl") { await gebruikSpul(h, "chloroform"); return true; }
@@ -1060,6 +1090,7 @@ async function vecht(h, plek, m) {
 async function sluitScheur(h, plek = h.plek) {
   S.plekken[plek].scheur = false; h.trofee++;
   log(`${korteNaam(heldDef(h).naam)} sluit de Scheur in ${plekNaam(plek)}`);
+  await overgang("dicht", "De Scheur trekt dicht");
   await melding("Scheur gesloten", `De Scheur in ${plekNaam(plek)} trekt dicht. +1 Trofee.`);
   if (scheurGesloten(plek)) await losOp();
 }
@@ -1083,6 +1114,7 @@ async function ontmoeting(h) {
   if (S.tutorial) await coach("ontmoeting");
   const eigen = S.plekken[h.plek];
   if (eigen && eigen.monsters.length && !(h.ronde.doodsmasker && !heeft(h, "waanzin-hoogmoed"))) {
+    await overgang("monster", eigen.monsters.length > 1 ? "Monsters!" : monsterDef(eigen.monsters[0].id).naam);
     for (const m of [...eigen.monsters]) {
       if (S.einde) return;
       const plek0 = h.plek;
@@ -1100,6 +1132,7 @@ async function ontmoeting(h) {
   if (h.ronde.astraal) await melding("Astrale reis", `Je geest zweeft naar ${plekNaam(plek)}.`);
   if (isOverzee(plek)) {
     const kaart = trekKaart(D.ontmoetingen.expeditie, e => e.plek === plek);
+    await overgang("expeditie", plekNaam(plek));
     await speelKaart(h, kaart, "Expeditie", `art/plekken/${plek}.jpg`, "expeditie");
     if (S.overzee[plek].artefact || h.artefactGerucht) {
       S.overzee[plek].artefact = false; h.artefactGerucht = false;
@@ -1111,10 +1144,11 @@ async function ontmoeting(h) {
   if (p.scheur) {
     if (S.tutorial) await coach("scheur");
     const kaart = trekKaart(D.ontmoetingen.scheur, () => true);
+    await overgang("scheur", `${naam} stapt door de Scheur`);
     await speelKaart(h, kaart, "Aan de andere kant", "art/fiches/scheur.jpg", "scheur");
     if ((h.plek !== plek && !h.ronde.astraal) || !p.scheur) return;
     const lens = h.artefacten.includes("vuurtoren-lens") && h.kenm.scherpte > h.kenm.kennis ? "scherpte" : "kennis";
-    const k = await venster({ soort: "Scheur", titel: `De Scheur in ${plekNaam(plek)}`, html: `<p>Probeer je hem te sluiten? (${KNAAM[lens]})</p>`,
+    const k = await venster({ soort: "Scheur", thema: "scheur", portaal: true, beeld: "art/fiches/scheur.jpg", titel: `De Scheur in ${plekNaam(plek)}`, html: `<p>Probeer je hem te sluiten? (${KNAAM[lens]})</p>`,
       knoppen: [{ label: `Sluiten met 1 Aanwijzing (8)`, waarde: "a", uit: h.aanw < 1 }, { label: "Sluiten zonder Aanwijzing (10)", waarde: "z" }, { label: "Laten", waarde: null, ghost: true }] });
     if (k) {
       if (k === "a") h.aanw--;
@@ -1125,22 +1159,24 @@ async function ontmoeting(h) {
   }
   if (p.aanw > 0) {
     const kaart = trekKaart(D.ontmoetingen.aanwijzing, () => true);
-    const k = await venster({ soort: "Aanwijzing", titel: plekNaam(plek), beeld: `art/plekken/${plek}.jpg`, achterkant: "mysterie", verhaal: kaart.tekst, knoppen: [{ label: "Onderzoeken (Waarneming 7)", waarde: true }] });
+    await overgang("aanwijzing", "Een spoor");
+    const k = await venster({ soort: "Aanwijzing", thema: "aanwijzing", titel: plekNaam(plek), beeld: `art/plekken/${plek}.jpg`, achterkant: "mysterie", verhaal: kaart.tekst, knoppen: [{ label: "Onderzoeken (Waarneming 7)", waarde: true }] });
     if (k && await test(h, "scherpte", 7, "Een spoor volgen", { context: "ontmoeting" })) { p.aanw--; h.aanw++; log(`${naam} vindt een Aanwijzing in ${plekNaam(plek)}`); }
     return;
   }
   const kaart = trekKaart(D.ontmoetingen.stad, e => e.plek === plek);
+  await overgang("stad", plekNaam(plek));
   await speelKaart(h, kaart, plekNaam(plek), `art/plekken/${plek}.jpg`, "stad");
 }
 async function speelKaart(h, kaart, soort, beeld, rug) {
   const naam = korteNaam(heldDef(h).naam);
   const persoon = kaart.persoon ? byId(D.personen, kaart.persoon) : null;
   const pBeeld = persoon && art(`art/personen/${persoon.id}.jpg`) ? `art/personen/${persoon.id}.jpg` : null;
-  const kop = { soort, titel: naam, beeld: pBeeld || beeld, zij: !!pBeeld, achterkant: rug, verhaal: kaart.tekst };
+  const kop = { soort, titel: naam, beeld: pBeeld || beeld, zij: !!pBeeld, achterkant: rug, thema: rug, portaal: rug === "scheur" && !pBeeld, verhaal: kaart.tekst };
   const metWie = persoon ? `<p class="persoonregel"><b>${esc(persoon.naam)}</b> · ${esc(persoon.rol)}</p>` : "";
   const uitkomst = async (ok, uit) => {
     const html = await pasToe(h, uit.effect || []);
-    await venster({ soort: ok === null ? soort : ok ? "Gelukt" : "Mislukt", titel: naam, beeld: pBeeld, zij: !!pBeeld, verhaal: uit.tekst, html });
+    await venster({ soort: ok === null ? soort : ok ? "Gelukt" : "Mislukt", titel: naam, beeld: pBeeld, zij: !!pBeeld, thema: rug, verhaal: uit.tekst, html });
     await controleerHeld(h);
   };
   const doeTest = async t => test(h, t.kenmerk, t.moeilijkheid, t.kenmerk === "kracht" ? "Doorzetten" : "Wat doe je?", { context: "ontmoeting" });
@@ -1902,5 +1938,5 @@ function registreerSW() {
   try { if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost") && !location.hostname.endsWith("claude.ai") && !location.hostname.endsWith("claudeusercontent.com")) navigator.serviceWorker.register("sw.js").catch(() => {}); } catch {}
 }
 window.__spel = { get S() { return S; }, get D() { return D; }, get bezig() { return bezig; },
-  api: { speelKaart, onheilsfase, nieuwSpel, zaai, reis, rust, dienst, doeMysterie, mysterieActie, beurtKlaar, gebruikActie, gebruikSpul, zoekWeg, bereikbaar, burenVan, afstanden, stapNaar, actief, groei, mysterie, heeft, isOverzee, spulDef, monsterDef, wapenBonus, plekDef } };
+  api: { overgang, venster, speelKaart, onheilsfase, nieuwSpel, zaai, reis, rust, dienst, doeMysterie, mysterieActie, beurtKlaar, gebruikActie, gebruikSpul, zoekWeg, bereikbaar, burenVan, afstanden, stapNaar, actief, groei, mysterie, heeft, isOverzee, spulDef, monsterDef, wapenBonus, plekDef } };
 })();
