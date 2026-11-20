@@ -38,7 +38,7 @@ window.__testbot = async function speel(godId, moeilijkheid, heldIds, seed) {
       if (soort === "Gevecht" || soort === "Episch monster") {
         if (w.includes("dyn")) return "dyn";
         if (w.includes("chl")) return "chl";
-        if (w.includes("verban") && h.kenm.kennis + 2 > h.kenm.kracht + A.wapenBonus(h, false)) return "verban";
+        if (w.includes("verban") && h.kenm.kennis > h.kenm.kracht + A.wapenBonus(h, false)) return "verban";
         return "vecht";
       }
       if (soort === "Ziekenhuis en bank") return w.includes("gewond") ? "gewond" : w.includes("heel") && h.L < h.maxL ? "heel" : null;
@@ -143,6 +143,7 @@ window.__testbot = async function speel(godId, moeilijkheid, heldIds, seed) {
       if (h.acties <= 0) break;
       if (!h.gebruikt.includes("dienst") && dienstNuttig(h)) { await A.dienst(h); continue; }
       const mon = S().plekken[h.plek]?.monsters.length;
+      if (mon && !h.ronde.voorbereid && !h.gebruikt.includes("voorbereiden")) { await A.voorbereiden(h); continue; }
       if (!h.gebruikt.includes("rusten") && !mon && (h.L < h.maxL || h.G < h.maxG)) { await A.rust(h); continue; }
       break;
     }

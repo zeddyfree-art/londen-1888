@@ -34,6 +34,7 @@ Om de beurt doet elke held **2 acties**. Reizen mag je twee keer doen, dus je ku
 |---|---|
 | Reizen | Tik op een groen oplichtende plek: één stap over een straat. Sta je op een station van de Ondergrondse (rood vierkantje met U), dan reis je voor 1 Pond in één stap naar elk ander station. |
 | Rusten | +1 Lichaam en +1 Geest. Niet als er een monster op je plek staat. |
+| Voorbereiden | Je laadt je revolver, zoekt dekking en zet je schrap. Tot het eind van de ronde gooi je in gevechten 1 dobbelsteen extra (de twee hoogste tellen). Handig als er een monster op je plek staat of als je er een gaat opzoeken. |
 | Dienst | De dienst van je plek, zie de tab **Plekken**. |
 | Ruilen | Geef of neem spullen, Ponden en Aanwijzingen van een held op je plek. |
 | Spreuk | Spreek een spreuk uit. Dat kost Geest, en je doet een test. |
@@ -50,6 +51,13 @@ Het spel speelt voor elke held één ontmoeting op zijn plek, in deze volgorde:
 3. **Aanwijzing:** je volgt het spoor met een Waarneming-test (7).
 4. **Anders:** een verhaal van die wijk, met een keuze of test. Overzee is het een expeditie.
 
+Een paar dingen om op te letten bij de verhalen:
+
+- **★ Een keuze met een ster** krijg je alleen met de juiste held: de hond van Paddy ruikt iets, Hester kent de catalogus, Albert doorziet de truc. Die keuze is meestal de beste.
+- **Een aanwijzing volgen** vraagt niet altijd Waarneming. Een getuige overtuig je met Charisma, een geheimschrift lees je met Kennis, een luik breek je open met Kracht.
+- **Sommige verhalen zijn nog niet af.** Staat er *Dit verhaal is nog niet af*, dan komt het later terug, waar je dan ook bent.
+- **Hoe lager de Mist, hoe grimmiger de stad.** Als het einde nadert, duiken er verhalen op die je eerder in het potje niet tegenkomt.
+
 ### 3. Onheil
 
 Het spel trekt een **Onheilskaart**. De Mist daalt, Scheuren gaan open, monsters verschijnen of verplaatsen zich, of er komt een **gerucht**: een opdracht die je binnen een paar rondes moet halen. Er zijn vier soorten geruchten: een plek bezoeken, Aanwijzingen ophalen, een Scheur sluiten of een monster verslaan. Sommige onheilskaarten horen bij een verhaallijn en doen alleen mee tegen die god.
@@ -61,7 +69,7 @@ Gooi **2 dobbelstenen** en tel je **kenmerk** erbij: Kennis, Waarneming, Kracht 
 Bij de knop van een test staat je kans, bijvoorbeeld *Kennis 8 · 72%*. Dat is de kans dat je eerste worp lukt, met je kenmerk en spullen meegerekend. Herworpen tellen niet mee, dus je echte kans is vaak iets hoger. In een gevecht staat de kans bij het monster.
 
 - **Extra dobbelsteen:** je gooit er één meer en de twee hoogste tellen.
-- **Aanwijzing uitgeven:** bij een mislukte Kennis- of Waarneming-test gooi je je laagste steen opnieuw.
+- **Aanwijzing uitgeven:** bij een mislukte Kennis- of Waarneming-test, of in een gevecht, gooi je je laagste steen opnieuw. In een gevecht ken je dan de zwakke plek van het monster.
 - **Gezegend:** één keer per ronde gooi je opnieuw.
 - **Vervloekt:** elke 6 telt als 1.
 - Sommige helden, spullen en dieren geven nog meer kansen. Het spel laat ze vanzelf zien als knop.
@@ -74,6 +82,8 @@ Bij de knop van een test staat je kans, bijvoorbeeld *Kennis 8 · 72%*. Dat is d
    - Mislukt: je verliest Lichaam gelijk aan de **Schade** van het monster.
 
 Sommige monsters bevecht je met Kennis in plaats van Kracht. Ook dat regelt het spel.
+
+**Voorbereiden helpt.** Met de actie *Voorbereiden* gooi je deze ronde in gevechten een dobbelsteen extra. En mislukt je worp, dan mag je een Aanwijzing uitgeven om opnieuw te gooien: je kent de zwakke plek van het monster. De Hermetische verbanning laat je vechten met Kennis in plaats van Kracht.
 
 ## Scheuren
 

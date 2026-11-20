@@ -2,7 +2,25 @@
 
 Deze lijst werken we aan het einde van elk gesprek bij. Zet bij elke update die spelers merken een nieuw bericht bovenaan `data/nieuws.json` (met een hoger `id`): dat verschijnt één keer als "Wat is er nieuw" als de app opent.
 
-*Laatst bijgewerkt: 20 november 2026 (achtste sessie)*
+*Laatst bijgewerkt: 20 november 2026 (negende sessie)*
+
+## Gemeten na de negende sessie (Voorbereiden, bijna zeventig nieuwe kaarten)
+
+Met `node tools/testbot.js 150`, `node tools/meet-tests.js 60`, `node tools/meet-variatie.js 100` en `node tools/meet-klokken.js 100`.
+
+**Balans (winkans):**
+
+| God | Ontspannen 2 / 4 | Normaal 2 / 4 | Genadeloos 2 / 4 |
+|---|---|---|---|
+| Vathrûn | 93% / 100% | 72% / 74% | 26% / 29% |
+| Azh-Ilareth | 96% / 100% | 75% / 71% | 23% / 15% |
+| Nebet-Ankhu | 95% / 99% | 73% / 77% | 31% / 19% |
+
+Normaal ligt nu tussen 71 en 77% (was 68 tot 83%). Genadeloos ligt tussen 15 en 31%, een paar punt hoger dan het doel van 10 tot 20%. Ontspannen blijft makkelijk; daarvoor zijn de klokken er.
+
+**Gevechten en verbanning** (zie `tests-en-geluk.md`): een gevecht lukt 70% bij de eerste worp en 80% na herworpen (was 69% en 72%). Voorbereiden en de zwakke plek maken het verschil, monsters zijn 1 taaier. Verbanning lukt ongeveer 80% (was 95%).
+
+**Herhaling:** binnen één potje komt bijna niets meer terug (0 tot 2% bij de stadskaarten, 0 tot 6% bij de verhaalkaarten). De drukste plek heeft nu per potje 0,2 trekking per kaart (Southwark), waar dat eerst 0,5 was (Spitalfields). Per potje zie je 3,3 scheurkaarten uit 20 (was 4 uit 14) en 3,3 aanwijzingen uit 16 (was 3 uit 7). Vervolgverhalen komen in ongeveer 2 van de 3 potjes voor, late kaarten in ongeveer de helft.
 
 ## Gemeten na de achtste sessie (twee keer reizen, genadeloos Mist 1 lager)
 
@@ -58,36 +76,38 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 ## Open taken
 
 ### Balans en tests (zie `tests-en-geluk.md`)
-- [ ] Verbanning lukt in 95% van de tests: doel 1 of 2 hoger, of zonder test.
-- [ ] Gevechten krijgen bijna geen hulp van herworpen (69% naar 72%). Een manier om je voor te bereiden?
-- [ ] Klokkenmodel opnieuw meten als de balans verandert: `node tools/meet-klokken.js 100`, en daarna `NODE_USE_ENV_PROXY=1 node tools/zet-scorebord-online.js`, zodat de server met hetzelfde model rekent.
+- [ ] Klokkenmodel opnieuw meten als de balans verandert: `node tools/meet-klokken.js 100`, en daarna `NODE_USE_ENV_PROXY=1 node tools/zet-scorebord-online.js`, zodat de server met hetzelfde model rekent. (Laatst gedaan in de negende sessie.)
+- [ ] Twee klokken doen bijna niets meer: *Zware benen* (75% naar 74%) en *Zwijgende getuigen* (75% naar 76%). Sterker maken of minder slagen geven.
+- [ ] Ontspannen (en volgens Dieuwertje ook normaal) is makkelijk. Geparkeerd: de klokken maken het zwaarder.
+- [ ] Testen met echte potjes: voelt Voorbereiden nuttig, en is de zwakke plek (Aanwijzing in een gevecht) niet te sterk?
 - [ ] Gedeeld scorebord: namen modereren als dat nodig wordt (verwijderen kan in de D1-database `londen1888-scorebord`).
 
 ### Geluid
-- [ ] Geluid testen op de iPad: volume van effecten, sfeer en muziek ten opzichte van elkaar, de lus van de sfeer en de muziek, en de eerste tik.
-- [ ] Geluiden die niet bevallen opnieuw maken in de ElevenLabs-flow (prompt aanpassen, daarna ophalen en `sh tools/normaliseer-geluid.sh`).
+- [ ] Op de iPad controleren: klinkt de sfeer nu zachter als de muziek aan staat? (Gaat via Web Audio, omdat Safari het gewone volume negeert.)
 
 ### Beelden
-- [ ] De nieuwe portretten van Odile en Cordelia staan in `art/helden/`, maar in Drive staan nog de oude. Vervang ze daar ook. Daarna kunnen ze met hun nieuwe Drive-id terug in `tools/art-drive.json`.
 - [ ] Beelden voor nieuwe kaarten (alleen nodig als er nieuwe personages of spullen bijkomen)
 
 ### Kaarten en verhaal
-- [ ] De nieuwe teksten proeflezen: zijn ze samenhangend genoeg en lang genoeg?
+- [ ] De teksten beoordelen we gaandeweg, tijdens het spelen.
+- [ ] Na een paar potjes: welke ★-keuzes (heldkeuzes) en vervolgverhalen vallen op, en willen we er meer? Nu hebben 8 helden een thuisplekkaart; de andere 10 nog niet (wel ★-keuzes op andere kaarten).
 
 ### Spel
 - [ ] Testen: voelen de persoonlijke spullen nuttig, zonder te sterk te zijn?
-- [ ] Spelen met ieder een eigen scherm (gekozen in de keuzebrief, nog niet gebouwd)
 - [ ] Balans met echte potjes controleren, vooral de nieuwe mysteries: Het verloren rapport (Southwark → Whitehall), De Dichter zonder Ogen (Mayfair → Westminster) en Het verhaal van de voorman (Whitechapel → Bloomsbury).
 - [ ] Testen: voelen de nieuwe geruchten (Scheur sluiten, monster verslaan) haalbaar?
-- [ ] De balans met echte potjes bijstellen: voelt ontspannen niet te makkelijk?
-
-### Op de iPad controleren
-- [ ] Ziet het nieuwe icoon er goed uit op het beginscherm (eerst het oude verwijderen)?
-- [ ] Werkt tikken goed: eerste tik toont de plek, Reis hierheen of tweede tik laat je reizen, Ongedaan maken zet het terug?
-- [ ] Installeren via Safari, Zet op beginscherm. Opent hij schermvullend?
-- [ ] Werken het geluid en de animaties goed op de iPad?
 
 ## Klaar
+
+- [x] Sfeergeluid zachter als de muziek speelt
+- [x] Verbanning zonder +2; nieuwe actie Voorbereiden en de zwakke plek (Aanwijzing in gevecht); monsters 1 taaier
+- [x] Klokkenmodel opnieuw gemeten en het scorebord online bijgewerkt
+- [x] Nieuwe portretten van Odile en Cordelia staan in Drive (zelfde bestanden, zelfde id's terug in `tools/art-drive.json`)
+- [x] Geschrapt: ieder een eigen scherm (samen op één scherm werkt goed)
+- [x] Op de iPad gecontroleerd: icoon, tikken, schermvullend, geluid en animaties
+- [x] 68 nieuwe kaarten in twee rondes: 9 aanwijzingen (met eigen tests), 8 scheurkaarten, 31 stadskaarten (Spitalfields, Southwark, de drukke plekken, thuisplekken van 8 helden, 7 late kaarten, 4 vervolgverhalen), 9 verhaalkaarten, 3 expedities en 8 onheilskaarten
+- [x] Nieuwe soorten kaarten: ★-keuzes voor bepaalde helden, aanwijzingen met een eigen test, late kaarten (pas als de Mist op 6 of lager staat), vervolgverhalen die je later overal vinden, en de effecten reizen, schuld aflossen en niet langer gezocht
+- [x] `tools/controleer-kaarten.js` controleert alle kaarten op tikfouten (plekken, helden, effecten, tests en vervolgverhalen)
 
 - [x] Beelden voor de klokken, de toren en het scorebord
 - [x] Gedeeld scorebord: Cloudflare Worker `londen1888-scorebord` met D1-database (`cloud/scorebord/`)

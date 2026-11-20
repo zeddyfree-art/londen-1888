@@ -1789,5 +1789,534 @@
         }
       }
     ]
+  },
+  {
+    "id": "v-vat-14",
+    "god": "vathrun",
+    "plek": "spitalfields",
+    "persoon": "moeder-brine",
+    "tekst": "Bij de kerk van Christ Church delen drie vrouwen in grijze omslagdoeken brood uit aan de armen. Elk brood is gemerkt met een golf van zeven streepjes. Wie een brood aanneemt, moet een munt in een emmer zeewater gooien. 'Voor Moeder,' zeggen ze. 'Zij geeft, en zij neemt terug.'",
+    "keuzes": [
+      {
+        "label": "Een brood aannemen en meedoen (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je gooit een munt in de emmer en mompelt de juiste woorden. De vrouwen vertrouwen je genoeg om te zeggen waar het Genootschap vanavond samenkomt: in een kapel die al jaren onder water zou moeten staan.",
+          "effect": [
+            {
+              "pond": -1
+            },
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Een van de vrouwen ziet dat je de woorden niet kent. Het brood in je hand wordt nat en zwaar als een spons.",
+          "effect": [
+            {
+              "geest": -1
+            },
+            {
+              "toestand": "vervloekt"
+            }
+          ]
+        }
+      },
+      {
+        "label": "De emmer omschoppen (Kracht 7)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 7
+        },
+        "gelukt": {
+          "tekst": "Het zeewater loopt over de stoep, en de munten rollen in de goot. De armen grijpen ze. De vrouwen gillen en vluchten, en een van hen laat haar boekje met namen vallen.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je glijdt uit in het zoute water. Als je opkijkt, staan de vrouwen om je heen en zingen zacht.",
+          "effect": [
+            {
+              "lichaam": -1
+            },
+            {
+              "mist": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Het brood aan Broeder Ezra geven",
+        "tekst": "Ezra neemt het brood in ontvangst alsof het een slang is. Hij breekt het, en uit het kruim komt een klein zegel van groen wasgezicht. 'Dit gaat de oven in,' zegt hij. 'En jij krijgt een echte maaltijd.'",
+        "effect": [
+          {
+            "aanwijzing": 1
+          },
+          {
+            "geest": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "v-azh-15",
+    "god": "azh-ilareth",
+    "plek": "spitalfields",
+    "persoon": "lucan-vey",
+    "tekst": "In de gaarkeuken leest een jonge man met lang haar gedichten voor aan de mensen die op hun soep wachten. Het is Lucan Vey, de dichter die heel Mayfair aanbidt. Hier luistert niemand, behalve een meisje van een jaar of acht dat met grote ogen naar hem opkijkt. Hij leest steeds hetzelfde gedicht. Het eindigt met een datum.",
+    "keuzes": [
+      {
+        "label": "Hem vragen waarom hij hier is (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Hij kijkt je verward aan. 'Ik moest het aan iemand voorlezen die het niet zou begrijpen,' zegt hij. 'Dan kan het niet wortelen.' Hij geeft je het gedicht, met de hand geschreven, en vraagt of je het wilt verbranden.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij leest het gedicht opnieuw, nu aan jou. Je onthoudt elke regel, of je wilt of niet.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "Het meisje meenemen naar buiten",
+        "tekst": "Je neemt het meisje mee naar haar moeder op de markt. Ze vraagt of de meneer weer komt. Je zegt van niet. Achter je stopt Lucan midden in een regel, alsof hij ineens niet meer weet waar hij is.",
+        "effect": [
+          {
+            "geest": 1
+          },
+          {
+            "trofee": 1
+          }
+        ]
+      },
+      {
+        "label": "De datum in het gedicht narekenen (Kennis 9)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Het is geen datum in onze kalender, maar in die van de sterrenwacht: het is de nacht waarop de ster in het zenit staat. Je weet nu precies hoeveel tijd jullie nog hebben.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De getallen kloppen niet, en toch blijven ze terugkomen. 's Nachts reken je verder in je slaap.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "v-neb-14",
+    "god": "nebet-ankhu",
+    "plek": "spitalfields",
+    "persoon": "philippa-moss",
+    "tekst": "Op een zolder van de Hugenoten-wevers, boven Fournier Street, huurt een vrouw een kamer onder een valse naam. Ze heeft zich verstopt achter stapels zijde. Het is Philippa Moss, de archeologe. Ze is mager en schrikt van elk geluid. 'Harrowgate laat me volgen,' zegt ze. 'Hij wil weten wat ik in Thebe heb achtergehouden.'",
+    "keuzes": [
+      {
+        "label": "Haar overtuigen het te vertellen (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Ze aarzelt lang, en haalt dan een klein kistje onder de vloerplank vandaan. Daarin ligt een kleitablet met een vloek erop, en een lijst met namen van iedereen die het graf betrad. De helft is al dood.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Ze vertrouwt je niet. Als je de volgende dag terugkomt, is de kamer leeg.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Haar achtervolger opwachten (Kracht 8)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je wacht in het trapportaal en grijpt de man die naar boven sluipt. Hij laat een brief vallen in Harrowgates handschrift, en vlucht.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De man is sterker dan je dacht. Hij duwt je de trap af en verdwijnt.",
+          "effect": [
+            {
+              "lichaam": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "De inscriptie samen met haar lezen",
+        "tekst": "Jullie buigen je samen over haar tekeningen. Waar zij twijfelt, weet jij het zeker, en andersom. Na een uur hebben jullie samen een regel vertaald die zij al een jaar niet begreep.",
+        "effect": [
+          {
+            "aanwijzing": 2
+          },
+          {
+            "trofee": 1
+          }
+        ],
+        "held": [
+          "cornelius-bray",
+          "septimus-crane"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "v-vat-15",
+    "god": "vathrun",
+    "plek": "st-katharine-docks",
+    "persoon": "martha-penhallow",
+    "tekst": "Martha Penhallow wacht je op bij de sluisdeuren van de dokken, haar roeiboot aan een ring vastgelegd. Ze drukt een bootsmansfluitje in je hand, aan een leren koord. 'Van mijn vader,' zegt ze. 'Als het water stijgt waar het niet hoort, blaas je drie keer. Ik hoor het, waar ik ook ben. De rivier draagt het.'",
+    "keuzes": [
+      {
+        "label": "Het fluitje aannemen",
+        "tekst": "Je hangt het om je nek. Het koper is koud, en als je het tegen je oor houdt, hoor je de rivier ruisen. Martha knikt en roeit weg.",
+        "effect": [
+          {
+            "vlag": "martha-fluit"
+          },
+          {
+            "geest": 1
+          }
+        ]
+      },
+      {
+        "label": "Vragen wat haar vader nog meer achterliet (Charisma 7)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 7
+        },
+        "gelukt": {
+          "tekst": "Ze vertelt over een kaart van de oude riolen die hij altijd bij zich droeg, en die nooit is teruggevonden. Ze geeft je het fluitje toch.",
+          "effect": [
+            {
+              "vlag": "martha-fluit"
+            },
+            {
+              "aanwijzing": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Ze wordt kortaf. 'Hou het fluitje maar,' zegt ze, 'en stel minder vragen.'",
+          "effect": [
+            {
+              "vlag": "martha-fluit"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "v-vat-16",
+    "god": "vathrun",
+    "plek": "overal",
+    "persoon": "martha-penhallow",
+    "vlag": "martha-fluit",
+    "tekst": "Het begint met een plas water op een droge stoep, en dan nog een. Binnen een minuut staat het water tot je enkels, en het stijgt. Uit de putten komt een zoute walm. Iets beweegt onder het oppervlak, groot en langzaam. Om je nek hangt het fluitje van Martha Penhallow.",
+    "keuzes": [
+      {
+        "label": "Drie keer blazen",
+        "tekst": "Het geluid is schel en gaat ver. Nog geen minuut later glijdt Martha's roeiboot door een straat waar nooit een boot heeft gevaren. 'Instappen,' zegt ze. Je ziet vanuit de boot waar het water vandaan komt: een rooster dat openstaat, en daaronder licht.",
+        "effect": [
+          {
+            "aanwijzing": 2
+          },
+          {
+            "trofee": 1
+          },
+          {
+            "wisVlag": "martha-fluit"
+          }
+        ]
+      },
+      {
+        "label": "Zelf het rooster dichtzetten (Kracht 9)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Je zet je schouder eronder en duwt. Het water stopt alsof er een kraan wordt dichtgedraaid. Het fluitje hoef je niet te gebruiken, nog niet.",
+          "effect": [
+            {
+              "trofee": 1
+            },
+            {
+              "mist": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Het water trekt je mee naar het rooster. In paniek blaas je toch, en Martha trekt je aan je kraag in de boot.",
+          "effect": [
+            {
+              "lichaam": -2
+            },
+            {
+              "aanwijzing": 1
+            },
+            {
+              "wisVlag": "martha-fluit"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "v-azh-16",
+    "god": "azh-ilareth",
+    "plek": "bloomsbury",
+    "persoon": "ivy-lisle",
+    "tekst": "Ivy Lisle, de leerlinge van de Orde, staat in de deuropening van de leeszaal met een in leer gebonden schetsboek tegen haar borst geklemd. Ze is bleek. 'Ze doorzoeken vanavond mijn kamer,' fluistert ze. 'Hierin staat alles wat ik heb getekend op de bijeenkomsten. Kun je het bewaren? Je mag het niet openslaan. Nog niet.'",
+    "keuzes": [
+      {
+        "label": "Het schetsboek aannemen",
+        "tekst": "Je stopt het onder je jas. Het is warm, alsof er iets in leeft. Ivy knijpt in je hand en loopt snel weg, zonder om te kijken.",
+        "effect": [
+          {
+            "vlag": "ivy-schetsboek"
+          }
+        ]
+      },
+      {
+        "label": "Toch even kijken (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je bladert één bladzijde om terwijl ze wegkijkt. Een tekening van een kamer in Mayfair, met een cirkel op de vloer, en een man die je kent. Je slaat het snel dicht. Ze heeft niets gemerkt.",
+          "effect": [
+            {
+              "vlag": "ivy-schetsboek"
+            },
+            {
+              "aanwijzing": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Ze ziet het. Ze rukt het boek uit je handen en loopt weg. Je hebt haar vertrouwen beschaamd.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "v-azh-17",
+    "god": "azh-ilareth",
+    "plek": "overal",
+    "persoon": "ivy-lisle",
+    "vlag": "ivy-schetsboek",
+    "tekst": "Iemand tikt je op de schouder. Het is Ivy Lisle, met een blauwe plek op haar jukbeen en de capuchon van haar mantel diep over haar ogen. 'Het is tijd,' zegt ze. 'Heb je het nog?' Achter haar, aan het eind van de straat, staan twee mannen met bleke lantaarns. Ze hebben jullie nog niet gezien.",
+    "keuzes": [
+      {
+        "label": "Haar het schetsboek teruggeven",
+        "tekst": "Ze slaat het open en scheurt er drie bladzijden uit, die ze aan jou geeft. 'Dit is wat Croft gaat doen, en waar. Geef de rest niet aan de politie, ze geloven het toch niet.' Dan is ze weg, de andere kant op dan de mannen.",
+        "effect": [
+          {
+            "aanwijzing": 3
+          },
+          {
+            "wisVlag": "ivy-schetsboek"
+          }
+        ]
+      },
+      {
+        "label": "De mannen afleiden (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je loopt luid pratend op hen af en vraagt de weg naar een adres dat niet bestaat. Achter je rug verdwijnt Ivy in een steeg. Later vind je het schetsboek in je jaszak terug, met een briefje erbij: 'Dank je. Nu weet je alles.'",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trofee": 1
+            },
+            {
+              "wisVlag": "ivy-schetsboek"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Ze laten zich niet afleiden. Een van hen grijpt Ivy bij de arm. In de verwarring rukt ze zich los, maar het schetsboek valt in de goot en is weg.",
+          "effect": [
+            {
+              "geest": -2
+            },
+            {
+              "mist": -1
+            },
+            {
+              "wisVlag": "ivy-schetsboek"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "v-neb-15",
+    "god": "nebet-ankhu",
+    "plek": "st-katharine-docks",
+    "persoon": "philippa-moss",
+    "tekst": "Philippa Moss staat op de kade met een lijst in haar hand. 'Dit is alles wat Harrowgate uit het graf heeft meegenomen,' zegt ze. 'Zevenenveertig voorwerpen. Er staan er nog maar elf in zijn huis. De rest is verkocht, verloren of gestolen. Als je er een tegenkomt, weet je wat je moet doen.' Ze geeft je een afschrift.",
+    "keuzes": [
+      {
+        "label": "De lijst aannemen",
+        "tekst": "Je vouwt hem op en stopt hem in je binnenzak. Ze zegt dat ze bidt dat je er nooit een tegenkomt. Je weet niet of ze een grap maakt.",
+        "effect": [
+          {
+            "vlag": "moss-lijst"
+          },
+          {
+            "aanwijzing": 1
+          }
+        ]
+      },
+      {
+        "label": "De lijst met haar doorlopen (Kennis 8)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Bij elk voorwerp vertelt ze wat ze weet. Bij nummer zevenentwintig, een scarabee van lapis, aarzelt ze. 'Die heb ik zelf verkocht,' zegt ze zacht, 'aan een pandjesbaas in Whitechapel.'",
+          "effect": [
+            {
+              "vlag": "moss-lijst"
+            },
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Ze raakt in de war bij de nummers en begint te huilen. Je neemt de lijst toch maar mee.",
+          "effect": [
+            {
+              "vlag": "moss-lijst"
+            },
+            {
+              "geest": -1
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "v-neb-16",
+    "god": "nebet-ankhu",
+    "plek": "overal",
+    "persoon": "philippa-moss",
+    "vlag": "moss-lijst",
+    "tekst": "In een etalage, tussen een opgezette uil en een stapel servies, staat een voorwerp dat je herkent. Je haalt de lijst van Philippa Moss uit je zak: nummer negentien, 'albasten kruikje met jakhalskop'. De winkelier ziet je kijken en wrijft in zijn handen.",
+    "keuzes": [
+      {
+        "label": "Het kopen (2 Pond)",
+        "tekst": "Hij vraagt te veel, en je betaalt het toch. Het kruikje is zwaar voor zijn maat, en er klotst iets in.",
+        "effect": [
+          {
+            "pond": -2
+          },
+          {
+            "trek": "artefacten"
+          },
+          {
+            "wisVlag": "moss-lijst"
+          }
+        ]
+      },
+      {
+        "label": "Zeggen dat het gestolen is (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je laat hem de lijst zien en noemt Harrowgates naam. De winkelier wordt wit en geeft je het kruikje voor niets, als je maar belooft dat hij er nooit meer iets over hoort.",
+          "effect": [
+            {
+              "trek": "artefacten"
+            },
+            {
+              "wisVlag": "moss-lijst"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij lacht je uit en zet het kruikje achter in de winkel. Als je terugkomt, is het weg.",
+          "effect": [
+            {
+              "wisVlag": "moss-lijst"
+            }
+          ]
+        }
+      }
+    ]
   }
 ]
