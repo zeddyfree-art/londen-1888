@@ -132,6 +132,36 @@ Het is huurdag, en in heel Londen kloppen hospita's op deuren. Ook jullie ontkom
 
 **In het spel:** Leg 2 Aanwijzingen op Spitalfields. Zijn die na 2 rondes niet allemaal opgehaald, dan daalt de Mist met 2.
 
+### Een tip voor de helden
+
+*Met Hoofdinspecteur Thaddeus Voss.* Op Scotland Yard is iemand binnengelopen met een verhaal dat te gek is om op te schrijven. Hoofdinspecteur Voss heeft het toch opgeschreven, in zijn eigen dossier, en daarna de man zijn eigen hand laten schudden. 'Ik ken iemand die u gelooft,' zei hij. 'Ik stuur ze naar u toe.'
+
+**In het spel:** Mist −1 · Leg 1 Aanwijzing op Whitehall. Een bron van Voss zoekt jullie op: een van jullie krijgt binnenkort een ontmoeting met hem.
+
+### Een rijtuig zonder koetsier
+
+Om drie uur 's nachts rijdt een zwart rijtuig door de stad, zonder koetsier en zonder lantaarns. De paarden zijn zo wit als kalk. Waar het stopt, gaat een deur open en stapt er iemand in die er de volgende ochtend niet meer is. Bij de laatste stop blijft er iets achter op de stoep.
+
+**In het spel:** Mist −1 · Alle monsters bewegen. Leg 1 Aanwijzing op een willekeurige plek.
+
+### Koorts in de logementen
+
+In de logementen van Whitechapel en Spitalfields breekt een koorts uit die de dokters niet kennen. De zieken liggen met open ogen en praten in hun slaap allemaal over hetzelfde: een deur die openstaat. Broeder Ezra zet zijn gaarkeuken open als ziekenzaal en vraagt iedereen die kan, te helpen.
+
+**In het spel:** Mist −1 · Elke held in Whitechapel of Spitalfields verliest 1 Geest. Leg 1 Aanwijzing op Spitalfields.
+
+### Gerucht: de koorts van de stad
+
+In Barts liggen de zieken op de gangen. De dokters zeggen dat het tyfus is, maar de zusters weten beter: elke nacht loopt er iets langs de bedden dat niemand ziet binnenkomen. De directeur heeft laten weten dat hij het ziekenhuis sluit als het niet ophoudt.
+
+**In het spel:** Er verschijnt een monster in The City. Is het na 2 rondes niet verslagen, dan daalt de Mist met 2.
+
+### Een koetsier vertelt
+
+In de schuilhutten van de koetsiers, waar ze 's nachts koffie drinken, gaat het verhaal rond van een vrachtje dat Alfie gisteravond niet wilde vervoeren. Alfie zelf zegt er niets over. Maar hij laat weten dat hij best eens wil rijden voor wie daar iets aan doet.
+
+**In het spel:** Mist −1 · Leg 1 Aanwijzing op King's Cross. Een koetsier biedt jullie zijn diensten aan: een van jullie krijgt binnenkort een ontmoeting met hem.
+
 ## Vathrûn
 
 ### Springtij
@@ -151,6 +181,12 @@ Het is huurdag, en in heel Londen kloppen hospita's op deuren. Ook jullie ontkom
 *Met Josiah Penhallow.* Op de muur van een rioolschacht in Wapping staat een nieuwe aantekening, in het handschrift van Josiah Penhallow. 'De vierde naad geeft mee. Ik hoor haar ademen.' De inkt is nog nat, al is hij al maanden vermist. Rioolwerkers weigeren nog af te dalen, en uit de putten stijgt een warme, zoute damp.
 
 **In het spel:** Er opent een Scheur in Wapping. Is die na 2 rondes niet gesloten, dan daalt de Mist met 2.
+
+### Het riool stroomt achteruit
+
+*Met Moeder Brine.* In de hele stad stromen de riolen achteruit. Uit de putten in Southwark welt zout water op, en de kelders van Bankside lopen vol. Mannen van de Board of Works staan ratteloos boven een open put. In de verte, onder de straat, klinkt een stem die zingt zonder melodie.
+
+**In het spel:** Mist −1 · Er verschijnt een Rioolkruiper in Southwark. Leg 1 Aanwijzing op Southwark.
 
 ## Azh-Ilareth
 
@@ -172,6 +208,12 @@ In de salon van lady Pembury hangen sinds gisteren zeven spiegels, schuin tegeno
 
 **In het spel:** Er opent een Scheur in Marylebone. Is die na 2 rondes niet gesloten, dan daalt de Mist met 2.
 
+### De lezing in de leeszaal
+
+*Met Magister Aurelian Croft.* Aurelian Croft houdt een openbare lezing in de grote zaal van het British Museum, 'Over het licht dat komt'. De zaal zit vol. Na afloop lopen tientallen toehoorders zwijgend naar buiten en blijven op de stoep staan, met hun gezichten naar de hemel, tot de politie ze wegstuurt.
+
+**In het spel:** Mist −1 · Elke held verliest 1 Geest. Leg 1 Aanwijzing op Bloomsbury.
+
 ## Nebet-Ankhu
 
 ### Iemand met jouw gezicht
@@ -191,3 +233,9 @@ Je hospita zegt dat je vanmiddag al thuis bent geweest. Je hebt boven iets gehaa
 *Met Sir Lucius Harrowgate.* Sir Lucius Harrowgate heeft zijn pakhuis laten bewaken door iets dat hij uit een kist heeft gehaald. De havenarbeiders zien het 's nachts tussen de balen staan, roerloos en van blauw aardewerk. Morgen gaan de kisten met de zegels aan boord van een schip naar Amsterdam. Wat daar verkocht wordt, krijg je nooit meer terug.
 
 **In het spel:** Er verschijnt een Shabti-wachter in St Katharine Docks. Staat daar na 2 rondes nog een monster, dan daalt de Mist met 2.
+
+### Gerucht: de veiling
+
+*Met Sir Lucius Harrowgate.* Bij Christie's in King Street worden 'oudheden uit een particuliere verzameling' geveild. Iedereen weet van wie: Lucius Harrowgate verkoopt de helft van wat hij uit Thebe meenam. Wie een stuk koopt, hoort er 's nachts iets in krabben. De catalogus is uitverkocht.
+
+**In het spel:** Er ligt een artefact klaar overzee. · Als er na 2 rondes nog geen held in Pall Mall is geweest, daalt de Mist met 1.

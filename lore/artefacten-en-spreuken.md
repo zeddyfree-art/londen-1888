@@ -64,7 +64,7 @@ Je mag Waarneming gebruiken in plaats van Kennis om Scheuren te sluiten.
 |---|---|---|---|---|
 | Kring van zout en ijzer | Bescherming | Kennis 7 | 1 Geest | Deze ronde mag geen monster jouw plek binnenkomen. Mislukt: verlies nog 1 Geest. |
 | Woord van sluiting | Bezwering | Kennis 9 | 2 Geest | Sluit een Scheur op jouw plek zonder Aanwijzingen in te leveren. Mislukt: er verschijnt een monster. |
-| Hermetische verbanning | Gevecht | Kennis 8 | 1 Geest | Gebruik bij een gevecht Kennis in plaats van Kracht, met +2. |
+| Hermetische verbanning | Gevecht | Kennis 8 | 1 Geest | Gebruik bij een gevecht Kennis in plaats van Kracht. |
 | Spiegelgang | Reizen | Kennis 8 | 1 Geest | Stap in een spiegel en kom uit op elke plek in Londen. Mislukt: krijg de toestand Verdwaald. |
 | Astrale reis | Reizen | Kennis 9 | 2 Geest | Doe deze ronde een ontmoeting op een plek naar keuze, ook overzee, zonder erheen te reizen. |
 | Tarotlegging | Waarzeggen | Charisma 7 | 1 Geest | Bekijk de bovenste 3 Onheilskaarten en leg er één onderop de stapel. |

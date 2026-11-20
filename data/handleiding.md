@@ -51,6 +51,13 @@ Het spel speelt voor elke held één ontmoeting op zijn plek, in deze volgorde:
 3. **Aanwijzing:** je volgt het spoor met een Waarneming-test (7).
 4. **Anders:** een verhaal van die wijk, met een keuze of test. Overzee is het een expeditie.
 
+Een paar dingen om op te letten bij de verhalen:
+
+- **★ Een keuze met een ster** krijg je alleen met de juiste held: de hond van Paddy ruikt iets, Hester kent de catalogus, Albert doorziet de truc. Die keuze is meestal de beste.
+- **Een aanwijzing volgen** vraagt niet altijd Waarneming. Een getuige overtuig je met Charisma, een geheimschrift lees je met Kennis, een luik breek je open met Kracht.
+- **Sommige verhalen zijn nog niet af.** Staat er *Dit verhaal is nog niet af*, dan komt het later terug, waar je dan ook bent.
+- **Hoe lager de Mist, hoe grimmiger de stad.** Als het einde nadert, duiken er verhalen op die je eerder in het potje niet tegenkomt.
+
 ### 3. Onheil
 
 Het spel trekt een **Onheilskaart**. De Mist daalt, Scheuren gaan open, monsters verschijnen of verplaatsen zich, of er komt een **gerucht**: een opdracht die je binnen een paar rondes moet halen. Er zijn vier soorten geruchten: een plek bezoeken, Aanwijzingen ophalen, een Scheur sluiten of een monster verslaan. Sommige onheilskaarten horen bij een verhaallijn en doen alleen mee tegen die god.

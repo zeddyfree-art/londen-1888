@@ -1,10 +1,10 @@
 # Tests, vaardigheid en geluk
 
-*Gemeten op 20 november 2026, na de update met twee keer reizen. Met `node tools/meet-tests.js 100`: 100 potjes per instelling (3 goden × 3 standen × 2 en 4 helden), samen 1.800 potjes en 67.938 tests. De ruwe cijfers staan in `ontwerp/tests.json`.*
+*Gemeten op 20 november 2026, na de update met Voorbereiden, de zwakke plek in gevechten, taaiere monsters en bijna zeventig nieuwe kaarten. Met `node tools/meet-tests.js 60`: 60 potjes per instelling (3 goden × 3 standen × 2 en 4 helden), samen 36.869 tests. De ruwe cijfers staan in `ontwerp/tests.json`.*
 
 ## Hoe een test werkt
 
-Je gooit 2 dobbelstenen (soms meer, dan tellen de 2 hoogste) en telt je kenmerk en bonussen erbij. Haal je het doel, dan lukt het. In de genadeloze stand ligt elk doel 1 hoger. Na een mislukte worp mag je soms de laagste steen opnieuw gooien, bijvoorbeeld met een Aanwijzing (alleen bij Kennis en Waarneming), Gezegend, een wapen of het vermogen van een held.
+Je gooit 2 dobbelstenen (soms meer, dan tellen de 2 hoogste) en telt je kenmerk en bonussen erbij. Haal je het doel, dan lukt het. In de genadeloze stand ligt elk doel 1 hoger. Na een mislukte worp mag je soms de laagste steen opnieuw gooien, bijvoorbeeld met een Aanwijzing (bij Kennis, Waarneming en in gevechten), Gezegend, een wapen of het vermogen van een held.
 
 Kenmerken lopen van 1 tot 4 bij de start, en tot 5 door te groeien. De meeste doelen liggen tussen 7 en 10.
 
@@ -20,9 +20,9 @@ Een voorbeeld: een Kennis-test met doel 8. Met Kennis 1 moet je 7 gooien: 58%. M
 
 | Stand | Tests per potje | Lukt bij de eerste worp | Lukt na herworpen |
 |---|---|---|---|
-| Ontspannen | 30 | 77% | 84% |
-| Normaal | 43 | 76% | 84% |
-| Genadeloos | 41 | 65% | 74% |
+| Ontspannen | 27 | 77% | 86% |
+| Normaal | 41 | 74% | 84% |
+| Genadeloos | 34 | 64% | 74% |
 
 Een test lukt dus meestal: ongeveer 3 van de 4 keer, en in de genadeloze stand 2 van de 3 keer. Wel doe je er veel: zo'n 40 per potje.
 
@@ -30,19 +30,20 @@ Een test lukt dus meestal: ongeveer 3 van de 4 keer, en in de genadeloze stand 2
 
 | Soort | Aantal | Gemiddeld doel | Gemiddeld plus | Eerste worp | Na herworpen |
 |---|---|---|---|---|---|
-| Ontmoetingen | 30.859 | 8,2 | 2,8 | 76% | 83% |
-| Gevechten | 10.228 | 8,9 | 3,1 | 69% | 72% |
-| Gruwel (Geest) | 9.401 | 8,4 | 2,7 | 74% | 85% |
-| Scheur sluiten | 7.451 | 8,9 | 2,6 | 67% | 77% |
-| Laatste nacht | 6.055 | 9,9 | 3,4 | 63% | 77% |
-| Mysteries en spreuken | 1.381 | 9,0 | 2,8 | 68% | 86% |
-| Diensten | 1.096 | 8,7 | 2,9 | 73% | 85% |
-| Verbanning (spreuk in gevecht) | 217 | 8,8 | 5,2 | 95% | 99% |
+| Ontmoetingen | 16.642 | 8,2 | 2,7 | 74% | 82% |
+| Gevechten | 5.335 | 9,5 | 3,1 | 70% | 80% |
+| Gruwel (Geest) | 4.903 | 8,4 | 2,7 | 73% | 84% |
+| Laatste nacht | 3.896 | 9,9 | 3,3 | 62% | 77% |
+| Scheur sluiten | 3.801 | 8,8 | 2,6 | 66% | 76% |
+| Mysteries en spreuken | 825 | 9 | 2,7 | 67% | 86% |
+| Overig | 736 | 7,7 | 2,7 | 81% | 84% |
+| Diensten | 674 | 8,6 | 2,9 | 77% | 86% |
+| Verbanning (spreuk in gevecht) | 57 | 9,5 | 3,6 | 81% | 84% |
 
 Wat opvalt:
-- **Gevechten** zijn de lastigste gewone tests, en herworpen helpen er nauwelijks: van 69% naar 72%. Dat komt doordat Aanwijzingen niet werken bij Kracht.
-- **Verbanning** lukt bijna altijd (95%). De spreuk kost wel Geest, maar de test zelf is geen spanning.
-- **De laatste nacht** is het moeilijkst (doel 9,9), maar daar helpen herworpen juist veel (63% naar 77%).
+- **Gevechten** zijn nu een keuze om je op voor te bereiden. Monsters zijn 1 taaier (gemiddeld doel 9,5 in plaats van 8,9), maar met *Voorbereiden* gooi je een dobbelsteen extra, en een Aanwijzing geeft een herworp (je kent de zwakke plek). Herworpen helpen nu echt: van 70% naar 80%, waar dat eerst 69% naar 72% was.
+- **Verbanning** geeft geen +2 meer en lukt nu in ongeveer 80% van de gevallen in plaats van 95%. De steekproef is klein (de testbot gebruikt de spreuk weinig).
+- **De laatste nacht** is nog steeds het moeilijkst, maar ook daar helpen herworpen veel.
 
 ## Hoeveel maakt je kenmerk uit?
 
