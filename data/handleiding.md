@@ -79,12 +79,13 @@ Een Scheur sluit je na de ontmoeting erdoor: een Kennis-test (8) met 1 Aanwijzin
 
 ## Mysteries
 
-Het huidige mysterie staat rechts in het groene kader. Elke oude god heeft drie mysteries. Een paar voorbeelden:
+Het huidige mysterie staat rechts in het groene kader. Elke oude god heeft vier mysteries. Elk potje doen er willekeurig drie mee, in een willekeurige volgorde. Een paar voorbeelden:
 
 - Breng samen genoeg **Aanwijzingen** naar een plek en doe daar een test.
 - **Sluit** een aantal Scheuren.
 - **Versla** het epische monster.
 - Reis **overzee** en vind daar iets.
+- **Haal** iets of iemand op en **breng** het naar een andere plek.
 
 ## Lichaam, Geest en waanzin
 

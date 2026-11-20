@@ -470,7 +470,7 @@ function nieuwSpel(godId, moeilijkheid, heldIds, opties = {}) {
   const mo = MOEILIJKHEID[moeilijkheid], g = byId(D.goden, godId);
   S = {
     versie: 1, god: godId, moeilijkheid, ronde: 1, mist: g.mist + mo.mist - (heldIds.length === 4 ? 3 : 0), nodig: mo.nodig, opgelost: 0, teller: 0,
-    mysterieVolgorde: schud([0, 1, 2]), mysterieIndex: 0, voortgang: { scheuren: [] },
+    mysterieVolgorde: schud(g.mysteries.map((_, i) => i)), mysterieIndex: 0, voortgang: { scheuren: [] },
     plekken: Object.fromEntries(D.bord.plekken.map(p => [p.id, { aanw: 0, scheur: false, monsters: [] }])),
     overzee: Object.fromEntries(D.bord.overzee.map(o => [o.id, { artefact: false }])),
     scheurStapel: schud(D.bord.plekken.map(p => p.id)),
@@ -1324,7 +1324,7 @@ function advies(h) {
   if (m?.type === "episch") return `Het epische monster staat in <b>${esc(plekNaam(m.plek))}</b>. Ga er samen heen met wapens of spreuken, en het liefst met volle Lichaam en Geest.`;
   if (m?.type === "test") return isOverzee(h.plek) ? `Je bent overzee.` : `Reis naar St Katharine Docks en koop daar een bootkaartje (2 Pond) naar <b>${esc(plekNaam(m.plek))}</b>.`;
   if (m?.type === "artefacten") return `Verzamel ${m.aantal} Artefacten en breng ze naar <b>${esc(plekNaam(m.plek))}</b>. Artefacten vind je vooral overzee, via St Katharine Docks.`;
-  if (m?.type === "breng") return S.helden.some(x => x.mysterieVoorwerp) ? `Breng ${esc(m.voorwerp)} naar <b>${esc(plekNaam(m.naar))}</b>.` : `Reis via St Katharine Docks naar <b>${esc(plekNaam(m.van))}</b> en zoek daar ${esc(m.voorwerp)}.`;
+  if (m?.type === "breng") return S.helden.some(x => x.mysterieVoorwerp) ? `Breng ${esc(m.voorwerp)} naar <b>${esc(plekNaam(m.naar))}</b>.` : isOverzee(m.van) ? `Reis via St Katharine Docks naar <b>${esc(plekNaam(m.van))}</b> en zoek daar ${esc(m.voorwerp)}.` : `Ga naar <b>${esc(plekNaam(m.van))}</b> en zoek daar ${esc(m.voorwerp)}.`;
   if (h.pond >= 2 && h.spullen.length < 2) return "Je hebt geld en weinig spullen. Op een markt (Covent Garden, Southwark, Limehouse) kun je winkelen.";
   return "Verzamel Aanwijzingen en sluit Scheuren voordat de Mist op is.";
 }

@@ -29,6 +29,16 @@
         "doel": "Versla het epische monster De Bisschop van het Slib, dat in Southwark verschijnt.",
         "type": "episch",
         "plek": "southwark"
+      },
+      {
+        "naam": "Het verloren rapport",
+        "doel": "Zoek in Southwark het rapport van Josiah Penhallow, dat het Genootschap onderschepte (Waarneming 8), en breng het naar Hoofdinspecteur Voss in Whitehall.",
+        "type": "breng",
+        "van": "southwark",
+        "naar": "whitehall",
+        "voorwerp": "het rapport van Penhallow",
+        "kenmerk": "scherpte",
+        "moeilijkheid": 8
       }
     ],
     "ontwaken": "De Theems treedt buiten haar oevers en de mist slokt Londen op. Jullie verliezen.",
@@ -77,6 +87,16 @@
         "kenmerk": "kennis",
         "moeilijkheid": 8,
         "plek": "himalaya"
+      },
+      {
+        "naam": "De Dichter zonder Ogen",
+        "doel": "Haal Lucan Vey weg uit de salon in Mayfair (Charisma 8) en breng hem naar de kerk in Westminster, voordat de Orde hem tot stem van de ster maakt.",
+        "type": "breng",
+        "van": "mayfair",
+        "naar": "westminster",
+        "voorwerp": "Lucan Vey",
+        "kenmerk": "overtuiging",
+        "moeilijkheid": 8
       }
     ],
     "ontwaken": "De ster staat in de hele nacht en Londen kijkt omhoog. Niemand kijkt ooit nog weg. Jullie verliezen.",
@@ -119,6 +139,16 @@
         "doel": "Versla het epische monster De Gemaskerde Hogepriester, dat in St Katharine Docks verschijnt.",
         "type": "episch",
         "plek": "st-katharine-docks"
+      },
+      {
+        "naam": "Het verhaal van de voorman",
+        "doel": "Raïs Youssef Hamdi is de kisten naar Londen gevolgd. Zoek hem in een logement in Whitechapel, win zijn vertrouwen (Charisma 6) en breng zijn getuigenis naar Dr. Moss in Bloomsbury.",
+        "type": "breng",
+        "van": "whitechapel",
+        "naar": "bloomsbury",
+        "voorwerp": "de getuigenis van Hamdi",
+        "kenmerk": "overtuiging",
+        "moeilijkheid": 6
       }
     ],
     "ontwaken": "De farao neemt het gezicht van de koningin aan en het rijk buigt. Jullie verliezen.",

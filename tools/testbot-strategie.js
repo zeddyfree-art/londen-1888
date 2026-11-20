@@ -92,7 +92,7 @@ window.__testbot = async function speel(godId, moeilijkheid, heldIds, seed) {
     if (m.type === "breng") {
       const drager = st.helden.find(x => x.mysterieVoorwerp);
       if (drager) return drager === h ? m.naar : dichtsbij(h, p => st.plekken[p].aanw > 0);
-      return geld(h) || A.isOverzee(h.plek) ? m.van : "leicester-square";
+      return !A.isOverzee(m.van) || geld(h) || A.isOverzee(h.plek) ? m.van : "leicester-square";
     }
     return null;
   }
@@ -153,7 +153,7 @@ window.__testbot = async function speel(godId, moeilijkheid, heldIds, seed) {
   const st = S();
   window.__bot = null;
   const g = D.goden.find(x => x.id === st.god);
-  const actiefM = g.mysteries[st.mysterieVolgorde[Math.min(st.mysterieIndex, 2)]];
+  const actiefM = g.mysteries[st.mysterieVolgorde[Math.min(st.mysterieIndex, st.nodig - 1)]];
   return { opgelostNamen: st.mysterieVolgorde.slice(0, st.opgelost).map(i => g.mysteries[i].naam), vastOp: st.opgelost < st.nodig ? actiefM.naam : null, einde: st.einde, ronde: st.ronde, opgelost: st.opgelost, nodig: st.nodig, mist: st.mist, gevallen: st.gevallen || 0, verzet: st.verzet ?? null,
     waanzin: st.helden.reduce((s, h) => s + h.toestanden.filter(t => t.startsWith("waanzin")).length, 0) };
 };

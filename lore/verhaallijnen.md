@@ -1,6 +1,6 @@
 # De verhaallijnen
 
-Elke oude god heeft een eigen verhaallijn. De verhaalkaarten in het spel horen bij één van deze lijnen en vertellen samen het verhaal. Je ziet ze alleen in een potje tegen die god. De drie mysteries per god zijn de hoofdstukken.
+Elke oude god heeft een eigen verhaallijn. De verhaalkaarten in het spel horen bij één van deze lijnen en vertellen samen het verhaal. Je ziet ze alleen in een potje tegen die god. De vier mysteries per god zijn de hoofdstukken. Elk potje speel je er drie, dus elk potje vertelt het verhaal net anders.
 
 ## Vathrûn: de deur onder de rivier
 
@@ -16,6 +16,7 @@ Elke oude god heeft een eigen verhaallijn. De verhaalkaarten in het spel horen b
 1. *Peil de diepte.* Verzamel genoeg aanwijzingen om de verzegelde kamer onder Wapping terug te vinden en de staat van de zegels te peilen.
 2. *Sluit de oude riolen.* Sluit de scheuren langs de rivier, waar Vathrûns adem naar boven komt.
 3. *De verdronken bisschop.* Versla de Bisschop van het Slib voordat hij de deur voor Brine opent.
+4. *Het verloren rapport.* Het rapport dat Josiah Penhallow schreef, is nooit aangekomen: het Genootschap heeft het onderschept. Vind het in Southwark en breng het naar Hoofdinspecteur Voss. Daarin staat wat Penhallow achter de deur hoorde.
 
 ## Azh-Ilareth: de ster die te veel is
 
@@ -31,6 +32,7 @@ Elke oude god heeft een eigen verhaallijn. De verhaalkaarten in het spel horen b
 1. *Bereken de baan.* Breng genoeg waarnemingen naar Hampstead om te berekenen wanneer de ster aankomt.
 2. *De spiegels van Mayfair.* Sluit de scheuren die de Orde met haar spiegels heeft geopend.
 3. *Het licht uit het oosten.* Reis naar het Klooster van de Witte Wolken en ontcijfer de oude sterrenkaart.
+4. *De Dichter zonder Ogen.* Haal Lucan Vey weg uit de salons van Mayfair en breng hem naar de kerk in Westminster, voordat de Orde hem tot de stem van de ster maakt.
 
 ## Nebet-Ankhu: de farao zonder gezicht
 
@@ -40,12 +42,13 @@ Elke oude god heeft een eigen verhaallijn. De verhaalkaarten in het spel horen b
 
 **De Gemaskerde Hogepriester.** De dienaar van de farao draagt een gouden masker dat telkens het gezicht van iemand anders toont. Hij verplaatst zich van gezicht naar gezicht door de stad.
 
-**Personages.** Dr. Moss probeert de zegels terug te krijgen en naar het British Museum te brengen. Raïs Hamdi kent in Thebe de verhalen van de dorpen over de koning zonder gezicht, en hoe hij de eerste keer werd opgesloten.
+**Personages.** Dr. Moss probeert de zegels terug te krijgen en naar het British Museum te brengen. Raïs Hamdi kent de verhalen van de dorpen bij Thebe over de koning zonder gezicht, en hoe hij de eerste keer werd opgesloten. Hij is de kisten naar Londen gevolgd.
 
 **De mysteries.**
 1. *Het lege graf.* Reis naar Thebe en onderzoek wat er werkelijk in het graf lag.
 2. *De gestolen zegels.* Breng een van de zegels (een Artefact) in veiligheid in het British Museum.
 3. *De man met duizend gezichten.* Versla de Gemaskerde Hogepriester voordat de farao een vast gezicht kiest.
+4. *Het verhaal van de voorman.* Raïs Youssef Hamdi is de kisten naar Londen gevolgd en woont in een logement in Whitechapel. Win zijn vertrouwen en breng zijn getuigenis naar Dr. Moss. Zijn verhaal vertelt hoe de koning zonder gezicht de eerste keer werd opgesloten.
 
 ## Wat de verhaallijnen verbindt
 

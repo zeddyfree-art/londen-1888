@@ -90,4 +90,4 @@ Moss leidde het graafwerk bij Thebe en las als eerste de inscripties in het lege
 
 *De ervaren voorman die de expeditie waarschuwde en niet werd gehoord.*
 
-Hamdi leidt al twintig jaar opgravingen in de vallei en kent elke rots. Hij weigerde het lege graf te openen en vertrok met zijn mannen toen Harrowgate toch doorzette. Wie bij Thebe aankomt en hem met respect benadert, hoort het verhaal dat de dorpelingen al eeuwen vertellen over de koning zonder gezicht.
+Hamdi leidt al twintig jaar opgravingen in de vallei en kent elke rots. Hij weigerde het lege graf te openen en vertrok met zijn mannen toen Harrowgate toch doorzette. Toen de kisten naar Londen werden verscheept, reisde hij ze achterna om Harrowgate nog één keer te waarschuwen. Nu woont hij in een logement in Whitechapel. Wie hem met respect benadert, hoort het verhaal dat de dorpelingen al eeuwen vertellen over de koning zonder gezicht.
