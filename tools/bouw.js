@@ -33,7 +33,9 @@ const kop = `<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta na
 const html = kop + pagina + "</body></html>\n";
 fs.writeFileSync(path.join(site, "index.html"), html);
 
-const versie = crypto.createHash("sha1").update(html + bestanden.join()).digest("hex").slice(0, 10);
+const h = crypto.createHash("sha1").update(html);
+for (const f of bestanden) h.update(f).update(fs.readFileSync(path.join(site, f)));
+const versie = h.digest("hex").slice(0, 10);
 const vooraf = ["./", "index.html", "manifest.webmanifest", ...bestanden.filter(f => !f.startsWith("art/"))];
 fs.writeFileSync(path.join(site, "sw.js"), lees("app/sw.js").replace("__VERSIE__", versie).replace("__BESTANDEN__", JSON.stringify(vooraf)));
 fs.writeFileSync(path.join(site, "_headers"), "/sw.js\n  Cache-Control: no-cache\n/index.html\n  Cache-Control: no-cache\n/data/*\n  Cache-Control: no-cache\n");
