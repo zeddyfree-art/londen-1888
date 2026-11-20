@@ -7,7 +7,7 @@ const schrijf = (f, t) => fs.writeFileSync(path.join(root, "lore", f), t.trim() 
 const KN = { kennis: "Kennis", scherpte: "Waarneming", kracht: "Kracht", overtuiging: "Charisma" };
 const helden = lees("helden.json"), personen = lees("personen.json"), bord = lees("bord.json"), goden = lees("oude-goden.json");
 const monsters = lees("monsters.json"), epische = lees("epische-monsters.json"), artefacten = lees("artefacten.json"), spreuken = lees("spreuken.json");
-const verhaal = lees("ontmoetingen/verhaal.json"), stad = lees("ontmoetingen/stad.json");
+const verhaal = lees("ontmoetingen/verhaal.json"), stad = lees("ontmoetingen/stad.json"), persoonlijk = lees("persoonlijk.json");
 const gen = "*Deze pagina wordt gegenereerd uit de speldata (`tools/maak-lore.js`). Pas de data aan, niet deze pagina.*";
 const godNaam = id => goden.find(g => g.id === id)?.naam || "Alle verhalen";
 
@@ -44,7 +44,7 @@ ${h.achtergrond}
 
 - **${h.vermogen.naam}.** ${h.vermogen.tekst}
 ${h.bondgenoot ? `- **${h.bondgenoot.naam}** (${h.bondgenoot.soort}). ${h.bondgenoot.tekst}\n` : ""}- **Eigenaardigheid:** ${h.eigenaardigheid}
-- **Uitrusting:** ${h.uitrusting.join(", ")}`).join("\n\n")}`);
+- **Uitrusting:** ${h.uitrusting.map(u => { const pk = persoonlijk.find(x => x.held === h.id && x.naam === u); return pk ? `${u} (${pk.tekst.replace(/\.$/, "")})` : u; }).join("; ")}`).join("\n\n")}`);
 
 const DL = { sterrenwacht: "Sterrenwacht", seance: "Seance", station: "Station", bibliotheek: "Bibliotheek", "occulte-boekwinkel": "Occulte boekwinkel", salon: "Salon", markt: "Markt", theater: "Theater", club: "Club", universiteit: "Universiteit", ziekenhuis: "Ziekenhuis en bank", gaarkeuken: "Gaarkeuken", logementen: "Logementen", politie: "Politie", kerk: "Abdij", kunstenaars: "Ateliers", haven: "Haven", rivierpolitie: "Rivierpolitie" };
 schrijf("plekken.md", `# Plekken

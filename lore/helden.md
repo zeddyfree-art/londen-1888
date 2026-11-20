@@ -14,7 +14,7 @@ Haar vader stookte de ketels van theeklippers. Zelf leert ze havenkinderen stokv
 
 - **Ademdiscipline.** Eén keer per ronde mag je bij een Kracht-test één dobbelsteen opnieuw gooien.
 - **Eigenaardigheid:** Weigert vuurwapens te dragen.
-- **Uitrusting:** Bamboestok, Gedroogde gember
+- **Uitrusting:** Bamboestok (+1 bij gevechten, en nog +1 extra tegen menselijke tegenstanders); Gedroogde gember (Eén keer per spel: kauw erop en herstel 2 Lichaam en 1 Geest)
 
 ## Professor Ambrose Pell
 
@@ -28,7 +28,7 @@ Veertig jaar lang tekende hij elke ster boven Londen in zijn kaartenboeken. Op e
 
 - **Sterrenkaart.** Aan het begin van elke ronde mag je de bovenste Onheilskaart bekijken en hem bovenop of onderop de stapel leggen.
 - **Eigenaardigheid:** Slaapt overdag, en slecht.
-- **Uitrusting:** Koperen zakkijker, Kaartenboek
+- **Uitrusting:** Koperen zakkijker (+1 Waarneming); Kaartenboek (Eén keer per ronde: zie in je sterrenkaarten op welke plek de volgende Scheur zal openen)
 
 ## Hester Quayle
 
@@ -43,7 +43,7 @@ De enige vrouw achter de balie van de ronde leeszaal, en de enige die weet waar 
 - **Catalogus.** Als je een Boek trekt (bij winkelen of studeren), trek je er één extra. Houd er één en leg de rest terug.
 - **Mr. Panizzi** (museumkat). Eén keer per ronde: als je een Aanwijzing zou verliezen, houdt Panizzi hem vast. Je verliest hem niet.
 - **Eigenaardigheid:** Kan geen boek ongelezen laten liggen.
-- **Uitrusting:** Leesbril, Indexkaartjes
+- **Uitrusting:** Leesbril (Eén keer per ronde: gooi bij een mislukte Kennis-test één dobbelsteen opnieuw); Indexkaartjes (Je begint het spel met 1 Aanwijzing: je hebt al een vermoeden waar je moet zoeken)
 
 ## Bridie Kavanagh
 
@@ -58,7 +58,7 @@ Haar grootmoeder uit County Clare liet haar een keukenboek na met recepten die n
 - **Theebladeren.** Als een spreuk mislukt, mag je een voorwerp afleggen om hem meteen opnieuw te proberen.
 - **Molly** (ekster). Eén keer per ronde mag Molly een klein voorwerp naar een held op een aangrenzende plek brengen.
 - **Eigenaardigheid:** Draagt altijd zout in haar schortzak.
-- **Uitrusting:** Grootmoeders keukenboek, 1 spreuk
+- **Uitrusting:** Grootmoeders keukenboek (+1 bij elke test om een spreuk uit te spreken); 1 spreuk
 
 ## Albert Gosling (De Grote Orsini)
 
@@ -73,7 +73,7 @@ Achter het Italiaanse toneelpak zit een jongen uit Bermondsey die als kind al ka
 - **Handigheid.** Eén keer per ronde mag je een voorwerp ruilen met een held op een andere plek in Londen.
 - **Garibaldi** (witte duif). Eén keer per spel: Garibaldi brengt een bericht en je mag direct naar een willekeurige plek in Londen reizen.
 - **Eigenaardigheid:** Kan niet tegen applaus dat te lang duurt.
-- **Uitrusting:** Wandelstok met verborgen lemmet, 1 spreuk
+- **Uitrusting:** Wandelstok met verborgen lemmet (+1 bij gevechten. Niemand ziet dat het een wapen is); 1 spreuk
 
 ## Dr. Septimus Crane
 
@@ -87,7 +87,7 @@ Hij ontcijferde drie dode talen en schreef er zeven boeken over die niemand las.
 
 - **Ontcijferen.** Bij een Kennis-test gooi je één extra dobbelsteen voor elke Aanwijzing die je hebt (maximaal twee extra).
 - **Eigenaardigheid:** Verbetert ieders uitspraak, ook die van monsters.
-- **Uitrusting:** Vergrootglas, Kleitablet
+- **Uitrusting:** Vergrootglas (+1 Waarneming tijdens ontmoetingen); Kleitablet (Eén keer per spel: ontcijfer het tablet en krijg 2 Aanwijzingen)
 
 ## Madame Odile Fairweather
 
@@ -101,7 +101,7 @@ Haar seances zijn voor de helft toneel: verborgen draden, een tafel die kraakt o
 
 - **Voorgevoel.** Eén keer per spel mag je een Onheilskaart negeren voordat hij wordt uitgevoerd. Leg hem weg en trek een nieuwe.
 - **Eigenaardigheid:** Kan niet in een kamer met spiegels slapen.
-- **Uitrusting:** Kristallen bol, Seancetafeltje
+- **Uitrusting:** Kristallen bol (Eén keer per ronde: bekijk de bovenste Onheilskaart); Seancetafeltje (Eén keer per ronde: houd een kleine seance. Verlies 1 Geest en krijg 1 Aanwijzing, waar je ook bent)
 
 ## Lady Cordelia Vane
 
@@ -115,7 +115,7 @@ Ze erfde van haar man een vloot van negen schepen en een kantoor vol vragen. Elk
 
 - **Salonkringen.** Als je winkelt, kost alles 1 Pond minder (minimaal 1).
 - **Eigenaardigheid:** Draagt nog altijd rouwzwart, uit gewoonte.
-- **Uitrusting:** Damespistool, 3 Pond
+- **Uitrusting:** Damespistool (+1 bij gevechten. Telt als vuurwapen voor zilveren kogels); 3 Pond
 
 ## Silas Rook
 
@@ -129,7 +129,7 @@ Hij werd van de Yard gestuurd omdat hij te veel vragen stelde over de verkeerde 
 
 - **Dossier.** Je mag een Aanwijzing uitgeven om bij elke soort test een dobbelsteen opnieuw te gooien, niet alleen bij Kennis en Waarneming.
 - **Eigenaardigheid:** Vertrouwt geen enkele agent in uniform.
-- **Uitrusting:** Revolver, Notitieboek
+- **Uitrusting:** Revolver (+2 bij gevechten. Telt als vuurwapen voor zilveren kogels); Notitieboek (Eén keer per ronde: gooi bij een mislukte Waarneming-test één dobbelsteen opnieuw)
 
 ## Winifred "Winnie" Lusk
 
@@ -143,7 +143,7 @@ Ze typt elk verslag van spookverschijningen uit dat het genootschap binnenkrijgt
 
 - **Kruisverwijzing.** Eén keer per ronde mag een held op jouw plek één dobbelsteen opnieuw gooien.
 - **Eigenaardigheid:** Schrijft alles op, ook wat ze beter kan vergeten.
-- **Uitrusting:** Typemachine, Kaartsysteem
+- **Uitrusting:** Typemachine (+1 Kennis: alles wat je uittypt, onthoud je); Kaartsysteem (Je begint het spel met 1 Aanwijzing: je kaartsysteem toont al een patroon)
 
 ## Esme Valentine
 
@@ -157,7 +157,7 @@ Haar diepe alt vult elke zaal, en sinds kort laat hij ook de gaslampen flakkeren
 
 - **Lied dat bindt.** Een spreuk die jij uitspreekt, mag ook een held op een aangrenzende plek helpen.
 - **Eigenaardigheid:** Neuriet als ze bang is, en dat hoort iedereen.
-- **Uitrusting:** Bladmuziek zonder titel, 1 spreuk
+- **Uitrusting:** Bladmuziek zonder titel (Eén keer per ronde: zing het lied. Alle helden op jouw plek herstellen 1 Geest); 1 spreuk
 
 ## Sergeant Tobias Hale
 
@@ -171,7 +171,7 @@ Hij overleefde de woestijn bij Maiwand en kwam terug met een kogel in zijn schou
 
 - **Doorvechter.** Als je een monster verslaat, mag je meteen nog een monster op jouw plek aanvallen.
 - **Eigenaardigheid:** Zit altijd met zijn rug naar de muur.
-- **Uitrusting:** Dienstgeweer, Medaille van de veldtocht
+- **Uitrusting:** Dienstgeweer (+2 bij gevechten. Telt als vuurwapen voor zilveren kogels); Medaille van de veldtocht (+1 bij Gruwel-tests: wie dit overleefde, schrikt niet snel)
 
 ## Dr. Cornelius Bray
 
@@ -185,7 +185,7 @@ Hij is net terug uit Thebe, met kisten die het museum niet heeft besteld. Een er
 
 - **Opgraving.** Als je een Artefact krijgt, trek je er twee. Houd er één en leg de ander onderop de stapel.
 - **Eigenaardigheid:** Raakt dingen aan die hij niet aan zou moeten raken.
-- **Uitrusting:** Bijl van de opgraving, Lantaarn
+- **Uitrusting:** Bijl van de opgraving (+1 bij gevechten); Lantaarn (+1 Waarneming tijdens ontmoetingen)
 
 ## Clementine Ashby
 
@@ -199,7 +199,7 @@ Sinds de zomer droomt ze elke nacht van een kust die niet bestaat, en ze wordt w
 
 - **Droommelodie.** Eén keer per ronde mag een held op jouw plek 1 Geest herstellen.
 - **Eigenaardigheid:** Speelt in haar slaap viool, zonder viool.
-- **Uitrusting:** Viool, Partituur in eigen hand
+- **Uitrusting:** Viool (+1 Charisma); Partituur in eigen hand (Eén keer per spel: speel het stuk uit je dromen. Alle helden, waar ze ook zijn, herstellen 2 Geest)
 
 ## Detective Sergeant Owen Marsh
 
@@ -213,7 +213,7 @@ Een keurige man die gelooft in procedure, bewijs en het reglement. Hij kreeg een
 
 - **Bevoegdheid.** Eén keer per ronde mag je gratis één extra stap reizen.
 - **Eigenaardigheid:** Vult voor elke ontmoeting een formulier in.
-- **Uitrusting:** Revolver, Politiefluitje
+- **Uitrusting:** Revolver (+2 bij gevechten. Telt als vuurwapen voor zilveren kogels); Politiefluitje (Eén keer per spel: blaas op het fluitje. Een menselijke tegenstander op jouw plek slaat op de vlucht)
 
 ## Miss Violet Thorne
 
@@ -227,7 +227,7 @@ Officieel brengt ze diplomatieke post rond. In werkelijkheid leest ze elke brief
 
 - **Onderschepping.** Als er een monster op jouw plek verschijnt, mag je meteen één plek verder reizen, zonder te vechten.
 - **Eigenaardigheid:** Gebruikt nooit twee keer dezelfde naam.
-- **Uitrusting:** Derringer in haar mof, Briefopener
+- **Uitrusting:** Derringer in haar mof (+1 bij gevechten. Telt als vuurwapen voor zilveren kogels); Briefopener (Eén keer per ronde: gooi bij een mislukte Charisma-test één dobbelsteen opnieuw. Je weet altijd iets meer dan de ander)
 
 ## Broeder Ezra Whitlock
 
@@ -241,7 +241,7 @@ Hij was ooit kok in een herenclub. Nu schept hij soep voor wie geen geld heeft, 
 
 - **Gaarkeuken.** Als je rust, herstelt elke held op jouw plek 1 extra Lichaam.
 - **Eigenaardigheid:** Kan niemand met honger weglaten gaan.
-- **Uitrusting:** Gietijzeren pollepel, Gezegend brood
+- **Uitrusting:** Gietijzeren pollepel (+1 bij gevechten); Gezegend brood (Eén keer per spel: deel het brood. Een held op jouw plek wordt Gezegend en herstelt 1 Lichaam)
 
 ## Constable Patrick "Paddy" Flynn
 
@@ -256,4 +256,4 @@ Hij roeit 's nachts patrouille op de Theems en vist meer uit het water dan hem l
 - **Rivierpatrouille.** Je mag reizen over de Theems: alle plekken aan de rivier liggen voor jou naast elkaar.
 - **Admiraal** (Newfoundlander). Eén keer per ronde mag Admiraal 1 Lichaamsschade overnemen van een held op jouw plek.
 - **Eigenaardigheid:** Kan niet zwemmen. Vertelt dat aan niemand.
-- **Uitrusting:** Wapenstok, Stormlantaarn
+- **Uitrusting:** Wapenstok (+1 bij gevechten, en nog +1 extra tegen menselijke tegenstanders); Stormlantaarn (+1 Waarneming tijdens ontmoetingen)

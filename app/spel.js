@@ -156,6 +156,7 @@ function bonusVoor(h, kenmerk, ctx) {
   const heb = id => h.spullen.includes(id);
   for (const id of h.spullen) { const s = spulDef(id); if (s?.bonus?.[kenmerk]) b += s.bonus[kenmerk]; if (isOverzee(h.plek) && s?.bonus?.overzee) b += s.bonus.overzee; }
   if (ctx === "ontmoeting" && kenmerk === "scherpte") b += (heb("stormlantaarn") ? 1 : 0) + (heb("dier-kat") ? 1 : 0);
+  if (ctx === "ontmoeting") for (const id of h.spullen) b += spulDef(id)?.bonusOntmoeting?.[kenmerk] || 0;
   if (ctx === "ontmoeting" && kenmerk === "kracht" && heb("breekijzer")) b += 1;
   if (h.plek === "thebe" && heb("boek-egyptisch")) b += 2;
   if (isOverzee(h.plek) && kenmerk === "kracht" && heb("dier-paard")) b += 1;
@@ -166,7 +167,7 @@ function bonusVoor(h, kenmerk, ctx) {
 function wapenBonus(h, mens) {
   const w = [...h.eigen.map(e => e.gevecht || 0), ...h.spullen.map(id => spulDef(id)?.bonus?.gevecht || 0)].sort((a, b) => b - a);
   let b = (w[0] || 0) + (w[1] || 0);
-  if (mens && h.spullen.includes("bondgenoot-agent")) b += 1;
+  if (mens) for (const id of h.spullen) b += spulDef(id)?.bonus?.gevechtMens || 0;
   return b;
 }
 function dobbelHtml(stenen, gehouden, extraBonus, doel, totaal) {
@@ -200,6 +201,7 @@ async function test(h, kenmerk, doel, titel, opt = {}) {
   if (heeft(h, "waanzin-stemmen") && opt.spreuk) extra += 1;
   if (S.tutorial) await coach("test");
   let kw = h.kenm[kenmerk] + bonusVoor(h, kenmerk, opt.context) + (opt.bonus || 0);
+  if (opt.spreuk) for (const id of h.spullen) kw += spulDef(id)?.bonus?.spreuk || 0;
   const kat = h.spullen.includes("dier-kat");
   const gooi = () => { let v = d6(); if (heeft(h, "vervloekt") && !kat && v === 6) v = 1; return v; };
   let stenen = Array.from({ length: 2 + extra }, gooi);
@@ -219,6 +221,7 @@ async function test(h, kenmerk, doel, titel, opt = {}) {
       if (h.id === "hu-yiping" && kenmerk === "kracht" && !h.ronde.adem) knoppen.push({ label: "Ademdiscipline: opnieuw", waarde: "adem", ghost: true });
       if (winnie) knoppen.push({ label: "Kruisverwijzing (Winnie): opnieuw", waarde: "winnie", ghost: true });
       if (kenmerk === "kracht" && opt.context === "ontmoeting" && h.spullen.includes("ossenzweep") && !h.ronde.zweep) knoppen.push({ label: "Ossenzweep: opnieuw", waarde: "zweep", ghost: true });
+      for (const id of h.spullen) { const sd = spulDef(id); if (sd?.herworp === kenmerk && !h.ronde["hw-" + id]) knoppen.push({ label: `${sd.naam}: opnieuw`, waarde: "hw-" + id, ghost: true }); }
       if (isOverzee(h.plek) && h.spullen.includes("boek-reisverslag")) knoppen.push({ label: "Reisverslag: +2", waarde: "reis", ghost: true });
     }
     const keuze = await venster({ soort: `Test · ${KNAAM[kenmerk] || kenmerk}`, titel, html: `<p class="muted">${esc(korteNaam(hd.naam))} gooit ${stenen.length} dobbelstenen en telt de twee hoogste, plus ${kw}.</p>` + dobbelHtml(stenen, idx, kw, doel, totaal), knoppen, animeer: rolDobbels });
@@ -229,6 +232,7 @@ async function test(h, kenmerk, doel, titel, opt = {}) {
     if (keuze === "adem") h.ronde.adem = true;
     if (keuze === "winnie") S.rondeGebruikt["kruisverwijzing"] = true;
     if (keuze === "zweep") h.ronde.zweep = true;
+    if (String(keuze).startsWith("hw-")) h.ronde[keuze] = true;
     if (keuze === "reis") { kw += 2; h.spullen = h.spullen.filter(x => x !== "boek-reisverslag"); h.aanw++; log(`${korteNaam(hd.naam)} raadpleegt het reisverslag`); continue; }
     stenen[i] = gooi();
   }
@@ -259,7 +263,8 @@ function trekUit(soort) {
     const vrij = D.spreuken.map(s => s.id).filter(id => !S.helden.some(h => h.spreuken.includes(id)));
     return vrij.length ? kies1(vrij) : null;
   }
-  const filter = soort === "bondgenoot" ? (s => s.soort === "Bondgenoot") : soort === "dier" ? (s => s.soort === "Dier") : (() => true);
+  const basis = soort === "bondgenoot" ? (s => s.soort === "Bondgenoot") : soort === "dier" ? (s => s.soort === "Dier") : (() => true);
+  const filter = s => !s.persoonlijk && basis(s);
   const vrij = D.spullen.filter(filter).map(s => s.id).filter(id => !S.helden.some(h => h.spullen.includes(id)));
   return vrij.length ? kies1(vrij) : null;
 }
@@ -326,9 +331,9 @@ async function controleerHeld(h) {
     log(`${naam} krijgt waanzin: ${w}`);
     await melding(`${naam} verliest grip`, `Je krijgt de waanzin "${w}". Je Geest gaat terug naar ${h.G}.`, "Geest op 0");
   }
-  while (h.spullen.length + h.spreuken.length > 6 + (h.spullen.includes("gladstonetas") ? 1 : 0)) {
+  while (telBagage(h) > 6 + (h.spullen.includes("gladstonetas") ? 1 : 0)) {
     const k = await venster({ soort: "Te veel bagage", titel: `${naam} draagt te veel`, html: "<p>Je kunt maximaal 6 spullen en spreuken dragen (7 met een Gladstonetas). Wat leg je af?</p>",
-      knoppen: [...h.spullen.map(id => ({ label: spulDef(id).naam, waarde: ["spullen", id] })), ...h.spreuken.map(id => ({ label: spreukDef(id).naam, waarde: ["spreuken", id], ghost: true }))] });
+      knoppen: [...h.spullen.filter(id => !spulDef(id).persoonlijk).map(id => ({ label: spulDef(id).naam, waarde: ["spullen", id] })), ...h.spreuken.map(id => ({ label: spreukDef(id).naam, waarde: ["spreuken", id], ghost: true }))] });
     const [soort, id] = k || ["spullen", h.spullen[0]];
     h[soort] = h[soort].filter(x => x !== id); log(`${naam} legt ${soort === "spullen" ? spulDef(id).naam : spreukDef(id).naam} af`);
   }
@@ -495,7 +500,11 @@ function maakHeld(id) {
     for (const u of d.uitrusting) {
       if (/^\d+ spreuk/.test(u)) { const s = trekUit("spreuken"); if (s) h.spreuken.push(s); }
       else if (/^\d+ Pond$/.test(u)) h.pond += parseInt(u, 10);
-      else h.eigen.push({ naam: u, gevecht: STARTWAPENS[u] || 0 });
+      else {
+        const pk = D.persoonlijk.find(x => x.held === id && x.naam === u);
+        if (pk) { h.spullen.push(pk.id); if (pk.start?.aanw) h.aanw += pk.start.aanw; }
+        else h.eigen.push({ naam: u, gevecht: STARTWAPENS[u] || 0 });
+      }
     }
     return h;
   }
@@ -579,7 +588,8 @@ async function rust(h) {
   log(`${korteNaam(heldDef(h).naam)} rust uit`);
   opslaan(); teken();
 }
-function kanDragen(h) { return h.spullen.length + h.spreuken.length < 6 + (h.spullen.includes("gladstonetas") ? 1 : 0); }
+const telBagage = h => h.spullen.filter(id => !spulDef(id)?.persoonlijk).length + h.spreuken.length;
+function kanDragen(h) { return telBagage(h) < 6 + (h.spullen.includes("gladstonetas") ? 1 : 0); }
 async function winkel(h, kaarten, soortNaam, prijsVan) {
   let gekocht = false;
   while (true) {
@@ -605,7 +615,7 @@ async function winkel(h, kaarten, soortNaam, prijsVan) {
 }
 function trekMeerdere(soort, n) {
   const uit = [];
-  for (let i = 0; i < n; i++) { const pool = (soort === "spreuken" ? D.spreuken : D.spullen).map(x => x.id).filter(id => !uit.includes(id) && !S.helden.some(h => h.spullen.includes(id) || h.spreuken.includes(id))); if (pool.length) uit.push(kies1(pool)); }
+  for (let i = 0; i < n; i++) { const pool = (soort === "spreuken" ? D.spreuken : D.spullen.filter(x => !x.persoonlijk)).map(x => x.id).filter(id => !uit.includes(id) && !S.helden.some(h => h.spullen.includes(id) || h.spreuken.includes(id))); if (pool.length) uit.push(kies1(pool)); }
   return uit;
 }
 async function dienst(h) {
@@ -774,6 +784,30 @@ async function gebruikSpul(h, id) {
       if (!plek) return melding(s.naam, "De jochies vinden niets binnen twee straten.");
       S.plekken[plek].aanw--; h.aanw++; await melding(s.naam, `De jochies brengen een Aanwijzing uit ${plekNaam(plek)}.`); break;
     }
+    case "gember": weg(); h.L = Math.min(h.maxL, h.L + 2); h.G = Math.min(h.maxG, h.G + 1); break;
+    case "kleitablet": weg(); h.aanw += 2; await melding(s.naam, "De tekens vallen op hun plaats. Je krijgt 2 Aanwijzingen."); break;
+    case "volgendeScheur": {
+      if (h.ronde[id]) return melding(s.naam, "Eén keer per ronde.");
+      h.ronde[id] = true; if (!S.scheurStapel.length) S.scheurStapel = schud(D.bord.plekken.map(p => p.id));
+      await melding(s.naam, `Volgens je kaarten opent de volgende Scheur in ${plekNaam(S.scheurStapel.at(-1))}.`); break;
+    }
+    case "kijk1": if (h.ronde[id]) return melding(s.naam, "Eén keer per ronde."); h.ronde[id] = true; await kijkOnheil(1); break;
+    case "tafeltje": if (h.ronde[id]) return melding(s.naam, "Eén keer per ronde."); h.ronde[id] = true; h.G--; h.aanw++; await melding(s.naam, "Het tafeltje kantelt, en een stem fluistert een aanwijzing. −1 Geest, +1 Aanwijzing."); break;
+    case "lied": {
+      if (h.ronde[id]) return melding(s.naam, "Eén keer per ronde.");
+      h.ronde[id] = true; for (const x of S.helden) if (x.plek === h.plek) x.G = Math.min(x.maxG, x.G + 1);
+      await melding(s.naam, "Iedereen die je hoort, voelt zich even lichter. Alle helden hier herstellen 1 Geest."); break;
+    }
+    case "partituur": weg(); for (const x of S.helden) x.G = Math.min(x.maxG, x.G + 2); await melding(s.naam, "De muziek klinkt door de hele stad. Alle helden herstellen 2 Geest."); break;
+    case "fluit": {
+      const doel = mon.filter(m => monsterDef(m.id).mens);
+      if (!doel.length) return melding(s.naam, "Er is hier geen menselijke tegenstander.");
+      weg(); verwijderMonster(h.plek, doel[0].uid); await melding(s.naam, `De ${monsterDef(doel[0].id).naam} hoort het fluitje en slaat op de vlucht.`); break;
+    }
+    case "brood": {
+      const x = await kiesHeldBereik(h, s.naam); weg(); geefToestand(x, "gezegend"); x.L = Math.min(x.maxL, x.L + 1);
+      await melding(s.naam, `${korteNaam(heldDef(x).naam)} eet van het brood en is Gezegend.`); break;
+    }
     default: return;
   }
   log(`${naam} gebruikt ${s.naam}`);
@@ -938,7 +972,7 @@ async function vecht(h, plek, m) {
   const gruwel = S.plekken[plek]?.belRonde === S.ronde ? 0 : d.gruwel;
   if (gruwel > 0 && !h.ronde.wake) {
     const extra = h.ronde.pentagram ? 1 : 0; delete h.ronde.pentagram;
-    if (!await test(h, "kennis", 8, `Gruwel van ${d.naam}`, { extra, bonus: h.artefacten.includes("jade-masker") ? 2 : 0 })) { h.G -= gruwel; log(`${naam} verliest ${gruwel} Geest door gruwel`); }
+    if (!await test(h, "kennis", 8, `Gruwel van ${d.naam}`, { extra, bonus: (h.artefacten.includes("jade-masker") ? 2 : 0) + h.spullen.reduce((t, id) => t + (spulDef(id)?.bonus?.gruwel || 0), 0) })) { h.G -= gruwel; log(`${naam} verliest ${gruwel} Geest door gruwel`); }
     await controleerHeld(h);
     if (h.plek !== plek) return false;
   }
@@ -948,7 +982,7 @@ async function vecht(h, plek, m) {
     const p = spreukPrijs(h, spreukDef("verbanning")); h.G -= p.geest;
     gelukt = await test(h, "kennis", d.taaiheid, `Verbanning tegen ${d.naam}`, { bonus: 2 + nebet, spreuk: true });
   } else {
-    const vuurwapen = h.spullen.some(x => x === "webley" || x === "olifantengeweer") || h.eigen.some(e => /Revolver|geweer|pistool|Derringer/i.test(e.naam));
+    const vuurwapen = h.spullen.some(x => x === "webley" || x === "olifantengeweer" || spulDef(x)?.vuurwapen) || h.eigen.some(e => /Revolver|geweer|pistool|Derringer/i.test(e.naam));
     const kogels = kenmerk === "kracht" && vuurwapen && d.gruwel >= 2 && h.spullen.includes("zilveren-kogels") ? 2 : 0;
     if (kogels) { h.spullen = h.spullen.filter(x => x !== "zilveren-kogels"); log(`${naam} laadt zilveren kogels`); }
     const terrier = h.spullen.includes("dier-terrier") && D.bord.rivier.includes(plek) ? 1 : 0;
@@ -1346,6 +1380,8 @@ function profielHtml(h) {
   const img = art(`art/helden/${h.id}.jpg`);
   const pips = n => `<span class="pips">${[1, 2, 3, 4, 5].map(i => `<i class="${i <= n ? "aan" : ""}"></i>`).join("")}</span>`;
   const uitrusting = h.uitrusting.map(u => {
+    const pk = D.persoonlijk.find(x => x.held === h.id && x.naam === u);
+    if (pk) { const pimg = art(`art/persoonlijk/${pk.id}.jpg`); return `<li>${pimg ? `<img class="uitr-ico" src="${pimg}" alt="">` : ""}<b>${esc(u)}</b>: ${esc(pk.tekst)}</li>`; }
     const w = STARTWAPENS[u];
     return `<li>${esc(u)}${w ? ` <span class="muted">(+${w} bij gevechten)</span>` : /spreuk/.test(u) ? ` <span class="muted">(een willekeurige spreuk)</span>` : ""}</li>`;
   }).join("");
@@ -1580,19 +1616,20 @@ function kaartDef(soort, id, h) {
   if (soort === "eigen") { const e = h.eigen[+id]; return { naam: e.naam, soort: "Startuitrusting", tekst: e.gevecht ? `Een persoonlijk wapen: +${e.gevecht} bij gevechten. Je beste twee wapens tellen mee.` : "Een persoonlijk bezit van deze held. Het geeft geen spelvoordeel, maar hoort bij het verhaal." }; }
   return soort === "spullen" ? spulDef(id) : soort === "spreuken" ? spreukDef(id) : artDef(id);
 }
+const kaartArt = (soort, id) => soort === "eigen" ? null : soort === "spullen" && spulDef(id)?.persoonlijk ? `art/persoonlijk/${id}.jpg` : `art/${soort}/${id}.jpg`;
 function tegel(soort, id, h) {
-  const d = kaartDef(soort, id, h), img = soort === "eigen" ? null : art(`art/${soort}/${id}.jpg`);
+  const d = kaartDef(soort, id, h), pad = kaartArt(soort, id), img = pad ? art(pad) : null;
   const tag = soort === "eigen" ? (h.eigen[+id].gevecht ? `+${h.eigen[+id].gevecht} gevecht` : "Bezit")
-    : soort === "spullen" ? (d.bonus?.gevecht ? `+${d.bonus.gevecht} gevecht` : d.gebruik ? "Te gebruiken" : d.soort)
+    : soort === "spullen" ? (d.bonus?.gevecht ? `+${d.bonus.gevecht} gevecht` : d.gebruik ? "Te gebruiken" : d.persoonlijk ? "Persoonlijk" : d.soort)
     : soort === "spreuken" ? `${KNAAM[d.test]} ${d.moeilijkheid}` : "Artefact";
-  return `<button class="tegel ${soort}" data-kaart="${soort}:${id}">${img ? `<img src="${img}" alt="">` : `<span class="tegel-leeg">${soort === "eigen" ? "◆" : "✦"}</span>`}<span class="tegel-naam">${esc(d.naam)}</span><span class="tegel-tag">${esc(tag)}</span></button>`;
+  return `<button class="tegel ${soort}${d.persoonlijk ? " persoonlijk" : ""}" data-kaart="${soort}:${id}">${img ? `<img src="${img}" alt="">` : `<span class="tegel-leeg">${soort === "eigen" || d.persoonlijk ? "◆" : "✦"}</span>`}<span class="tegel-naam">${esc(d.naam)}</span><span class="tegel-tag">${esc(tag)}</span></button>`;
 }
 async function toonKaart(h, soort, id) {
   const d = kaartDef(soort, id, h), isActief = h === actief() && S.fase === "helden";
   const knoppen = [];
   let extra = "";
   if (soort === "spullen") {
-    extra = `<p class="muted">${esc(d.soort)} · waarde ${d.prijs} Pond</p>`;
+    extra = d.persoonlijk ? `<p class="muted">Persoonlijk bezit van ${esc(heldDef({ id: d.held }).naam)} · telt niet mee voor wat je kunt dragen</p>` : `<p class="muted">${esc(d.soort)} · waarde ${d.prijs} Pond</p>`;
     if (d.gebruik) knoppen.push({ label: "Gebruik", waarde: "gebruik" });
     if (id === "dier-raaf" && !h.ronde.raaf) knoppen.push({ label: "Vraag de raaf", waarde: "raaf" });
     if (id === "bondgenoot-journalist" && S.geruchten.length && h.aanw >= 2) knoppen.push({ label: "Gerucht ontkrachten (2 Aanwijzingen)", waarde: "journalist" });
@@ -1606,7 +1643,7 @@ async function toonKaart(h, soort, id) {
     if (["zwarte-spiegel", "klokkenbel", "sterrenkaart", "verzegelde-kruik"].includes(id)) knoppen.push({ label: "Gebruik", waarde: "artefact" });
   }
   knoppen.push({ label: "Sluiten", waarde: null, ghost: true });
-  const k = await venster({ soort: soort === "eigen" ? "Startuitrusting" : { spullen: "Spul", spreuken: "Spreuk", artefacten: "Artefact" }[soort], titel: d.naam, beeld: soort === "eigen" ? null : `art/${soort}/${id}.jpg`, zij: true, html: extra + `<p>${esc(d.tekst)}</p>`, knoppen });
+  const k = await venster({ soort: soort === "eigen" ? "Startuitrusting" : { spullen: "Spul", spreuken: "Spreuk", artefacten: "Artefact" }[soort], titel: d.naam, beeld: kaartArt(soort, id), zij: true, html: extra + `<p>${esc(d.tekst)}</p>`, knoppen });
   if (k === "gebruik") await gebruikSpul(h, id);
   if (k === "spreek") await spreek(h, id);
   if (k === "artefact") await gebruikArtefact(h, id);
@@ -1738,12 +1775,13 @@ app.addEventListener("keydown", e => { const p = e.target.closest?.("[data-plek]
 
 /* ---------- laden ---------- */
 const BESTANDEN_MD = { handleiding: "handleiding" };
-const BESTANDEN = { bord: "bord", helden: "helden", goden: "oude-goden", monsters: "monsters", epische: "epische-monsters", spullen: "spullen", spreuken: "spreuken", artefacten: "artefacten", toestanden: "toestanden", onheil: "onheil", personen: "personen",
+const BESTANDEN = { bord: "bord", helden: "helden", goden: "oude-goden", monsters: "monsters", epische: "epische-monsters", spullen: "spullen", spreuken: "spreuken", artefacten: "artefacten", toestanden: "toestanden", onheil: "onheil", personen: "personen", persoonlijk: "persoonlijk",
   o_stad: "ontmoetingen/stad", o_verhaal: "ontmoetingen/verhaal", o_expeditie: "ontmoetingen/expeditie", o_scheur: "ontmoetingen/scheur", o_aanwijzing: "ontmoetingen/aanwijzing" };
 Promise.all(Object.entries(BESTANDEN).map(([k, f]) => fetch(`data/${f}.json`).then(r => { if (!r.ok) throw new Error(f); return r.json(); }).then(j => [k, j])))
   .then(lijst => Promise.all(Object.entries(BESTANDEN_MD).map(([k, f]) => fetch(`data/${f}.md`).then(r => r.ok ? r.text() : "").then(t => [k, t]))).then(md => [...lijst, ...md]))
   .then(lijst => {
     D = Object.fromEntries(lijst);
+    D.spullen = [...D.spullen, ...D.persoonlijk.map(x => ({ ...x, persoonlijk: true, prijs: 0 }))];
     D.ontmoetingen = { stad: [...D.o_stad, ...D.o_verhaal], expeditie: D.o_expeditie, scheur: D.o_scheur, aanwijzing: D.o_aanwijzing };
     maakBuren(); teken(); registreerSW();
   })

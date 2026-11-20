@@ -324,3 +324,7 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);ou
 
 .persoonregel{font-size:14px;color:var(--muted);border-left:3px solid var(--accent);padding-left:8px}
 .persoonregel b{color:var(--ink)}
+
+.tegel.persoonlijk{border-color:#b99a5b}
+.uitr-ico{width:28px;height:28px;object-fit:cover;vertical-align:middle;margin-right:6px;border:1px solid var(--line)}
+.kort li{margin-bottom:4px}

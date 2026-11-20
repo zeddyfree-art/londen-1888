@@ -2,7 +2,7 @@
 
 Deze lijst werken we aan het einde van elk gesprek bij.
 
-*Laatst bijgewerkt: 20 november 2026*
+*Laatst bijgewerkt: 20 november 2026 (tweede sessie)*
 
 ## Waar extra kaarten het meest nodig zijn
 
@@ -35,6 +35,7 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 
 ### Beelden
 - [ ] Portretten van de 11 vaste personages maken met `ontwerp/beeldopdracht-personen.md` en in de Drive-map `personen/` zetten. Daarna haalt Claude ze op.
+- [ ] Plaatjes van de 32 persoonlijke spullen maken met `ontwerp/beeldopdracht-persoonlijk.md` en in de Drive-map `persoonlijk/` zetten.
 
 ### Kaarten en verhaal
 - [ ] Extra onheilskaarten en geruchten (zie prioriteit 1)
@@ -44,6 +45,7 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [ ] De nieuwe teksten proeflezen: zijn ze samenhangend genoeg en lang genoeg?
 
 ### Spel
+- [ ] Testen: voelen de persoonlijke spullen nuttig, zonder te sterk te zijn?
 - [ ] Spelen met ieder een eigen scherm (gekozen in de keuzebrief, nog niet gebouwd)
 - [ ] De balans opnieuw meten na nieuwe kaarten (`node tools/testbot.js 150`)
 - [ ] De balans met echte potjes bijstellen: voelt ontspannen niet te makkelijk?
@@ -61,3 +63,4 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [x] Lore-boek met 10 pagina's
 - [x] 124 ontmoetingen, waarvan 30 verhaalkaarten, met vaste personages en keuzes
 - [x] Slimme testbot en balans
+- [x] Persoonlijke spullen van de helden: 32 kaarten met een eigen functie, in het tableau en het heldenprofiel
