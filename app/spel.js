@@ -636,18 +636,27 @@ function bereikbaar(h) {
   if (S.fase !== "helden" || h !== actief()) return [];
   const kanActie = h.acties > 0; /* reizen mag met beide acties */
   if (h.stappen <= 0 && !kanActie) return [];
-  return burenVan(h, h.plek);
+  return [...new Set([...burenVan(h, h.plek), ...metroDoelen(h)])];
 }
+/* De Ondergrondse: vanaf een station reis je voor 1 Pond naar elk ander station, als gewone reisstap. */
+function metroDoelen(h) {
+  if (!STATIONS.includes(h.plek) || h.pond < 1) return [];
+  const buren = burenVan(h, h.plek);
+  return STATIONS.filter(x => x !== h.plek && !buren.includes(x));
+}
+const isMetro = (h, doel) => !burenVan(h, h.plek).includes(doel) && metroDoelen(h).includes(doel);
 function reis(doel) {
   const h = actief();
   if (!bereikbaar(h).includes(doel)) return;
-  UI.undo.push({ staat: JSON.stringify(S), label: `reizen naar ${plekNaam(doel)}`, ronde: S.ronde, actief: S.actief });
+  const metro = isMetro(h, doel);
+  UI.undo.push({ staat: JSON.stringify(S), label: `${metro ? "de Ondergrondse naar" : "reizen naar"} ${plekNaam(doel)}`, ronde: S.ronde, actief: S.actief });
   if (h.stappen > 0) h.stappen--;
   else h.acties--;
+  if (metro) h.pond--;
   const van = plekDef(h.plek);
   UI.reis = { i: S.actief, van: { x: van.x, y: van.y }, naar: doel, t: Date.now() };
   Geluid.reis(); verbergPlekInfo();
-  h.plek = doel; log(`${korteNaam(heldDef(h).naam)} reist naar ${plekNaam(doel)}`);
+  h.plek = doel; log(`${korteNaam(heldDef(h).naam)} ${metro ? "neemt de Ondergrondse" : "reist"} naar ${plekNaam(doel)}`);
   if (doel === "pall-mall") geruchtBezoek(doel);
   opslaan(); teken();
 }
@@ -1681,16 +1690,17 @@ function plekInfoHtml(id) {
   const hier = S.helden.filter(x => x.plek === id && !x.uit).map(x => korteNaam(heldDef(x).naam));
   const afst = !over && !isOverzee(h.plek) ? afstanden(h.plek)[id] : null;
   const status = [];
+  if (STATIONS.includes(id)) status.push(`<li>Ondergrondse: sta je hier, dan reis je voor 1 Pond in één stap naar elk ander station.</li>`);
   if (s?.scheur) status.push(`<li class="paars">Scheur: wie hier staat, stapt erdoor en kan hem sluiten.</li>`);
   if (s?.aanw) status.push(`<li class="groen">${s.aanw} Aanwijzing${s.aanw > 1 ? "en" : ""}: sta hier bij de ontmoetingen om te zoeken.</li>`);
   for (const m of s?.monsters || []) { const d = monsterDef(m.id); status.push(`<li class="rood">${esc(d.naam)}: Gruwel ${d.gruwel}, Taaiheid ${d.taaiheid}, nog ${m.leven} leven.</li>`); }
   if (over && S.overzee[id].artefact) status.push(`<li class="groen">Hier ligt een artefact klaar.</li>`);
   if (hier.length) status.push(`<li>Hier: ${hier.map(esc).join(", ")}</li>`);
-  return `<div class="pi-kop">${img ? `<img src="${img}" alt="">` : ""}<div><b>${esc(p.naam)}</b><span>${over ? "Overzee" : esc(DIENSTLABEL[p.dienst] || p.dienst)}${STATIONS.includes(id) ? " · station" : ""}${p.rivier ? " · aan de Theems" : ""}</span></div></div>
+  return `<div class="pi-kop">${img ? `<img src="${img}" alt="">` : ""}<div><b>${esc(p.naam)}</b><span>${over ? "Overzee" : esc(DIENSTLABEL[p.dienst] || p.dienst)}${STATIONS.includes(id) ? " · station van de Ondergrondse" : ""}${p.rivier ? " · aan de Theems" : ""}</span></div></div>
     <p>${over ? "Expedities met kans op artefacten. Bereik je met een bootkaartje (2 Pond) vanaf St Katharine Docks." : esc(D.bord.diensten[p.dienst])}</p>
     ${status.length ? `<ul class="pi-status">${status.join("")}</ul>` : ""}
-    <p class="pi-voet">${bereik ? (UI.wijzer === "mouse" ? "Klik om hierheen te reizen." : "") : afst != null && afst > 0 ? `${afst} stap${afst > 1 ? "pen" : ""} van ${esc(korteNaam(heldDef(h).naam))}.` : ""}</p>
-    ${bereik && UI.plekVast === id ? `<button class="btn pi-reis" data-act="reis-hier" data-doel="${id}">Reis hierheen</button>` : ""}`;
+    <p class="pi-voet">${bereik ? (UI.wijzer === "mouse" ? (isMetro(h, id) ? "Klik om met de Ondergrondse hierheen te reizen (1 Pond)." : "Klik om hierheen te reizen.") : "") : afst != null && afst > 0 ? `${afst} stap${afst > 1 ? "pen" : ""} van ${esc(korteNaam(heldDef(h).naam))}.` : ""}</p>
+    ${bereik && UI.plekVast === id ? `<button class="btn pi-reis" data-act="reis-hier" data-doel="${id}">${isMetro(h, id) ? "Ondergrondse hierheen (1 Pond)" : "Reis hierheen"}</button>` : ""}`;
 }
 function toonPlekInfo(id, x, y, vast) {
   const el = document.getElementById("plekinfo"), vlak = document.querySelector(".bordvlak"); if (!el || !vlak) return;
@@ -1993,5 +2003,5 @@ function toonUpdate() {
   document.body.appendChild(el);
 }
 window.__spel = { get S() { return S; }, get D() { return D; }, get bezig() { return bezig; },
-  api: { overgang, venster, scheurBeeld, toonUpdate, kans, speelKaart, onheilsfase, nieuwSpel, zaai, reis, rust, dienst, doeMysterie, mysterieActie, beurtKlaar, gebruikActie, gebruikSpul, zoekWeg, bereikbaar, burenVan, afstanden, stapNaar, actief, groei, mysterie, heeft, isOverzee, spulDef, monsterDef, wapenBonus, plekDef } };
+  api: { metroDoelen, overgang, venster, scheurBeeld, toonUpdate, kans, speelKaart, onheilsfase, nieuwSpel, zaai, reis, rust, dienst, doeMysterie, mysterieActie, beurtKlaar, gebruikActie, gebruikSpul, zoekWeg, bereikbaar, burenVan, afstanden, stapNaar, actief, groei, mysterie, heeft, isOverzee, spulDef, monsterDef, wapenBonus, plekDef } };
 })();
