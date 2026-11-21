@@ -10,6 +10,27 @@ const RUSTIG = (() => { try { return matchMedia("(prefers-reduced-motion: reduce
 const KNAAM = Object.fromEntries(KENMERKEN);
 const STARTWAPENS = { "Bamboestok": 1, "Wandelstok met verborgen lemmet": 1, "Revolver": 2, "Damespistool": 1, "Dienstgeweer": 2, "Bijl van de opgraving": 1, "Gietijzeren pollepel": 1, "Wapenstok": 1, "Derringer in haar mof": 1 };
 const DIENSTLABEL = { sterrenwacht: "Sterrenwacht", seance: "Seance bijwonen", station: "Trein nemen", bibliotheek: "Studeren", "occulte-boekwinkel": "Spreuken kopen", salon: "Salon bezoeken", markt: "Winkelen", theater: "Optreden", club: "Gerucht kopen", universiteit: "Laten onderzoeken", ziekenhuis: "Ziekenhuis", gaarkeuken: "Gaarkeuken", logementen: "Geruchten horen", politie: "Politie", kerk: "Abdij bezoeken", kunstenaars: "Laten schilderen", haven: "Op expeditie", rivierpolitie: "Roeiboot lenen" };
+/* Uitleg per dienst: in de ballon bij de knop (muis erboven, of op de iPad lang drukken) */
+const DIENSTUITLEG = {
+  sterrenwacht: "Bekijk de volgende 2 Onheilskaarten en wissel ze eventueel om.",
+  seance: "−1 Geest, +1 Aanwijzing.",
+  station: "Voor 1 Pond met de trein naar een plek met een Scheur. Toch niet? Dan kost het geen actie.",
+  bibliotheek: "Kennis 8: lukt het, dan kies je een nieuwe spreuk.",
+  "occulte-boekwinkel": "Bekijk 3 spreuken van 2 Pond. Koop je niets, dan kost het geen actie.",
+  markt: "Bekijk de spullen en koop wat je wilt. Koop je niets, dan kost het geen actie.",
+  salon: "Charisma 8: lukt het, dan krijg je 2 Pond of een bondgenoot.",
+  theater: "+2 Pond. Daarna kun je een extra nummer wagen (Charisma 9) voor 1 Pond meer.",
+  club: "Betaal 3 Pond: bij je volgende expeditie overzee vind je zeker een artefact.",
+  universiteit: "Heb je een Boek of Artefact? Dan krijg je 1 Aanwijzing.",
+  ziekenhuis: "Verzorgen (1 Pond), Gewond laten verwijderen, geld lenen of je schuld aflossen.",
+  gaarkeuken: "+2 Geest, of je verslaving bestrijden (Charisma 9).",
+  logementen: "Hoor waar de volgende Scheur opent.",
+  politie: "Gezocht laten vervallen (2 Pond) of een agent meenemen.",
+  kerk: "Een vloek laten opheffen of een zegen ontvangen.",
+  kunstenaars: "+1 Geest. Heb je waanzin, dan kun je die kwijtraken (Kennis 9).",
+  haven: "Koop een bootkaartje en vaar op expeditie overzee. Toch niet? Dan kost het geen actie.",
+  rivierpolitie: "Roei naar een andere plek aan de rivier."
+};
 const STATIONS = ["marylebone", "kings-cross", "city", "westminster"];
 const MOEILIJKHEID = {
   ontspannen: { naam: "Ontspannen", mist: 0, nodig: 2, scheuren: 2, test: 0 },
@@ -226,6 +247,38 @@ const Thema = (() => {
     get donker() { return donker(); },
     wissel() { keuze = donker() ? "light" : "dark"; try { localStorage.setItem("londen1888-thema", keuze); } catch {} pas(); }
   };
+})();
+/* ---------- uitlegballon ----------
+   Elk element met data-uitleg krijgt een ballon. Met een muis: erboven hangen.
+   Op een aanraakscherm: lang drukken (een gewone tik voert de actie gewoon uit). */
+const Uitleg = (() => {
+  if (typeof document === "undefined") return {};
+  let el = null, huidig = null, timer = null, verberg = null, slikKlik = false;
+  function toon(doel) {
+    const t = doel?.dataset?.uitleg; if (!t) return;
+    el ??= Object.assign(document.createElement("div"), { className: "uitlegballon", role: "tooltip" });
+    if (!el.isConnected) document.body.append(el);
+    el.textContent = t; el.hidden = false; huidig = doel;
+    const r = doel.getBoundingClientRect(), b = el.getBoundingClientRect(), m = 8;
+    let x = Math.min(Math.max(m, r.left + r.width / 2 - b.width / 2), innerWidth - b.width - m);
+    let y = r.top - b.height - m; if (y < m) y = r.bottom + m;
+    el.style.left = x + "px"; el.style.top = y + "px";
+  }
+  function weg() { if (el) el.hidden = true; huidig = null; clearTimeout(verberg); }
+  document.addEventListener("pointerover", e => { if (e.pointerType !== "mouse") return; const d = e.target.closest?.("[data-uitleg]"); if (d !== huidig) d ? toon(d) : weg(); });
+  document.addEventListener("pointerleave", weg);
+  document.addEventListener("pointerdown", e => {
+    clearTimeout(timer); if (e.pointerType === "mouse") return weg();
+    weg(); const d = e.target.closest?.("[data-uitleg]"); if (!d) return;
+    timer = setTimeout(() => { toon(d); slikKlik = true; verberg = setTimeout(weg, 4000); }, 450);
+  }, true);
+  for (const t of ["pointerup", "pointercancel"]) document.addEventListener(t, () => clearTimeout(timer), true);
+  document.addEventListener("pointermove", e => { if (e.pointerType !== "mouse" && timer && Math.hypot(e.movementX, e.movementY) > 6) clearTimeout(timer); }, true);
+  /* na lang drukken mag de klik de actie niet uitvoeren */
+  document.addEventListener("click", e => { if (slikKlik) { slikKlik = false; e.preventDefault(); e.stopPropagation(); } else weg(); }, true);
+  document.addEventListener("contextmenu", e => { if (e.target.closest?.("[data-uitleg]")) e.preventDefault(); });
+  addEventListener("scroll", weg, true);
+  return { weg };
 })();
 const themaKnop = (cls = "btn small ghost") => `<button class="${cls}" data-act="thema">${Thema.donker ? "Lichte modus" : "Donkere modus"}</button>`;
 
@@ -716,7 +769,7 @@ function maakHeld(id) {
 
 /* ---------- heldenfase ---------- */
 function startHeldenbeurt() {
-  UI.undo = [];
+  UI.undo = []; S.aanbod = {};
   const h = actief();
   h.acties = heeft(h, "gewond") ? 1 : 2; h.gebruikt = []; h.stappen = 0; h.reisActies = 0;
   if (h.id === "owen-marsh") h.stappen++;
@@ -755,6 +808,18 @@ function reis(doel) {
   opslaan(); teken();
 }
 function gebruikActie(h, soort) { h.acties--; h.gebruikt.push(soort); }
+/* Geannuleerd of niets gedaan: de actie komt terug. */
+function geefActieTerug(h) { h.acties++; h.gebruikt.pop(); }
+/* Een actie zonder toeval en zonder nieuwe verborgen informatie mag ongedaan worden gemaakt.
+   voor is de spelstand van vóór de actie (JSON). */
+function terugPunt(voor, label) { UI.undo.push({ staat: voor, label, ronde: S.ronde, actief: S.actief }); }
+/* Wat een winkel deze beurt aanbiedt, blijft hetzelfde: opnieuw binnenlopen of ongedaan maken trekt geen nieuwe kaarten. */
+function aanbod(h, sleutel, soort, n) {
+  S.aanbod ??= {};
+  const k = `${S.ronde}:${S.actief}:${h.plek}:${sleutel}`;
+  S.aanbod[k] ??= trekMeerdere(soort, n);
+  return S.aanbod[k].filter(id => !S.helden.some(x => x.spullen.includes(id) || x.spreuken.includes(id)));
+}
 async function zoekWeg(h) {
   h.acties = 0;
   if (await test(h, "scherpte", 8, "De weg terug vinden")) { h.toestanden = h.toestanden.filter(t => t !== "verdwaald"); h.plek = kies1(D.bord.plekken).id; await melding("Terug", `Je stapt uit een steeg en staat in ${plekNaam(h.plek)}.`); }
@@ -807,10 +872,14 @@ async function rondkijken(h) {
       { label: `Rondhoren (Waarneming ${metStand(9)}${kansTxt(h, "scherpte", 9, { context: "ontmoeting" })}): 1 Aanwijzing, mislukt −1 Geest`, waarde: "rondhoren" },
       { label: "Toch niet", waarde: null, ghost: true }] });
   if (!k) return;
+  const voor = JSON.stringify(S);
   gebruikActie(h, "rondkijken");
   const naam = korteNaam(heldDef(h).naam);
-  if (k === "inkopen") await winkel(h, trekMeerdere("spullen", 2), "spul", d => d.prijs + 1);
-  if (k === "kaartje") { h.pond--; h.spullen.push("rijtuig"); log(`${naam} koopt een rijtuigkaartje`); await melding("Rijtuigkaartje", "Je koopt een kaartje bij een koetsier op de hoek. Gebruik het in een eigen beurt: 2 stappen zonder actie."); }
+  if (k === "inkopen") {
+    const gekocht = await winkel(h, aanbod(h, "inkopen", "spullen", 2), "spul", d => d.prijs + 1);
+    if (gekocht) terugPunt(voor, `inkopen: ${gekocht}`); else geefActieTerug(h);
+  }
+  if (k === "kaartje") { h.pond--; h.spullen.push("rijtuig"); log(`${naam} koopt een rijtuigkaartje`); terugPunt(voor, "rijtuigkaartje kopen"); await melding("Rijtuigkaartje", "Je koopt een kaartje bij een koetsier op de hoek. Gebruik het in een eigen beurt: 2 stappen zonder actie."); }
   if (k === "rondhoren") {
     if (await test(h, "scherpte", 9, "Rondhoren in de buurt", { context: "ontmoeting" })) { h.aanw++; log(`${naam} hoort iets en krijgt 1 Aanwijzing`); await melding("Rondhoren", "In een kroeg, bij een pomp of op de trap van een kerk vang je iets op dat je verder helpt. +1 Aanwijzing."); }
     else { h.G--; log(`${naam} praat met de verkeerde mensen: −1 Geest`); await melding("Rondhoren", "Je stelt je vragen aan de verkeerde mensen. Ze kijken je na tot je om de hoek bent. −1 Geest."); }
@@ -835,8 +904,9 @@ async function rust(h) {
 }
 const telBagage = h => h.spullen.filter(id => !spulDef(id)?.persoonlijk).length + h.spreuken.length;
 function kanDragen(h) { return telBagage(h) < 6 + (h.spullen.includes("gladstonetas") ? 1 : 0); }
+/* Geeft de namen van wat je kocht terug, of "" als je niets kocht. */
 async function winkel(h, kaarten, soortNaam, prijsVan) {
-  let gekocht = false;
+  let gekocht = false; const namen = [];
   while (true) {
     const rest = kaarten.filter(Boolean);
     if (!rest.length) break;
@@ -855,8 +925,9 @@ async function winkel(h, kaarten, soortNaam, prijsVan) {
     if (!keuze) break;
     const d = soortNaam === "spreuk" ? spreukDef(keuze) : spulDef(keuze);
     h.pond -= prijsVan(d); (soortNaam === "spreuk" ? h.spreuken : h.spullen).push(keuze);
-    kaarten[kaarten.indexOf(keuze)] = null; gekocht = true; log(`${korteNaam(heldDef(h).naam)} koopt ${d.naam}`);
+    kaarten[kaarten.indexOf(keuze)] = null; gekocht = true; namen.push(d.naam); log(`${korteNaam(heldDef(h).naam)} koopt ${d.naam}`);
   }
+  return namen.join(", ");
 }
 function trekMeerdere(soort, n) {
   const uit = [];
@@ -866,6 +937,7 @@ function trekMeerdere(soort, n) {
 async function dienst(h) {
   const p = plekDef(h.plek), soort = p.dienst, naam = korteNaam(heldDef(h).naam);
   if (heeft(h, "gezocht") && (soort === "markt" || soort === "occulte-boekwinkel")) return melding("Gezocht", "Met je gezicht op elk politiebericht kun je hier niet winkelen. Ga eerst naar de politie in Whitehall.");
+  const voor = JSON.stringify(S);
   gebruikActie(h, "dienst");
   if (S.tutorial) await coach("dienst");
   const korting = h.id === "cordelia-vane" ? 1 : 0;
@@ -875,9 +947,9 @@ async function dienst(h) {
     case "station": {
       if (klok("gesloten-lijnen")) { await melding("Station", "De klok heeft geslagen: de treinen rijden niet."); h.acties++; h.gebruikt.pop(); break; }
       const doelen = Object.entries(S.plekken).filter(([, x]) => x.scheur).map(([id]) => id);
-      if (h.pond < 1 || !doelen.length) { await melding("Station", h.pond < 1 ? "Je hebt geen geld voor een kaartje." : "Er is nergens een Scheur."); break; }
+      if (h.pond < 1 || !doelen.length) { await melding("Station", h.pond < 1 ? "Je hebt geen geld voor een kaartje." : "Er is nergens een Scheur."); geefActieTerug(h); break; }
       const d = await venster({ soort: "Trein (1 Pond)", titel: "Waarheen?", knoppen: [...doelen.map(id => ({ label: plekNaam(id), waarde: id })), { label: "Toch niet", waarde: null, ghost: true }] });
-      if (d) { h.pond--; h.plek = d; log(`${naam} neemt de trein naar ${plekNaam(d)}`); }
+      if (d) { h.pond--; h.plek = d; log(`${naam} neemt de trein naar ${plekNaam(d)}`); terugPunt(voor, `de trein naar ${plekNaam(d)}`); } else geefActieTerug(h);
       break;
     }
     case "bibliotheek": {
@@ -887,8 +959,13 @@ async function dienst(h) {
       }
       break;
     }
-    case "occulte-boekwinkel": await winkel(h, trekMeerdere("spreuken", 3), "spreuk", () => 2 - korting); break;
-    case "markt": await winkel(h, trekMeerdere("spullen", h.id === "hester-quayle" ? 4 : 3), "spul", d => Math.max(d.prijs ? 1 : 0, d.prijs - korting)); break;
+    case "occulte-boekwinkel": case "markt": {
+      const gekocht = soort === "markt"
+        ? await winkel(h, aanbod(h, "markt", "spullen", h.id === "hester-quayle" ? 4 : 3), "spul", d => Math.max(d.prijs ? 1 : 0, d.prijs - korting))
+        : await winkel(h, aanbod(h, "boekwinkel", "spreuken", 3), "spreuk", () => 2 - korting);
+      if (gekocht) terugPunt(voor, `kopen: ${gekocht}`); else geefActieTerug(h);
+      break;
+    }
     case "salon": {
       if (await test(h, "overtuiging", 8, "In de salon")) {
         const k = await venster({ soort: "Salon", titel: "Wat vraag je?", knoppen: [{ label: "2 Pond", waarde: "pond" }, { label: "Een bondgenoot", waarde: "bg" }] });
@@ -903,14 +980,14 @@ async function dienst(h) {
       break;
     }
     case "club": {
-      if (h.pond < 3) { await melding("Club", "Je hebt 3 Pond nodig."); break; }
-      h.pond -= 3; h.artefactGerucht = true;
+      if (h.pond < 3) { await melding("Club", "Je hebt 3 Pond nodig."); geefActieTerug(h); break; }
+      h.pond -= 3; h.artefactGerucht = true; terugPunt(voor, "een gerucht kopen in de club");
       await melding("Een gerucht in de club", "Je betaalt 3 Pond. Bij je volgende expeditie overzee vind je zeker een artefact.");
       break;
     }
     case "universiteit": {
       const boek = h.spullen.some(id => spulDef(id).soort === "Boek") || h.artefacten.length;
-      if (!boek) { await melding("King's College", "Je hebt een Boek of Artefact nodig om te laten onderzoeken."); h.acties++; h.gebruikt.pop(); break; }
+      if (!boek) { await melding("King's College", "Je hebt een Boek of Artefact nodig om te laten onderzoeken."); geefActieTerug(h); break; }
       await venster({ soort: "Onderzoek", titel: p.naam, html: await pasToe(h, [{ aanwijzing: 1 }]) });
       break;
     }
@@ -920,6 +997,7 @@ async function dienst(h) {
       if (k === "gewond") h.toestanden = h.toestanden.filter(t => t !== "gewond");
       if (k === "leen") { h.pond += 3; geefToestand(h, "schuld"); log(`${naam} leent 3 Pond`); }
       if (k === "los") { h.pond -= 4; h.toestanden = h.toestanden.filter(t => t !== "schuld"); log(`${naam} lost de schuld af`); }
+      if (k) terugPunt(voor, { heel: "verzorgen", gewond: "Gewond laten verwijderen", leen: "lenen", los: "schuld aflossen" }[k]); else geefActieTerug(h);
       break;
     }
     case "gaarkeuken": {
@@ -938,12 +1016,12 @@ async function dienst(h) {
       const k = await venster({ soort: "Scotland Yard", titel: p.naam, knoppen: [{ label: "Gezocht laten vervallen (2 Pond)", waarde: "g", uit: !heeft(h, "gezocht") || h.pond < 2 }, { label: "Agent op ronde meenemen", waarde: "a", uit: S.helden.some(x => x.spullen.includes("bondgenoot-agent")) || heeft(h, "gezocht") }, { label: "Niets", waarde: null, ghost: true }] });
       if (k === "g") { h.pond -= 2; h.toestanden = h.toestanden.filter(t => t !== "gezocht"); }
       if (k === "a") h.spullen.push("bondgenoot-agent");
-      if (!k) { h.acties++; h.gebruikt.pop(); }
+      if (k) terugPunt(voor, k === "g" ? "Gezocht laten vervallen" : "een agent meenemen"); else geefActieTerug(h);
       break;
     }
     case "kerk": {
       const k = await venster({ soort: "De abdij", titel: p.naam, knoppen: [{ label: "Vloek laten opheffen", waarde: "v", uit: !heeft(h, "vervloekt") }, { label: "Zegen ontvangen", waarde: "z", uit: heeft(h, "gezegend") }, { label: "Niets", waarde: null, ghost: true }] });
-      if (k) await pasToe(h, [k === "v" ? { verwijder: "vervloekt" } : { toestand: "gezegend" }]); else { h.acties++; h.gebruikt.pop(); }
+      if (k) { await pasToe(h, [k === "v" ? { verwijder: "vervloekt" } : { toestand: "gezegend" }]); terugPunt(voor, k === "v" ? "de vloek laten opheffen" : "de zegen ontvangen"); } else geefActieTerug(h);
       break;
     }
     case "kunstenaars": {
@@ -954,14 +1032,14 @@ async function dienst(h) {
       break;
     }
     case "haven": {
-      if (h.pond < bootPrijs()) { await melding("De dokken", `Een bootkaartje kost ${bootPrijs()} Pond.`); h.acties++; h.gebruikt.pop(); break; }
+      if (h.pond < bootPrijs()) { await melding("De dokken", `Een bootkaartje kost ${bootPrijs()} Pond.`); geefActieTerug(h); break; }
       const d = await venster({ soort: `Bootkaartje (${bootPrijs()} Pond)`, titel: "Op expeditie", knoppen: [...D.bord.overzee.map(o => ({ label: o.naam, waarde: o.id })), { label: "Toch niet", waarde: null, ghost: true }] });
-      if (d) { h.pond -= bootPrijs(); h.plek = d; log(`${naam} vaart naar ${plekNaam(d)}`); } else { h.acties++; h.gebruikt.pop(); }
+      if (d) { h.pond -= bootPrijs(); h.plek = d; log(`${naam} vaart naar ${plekNaam(d)}`); terugPunt(voor, `de boot naar ${plekNaam(d)}`); } else geefActieTerug(h);
       break;
     }
     case "rivierpolitie": {
-      const d = await venster({ soort: "Roeiboot", titel: "Waarheen over de rivier?", knoppen: D.bord.rivier.filter(r => r !== h.plek).map(id => ({ label: plekNaam(id), waarde: id })) });
-      h.plek = d; log(`${naam} roeit naar ${plekNaam(d)}`);
+      const d = await venster({ soort: "Roeiboot", titel: "Waarheen over de rivier?", knoppen: [...D.bord.rivier.filter(r => r !== h.plek).map(id => ({ label: plekNaam(id), waarde: id })), { label: "Toch niet", waarde: null, ghost: true }] });
+      if (d) { h.plek = d; log(`${naam} roeit naar ${plekNaam(d)}`); terugPunt(voor, `de roeiboot naar ${plekNaam(d)}`); } else geefActieTerug(h);
       break;
     }
   }
@@ -970,8 +1048,11 @@ async function dienst(h) {
 }
 async function ruil(h) {
   const anderen = S.helden.filter(x => x !== h && x.plek === h.plek);
-  const naar = anderen.length === 1 ? anderen[0] : await venster({ soort: "Ruilen", titel: "Met wie?", knoppen: anderen.map(x => ({ label: korteNaam(heldDef(x).naam), waarde: x })) });
+  const naar = anderen.length === 1 ? anderen[0] : await venster({ soort: "Ruilen", titel: "Met wie?", knoppen: [...anderen.map(x => ({ label: korteNaam(heldDef(x).naam), waarde: x })), { label: "Toch niet", waarde: null, ghost: true }] });
+  if (!naar) return;
+  const voor = JSON.stringify(S);
   gebruikActie(h, "ruilen");
+  let geruild = false;
   while (true) {
     const opties = [
       ...h.spullen.map(id => ({ label: `Geef ${spulDef(id).naam}`, waarde: ["spullen", id] })),
@@ -983,11 +1064,13 @@ async function ruil(h) {
     ];
     const k = await venster({ soort: "Ruilen", titel: `${korteNaam(heldDef(h).naam)} en ${korteNaam(heldDef(naar).naam)}`, knoppen: opties });
     if (!k) break;
+    geruild = true;
     if (k[0] === "pond") { h.pond--; naar.pond++; }
     else if (k[0] === "aanw") { h.aanw--; naar.aanw++; }
     else if (k[0] === "neem") { naar[k[1]] = naar[k[1]].filter(x => x !== k[2]); h[k[1]].push(k[2]); }
     else { h[k[0]] = h[k[0]].filter(x => x !== k[1]); naar[k[0]].push(k[1]); }
   }
+  if (geruild) terugPunt(voor, `ruilen met ${korteNaam(heldDef(naar).naam)}`); else geefActieTerug(h);
   await controleerAlles(); opslaan(); teken();
 }
 
@@ -1917,16 +2000,16 @@ function tekenPaneel() {
         <div>Lichaam<b>${h.L}/${h.maxL}</b></div><div>Geest<b>${h.G}/${h.maxG}</b></div><div>Pond<b>${h.pond}</b></div><div>Aanwijz.<b>${h.aanw}</b></div><div>Trofee<b>${h.trofee}</b></div>
       </div>
       <div class="kenm">${KENMERKEN.map(([k, l]) => `<div title="${esc(KUITLEG[k])}">${l}<b>${h.kenm[k]}${bonusVoor(h, k) ? `<small>+${bonusVoor(h, k)}</small>` : ""}</b></div>`).join("")}</div>
-      ${isActief && heeft(h, "verdwaald") ? `<div class="acties"><button class="btn breed" data-act="zoekweg" ${h.acties > 0 ? "" : "disabled"}>Zoek de weg terug (Waarneming 8)</button><button class="btn ghost breed" data-act="klaar">Beurt klaar</button></div>` : isActief ? `<div class="acties">
-        <button class="btn" data-act="rust" ${kanActie("rusten") ? "" : "disabled"}>Rusten</button>
-        <button class="btn" data-act="voorbereiden" ${kanActie("voorbereiden") && !h.ronde.voorbereid ? "" : "disabled"} title="+1 dobbelsteen in je gevechten tot het eind van de ronde">${h.ronde.voorbereid ? "Voorbereid" : "Voorbereiden"}</button>
-        <button class="btn" data-act="dienst" ${kanActie("dienst") && dienstNaam ? "" : "disabled"}>${dienstNaam ? esc(DIENSTLABEL[dienstNaam] || dienstNaam) : "Geen dienst"}</button>
-        <button class="btn" data-act="rondkijken" ${kanActie("rondkijken") && !isOverzee(h.plek) ? "" : "disabled"} title="Inkopen, een rijtuigkaartje of rondhoren: één keer per beurt, op elke plek in Londen">Rondkijken</button>
-        <button class="btn" data-act="ruil" ${kanActie("ruilen") && anderenHier && !heeft(h, "waanzin-paranoia") ? "" : "disabled"}>Ruilen</button>
-        ${isOverzee(h.plek) ? `<button class="btn" data-act="terug" ${isActief && h.acties > 0 ? "" : "disabled"}>Terug naar de dokken</button>` : `<button class="btn" data-act="groei" ${h.trofee >= 3 ? "" : "disabled"}>Groeien (3 trofeeën)</button>`}
-        ${ma ? `<button class="btn breed" data-act="mysterie" ${ma.kan && h.acties > 0 && !h.gebruikt.includes("mysterie") ? "" : "disabled"}>${esc(ma.label)}${ma.uitleg ? ` (${esc(ma.uitleg)})` : ""}</button>` : ""}
-        ${UI.undo.length && UI.undo.at(-1).ronde === S.ronde && UI.undo.at(-1).actief === S.actief ? `<button class="btn ghost breed terugknop" data-act="undo">↶ Ongedaan maken: ${esc(UI.undo.at(-1).label)}</button>` : ""}
-        <button class="btn ghost breed" data-act="klaar">Beurt klaar</button>
+      ${isActief && heeft(h, "verdwaald") ? `<div class="acties"><button class="btn breed" data-act="zoekweg" ${h.acties > 0 ? "" : "disabled"} data-uitleg="Kost al je acties. Lukt het, dan sta je op een willekeurige plek in Londen.">Zoek de weg terug (Waarneming 8)</button><button class="btn ghost breed" data-act="klaar">Beurt klaar</button></div>` : isActief ? `<div class="acties">
+        <button class="btn" data-act="rust" ${kanActie("rusten") ? "" : "disabled"} data-uitleg="+1 Lichaam en +1 Geest. Niet als er een monster op je plek is.">Rusten</button>
+        <button class="btn" data-act="voorbereiden" ${kanActie("voorbereiden") && !h.ronde.voorbereid ? "" : "disabled"} data-uitleg="+1 dobbelsteen in je gevechten tot het eind van de ronde.">${h.ronde.voorbereid ? "Voorbereid" : "Voorbereiden"}</button>
+        <button class="btn" data-act="dienst" ${kanActie("dienst") && dienstNaam ? "" : "disabled"} data-uitleg="${esc(dienstNaam ? DIENSTUITLEG[dienstNaam] || "" : "Hier is geen dienst. Kijk rond of reis verder.")}">${dienstNaam ? esc(DIENSTLABEL[dienstNaam] || dienstNaam) : "Geen dienst"}</button>
+        <button class="btn" data-act="rondkijken" ${kanActie("rondkijken") && !isOverzee(h.plek) ? "" : "disabled"} data-uitleg="Inkopen, een rijtuigkaartje of rondhoren: één keer per beurt, op elke plek in Londen. Koop je bij inkopen niets, dan kost het geen actie.">Rondkijken</button>
+        <button class="btn" data-act="ruil" ${kanActie("ruilen") && anderenHier && !heeft(h, "waanzin-paranoia") ? "" : "disabled"} data-uitleg="Geef of neem spullen, Pond en Aanwijzingen met een held op dezelfde plek. Ruil je niets, dan kost het geen actie.">Ruilen</button>
+        ${isOverzee(h.plek) ? `<button class="btn" data-act="terug" ${isActief && h.acties > 0 ? "" : "disabled"} data-uitleg="Kost een actie: je vaart terug naar St Katharine Docks.">Terug naar de dokken</button>` : `<button class="btn" data-act="groei" ${h.trofee >= 3 ? "" : "disabled"} data-uitleg="Lever 3 trofeeën in om je held sterker te maken. Kost geen actie.">Groeien (3 trofeeën)</button>`}
+        ${ma ? `<button class="btn breed" data-act="mysterie" ${ma.kan && h.acties > 0 && !h.gebruikt.includes("mysterie") ? "" : "disabled"} data-uitleg="Werk aan het huidige mysterie. Kost een actie.">${esc(ma.label)}${ma.uitleg ? ` (${esc(ma.uitleg)})` : ""}</button>` : ""}
+        ${UI.undo.length && UI.undo.at(-1).ronde === S.ronde && UI.undo.at(-1).actief === S.actief ? `<button class="btn ghost breed terugknop" data-act="undo" data-uitleg="Maak je laatste actie ongedaan. Dat kan alleen bij acties zonder dobbelstenen of nieuwe kaarten.">↶ Ongedaan maken: ${esc(UI.undo.at(-1).label)}</button>` : ""}
+        <button class="btn ghost breed" data-act="klaar" data-uitleg="Beëindig je beurt. Acties die je over hebt, vervallen.">Beurt klaar</button>
       </div>` : ""}
       <div class="vermogen"><b>${esc(d.vermogen.naam)}.</b> ${esc(d.vermogen.tekst)}
         ${h.id === "ambrose-pell" && isActief && !h.ronde.sterrenkaart ? `<div><button class="btn small" data-act="pell">Gebruik</button></div>` : ""}
@@ -2214,7 +2297,7 @@ app.addEventListener("click", e => {
     case "aanpas": UI.aanpassen = !UI.aanpassen; return teken();
     case "pi-sluit": return verbergPlekInfo();
     case "reis-hier": { const d = t.dataset.doel; verbergPlekInfo(); return reis(d); }
-    case "undo": { const u = UI.undo.pop(); if (!u) return; S = JSON.parse(u.staat); verbergPlekInfo(); log(`Ongedaan gemaakt: ${u.label}`); opslaan(); return teken(); }
+    case "undo": { const u = UI.undo.pop(); if (!u) return; const ab = S.aanbod; S = JSON.parse(u.staat); S.aanbod = ab; verbergPlekInfo(); log(`Ongedaan gemaakt: ${u.label}`); opslaan(); return teken(); }
     case "geluid": Geluid.wissel(); return teken();
     case "muziek": Geluid.wisselMuziek(); return teken();
     case "thema": Thema.wissel(); return teken();

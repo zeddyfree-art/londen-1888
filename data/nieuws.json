@@ -1,5 +1,16 @@
 [
   {
+    "id": 12,
+    "datum": "21 november 2026",
+    "titel": "Rondkijken zonder dat het een actie kost",
+    "punten": [
+      "Kijk je in een winkel of boekwinkel maar koop je niets, dan kost het geen actie meer. Ook \"Toch niet\" bij de trein, de boot, de roeiboot, het ziekenhuis, de politie, de abdij en ruilen kost niets.",
+      "Een winkel houdt de hele beurt hetzelfde aanbod. Opnieuw binnenlopen geeft dus geen nieuwe kaarten.",
+      "Meer acties kun je ongedaan maken: kopen, de trein, de boot, de roeiboot, ruilen en de keuzes in het ziekenhuis, bij de politie, in de abdij en in de club. Acties met dobbelstenen of nieuwe kaarten blijven staan.",
+      "Elke actieknop heeft nu uitleg. Op de computer: houd de muis erboven. Op de iPad: houd de knop even ingedrukt. Een gewone tik voert de actie uit."
+    ]
+  },
+  {
     "id": 11,
     "datum": "21 november 2026",
     "titel": "Lichte of donkere modus, en rustiger geluid",
