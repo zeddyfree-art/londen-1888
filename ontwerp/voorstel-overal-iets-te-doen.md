@@ -1,6 +1,6 @@
 # Voorstel: overal in Londen iets te doen
 
-*Onderzocht op 21 november 2026 (tiende sessie). Nog niet ingebouwd: dit is een voorstel om over te beslissen.*
+*Onderzocht op 21 november 2026 (tiende sessie). Ingebouwd in de elfde sessie als de knop Rondkijken, precies zoals hieronder voorgesteld.*
 
 ## Het probleem
 

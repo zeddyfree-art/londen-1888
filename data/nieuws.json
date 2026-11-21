@@ -1,5 +1,14 @@
 [
   {
+    "id": 10,
+    "datum": "21 november 2026",
+    "titel": "Rondkijken",
+    "punten": [
+      "Nieuwe knop Rondkijken: op elke plek in Londen, één keer per beurt, voor één actie. Zo is er altijd iets te doen, ook als de dienst van je plek je even niet helpt.",
+      "Kies één van drie: inkopen (trek 2 spullen en koop er één voor 1 Pond meer), een rijtuigkaartje voor 1 Pond (later 2 stappen zonder actie) of rondhoren (Waarneming 9: een Aanwijzing, maar mislukt kost het 1 Geest)."
+    ]
+  },
+  {
     "id": 9,
     "datum": "21 november 2026",
     "titel": "Twee nieuwe goden en drie nieuwe helden",
