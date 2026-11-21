@@ -1,5 +1,15 @@
 [
   {
+    "id": 13,
+    "datum": "21 november 2026",
+    "titel": "Scores gaan vanzelf naar het gedeelde scorebord",
+    "punten": [
+      "Een overwinning komt nu vanzelf op het gedeelde scorebord. Weet de app je naam al, dan hoef je niets te doen. Anders vul je één keer je naam in en druk je op Enter.",
+      "Overwinningen op dit apparaat die nog niet gedeeld waren, gaan er ook vanzelf naartoe. Lukt het even niet, bijvoorbeeld zonder internet, dan probeert de app het later opnieuw.",
+      "Liever zelf kiezen? Zet het schuifje Automatisch delen uit, op het eindscherm of in het scorebord. Je deelt dan per overwinning met één knop."
+    ]
+  },
+  {
     "id": 12,
     "datum": "21 november 2026",
     "titel": "Rondkijken zonder dat het een actie kost",

@@ -101,6 +101,36 @@ async function deelUitslag(e) {
     return r.ok ? d : { fout: d.fout || `Het scorebord antwoordt niet (${r.status}).` };
   } catch { return { fout: "Geen verbinding met het gedeelde scorebord. Probeer het later opnieuw." }; }
 }
+/* Alle overwinningen van dit apparaat met een naam die nog niet gedeeld zijn, gaan vanzelf naar het
+   gedeelde scorebord: bij het opstarten, op het eindscherm en bij het openen van het scorebord.
+   Mislukt het (geen verbinding), dan volgt de volgende keer een nieuwe poging. */
+let deelLoopt = null;
+const AUTODELEN = "londen1888-autodelen";
+const autoDelen = () => { try { return localStorage.getItem(AUTODELEN) !== "uit"; } catch { return true; } };
+const delenSchuif = () => `<label class="schuif"><input type="checkbox" role="switch" id="autodelen" ${autoDelen() ? "checked" : ""}><span class="schuif-baan" aria-hidden="true"></span>Overwinningen automatisch delen op het gedeelde scorebord</label>`;
+/* Het schuifje werkt overal, ook in een venster */
+if (typeof document !== "undefined") document.addEventListener("change", e => {
+  if (e.target.id !== "autodelen") return;
+  try { localStorage.setItem(AUTODELEN, e.target.checked ? "aan" : "uit"); } catch {}
+  if (e.target.checked) deelOpenstaande();
+  if (S?.einde) teken();
+});
+/* alleen: id van één uitslag (de knop op het eindscherm); zonder alleen alles wat openstaat, mits automatisch delen aan staat */
+function deelOpenstaande(alleen) {
+  if (window.__bot || typeof fetch === "undefined" || (!alleen && !autoDelen())) return Promise.resolve();
+  return deelLoopt ??= (async () => {
+    let standaard = ""; try { standaard = localStorage.getItem(SPELERNAAM) || ""; } catch {}
+    const open = leesScores().filter(x => (!alleen || x.id === alleen) && x.punten > 0 && !x.aangepast && !x.gedeeld && ["winst", "nipt"].includes(x.uitslag) && (x.naam || standaard)).slice(-15);
+    for (const x of open) {
+      const d = await deelUitslag({ ...x, naam: x.naam || standaard });
+      const l = leesScores(), e = l.find(y => y.id === x.id); if (!e) continue;
+      if (d.ok || /al op het scorebord/.test(d.fout || "")) { e.gedeeld = true; e.gedeeldPlaats = d.plaats || null; e.naam ||= standaard; if (e.id === S?.uitslagId) UI.deelFout = null; }
+      else if (e.id === S?.uitslagId) UI.deelFout = d.fout;
+      schrijfScores(l);
+      if (!d.ok && /Te veel|verbinding/.test(d.fout || "")) break;
+    }
+  })().finally(() => { deelLoopt = null; if (S?.einde && document.activeElement?.id !== "spelernaam") teken(); });
+}
 const ranglijst = () => leesScores().filter(x => x.punten > 0 && !x.aangepast).sort((a, b) => b.punten - a.punten || a.ronde - b.ronde);
 const monsterBasis = id => byId(D.monsters, id) || byId(D.epische, id);
 const monsterDef = id => {
@@ -2076,14 +2106,18 @@ function tekenAanpas(h) {
 }
 function tekenEinde() {
   bewaarUitslag();
+  /* één automatische poging per eindscherm; daarna kan het met de knop */
+  if (UI.deelGeprobeerd !== S.uitslagId) { UI.deelGeprobeerd = S.uitslagId; setTimeout(deelOpenstaande, 0); }
   const winst = S.einde === "winst" || S.einde === "nipt", g = god();
   const mijn = leesScores().find(x => x.id === S.uitslagId), lijst = ranglijst(), plaats = mijn ? lijst.findIndex(x => x.id === mijn.id) + 1 : 0;
   let naam = ""; try { naam = localStorage.getItem(SPELERNAAM) || ""; } catch {}
   const scoreHtml = !mijn ? "" : `<section class="eindscore">
     ${winst ? `<div class="punten groot"><span class="muted">Punten</span><b>${mijn.punten}</b><small>winkans vooraf ≈ ${Math.round((mijn.kans || 0) * 100)}%${S.einde === "nipt" ? ", op het nippertje: driekwart" : ""}${mijn.klokken.length ? ` · ${mijn.klokken.length} ${mijn.klokken.length === 1 ? "klok" : "klokken"}` : ""}</small></div>
       ${mijn.aangepast ? `<p class="muted">Je hebt spelwaarden met de hand aangepast, dus dit potje telt niet mee voor het scorebord.</p>` : `<p><b>Plaats ${plaats}</b> op het scorebord van dit apparaat.</p>
-      <div class="naamrij"><label for="spelernaam">Naam op het scorebord</label><input id="spelernaam" maxlength="30" value="${esc(mijn.naam || naam)}" placeholder="Wie speelde er?"><button class="btn small ghost" data-act="naam-bewaar">${UI.naamBewaard ? "Bewaard" : "Bewaar"}</button>
-        ${mijn.gedeeld ? `<span class="gedeeld">Staat op het gedeelde scorebord${mijn.gedeeldPlaats ? `: plaats ${mijn.gedeeldPlaats}` : ""}.</span>` : `<button class="btn small" data-act="deel-score" ${UI.deelBezig ? "disabled" : ""}>${UI.deelBezig ? "Bezig…" : "Op het gedeelde scorebord zetten"}</button>`}</div>
+      ${delenSchuif()}
+      ${mijn.gedeeld ? `<p class="gedeeld">Staat op het gedeelde scorebord als <b>${esc(mijn.naam)}</b>${mijn.gedeeldPlaats ? `: plaats ${mijn.gedeeldPlaats}` : ""}.</p>`
+        : autoDelen() && (mijn.naam || naam) ? `<p class="muted">${deelLoopt ? "Wordt op het gedeelde scorebord gezet…" : `Gaat naar het gedeelde scorebord als <b>${esc(mijn.naam || naam)}</b>.`} <button class="btn small ghost" data-act="deel-score">${UI.deelFout ? "Opnieuw proberen" : "Nu delen"}</button></p>`
+        : `<div class="naamrij"><label for="spelernaam">Naam op het gedeelde scorebord</label><input id="spelernaam" maxlength="30" value="${esc(mijn.naam || naam)}" placeholder="Wie speelde er?" enterkeyhint="send"><button class="btn small" data-act="deel-score" ${deelLoopt ? "disabled" : ""}>${deelLoopt ? "Bezig…" : autoDelen() ? "Opslaan en delen" : "Op het gedeelde scorebord zetten"}</button></div>`}
       ${UI.deelFout ? `<p class="fout">${esc(UI.deelFout)}</p>` : ""}`}
       ${scoreTabel(lijst.slice(0, 10), mijn.id)}` : `<p class="muted">Geen punten voor dit potje. Je winkans was ongeveer ${Math.round((mijn.kans || 0) * 100)}%.</p>`}
   </section>`;
@@ -2210,12 +2244,13 @@ function scoreTabel(rijen, licht, leeg = "Nog geen overwinningen op dit apparaat
       <td>${x.helden.map(id => esc(korteNaam(heldDef({ id }).naam))).join(", ")}</td><td>${x.ronde}</td><td>${esc(x.datum)}</td></tr>`).join("")}</table></div>`;
 }
 async function toonScorebord() {
+  await deelOpenstaande();
   const r = ranglijst(), alle = leesScores(), gedeeld = await haalGedeeld();
   await venster({ soort: "Het register van de Club", titel: "Scorebord", breed: true, terug: true, beeld: "art/scherm/scorebord.jpg",
     html: `<h3>Iedereen</h3>${gedeeld ? scoreTabel(gedeeld.map((x, i) => ({ ...x, id: "g" + i })), null, "Nog niemand heeft een overwinning gedeeld. Win een potje en zet het erop.") : `<p class="muted">Het gedeelde scorebord is nu niet bereikbaar.</p>`}
-      <h3>Op dit apparaat</h3>${scoreTabel(r.slice(0, 15))}
+      <h3>Op dit apparaat</h3>${delenSchuif()}${scoreTabel(r.slice(0, 15))}
       <p class="muted">${alle.length} ${alle.length === 1 ? "potje" : "potjes"} gespeeld op dit apparaat, ${r.length} gewonnen. Punten krijg je alleen voor een overwinning: hoe kleiner je kans vooraf, hoe meer punten. Op het nippertje (in de laatste nacht) telt voor driekwart. Potjes waarin je spelwaarden met de hand hebt aangepast, tellen niet mee.</p>
-      <p class="muted">Het scorebord van dit apparaat staat in deze browser. Een overwinning komt alleen op het gedeelde scorebord als je dat op het eindscherm zelf kiest. Daar staan dan je naam, de god, de stand, de helden, de klokken en het aantal rondes. De punten rekent de server zelf uit.</p>` });
+      <p class="muted">Het scorebord van dit apparaat staat in deze browser. Staat automatisch delen aan, dan gaat een overwinning vanzelf naar het gedeelde scorebord zodra er een naam bij staat. Staat het uit, dan kies je het zelf op het eindscherm. Daar staan dan je naam, de god, de stand, de helden, de klokken en het aantal rondes. De punten rekent de server zelf uit.</p>` });
 }
 
 /* ---------- invoer ---------- */
@@ -2256,17 +2291,18 @@ app.addEventListener("click", e => {
     case "klokken-info": return veilig(toonKlokkenInfo);
     case "scorebord": return veilig(() => toonScorebord());
     case "deel-score": {
-      const v = (document.getElementById("spelernaam")?.value || "").trim().slice(0, 30);
-      if (!v) { UI.deelFout = "Vul eerst een naam in."; return teken(); }
-      try { localStorage.setItem(SPELERNAAM, v); } catch {}
+      const veld = document.getElementById("spelernaam");
       const l = leesScores(), e = l.find(x => x.id === S.uitslagId); if (!e) return;
-      e.naam = v; schrijfScores(l); UI.deelBezig = true; UI.deelFout = null; teken();
-      return deelUitslag(e).then(d => { UI.deelBezig = false; const l2 = leesScores(), e2 = l2.find(x => x.id === S.uitslagId);
-        if (d.ok || /al op het scorebord/.test(d.fout || "")) { e2.gedeeld = true; e2.gedeeldPlaats = d.plaats || null; schrijfScores(l2); } else UI.deelFout = d.fout; teken(); });
+      if (veld) {
+        const v = veld.value.trim().slice(0, 30);
+        if (!v) { UI.deelFout = "Vul eerst een naam in."; return teken(); }
+        try { localStorage.setItem(SPELERNAAM, v); } catch {}
+        e.naam = v; schrijfScores(l);
+      }
+      UI.deelFout = null; deelOpenstaande(S.uitslagId); return teken();
     }
-    case "naam-bewaar": { const v = (document.getElementById("spelernaam")?.value || "").trim().slice(0, 30); try { localStorage.setItem(SPELERNAAM, v); } catch {} const l = leesScores(); const e = l.find(x => x.id === S.uitslagId); if (e) { e.naam = v; schrijfScores(l); } UI.naamBewaard = true; return teken(); }
     case "verder": S = laden(); if (S.fase === "finale") veilig(() => ontwaken()); else if (S.fase === "ontmoeting") veilig(() => ontmoetingsfase((S.ontmoetingIndex ?? -1) + 1)); else if (S.fase === "onheil") veilig(() => onheilsfase()); else teken(); return;
-    case "nieuw": wis(); S = null; UI.zoom = null; UI.start.helden = []; UI.naamBewaard = false; UI.deelFout = null; return teken();
+    case "nieuw": wis(); S = null; UI.zoom = null; UI.start.helden = []; UI.deelFout = null; return teken();
     case "tutorial": zaai(1888); nieuwSpel("vathrun", "ontspannen", ["hester-quayle", "silas-rook"], { tutorial: true }); rng = Math.random; return;
     case "handboek": UI.handboek = "handleiding"; return tekenHandleiding();
     case "nieuws": return toonNieuws(true);
@@ -2309,6 +2345,7 @@ app.addEventListener("click", e => {
     case "mon-min": S.aangepast = true; if (!isOverzee(h.plek)) S.plekken[h.plek].monsters.pop(); opslaan(); return teken();
   }
 });
+app.addEventListener("keydown", e => { if (e.key === "Enter" && e.target.id === "spelernaam") { e.preventDefault(); app.querySelector('[data-act="deel-score"]')?.click(); } });
 document.addEventListener("keydown", e => { if (e.key === "Escape" && UI.handboek) { UI.handboek = null; tekenHandleiding(); } });
 document.getElementById("handboek").addEventListener("click", e => {
   const b = e.target.closest("[data-hb]"); if (!b) return;
@@ -2396,7 +2433,7 @@ Promise.all(Object.entries(BESTANDEN).map(([k, f]) => fetch(`data/${f}.json`).th
     D.ontmoetingen = { stad: [...D.o_stad, ...D.o_verhaal], expeditie: D.o_expeditie, scheur: D.o_scheur, aanwijzing: D.o_aanwijzing };
     maakBuren(); teken(); registreerSW();
     /* portretten en het mistfiche vooraf laden, zodat ze al bij de eerste kaart verschijnen */
-    if (!window.__bot) { for (const p of D.personen) art(`art/personen/${p.id}.jpg`); art("art/fiches/mist.jpg"); art("art/scherm/scorebord.jpg"); Geluid.laad(); setTimeout(() => toonNieuws(false), 400); }
+    if (!window.__bot) { for (const p of D.personen) art(`art/personen/${p.id}.jpg`); art("art/fiches/mist.jpg"); art("art/scherm/scorebord.jpg"); Geluid.laad(); setTimeout(() => toonNieuws(false), 400); setTimeout(deelOpenstaande, 2000); }
   })
   .catch(err => { app.innerHTML = `<div class="start"><h1>Londen, 1888</h1><p>De speldata kon niet worden geladen (${esc(err.message)}). Open het spel via een webserver, niet als los bestand.</p></div>`; });
 /* Wat is er nieuw: na een update één keer tonen, daarna via de knop op het startscherm */
