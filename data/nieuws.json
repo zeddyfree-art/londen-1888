@@ -1,5 +1,25 @@
 [
   {
+    "id": 12,
+    "datum": "21 november 2026",
+    "titel": "Rondkijken zonder dat het een actie kost",
+    "punten": [
+      "Kijk je in een winkel of boekwinkel maar koop je niets, dan kost het geen actie meer. Ook \"Toch niet\" bij de trein, de boot, de roeiboot, het ziekenhuis, de politie, de abdij en ruilen kost niets.",
+      "Een winkel houdt de hele beurt hetzelfde aanbod. Opnieuw binnenlopen geeft dus geen nieuwe kaarten.",
+      "Meer acties kun je ongedaan maken: kopen, de trein, de boot, de roeiboot, ruilen en de keuzes in het ziekenhuis, bij de politie, in de abdij en in de club. Acties met dobbelstenen of nieuwe kaarten blijven staan.",
+      "Elke actieknop heeft nu uitleg. Op de computer: houd de muis erboven. Op de iPad: houd de knop even ingedrukt. Een gewone tik voert de actie uit."
+    ]
+  },
+  {
+    "id": 11,
+    "datum": "21 november 2026",
+    "titel": "Lichte of donkere modus, en rustiger geluid",
+    "punten": [
+      "Kies zelf tussen een lichte en een donkere modus, met de knop op het startscherm of bovenin tijdens het spel. Je keuze wordt onthouden. Kies je niets, dan volgt de app je apparaat.",
+      "De misthoorn in de achtergrond van een potje tegen Vathrûn is weg. Je hoort nu druppelend water en de rivier die tegen de stenen trappen klotst."
+    ]
+  },
+  {
     "id": 10,
     "datum": "21 november 2026",
     "titel": "Rondkijken",
