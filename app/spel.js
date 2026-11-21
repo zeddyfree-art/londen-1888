@@ -773,6 +773,28 @@ async function journalist(h) {
   const g = S.geruchten.length === 1 ? S.geruchten[0] : await venster({ soort: "Journaliste", titel: "Welk gerucht ontkracht je?", knoppen: S.geruchten.map(g => ({ label: g.naam, waarde: g })) });
   h.aanw -= 2; S.geruchten = S.geruchten.filter(x => x !== g); log(`De avondkrant ontkracht "${g.naam}"`); opslaan();
 }
+/* Rondkijken: op elke plek in Londen, één keer per beurt, kost een actie. Zodat een beurt nooit leeg is.
+   Zie ontwerp/voorstel-overal-iets-te-doen.md. */
+async function rondkijken(h) {
+  if (isOverzee(h.plek)) return;
+  const k = await venster({ soort: "Rondkijken", titel: plekNaam(h.plek), beeld: `art/plekken/${h.plek}.jpg`,
+    html: `<p class="muted">Je hebt ${h.pond} Pond. Kies één ding; het kost een actie.</p>`,
+    knoppen: [
+      { label: "Inkopen: trek 2 spullen, koop er één voor 1 Pond meer", waarde: "inkopen", uit: heeft(h, "gezocht") || !kanDragen(h) || h.pond < 1 },
+      { label: "Rijtuigkaartje kopen (1 Pond): later 2 stappen zonder actie", waarde: "kaartje", uit: h.pond < 1 || !kanDragen(h) },
+      { label: `Rondhoren (Waarneming ${metStand(9)}${kansTxt(h, "scherpte", 9, { context: "ontmoeting" })}): 1 Aanwijzing, mislukt −1 Geest`, waarde: "rondhoren" },
+      { label: "Toch niet", waarde: null, ghost: true }] });
+  if (!k) return;
+  gebruikActie(h, "rondkijken");
+  const naam = korteNaam(heldDef(h).naam);
+  if (k === "inkopen") await winkel(h, trekMeerdere("spullen", 2), "spul", d => d.prijs + 1);
+  if (k === "kaartje") { h.pond--; h.spullen.push("rijtuig"); log(`${naam} koopt een rijtuigkaartje`); await melding("Rijtuigkaartje", "Je koopt een kaartje bij een koetsier op de hoek. Gebruik het in een eigen beurt: 2 stappen zonder actie."); }
+  if (k === "rondhoren") {
+    if (await test(h, "scherpte", 9, "Rondhoren in de buurt", { context: "ontmoeting" })) { h.aanw++; log(`${naam} hoort iets en krijgt 1 Aanwijzing`); await melding("Rondhoren", "In een kroeg, bij een pomp of op de trap van een kerk vang je iets op dat je verder helpt. +1 Aanwijzing."); }
+    else { h.G--; log(`${naam} praat met de verkeerde mensen: −1 Geest`); await melding("Rondhoren", "Je stelt je vragen aan de verkeerde mensen. Ze kijken je na tot je om de hoek bent. −1 Geest."); }
+  }
+  await controleerHeld(h); opslaan(); teken();
+}
 async function voorbereiden(h) {
   UI.undo.push({ staat: JSON.stringify(S), label: "voorbereiden", ronde: S.ronde, actief: S.actief });
   gebruikActie(h, "voorbereiden");
@@ -1536,7 +1558,7 @@ async function beurtKlaar() {
 /* ---------- tutorial en tips ---------- */
 const COACH = {
   start: ["Welkom in Londen, 1888", `<p>Jullie spelen samen tegen <b>Vathrûn</b>, iets dat onder de Theems ademt. Bovenaan zie je de <b>Mist</b>: elke ronde daalt hij. Staat hij op 0, dan verliezen jullie.</p><p>Jullie winnen door <b>2 mysteries</b> op te lossen. Het huidige mysterie staat rechts, in het groene kader.</p><p>Je speelt met <b>Hester</b> (bibliothecaris) en <b>Silas</b> (detective). Hester is als eerste aan de beurt.</p>`],
-  beurt: ["Jouw beurt", `<p>Elke held doet <b>2 acties</b> per ronde. Reizen mag je twee keer doen; de andere acties één keer per beurt. Plekken waar je heen kunt, lichten groen op: tik erop om te reizen.</p><p>De knoppen rechts zijn de andere acties: <b>rusten</b>, de <b>dienst</b> van de plek (winkelen, studeren, genezen…), <b>ruilen</b> met een held op dezelfde plek en het <b>mysterie</b>. Spreuken spreek je uit bij je kaarten.</p><p>Ben je klaar? Tik op <b>Beurt klaar</b>. Onder <b>Tip</b> zie je steeds een suggestie.</p>`],
+  beurt: ["Jouw beurt", `<p>Elke held doet <b>2 acties</b> per ronde. Reizen mag je twee keer doen; de andere acties één keer per beurt. Plekken waar je heen kunt, lichten groen op: tik erop om te reizen.</p><p>De knoppen rechts zijn de andere acties: <b>rusten</b>, de <b>dienst</b> van de plek (winkelen, studeren, genezen…), <b>rondkijken</b> (overal: inkopen, een rijtuigkaartje of rondhoren), <b>ruilen</b> met een held op dezelfde plek en het <b>mysterie</b>. Spreuken spreek je uit bij je kaarten.</p><p>Ben je klaar? Tik op <b>Beurt klaar</b>. Onder <b>Tip</b> zie je steeds een suggestie.</p>`],
   dienst: ["Diensten", `<p>Elke plek heeft een eigen dienst. In Bloomsbury studeer je spreuken, op markten koop je spullen, in The City laat je je verzorgen of leen je geld. In de handleiding staat het hele overzicht.</p>`],
   ontmoeting: ["Ontmoetingen", `<p>Na de heldenfase krijgt elke held een <b>ontmoeting</b> op de plek waar hij staat:</p><ol><li>Staat er een monster? Dan vecht je.</li><li>Is er een Scheur? Dan stap je erdoor, en daarna mag je hem proberen te sluiten.</li><li>Ligt er een Aanwijzing (groen bolletje)? Dan volg je het spoor.</li><li>Anders trek je een verhaal van die wijk. Lees het gerust hardop voor.</li></ol>`],
   test: ["Een test", `<p>Bij een test gooi je <b>twee dobbelstenen</b> en tel je je <b>kenmerk</b> erbij, bijvoorbeeld Kennis of Kracht. Haal je het getal achter "nodig", dan lukt het.</p><p>Mislukt het? Soms kun je opnieuw gooien: met een <b>Aanwijzing</b> (bij Kennis en Waarneming), als je <b>Gezegend</b> bent of met een vermogen van je held.</p>`],
@@ -1877,6 +1899,7 @@ function tekenPaneel() {
         <button class="btn" data-act="rust" ${kanActie("rusten") ? "" : "disabled"}>Rusten</button>
         <button class="btn" data-act="voorbereiden" ${kanActie("voorbereiden") && !h.ronde.voorbereid ? "" : "disabled"} title="+1 dobbelsteen in je gevechten tot het eind van de ronde">${h.ronde.voorbereid ? "Voorbereid" : "Voorbereiden"}</button>
         <button class="btn" data-act="dienst" ${kanActie("dienst") && dienstNaam ? "" : "disabled"}>${dienstNaam ? esc(DIENSTLABEL[dienstNaam] || dienstNaam) : "Geen dienst"}</button>
+        <button class="btn" data-act="rondkijken" ${kanActie("rondkijken") && !isOverzee(h.plek) ? "" : "disabled"} title="Inkopen, een rijtuigkaartje of rondhoren: één keer per beurt, op elke plek in Londen">Rondkijken</button>
         <button class="btn" data-act="ruil" ${kanActie("ruilen") && anderenHier && !heeft(h, "waanzin-paranoia") ? "" : "disabled"}>Ruilen</button>
         ${isOverzee(h.plek) ? `<button class="btn" data-act="terug" ${isActief && h.acties > 0 ? "" : "disabled"}>Terug naar de dokken</button>` : `<button class="btn" data-act="groei" ${h.trofee >= 3 ? "" : "disabled"}>Groeien (3 trofeeën)</button>`}
         ${ma ? `<button class="btn breed" data-act="mysterie" ${ma.kan && h.acties > 0 && !h.gebruikt.includes("mysterie") ? "" : "disabled"}>${esc(ma.label)}${ma.uitleg ? ` (${esc(ma.uitleg)})` : ""}</button>` : ""}
@@ -2148,6 +2171,7 @@ app.addEventListener("click", e => {
     case "regels": return veilig(() => venster({ soort: "Hoe werkt het?", titel: "Een ronde", terug: true, html: `<ol><li><b>Heldenfase:</b> elke held doet 2 acties: reizen (tik op een plek, mag twee keer), rusten, de dienst van de plek, ruilen, een spreuk of het mysterie.</li><li><b>Ontmoetingen:</b> vecht met monsters op je plek, ga door een Scheur, volg een Aanwijzing of trek een stadskaart.</li><li><b>Onheil:</b> de Mist daalt, Scheuren openen en monsters bewegen.</li></ol><p>Een test: 2 dobbelstenen plus je kenmerk, haal de moeilijkheid. Een Aanwijzing laat je bij Kennis en Waarneming één steen opnieuw gooien.</p><p>Los ${S.nodig} mysteries op voordat de Mist op 0 staat.</p>` }));
     case "rust": return veilig(() => rust(actief()));
     case "voorbereiden": return veilig(() => voorbereiden(actief()));
+    case "rondkijken": return veilig(() => rondkijken(actief()));
     case "dienst": return veilig(() => dienst(actief()));
     case "ruil": return veilig(() => ruil(actief()));
     case "terug": { const a = actief(); gebruikActie(a, "reizen"); a.plek = "st-katharine-docks"; log(`${korteNaam(heldDef(a).naam)} keert terug naar de dokken`); opslaan(); return teken(); }
@@ -2316,5 +2340,5 @@ function toonUpdate() {
   document.body.appendChild(el);
 }
 window.__spel = { KLOKKEN, get S() { return S; }, get D() { return D; }, get bezig() { return bezig; },
-  api: { voorbereiden, bootPrijs, metroDoelen, overgang, venster, scheurBeeld, toonUpdate, kans, speelKaart, onheilsfase, nieuwSpel, zaai, reis, rust, dienst, doeMysterie, mysterieActie, beurtKlaar, gebruikActie, gebruikSpul, zoekWeg, bereikbaar, burenVan, afstanden, stapNaar, actief, groei, mysterie, heeft, isOverzee, spulDef, monsterDef, wapenBonus, plekDef } };
+  api: { rondkijken, voorbereiden, bootPrijs, metroDoelen, overgang, venster, scheurBeeld, toonUpdate, kans, speelKaart, onheilsfase, nieuwSpel, zaai, reis, rust, dienst, doeMysterie, mysterieActie, beurtKlaar, gebruikActie, gebruikSpul, zoekWeg, bereikbaar, burenVan, afstanden, stapNaar, actief, groei, mysterie, heeft, isOverzee, spulDef, monsterDef, wapenBonus, plekDef } };
 })();

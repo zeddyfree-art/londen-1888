@@ -36,6 +36,7 @@ Om de beurt doet elke held **2 acties**. Reizen mag je twee keer doen, dus je ku
 | Rusten | +1 Lichaam en +1 Geest. Niet als er een monster op je plek staat. |
 | Voorbereiden | Je laadt je revolver, zoekt dekking en zet je schrap. Tot het eind van de ronde gooi je in gevechten 1 dobbelsteen extra (de twee hoogste tellen). Handig als er een monster op je plek staat of als je er een gaat opzoeken. |
 | Dienst | De dienst van je plek, zie de tab **Plekken**. |
+| Rondkijken | Kan op elke plek in Londen, één keer per beurt. Kies één: **inkopen** (trek 2 spullen en koop er één voor 1 Pond meer dan de prijs), een **rijtuigkaartje** (1 Pond; later in een eigen beurt 2 stappen zonder actie) of **rondhoren** (Waarneming 9: 1 Aanwijzing, mislukt −1 Geest). Zo is er altijd iets te doen, ook als de dienst van je plek je nu niet helpt. |
 | Ruilen | Geef of neem spullen, Ponden en Aanwijzingen van een held op je plek. |
 | Spreuk | Spreek een spreuk uit. Dat kost Geest, en je doet een test. |
 | Mysterie | Verschijnt als je op de goede plek staat voor het mysterie. |

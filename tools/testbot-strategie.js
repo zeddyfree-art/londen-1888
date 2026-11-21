@@ -6,7 +6,7 @@ window.__testbot = async function speel(godId, moeilijkheid, heldIds, seed) {
   const A = window.__spel.api;
   const S = () => window.__spel.S;
   const D = window.__spel.D;
-  let havenDoel = null, stationDoel = null;
+  let havenDoel = null, stationDoel = null, rondkijkWens = null;
   const huidig = () => S().helden[S().actief];
   const isPlek = id => D.bord.plekken.some(p => p.id === id);
 
@@ -47,6 +47,7 @@ window.__testbot = async function speel(godId, moeilijkheid, heldIds, seed) {
       if (soort === "De abdij") return w.includes("v") ? "v" : w.includes("z") ? "z" : null;
       if (soort === "Hulp van de Bleke Lantaarn") return "a";
       if (soort === "Doorvechter") return h.L > 3;
+      if (soort === "Rondkijken") return knoppen.some(k => k.waarde === rondkijkWens && !k.uit) ? rondkijkWens : null;
       if (soort === "Brede schouders") { const ag = S().helden.find(x => x.id === "aggie-pruitt"); return !!ag && ag.L > 3; }
       if (soort === "Onderschepping") return w[0];
       if (soort === "Te veel bagage") return w[w.length - 1];
@@ -124,6 +125,7 @@ window.__testbot = async function speel(godId, moeilijkheid, heldIds, seed) {
       const ma = A.mysterieActie(h);
       if (ma && ma.kan && h.acties > 0 && !h.gebruikt.includes("mysterie")) { A.gebruikActie(h, "mysterie"); await A.doeMysterie(h); if (S().einde) return; continue; }
       const d = doel(h);
+      if (h.spullen.includes("rijtuig") && d && isPlek(d) && !A.isOverzee(h.plek) && dist(h.plek, d) >= 2) await A.gebruikSpul(h, "rijtuig");
       if (d && d !== h.plek) {
         if (A.isOverzee(h.plek)) {
           if (h.acties > 0 && !h.gebruikt.includes("reizen")) { A.gebruikActie(h, "reizen"); h.plek = "st-katharine-docks"; continue; }
@@ -143,6 +145,12 @@ window.__testbot = async function speel(godId, moeilijkheid, heldIds, seed) {
       }
       if (h.acties <= 0) break;
       if (!h.gebruikt.includes("dienst") && dienstNuttig(h)) { await A.dienst(h); continue; }
+      /* Rondkijken als er verder niets nuttigs te doen is: kaartje of inkopen met geld over, anders rondhoren als je gezond bent */
+      if (!h.gebruikt.includes("rondkijken") && !h.ronde.botRondkijken && h.acties > 0 && !A.isOverzee(h.plek)) {
+        h.ronde.botRondkijken = true;
+        rondkijkWens = h.pond >= 3 && !h.spullen.includes("rijtuig") ? "kaartje" : h.pond >= 3 && !A.heeft(h, "gezocht") ? "inkopen" : h.L >= h.maxL - 1 && h.G >= h.maxG - 1 && h.G > 2 ? "rondhoren" : null;
+        if (rondkijkWens) { await A.rondkijken(h); continue; }
+      }
       const mon = S().plekken[h.plek]?.monsters.length;
       if (mon && !h.ronde.voorbereid && !h.gebruikt.includes("voorbereiden")) { await A.voorbereiden(h); continue; }
       if (!h.gebruikt.includes("rusten") && !mon && (h.L < h.maxL || h.G < h.maxG)) { await A.rust(h); continue; }
