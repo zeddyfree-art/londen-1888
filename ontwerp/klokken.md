@@ -10,23 +10,23 @@
 - **Punten:** 100 × ln(1 / winkans vooraf). Op het nippertje telt voor driekwart.
 - **Scorebord:** in `localStorage` van de browser, sleutel `londen1888-scores`. Potjes met handmatig aangepaste waarden tellen niet mee.
 
-**Gemeten effect per klok** (normale stand, zonder klokken 70%; gemeten over alle vijf goden, na de update met Ysmara en Morghast):
+**Gemeten effect per klok** (normale stand, zonder klokken 75%; gemeten over alle vijf goden, met Rondkijken):
 
 | Klok | Met klok | Slagen |
 |---|---|---|
-| I Dikke mist | 46% | 3 |
-| II Lege zakken | 62% | 1 |
-| III Gesloten lijnen | 62% | 1 |
-| IV Zware benen | 69% | 1 |
-| V Zwijgende getuigen | 72% | 1 |
-| VI Taaie wezens | 66% | 1 |
+| I Dikke mist | 52% | 3 |
+| II Lege zakken | 68% | 1 |
+| III Gesloten lijnen | 65% | 1 |
+| IV Zware benen | 76% | 1 |
+| V Zwijgende getuigen | 74% | 1 |
+| VI Taaie wezens | 68% | 1 |
 | VII Huiveringwekkend | 61% | 1 |
-| VIII Scheurende stad | 64% | 1 |
-| IX Slapeloze nachten | 49% | 2 |
-| X Geen tweede worp | 50% | 2 |
-| XI Ongeduldige god | 44% | 3 |
-| XII Dertien slagen | 41% | 4 |
-| XIII Geen genade | 56% | 2 |
+| VIII Scheurende stad | 70% | 1 |
+| IX Slapeloze nachten | 53% | 2 |
+| X Geen tweede worp | 51% | 2 |
+| XI Ongeduldige god | 49% | 3 |
+| XII Dertien slagen | 45% | 4 |
+| XIII Geen genade | 63% | 2 |
 
 Twee klokken zijn tijdens het meten veranderd. *Huiveringwekkend* (eerst +1 en daarna +2 Gruwel) en *Slapeloze nachten* (eerst Lichaam óf Geest, daarna rusten kost de hele beurt) deden niets: helden vallen in de testpotjes bijna nooit om, dus Lichaam en Geest zijn zelden de echte druk. Nu geeft Huiveringwekkend monsters ook 1 Leven meer, en laat Slapeloze nachten de Mist elke derde ronde 1 extra dalen. Ook *Gesloten lijnen* is sterker gemaakt: de boot kost 4 Pond.
 

@@ -2,7 +2,19 @@
 
 Deze lijst werken we aan het einde van elk gesprek bij. Zet bij elke update die spelers merken een nieuw bericht bovenaan `data/nieuws.json` (met een hoger `id`): dat verschijnt één keer als "Wat is er nieuw" als de app opent.
 
-*Laatst bijgewerkt: 21 november 2026 (tiende sessie)*
+*Laatst bijgewerkt: 21 november 2026 (elfde sessie)*
+
+## Gemeten na de elfde sessie (met Rondkijken)
+
+Met `node tools/testbot.js 150` en `node tools/meet-klokken.js 100`. Rondkijken maakt het spel naar verwachting 2 tot 3 procentpunt makkelijker; in deze meting valt dat binnen de meetruis.
+
+| God | Ontspannen 2 / 4 | Normaal 2 / 4 | Genadeloos 2 / 4 |
+|---|---|---|---|
+| Vathrûn | 98% / 99% | 75% / 79% | 33% / 23% |
+| Azh-Ilareth | 97% / 99% | 75% / 79% | 22% / 17% |
+| Nebet-Ankhu | 93% / 99% | 69% / 77% | 29% / 23% |
+| Ysmara | 95% / 99% | 52% / 71% | 19% / 18% |
+| Morghast | 98% / 99% | 79% / 73% | 37% / 15% |
 
 ## Gemeten na de tiende sessie (vijf goden, 21 helden)
 
@@ -91,7 +103,7 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 
 ### Balans en tests (zie `tests-en-geluk.md`)
 - [ ] Klokkenmodel opnieuw meten als de balans verandert: `node tools/meet-klokken.js 100`, en daarna `NODE_USE_ENV_PROXY=1 node tools/zet-scorebord-online.js`, zodat de server met hetzelfde model rekent. (Laatst gedaan in de negende sessie.)
-- [ ] Twee klokken doen bijna niets meer: *Zware benen* (75% naar 74%) en *Zwijgende getuigen* (75% naar 76%). Sterker maken of minder slagen geven.
+- [ ] Twee klokken doen bijna niets: *Zware benen* (75% naar 76%) en *Zwijgende getuigen* (75% naar 74%). Sterker maken of minder slagen geven.
 - [ ] Ontspannen (en volgens Dieuwertje ook normaal) is makkelijk. Geparkeerd: de klokken maken het zwaarder.
 - [ ] Testen met echte potjes: voelt Voorbereiden nuttig, en is de zwakke plek (Aanwijzing in een gevecht) niet te sterk?
 - [ ] Gedeeld scorebord: namen modereren als dat nodig wordt (verwijderen kan in de D1-database `londen1888-scorebord`).
@@ -108,13 +120,14 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 
 ### Spel
 - [ ] Testen met echte potjes: Aggie (klap opvangen), Lottie (verstoppen) en Julian (Kennis in gevechten). Is Julian niet te sterk met Kennis 4 en een zwaard?
-- [ ] Besluiten over het voorstel "overal iets te doen": zie [`voorstel-overal-iets-te-doen.md`](voorstel-overal-iets-te-doen.md).
+- [ ] Testen met echte potjes: wordt Rondkijken gebruikt, en welke van de drie keuzes? Is rondhoren (Waarneming 9, mislukt −1 Geest) de moeite waard?
 - [ ] Testen: voelen de persoonlijke spullen nuttig, zonder te sterk te zijn?
 - [ ] Balans met echte potjes controleren, vooral de nieuwe mysteries: Het verloren rapport (Southwark → Whitehall), De Dichter zonder Ogen (Mayfair → Westminster) en Het verhaal van de voorman (Whitechapel → Bloomsbury).
 - [ ] Testen: voelen de nieuwe geruchten (Scheur sluiten, monster verslaan) haalbaar?
 
 ## Klaar
 
+- [x] Knop Rondkijken op elke plek in Londen: inkopen, rijtuigkaartje of rondhoren (zie `voorstel-overal-iets-te-doen.md`)
 - [x] De 25 nieuwe beelden (helden, spullen, goden, monsters, personages) staan in het spel en in `tools/art-drive.json`
 - [x] Sfeerlussen voor Ysmara en Morghast uit de ElevenLabs-flow, op volume gebracht
 - [x] Twee nieuwe goden: Ysmara, de Doornkoningin, en Morghast, de Slaper in de knekelputten. Elk met regel, vier mysteries, episch monster, drie nieuwe monsters, drie personages, tien verhaalkaarten (met vervolg), drie scheurkaarten, twee aanwijzingen, vier onheilskaarten en een expeditie
