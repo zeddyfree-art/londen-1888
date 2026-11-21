@@ -14,6 +14,7 @@ Het spel heeft nu ingebouwde, eenvoudige klanken. Zodra er een geluidsbestand me
 5. Download de gekozen variant als **MP3** en geef hem precies de bestandsnaam uit de tabel, bijvoorbeeld `onheil.mp3`.
 
 Tips:
+- Geen misthoorn: een aanhoudende hoorn in een lus wordt snel storend. Zet `no horns` in de prompt.
 - Klinkt een effect te modern of te druk? Voeg aan het eind toe: `dry, no music, no reverb tail, 19th century`.
 - Effecten moeten snel beginnen: knip eventuele stilte aan het begin weg (bijvoorbeeld met de knip-optie in ElevenLabs).
 - Houd korte effecten onder de 100 KB en de sfeerlussen onder de 600 KB. ElevenLabs levert standaard een MP3 van 128 kbps, en dat is prima.
@@ -44,8 +45,8 @@ Ze spelen zacht op de achtergrond zolang het potje duurt, één per oude god, pl
 
 | Bestand | Wanneer | Duur | Prompt |
 |---|---|---|---|
-| `sfeer-start.mp3` | Startscherm | 20 s | `seamless loop, light rain on cobblestones in Victorian London at night, hiss of gas lamps, distant horse carriage passing, foghorn far away, calm and eerie, no music` |
-| `sfeer-vathrun.mp3` | Potje tegen Vathrûn | 22 s | `seamless loop, water dripping in an old brick sewer, slow river lapping against stone steps, distant foghorn, faint deep breathing under the water, damp and ominous, no music` |
+| `sfeer-start.mp3` | Startscherm | 20 s | `seamless loop, light rain on cobblestones in Victorian London at night, hiss of gas lamps, distant horse carriage passing, calm and eerie, no music` |
+| `sfeer-vathrun.mp3` | Potje tegen Vathrûn | 22 s | `seamless loop, water dripping in an old brick sewer, slow dark river lapping against stone steps, soft hollow echo, faint deep bubbling under the water, damp and ominous, no horns, no music` |
 | `sfeer-azh-ilareth.mp3` | Potje tegen Azh-Ilareth | 22 s | `seamless loop, cold night wind over an open heath, a faint high shimmering drone like starlight, an old clock ticking in an empty salon, very faint wordless choir, eerie, no music` |
 | `sfeer-nebet-ankhu.mp3` | Potje tegen Nebet-Ankhu | 22 s | `seamless loop, creaking wooden crates in a dark dockside warehouse, ropes and ship timbers groaning, faint desert wind, distant whispering voices, ominous, no music` |
 | `sfeer-ysmara.mp3` | Potje tegen Ysmara | 22 s | `seamless loop, wind rustling through leaves and hawthorn branches at night, distant children softly singing a nursery rhyme, faint wooden flute far away, a creaking garden gate, enchanting and eerie, no music` |
