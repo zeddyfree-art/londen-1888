@@ -281,7 +281,7 @@
     "test": "overtuiging",
     "moeilijkheid": 10,
     "prijs": "2 Geest",
-    "tekst": "Push your luck. Alle klokken van Londen luiden tegelijk en de Mist trekt op: Mist +1. Mislukt: de klank trekt iets aan, er verschijnt een monster.",
+    "tekst": "Push your luck, en maar één keer per potje. Alle klokken van Londen luiden tegelijk en de Mist trekt op: Mist +1. Mislukt: de klank trekt iets aan, er verschijnt een monster.",
     "auto": "effect",
     "effect": [
       {
@@ -293,7 +293,8 @@
         "monster": true
       }
     ],
-    "prompt": "a bronze church bell swinging in a belfry, glowing rings of sound pushing back green fog over the rooftops"
+    "prompt": "a bronze church bell swinging in a belfry, glowing rings of sound pushing back green fog over the rooftops",
+    "perSpel": true
   },
   {
     "id": "grote-verbanning",

@@ -1319,6 +1319,8 @@ async function spreek(h, id) {
   if (s.auto === "gevecht") return melding(s.naam, "Deze spreuk gebruik je tijdens een gevecht. De app biedt hem dan aan.");
   if (s.auto === "aanwijzing" && S.rondeGebruikt.theebladeren) return melding(s.naam, "Deze ronde zijn de theebladeren al gelezen.");
   if (s.perRonde && h.ronde["sp-" + id]) return melding(s.naam, "Deze spreuk werkt maar één keer per ronde.");
+  if (s.perSpel && (S.eenmalig ||= []).includes(id)) return melding(s.naam, "Deze spreuk is dit potje al uitgesproken.");
+  if (s.perSpel) S.eenmalig.push(id);
   if (s.perRonde) h.ronde["sp-" + id] = true;
   gebruikActie(h, "spreuk");
   h.G -= p.geest; h.L -= p.lichaam;

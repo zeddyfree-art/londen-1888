@@ -160,6 +160,8 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [ ] Ysmara en Morghast hebben 10 verhaalkaarten elk, de oude goden 16 tot 17. Na een paar potjes kijken of er meer nodig zijn.
 
 ### De Lange Nacht en de proefregels (dertiende sessie)
+- [ ] Analyserapport *Londen 1888 — Speelbaarheid, winkansen en flow* (22 november): na het samenvoegen gemeten, normaal gewoon ~73%, Lange Nacht ~71%, genadeloos ~20% en ~12%. Aanbevelingen: tests 1 zwaarder met Mist 1 ruimer, meer schade aan helden, snelle worpen en buit in één scherm, *Bereken de baan* en *Het aftelrijmpje* versoepelen, een vijfde mysterie voor De Lange Nacht.
+- [ ] Testbot leren artefacten en spreuken buiten gevechten te gebruiken (Kam van de Banshee, Horloge, Wekroep laten de Mist stijgen en zijn nu niet gemeten).
 - [ ] De Lange Nacht op het gedeelde scorebord: de server kent de modus nog niet, daarom worden zulke overwinningen nu niet gedeeld.
 - [ ] De Lange Nacht duurt zo'n 10 rondes (gewoon 7 tot 8). Voor echt 90 tot 120 minuten is een vijfde mysterie per god nodig. Eerst testen of de huidige lengte bevalt.
 - [ ] Ysmara met 2 helden op normaal is zwaar (46%, Lange Nacht 39%). Na echte potjes bekijken.
@@ -179,6 +181,7 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 
 ## Klaar
 
+- [x] Wekroep van de klokken werkt nog maar één keer per potje (was elke beurt herhaalbaar)
 - [x] De 64 beelden voor De Lange Nacht staan in het spel en in `tools/art-drive.json`
 - [x] Gedeeld scorebord online bijgewerkt met het nieuwe klokkenmodel
 - [x] Overslag in gevechten en de laatste nacht, ruim gehaald bij ontmoetingen, monsters taaier
