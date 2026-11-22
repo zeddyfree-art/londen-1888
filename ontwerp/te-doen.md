@@ -253,3 +253,4 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [x] Gecontroleerd: alle 156 afbeeldingen die het spel gebruikt, zijn er
 - [x] Legenda compact en inklapbaar; op de iPad eerst bekijken, dan reizen; Ongedaan maken voor reizen en rusten
 - [x] Speltestfeedback 22-11: portret van de held aan het begin van elke beurt en ontmoeting; overzicht van inzetbare middelen bij gevechten en ontmoetingen; verslagen monsters vechten niet nog eens mee; stations bovenop de kaart; grotere plekken en plaatsnamen; helden sorteren op naam of kenmerk op het startscherm
+- [x] Alleen nog de donkere modus; de knop voor de lichte modus is weg
