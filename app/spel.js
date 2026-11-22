@@ -269,25 +269,8 @@ const Geluid = (() => {
 })();
 
 /* ---------- licht of donker ---------- */
-/* Zonder keuze volgt de app het apparaat. Een keuze wordt onthouden en zet data-theme op <html>. */
-const Thema = (() => {
-  let keuze = null;
-  try { keuze = localStorage.getItem("londen1888-thema"); } catch {}
-  const mq = typeof matchMedia === "function" ? matchMedia("(prefers-color-scheme: dark)") : null;
-  const donker = () => keuze ? keuze === "dark" : !!mq?.matches;
-  function pas() {
-    if (typeof document === "undefined") return;
-    const r = document.documentElement;
-    if (keuze) r.dataset.theme = keuze; else delete r.dataset.theme;
-    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", donker() ? "#0d1416" : "#e7ecea");
-  }
-  pas();
-  mq?.addEventListener?.("change", pas);
-  return {
-    get donker() { return donker(); },
-    wissel() { keuze = donker() ? "light" : "dark"; try { localStorage.setItem("londen1888-thema", keuze); } catch {} pas(); }
-  };
-})();
+/* De app is altijd donker: dat is het sfeervolst en het enige dat gespeeld werd. data-theme="dark" op <html> zet de donkere kleuren aan. */
+(() => { if (typeof document === "undefined") return; document.documentElement.dataset.theme = "dark"; document.querySelector('meta[name="theme-color"]')?.setAttribute("content", "#0d1416"); try { localStorage.removeItem("londen1888-thema"); } catch {} })();
 /* ---------- uitlegballon ----------
    Elk element met data-uitleg krijgt een ballon. Met een muis: erboven hangen.
    Op een aanraakscherm: lang drukken (een gewone tik voert de actie gewoon uit). */
@@ -320,7 +303,6 @@ const Uitleg = (() => {
   addEventListener("scroll", weg, true);
   return { weg };
 })();
-const themaKnop = (cls = "btn small ghost") => `<button class="${cls}" data-act="thema">${Thema.donker ? "Lichte modus" : "Donkere modus"}</button>`;
 
 /* ---------- buren en afstanden ---------- */
 let BUREN = {};
@@ -2350,7 +2332,7 @@ function teken() {
       <span class="stat">Mysteries <b>${S.opgelost}/${S.nodig}</b>${mys ? `: ${esc(mys.naam)}` : ""}</span>
       ${S.klokken?.length ? `<button class="stat klokchip" data-act="klokken-info" title="${esc(S.klokken.map(id => KLOKKEN.find(k => k.id === id)?.naam).join(", "))}">Klokken <b>${S.klokken.map(id => ROMEINS[KLOKKEN.findIndex(k => k.id === id)]).join(" ")}</b></button>` : ""}
       ${S.fase === "helden" ? `<span class="stat beurtchip" style="--kleur:${KLEUREN[S.actief]}">Aan de beurt: <b>${esc(korteNaam(heldDef(actief()).naam))}</b></span>` : ""}
-      <div class="rechts"><button class="btn small ghost" data-act="geluid" aria-pressed="${Geluid.aan}">${Geluid.aan ? "Geluid uit" : "Geluid aan"}</button>${Geluid.heeftMuziek && Geluid.aan ? `<button class="btn small ghost" data-act="muziek" aria-pressed="${Geluid.muziekAan}">${Geluid.muziekAan ? "Muziek uit" : "Muziek aan"}</button>` : ""}<button class="btn small ghost" data-act="tips" aria-pressed="${!!(S.tutorial || UI.tips)}" data-uitleg="${S.tutorial ? "Zet de tutorial uit: geen uitlegvensters en geen suggesties meer." : UI.tips ? "Verberg het tipvak met een suggestie in je beurt." : "Toon in je beurt een tipvak met een suggestie: waar je heen kunt en wat je kunt doen."}">${S.tutorial || UI.tips ? "Tips uit" : "Tips aan"}</button>${themaKnop()}<button class="btn small ghost" data-act="handboek">Handleiding</button><button class="btn small ghost" data-act="stoppen">Stoppen</button></div>
+      <div class="rechts"><button class="btn small ghost" data-act="geluid" aria-pressed="${Geluid.aan}">${Geluid.aan ? "Geluid uit" : "Geluid aan"}</button>${Geluid.heeftMuziek && Geluid.aan ? `<button class="btn small ghost" data-act="muziek" aria-pressed="${Geluid.muziekAan}">${Geluid.muziekAan ? "Muziek uit" : "Muziek aan"}</button>` : ""}<button class="btn small ghost" data-act="tips" aria-pressed="${!!(S.tutorial || UI.tips)}" data-uitleg="${S.tutorial ? "Zet de tutorial uit: geen uitlegvensters en geen suggesties meer." : UI.tips ? "Verberg het tipvak met een suggestie in je beurt." : "Toon in je beurt een tipvak met een suggestie: waar je heen kunt en wat je kunt doen."}">${S.tutorial || UI.tips ? "Tips uit" : "Tips aan"}</button><button class="btn small ghost" data-act="handboek">Handleiding</button><button class="btn small ghost" data-act="stoppen">Stoppen</button></div>
     </header>
     <div class="bordvlak">${tekenBord()}<div id="plekinfo" class="plekinfo" hidden></div>${legendaHtml()}
       <div class="zoomknoppen"><button class="btn small ghost" data-act="zoom-in" aria-label="Inzoomen" title="Inzoomen (of scrollen)">+</button><button class="btn small ghost" data-act="zoom-uit" aria-label="Uitzoomen" title="Uitzoomen">−</button>${(UI.zoom?.s || 1) > 1 ? `<button class="btn small ghost" data-act="zoom-reset" title="Hele kaart">Hele kaart</button>` : ""}</div></div>
@@ -2655,7 +2637,7 @@ function tekenStart() {
   app.innerHTML = `<div class="start">
     ${titel ? `<img class="hero-art" src="${titel}" alt="">` : ""}
     <div><span class="muted">Een coöperatief spel voor 2 of 4 helden</span><h1>Londen, 1888</h1></div>
-    <div class="opties"><button class="btn" data-act="tutorial">Leer spelen (tutorial)</button><button class="btn ghost" data-act="handboek">Handleiding</button><a class="btn ghost" href="lore/index.html">Lore-boek</a><button class="btn ghost" data-act="nieuws">Wat is er nieuw</button><button class="btn ghost" data-act="scorebord">Scorebord</button>${themaKnop("btn ghost")}</div>
+    <div class="opties"><button class="btn" data-act="tutorial">Leer spelen (tutorial)</button><button class="btn ghost" data-act="handboek">Handleiding</button><a class="btn ghost" href="lore/index.html">Lore-boek</a><button class="btn ghost" data-act="nieuws">Wat is er nieuw</button><button class="btn ghost" data-act="scorebord">Scorebord</button></div>
     ${opgeslagen && !opgeslagen.einde ? `<div class="hint">Er is een spel bezig tegen ${esc(byId(D.goden, opgeslagen.god)?.naam)}, ronde ${opgeslagen.ronde}. <button class="btn small" data-act="verder">Verder spelen</button></div>` : ""}
     <section><h2>Tegen wie?</h2><div class="goden">${D.goden.map(g => `<button class="optie" data-god="${g.id}" aria-pressed="${u.god === g.id}">${art(`art/goden/${g.id}.jpg`) ? `<img class="godbeeld" src="art/goden/${g.id}.jpg" alt="">` : ""}<b>${esc(g.naam)}</b><span class="muted">${esc(g.titel)}</span><span>${esc(g.regel)}</span></button>`).join("")}</div></section>
     <section><h2>Moeilijkheid</h2><div class="opties">${Object.entries(MOEILIJKHEID).map(([k, m]) => `<button class="optie" data-moeilijk="${k}" aria-pressed="${u.moeilijkheid === k}">${m.naam}: ${m.nodig} mysteries</button>`).join("")}</div></section>
@@ -2864,7 +2846,6 @@ app.addEventListener("click", e => {
     case "undo": { const u = UI.undo.pop(); if (!u) return; const ab = S.aanbod; S = JSON.parse(u.staat); S.aanbod = ab; verbergPlekInfo(); log(`Ongedaan gemaakt: ${u.label}`); opslaan(); return teken(); }
     case "geluid": Geluid.wissel(); return teken();
     case "muziek": Geluid.wisselMuziek(); return teken();
-    case "thema": Thema.wissel(); return teken();
     case "toestand-plus": { S.aangepast = true; const v = document.getElementById("pas-toestand").value; if (!heeft(h, v)) h.toestanden.push(v); opslaan(); return teken(); }
     case "toestand-min": { S.aangepast = true; const v = document.getElementById("pas-toestand").value; h.toestanden = h.toestanden.filter(x => x !== v); opslaan(); return teken(); }
     case "verplaats": S.aangepast = true; h.plek = document.getElementById("pas-plek").value; opslaan(); return teken();

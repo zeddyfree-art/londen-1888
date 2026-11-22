@@ -1,5 +1,13 @@
 [
   {
+    "id": 17,
+    "datum": "22 november 2026",
+    "titel": "Altijd donker",
+    "punten": [
+      "De app speelt nu altijd in de donkere modus, die het sfeervolst is. De knop voor de lichte modus is weg, dus er staat bovenin een knop minder."
+    ]
+  },
+  {
     "id": 16,
     "datum": "22 november 2026",
     "titel": "Wie is er aan de beurt, en wat heb je bij je",
