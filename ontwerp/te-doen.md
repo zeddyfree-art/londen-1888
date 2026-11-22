@@ -2,7 +2,35 @@
 
 Deze lijst werken we aan het einde van elk gesprek bij. Zet bij elke update die spelers merken een nieuw bericht bovenaan `data/nieuws.json` (met een hoger `id`): dat verschijnt één keer als "Wat is er nieuw" als de app opent.
 
-*Laatst bijgewerkt: 21 november 2026 (elfde sessie)*
+*Laatst bijgewerkt: 22 november 2026 (twaalfde sessie)*
+
+## Gemeten na de twaalfde sessie (overslag, buit, De Lange Nacht)
+
+Met `node tools/testbot.js 80` en `MODUS=lang node tools/testbot.js 80`. Nieuwe regels: overslag, gewone monsters 1 Leven en 1 Taaiheid meer, buit na elk mysterie, laatste nacht 4 verzet per ontbrekend mysterie. Normaal staat nu op Mist 3 lager, genadeloos op 4 lager. De Lange Nacht heeft 1 mysterie meer en Mist +2. Uitslag in `balans.json` en `balans-lang.json`; het klokkenmodel (`data/klokken.json`, basis) is bijgewerkt uit `balans.json`.
+
+**Gewoon (winkans):**
+
+| God | Ontspannen 2 / 4 | Normaal 2 / 4 | Genadeloos 2 / 4 |
+|---|---|---|---|
+| Vathrûn | 94% / 99% | 79% / 84% | 20% / 11% |
+| Azh-Ilareth | 96% / 100% | 58% / 71% | 14% / 9% |
+| Nebet-Ankhu | 95% / 100% | 83% / 75% | 35% / 25% |
+| Ysmara | 94% / 100% | 46% / 78% | 8% / 6% |
+| Morghast | 98% / 98% | 85% / 76% | 24% / 8% |
+
+**De Lange Nacht (winkans, rondes met 2 helden op normaal):**
+
+| God | Ontspannen 2 / 4 | Normaal 2 / 4 | Genadeloos 2 / 4 | Rondes |
+|---|---|---|---|---|
+| Vathrûn | 94% / 100% | 65% / 84% | 19% / 11% | 10,9 |
+| Azh-Ilareth | 88% / 100% | 58% / 81% | 11% / 9% | 9,6 |
+| Nebet-Ankhu | 90% / 98% | 63% / 64% | 33% / 18% | 10,0 |
+| Ysmara | 89% / 98% | 39% / 83% | 4% / 6% | 10,9 |
+| Morghast | 99% / 99% | 80% / 83% | 18% / 11% | 9,4 |
+
+**Verzamelen per held** (normaal, 2 helden; gemeten met een eigen meetscript): gewoon 4,3 spullen (was 2,3, inclusief 1,8 persoonlijke), 1,1 artefact (was 0,3). De Lange Nacht 3,6 spullen en 2,4 artefacten (de testbot kiest in de beloningsronde vaak een artefact). Groeien blijft rond 0,6 tot 0,8 keer per held.
+
+
 
 ## Gemeten na de elfde sessie (met Rondkijken)
 
@@ -118,6 +146,15 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [ ] Na een paar potjes: welke ★-keuzes (heldkeuzes) en vervolgverhalen vallen op, en willen we er meer?
 - [ ] Ysmara en Morghast hebben 10 verhaalkaarten elk, de oude goden 16 tot 17. Na een paar potjes kijken of er meer nodig zijn.
 
+### De Lange Nacht en de proefregels (twaalfde sessie)
+- [ ] Beelden maken met `beeldopdracht-lange-nacht.md` (64 stuks), daarna in `tools/art-drive.json` zetten en ophalen.
+- [ ] Gedeeld scorebord bijwerken met het nieuwe model: `NODE_USE_ENV_PROXY=1 node tools/zet-scorebord-online.js`. Tot dan rekent de server met het oude model.
+- [ ] De Lange Nacht op het gedeelde scorebord: de server kent de modus nog niet, daarom worden zulke overwinningen nu niet gedeeld.
+- [ ] De Lange Nacht duurt zo'n 10 rondes (gewoon 7 tot 8). Voor echt 90 tot 120 minuten is een vijfde mysterie per god nodig. Eerst testen of de huidige lengte bevalt.
+- [ ] Ysmara met 2 helden op normaal is zwaar (46%, Lange Nacht 39%). Na echte potjes bekijken.
+- [ ] Playtest-vragen uit de brief: aantal spullen aan het eind, het moment waarop een item het verschil maakte, trots op je held (1 tot 5), puzzel of avontuur (1 tot 5).
+- [ ] Testbot gebruikt artefacten en spreuken buiten gevechten niet; echte spelers halen meer uit de nieuwe kaarten.
+
 ### Spel
 - [ ] Testen met echte potjes: Aggie (klap opvangen), Lottie (verstoppen) en Julian (Kennis in gevechten). Is Julian niet te sterk met Kennis 4 en een zwaard?
 - [ ] Testen met echte potjes: wordt Rondkijken gebruikt, en welke van de drie keuzes? Is rondhoren (Waarneming 9, mislukt −1 Geest) de moeite waard?
@@ -126,6 +163,10 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [ ] Testen: voelen de nieuwe geruchten (Scheur sluiten, monster verslaan) haalbaar?
 
 ## Klaar
+
+- [x] Overslag in gevechten en de laatste nacht, ruim gehaald bij ontmoetingen, monsters taaier
+- [x] Buit na elk mysterie; De Lange Nacht met bedrijven en beloningsrondes
+- [x] 33 spullen, 13 spreuken en 18 artefacten (5 episch), met algemene velden en controle in `tools/controleer-kaarten.js`
 
 - [x] Knop Rondkijken op elke plek in Londen: inkopen, rijtuigkaartje of rondhoren (zie `voorstel-overal-iets-te-doen.md`)
 - [x] De 25 nieuwe beelden (helden, spullen, goden, monsters, personages) staan in het spel en in `tools/art-drive.json`

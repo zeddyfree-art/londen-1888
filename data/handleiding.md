@@ -7,7 +7,7 @@ Londen, 1888. Onder de stad roert zich een oude god. Jullie spelen **samen** teg
 - **Jullie winnen** als jullie genoeg **mysteries** oplossen: 2 in de ontspannen stand, 3 in de normale en de genadeloze stand.
 - Komt de **Mist** op 0, dan ontwaakt de oude god. Dan volgt nog **de laatste nacht**: één laatste kans (zie hieronder). In de genadeloze stand is het dan meteen voorbij.
 
-Een gewoon potje duurt ongeveer 45 minuten. **De Lange Nacht** duurt 90 tot 120 minuten (zie verderop).
+Een gewoon potje duurt ongeveer 45 minuten. **De Lange Nacht** duurt ongeveer 75 tot 90 minuten (zie verderop).
 
 ## Een spel beginnen
 
@@ -148,7 +148,7 @@ Met **3 Trofeeën** tik je op **Groeien**: +1 op een kenmerk (maximaal 5), +1 ma
 
 ## De Lange Nacht
 
-Een langere spelmodus van 90 tot 120 minuten, voor als je je held echt wilt zien groeien. Kies hem op het beginscherm bij **Speelduur**.
+Een langere spelmodus van ongeveer 75 tot 90 minuten (zo'n 10 rondes met 2 helden), voor als je je held echt wilt zien groeien. Kies hem op het beginscherm bij **Speelduur**.
 
 - Jullie moeten **1 mysterie meer** oplossen, en de Mist begint **2 hoger**.
 - Het spel heeft **bedrijven**. Na elk opgelost mysterie begint een nieuw bedrijf, en Londen wordt grimmiger:
