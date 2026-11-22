@@ -147,8 +147,6 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [ ] Ysmara en Morghast hebben 10 verhaalkaarten elk, de oude goden 16 tot 17. Na een paar potjes kijken of er meer nodig zijn.
 
 ### De Lange Nacht en de proefregels (twaalfde sessie)
-- [ ] Beelden maken met `beeldopdracht-lange-nacht.md` (64 stuks), daarna in `tools/art-drive.json` zetten en ophalen.
-- [ ] Gedeeld scorebord bijwerken met het nieuwe model: `NODE_USE_ENV_PROXY=1 node tools/zet-scorebord-online.js`. Tot dan rekent de server met het oude model.
 - [ ] De Lange Nacht op het gedeelde scorebord: de server kent de modus nog niet, daarom worden zulke overwinningen nu niet gedeeld.
 - [ ] De Lange Nacht duurt zo'n 10 rondes (gewoon 7 tot 8). Voor echt 90 tot 120 minuten is een vijfde mysterie per god nodig. Eerst testen of de huidige lengte bevalt.
 - [ ] Ysmara met 2 helden op normaal is zwaar (46%, Lange Nacht 39%). Na echte potjes bekijken.
@@ -164,6 +162,8 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 
 ## Klaar
 
+- [x] De 64 beelden voor De Lange Nacht staan in het spel en in `tools/art-drive.json`
+- [x] Gedeeld scorebord online bijgewerkt met het nieuwe klokkenmodel
 - [x] Overslag in gevechten en de laatste nacht, ruim gehaald bij ontmoetingen, monsters taaier
 - [x] Buit na elk mysterie; De Lange Nacht met bedrijven en beloningsrondes
 - [x] 33 spullen, 13 spreuken en 18 artefacten (5 episch), met algemene velden en controle in `tools/controleer-kaarten.js`
