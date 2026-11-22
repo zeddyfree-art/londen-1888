@@ -162,6 +162,48 @@ In de schuilhutten van de koetsiers, waar ze 's nachts koffie drinken, gaat het 
 
 **In het spel:** Mist −1 · Leg 1 Aanwijzing op King's Cross. Een koetsier biedt jullie zijn diensten aan: een van jullie krijgt binnenkort een ontmoeting met hem.
 
+### Een heldere ochtend
+
+Voor het eerst in weken staat er een blauwe lucht boven de Theems. Op de bruggen blijven mensen staan om ernaar te kijken, alsof ze vergeten waren dat het kon.
+
+**In het spel:** Elke held herstelt 1 Lichaam en 1 Geest.
+
+### Een anonieme gift
+
+Bij elk van jullie ligt 's ochtends een envelop op de mat, zonder afzender. Er zitten bankbiljetten in, en een kaartje in een vast handschrift: 'Ga door. Er zijn meer mensen die het zien.'
+
+**In het spel:** Elke held krijgt 2 Pond.
+
+### Getuigen melden zich
+
+Een melkboer, een nachtwaker en een dienstmeisje komen los van elkaar naar voren. Ze hebben hetzelfde gezien, en ze zijn opgelucht dat iemand ze gelooft.
+
+**In het spel:** Mist −1 · Leg 3 Aanwijzingen op willekeurige plekken. Elke held herstelt 1 Geest.
+
+### Bloedmaan
+
+De maan komt rood op boven de schoorstenen. Honden janken tot de ochtend, en in de kerken branden de kaarsen scheef. Wie slaapt, droomt van water dat omhoog stroomt.
+
+**In het spel:** Mist −2 · 1 Scheur
+
+### De stad scheurt
+
+Op twee plekken tegelijk zakt de lucht in als nat papier. De ramen in de straat erachter worden zwart, een voor een.
+
+**In het spel:** Mist −1 · 2 Scheuren · 1 monster · Het monster verschijnt bij een Scheur.
+
+### Paniek in de straten
+
+Een gerucht gaat als een vuur door de wijken: er is iets in de riolen dat kinderen meeneemt. De menigte rent, en wie in de weg staat, wordt omvergelopen.
+
+**In het spel:** Mist −1 · Elke held verliest 1 Lichaam en 1 Geest. Alle monsters bewegen.
+
+### Een nacht zonder einde
+
+De klokken slaan zes, en zeven, en acht, maar het wordt niet licht. Pas tegen het middaguur kruipt er een grijze schemer over de daken.
+
+**In het spel:** Mist −2 · Elke held verliest 1 Geest.
+
 ## Vathrûn
 
 ### Springtij

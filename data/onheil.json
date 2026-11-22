@@ -824,5 +824,115 @@
         "straf": 2
       }
     ]
+  },
+  {
+    "id": "o47",
+    "naam": "Een heldere ochtend",
+    "mist": 0,
+    "scheur": 0,
+    "monster": 0,
+    "extra": "Elke held herstelt 1 Lichaam en 1 Geest.",
+    "tekst": "Voor het eerst in weken staat er een blauwe lucht boven de Theems. Op de bruggen blijven mensen staan om ernaar te kijken, alsof ze vergeten waren dat het kon.",
+    "acties": [
+      {
+        "type": "geestAlle",
+        "waarde": 1
+      },
+      {
+        "type": "lichaamAlle",
+        "waarde": 1
+      }
+    ]
+  },
+  {
+    "id": "o48",
+    "naam": "Een anonieme gift",
+    "mist": 0,
+    "scheur": 0,
+    "monster": 0,
+    "extra": "Elke held krijgt 2 Pond.",
+    "tekst": "Bij elk van jullie ligt 's ochtends een envelop op de mat, zonder afzender. Er zitten bankbiljetten in, en een kaartje in een vast handschrift: 'Ga door. Er zijn meer mensen die het zien.'",
+    "acties": [
+      {
+        "type": "pondAlle",
+        "waarde": 2
+      }
+    ]
+  },
+  {
+    "id": "o49",
+    "naam": "Getuigen melden zich",
+    "mist": 1,
+    "scheur": 0,
+    "monster": 0,
+    "extra": "Leg 3 Aanwijzingen op willekeurige plekken. Elke held herstelt 1 Geest.",
+    "tekst": "Een melkboer, een nachtwaker en een dienstmeisje komen los van elkaar naar voren. Ze hebben hetzelfde gezien, en ze zijn opgelucht dat iemand ze gelooft.",
+    "acties": [
+      {
+        "type": "aanwijzingWillekeurig",
+        "aantal": 3
+      },
+      {
+        "type": "geestAlle",
+        "waarde": 1
+      }
+    ]
+  },
+  {
+    "id": "o50",
+    "naam": "Bloedmaan",
+    "mist": 2,
+    "scheur": 1,
+    "monster": 0,
+    "tekst": "De maan komt rood op boven de schoorstenen. Honden janken tot de ochtend, en in de kerken branden de kaarsen scheef. Wie slaapt, droomt van water dat omhoog stroomt.",
+    "acties": []
+  },
+  {
+    "id": "o51",
+    "naam": "De stad scheurt",
+    "mist": 1,
+    "scheur": 2,
+    "monster": 1,
+    "extra": "Het monster verschijnt bij een Scheur.",
+    "tekst": "Op twee plekken tegelijk zakt de lucht in als nat papier. De ramen in de straat erachter worden zwart, een voor een.",
+    "acties": []
+  },
+  {
+    "id": "o52",
+    "naam": "Paniek in de straten",
+    "mist": 1,
+    "scheur": 0,
+    "monster": 0,
+    "extra": "Elke held verliest 1 Lichaam en 1 Geest. Alle monsters bewegen.",
+    "tekst": "Een gerucht gaat als een vuur door de wijken: er is iets in de riolen dat kinderen meeneemt. De menigte rent, en wie in de weg staat, wordt omvergelopen.",
+    "acties": [
+      {
+        "type": "lichaamAlle",
+        "waarde": -1
+      },
+      {
+        "type": "geestAlle",
+        "waarde": -1
+      },
+      {
+        "type": "monstersBewegen",
+        "stappen": 1
+      }
+    ]
+  },
+  {
+    "id": "o53",
+    "naam": "Een nacht zonder einde",
+    "mist": 2,
+    "scheur": 0,
+    "monster": 0,
+    "extra": "Elke held verliest 1 Geest.",
+    "tekst": "De klokken slaan zes, en zeven, en acht, maar het wordt niet licht. Pas tegen het middaguur kruipt er een grijze schemer over de daken.",
+    "acties": [
+      {
+        "type": "geestAlle",
+        "waarde": -1
+      }
+    ]
   }
 ]

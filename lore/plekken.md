@@ -8,7 +8,7 @@
 
 *Heide, mist in de holtes, een koperen koepel op de heuvel.*
 
-- **Dienst (Sterrenwacht):** Bekijk de bovenste 2 Onheilskaarten. Leg ze terug in een volgorde naar keuze.
+- **Dienst (Sterrenwacht):** Bekijk de bovenste 2 Onheilskaarten. Leg er één onderop de stapel, of leg ze terug in een volgorde naar keuze.
 - 3 algemene ontmoetingen, verhaalkaarten: Azh-Ilareth, Ysmara.
 
 ### Marylebone
@@ -92,7 +92,7 @@
 
 *Overvolle logementen, slagers en nauwe steegjes waar je beter niet alleen loopt.*
 
-- **Dienst (Logementen):** Hoor geruchten: kijk welke plek als volgende een Scheur krijgt.
+- **Dienst (Logementen):** Hoor geruchten: kijk welke plek als volgende een Scheur krijgt. Of betaal een sekte (1 Pond en 1 Geest, Charisma 8) om een Scheur te openen: lukt het, dan kies jij de plek, anders het toeval. Er komt altijd een monster mee.
 - 4 algemene ontmoetingen, verhaalkaarten: Nebet-Ankhu, Nebet-Ankhu, Morghast.
 
 ### Whitehall

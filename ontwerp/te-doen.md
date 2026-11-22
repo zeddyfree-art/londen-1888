@@ -2,7 +2,19 @@
 
 Deze lijst werken we aan het einde van elk gesprek bij. Zet bij elke update die spelers merken een nieuw bericht bovenaan `data/nieuws.json` (met een hoger `id`): dat verschijnt één keer als "Wat is er nieuw" als de app opent.
 
-*Laatst bijgewerkt: 21 november 2026 (elfde sessie)*
+*Laatst bijgewerkt: 22 november 2026 (twaalfde sessie)*
+
+## Gemeten na de twaalfde sessie (zeven nieuwe onheilskaarten, Scheuren-garantie, 24 helden)
+
+Met `node tools/testbot.js 60` (60 potjes per vakje, dus ongeveer 6 procentpunt meetruis). Het oude `balans.json` (150 potjes) is blijven staan. Normaal ligt gemiddeld op 70% (was 73%), genadeloos op 26% (was 24%): binnen de meetruis. De testbot gebruikt de vermogens van de nieuwe helden (les geven, handoplegging) en de sterrenwacht niet.
+
+| God | Ontspannen 2 / 4 | Normaal 2 / 4 | Genadeloos 2 / 4 |
+|---|---|---|---|
+| Vathrûn | 98% / 100% | 82% / 75% | 33% / 30% |
+| Azh-Ilareth | 93% / 100% | 70% / 68% | 28% / 27% |
+| Nebet-Ankhu | 95% / 97% | 68% / 75% | 30% / 13% |
+| Ysmara | 88% / 97% | 53% / 68% | 27% / 22% |
+| Morghast | 98% / 100% | 73% / 72% | 30% / 20% |
 
 ## Gemeten na de elfde sessie (met Rondkijken)
 
@@ -112,6 +124,7 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [ ] Op de iPad controleren: klinkt de sfeer nu zachter als de muziek aan staat? (Gaat via Web Audio, omdat Safari het gewone volume negeert.)
 
 ### Beelden
+- [ ] Thuisplekkaarten voor Pema, Khalil en Benedict.
 
 ### Kaarten en verhaal
 - [ ] De teksten beoordelen we gaandeweg, tijdens het spelen.
@@ -119,6 +132,10 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [ ] Ysmara en Morghast hebben 10 verhaalkaarten elk, de oude goden 16 tot 17. Na een paar potjes kijken of er meer nodig zijn.
 
 ### Spel
+- [ ] Testen met echte potjes: de nieuwe helden. Is Khalil (les geven, Boeken geven Kennis) niet te sterk met 4 helden? Is Pema met alles op 3 te zwak aan het begin? Is handoplegging (2 herstel per actie) te veel naast rusten?
+- [ ] Testen: helpt de tutorial-coach (rondes 1 tot 3) echt? Zijn er beurten waarin de suggestie vreemd is?
+- [ ] Testen: wordt de sekte in Whitechapel gebruikt, en is het risico (monster, Geest) goed?
+- [ ] De spreiding van de onheilskaarten na een paar potjes bekijken: zijn de zware kaarten (Bloedmaan, Een nacht zonder einde: Mist −2) niet te hard?
 - [ ] Testen met echte potjes: Aggie (klap opvangen), Lottie (verstoppen) en Julian (Kennis in gevechten). Is Julian niet te sterk met Kennis 4 en een zwaard?
 - [ ] Testen met echte potjes: wordt Rondkijken gebruikt, en welke van de drie keuzes? Is rondhoren (Waarneming 9, mislukt −1 Geest) de moeite waard?
 - [ ] Testen: voelen de persoonlijke spullen nuttig, zonder te sterk te zijn?
@@ -126,6 +143,14 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [ ] Testen: voelen de nieuwe geruchten (Scheur sluiten, monster verslaan) haalbaar?
 
 ## Klaar
+
+- [x] Tutorial-coach: de eerste 3 rondes per beurt een suggestie met het waarom en de regel; de knop of plek licht op
+- [x] Scheuren-mysteries lopen niet meer vast (vaste plek krijgt vanzelf een Scheur); voortgang in het mysteriekader
+- [x] Sekte in Whitechapel: zelf een Scheur laten openen, met monster
+- [x] Sterrenwacht: één van de twee kaarten onderop, en je ziet het effect van elke kaart; zeven nieuwe onheilskaarten (drie meevallers, vier zware)
+- [x] Winkels en keuzes tonen altijd plaatje en effect; kleur per soort kaart
+- [x] Drie nieuwe helden: Pema Lhamo, Khalil Nasr en Benedict Ashcombe, met hun 9 beelden (portretten en persoonlijke spullen) in het spel en in `tools/art-drive.json`
+- [x] Tips aan/uit wordt onthouden; na Verder spelen staat het paneel op de held die aan de beurt is
 
 - [x] Knop Rondkijken op elke plek in Londen: inkopen, rijtuigkaartje of rondhoren (zie `voorstel-overal-iets-te-doen.md`)
 - [x] De 25 nieuwe beelden (helden, spullen, goden, monsters, personages) staan in het spel en in `tools/art-drive.json`
