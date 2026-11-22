@@ -605,3 +605,14 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);ou
 .onheilvoorzien{display:grid;gap:4px;margin:0 0 12px;padding:8px 10px;border-left:4px solid var(--bad);background:var(--bg)}
 .onheilvoorzien .effect{justify-self:start}
 .onheilvoorzien .muted{font-size:14px}
+
+/* Radar-ping: een lichtkring golft vanuit de gekozen held over de kaart */
+.bord .ping{pointer-events:none}
+.bord .ping circle{fill:none;stroke:var(--kleur);stroke-width:4;opacity:.9}
+.bord g.held.gepingd .heldrand{stroke:#fff;stroke-width:3}
+@media (prefers-reduced-motion:no-preference){
+  .bord .ping circle{animation:ping 1.5s cubic-bezier(.2,.6,.3,1) both}
+  .bord g.held.gepingd{animation:pingheld .5s ease-in-out 3}
+}
+@keyframes ping{0%{transform:scale(1);opacity:.95;stroke-width:6}100%{transform:scale(14);opacity:0;stroke-width:1}}
+@keyframes pingheld{50%{filter:brightness(1.8) drop-shadow(0 0 8px #fff)}}

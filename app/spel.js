@@ -2198,6 +2198,7 @@ function teken() {
 }
 function tekenBord() {
   const b = D.bord, h = actief(), reik = bereikbaar(h);
+  UI.pingOp = "";
   const bg = art("art/bord/londen.jpg");
   const anim = UI.reis && Date.now() - UI.reis.t < 1500 ? UI.reis : null; UI.reis = null;
   const P = Object.fromEntries(b.plekken.map(p => [p.id, p]));
@@ -2247,6 +2248,7 @@ function tekenBord() {
       <ellipse class="mist2" cx="700" cy="300" rx="380" ry="140" fill="url(#mistvlek)"/>
       <ellipse class="mist3" cx="520" cy="600" rx="460" ry="120" fill="url(#mistvlek)"/>
     </g>
+    ${UI.pingOp}
   </svg>`;
 }
 function aanwToken(x, y, n, id) {
@@ -2262,10 +2264,26 @@ function monsterToken(m, x, y) {
     <circle class="monrand" cx="${x}" cy="${y}" r="${r + 2}"/>
     ${img ? `<image href="${img}" x="${x - r}" y="${y - r}" width="${r * 2}" height="${r * 2}" clip-path="url(#mt-${m.uid})" preserveAspectRatio="xMidYMin slice"/>` : `<text class="mon-t" x="${x}" y="${y + 4}" text-anchor="middle">${ep ? "★" : esc(d.naam[0])}</text>`}</g>`;
 }
+/* Radar: tik je rechts op een held, dan licht zijn fiche op en golft er een lichtkring vanuit hem over de kaart.
+   De ping tekent mee met het bord (dat opnieuw tekent als plaatjes laden), met de tijd die al verstreken is. */
+const PINGDUUR = 2200;
+function pingHeld(i) {
+  UI.ping = { i, t: Date.now() };
+  teken(); setTimeout(() => { if (UI.ping && Date.now() - UI.ping.t >= PINGDUUR) { UI.ping = null; teken(); } }, PINGDUUR + 50);
+  const fiche = app.querySelector(`svg.bord g.held[data-held="${i}"]`);
+  const r = fiche?.getBoundingClientRect();
+  if (r && (r.bottom < 0 || r.top > innerHeight)) fiche.scrollIntoView({ block: "center", behavior: RUSTIG ? "auto" : "smooth" });
+}
+function pingHtml(cx, cy, i) {
+  const t = (Date.now() - UI.ping.t) / 1000;
+  return `<g class="ping" style="--kleur:${KLEUREN[i]}">${Array.from({ length: RUSTIG ? 1 : 3 }, (_, k) => `<circle cx="${cx}" cy="${cy}" r="${RUSTIG ? 30 : 20}" style="transform-origin:${cx}px ${cy}px;animation-delay:${(k * .35 - t).toFixed(2)}s"/>`).join("")}</g>`;
+}
 function heldFiche(x, i, cx, cy, anim) {
   const img = art(`art/helden/${x.id}.jpg`), beurt = i === S.actief && S.fase === "helden", r = beurt ? 16 : 12;
   const reist = anim && anim.i === i;
-  return `<g class="held${beurt ? " beurt" : ""}${reist ? " reist" : ""}"${reist ? ` style="--dx:${(anim.van.x - cx).toFixed(1)}px;--dy:${(anim.van.y - cy).toFixed(1)}px"` : ""}><title>${esc(heldDef(x).naam)}${beurt ? " (aan de beurt)" : ""}</title>
+  const ping = UI.ping?.i === i && Date.now() - UI.ping.t < PINGDUUR;
+  if (ping) UI.pingOp = pingHtml(cx, cy, i);
+  return `<g class="held${beurt ? " beurt" : ""}${reist ? " reist" : ""}${ping ? " gepingd" : ""}" data-held="${i}"${reist ? ` style="--dx:${(anim.van.x - cx).toFixed(1)}px;--dy:${(anim.van.y - cy).toFixed(1)}px"` : ""}><title>${esc(heldDef(x).naam)}${beurt ? " (aan de beurt)" : ""}</title>
     ${beurt ? `<circle class="beurtgloed" cx="${cx}" cy="${cy}" r="${r + 8}" fill="${KLEUREN[i]}"/>` : ""}
     <clipPath id="clip-${x.id}"><circle cx="${cx}" cy="${cy}" r="${r}"/></clipPath>
     <circle class="heldrand" cx="${cx}" cy="${cy}" r="${r + 2.5}" fill="${KLEUREN[i]}"/>
@@ -2592,7 +2610,7 @@ app.addEventListener("click", e => {
   if (t.dataset.moeilijk) { u.moeilijkheid = t.dataset.moeilijk; return teken(); }
   if (t.dataset.aantal) { u.aantal = +t.dataset.aantal; u.helden = u.helden.slice(0, u.aantal); return teken(); }
   if (t.dataset.held) return veilig(() => toonHeld(t.dataset.held));
-  if (t.dataset.bekijk) { UI.bekeken = +t.dataset.bekijk; return teken(); }
+  if (t.dataset.bekijk) { UI.bekeken = +t.dataset.bekijk; teken(); return pingHeld(UI.bekeken); }
   if (t.dataset.plek && S && !S.einde) {
     const kanReizen = bereikbaar(actief()).includes(t.dataset.plek);
     if (kanReizen && (UI.wijzer === "mouse" || UI.plekVast === t.dataset.plek)) return reis(t.dataset.plek);
