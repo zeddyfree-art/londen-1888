@@ -252,4 +252,4 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [x] Een vierde mysterie per god, van het type "breng"; elk potje doen er 3 van de 4 mee. Raïs Hamdi is nu in Londen (Whitechapel).
 - [x] Gecontroleerd: alle 156 afbeeldingen die het spel gebruikt, zijn er
 - [x] Legenda compact en inklapbaar; op de iPad eerst bekijken, dan reizen; Ongedaan maken voor reizen en rusten
-- [x] Speltestfeedback 22-11: portret van de held aan het begin van elke beurt en ontmoeting; overzicht van inzetbare middelen bij gevechten en ontmoetingen; verslagen monsters vechten niet nog eens mee; stations bovenop de kaart; grotere plekken en plaatsnamen
+- [x] Speltestfeedback 22-11: portret van de held aan het begin van elke beurt en ontmoeting; overzicht van inzetbare middelen bij gevechten en ontmoetingen; verslagen monsters vechten niet nog eens mee; stations bovenop de kaart; grotere plekken en plaatsnamen; helden sorteren op naam of kenmerk op het startscherm

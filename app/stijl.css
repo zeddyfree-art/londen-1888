@@ -644,3 +644,7 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);ou
 .middel.helpt{border-color:var(--good);border-left-color:var(--good);box-shadow:0 0 0 1px var(--good)}
 .middel.helpt small{color:var(--good)}
 .middelen-noot{margin:6px 0 0;font-size:12px;color:var(--muted)}
+/* ===== Helden sorteren op het startscherm ===== */
+.sorteer{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:4px 0 12px}
+.sorteer .optie.klein{min-height:36px;padding:6px 12px;font-size:14px}
+.heldkaart .getallen b{color:var(--accent)}

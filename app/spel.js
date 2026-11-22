@@ -2638,9 +2638,19 @@ function tekenEinde() {
     ${scoreHtml}
     <div><button class="btn" data-act="nieuw">Nieuw spel</button> <button class="btn ghost" data-act="scorebord">Scorebord</button></div></div>`;
 }
+/* Volgorde van de helden op het startscherm: standaard, op naam, of op een kenmerk (hoogste eerst) */
+const HELDSORTERING = "londen1888-heldsortering";
+function gesorteerdeHelden(sort) {
+  const naam = h => korteNaam(h.naam);
+  const l = D.helden.slice();
+  if (sort === "naam") return l.sort((a, b) => naam(a).localeCompare(naam(b), "nl"));
+  if (KNAAM[sort]) return l.sort((a, b) => b.kenmerken[sort] - a.kenmerken[sort] || naam(a).localeCompare(naam(b), "nl"));
+  return l;
+}
 function tekenStart() {
   const opgeslagen = laden();
   const u = UI.start;
+  if (u.sort === undefined) { try { u.sort = localStorage.getItem(HELDSORTERING) || "standaard"; } catch { u.sort = "standaard"; } }
   const titel = art("art/scherm/titel.jpg");
   app.innerHTML = `<div class="start">
     ${titel ? `<img class="hero-art" src="${titel}" alt="">` : ""}
@@ -2655,10 +2665,11 @@ function tekenStart() {
     <section><h2>Kies ${u.aantal} helden <span class="muted" style="font-size:16px">(${u.helden.length} gekozen)</span></h2>
       <div class="opties"><button class="btn small ghost" data-act="willekeurig">Willekeurig kiezen</button></div>
       <p class="muted">Tik op een held om het verhaal, de kenmerken, het vermogen en de uitrusting te bekijken.</p>
-      <div class="heldenkeus">${D.helden.map(h => `<button class="optie heldkaart" data-held="${h.id}" aria-pressed="${u.helden.includes(h.id)}">
+      <div class="sorteer" role="group" aria-label="Helden sorteren"><span class="muted">Sorteren:</span>${[["standaard", "Standaard"], ["naam", "A–Z"], ...KENMERKEN.map(([k, l]) => [k, l.slice(0, 3)])].map(([k, l]) => `<button class="optie klein" data-sorteer="${k}" aria-pressed="${u.sort === k}"${KNAAM[k] ? ` title="${esc(KNAAM[k])}, hoogste eerst"` : ""}>${l}</button>`).join("")}</div>
+      <div class="heldenkeus">${gesorteerdeHelden(u.sort).map(h => `<button class="optie heldkaart" data-held="${h.id}" aria-pressed="${u.helden.includes(h.id)}">
         ${art(`art/helden/${h.id}.jpg`) ? `<img class="mini" src="art/helden/${h.id}.jpg" alt="">` : `<span class="mini leeg">${esc(initialen(h.naam))}</span>`}
         <span class="info"><b>${esc(h.naam)}</b><small>${esc(h.rol)} · ${esc(h.start)}</small>
-        <small class="getallen">${KENMERKEN.map(([k, l]) => `${l.slice(0, 3)} ${h.kenmerken[k]}`).join(" · ")}<br>Lichaam ${h.lichaam} · Geest ${h.geest}${h.bondgenoot ? ` · met ${esc(h.bondgenoot.soort)}` : ""}</small></span>
+        <small class="getallen">${KENMERKEN.map(([k, l]) => k === u.sort ? `<b>${l.slice(0, 3)} ${h.kenmerken[k]}</b>` : `${l.slice(0, 3)} ${h.kenmerken[k]}`).join(" · ")}<br>Lichaam ${h.lichaam} · Geest ${h.geest}${h.bondgenoot ? ` · met ${esc(h.bondgenoot.soort)}` : ""}</small></span>
         ${u.helden.includes(h.id) ? `<span class="gekozen" aria-label="Gekozen">✓</span>` : ""}</button>`).join("")}</div></section>
     ${klokSectie(u)}
     <div><button class="btn" data-act="begin" ${u.god && u.helden.length === u.aantal ? "" : "disabled"}>Begin het spel${u.klokken.length ? ` · ${u.klokken.length} ${u.klokken.length === 1 ? "klok" : "klokken"}` : ""}</button></div>
@@ -2778,6 +2789,7 @@ app.addEventListener("click", e => {
   if (t.dataset.god) { u.god = t.dataset.god; return teken(); }
   if (t.dataset.moeilijk) { u.moeilijkheid = t.dataset.moeilijk; return teken(); }
   if (t.dataset.modus) { u.modus = t.dataset.modus; return teken(); }
+  if (t.dataset.sorteer) { u.sort = t.dataset.sorteer; try { localStorage.setItem(HELDSORTERING, u.sort); } catch {} return teken(); }
   if (t.dataset.aantal) { u.aantal = +t.dataset.aantal; u.helden = u.helden.slice(0, u.aantal); return teken(); }
   if (t.dataset.held) return veilig(() => toonHeld(t.dataset.held));
   if (t.dataset.bekijk) { UI.bekeken = +t.dataset.bekijk; teken(); return pingHeld(UI.bekeken); }
