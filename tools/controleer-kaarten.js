@@ -64,5 +64,16 @@ for (const o of data("onheil.json")) {
   if (o.persoon && !persoonIds.has(o.persoon)) fout(o.id, `onbekend persoon ${o.persoon}`);
 }
 for (const [v, id] of nodig) if (!gezet.has(v)) fout(id, `geen kaart zet de vlag ${v}`);
-console.log(fouten.length ? fouten.join("\n") : `Alle ${ids.size} ontmoetingen en de onheilskaarten zijn in orde.`);
+/* spullen, spreuken en artefacten met algemene effecten (De Lange Nacht) */
+const BONUS = new Set(["gevecht", "gevechtMens", "kennis", "scherpte", "kracht", "overtuiging", "gruwel", "spreuk", "stap", "overzee", "draag"]);
+const bonus = (id, b) => { for (const k of Object.keys(b || {})) if (!BONUS.has(k)) fout(id, `onbekende bonus ${k}`); };
+for (const s of data("spullen.json")) { const id = `spullen/${s.id}`; bonus(id, s.bonus); bonus(id, s.bonusOntmoeting); effecten(id, s.effect); if (s.gebruik === "effect" && !s.effect) fout(id, "gebruik effect zonder effect"); if (s.herworp && !KENMERKEN.has(s.herworp)) fout(id, `onbekende herworp ${s.herworp}`); }
+for (const s of data("spreuken.json")) { const id = `spreuken/${s.id}`; if (!KENMERKEN.has(s.test)) fout(id, `onbekend kenmerk ${s.test}`); effecten(id, s.effect); effecten(id, s.mislukt); if (s.auto === "effect" && !s.effect) fout(id, "auto effect zonder effect"); }
+for (const a of data("artefacten.json")) {
+  const id = `artefacten/${a.id}`, g = a.gebruik || {};
+  bonus(id, a.bonus); effecten(id, a.gevechtMis); effecten(id, a.vloek?.effect); effecten(id, g.prijs); effecten(id, g.effect); effecten(id, g.mislukt); effecten(id, g.gok?.goed); effecten(id, g.gok?.slecht);
+  if (g.test) test(id, g.test);
+  if (a.vloek && !(a.vloek.kans >= 1 && a.vloek.kans <= 5)) fout(id, "vloek zonder geldige kans");
+}
+console.log(fouten.length ? fouten.join("\n") : `Alle ${ids.size} ontmoetingen, de onheilskaarten en alle spullen, spreuken en artefacten zijn in orde.`);
 process.exit(fouten.length ? 1 : 0);

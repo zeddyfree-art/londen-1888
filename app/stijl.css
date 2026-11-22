@@ -568,3 +568,9 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);ou
 .schuif input:checked+.schuif-baan::after{transform:translateX(18px)}
 .schuif input:focus-visible+.schuif-baan{outline:2px solid var(--accent);outline-offset:2px}
 .eindscore .fout{color:var(--bad);margin:0}
+/* overslag en beloningsronde */
+.overslag{margin:6px 0 0;font-size:14px;color:var(--good)}
+.beloningen{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.beloning{border:1px solid var(--line);background:var(--bg);padding:8px}
+.beloning img{width:100%;aspect-ratio:1;object-fit:cover;display:block;margin-bottom:6px}
+.beloning p{margin:4px 0;font-size:14px}
