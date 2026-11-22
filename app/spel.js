@@ -397,15 +397,17 @@ const OVERGANG = {
   monster: { duur: 1300, html: t => `<div class="og-vignet"></div>${[0, 1, 2].map(i => `<span class="og-klauw" style="--i:${i}"></span>`).join("")}<p class="og-tekst">${esc(t)}</p>` },
   stad: { duur: 1500, html: t => `<div class="og-mist"></div><div class="og-mist twee"></div><div class="og-lamp"></div><p class="og-tekst">${esc(t)}</p>` },
   aanwijzing: { duur: 1500, html: t => `<div class="og-mist"></div>${[0, 1, 2, 3].map(i => `<span class="og-stap" style="--i:${i}"></span>`).join("")}<div class="og-loep"></div><p class="og-tekst">${esc(t)}</p>` },
+  /* wie is er aan de beurt: eerst het portret van de held, dan pas het spel */
+  beurt: { duur: 1900, altijd: true, html: (t, x) => `<div class="beurtkaart" style="--kleur:${x.kleur}">${x.img ? `<img src="${esc(x.img)}" alt="">` : `<span class="og-init">${esc(x.init)}</span>`}<span class="og-label">${esc(x.label)}</span><b class="og-naam">${esc(t)}</b><span class="og-rol">${esc(x.rol)}</span></div>` },
   expeditie: { duur: 1600, html: t => `<div class="og-zee"></div><svg class="og-roos" viewBox="-50 -50 100 100"><circle r="44"/><circle r="36"/><path d="M0-46 6-6 46 0 6 6 0 46-6 6-46 0-6-6Z"/><path class="noord" d="M0-46 6-6-6-6Z"/></svg><p class="og-tekst">${esc(t)}</p>` }
 };
-function overgang(soort, tekst = "") {
+function overgang(soort, tekst = "", extra = {}) {
   const o = OVERGANG[soort];
-  if (!o || RUSTIG || window.__bot) return Promise.resolve();
+  if (!o || (RUSTIG && !o.altijd) || window.__bot) return Promise.resolve();
   return new Promise(res => {
     const el = document.createElement("div");
     el.className = `overgang og-${soort}`; el.setAttribute("aria-live", "polite"); el.style.setProperty("--duur", o.duur + "ms");
-    el.innerHTML = o.html(tekst);
+    el.innerHTML = o.html(tekst, extra);
     let klaar = false;
     const stop = () => { if (klaar) return; klaar = true; el.classList.add("weg"); setTimeout(() => { el.remove(); res(); }, 220); };
     el.addEventListener("click", stop);
@@ -840,8 +842,8 @@ function nieuwSpel(godId, moeilijkheid, heldIds, opties = {}) {
   legAanwijzing(klok("zwijgende-getuigen") ? 0 : 3);
   activeerMysterie();
   log(`Het spel begint. ${g.naam} roert zich.`);
-  startHeldenbeurt();
-  if (!window.__bot) setTimeout(() => veilig(() => godIntro(true)), 10);
+  startHeldenbeurt(false);
+  if (!window.__bot) setTimeout(() => veilig(async () => { await godIntro(true); await beurtIntro(); }), 10);
   try { window.scrollTo(0, 0); } catch {}
 }
 function maakHeld(id) {
@@ -865,7 +867,14 @@ function maakHeld(id) {
 }
 
 /* ---------- heldenfase ---------- */
-function startHeldenbeurt() {
+/* Toont groot het portret van de held die nu aan de beurt is (in de heldenfase en bij de ontmoetingen). */
+function beurtIntro(i = S.actief, label = "Aan de beurt") {
+  const h = S.helden[i]; if (!h || window.__bot) return Promise.resolve();
+  const d = heldDef(h);
+  UI.intro = overgang("beurt", d.naam, { img: art(`art/helden/${h.id}.jpg`) || `art/helden/${h.id}.jpg`, kleur: KLEUREN[i], label, rol: d.rol, init: initialen(d.naam) }).then(() => { UI.intro = null; });
+  return UI.intro;
+}
+function startHeldenbeurt(intro = true) {
   UI.undo = []; S.aanbod = {};
   const h = actief();
   h.acties = heeft(h, "gewond") ? 1 : 2; h.gebruikt = []; h.stappen = 0; h.reisActies = 0;
@@ -875,6 +884,7 @@ function startHeldenbeurt() {
   delete h.ronde.wake; delete h.ronde.doodsmasker;
   UI.bekeken = S.actief;
   opslaan(); teken();
+  if (intro) beurtIntro();
   if (S.tutorial) { UI.coachWacht = S.ronde === 1 && S.actief === 0 ? "start" : S.ronde === 2 && S.actief === 0 ? "ronde2" : S.ronde === COACH_RONDES + 1 && S.actief === 0 ? "zelf" : "beurt"; if (!bezig) setTimeout(coachUitWachtrij, 30); }
 }
 function bereikbaar(h) {
@@ -1217,7 +1227,7 @@ async function ruil(h) {
 }
 
 /* ---------- spullen en spreuken gebruiken ---------- */
-async function gebruikSpul(h, id) {
+async function gebruikSpul(h, id, doelMonster = null) {
   const s = spulDef(id), naam = korteNaam(heldDef(h).naam);
   const weg = () => { h.spullen = h.spullen.filter(x => x !== id); };
   const mon = S.plekken[h.plek]?.monsters || [];
@@ -1231,12 +1241,12 @@ async function gebruikSpul(h, id) {
     case "carbol": weg(); h.L = Math.min(h.maxL, h.L + 2); break;
     case "vlugzout": weg(); h.G = Math.min(h.maxG, h.G + 2); break;
     case "dynamiet": {
-      const doel = mon.filter(m => !byId(D.epische, m.id));
+      const doel = doelMonster ? [doelMonster] : mon.filter(m => !byId(D.epische, m.id));
       if (!doel.length) return melding("Dynamiet", "Er is hier geen gewoon monster.");
       weg(); verwijderMonster(h.plek, doel[0].uid); verliesLichaam(h, 1); h.trofee++; log(`${naam} blaast ${monsterDef(doel[0].id).naam} op`); break;
     }
     case "chloroform": {
-      const doel = mon.filter(m => monsterDef(m.id).mens);
+      const doel = doelMonster ? [doelMonster] : mon.filter(m => monsterDef(m.id).mens);
       if (!doel.length) return melding("Chloroform", "Er is hier geen menselijke tegenstander.");
       weg(); verwijderMonster(h.plek, doel[0].uid); h.trofee++; log(`${naam} verdooft een ${monsterDef(doel[0].id).naam}`); break;
     }
@@ -1277,7 +1287,7 @@ async function gebruikSpul(h, id) {
     }
     case "partituur": weg(); for (const x of S.helden) x.G = Math.min(x.maxG, x.G + 2); await melding(s.naam, "De muziek klinkt door de hele stad. Alle helden herstellen 2 Geest."); break;
     case "fluit": {
-      const doel = mon.filter(m => monsterDef(m.id).mens);
+      const doel = doelMonster ? [doelMonster] : mon.filter(m => monsterDef(m.id).mens);
       if (!doel.length) return melding(s.naam, "Er is hier geen menselijke tegenstander.");
       weg(); verwijderMonster(h.plek, doel[0].uid); await melding(s.naam, `De ${monsterDef(doel[0].id).naam} hoort het fluitje en slaat op de vlucht.`); break;
     }
@@ -1290,7 +1300,7 @@ async function gebruikSpul(h, id) {
     }
     case "droomdagboek": weg(); await kijkOnheil(3, false, true); break;
     case "penning": {
-      const doel = mon.filter(m => monsterDef(m.id).mens);
+      const doel = doelMonster ? [doelMonster] : mon.filter(m => monsterDef(m.id).mens);
       if (!doel.length) return melding(s.naam, "Er is hier geen menselijke tegenstander.");
       weg(); verwijderMonster(h.plek, doel[0].uid); await melding(s.naam, `De penning slingert heen en weer. De ${monsterDef(doel[0].id).naam} kijkt, knippert, en loopt de nacht in. Hij komt niet terug.`); break;
     }
@@ -1504,9 +1514,55 @@ async function monsterVerslagen(h, plek, m) {
   log(`${naam} verslaat ${d.naam}`);
   /* Morghast: de doden blijven niet liggen */
   if (S.god === "morghast" && !byId(D.epische, m.id) && !d.komtTerug && d6() === 1) { const p = kies1(D.bord.plekken).id; S.plekken[p].monsters.push({ uid: ++S.teller, id: m.id, leven: d.leven }); log(`${d.naam} staat weer op in ${plekNaam(p)}`); await melding("De doden blijven niet liggen", `${d.naam} staat weer op, in ${plekNaam(p)}.`); }
-  if (d.komtTerug && d6() <= 2) { const p = d.id === "knekelman" ? kies1(D.bord.plekken).id : kies1(D.bord.rivier); S.plekken[p].monsters.push({ uid: ++S.teller, id: m.id, leven: d.leven }); log(`${d.naam} komt terug in ${plekNaam(p)}`); }
+  if (d.komtTerug && d6() <= 2) { const p = d.id === "knekelman" ? kies1(D.bord.plekken).id : kies1(D.bord.rivier); S.plekken[p].monsters.push({ uid: ++S.teller, id: m.id, leven: d.leven }); log(`${d.naam} komt terug in ${plekNaam(p)}`); await melding("Het komt terug", `${d.naam} is niet voorgoed weg. Het duikt weer op, in ${plekNaam(p)}.`, "Gevecht"); }
   const mys = mysterie();
   if (byId(D.epische, m.id) && mys?.type === "episch") await losOp();
+}
+/* Wat kan een held inzetten bij een ontmoeting of gevecht? Spreuken, bondgenoten, dieren, spullen en artefacten,
+   met wat ze doen. Wat bij deze test meetelt, krijgt een groene rand. */
+const BONUSTXT = { kennis: "Kennis", scherpte: "Waarneming", kracht: "Kracht", overtuiging: "Charisma", gevecht: "gevecht", gevechtMens: "tegen mensen", gruwel: "tegen gruwel", spreuk: "spreuken", overzee: "overzee" };
+function middelenHtml(h, { kenmerk = null, gevecht = false, mens = false, episch = false } = {}) {
+  const chips = [];
+  const bonusDelen = (bonus = {}, ontm = {}) => {
+    const delen = [], telt = [];
+    for (const [k, v] of Object.entries(bonus)) if (BONUSTXT[k] && v) { delen.push(`+${v} ${BONUSTXT[k]}`); telt.push(k); }
+    if (!gevecht) for (const [k, v] of Object.entries(ontm || {})) if (v) { delen.push(`+${v} ${KNAAM[k]} bij ontmoetingen`); telt.push(k); }
+    return { delen, telt };
+  };
+  const helptBij = telt => telt.includes(kenmerk) || (gevecht && (telt.includes("gevecht") && kenmerk === "kracht" || telt.includes("gruwel") || (mens && telt.includes("gevechtMens"))));
+  const chip = (klasse, naam, wat, helpt, beeld, tekst) => chips.push({ helpt, html: `<span class="middel ${klasse}${helpt ? " helpt" : ""}" title="${esc(tekst || "")}">${beeld ? `<img src="${esc(beeld)}" alt="" onerror="this.remove()">` : ""}<span><b>${esc(naam)}</b><small>${esc(wat)}</small></span></span>` });
+  if (h.aanw > 0 && !klok("geen-tweede-worp")) {
+    const mag = !kenmerk || kenmerk === "kennis" || kenmerk === "scherpte" || gevecht || h.id === "silas-rook";
+    chip("k-aanw", `${h.aanw} Aanwijzing${h.aanw > 1 ? "en" : ""}`, mag ? "Mislukt je worp, dan mag je er een uitgeven om opnieuw te gooien" : "Opnieuw gooien kan bij deze test niet", mag && !!kenmerk, "art/fiches/aanwijzing.jpg");
+  }
+  for (const id of h.spreuken) {
+    const d = spreukDef(id); if (!d) continue;
+    const nu = gevecht && d.auto === "gevecht";
+    chip("k-spreuk", d.naam, nu ? "Nu inzetbaar: het spel biedt hem aan" : `Spreuk · ${KNAAM[d.test]} ${d.moeilijkheid} · in je beurt`, nu, `art/spreuken/${id}.jpg`, d.tekst);
+  }
+  const hd = heldDef(h);
+  if (hd.bondgenoot) chip("k-bondgenoot", hd.bondgenoot.naam, `${hd.bondgenoot.soort} · altijd bij je`, false, null, hd.bondgenoot.tekst);
+  for (const e of h.eigen) if (e.gevecht && gevecht) chip("k-persoonlijk", e.naam, `+${e.gevecht} gevecht`, kenmerk === "kracht", null);
+  for (const id of h.spullen) {
+    const d = spulDef(id); if (!d) continue;
+    const { delen, telt } = bonusDelen(d.bonus, d.bonusOntmoeting);
+    let helpt = helptBij(telt);
+    if (d.herworp) { delen.push(`opnieuw gooien bij ${KNAAM[d.herworp]}`); if (d.herworp === kenmerk) helpt = true; }
+    if (gevecht && (d.gebruik === "dynamiet" && !episch || d.gebruik === "chloroform" && mens)) { delen.unshift("Nu inzetbaar"); helpt = true; }
+    else if (d.gebruik) delen.push("gebruiken in je beurt");
+    const dier = d.soort === "Bondgenoot" || d.soort === "Dier";
+    if (!delen.length && !dier) continue;
+    chip(kaartKlasse("spullen", d), d.naam, (dier ? d.soort + (delen.length ? " · " : "") : "") + delen.join(" · "), helpt, kaartArt("spullen", id), d.tekst);
+  }
+  for (const id of h.artefacten) {
+    const d = artDef(id); if (!d) continue;
+    const { delen, telt } = bonusDelen(d.bonus);
+    if (d.gebruik) delen.push("gebruiken in je beurt");
+    chip("k-artefact", d.naam, ["Artefact", ...delen].join(" · "), helptBij(telt), `art/artefacten/${id}.jpg`, d.tekst);
+  }
+  if (!chips.length) return "";
+  chips.sort((a, b) => b.helpt - a.helpt);
+  return `<details class="middelen" open><summary>Wat je kunt inzetten <span class="muted">· ${esc(korteNaam(hd.naam))} heeft ${h.L} Lichaam, ${h.G} Geest, ${h.pond} Pond</span></summary><div class="middelen-rij">${chips.map(c => c.html).join("")}</div>${chips.some(c => c.helpt) ? `<p class="middelen-noot">Groen omrand telt bij deze worp mee.</p>` : ""}</details>`;
 }
 async function vecht(h, plek, m) {
   const d = monsterDef(m.id), naam = korteNaam(heldDef(h).naam), ep = !!byId(D.epische, m.id);
@@ -1531,9 +1587,9 @@ async function vecht(h, plek, m) {
   const kansen = [gruwel > 0 && !h.ronde.wake ? `gruwel weerstaan ${kans(h, "kennis", 8, gruwelOpt())}%` : "", `raken ${kans(h, kenmerk, d.taaiheid, { bonus, extra: voorbereid })}%`].filter(Boolean).join(" · ");
   if (h.spreuken.includes("verbanning")) opties.find(o => o.waarde === "verban").label += kansTxt(h, "kennis", d.taaiheid, { bonus: nebet, spreuk: true, extra: voorbereid });
   const k = await venster({ soort: ep ? "Episch monster" : "Gevecht", thema: "monster", titel: d.naam, beeld: `art/monsters/${d.id}.jpg`, zij: true, achterkant: "monster", geluid: "monster", verhaal: d.eigenschap,
-    html: `<p>Gruwel <b>${d.gruwel}</b> · Taaiheid <b>${d.taaiheid}</b> · Schade <b>${d.schade}</b> · Leven <b>${m.leven}</b></p><p class="muted">${esc(naam)} vecht met ${KNAAM[kenmerk]}${voorbereid ? ", voorbereid (+1 dobbelsteen)" : ""}. Kans: ${kansen}.${h.aanw > 0 && !klok("geen-tweede-worp") ? " Mislukt je worp, dan mag je een Aanwijzing uitgeven om opnieuw te gooien." : ""}</p>`, knoppen: opties });
-  if (k === "dyn") { await gebruikSpul(h, "dynamiet"); return true; }
-  if (k === "chl") { await gebruikSpul(h, "chloroform"); return true; }
+    html: `<p>Gruwel <b>${d.gruwel}</b> · Taaiheid <b>${d.taaiheid}</b> · Schade <b>${d.schade}</b> · Leven <b>${m.leven}</b></p><p class="muted">${esc(naam)} vecht met ${KNAAM[kenmerk]}${voorbereid ? ", voorbereid (+1 dobbelsteen)" : ""}. Kans: ${kansen}.</p>${middelenHtml(h, { kenmerk, gevecht: true, mens: !!d.mens, episch: ep })}`, knoppen: opties });
+  if (k === "dyn") { await gebruikSpul(h, "dynamiet", m); return true; }
+  if (k === "chl") { await gebruikSpul(h, "chloroform", m); return true; }
   if (k === "glorie") { h.ronde.glorie = true; log(`${naam} glipt ongezien langs ${d.naam}`); return false; }
   if (gruwel > 0 && !h.ronde.wake) {
     const go = gruwelOpt(); delete h.ronde.pentagram;
@@ -1649,6 +1705,8 @@ async function ontmoeting(h) {
     for (const m of [...eigen.monsters]) {
       if (S.einde) return;
       const plek0 = h.plek;
+      /* al verslagen (bijvoorbeeld door Doorvechter of dynamiet)? Dan niet nog eens vechten */
+      if (!S.plekken[plek0]?.monsters.some(x => x.uid === m.uid)) continue;
       let klaar = await vecht(h, plek0, m);
       while (klaar && h.id === "tobias-hale" && S.plekken[plek0].monsters.length && h.plek === plek0) {
         const verder = await venster({ soort: "Doorvechter", titel: "Nog een monster aanvallen?", knoppen: [{ label: "Ja", waarde: true }, { label: "Nee", waarde: false, ghost: true }] });
@@ -1680,7 +1738,7 @@ async function ontmoeting(h) {
     await speelKaart(h, kaart, "Aan de andere kant", scheurBeeld(), "scheur");
     if ((h.plek !== plek && !h.ronde.astraal) || !p.scheur) return;
     const lens = h.artefacten.includes("vuurtoren-lens") && h.kenm.scherpte > h.kenm.kennis ? "scherpte" : "kennis";
-    const k = await venster({ soort: "Scheur", thema: "scheur", portaal: true, beeld: scheurBeeld(), titel: `De Scheur in ${plekNaam(plek)}`, html: `<p>Probeer je hem te sluiten? (${KNAAM[lens]})</p>`,
+    const k = await venster({ soort: "Scheur", thema: "scheur", portaal: true, beeld: scheurBeeld(), titel: `De Scheur in ${plekNaam(plek)}`, html: `<p>Probeer je hem te sluiten? (${KNAAM[lens]})</p>` + middelenHtml(h, { kenmerk: lens }),
       knoppen: [{ label: `Sluiten met 1 Aanwijzing (${metStand(8)}${kansTxt(h, lens, 8, { bonus: sluitBonus(h) })})`, waarde: "a", uit: h.aanw < 1 }, { label: `Sluiten zonder Aanwijzing (${metStand(10)}${kansTxt(h, lens, 10, { bonus: sluitBonus(h) })})`, waarde: "z" }, { label: "Laten", waarde: null, ghost: true }] });
     if (k) {
       if (k === "a") h.aanw--;
@@ -1694,7 +1752,7 @@ async function ontmoeting(h) {
     await overgang("aanwijzing", "Een spoor");
     /* een aanwijzingskaart kan een eigen test hebben (een getuige: Charisma, een geheimschrift: Kennis); anders Waarneming 7 */
     const t = kaart.test || { kenmerk: "scherpte", moeilijkheid: 7 };
-    const k = await venster({ soort: "Aanwijzing", thema: "aanwijzing", titel: plekNaam(plek), beeld: `art/plekken/${plek}.jpg`, achterkant: "mysterie", verhaal: kaart.tekst, knoppen: [{ label: `${kaart.actie || "Onderzoeken"} (${KNAAM[t.kenmerk]} ${metStand(t.moeilijkheid)}${kansTxt(h, t.kenmerk, t.moeilijkheid, { context: "ontmoeting" })})`, waarde: true }] });
+    const k = await venster({ soort: "Aanwijzing", thema: "aanwijzing", titel: plekNaam(plek), beeld: `art/plekken/${plek}.jpg`, achterkant: "mysterie", verhaal: kaart.tekst, html: middelenHtml(h, { kenmerk: t.kenmerk }), knoppen: [{ label: `${kaart.actie || "Onderzoeken"} (${KNAAM[t.kenmerk]} ${metStand(t.moeilijkheid)}${kansTxt(h, t.kenmerk, t.moeilijkheid, { context: "ontmoeting" })})`, waarde: true }] });
     if (k && await test(h, t.kenmerk, t.moeilijkheid, "Een spoor volgen", { context: "ontmoeting" })) { p.aanw--; h.aanw++; log(`${naam} vindt een Aanwijzing in ${plekNaam(plek)}`); }
     else if (k && kaart.mislukt) await venster({ soort: "Mislukt", titel: naam, thema: "aanwijzing", verhaal: kaart.mislukt.tekst, html: await pasToe(h, kaart.mislukt.effect || []) }), await controleerHeld(h);
     return;
@@ -1720,7 +1778,7 @@ async function speelKaart(h, kaart, soort, beeld, rug) {
     /* een keuze met "held" verschijnt alleen voor die helden, een keuze met "spul" alleen als je het bij je hebt */
     const mag = k => (!k.held || k.held.includes(h.id)) && (!k.spul || h.spullen.includes(k.spul) || h.eigen.some(e => e.id === k.spul));
     const teKort = k => !k.test && (k.effect || []).some(e => (e.pond < 0 && -e.pond > h.pond) || (e.aanwijzing < 0 && -e.aanwijzing > h.aanw));
-    const i = await venster({ ...kop, html: metWie + `<p class="muted">Wat doe je?</p>`, knoppen: kaart.keuzes.map((k, i) => [k, i]).filter(([k]) => mag(k)).map(([k, i]) => ({ label: (k.held || k.spul ? "★ " : "") + (k.test ? k.label.replace(/\((\w+) (\d+)\)/, (_, kn, n) => `(${kn} ${metStand(+n)}${kansTxt(h, k.test.kenmerk, k.test.moeilijkheid, { context: "ontmoeting" })})`) : k.label), waarde: i, uit: teKort(k) })) });
+    const i = await venster({ ...kop, html: metWie + `<p class="muted">Wat doe je?</p>` + middelenHtml(h), knoppen: kaart.keuzes.map((k, i) => [k, i]).filter(([k]) => mag(k)).map(([k, i]) => ({ label: (k.held || k.spul ? "★ " : "") + (k.test ? k.label.replace(/\((\w+) (\d+)\)/, (_, kn, n) => `(${kn} ${metStand(+n)}${kansTxt(h, k.test.kenmerk, k.test.moeilijkheid, { context: "ontmoeting" })})`) : k.label), waarde: i, uit: teKort(k) })) });
     const k = kaart.keuzes[i ?? 0];
     if (!k.test) return uitkomst(null, { tekst: k.tekst, effect: k.effect });
     const ok = await doeTest(k.test);
@@ -1731,7 +1789,7 @@ async function speelKaart(h, kaart, soort, beeld, rug) {
     await venster({ ...kop, html: metWie + (kaart.slot ? `<p class="verhaal">${esc(kaart.slot)}</p>` : "") + html });
     await controleerHeld(h); return;
   }
-  await venster({ ...kop, html: metWie, knoppen: [{ label: `${KNAAM[kaart.test.kenmerk]}-test (${metStand(kaart.test.moeilijkheid)}${kansTxt(h, kaart.test.kenmerk, kaart.test.moeilijkheid, { context: "ontmoeting" })})`, waarde: true }] });
+  await venster({ ...kop, html: metWie + middelenHtml(h, { kenmerk: kaart.test.kenmerk }), knoppen: [{ label: `${KNAAM[kaart.test.kenmerk]}-test (${metStand(kaart.test.moeilijkheid)}${kansTxt(h, kaart.test.kenmerk, kaart.test.moeilijkheid, { context: "ontmoeting" })})`, waarde: true }] });
   const ok = await doeTest(kaart.test);
   await uitkomst(ok, ok ? kaart.gelukt : kaart.mislukt);
 }
@@ -1742,6 +1800,7 @@ async function ontmoetingsfase(start = 0) {
   for (let i = start; i < S.helden.length; i++) {
     if (S.einde) return;
     S.actief = i; UI.bekeken = i; opslaan(); teken();
+    await beurtIntro(i, "Ontmoeting voor");
     await ontmoeting(S.helden[i]);
     S.ontmoetingIndex = i;
     geruchtBezoek(S.helden[i].plek);
@@ -2309,23 +2368,25 @@ function tekenBord() {
   const anim = UI.reis && Date.now() - UI.reis.t < 1500 ? UI.reis : null; UI.reis = null;
   const P = Object.fromEntries(b.plekken.map(p => [p.id, p]));
   const mistDikte = Math.max(0, Math.min(1, 1 - S.mist / (S.mistStart || 12)));
+  const R = 27; /* straal van een plek-medaillon */
   const tokens = b.plekken.map(p => {
     const s = S.plekken[p.id], hier = S.helden.map((x, i) => [x, i]).filter(([x]) => x.plek === p.id && !x.uit);
     const img = art(`art/plekken/${p.id}.jpg`), bereik = reik.includes(p.id);
     return `<g class="plek${bereik ? " bereik" : ""}${s.scheur ? " open" : ""}" data-plek="${p.id}" tabindex="0" role="button" aria-label="${bereik ? "Reis naar " : ""}${esc(p.naam)}">
-      ${bereik ? `<circle class="reikring" cx="${p.x}" cy="${p.y}" r="28"/>` : ""}
-      ${UI.plan?.plek === p.id ? `<circle class="coachring" cx="${p.x}" cy="${p.y}" r="37"/>` : ""}
-      ${s.scheur ? `<circle class="scheurgloed" cx="${p.x}" cy="${p.y}" r="31"/><circle class="scheurring" cx="${p.x}" cy="${p.y}" r="26"/>` : ""}
-      <clipPath id="pk-${p.id}"><circle cx="${p.x}" cy="${p.y}" r="19"/></clipPath>
-      <circle class="medaillon${p.rivier ? " rivier" : ""}" cx="${p.x}" cy="${p.y}" r="21"/>
-      ${img ? `<image href="${img}" x="${p.x - 19}" y="${p.y - 19}" width="38" height="38" clip-path="url(#pk-${p.id})" preserveAspectRatio="xMidYMid slice"/>` : `<circle class="kern" cx="${p.x}" cy="${p.y}" r="17"/>`}
-      <text class="plaatsnaam" x="${p.x}" y="${p.y + 40}" text-anchor="middle">${esc(p.naam)}</text>
-      ${STATIONS.includes(p.id) ? `<g class="station"><rect x="${p.x + 13}" y="${p.y - 31}" width="15" height="15" rx="3"/><text x="${p.x + 20.5}" y="${p.y - 19.5}" text-anchor="middle">U</text></g>` : ""}
-      ${s.aanw ? aanwToken(p.x - 27, p.y - 21, s.aanw, p.id) : ""}
-      ${s.monsters.map((m, i) => monsterToken(m, p.x + 27 + i * 21, p.y - 22)).join("")}
-      ${hier.map(([x, i], k) => heldFiche(x, i, p.x - 18 + k * 24, p.y + 6, anim)).join("")}
+      ${bereik ? `<circle class="reikring" cx="${p.x}" cy="${p.y}" r="${R + 7}"/>` : ""}
+      ${UI.plan?.plek === p.id ? `<circle class="coachring" cx="${p.x}" cy="${p.y}" r="${R + 16}"/>` : ""}
+      ${s.scheur ? `<circle class="scheurgloed" cx="${p.x}" cy="${p.y}" r="${R + 10}"/><circle class="scheurring" cx="${p.x}" cy="${p.y}" r="${R + 5}"/>` : ""}
+      <clipPath id="pk-${p.id}"><circle cx="${p.x}" cy="${p.y}" r="${R - 2}"/></clipPath>
+      <circle class="medaillon${p.rivier ? " rivier" : ""}" cx="${p.x}" cy="${p.y}" r="${R}"/>
+      ${img ? `<image href="${img}" x="${p.x - R + 2}" y="${p.y - R + 2}" width="${2 * R - 4}" height="${2 * R - 4}" clip-path="url(#pk-${p.id})" preserveAspectRatio="xMidYMid slice"/>` : `<circle class="kern" cx="${p.x}" cy="${p.y}" r="${R - 4}"/>`}
+      <text class="plaatsnaam" x="${p.x}" y="${p.y + R + 21}" text-anchor="middle">${esc(p.naam)}</text>
+      ${s.aanw ? aanwToken(p.x - R - 7, p.y - R + 4, s.aanw, p.id) : ""}
+      ${s.monsters.map((m, i) => monsterToken(m, p.x + R + 9 + i * 27, p.y - R + 4)).join("")}
+      ${hier.map(([x, i], k) => heldFiche(x, i, p.x - 22 + k * 29, p.y + 8, anim)).join("")}
     </g>`;
   }).join("");
+  /* stations in een eigen laag bovenop alles, zodat helden en monsters ze nooit bedekken */
+  const stations = b.plekken.filter(p => STATIONS.includes(p.id)).map(p => `<g class="station" pointer-events="none"><rect x="${p.x - 11}" y="${p.y - R - 15}" width="22" height="22" rx="4"/><text x="${p.x}" y="${p.y - R + 1}" text-anchor="middle">U</text></g>`).join("");
   const overzee = b.overzee.map((o, i) => {
     const y = 34 + i * 70, hier = S.helden.map((x, j) => [x, j]).filter(([x]) => x.plek === o.id && !x.uit), img = art(`art/plekken/${o.id}.jpg`), bereik = reik.includes(o.id);
     return `<g class="overzee${bereik ? " bereik" : ""}" data-plek="${o.id}" tabindex="0" role="button" aria-label="${esc(o.naam)}">
@@ -2348,7 +2409,7 @@ function tekenBord() {
     <line class="bootlijn" x1="${P["st-katharine-docks"].x}" y1="${P["st-katharine-docks"].y}" x2="770" y2="160"/>
     ${b.routes.map(([a, c]) => `<line class="weg-onder" x1="${P[a].x}" y1="${P[a].y}" x2="${P[c].x}" y2="${P[c].y}"/><line class="weg" x1="${P[a].x}" y1="${P[a].y}" x2="${P[c].x}" y2="${P[c].y}"/>`).join("")}
     ${spoor}
-    ${tokens}${overzee}
+    ${tokens}${overzee}${stations}
     <g class="mistlaag" pointer-events="none" style="opacity:${(0.12 + 0.55 * mistDikte).toFixed(2)}">
       <ellipse class="mist1" cx="300" cy="420" rx="420" ry="160" fill="url(#mistvlek)"/>
       <ellipse class="mist2" cx="700" cy="300" rx="380" ry="140" fill="url(#mistvlek)"/>
@@ -2359,12 +2420,12 @@ function tekenBord() {
 }
 function aanwToken(x, y, n, id) {
   const img = art("art/fiches/aanwijzing.jpg");
-  return `<g class="aanwtoken"><clipPath id="aw-${id}"><circle cx="${x}" cy="${y}" r="11"/></clipPath>
-    ${img ? `<image href="${img}" x="${x - 14}" y="${y - 14}" width="28" height="28" clip-path="url(#aw-${id})"/>` : `<circle class="aanw" cx="${x}" cy="${y}" r="11"/>`}
-    <circle class="aanwrand" cx="${x}" cy="${y}" r="11"/>${n > 1 ? `<circle class="telbol" cx="${x - 9}" cy="${y - 9}" r="7"/><text class="teltekst" x="${x - 9}" y="${y - 5.5}" text-anchor="middle">${n}</text>` : ""}</g>`;
+  return `<g class="aanwtoken"><clipPath id="aw-${id}"><circle cx="${x}" cy="${y}" r="14"/></clipPath>
+    ${img ? `<image href="${img}" x="${x - 17}" y="${y - 17}" width="34" height="34" clip-path="url(#aw-${id})"/>` : `<circle class="aanw" cx="${x}" cy="${y}" r="14"/>`}
+    <circle class="aanwrand" cx="${x}" cy="${y}" r="14"/>${n > 1 ? `<circle class="telbol" cx="${x - 11}" cy="${y - 11}" r="8.5"/><text class="teltekst" x="${x - 11}" y="${y - 7}" text-anchor="middle">${n}</text>` : ""}</g>`;
 }
 function monsterToken(m, x, y) {
-  const d = monsterDef(m.id), ep = !!byId(D.epische, m.id), r = ep ? 14 : 11, img = art(`art/monsters/${m.id}.jpg`);
+  const d = monsterDef(m.id), ep = !!byId(D.epische, m.id), r = ep ? 17 : 14, img = art(`art/monsters/${m.id}.jpg`);
   return `<g class="montoken${ep ? " episch" : ""}"><title>${esc(d.naam)} (Gruwel ${d.gruwel}, Taaiheid ${d.taaiheid}, nog ${m.leven} leven)</title>
     <clipPath id="mt-${m.uid}"><circle cx="${x}" cy="${y}" r="${r}"/></clipPath>
     <circle class="monrand" cx="${x}" cy="${y}" r="${r + 2}"/>
@@ -2385,7 +2446,7 @@ function pingHtml(cx, cy, i) {
   return `<g class="ping" style="--kleur:${KLEUREN[i]}">${Array.from({ length: RUSTIG ? 1 : 3 }, (_, k) => `<circle cx="${cx}" cy="${cy}" r="${RUSTIG ? 30 : 20}" style="transform-origin:${cx}px ${cy}px;animation-delay:${(k * .35 - t).toFixed(2)}s"/>`).join("")}</g>`;
 }
 function heldFiche(x, i, cx, cy, anim) {
-  const img = art(`art/helden/${x.id}.jpg`), beurt = i === S.actief && S.fase === "helden", r = beurt ? 16 : 12;
+  const img = art(`art/helden/${x.id}.jpg`), beurt = i === S.actief && S.fase === "helden", r = beurt ? 19 : 15;
   const reist = anim && anim.i === i;
   const ping = UI.ping?.i === i && Date.now() - UI.ping.t < PINGDUUR;
   if (ping) UI.pingOp = pingHtml(cx, cy, i);
@@ -2708,7 +2769,7 @@ async function toonScorebord() {
 /* ---------- invoer ---------- */
 let bezig = false;
 async function veilig(fn) { if (bezig) return; bezig = true; UI.undo = []; try { await fn(); } catch (e) { console.error(e); UI.fout = String(e && e.message || e); } finally { bezig = false; teken(); if (UI.coachWacht) setTimeout(coachUitWachtrij, 30); } }
-function coachUitWachtrij() { const c = UI.coachWacht; if (!c || bezig) return; UI.coachWacht = null; veilig(() => coach(c)); }
+function coachUitWachtrij() { if (UI.intro) { UI.intro.then(() => setTimeout(coachUitWachtrij, 30)); return; } const c = UI.coachWacht; if (!c || bezig) return; UI.coachWacht = null; veilig(() => coach(c)); }
 app.addEventListener("click", e => {
   if (UI.zoomRust && Date.now() - UI.zoomRust < 350 && e.target.closest?.("svg.bord")) return; /* na slepen of knijpen geen klik */
   const t = e.target.closest("button, [data-plek], [data-klok]"); if (!t) return;
@@ -2938,5 +2999,5 @@ function toonUpdate() {
   document.body.appendChild(el);
 }
 window.__spel = { KLOKKEN, get S() { return S; }, get D() { return D; }, get bezig() { return bezig; },
-  api: { rondkijken, voorbereiden, bootPrijs, metroDoelen, overgang, venster, scheurBeeld, toonUpdate, kans, speelKaart, onheilsfase, nieuwSpel, zaai, reis, rust, dienst, doeMysterie, mysterieActie, beurtKlaar, gebruikActie, gebruikSpul, zoekWeg, bereikbaar, burenVan, afstanden, stapNaar, actief, groei, mysterie, heeft, isOverzee, spulDef, monsterDef, wapenBonus, plekDef } };
+  api: { teken, rondkijken, voorbereiden, bootPrijs, metroDoelen, overgang, venster, scheurBeeld, toonUpdate, kans, speelKaart, onheilsfase, nieuwSpel, zaai, reis, rust, dienst, doeMysterie, mysterieActie, beurtKlaar, gebruikActie, gebruikSpul, zoekWeg, bereikbaar, burenVan, afstanden, stapNaar, actief, groei, mysterie, heeft, isOverzee, spulDef, monsterDef, wapenBonus, plekDef } };
 })();

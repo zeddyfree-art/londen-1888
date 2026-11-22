@@ -88,8 +88,8 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);ou
 .bord .aanw{fill:var(--clue)}
 .bord .aanw-t{fill:#fff;font-family:var(--body);font-size:12px;font-weight:700}
 .bord .mon{fill:var(--seal)}
-.bord .mon-t{fill:#fff;font-family:var(--body);font-size:11px;font-weight:700}
-.bord .held-t{fill:#fff;font-family:var(--body);font-size:12px;font-weight:700}
+.bord .mon-t{fill:#fff;font-family:var(--body);font-size:13px;font-weight:700}
+.bord .held-t{fill:#fff;font-family:var(--body);font-size:14px;font-weight:700}
 .bord .held.actief > circle{stroke:var(--ink);stroke-width:3}
 
 /* Paneel */
@@ -201,7 +201,7 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);ou
 :root{--bord-tekst:#f4ead2;--bord-halo:#0b1012;--bord-goud:#c9a45c;--bord-weg:#e8d9b0;--bord-reik:#7fe0c0;--bord-scheur:#c690ff;--bord-mon:#b8402c;--bord-aanw:#53c18a;--bord-station:#a3392a;--bord-rivier:#7fb6c9}
 .bordvlak{background:#0e1517}
 .bord .bordgrond{fill:#1b2426}
-.bord .plaatsnaam{font-family:var(--display);font-size:15px;fill:var(--bord-tekst);stroke:var(--bord-halo);stroke-width:4px;paint-order:stroke;stroke-linejoin:round}
+.bord .plaatsnaam{font-family:var(--display);font-size:19px;fill:var(--bord-tekst);stroke:var(--bord-halo);stroke-width:5px;paint-order:stroke;stroke-linejoin:round}
 .bord .weg-onder{stroke:rgba(10,14,16,.55);stroke-width:6;stroke-linecap:round}
 .bord .weg{stroke:var(--bord-weg);stroke-width:2;stroke-dasharray:1 7;stroke-linecap:round;opacity:.85}
 .bord .bootlijn{stroke:var(--bord-rivier);stroke-width:2.5;stroke-dasharray:8 7;opacity:.8}
@@ -214,15 +214,15 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);ou
 .bord .reikring{fill:none;stroke:var(--bord-reik);stroke-width:3.5}
 .bord .scheurring{fill:none;stroke:var(--bord-scheur);stroke-width:3.5;stroke-dasharray:7 5}
 .bord .scheurgloed{fill:var(--bord-scheur);opacity:.22}
-.bord .station rect{fill:var(--bord-station);stroke:#f4ead2;stroke-width:1.2}
-.bord .station text{fill:#fff;font-family:var(--body);font-size:11px;font-weight:700}
+.bord .station rect{fill:var(--bord-station);stroke:#f4ead2;stroke-width:1.6}
+.bord .station text{fill:#fff;font-family:var(--body);font-size:14px;font-weight:700}
 .bord .aanwrand{fill:none;stroke:var(--bord-aanw);stroke-width:2}
 .bord .aanw{fill:var(--bord-aanw)}
 .bord .telbol{fill:#0b1012;stroke:var(--bord-aanw);stroke-width:1.5}
-.bord .teltekst{fill:#fff;font-family:var(--body);font-size:10px;font-weight:700}
+.bord .teltekst{fill:#fff;font-family:var(--body);font-size:12px;font-weight:700}
 .bord .monrand{fill:var(--bord-mon)}
 .bord .montoken.episch .monrand{fill:var(--bord-goud)}
-.bord .mon-t{fill:#fff;font-family:var(--body);font-size:11px;font-weight:700}
+.bord .mon-t{fill:#fff;font-family:var(--body);font-size:13px;font-weight:700}
 .bord .heldrand{stroke:#0b1012;stroke-width:1.5}
 .bord .held.beurt .heldrand{stroke:#fff;stroke-width:2.5}
 .bord .beurtgloed{opacity:.45}
@@ -622,3 +622,25 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);ou
 }
 @keyframes ping{0%{transform:scale(1);opacity:.95;stroke-width:6}100%{transform:scale(14);opacity:0;stroke-width:1}}
 @keyframes pingheld{50%{filter:brightness(1.8) drop-shadow(0 0 8px #fff)}}
+/* ===== Beurt-intro: groot portret van de held die aan de beurt is ===== */
+.beurtkaart{display:flex;flex-direction:column;align-items:center;gap:6px;padding:0 16px;text-align:center;animation:beurtkaart calc(var(--duur) * .9) ease-out both}
+.beurtkaart img,.beurtkaart .og-init{width:min(240px,52vw);aspect-ratio:3/4;object-fit:cover;object-position:top;border-radius:14px;border:5px solid var(--kleur);box-shadow:0 0 0 2px #0b1012,0 0 50px color-mix(in srgb,var(--kleur) 70%,transparent),0 12px 40px rgba(0,0,0,.7);background:var(--kleur)}
+.beurtkaart .og-init{display:grid;place-items:center;font-family:var(--display);font-size:72px;color:#fff}
+.beurtkaart .og-label{margin-top:14px;font-family:var(--body);font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:#d9cfb8}
+.beurtkaart .og-naam{font-family:var(--display);font-size:clamp(28px,5vw,44px);font-weight:400;color:#f2ead8;text-shadow:0 0 18px rgba(0,0,0,.9)}
+.beurtkaart .og-rol{font-family:var(--body);font-size:16px;color:#bfb6a2}
+@keyframes beurtkaart{0%{opacity:0;transform:scale(.92) translateY(14px)}18%,85%{opacity:1;transform:none}100%{opacity:1}}
+@media (prefers-reduced-motion: reduce){.beurtkaart{animation:none}}
+/* ===== Middelen bij een ontmoeting of gevecht ===== */
+.k-aanw{--kk:#2c8a5a}
+.middelen{margin:10px 0 4px;border-top:1px solid var(--line);padding-top:8px}
+.middelen summary{cursor:pointer;font-weight:700;font-size:14px;list-style-position:inside}
+.middelen summary .muted{font-weight:400}
+.middelen-rij{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;max-height:260px;overflow-y:auto}
+.middel{display:flex;align-items:center;gap:7px;padding:4px 9px 4px 4px;border:1px solid var(--line);border-left:4px solid var(--kk2,var(--kk,var(--line)));border-radius:6px;background:color-mix(in srgb,var(--kk,#888) 6%,var(--paper));font-size:13px;line-height:1.2;max-width:100%}
+.middel img{width:30px;height:30px;object-fit:cover;border-radius:4px;flex:none}
+.middel b{display:block;font-weight:700}
+.middel small{display:block;color:var(--muted);font-size:12px}
+.middel.helpt{border-color:var(--good);border-left-color:var(--good);box-shadow:0 0 0 1px var(--good)}
+.middel.helpt small{color:var(--good)}
+.middelen-noot{margin:6px 0 0;font-size:12px;color:var(--muted)}
