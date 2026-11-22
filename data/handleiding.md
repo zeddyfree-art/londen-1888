@@ -61,7 +61,7 @@ Een paar dingen om op te letten bij de verhalen:
 
 ### 3. Onheil
 
-Het spel trekt een **Onheilskaart**. De Mist daalt, Scheuren gaan open, monsters verschijnen of verplaatsen zich, of er komt een **gerucht**: een opdracht die je binnen een paar rondes moet halen. Er zijn vier soorten geruchten: een plek bezoeken, Aanwijzingen ophalen, een Scheur sluiten of een monster verslaan. Sommige onheilskaarten horen bij een verhaallijn en doen alleen mee tegen die god.
+Het spel trekt een **Onheilskaart**. De Mist daalt, Scheuren gaan open, monsters verschijnen of verplaatsen zich, of er komt een **gerucht**: een opdracht die je binnen een paar rondes moet halen. De meeste kaarten kosten 1 Mist, maar een paar zijn zwaarder (de Mist daalt met 2) en een paar zijn een meevaller. Met de **sterrenwacht** op Hampstead bekijk je de volgende 2 kaarten en leg je er één onderop: zo houd je de ergste nog even weg. Er zijn vier soorten geruchten: een plek bezoeken, Aanwijzingen ophalen, een Scheur sluiten of een monster verslaan. Sommige onheilskaarten horen bij een verhaallijn en doen alleen mee tegen die god.
 
 ## Tests
 
@@ -92,6 +92,10 @@ Sommige monsters bevecht je met Kennis in plaats van Kracht. Ook dat regelt het 
 ## Scheuren
 
 Een Scheur sluit je na de ontmoeting erdoor: een Kennis-test (8) met 1 Aanwijzing, of (10) zonder. Een gesloten Scheur levert een Trofee op. Opent er een Scheur waar er al één is, dan komt er een extra monster en daalt de Mist met 1.
+
+Vraagt een mysterie Scheuren, dan loopt het nooit vast. Moet er een Scheur op een vaste plek dicht (bijvoorbeeld *The City of Spitalfields, en nog één ergens anders*) en staat daar geen Scheur open, dan opent er daar vanzelf een. Is er nog een Scheur nodig en staat er nergens een die meetelt, dan opent er een op een plek die past. In het mysteriekader zie je hoeveel je er al gesloten hebt en wat er nog nodig is.
+
+Zelf een Scheur openen kan ook, met alle risico's: in de logementen van **Whitechapel** betaal je een sekte 1 Pond en 1 Geest. Lukt de Charisma-test (8), dan kies jij de plek. Mislukt hij, dan kiest het toeval en verlies je nog 1 Geest. Er komt altijd een monster mee.
 
 ## Mysteries
 
@@ -130,6 +134,8 @@ Staat de Mist op 0, dan ontwaakt de oude god. Er is nog één kans:
 - Ponden verdien je in het theater (Leicester Square), in salons, bij ontmoetingen of met een lening bij de bank in The City.
 - Op een **markt** (Covent Garden, Southwark, Limehouse) trek je 3 spullen en koop je wat je kunt betalen.
 - Spreuken koop je in de boekwinkel in **Soho**, of je bestudeert ze in **Bloomsbury**.
+- In elke winkel en bij elke keuze zie je de kaart met plaatje, soort en effect voordat je hem neemt.
+- Elke soort kaart heeft een eigen kleur: spreuken paars, artefacten groen, wapens rood, bondgenoten blauw, dieren oranje, boeken bruin, middelen roze, gereedschap grijs, reizen lichtblauw en persoonlijk bezit goud. De legenda staat in de handleiding bij **Spullen**.
 - Je draagt maximaal 6 spullen en spreuken, 1 meer met een Gladstonetas of een sjouwer uit de dokken. Artefacten tellen niet mee. Krijg je er meer, dan kies je zelf wat je aflegt.
 
 ## Overzee
@@ -164,7 +170,8 @@ Een langere spelmodus van ongeveer 75 tot 90 minuten (zo'n 10 rondes met 2 helde
 - Laat geen Scheuren lang openstaan. Dubbele Scheuren kosten Mist.
 - Laat een held met lage Geest geen monster met hoge Gruwel bevechten.
 - Stuur je sterkste vechter op de monsters af: met overslag verslaat die ze vaak in één keer.
-- Zet **Tips aan** in de bovenbalk voor een suggestie bij elke beurt.
+- Zet **Tips aan** in de bovenbalk: in je beurt verschijnt dan een tipvak met een suggestie, bijvoorbeeld waar de dichtstbijzijnde Aanwijzing ligt of dat je kunt groeien. **Tips uit** verbergt dat vak weer. Speel je de tutorial, dan zet **Tips uit** de hele tutorial uit. Je keuze wordt onthouden.
+- De **tutorial** (*Leer spelen* op het startscherm) laat je de eerste 3 rondes per beurt zien wat je het beste kunt doen, waarom, en hoe de regel werkt. De knop of plek die de coach bedoelt, licht op.
 
 ## Moeilijkheid
 

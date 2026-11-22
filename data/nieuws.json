@@ -1,6 +1,6 @@
 [
   {
-    "id": 14,
+    "id": 15,
     "datum": "22 november 2026",
     "titel": "De Lange Nacht, overslag en 64 nieuwe kaarten",
     "punten": [
@@ -9,6 +9,21 @@
       "Monsters zijn taaier: gewone monsters hebben 1 Leven en 1 Taaiheid meer. Zonder uitrusting duurt een gevecht langer.",
       "Buit: na elk opgelost mysterie kiest elke held een spul of een Trofee, en het team krijgt een artefact. Haal je een test bij een ontmoeting ruim (3 boven het doel), dan krijg je 1 Pond.",
       "33 nieuwe spullen, 13 nieuwe spreuken en 18 nieuwe artefacten. De meeste artefacten hebben een prijs of een risico; vijf zijn episch."
+    ]
+  },
+  {
+    "id": 14,
+    "datum": "22 november 2026",
+    "titel": "Een coach in de tutorial, drie nieuwe helden en een beter zicht op je kaarten",
+    "punten": [
+      "De tutorial geeft de eerste 3 rondes per beurt een concrete suggestie, met het waarom en de regel erachter. De knop of plek die de coach bedoelt, licht op.",
+      "Tik rechts op een held: zijn fiche licht op en er golft een lichtkring vanuit hem over de kaart, zodat je hem meteen vindt.",
+      "Drie nieuwe helden: Pema Lhamo, een droomziener uit Lhasa die in balans groeit; Professor Khalil Nasr uit Cairo, die andere helden les geeft; en Benedict Ashcombe, een genezer en oud-exorcist die handen oplegt.",
+      "Een mysterie met Scheuren loopt niet meer vast. Moet er een Scheur op een vaste plek dicht en staat daar niets open, dan opent er daar vanzelf een. In het mysteriekader zie je wat er nog nodig is.",
+      "In de logementen van Whitechapel kun je een sekte betalen om een Scheur te openen. Er komt altijd een monster mee.",
+      "De sterrenwacht op Hampstead laat je nu één van de twee onheilskaarten onderop leggen. Bij de sterrenwacht, de Sterrenkaart van Professor Pell, de kristallen bol en de zwarte spiegel zie je nu ook wat elke kaart doet. Er zijn zeven nieuwe onheilskaarten: een paar zware en een paar meevallers.",
+      "Winkels en keuzes tonen altijd het plaatje en het effect van een kaart. Elke soort kaart heeft een eigen kleur: spreuken, artefacten, wapens, bondgenoten, dieren, boeken en meer.",
+      "Tips aan of uit wordt nu onthouden."
     ]
   },
   {

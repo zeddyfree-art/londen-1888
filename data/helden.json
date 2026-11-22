@@ -604,5 +604,98 @@
     ],
     "bondgenoot": null,
     "prompt": "idealistic but haunted man in his early thirties, 1888 Soho, pale gentle face with dark shadows under dreamy grey eyes, light brown hair falling over his brow, a white ceremonial robe with faded silver embroidery worn under an open dark overcoat, holding a slender straight sword whose blade glows faintly white and a white leather-bound book against his chest, standing in the back room of an occult bookshop among candles and stacked grimoires"
+  },
+  {
+    "id": "pema-lhamo",
+    "naam": "Pema Lhamo",
+    "leeftijd": 29,
+    "beroep": "Medium uit Lhasa, te gast bij de Theosofische Vereniging",
+    "rol": "Droomziener",
+    "start": "Marylebone",
+    "achtergrond": "Ze kwam via Darjeeling naar Londen met de kring rond Madame Blavatsky, die haar 'het meisje uit het Land van Sneeuw' noemt en haar op soirees laat zien. Zelf heeft Pema weinig geduld met salons. Elke nacht droomt ze een ander leven: een veerman op de Tsangpo, een non in Gyantse, een kind in een grauwe stad aan een rivier die Londen heet. In dat laatste leven gaat het mis, en ze wil weten waarom.",
+    "kenmerken": {
+      "kennis": 3,
+      "scherpte": 3,
+      "kracht": 3,
+      "overtuiging": 3
+    },
+    "lichaam": 4,
+    "geest": 7,
+    "vermogen": {
+      "naam": "Vorige levens",
+      "tekst": "Groei je in een kenmerk, dan stijgt er meteen ook een ander kenmerk naar keuze met 1. Je blijft in balans: geen kenmerk mag meer dan 1 boven je laagste uitkomen."
+    },
+    "eigenaardigheid": "Mediteert elke ochtend voor zonsopgang, ook in een logement vol dronkaards.",
+    "uitrusting": [
+      "Mala van 108 kralen",
+      "Droomdagboek"
+    ],
+    "bondgenoot": {
+      "naam": "Ani Yeshe",
+      "soort": "de geest van een non uit een vorig leven",
+      "tekst": "Als je rust, herstel je 1 Geest extra. In de stilte spreekt ze door jou."
+    },
+    "prompt": "Tibetan woman around thirty, 1888 London, calm weathered face with eyes half closed in meditation, long black braids, dark maroon chuba robe with a turquoise and coral necklace, a string of wooden prayer beads between her fingers, seated in a dim Victorian parlour with heavy curtains, a faint translucent figure of a robed Tibetan nun hovering behind her shoulder, candle smoke curling upward"
+  },
+  {
+    "id": "khalil-nasr",
+    "naam": "Professor Khalil Nasr",
+    "bijnaam": "al-Mu'allim",
+    "leeftijd": 52,
+    "beroep": "Hoogleraar oude talen aan Dar al-Ulum in Cairo, te gast bij King's College",
+    "rol": "Leraar",
+    "start": "Strand",
+    "achtergrond": "Zijn familie telt haar voorouders terug tot een priestergeslacht uit Thebe, en zijn grootmoeder zei altijd dat het bloed van de farao's door hun aderen stroomt. Khalil lachte erom, tot de slangen in zijn dromen kwamen. Op zijn onderarm staat een cobra waarvan hij zich niet herinnert dat hij hem liet zetten. In zijn dromen leert de slang hem tekens die in geen enkel boek staan. Sinds hij in Londen is, ziet hij ze terug op de muren.",
+    "kenmerken": {
+      "kennis": 4,
+      "scherpte": 2,
+      "kracht": 1,
+      "overtuiging": 3
+    },
+    "lichaam": 5,
+    "geest": 7,
+    "vermogen": {
+      "naam": "Les geven",
+      "tekst": "Kost een actie, één keer per beurt: een andere held op jouw plek verhoogt één kenmerk met 1, als jouw waarde in dat kenmerk hoger is. Elke held kan twee keer per spel les van je krijgen."
+    },
+    "eigenaardigheid": "Verbetert ieders uitspraak, ook die van een agent die hem aanhoudt.",
+    "uitrusting": [
+      "Boek der Poorten",
+      "Lei en griffel"
+    ],
+    "bondgenoot": {
+      "naam": "De slang uit de droom",
+      "soort": "cobratatoeage",
+      "tekst": "Elk Boek dat je draagt, geeft +1 bij Kennis-tests (samen maximaal +2). Als je leest, beweegt de slang op je arm."
+    },
+    "prompt": "distinguished Egyptian professor in his early fifties, 1888, kind sharp eyes behind round spectacles, neatly trimmed grey beard, red tarboosh and dark frock coat, one sleeve rolled up to show a cobra tattoo winding around his forearm, holding an open ancient book of hieroglyphs, a faint golden serpent of smoke rising from its pages, a lecture hall with a chalkboard of hieroglyphs behind him, gaslight"
+  },
+  {
+    "id": "benedict-ashcombe",
+    "naam": "Benedict Ashcombe",
+    "leeftijd": 44,
+    "beroep": "Gebedsgenezer en mesmerist, voorheen exorcist van het bisdom",
+    "rol": "Genezer",
+    "start": "Leicester Square",
+    "achtergrond": "Twaalf jaar lang dreef hij in opdracht van de Kerk duivels uit, in boerderijen in Yorkshire en in kelders in Southwark. Na de laatste keer, in een huis in Wapping, gaf hij zijn boord terug. Over wat daar uit het meisje kwam, praat hij met niemand. Nu legt hij op zondagmiddag handen op in een zaaltje aan Leicester Square, voor een shilling per persoon. De meeste mensen geneest hij niet. Sommigen wel, en dat maakt hem banger dan alle duivels samen.",
+    "kenmerken": {
+      "kennis": 3,
+      "scherpte": 1,
+      "kracht": 2,
+      "overtuiging": 4
+    },
+    "lichaam": 6,
+    "geest": 6,
+    "vermogen": {
+      "naam": "Handoplegging",
+      "tekst": "Kost een actie, één keer per beurt: een held op jouw plek (ook jijzelf) herstelt 2 Lichaam of 2 Geest. Genees je een ander, dan herstel jij ook 1 Geest."
+    },
+    "eigenaardigheid": "Draagt nog altijd zijn brevier bij zich, maar slaat het nooit open.",
+    "uitrusting": [
+      "Stola van de exorcist",
+      "Mesmeristenpenning"
+    ],
+    "bondgenoot": null,
+    "prompt": "gaunt former priest in his mid-forties, 1888 London, tired kind eyes and hollow cheeks, close-cropped greying hair, black frock coat without a clerical collar, a faded purple stole around his neck, his right hand raised palm outward and glowing faintly, a brass mesmerist's pendulum hanging from his other hand, a shabby gaslit hall with rows of empty wooden chairs behind him"
   }
 ]

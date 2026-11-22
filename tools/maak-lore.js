@@ -141,7 +141,7 @@ Alles over de wereld van ons spel: wat er aan de hand is, wie erbij betrokken is
 | [Verhaallijnen](verhaallijnen.md) | Het verhaal per oude god, met de mysteries als hoofdstukken |
 | [Personen](personen.md) | De vaste personages uit de verhaalkaarten |
 | [Tijdlijn](tijdlijn.md) | Van de oudheid tot november 1888 |
-| [Helden](helden.md) | De achttien onderzoekers |
+| [Helden](helden.md) | De onderzoekers |
 | [Plekken](plekken.md) | Twintig plekken in Londen en drie bestemmingen overzee |
 | [Monsters](monsters.md) | Alle monsters en de drie epische monsters |
 | [Artefacten en spreuken](artefacten-en-spreuken.md) | Wat je onderweg kunt vinden en leren |
