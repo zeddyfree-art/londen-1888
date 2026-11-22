@@ -299,3 +299,47 @@ Julian geloofde dat magie de mensheid kon verheffen. Zeven jaar lang klom hij op
 - **Zwaard van licht.** Je vecht met Kennis in plaats van Kracht, en je wapens tellen mee. Maar wat je in de Orde zag, laat je niet los: mislukt een Gruwel-test, dan verlies je 1 Geest extra.
 - **Eigenaardigheid:** Draagt zijn witte gewaad nog onder zijn jas, en schaamt zich ervoor.
 - **Uitrusting:** Zwaard van de Orde (+1 bij gevechten. Julian vecht er met Kennis mee); Het Witte Boek (+1 bij het uitspreken van spreuken); 1 spreuk
+
+## Pema Lhamo
+
+**Droomziener** · 29 jaar · Medium uit Lhasa, te gast bij de Theosofische Vereniging · begint in Marylebone
+
+Ze kwam via Darjeeling naar Londen met de kring rond Madame Blavatsky, die haar 'het meisje uit het Land van Sneeuw' noemt en haar op soirees laat zien. Zelf heeft Pema weinig geduld met salons. Elke nacht droomt ze een ander leven: een veerman op de Tsangpo, een non in Gyantse, een kind in een grauwe stad aan een rivier die Londen heet. In dat laatste leven gaat het mis, en ze wil weten waarom.
+
+| Kennis | Waarneming | Kracht | Charisma | Lichaam | Geest |
+|---|---|---|---|---|---|
+| 3 | 3 | 3 | 3 | 4 | 7 |
+
+- **Vorige levens.** Groei je in een kenmerk, dan stijgt er meteen ook een ander kenmerk naar keuze met 1. Je blijft in balans: geen kenmerk mag meer dan 1 boven je laagste uitkomen.
+- **Ani Yeshe** (de geest van een non uit een vorig leven). Als je rust, herstel je 1 Geest extra. In de stilte spreekt ze door jou.
+- **Eigenaardigheid:** Mediteert elke ochtend voor zonsopgang, ook in een logement vol dronkaards.
+- **Uitrusting:** Mala van 108 kralen (+1 bij Gruwel-tests: kraal na kraal blijft je adem rustig); Droomdagboek (Eén keer per spel: lees terug wat je droomde. Bekijk de bovenste 3 Onheilskaarten en leg er één onderop de stapel)
+
+## Professor Khalil Nasr (al-Mu'allim)
+
+**Leraar** · 52 jaar · Hoogleraar oude talen aan Dar al-Ulum in Cairo, te gast bij King's College · begint in Strand
+
+Zijn familie telt haar voorouders terug tot een priestergeslacht uit Thebe, en zijn grootmoeder zei altijd dat het bloed van de farao's door hun aderen stroomt. Khalil lachte erom, tot de slangen in zijn dromen kwamen. Op zijn onderarm staat een cobra waarvan hij zich niet herinnert dat hij hem liet zetten. In zijn dromen leert de slang hem tekens die in geen enkel boek staan. Sinds hij in Londen is, ziet hij ze terug op de muren.
+
+| Kennis | Waarneming | Kracht | Charisma | Lichaam | Geest |
+|---|---|---|---|---|---|
+| 4 | 2 | 1 | 3 | 5 | 7 |
+
+- **Les geven.** Kost een actie, één keer per beurt: een andere held op jouw plek verhoogt één kenmerk met 1, als jouw waarde in dat kenmerk hoger is. Elke held kan twee keer per spel les van je krijgen.
+- **De slang uit de droom** (cobratatoeage). Elk Boek dat je draagt, geeft +1 bij Kennis-tests (samen maximaal +2). Als je leest, beweegt de slang op je arm.
+- **Eigenaardigheid:** Verbetert ieders uitspraak, ook die van een agent die hem aanhoudt.
+- **Uitrusting:** Boek der Poorten (Eén keer per ronde: gooi bij een mislukte Kennis-test één dobbelsteen opnieuw. Het boek beschrijft de twaalf poorten van de nacht); Lei en griffel (+1 Charisma: je legt alles geduldig uit, en dan nog een keer)
+
+## Benedict Ashcombe
+
+**Genezer** · 44 jaar · Gebedsgenezer en mesmerist, voorheen exorcist van het bisdom · begint in Leicester Square
+
+Twaalf jaar lang dreef hij in opdracht van de Kerk duivels uit, in boerderijen in Yorkshire en in kelders in Southwark. Na de laatste keer, in een huis in Wapping, gaf hij zijn boord terug. Over wat daar uit het meisje kwam, praat hij met niemand. Nu legt hij op zondagmiddag handen op in een zaaltje aan Leicester Square, voor een shilling per persoon. De meeste mensen geneest hij niet. Sommigen wel, en dat maakt hem banger dan alle duivels samen.
+
+| Kennis | Waarneming | Kracht | Charisma | Lichaam | Geest |
+|---|---|---|---|---|---|
+| 3 | 1 | 2 | 4 | 6 | 6 |
+
+- **Handoplegging.** Kost een actie, één keer per beurt: een held op jouw plek (ook jijzelf) herstelt 2 Lichaam of 2 Geest. Genees je een ander, dan herstel jij ook 1 Geest.
+- **Eigenaardigheid:** Draagt nog altijd zijn brevier bij zich, maar slaat het nooit open.
+- **Uitrusting:** Stola van de exorcist (+1 bij het sluiten van een Scheur: je weet hoe je een deur dichtdoet die open hoort te blijven); Mesmeristenpenning (Eén keer per spel: breng een menselijke tegenstander op jouw plek in trance. Hij loopt weg en verdwijnt van het bord)

@@ -11,7 +11,7 @@ Alles over de wereld van ons spel: wat er aan de hand is, wie erbij betrokken is
 | [Verhaallijnen](verhaallijnen.md) | Het verhaal per oude god, met de mysteries als hoofdstukken |
 | [Personen](personen.md) | De vaste personages uit de verhaalkaarten |
 | [Tijdlijn](tijdlijn.md) | Van de oudheid tot november 1888 |
-| [Helden](helden.md) | De achttien onderzoekers |
+| [Helden](helden.md) | De onderzoekers |
 | [Plekken](plekken.md) | Twintig plekken in Londen en drie bestemmingen overzee |
 | [Monsters](monsters.md) | Alle monsters en de drie epische monsters |
 | [Artefacten en spreuken](artefacten-en-spreuken.md) | Wat je onderweg kunt vinden en leren |
@@ -24,7 +24,7 @@ Alles over de wereld van ons spel: wat er aan de hand is, wie erbij betrokken is
 
 ## In cijfers
 
-- 5 oude goden, 21 helden, 17 vaste personages
+- 5 oude goden, 24 helden, 17 vaste personages
 - 94 algemene stadskaarten en 69 verhaalkaarten
-- 46 onheilskaarten, waarvan 10 geruchten
+- 53 onheilskaarten, waarvan 10 geruchten
 - 17 monsters en 5 epische monsters, 9 artefacten, 14 spreuken
