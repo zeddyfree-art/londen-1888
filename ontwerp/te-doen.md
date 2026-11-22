@@ -124,7 +124,6 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [ ] Op de iPad controleren: klinkt de sfeer nu zachter als de muziek aan staat? (Gaat via Web Audio, omdat Safari het gewone volume negeert.)
 
 ### Beelden
-- [ ] De 9 beelden voor de drie nieuwe helden maken met `ontwerp/beeldopdracht-nieuwe-helden.md` (3 portretten, 6 persoonlijke spullen), daarna in `tools/art-drive.json` zetten.
 - [ ] Thuisplekkaarten voor Pema, Khalil en Benedict.
 
 ### Kaarten en verhaal
@@ -150,7 +149,7 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [x] Sekte in Whitechapel: zelf een Scheur laten openen, met monster
 - [x] Sterrenwacht: één van de twee kaarten onderop, en je ziet het effect van elke kaart; zeven nieuwe onheilskaarten (drie meevallers, vier zware)
 - [x] Winkels en keuzes tonen altijd plaatje en effect; kleur per soort kaart
-- [x] Drie nieuwe helden: Pema Lhamo, Khalil Nasr en Benedict Ashcombe
+- [x] Drie nieuwe helden: Pema Lhamo, Khalil Nasr en Benedict Ashcombe, met hun 9 beelden (portretten en persoonlijke spullen) in het spel en in `tools/art-drive.json`
 - [x] Tips aan/uit wordt onthouden; na Verder spelen staat het paneel op de held die aan de beurt is
 
 - [x] Knop Rondkijken op elke plek in Londen: inkopen, rijtuigkaartje of rondhoren (zie `voorstel-overal-iets-te-doen.md`)
