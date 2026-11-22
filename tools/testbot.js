@@ -30,6 +30,9 @@ const server = http.createServer((req, res) => {
   /* experiment: DOELPLUS=1 maakt elke test 1 moeilijker; de uitslag gaat dan naar een apart bestand */
   const doelPlus = +(process.env.DOELPLUS || 0);
   await page.evaluate(v => { window.__doelPlus = v; }, doelPlus);
+  /* MODUS=lang meet De Lange Nacht; de uitslag gaat dan naar ontwerp/balans-lang.json */
+  const modus = process.env.MODUS || "gewoon";
+  await page.evaluate(v => { window.__modus = v; }, modus);
 
   const goden = process.env.GODEN ? process.env.GODEN.split(",") : JSON.parse(fs.readFileSync(path.join(root, "data", "oude-goden.json"), "utf8")).map(g => g.id);
   const standen = ["ontspannen", "normaal", "genadeloos"];
@@ -61,7 +64,7 @@ const server = http.createServer((req, res) => {
     const r = rijen.at(-1);
     console.log(`${god.padEnd(12)} ${stand.padEnd(11)} ${aantal} helden: winst ${String(r.winst).padStart(3)}% (nipt ${r.nipt}%), ${r.rondes} rondes, ${r.mysteries} mysteries, ${r.gevallen} gevallen${r.vast ? `, ${r.vast} vast` : ""}${r.fouten.length ? "  FOUT: " + r.fouten[0] : ""}`);
   }
-  fs.writeFileSync(path.join(root, "ontwerp", doelPlus ? `balans-doelplus${doelPlus}.json` : "balans.json"), JSON.stringify({ datum: new Date().toISOString().slice(0, 10), potjesPerInstelling: n, rijen }, null, 2) + "\n");
+  fs.writeFileSync(path.join(root, "ontwerp", doelPlus ? `balans-doelplus${doelPlus}.json` : modus === "lang" ? "balans-lang.json" : "balans.json"), JSON.stringify({ datum: new Date().toISOString().slice(0, 10), potjesPerInstelling: n, rijen }, null, 2) + "\n");
   console.log("\nPer mysterie (opgelost / bleef op hangen):");
   for (const [m, v] of Object.entries(mys)) console.log(`  ${m.padEnd(28)} ${v.opgelost} / ${v.vast}`);
   if (fouten.length) console.log("Paginafouten:", [...new Set(fouten)].slice(0, 5));

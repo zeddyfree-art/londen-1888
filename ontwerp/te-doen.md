@@ -2,7 +2,35 @@
 
 Deze lijst werken we aan het einde van elk gesprek bij. Zet bij elke update die spelers merken een nieuw bericht bovenaan `data/nieuws.json` (met een hoger `id`): dat verschijnt één keer als "Wat is er nieuw" als de app opent.
 
-*Laatst bijgewerkt: 22 november 2026 (twaalfde sessie)*
+*Laatst bijgewerkt: 22 november 2026 (dertiende sessie)*
+
+## Gemeten na de dertiende sessie (overslag, buit, De Lange Nacht; vóór het samenvoegen met de twaalfde)
+
+Met `node tools/testbot.js 80` en `MODUS=lang node tools/testbot.js 80`. Nieuwe regels: overslag, gewone monsters 1 Leven en 1 Taaiheid meer, buit na elk mysterie, laatste nacht 4 verzet per ontbrekend mysterie. Normaal staat nu op Mist 3 lager, genadeloos op 4 lager. De Lange Nacht heeft 1 mysterie meer en Mist +2. Uitslag in `balans.json` en `balans-lang.json`; het klokkenmodel (`data/klokken.json`, basis) is bijgewerkt uit `balans.json`.
+
+**Gewoon (winkans):**
+
+| God | Ontspannen 2 / 4 | Normaal 2 / 4 | Genadeloos 2 / 4 |
+|---|---|---|---|
+| Vathrûn | 94% / 99% | 79% / 84% | 20% / 11% |
+| Azh-Ilareth | 96% / 100% | 58% / 71% | 14% / 9% |
+| Nebet-Ankhu | 95% / 100% | 83% / 75% | 35% / 25% |
+| Ysmara | 94% / 100% | 46% / 78% | 8% / 6% |
+| Morghast | 98% / 98% | 85% / 76% | 24% / 8% |
+
+**De Lange Nacht (winkans, rondes met 2 helden op normaal):**
+
+| God | Ontspannen 2 / 4 | Normaal 2 / 4 | Genadeloos 2 / 4 | Rondes |
+|---|---|---|---|---|
+| Vathrûn | 94% / 100% | 65% / 84% | 19% / 11% | 10,9 |
+| Azh-Ilareth | 88% / 100% | 58% / 81% | 11% / 9% | 9,6 |
+| Nebet-Ankhu | 90% / 98% | 63% / 64% | 33% / 18% | 10,0 |
+| Ysmara | 89% / 98% | 39% / 83% | 4% / 6% | 10,9 |
+| Morghast | 99% / 99% | 80% / 83% | 18% / 11% | 9,4 |
+
+**Verzamelen per held** (normaal, 2 helden; gemeten met een eigen meetscript): gewoon 4,3 spullen (was 2,3, inclusief 1,8 persoonlijke), 1,1 artefact (was 0,3). De Lange Nacht 3,6 spullen en 2,4 artefacten (de testbot kiest in de beloningsronde vaak een artefact). Groeien blijft rond 0,6 tot 0,8 keer per held.
+
+
 
 ## Gemeten na de twaalfde sessie (zeven nieuwe onheilskaarten, Scheuren-garantie, 24 helden)
 
@@ -131,6 +159,15 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [ ] Na een paar potjes: welke ★-keuzes (heldkeuzes) en vervolgverhalen vallen op, en willen we er meer?
 - [ ] Ysmara en Morghast hebben 10 verhaalkaarten elk, de oude goden 16 tot 17. Na een paar potjes kijken of er meer nodig zijn.
 
+### De Lange Nacht en de proefregels (dertiende sessie)
+- [ ] Analyserapport *Londen 1888 — Speelbaarheid, winkansen en flow* (22 november): na het samenvoegen gemeten, normaal gewoon ~73%, Lange Nacht ~71%, genadeloos ~20% en ~12%. Aanbevelingen: tests 1 zwaarder met Mist 1 ruimer, meer schade aan helden, snelle worpen en buit in één scherm, *Bereken de baan* en *Het aftelrijmpje* versoepelen, een vijfde mysterie voor De Lange Nacht.
+- [ ] Testbot leren artefacten en spreuken buiten gevechten te gebruiken (Kam van de Banshee, Horloge, Wekroep laten de Mist stijgen en zijn nu niet gemeten).
+- [ ] De Lange Nacht op het gedeelde scorebord: de server kent de modus nog niet, daarom worden zulke overwinningen nu niet gedeeld.
+- [ ] De Lange Nacht duurt zo'n 10 rondes (gewoon 7 tot 8). Voor echt 90 tot 120 minuten is een vijfde mysterie per god nodig. Eerst testen of de huidige lengte bevalt.
+- [ ] Ysmara met 2 helden op normaal is zwaar (46%, Lange Nacht 39%). Na echte potjes bekijken.
+- [ ] Playtest-vragen uit de brief: aantal spullen aan het eind, het moment waarop een item het verschil maakte, trots op je held (1 tot 5), puzzel of avontuur (1 tot 5).
+- [ ] Testbot gebruikt artefacten en spreuken buiten gevechten niet; echte spelers halen meer uit de nieuwe kaarten.
+
 ### Spel
 - [ ] Testen met echte potjes: de nieuwe helden. Is Khalil (les geven, Boeken geven Kennis) niet te sterk met 4 helden? Is Pema met alles op 3 te zwak aan het begin? Is handoplegging (2 herstel per actie) te veel naast rusten?
 - [ ] Testen: helpt de tutorial-coach (rondes 1 tot 3) echt? Zijn er beurten waarin de suggestie vreemd is?
@@ -144,6 +181,12 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 
 ## Klaar
 
+- [x] Wekroep van de klokken werkt nog maar één keer per potje (was elke beurt herhaalbaar)
+- [x] De 64 beelden voor De Lange Nacht staan in het spel en in `tools/art-drive.json`
+- [x] Gedeeld scorebord online bijgewerkt met het nieuwe klokkenmodel
+- [x] Overslag in gevechten en de laatste nacht, ruim gehaald bij ontmoetingen, monsters taaier
+- [x] Buit na elk mysterie; De Lange Nacht met bedrijven en beloningsrondes
+- [x] 33 spullen, 13 spreuken en 18 artefacten (5 episch), met algemene velden en controle in `tools/controleer-kaarten.js`
 - [x] Tutorial-coach: de eerste 3 rondes per beurt een suggestie met het waarom en de regel; de knop of plek licht op
 - [x] Scheuren-mysteries lopen niet meer vast (vaste plek krijgt vanzelf een Scheur); voortgang in het mysteriekader
 - [x] Sekte in Whitechapel: zelf een Scheur laten openen, met monster

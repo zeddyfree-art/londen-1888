@@ -119,8 +119,9 @@ const FICHES = [
 
 const helden = lees("helden.json"), goden = lees("oude-goden.json"), monsters = [...lees("monsters.json"), ...lees("epische-monsters.json")];
 const spullen = lees("spullen.json"), spreuken = lees("spreuken.json"), artefacten = lees("artefacten.json"), bord = lees("bord.json");
-for (const s of spullen) if (!SPULLEN[s.id]) throw new Error("Geen prompt voor spul " + s.id);
-for (const s of spreuken) if (!SPREUKEN[s.id]) throw new Error("Geen prompt voor spreuk " + s.id);
+/* nieuwere kaarten hebben hun prompt in de data en staan in beeldopdracht-lange-nacht.md */
+for (const s of spullen) if (!SPULLEN[s.id] && !s.prompt) throw new Error("Geen prompt voor spul " + s.id);
+for (const s of spreuken) if (!SPREUKEN[s.id] && !s.prompt) throw new Error("Geen prompt voor spreuk " + s.id);
 for (const p of [...bord.plekken, ...bord.overzee]) if (!PLEKKEN[p.id]) throw new Error("Geen prompt voor plek " + p.id);
 
 const r = [];
@@ -200,11 +201,11 @@ for (const m of monsters) blok("monsters", m.id, m.naam, m.prompt, "monster");
 r.push("## 5. Plekken", "", "Deze beelden verschijnen als je op een plek staat of een ontmoeting hebt.", "");
 for (const p of [...bord.plekken, ...bord.overzee]) blok("plekken", p.id, p.naam, PLEKKEN[p.id], "plek");
 r.push("## 6. Spullen en bondgenoten", "");
-for (const s of spullen) blok("spullen", s.id, `${s.naam} (${s.soort})`, SPULLEN[s.id], "object");
+for (const s of spullen.filter(s => SPULLEN[s.id])) blok("spullen", s.id, `${s.naam} (${s.soort})`, SPULLEN[s.id], "object");
 r.push("## 7. Spreuken", "");
-for (const s of spreuken) blok("spreuken", s.id, s.naam, SPREUKEN[s.id], "spreuk");
+for (const s of spreuken.filter(s => SPREUKEN[s.id])) blok("spreuken", s.id, s.naam, SPREUKEN[s.id], "spreuk");
 r.push("## 8. Artefacten", "");
-for (const a of artefacten) blok("artefacten", a.id, a.naam, a.prompt, "object");
+for (const a of artefacten.filter(a => fs.existsSync(path.join(root, "art", "artefacten", `${a.id}.jpg`)))) blok("artefacten", a.id, a.naam, a.prompt, "object");
 r.push("## 9. Achterkanten van kaartstapels", "", "Alle achterkanten hebben hetzelfde ontwerp: een donkere, sierlijke Victoriaanse rand met in het midden een embleem. Alleen het embleem en de kleur verschillen per stapel.", "");
 for (const [id, t, e] of ACHTERKANTEN) blok("achterkanten", id, t, `ornate Victorian card back, dark lacquered background with fine gilded filigree, centred ${e}`, "achterkant");
 r.push("## 10. Fiches", "");

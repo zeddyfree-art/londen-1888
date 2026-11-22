@@ -50,6 +50,12 @@ window.__testbot = async function speel(godId, moeilijkheid, heldIds, seed) {
       if (soort === "Rondkijken") return knoppen.some(k => k.waarde === rondkijkWens && !k.uit) ? rondkijkWens : null;
       if (soort === "Brede schouders") { const ag = S().helden.find(x => x.id === "aggie-pruitt"); return !!ag && ag.L > 3; }
       if (soort === "Onderschepping") return w[0];
+      if (soort === "Buit") return w.includes("spul") && A.wapenBonus(h, false) < 3 ? "spul" : w.includes("trofee") ? "trofee" : w[0];
+      if (soort === "Beloningsronde") {
+        const wapen = w.find(([s, id]) => (s === "spullen" ? A.spulDef(id) : s === "artefacten" ? window.__spel.D.artefacten.find(a => a.id === id) : null)?.bonus?.gevecht);
+        if (wapen && A.wapenBonus(h, false) < 4) return wapen;
+        return w.find(([s]) => s === "artefacten") || w[0];
+      }
       if (soort === "Te veel bagage") return w[w.length - 1];
       if (soort.startsWith("Onheil") && w.includes(true)) return true;
       if (soort === "Theater") return h.kenm.overtuiging >= 3;
@@ -60,7 +66,7 @@ window.__testbot = async function speel(godId, moeilijkheid, heldIds, seed) {
   };
 
   if (seed != null) A.zaai(seed);
-  A.nieuwSpel(godId, moeilijkheid, heldIds, { klokken: window.__klokken || [] });
+  A.nieuwSpel(godId, moeilijkheid, heldIds, { klokken: window.__klokken || [], modus: window.__modus || "gewoon" });
 
   const dist = (van, naar) => A.afstanden(van)[naar] ?? 99;
   const dichtsbij = (h, filter) => {
