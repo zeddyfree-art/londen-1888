@@ -185,7 +185,6 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 
 ## Open taken
 
-- [ ] Beelden voor de zeven nieuwe goden: 25 van de 63 staan in het spel (alle goden en epische monsters). Nog nodig (prompts in `ontwerp/beeldopdracht-nieuwe-goden.md`): `monsters/reliekjager`, `personen/horace-quill`, `personen/amelia-fenwick`, `scheur/ulvereth`, `monsters/rijpwicht`, `monsters/smogslang`, `monsters/bliksemvanger`, `personen/ephraim-gale`, `personen/nell-bligh`, `personen/tom-pennock`, `scheur/sirrhae`, `monsters/bewonderaar`, `monsters/maskerdanser`, `monsters/betoverde-dichter`, `personen/edmund-haversham`, `personen/lucien-marchetti`, `personen/rosalind-ashe`, `scheur/ouroch`, `monsters/opwindsoldaat`, `monsters/tijdverlorene`, `monsters/slingerhond`, `personen/obadiah-penrose`, `personen/dora-whitby`, `personen/ignatius-fell`, `scheur/yth-nemora`, `monsters/krantenjongen`, `monsters/leugenaar`, `monsters/gerucht`, `personen/horatio-vance`, `personen/kitty-lark`, `personen/fennimore-blight`, `scheur/gul-marrach`, `monsters/deurwaarder`, `monsters/schuldspook`, `monsters/goudworm`, `personen/reginald-kettering`, `personen/edwin-pratt`, `personen/bessie-doyle`.
 - [ ] Sfeergeluiden voor de zeven nieuwe goden: zie `ontwerp/geluidsopdracht.md` (`sfeer-ommeth.mp3` tot `sfeer-gul-marrach.mp3`). Tot ze er zijn, klinkt de sfeer van het startscherm.
 - [ ] Het gedeelde scorebord kent de nieuwe goden pas als de Worker opnieuw online staat: `NODE_USE_ENV_PROXY=1 node tools/zet-scorebord-online.js`. Tot dan worden overwinningen tegen de nieuwe goden geweigerd (onbekende god).
 - [ ] Het klokkenmodel (versie 2, gefit op 40.000 potjes) kent de zeven nieuwe goden alleen via hun testbotmeting zonder klokken. Bij de volgende meting met `node tools/meet-klokken.js` gaan alle twaalf goden mee.
@@ -241,6 +240,7 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 
 ## Klaar
 
+- [x] Alle 63 beelden van de zeven nieuwe goden staan in het spel (goden, Scheurbeelden, epische monsters, monsters en personages).
 - [x] Zeven nieuwe oude goden uit de stemronde: Ommeth, Karathos, Ulvereth, Sirrhae, Ouroch, Yth-Nemora en Gul-Marrach. Elk met regel, vijf mysteries, episch monster, drie monsters, drie personages, tien verhaalkaarten (met vervolg), drie scheurkaarten, twee aanwijzingen, vier onheilskaarten en een expeditie. Bundels in `ontwerp/goden/`, samenvoegen met `node tools/voeg-goden-toe.js`. Verwerkt uit de stemming: geen verbrande Aanwijzingen, bekeren als keuze in het gevecht, splinters die zelf roepen, geen verplichte stap bij Betoverd, open gunsten, elke ronde weer met echte meevallers, en iedereen ziet elkaars onzekere Aanwijzingen.
 - [x] Nebet-Ankhu op genadeloos 1 Mist lager (`mistPerStand` in `oude-goden.json`): gewoon 23% / 19% (was 36% / 43%), Lange Nacht 27% / 18%
 
