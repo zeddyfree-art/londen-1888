@@ -12,7 +12,7 @@ from PIL import Image
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MAX = {"bord": (2400, 2400), "goden": (1600, 1600), "plekken": (1400, 1400), "scherm": (1600, 1600),
        "monsters": (900, 900), "spullen": (640, 640), "spreuken": (640, 640), "artefacten": (640, 640),
-       "achterkanten": (600, 800), "fiches": (256, 256), "scheur": (800, 800), "klokken": (256, 256)}
+       "achterkanten": (600, 800), "fiches": (256, 256), "scheur": (800, 800), "klokken": (256, 256), "oude-wereld": (1200, 1200)}
 
 def haal(doel, fid):
         geluid = doel.startswith("geluid/")

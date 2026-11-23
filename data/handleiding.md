@@ -144,6 +144,23 @@ Staat de Mist op 0, dan ontwaakt de oude god. Er is nog één kans:
 
 In **St Katharine Docks** koop je een bootkaartje (2 Pond) naar Thebe, de Himalaya of Yucatán. Daar krijg je expeditie-ontmoetingen, met een grote kans op **Artefacten**. Met de knop **Terug naar de dokken** reis je terug.
 
+## Kaarten van de Oude Wereld (uitbreiding)
+
+Zet je op het startscherm bij **Uitbreiding** de *Kaarten van de Oude Wereld* aan, dan wordt elke bestemming overzee een eigen kaart. Zonder uitbreiding speel je het spel zoals hierboven.
+
+- **De kaart.** Thebe, de Himalaya en Yucatán hebben elk zeven plekken: de **aankomst**, twee ringen met vijf dichte plekken, en het **hart**. Welke plekken er liggen, is elk potje anders. De kaart van de regio staat in je paneel zolang je er bent.
+- **Trekken.** Overzee reis je zoals in Londen: 1 actie per stap, langs de paden. Tik op een plek met een groene rand. Je ontmoeting heb je waar je aan het eind van de ronde staat.
+- **Ontdekken en gevaar.** Kom je op een dichte plek, dan draait hij om en trek je een **Gevaarkaart**. De helft is leeg. De andere doen iets kleins, zoals een instorting of koorts. Trek je **hetzelfde gevaar twee keer** in één expeditie, dan gaat het mis: je wordt teruggebracht naar de dokken en je kist is leeg. Het paneel laat zien welke gevaren je al zag, en hoe groot de kans op een ramp bij de volgende kaart is.
+- **De kist.** Buit van verder dan de aankomst (Ponden, Aanwijzingen, Trofeeën, spullen, spreuken en artefacten) gaat in je **kist**. Hij is pas van jou als je veilig terug bent. Herstel en schade gelden meteen.
+- **Elke plek één keer.** Een plek geeft één keer buit, en elk succes levert 1 Aanwijzing extra op. In de tweede ring komt er nog 1 Trofee bij. Wat je ontdekt, blijft open voor de volgende held.
+- **Het hart.** Achter de tweede ring wacht een bewaker. Versla of omzeil hem en kies een **schat**: een episch artefact dat je nergens anders vindt. De eerste keer per regio stijgt de Mist met 2.
+- **Terugkeren** kost 1 actie, vanaf elke plek. Vanaf de tweede ring en het hart trek je nog één Gevaarkaart voor de terugtocht.
+- **Een gids** huur je bij de aankomst voor 2 Pond. De eerste keer dat de expeditie mis zou gaan, ziet hij het op tijd.
+- **Post naar huis.** Eén keer per ronde, zonder actie: een telegram (1 Aanwijzing) of een pakket met de postboot (1 spul) naar een held in Londen.
+- **Mysteries overzee** los je op waar je ook bent in de regio, ook bij de aankomst.
+- **Drie nieuwe helden** doen alleen mee met de uitbreiding: Ra'is Mahmoud Fathy, Ang Nima Sherpa en Teresa Canul. Elk heeft een vermogen voor de expedities.
+- Overzee ben je, net als zonder uitbreiding, veilig voor de uitputting van de Mist.
+
 ## Artefacten
 
 Artefacten zijn sterk, maar bijna allemaal hebben ze een prijs. Sommige vragen elke ronde iets (gooi een dobbelsteen in de Onheilsfase: bij 1 verlies je Geest, word je Vervloekt of verschijnt er een monster). Andere kun je één keer gebruiken voor een groot effect, met een groot risico. Een paar zijn **episch**: zeldzame vondsten die een potje kunnen kantelen, zoals het Zwaard van de Tempeliers (+4 bij gevechten) of het Horloge dat terugloopt (de Mist stijgt met 2, als de Kennis-test lukt).

@@ -166,6 +166,42 @@ Eén keer per ronde: de ratten brengen je geheimen. +1 Aanwijzing. Aan het begin
 
 +1 bij Gruwel-tests. Leg af: herstel 4 Geest.
 
+### Canope van de naamloze farao
+
+*Uit het naamloze graf bij Thebe.*
+
+Episch. Leg af: de Mist stijgt met 1 en je herstelt al je Geest.
+
+### Zonneschijf van Aton
+
+*Uit het naamloze graf bij Thebe.*
+
+Episch. +2 bij Kracht-tests en +2 bij Gruwel-tests. De zon brandt: aan het begin van elke Onheilsfase, gooi een dobbelsteen, bij 1 verlies je 1 Lichaam.
+
+### Kristallen gebedsmolen
+
+*Van achter de poort boven de wolken.*
+
+Episch. +1 bij Kennis-tests en +2 bij spreuken. Eén keer per ronde: draai hem en herstel 1 Geest.
+
+### Mantel van de sneeuwleeuw
+
+*Van achter de poort boven de wolken.*
+
+Episch. +2 bij gevechten en +2 bij Gruwel-tests. De mantel is warm, maar zwaar: −1 bij Waarneming-tests.
+
+### Kalendersteen
+
+*Van het altaar onder de tempel in Yucatán.*
+
+Episch. Leg af: bekijk de volgende 3 Onheilskaarten en leg er één onderop de stapel. De Mist stijgt met 1.
+
+### Obsidiaanspiegel van de Gevederde Slang
+
+*Van het altaar onder de tempel in Yucatán.*
+
+Episch. +2 bij Waarneming-tests en +2 overzee. Wie erin kijkt, ziet soms te veel: aan het begin van elke Onheilsfase, gooi een dobbelsteen, bij 1 verlies je 1 Geest.
+
 ## Spreuken
 
 | Spreuk | Soort | Test | Prijs | Effect |

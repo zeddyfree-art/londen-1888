@@ -357,3 +357,45 @@ Twaalf jaar reed hij voor het Corps of Guides langs de noordwestgrens: nachtelij
 - **Stalen zenuwen.** Jij en elke held op jouw plek gooien bij Gruwel-tests één dobbelsteen extra. Wie bij de Khyberpas heeft gestaan, deinst niet meer terug.
 - **Eigenaardigheid:** Zegt nooit hoeveel hij weet, en weet altijd meer dan hij zegt.
 - **Uitrusting:** Tulwar van de Guides (+2 bij gevechten. Het staal is ouder dan hij, en heeft meer gezien); Khaki-tuniek (+1 bij Waarneming-tests tijdens ontmoetingen. De kleur van stof en mist: niemand ziet je aankomen)
+
+## Ra'is Mahmoud Fathy
+
+**Opzichter** · 52 jaar · Opzichter van opgravingen, Luxor · begint in St Katharine Docks
+
+Dertig jaar lang leidde Mahmoud Fathy de ploegen van de westerse expedities in Luxor: honderd man met manden, één man die wist waar je moest graven. In 1881 stond hij in de schacht van Deir el-Bahari toen de koninklijke mummies naar boven kwamen. Hij kwam naar Londen met een zending kisten, om erop te letten, en omdat één ervan bij elke haven zwaarder werd.
+
+| Kennis | Waarneming | Kracht | Charisma | Lichaam | Geest |
+|---|---|---|---|---|---|
+| 2 | 3 | 3 | 2 | 7 | 5 |
+
+- **Honderd dragers.** Eén keer per expeditie mag je je kist vooruit laten dragen: wat erin zit, is meteen van jou, alsof je al terug bent in de dokken.
+- **Eigenaardigheid:** Telt alles twee keer, en de tweede keer hardop.
+- **Uitrusting:** Opzichtersstok (+1 bij gevechten. Dertig jaar lang wees hij ermee waar gegraven moest worden); Kaart van de Vallei (Overzee: +1 bij alle tests. Met de hand getekend, met elk graf dat hij ooit opende)
+
+## Ang Nima Sherpa
+
+**Bergdrager** · 34 jaar · Drager en gids, Darjeeling · begint in Hampstead
+
+Ang Nima droeg kisten voor de landmeters van de Great Trigonometrical Survey, over passen waar de Engelsen zelf niet overheen kwamen. Een geleerde van de Survey nam hem mee naar Londen om zijn kaarten te verklaren. Nu woont hij in een kamer op Hampstead en kijkt hij 's avonds naar de sterren boven de heide, die hier verkeerd staan.
+
+| Kennis | Waarneming | Kracht | Charisma | Lichaam | Geest |
+|---|---|---|---|---|---|
+| 1 | 3 | 4 | 2 | 8 | 5 |
+
+- **Gids van de pas.** Overzee negeer je de eerste ramp van elke expeditie, en dat geldt ook voor elke held in dezelfde regio als jij. In Londen draag je 1 spul meer.
+- **Eigenaardigheid:** Loopt altijd een halve pas achter je, en ziet alles wat jij mist.
+- **Uitrusting:** Kukri (+2 bij gevechten. Voor hout, voor touw, en voor wat er 's nachts om de tent sluipt); Bergtouw (+1 bij Kracht-tests tijdens ontmoetingen. Hennep, gedraaid in Darjeeling, en het heeft nog nooit losgelaten)
+
+## Teresa Canul
+
+**Fotografe** · 29 jaar · Fotografe, Mérida · begint in Covent Garden
+
+Teresa Canul leerde fotograferen in het atelier van haar oom in Mérida, en sprak Maya met haar moeder en Spaans met haar vader. Een Engelse expeditie huurde haar om de tempels vast te leggen, plaat voor plaat. Op de laatste plaat staat iets wat er niet stond toen ze de sluiter opende. Ze bracht de plaat naar Londen, naar de enige mensen die haar misschien zouden geloven.
+
+| Kennis | Waarneming | Kracht | Charisma | Lichaam | Geest |
+|---|---|---|---|---|---|
+| 3 | 4 | 1 | 2 | 5 | 7 |
+
+- **Glasplaat.** Overzee zie je bij het ontdekken van een plek eerst de Gevaarkaart. Eén keer per expeditie mag je hem onderop leggen en de volgende trekken.
+- **Eigenaardigheid:** Kijkt eerst door haar lens, en pas dan met haar eigen ogen.
+- **Uitrusting:** Camera met glasplaten (+1 bij Waarneming-tests tijdens ontmoetingen. De lens ziet wat het oog liever mist); Machete (+1 bij gevechten. In het oerwoud is het geen wapen, maar een weg)

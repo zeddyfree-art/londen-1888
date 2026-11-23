@@ -50,6 +50,11 @@ window.__testbot = async function speel(godId, moeilijkheid, heldIds, seed) {
       /* Sirrhae: een voorzichtige speler weigert haar gunsten, behalve als het team er goed voor staat en de prijs geen Mist kost */
       if (soort === "Een gunst van Sirrhae") return null;
       if (soort === "De klok stilzetten") return w[0];
+      /* Kaarten van de Oude Wereld */
+      if (soort === "Glasplaat") return true;
+      if (soort === "Het hart") { const H = huidig(); const r = window.__spel.D.oudeWereld.regios.find(x => x.id === H.exp?.regio); if (!r) return w[0]; const best = r.hart.keuzes.map((c, i) => [i, H.kenm[c.test.kenmerk] + A.wapenBonus(H, false) * (c.test.kenmerk === "kracht" ? 0.5 : 0)]).sort((a, b) => b[1] - a[1])[0][0]; return best; }
+      if (soort === "De schat") return w[0];
+      if (soort === "Post naar huis") return null;
       if (soort === "Terughalen") return w[0];
       if (soort === "Doorvechter") return h.L > 3;
       if (soort === "Rondkijken") return knoppen.some(k => k.waarde === rondkijkWens && !k.uit) ? rondkijkWens : null;
@@ -71,7 +76,7 @@ window.__testbot = async function speel(godId, moeilijkheid, heldIds, seed) {
   };
 
   if (seed != null) A.zaai(seed);
-  A.nieuwSpel(godId, moeilijkheid, heldIds, { klokken: window.__klokken || [], modus: window.__modus || "gewoon" });
+  A.nieuwSpel(godId, moeilijkheid, heldIds, { klokken: window.__klokken || [], modus: window.__modus || "gewoon", oudeWereld: !!window.__oudeWereld });
 
   const dist = (van, naar) => A.afstanden(van)[naar] ?? 99;
   const dichtsbij = (h, filter) => {
@@ -91,6 +96,12 @@ window.__testbot = async function speel(godId, moeilijkheid, heldIds, seed) {
       if (kudde && dist(h.plek, kudde) <= 3) return kudde;
     }
     if (scheuren.length >= 4 && h.aanw > 0) return dichtsbij(h, p => st.plekken[p].scheur);
+    if (st.ow && !A.isOverzee(h.plek)) {
+      h.ronde.botOW ??= window.__botOW !== false && Math.random() < 0.3;
+      const iemandWeg = st.helden.some(x => x !== h && A.isOverzee(x.plek));
+      const regio = ["thebe", "himalaya", "yucatan"].find(r => !st.ow[r].hart);
+      if (h.ronde.botOW && regio && !iemandWeg && h.pond >= 3 && h.L >= h.maxL - 1 && h.G >= 4 && st.ronde >= 2 && st.mist > st.mistStart / 2 && (!m || m.type !== "episch")) { h.botWil = true; return regio; }
+    }
     if (!m) return null;
     if (m.type === "aanwijzingen") {
       const samen = st.helden.reduce((s, x) => s + x.aanw, 0);
@@ -138,8 +149,32 @@ window.__testbot = async function speel(godId, moeilijkheid, heldIds, seed) {
     return false;
   }
 
+  /* Kaarten van de Oude Wereld: dieper zolang het risico op een ramp klein is, anders terug */
+  async function overzee(h) {
+    const st = S(), regio = h.exp.regio, s = st.ow[regio], m = A.mysterie();
+    for (let n = 0; n < 4 && h.exp && h.acties > 0; n++) {
+      const ma = A.mysterieActie(h);
+      if (ma && ma.kan && !h.gebruikt.includes("mysterie")) { A.gebruikActie(h, "mysterie"); await A.doeMysterie(h); if (S().einde) return; continue; }
+      const wilMysterie = m && m.type === "test" && m.plek === regio;
+      if (wilMysterie && h.exp.plek === "aankomst") { await A.owReis(h, "r1a"); continue; }
+      if (wilMysterie) return;
+      /* alleen wie vrijwillig ging, verkent verder; na een mysterie gaat de testspeler naar huis */
+      if (!h.botWil) { h.botWil = false; await A.owTerug(h); return; }
+      const moe = h.L <= 3 || h.G <= 2;
+      const hier = h.exp.plek, buitHier = hier !== "aankomst" && !s.geplunderd.includes(hier) && !(hier === "hart" && s.hart);
+      if (buitHier && !moe) return; /* blijf staan voor de ontmoeting */
+      const opties = A.owBuren(hier).filter(k => k !== "aankomst" && !s.geplunderd.includes(k) && !(k === "hart" && s.hart));
+      const nieuw = k => !s.ontdekt.includes(k);
+      const risico = A.owRisico(h);
+      if (moe || !opties.length || (opties.some(nieuw) && !opties.some(k => !nieuw(k)) && risico > 0.25)) { h.botWil = false; await A.owTerug(h); return; }
+      const keus = opties.sort((a, b) => (nieuw(a) - nieuw(b)) || (A.OW_KNOPEN[b].ring - A.OW_KNOPEN[a].ring))[0];
+      if (nieuw(keus) && risico > 0.25) { h.botWil = false; await A.owTerug(h); return; }
+      await A.owReis(h, keus);
+    }
+  }
   async function beurt(h) {
     if (A.heeft(h, "verdwaald")) { await A.zoekWeg(h); return; }
+    if (h.exp) { await overzee(h); return; }
     for (let n = 0; n < 8 && (h.acties > 0 || h.stappen > 0); n++) {
       while (h.trofee >= 3) await A.groei(h, h.kenm.kracht < 3 ? "kracht" : h.kenm.kennis < 4 ? "kennis" : "L");
       if (h.L <= 2 && h.spullen.includes("carbol")) await A.gebruikSpul(h, "carbol");
@@ -195,5 +230,5 @@ window.__testbot = async function speel(godId, moeilijkheid, heldIds, seed) {
   const g = D.goden.find(x => x.id === st.god);
   const actiefM = g.mysteries[st.mysterieVolgorde[Math.min(st.mysterieIndex, st.nodig - 1)]];
   return { opgelostNamen: st.mysterieVolgorde.slice(0, st.opgelost).map(i => g.mysteries[i].naam), vastOp: st.opgelost < st.nodig ? actiefM.naam : null, einde: st.einde, ronde: st.ronde, opgelost: st.opgelost, nodig: st.nodig, mist: st.mist, gevallen: st.gevallen || 0, verzet: st.verzet ?? null,
-    waanzin: st.helden.reduce((s, h) => s + h.toestanden.filter(t => t.startsWith("waanzin")).length, 0) };
+    owTel: st.owTel || null, waanzin: st.helden.reduce((s, h) => s + h.toestanden.filter(t => t.startsWith("waanzin")).length, 0) };
 };

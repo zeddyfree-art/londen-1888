@@ -46,7 +46,7 @@ const MOEILIJKHEID = {
 
 let D = null;      // speldata
 let S = null;      // spelstand
-let UI = { tips: (() => { try { return localStorage.getItem("londen1888-tips") === "aan"; } catch { return false; } })(), legendaOpen: (() => { try { return localStorage.getItem("londen1888-legenda") === "open"; } catch { return false; } })(), undo: [], bekeken: 0, aanpassen: false, start: { god: null, moeilijkheid: "ontspannen", modus: "gewoon", aantal: 2, helden: [], klokken: (() => { try { return JSON.parse(localStorage.getItem("londen1888-klokken")) || []; } catch { return []; } })() } };
+let UI = { tips: (() => { try { return localStorage.getItem("londen1888-tips") === "aan"; } catch { return false; } })(), legendaOpen: (() => { try { return localStorage.getItem("londen1888-legenda") === "open"; } catch { return false; } })(), undo: [], bekeken: 0, aanpassen: false, start: { god: null, moeilijkheid: "ontspannen", modus: "gewoon", aantal: 2, helden: [], oudeWereld: (() => { try { return localStorage.getItem("londen1888-oude-wereld") === "aan"; } catch { return false; } })(), klokken: (() => { try { return JSON.parse(localStorage.getItem("londen1888-klokken")) || []; } catch { return []; } })() } };
 const app = document.getElementById("app");
 
 /* ---------- hulpjes ---------- */
@@ -570,7 +570,7 @@ function geefToestand(h, id) {
 /* ---------- effecten ---------- */
 function trekUit(soort) {
   if (soort === "artefacten") {
-    const vrij = D.artefacten.map(a => a.id).filter(id => !S.helden.some(h => h.artefacten.includes(id)));
+    const vrij = D.artefacten.filter(a => !a.schat).map(a => a.id).filter(id => !S.helden.some(h => h.artefacten.includes(id)));
     return vrij.length ? kies1(vrij) : null;
   }
   if (soort === "spreuken") {
@@ -586,7 +586,7 @@ async function geefArtefact(h) {
   let id = trekUit("artefacten");
   if (!id) return "geen artefacten meer";
   if (h.id === "cornelius-bray") {
-    const ander = D.artefacten.map(a => a.id).filter(x => x !== id && !S.helden.some(k => k.artefacten.includes(x)));
+    const ander = D.artefacten.filter(a => !a.schat).map(a => a.id).filter(x => x !== id && !S.helden.some(k => k.artefacten.includes(x)));
     if (ander.length) {
       const tweede = kies1(ander);
       id = await venster({ soort: "Opgraving", titel: "Kies één artefact", html: `<div class="winkelraster">${[id, tweede].map((x, i) => keuzeTegel("artefact", x, i)).join("")}</div>`, knoppen: [id, tweede].map(x => ({ label: artDef(x).naam, waarde: x, verberg: true })) });
@@ -599,6 +599,9 @@ async function pasToe(h, effecten) {
   const regels = [];
   for (const e of effecten) {
     let [k, v] = Object.entries(e)[0];
+    /* Kaarten van de Oude Wereld: buit verder dan de aankomst gaat in de kist */
+    if (h.exp?.kistOpen && isBuit(k, v)) { h.exp.kist.push(e); regels.push([0, `In je kist: ${buitTxt(e)}`]); continue; }
+    if (k === "schat") { h.artefacten.push(v); regels.push([1, `Schat: ${artDef(v).naam}`]); continue; }
     if (k === "pond") { h.pond = Math.max(0, h.pond + v); regels.push([v, `${v > 0 ? "+" : ""}${v} Pond`]); }
     else if (k === "lichaam") { if (v < 0) v = -verliesLichaam(h, -v); else { const voor = h.L; h.L = Math.min(h.maxL, h.L + v); if (v > 3) v = h.L - voor; } regels.push([v, `${v > 0 ? "+" : ""}${v} Lichaam`]); }
     else if (k === "geest") { const voor = h.G; h.G = Math.min(h.maxG, h.G + v); if (v > 3) v = h.G - voor; regels.push([v, `${v > 0 ? "+" : ""}${v} Geest`]); }
@@ -635,6 +638,7 @@ async function controleerHeld(h) {
   }
   if (h.L <= 0 && heeft(h, "gewond")) return valtAf(h, "lichaam");
   if (h.G <= 0 && h.toestanden.filter(t => t.startsWith("waanzin")).length >= 2) return valtAf(h, "geest");
+  if (h.L <= 0 && h.exp) { log(`${naam} raakt overzee gewond; de kist blijft achter`); h.exp = null; }
   if (h.L <= 0) {
     if (S.tutorial) await coach("lichaam0");
     h.L = 2; h.plek = "city"; if (!heeft(h, "gewond")) h.toestanden.push("gewond");
@@ -659,7 +663,7 @@ async function valtAf(h, oorzaak) {
   S.mist -= 1; S.gevallen = (S.gevallen || 0) + 1;
   (S.uitgevallen ??= []).push(h.id);
   log(`${naam} valt af. De Mist daalt met 1.`);
-  const vrij = schud(D.helden.filter(x => !S.helden.some(y => y.id === x.id) && !S.uitgevallen.includes(x.id))).slice(0, 4);
+  const vrij = schud(D.helden.filter(x => !S.helden.some(y => y.id === x.id) && !S.uitgevallen.includes(x.id) && (S.ow || !x.uitbreiding))).slice(0, 4);
   const tekst = oorzaak === "lichaam" ? `${naam} is te zwaar gewond om nog verder te gaan.` : `${naam} wordt opgenomen in een gesticht en komt niet meer terug.`;
   const nieuw = vrij.length ? await venster({ soort: "Een held valt af", titel: tekst, html: `<p>De Aanwijzingen van ${esc(naam)} blijven achter in ${esc(plekNaam(plek))}, en de Mist daalt met 1. Kies een nieuwe held. Die begint in The City.</p>`,
     knoppen: vrij.map(x => ({ label: `${x.naam} (${x.rol})`, waarde: x.id })) }) : null;
@@ -1050,6 +1054,195 @@ async function godInfo() {
   await venster({ soort: god().naam, titel: god().titel, html: teksten[S.god]() });
 }
 
+/* ---------- Uitbreiding: Kaarten van de Oude Wereld ----------
+   Elke bestemming overzee is een kleine kaart: de aankomst, twee ringen met vijf dichte plekken en het hart.
+   Wie een plek ontdekt, trekt een Gevaarkaart; hetzelfde gevaar twee keer in één expeditie is een ramp.
+   Buit verder dan de aankomst gaat in de kist, en telt pas als je terug bent in de dokken. Zie data/oude-wereld.json. */
+const OW_KNOPEN = { aankomst: { x: 60, y: 130, ring: 0 }, r1a: { x: 170, y: 62, ring: 1 }, r1b: { x: 170, y: 198, ring: 1 }, r2a: { x: 320, y: 50, ring: 2 }, r2b: { x: 320, y: 210, ring: 2 }, r2c: { x: 425, y: 130, ring: 2 }, hart: { x: 535, y: 90, ring: 3 } };
+const OW_PADEN = [["aankomst", "r1a"], ["aankomst", "r1b"], ["r1a", "r1b"], ["r1a", "r2a"], ["r1b", "r2b"], ["r2a", "r2c"], ["r2b", "r2c"], ["r2a", "hart"], ["r2c", "hart"]];
+const OW_OPSLAG = "londen1888-oude-wereld";
+const owRegio = id => D.oudeWereld?.regios.find(r => r.id === id);
+const owBuren = k => OW_PADEN.flatMap(([a, b]) => a === k ? [b] : b === k ? [a] : []);
+const owStapel = r => schud([...r.gevaren.flatMap(g => [g.id, g.id]), ...r.leeg.map((_, i) => "leeg-" + i)]);
+function owStart() {
+  return Object.fromEntries(D.oudeWereld.regios.map(r => {
+    const t = schud(r.tegels.map(x => x.id)).slice(0, 5);
+    return [r.id, { tegels: { r1a: t[0], r1b: t[1], r2a: t[2], r2b: t[3], r2c: t[4] }, ontdekt: ["aankomst"], geplunderd: [], hart: false, mistGekregen: false }];
+  }));
+}
+function owTegel(regio, knoop) {
+  const r = owRegio(regio);
+  if (knoop === "aankomst") return { id: "aankomst", ...r.aankomst };
+  if (knoop === "hart") return { id: "hart", ...r.hart };
+  return r.tegels.find(t => t.id === S.ow[regio].tegels[knoop]);
+}
+const owBeeld = (regio, knoop) => `art/oude-wereld/${regio}-${owTegel(regio, knoop).id}.jpg`;
+/* korte naam op de kaart: zonder lidwoord en hooguit 18 tekens */
+const korteTegel = n => { n = n.replace(/^(De|Het) /, "").replace(/^(\w)/, c => c.toUpperCase()); return n.length > 18 ? n.slice(0, 17) + "…" : n; };
+const owNaam = (regio, knoop) => S.ow[regio].ontdekt.includes(knoop) ? owTegel(regio, knoop).naam : "Onbekend terrein";
+const owTel = k => { if (S.ow) { S.owTel ??= {}; S.owTel[k] = (S.owTel[k] || 0) + 1; } };
+function owExpeditie(h, regio) {
+  owTel("expedities");
+  h.exp = { regio, plek: "aankomst", gezien: [], kist: [], stapel: owStapel(owRegio(regio)), gids: false, glasplaat: false, nima: false, dragers: false };
+}
+/* De kans dat de volgende Gevaarkaart een ramp is (voor de testbot en de tip) */
+const owRisico = h => { const s = h.exp?.stapel || []; return s.length ? s.filter(id => h.exp.gezien.includes(id)).length / s.length : 0; };
+const isBuit = (k, v) => (k === "pond" && v > 0) || (k === "aanwijzing" && v > 0) || k === "trofee" || k === "trek" || k === "schat";
+const buitTxt = e => { const [k, v] = Object.entries(e)[0]; return k === "pond" ? `${v} Pond` : k === "aanwijzing" ? `${v} Aanwijzing${v > 1 ? "en" : ""}` : k === "trofee" ? `${v} Trofee${v > 1 ? "ën" : ""}` : k === "schat" ? artDef(v).naam : ({ artefacten: "een artefact", spreuken: "een spreuk", spullen: "een spul", bondgenoot: "een bondgenoot", dier: "een dier" }[v] || "iets"); };
+/* Een Gevaarkaart trekken. Geeft true terug als de expeditie misgaat. */
+async function owGevaar(h) {
+  const r = owRegio(h.exp.regio);
+  if (!h.exp.stapel.length) h.exp.stapel = owStapel(r);
+  let id = h.exp.stapel.pop();
+  /* Teresa Canul ziet de kaart eerst, en mag hem één keer per expeditie onderop leggen */
+  if (h.id === "teresa-canul" && !h.exp.glasplaat && !id.startsWith("leeg")) {
+    const g = r.gevaren.find(x => x.id === id);
+    const weg = await venster({ soort: "Glasplaat", titel: g.naam, html: `<p>Door je lens zie je het gevaar al aankomen: <b>${esc(g.naam)}</b>${h.exp.gezien.includes(id) ? ", en dat zou een ramp zijn" : ""}. Leg je de kaart onderop? Dat kan één keer per expeditie.</p>`,
+      knoppen: [{ label: "Onderop leggen", waarde: true }, { label: "Laten liggen", waarde: false, ghost: true }] });
+    if (weg) { h.exp.glasplaat = true; h.exp.stapel.unshift(id); id = h.exp.stapel.pop(); }
+  }
+  if (id.startsWith("leeg")) { const l = r.leeg[+id.slice(5)]; await venster({ soort: "Gevaarkaart", titel: l.naam, verhaal: l.tekst, html: `<p class="muted">Geen gevaar.</p>` }); return false; }
+  const g = r.gevaren.find(x => x.id === id);
+  if (h.exp.gezien.includes(id)) {
+    const nima = S.helden.some(x => x.id === "ang-nima" && x.plek === h.plek && !x.uit);
+    if (h.exp.gids || (nima && !h.exp.nima)) {
+      const door = nima && !h.exp.nima ? "Ang Nima" : "je gids";
+      if (nima && !h.exp.nima) h.exp.nima = true; else h.exp.gids = false;
+      log(`${korteNaam(heldDef(h).naam)} ontloopt ${g.naam} dankzij ${door}`);
+      await venster({ soort: "Gevaarkaart", titel: g.naam, verhaal: g.tekst, html: `<p>Het had een ramp kunnen zijn, maar ${esc(door)} ziet het op tijd en neemt een andere weg.</p>` });
+      return false;
+    }
+    const n = h.exp.kist.length, regio = owRegio(h.exp.regio).naam;
+    const html = await pasToe(h, g.effect);
+    log(`${korteNaam(heldDef(h).naam)}: de expeditie gaat mis (${g.naam})`); owTel("rampen");
+    h.exp = null; h.plek = "st-katharine-docks";
+    await venster({ soort: "De expeditie gaat mis", titel: g.naam, verhaal: g.tekst, html: `${html}<p>Voor de tweede keer. Wie nog kan lopen, keert om. Je wordt teruggebracht naar St Katharine Docks${n ? `, en wat in je kist zat, blijft achter in ${esc(regio)}` : ""}.</p>` });
+    await controleerHeld(h);
+    return true;
+  }
+  h.exp.gezien.push(id);
+  const html = await pasToe(h, g.effect);
+  await venster({ soort: "Gevaarkaart", titel: g.naam, verhaal: g.tekst, html: `${html}<p class="muted">Trek je ${esc(g.naam)} in deze expeditie nog eens, dan gaat het mis.</p>` });
+  await controleerHeld(h);
+  return false;
+}
+async function owReis(h, doel) {
+  if (!h.exp || h.acties < 1 || !owBuren(h.exp.plek).includes(doel)) return;
+  h.acties--; h.reisActies = (h.reisActies || 0) + 1;
+  const s = S.ow[h.exp.regio];
+  h.exp.plek = doel;
+  const nieuw = !s.ontdekt.includes(doel);
+  if (nieuw) s.ontdekt.push(doel);
+  log(`${korteNaam(heldDef(h).naam)} trekt naar ${owNaam(h.exp.regio, doel)}`);
+  if (nieuw) {
+    const t = owTegel(h.exp.regio, doel);
+    await venster({ soort: "Ontdekt", titel: t.naam, beeld: owBeeld(h.exp.regio, doel), verhaal: t.tekst });
+    await owGevaar(h);
+  }
+  opslaan(); teken();
+}
+async function owBank(h, titel) {
+  const kist = h.exp.kist; h.exp.kist = [];
+  if (kist.length) { await venster({ soort: "Je kist", titel, html: await pasToe(h, kist) }); await controleerHeld(h); }
+}
+async function owTerug(h) {
+  if (!h.exp || h.acties < 1) return;
+  h.acties--;
+  if (OW_KNOPEN[h.exp.plek].ring >= 2) {
+    await melding("De terugtocht", "Je bent ver van de kust. Op de weg terug kan er nog van alles gebeuren.", "Gevaarkaart");
+    if (await owGevaar(h)) { opslaan(); teken(); return; }
+    if (!h.exp) { opslaan(); teken(); return; }
+  }
+  owTel("thuis"); owTel(`diepte${OW_KNOPEN[h.exp.plek].ring}`);
+  /* wie veilig terugkomt uit de tweede ring of het hart, verzwakt de god: de Mist stijgt met 1 */
+  if (OW_KNOPEN[h.exp.plek].ring >= 2) { S.mist += 1; log(`${korteNaam(heldDef(h).naam)} komt terug van diep in ${owRegio(h.exp.regio).naam}: de Mist stijgt met 1`); await melding("Terug van ver", "Je komt terug van diep in het binnenland, met kaarten en aantekeningen die niemand anders heeft. Wat je weet, verzwakt de god: de Mist stijgt met 1.", "Kaarten van de Oude Wereld"); }
+  await owBank(h, "Terug in de dokken");
+  h.exp = null; h.plek = "st-katharine-docks"; log(`${korteNaam(heldDef(h).naam)} keert terug naar de dokken`);
+  opslaan(); teken();
+}
+/* Mahmoud Fathy: één keer per expeditie laat hij de kist vooruit dragen */
+async function owDragers(h) { if (!h.exp || h.exp.dragers || !h.exp.kist.length) return; h.exp.dragers = true; await owBank(h, "Honderd dragers"); opslaan(); teken(); }
+async function owGids(h) {
+  if (!h.exp || h.exp.plek !== "aankomst" || h.exp.gids || h.pond < prijs(2)) return;
+  h.pond -= prijs(2); h.exp.gids = true; log(`${korteNaam(heldDef(h).naam)} huurt een gids`);
+  await melding("Een gids", "Je gids kent de streek. De eerste keer dat de expeditie mis zou gaan, ziet hij het op tijd.", "Gids huren"); opslaan(); teken();
+}
+/* Post naar huis: één keer per ronde een telegram (1 Aanwijzing) of een pakket met de postboot (1 spul) naar een held in Londen */
+async function owPost(h) {
+  const thuis = S.helden.filter(x => x !== h && !x.uit && !isOverzee(x.plek));
+  if (h.ronde.post || !thuis.length) return;
+  const wat = await venster({ soort: "Post naar huis", titel: "Wat stuur je?", knoppen: [
+    { label: "Een telegram: 1 Aanwijzing", waarde: ["aanw"], uit: h.aanw < 1 },
+    ...h.spullen.filter(id => !spulDef(id)?.persoonlijk).map(id => ({ label: `Een pakket met de postboot: ${spulDef(id).naam}`, waarde: ["spul", id] })),
+    { label: "Toch niet", waarde: null, ghost: true }] });
+  if (!wat) return;
+  const x = thuis.length === 1 ? thuis[0] : await venster({ soort: "Post naar huis", titel: "Aan wie?", knoppen: thuis.map(x => ({ label: `${korteNaam(heldDef(x).naam)} (${plekNaam(x.plek)})`, waarde: x })) });
+  h.ronde.post = true;
+  if (wat[0] === "aanw") { h.aanw--; x.aanw++; log(`${korteNaam(heldDef(h).naam)} telegrafeert een Aanwijzing naar ${korteNaam(heldDef(x).naam)}`); }
+  else { h.spullen = h.spullen.filter(i => i !== wat[1]); x.spullen.push(wat[1]); log(`${korteNaam(heldDef(h).naam)} stuurt ${spulDef(wat[1]).naam} naar ${korteNaam(heldDef(x).naam)}`); await controleerHeld(x); }
+  opslaan(); teken();
+}
+/* De ontmoeting op een plek van de kaart (niet de aankomst) */
+async function owOntmoeting(h) {
+  const regio = h.exp.regio, k = h.exp.plek, s = S.ow[regio], t = owTegel(regio, k), r = owRegio(regio);
+  if (k === "hart" && !s.hart) return owHart(h);
+  if (k === "hart" || s.geplunderd.includes(k)) { h.G = Math.min(h.maxG, h.G + 1); await venster({ soort: r.naam, titel: t.naam, beeld: owBeeld(regio, k), html: "<p>Hier is niets meer te halen. Je rust even uit: +1 Geest.</p>" }); return; }
+  s.geplunderd.push(k);
+  /* elk succes levert 1 Aanwijzing extra op, en in de tweede ring ook 1 Trofee */
+  const ring2 = OW_KNOPEN[k].ring >= 2;
+  const plus = u => u ? { ...u, effect: [...(u.effect || []), { aanwijzing: 1 }, ...(ring2 ? [{ trofee: 1 }] : [])] } : u;
+  const kaart = { ...t, keuzes: t.keuzes.map(c => c.test ? { ...c, gelukt: plus(c.gelukt) } : c) };
+  h.exp.kistOpen = true;
+  try { await speelKaart(h, kaart, r.naam, owBeeld(regio, k), "expeditie"); } finally { if (h.exp) h.exp.kistOpen = false; }
+}
+async function owHart(h) {
+  const regio = h.exp.regio, r = owRegio(regio), hart = r.hart, s = S.ow[regio];
+  const i = await venster({ soort: "Het hart", titel: hart.naam, beeld: owBeeld(regio, "hart"), verhaal: hart.tekst, html: middelenHtml(h),
+    knoppen: hart.keuzes.map((c, i) => ({ label: c.label.replace(/\((\w+) (\d+)\)/, (_, kn, n) => `(${kn} ${metStand(+n, "ontmoeting")}${kansTxt(h, c.test.kenmerk, c.test.moeilijkheid, { context: "ontmoeting" })})`), waarde: i })) });
+  const c = hart.keuzes[i ?? 0];
+  if (!await test(h, c.test.kenmerk, c.test.moeilijkheid, hart.naam, { context: "ontmoeting" })) {
+    await venster({ soort: "Mislukt", titel: hart.naam, verhaal: hart.mislukt, html: await pasToe(h, [{ lichaam: -2 }, { geest: -1 }]) });
+    await controleerHeld(h); return;
+  }
+  s.hart = true; owTel("harten");
+  const id = await venster({ soort: "De schat", titel: "Wat neem je mee?", verhaal: hart.gelukt, html: `<div class="winkelraster">${hart.schatten.map((x, i) => keuzeTegel("artefact", x, i)).join("")}</div>`, knoppen: hart.schatten.map(x => ({ label: artDef(x).naam, waarde: x, verberg: true })) });
+  h.exp.kist.push({ schat: id ?? hart.schatten[0] }, { trofee: 1 });
+  let extra = "";
+  if (!s.mistGekregen) { s.mistGekregen = true; S.mist += 2; extra = " Wat je hier hebt weggehaald, verzwakt de god: de Mist stijgt met 2."; }
+  log(`${korteNaam(heldDef(h).naam)} bereikt ${hart.naam}`);
+  await melding("In je kist", `${artDef(id ?? hart.schatten[0]).naam} en 1 Trofee gaan in je kist. Breng ze veilig naar huis.${extra}`, hart.naam);
+}
+/* De kaart van de regio in het paneel, met de knoppen voor de expeditie */
+function owPaneel(h, isActief) {
+  if (!S.ow || !h.exp) return "";
+  const regio = h.exp.regio, s = S.ow[regio], r = owRegio(regio), buren = owBuren(h.exp.plek);
+  const lijnen = OW_PADEN.map(([a, b]) => `<line x1="${OW_KNOPEN[a].x}" y1="${OW_KNOPEN[a].y}" x2="${OW_KNOPEN[b].x}" y2="${OW_KNOPEN[b].y}"/>`).join("");
+  const andere = S.helden.filter(x => x !== h && x.exp?.regio === regio);
+  const knopen = Object.entries(OW_KNOPEN).map(([k, p]) => {
+    const open = s.ontdekt.includes(k), hier = h.exp.plek === k, leeg = s.geplunderd.includes(k) || (k === "hart" && s.hart);
+    const naam = open ? owTegel(regio, k).naam : "?";
+    return `<g class="owk${open ? " open" : " dicht"}${hier ? " hier" : ""}${k === "hart" ? " hart" : ""}${leeg ? " leeg" : ""}${isActief && buren.includes(k) && h.acties > 0 ? " bereik" : ""}"${isActief && buren.includes(k) && h.acties > 0 ? ` data-act="ow-reis" data-doel="${k}" role="button" tabindex="0"` : ""}>
+      <circle cx="${p.x}" cy="${p.y}" r="${k === "hart" ? 30 : 25}"/>${open ? "" : `<text class="owq" x="${p.x}" y="${p.y + 10}" text-anchor="middle">?</text>`}
+      ${open ? `<text class="ownaam" x="${Math.min(520, Math.max(80, p.x))}" y="${p.y + (p.y > 130 ? 50 : -36)}" text-anchor="middle">${esc(korteTegel(naam))}</text>` : ""}
+      ${hier ? `<circle class="owheld" cx="${p.x}" cy="${p.y}" r="9" style="fill:${KLEUREN[S.helden.indexOf(h)]}"/>` : ""}
+      ${andere.filter(x => x.exp.plek === k).map((x, j) => `<circle class="owheld" cx="${p.x + 12 + j * 10}" cy="${p.y - 12}" r="6" style="fill:${KLEUREN[S.helden.indexOf(x)]}"/>`).join("")}</g>`;
+  }).join("");
+  const gezien = h.exp.gezien.map(id => r.gevaren.find(g => g.id === id)?.naam).filter(Boolean);
+  const risico = Math.round(100 * owRisico(h));
+  const knop = (act, label, aan, uitleg) => `<button class="btn${act === "ow-terug" ? " breed" : ""}" data-act="${act}" ${aan ? "" : "disabled"} data-uitleg="${esc(uitleg)}">${label}</button>`;
+  return `<div class="owkaart"><div class="owkop"><b>${esc(r.naam)}</b><span class="muted">${esc(owNaam(regio, h.exp.plek))}</span></div>
+    <svg viewBox="0 -10 600 290" class="owsvg" role="group" aria-label="Kaart van ${esc(r.naam)}"><g class="owpaden">${lijnen}</g>${knopen}</svg>
+    <div class="owstatus"><span>Kist: <b>${h.exp.kist.length ? esc(h.exp.kist.map(buitTxt).join(", ")) : "leeg"}</b></span>
+      <span>Gevaren gezien: <b>${gezien.length ? esc(gezien.join(", ")) : "nog geen"}</b>${gezien.length ? ` · kans op een ramp bij de volgende kaart: <b>${risico}%</b>` : ""}</span>
+      ${h.exp.gids ? `<span>Je hebt een gids bij je.</span>` : ""}</div>
+    ${isActief ? `<div class="acties">
+      ${knop("ow-terug", OW_KNOPEN[h.exp.plek].ring >= 2 ? "Terugkeren naar de dokken (1 actie, 1 Gevaarkaart)" : "Terugkeren naar de dokken (1 actie)", h.acties > 0, "Je kist is veilig en de buit is van jou. Vanaf de tweede ring en het hart trek je nog één Gevaarkaart voor de terugtocht.")}
+      ${h.exp.plek === "aankomst" ? knop("ow-gids", `Gids huren (${prijs(2)} Pond)`, !h.exp.gids && h.pond >= prijs(2), "Kost geen actie. De eerste keer dat de expeditie mis zou gaan, ziet je gids het op tijd.") : ""}
+      ${h.id === "mahmoud-fathy" ? knop("ow-dragers", "Honderd dragers: kist vooruit sturen", !h.exp.dragers && h.exp.kist.length > 0, "Eén keer per expeditie: wat in je kist zit, is meteen van jou.") : ""}
+      ${knop("ow-post", "Post naar huis", !h.ronde.post && S.helden.some(x => x !== h && !x.uit && !isOverzee(x.plek)), "Kost geen actie, één keer per ronde: een telegram (1 Aanwijzing) of een pakket met de postboot (1 spul) naar een held in Londen.")}
+    </div><p class="muted owtip">Tik op een plek met een groene rand om erheen te trekken (1 actie). Je ontmoeting heb je waar je aan het eind van de ronde staat.</p>` : ""}</div>`;
+}
+
 /* ---------- start ---------- */
 function nieuwSpel(godId, moeilijkheid, heldIds, opties = {}) {
   const mo = MOEILIJKHEID[moeilijkheid], g = byId(D.goden, godId);
@@ -1078,6 +1271,7 @@ function nieuwSpel(godId, moeilijkheid, heldIds, opties = {}) {
   legAanwijzing(klok("zwijgende-getuigen") ? 0 : 3);
   activeerMysterie();
   if (godId === "karathos") for (const o of Object.values(S.overzee)) o.artefact = true;
+  S.ow = opties.oudeWereld && !opties.tutorial ? owStart() : null;
   if (godId === "ulvereth") trekWeer(false);
   log(`Het spel begint. ${g.naam} roert zich.`);
   startHeldenbeurt(false);
@@ -1279,7 +1473,7 @@ async function rust(h) {
 }
 /* De tas: spullen (zonder persoonlijk bezit) en spreuken tellen mee. 6 plekken, plus 1 per Gladstonetas of sjouwer. */
 const telBagage = h => h.spullen.filter(id => !spulDef(id)?.persoonlijk).length + h.spreuken.length;
-const maxBagage = h => 6 + h.spullen.reduce((t, id) => t + (spulDef(id)?.bonus?.draag || 0), 0);
+const maxBagage = h => 6 + (h.id === "ang-nima" ? 1 : 0) + h.spullen.reduce((t, id) => t + (spulDef(id)?.bonus?.draag || 0), 0);
 function kanDragen(h) { return telBagage(h) < maxBagage(h); }
 const tasTxt = h => `${telBagage(h)} van ${maxBagage(h)}`;
 const bagageNaam = (soort, id) => soort === "spreuken" ? spreukDef(id).naam : spulDef(id).naam;
@@ -1473,7 +1667,7 @@ async function dienst(h) {
       if (weer("storm")) { await melding("De dokken", "Het stormt. Geen kapitein vaart vandaag uit."); geefActieTerug(h); break; }
       if (h.pond < bootPrijs()) { await melding("De dokken", `Een bootkaartje kost ${bootPrijs()} Pond.`); geefActieTerug(h); break; }
       const d = await venster({ soort: `Bootkaartje (${bootPrijs()} Pond)`, titel: "Op expeditie", knoppen: [...D.bord.overzee.map(o => ({ label: o.naam, waarde: o.id })), { label: "Toch niet", waarde: null, ghost: true }] });
-      if (d) { h.pond -= bootPrijs(); h.plek = d; log(`${naam} vaart naar ${plekNaam(d)}`); terugPunt(voor, `de boot naar ${plekNaam(d)}`); } else geefActieTerug(h);
+      if (d) { h.pond -= bootPrijs(); h.plek = d; if (S.ow) owExpeditie(h, d); log(`${naam} vaart naar ${plekNaam(d)}`); terugPunt(voor, `de boot naar ${plekNaam(d)}`); } else geefActieTerug(h);
       break;
     }
     case "rivierpolitie": {
@@ -2057,6 +2251,7 @@ async function ontmoeting(h) {
   }
   const plek = h.ronde.astraal || h.plek;
   if (h.ronde.astraal) await melding("Astrale reis", `Je geest zweeft naar ${plekNaam(plek)}.`);
+  if (isOverzee(plek) && S.ow && h.exp && !h.ronde.astraal && h.exp.plek !== "aankomst") return owOntmoeting(h);
   if (isOverzee(plek)) {
     const kaart = trekKaart(D.ontmoetingen.expeditie, e => e.plek === plek);
     await overgang("expeditie", plekNaam(plek));
@@ -2902,13 +3097,14 @@ function tekenPaneel() {
         <div>Lichaam<b>${h.L}/${h.maxL}</b></div><div>Geest<b>${h.G}/${h.maxG}</b></div><div>Pond<b>${h.pond}</b></div><div>Aanwijz.<b>${h.aanw}${isYth() && onzeker(h) ? `<small title="onzeker">${onzeker(h)}?</small>` : ""}</b></div><div>Trofee<b>${h.trofee}</b></div>
       </div>
       <div class="kenm">${KENMERKEN.map(([k, l]) => `<div title="${esc(KUITLEG[k])}">${l}<b>${h.kenm[k]}${bonusVoor(h, k) ? `<small>+${bonusVoor(h, k)}</small>` : ""}</b></div>`).join("")}</div>
+      ${owPaneel(h, isActief)}
       ${isActief && heeft(h, "verdwaald") ? `<div class="acties"><button class="btn breed" data-act="zoekweg" ${h.acties > 0 ? "" : "disabled"} data-uitleg="Kost al je acties. Lukt het, dan sta je op een willekeurige plek in Londen.">Zoek de weg terug (Waarneming 8)</button><button class="btn ghost breed" data-act="klaar">Beurt klaar</button></div>` : isActief ? `<div class="acties">
         <button class="btn" data-act="rust" ${kanActie("rusten") ? "" : "disabled"} data-uitleg="+1 Lichaam en +1 Geest. Niet als er een monster op je plek is.">Rusten</button>
         <button class="btn" data-act="voorbereiden" ${kanActie("voorbereiden") && !h.ronde.voorbereid ? "" : "disabled"} data-uitleg="+1 dobbelsteen in je gevechten tot het eind van de ronde.">${h.ronde.voorbereid ? "Voorbereid" : "Voorbereiden"}</button>
         <button class="btn" data-act="dienst" ${kanActie("dienst") && dienstNaam ? "" : "disabled"} data-uitleg="${esc(dienstNaam ? DIENSTUITLEG[dienstNaam] || "" : "Hier is geen dienst. Kijk rond of reis verder.")}">${dienstNaam ? esc(DIENSTLABEL[dienstNaam] || dienstNaam) : "Geen dienst"}</button>
         <button class="btn" data-act="rondkijken" ${kanActie("rondkijken") && !isOverzee(h.plek) ? "" : "disabled"} data-uitleg="Inkopen, een rijtuigkaartje of rondhoren: één keer per beurt, op elke plek in Londen. Koop je bij inkopen niets, dan kost het geen actie.">Rondkijken</button>
         <button class="btn" data-act="ruil" ${kanActie("ruilen") && anderenHier && !heeft(h, "waanzin-paranoia") ? "" : "disabled"} data-uitleg="Geef of neem spullen, Pond en Aanwijzingen met een held op dezelfde plek. Ruil je niets, dan kost het geen actie.">Ruilen</button>
-        ${isOverzee(h.plek) ? `<button class="btn" data-act="terug" ${isActief && h.acties > 0 ? "" : "disabled"} data-uitleg="Kost een actie: je vaart terug naar St Katharine Docks.">Terug naar de dokken</button>` : `<button class="btn" data-act="groei" ${h.trofee >= 3 ? "" : "disabled"} data-uitleg="Lever 3 trofeeën in om je held sterker te maken. Kost geen actie.">Groeien (3 trofeeën)</button>`}
+        ${isOverzee(h.plek) && h.exp ? "" : isOverzee(h.plek) ? `<button class="btn" data-act="terug" ${isActief && h.acties > 0 ? "" : "disabled"} data-uitleg="Kost een actie: je vaart terug naar St Katharine Docks.">Terug naar de dokken</button>` : `<button class="btn" data-act="groei" ${h.trofee >= 3 ? "" : "disabled"} data-uitleg="Lever 3 trofeeën in om je held sterker te maken. Kost geen actie.">Groeien (3 trofeeën)</button>`}
         ${ma ? `<button class="btn breed" data-act="mysterie" ${ma.kan && h.acties > 0 && !h.gebruikt.includes("mysterie") ? "" : "disabled"} data-uitleg="Werk aan het huidige mysterie. Kost een actie.">${esc(ma.label)}${ma.uitleg ? ` (${esc(ma.uitleg)})` : ""}</button>` : ""}
         ${UI.undo.length && UI.undo.at(-1).ronde === S.ronde && UI.undo.at(-1).actief === S.actief ? `<button class="btn ghost breed terugknop" data-act="undo" data-uitleg="Maak je laatste actie ongedaan. Dat kan alleen bij acties zonder dobbelstenen of nieuwe kaarten.">↶ Ongedaan maken: ${esc(UI.undo.at(-1).label)}</button>` : ""}
         <button class="btn ghost breed" data-act="klaar" data-uitleg="Beëindig je beurt. Acties die je over hebt, vervallen.">Beurt klaar</button>
@@ -3015,7 +3211,7 @@ function tekenEinde() {
 const HELDSORTERING = "londen1888-heldsortering";
 function gesorteerdeHelden(sort) {
   const naam = h => korteNaam(h.naam);
-  const l = D.helden.slice();
+  const l = D.helden.filter(h => UI.start.oudeWereld || !h.uitbreiding);
   if (sort === "naam") return l.sort((a, b) => naam(a).localeCompare(naam(b), "nl"));
   if (KNAAM[sort]) return l.sort((a, b) => b.kenmerken[sort] - a.kenmerken[sort] || naam(a).localeCompare(naam(b), "nl"));
   return l;
@@ -3035,6 +3231,8 @@ function tekenStart() {
     <section><h2>Moeilijkheid</h2><div class="opties">${Object.entries(MOEILIJKHEID).map(([k, m]) => `<button class="optie" data-moeilijk="${k}" aria-pressed="${u.moeilijkheid === k}">${m.naam}: ${m.nodig} mysteries</button>`).join("")}</div></section>
     <section><h2>Speelduur</h2><div class="opties"><button class="optie" data-modus="gewoon" aria-pressed="${u.modus !== "lang"}">Gewoon: ongeveer 45 minuten</button><button class="optie" data-modus="lang" aria-pressed="${u.modus === "lang"}">De Lange Nacht: 90 tot 120 minuten</button></div>
       ${u.modus === "lang" ? `<p class="muted">Twee mysteries meer en een veel ruimere Mist. Na elk mysterie een beloningsronde, en Londen wordt per bedrijf grimmiger.</p>` : ""}</section>
+    <section><h2>Uitbreiding</h2><div class="opties"><button class="optie" data-ow="uit" aria-pressed="${!u.oudeWereld}">Zonder uitbreiding</button><button class="optie" data-ow="aan" aria-pressed="${!!u.oudeWereld}">Kaarten van de Oude Wereld</button></div>
+      ${u.oudeWereld ? `<p class="muted">Thebe, de Himalaya en Yucatán worden kaarten met zeven plekken die je zelf ontdekt. Hoe verder je gaat, hoe groter de buit en het gevaar. Drie nieuwe helden doen mee. Zie de handleiding.</p>` : ""}</section>
     <section><h2>Hoeveel helden?</h2><div class="opties">${[2, 4].map(n => `<button class="optie" data-aantal="${n}" aria-pressed="${u.aantal === n}">${n} helden</button>`).join("")}</div></section>
     <section><h2>Kies ${u.aantal} helden <span class="muted" style="font-size:16px">(${u.helden.length} gekozen)</span></h2>
       <div class="opties"><button class="btn small ghost" data-act="willekeurig">Willekeurig kiezen</button></div>
@@ -3132,7 +3330,7 @@ function bewaarUitslag() {
   const winst = S.einde === "winst" || S.einde === "nipt";
   const kans = S.kans ?? schatKans(S.god, S.moeilijkheid, S.helden.length, S.klokken || [], S.modus);
   let naam = ""; try { naam = localStorage.getItem(SPELERNAAM) || ""; } catch {}
-  const e = { id: Date.now(), datum: new Date().toISOString().slice(0, 10), naam, god: S.god, stand: S.moeilijkheid, helden: S.helden.map(h => h.id), klokken: S.klokken || [],
+  const e = { id: Date.now(), datum: new Date().toISOString().slice(0, 10), naam, god: S.god, stand: S.moeilijkheid, helden: S.helden.map(h => h.id), klokken: S.klokken || [], oudeWereld: !!S.ow,
     ronde: S.ronde, uitslag: S.einde, modus: S.modus || "gewoon", kans: kans == null ? null : +kans.toFixed(3), punten: winst && kans != null ? puntenVoor(kans, S.einde === "nipt") : 0, aangepast: !!S.aangepast };
   S.uitslagId = e.id; const l = leesScores(); l.push(e); schrijfScores(l); opslaan();
 }
@@ -3159,12 +3357,13 @@ async function veilig(fn) { if (bezig) return; bezig = true; UI.undo = []; try {
 function coachUitWachtrij() { if (UI.intro) { UI.intro.then(() => setTimeout(coachUitWachtrij, 30)); return; } const c = UI.coachWacht; if (!c || bezig) return; UI.coachWacht = null; veilig(() => coach(c)); }
 app.addEventListener("click", e => {
   if (UI.zoomRust && Date.now() - UI.zoomRust < 350 && e.target.closest?.("svg.bord")) return; /* na slepen of knijpen geen klik */
-  const t = e.target.closest("button, [data-plek], [data-klok]"); if (!t) return;
+  const t = e.target.closest("button, [data-plek], [data-klok], [data-doel]"); if (!t) return;
   const u = UI.start;
   if (t.dataset.klok && !S) { wisselKlok(t.dataset.klok); return; }
   if (t.dataset.god) { u.god = t.dataset.god; return teken(); }
   if (t.dataset.moeilijk) { u.moeilijkheid = t.dataset.moeilijk; return teken(); }
   if (t.dataset.modus) { u.modus = t.dataset.modus; return teken(); }
+  if (t.dataset.ow) { u.oudeWereld = t.dataset.ow === "aan"; try { localStorage.setItem(OW_OPSLAG, u.oudeWereld ? "aan" : "uit"); } catch {} if (!u.oudeWereld) u.helden = u.helden.filter(id => !byId(D.helden, id)?.uitbreiding); return teken(); }
   if (t.dataset.sorteer) { u.sort = t.dataset.sorteer; try { localStorage.setItem(HELDSORTERING, u.sort); } catch {} return teken(); }
   if (t.dataset.aantal) { u.aantal = +t.dataset.aantal; u.helden = u.helden.slice(0, u.aantal); return teken(); }
   if (t.dataset.held) return veilig(() => toonHeld(t.dataset.held));
@@ -3184,8 +3383,8 @@ app.addEventListener("click", e => {
   if (t.dataset.pas) { const [k, v] = t.dataset.pas.split(":"); const h = S.helden[UI.bekeken]; if (k === "mist") S.mist += +v; else h[k] = Math.max(0, h[k] + +v); opslaan(); return teken(); }
   const h = S ? S.helden[UI.bekeken] : null;
   switch (t.dataset.act) {
-    case "willekeurig": u.helden = schud(D.helden.map(x => x.id)).slice(0, u.aantal); if (!u.god) u.god = kies1(D.goden).id; return teken();
-    case "begin": nieuwSpel(u.god, u.moeilijkheid, u.helden, { klokken: u.klokken, modus: u.modus }); return;
+    case "willekeurig": u.helden = schud(D.helden.filter(x => u.oudeWereld || !x.uitbreiding).map(x => x.id)).slice(0, u.aantal); if (!u.god) u.god = kies1(D.goden).id; return teken();
+    case "begin": nieuwSpel(u.god, u.moeilijkheid, u.helden, { klokken: u.klokken, modus: u.modus, oudeWereld: u.oudeWereld }); return;
     case "zoom-in": case "zoom-uit": { const b = D.bord, z = UI.zoom || { s: 1, x: 0, y: 0 }; return zoomNaar(z.s * (t.dataset.act === "zoom-in" ? 1.5 : 1 / 1.5), z.x + b.breedte / z.s / 2, z.y + b.hoogte / z.s / 2, true); }
     case "zoom-reset": UI.zoom = { s: 1, x: 0, y: 0 }; return teken();
     case "klokken-uit": u.klokken = []; bewaarKlokkeuze(); return teken();
@@ -3218,7 +3417,12 @@ app.addEventListener("click", e => {
     case "rondkijken": return veilig(() => rondkijken(actief()));
     case "dienst": return veilig(() => dienst(actief()));
     case "ruil": return veilig(() => ruil(actief()));
-    case "terug": { const a = actief(); gebruikActie(a, "reizen"); a.plek = "st-katharine-docks"; log(`${korteNaam(heldDef(a).naam)} keert terug naar de dokken`); opslaan(); return teken(); }
+    case "ow-reis": return veilig(() => owReis(actief(), t.dataset.doel));
+    case "ow-terug": return veilig(() => owTerug(actief()));
+    case "ow-gids": return veilig(() => owGids(actief()));
+    case "ow-dragers": return veilig(() => owDragers(actief()));
+    case "ow-post": return veilig(() => owPost(actief()));
+    case "terug": { const a = actief(); if (a.exp) return veilig(() => owTerug(a)); gebruikActie(a, "reizen"); a.plek = "st-katharine-docks"; log(`${korteNaam(heldDef(a).naam)} keert terug naar de dokken`); opslaan(); return teken(); }
     case "mysterie": return veilig(async () => { gebruikActie(actief(), "mysterie"); await doeMysterie(actief()); opslaan(); });
     case "klaar": return veilig(beurtKlaar);
     case "pell": return veilig(() => pellVermogen(actief()));
@@ -3328,11 +3532,15 @@ app.addEventListener("keydown", e => { const k = e.target.closest?.("svg [data-k
 /* ---------- laden ---------- */
 const BESTANDEN_MD = { handleiding: "handleiding" };
 const BESTANDEN = { bord: "bord", helden: "helden", goden: "oude-goden", monsters: "monsters", epische: "epische-monsters", spullen: "spullen", spreuken: "spreuken", artefacten: "artefacten", toestanden: "toestanden", onheil: "onheil", personen: "personen", persoonlijk: "persoonlijk", nieuws: "nieuws", klokmodel: "klokken",
-  o_stad: "ontmoetingen/stad", o_verhaal: "ontmoetingen/verhaal", o_expeditie: "ontmoetingen/expeditie", o_scheur: "ontmoetingen/scheur", o_aanwijzing: "ontmoetingen/aanwijzing" };
+  o_stad: "ontmoetingen/stad", o_verhaal: "ontmoetingen/verhaal", o_expeditie: "ontmoetingen/expeditie", o_scheur: "ontmoetingen/scheur", o_aanwijzing: "ontmoetingen/aanwijzing", oudeWereld: "oude-wereld" };
 Promise.all(Object.entries(BESTANDEN).map(([k, f]) => fetch(`data/${f}.json`).then(r => { if (!r.ok) throw new Error(f); return r.json(); }).then(j => [k, j])))
   .then(lijst => Promise.all(Object.entries(BESTANDEN_MD).map(([k, f]) => fetch(`data/${f}.md`).then(r => r.ok ? r.text() : "").then(t => [k, t]))).then(md => [...lijst, ...md]))
   .then(lijst => {
     D = Object.fromEntries(lijst);
+    /* Kaarten van de Oude Wereld: helden, hun spullen en de schatten zitten in data/oude-wereld.json */
+    D.helden = [...D.helden, ...D.oudeWereld.helden];
+    D.persoonlijk = [...D.persoonlijk, ...D.oudeWereld.persoonlijk];
+    D.artefacten = [...D.artefacten, ...D.oudeWereld.schatten];
     D.spullen = [...D.spullen, ...D.persoonlijk.map(x => ({ ...x, persoonlijk: true, prijs: 0 }))];
     D.ontmoetingen = { stad: [...D.o_stad, ...D.o_verhaal], expeditie: D.o_expeditie, scheur: D.o_scheur, aanwijzing: D.o_aanwijzing };
     maakBuren(); teken(); registreerSW();
@@ -3387,5 +3595,5 @@ function toonUpdate() {
   document.body.appendChild(el);
 }
 window.__spel = { KLOKKEN, get S() { return S; }, get D() { return D; }, get bezig() { return bezig; },
-  api: { teken, rondkijken, voorbereiden, bootPrijs, metroDoelen, overgang, venster, scheurBeeld, toonUpdate, kans, speelKaart, onheilsfase, nieuwSpel, zaai, reis, rust, dienst, doeMysterie, mysterieActie, beurtKlaar, gebruikActie, gebruikSpul, zoekWeg, bereikbaar, burenVan, afstanden, stapNaar, actief, groei, mysterie, heeft, isOverzee, spulDef, monsterDef, wapenBonus, plekDef } };
+  api: { owReis, owTerug, owBuren, owRisico, OW_KNOPEN, teken, rondkijken, voorbereiden, bootPrijs, metroDoelen, overgang, venster, scheurBeeld, toonUpdate, kans, speelKaart, onheilsfase, nieuwSpel, zaai, reis, rust, dienst, doeMysterie, mysterieActie, beurtKlaar, gebruikActie, gebruikSpul, zoekWeg, bereikbaar, burenVan, afstanden, stapNaar, actief, groei, mysterie, heeft, isOverzee, spulDef, monsterDef, wapenBonus, plekDef } };
 })();

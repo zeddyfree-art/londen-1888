@@ -668,3 +668,24 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);ou
 .godchip.slecht{border-color:var(--bad)}
 .bord .plek.bevroren .medaillon{stroke:#cfefff;stroke-width:5;stroke-dasharray:3 3}
 .pools small{font-size:11px;margin-left:3px;color:var(--mist)}
+/* ===== Kaarten van de Oude Wereld: de regiokaart in het paneel ===== */
+.owkaart{border:1px solid var(--line);border-radius:6px;padding:10px;margin:10px 0;background:color-mix(in srgb,var(--tint) 40%,transparent)}
+.owkop{display:flex;justify-content:space-between;gap:8px;align-items:baseline;flex-wrap:wrap}
+.owkop b{font-family:var(--display);font-size:17px}
+.owsvg{width:100%;height:auto;display:block;margin:6px 0}
+.owpaden line{stroke:var(--road);stroke-width:3;stroke-dasharray:6 5}
+.owk circle:first-child{fill:var(--paper);stroke:var(--muted);stroke-width:2}
+.owk.dicht circle:first-child{fill:color-mix(in srgb,var(--muted) 25%,var(--paper));stroke-dasharray:4 3}
+.owk.open circle:first-child{stroke:var(--mist)}
+.owk.hart circle:first-child{stroke:var(--rift);stroke-width:3}
+.owk.leeg circle:first-child{opacity:.55}
+.owk.hier circle:first-child{stroke:var(--ink);stroke-width:3}
+.owk.bereik{cursor:pointer}
+.owk.bereik circle:first-child{stroke:var(--good);stroke-width:4}
+.owk.bereik:hover circle:first-child,.owk.bereik:focus-visible circle:first-child{fill:color-mix(in srgb,var(--good) 25%,var(--paper))}
+.owk .owq{font-family:var(--display);font-size:30px;fill:var(--muted)}
+.owk .ownaam{font-size:22px;fill:var(--ink);paint-order:stroke;stroke:var(--paper);stroke-width:4px}
+.owheld{stroke:var(--paper);stroke-width:2}
+.owstatus{display:grid;gap:3px;font-size:14px;color:var(--muted)}
+.owstatus b{color:var(--ink);font-weight:600}
+.owtip{font-size:13px;margin:6px 0 0}
