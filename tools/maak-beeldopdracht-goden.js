@@ -28,17 +28,37 @@ const r = ["# Beeldopdracht: zeven nieuwe oude goden", "",
   "Een aanvulling op `beeldopdracht.md`, voor Ommeth, Karathos, Ulvereth, Sirrhae, Ouroch, Yth-Nemora en Gul-Marrach. Gebruik dezelfde stijlregel en dezelfde formaten, zodat de nieuwe beelden in de reeks passen. Zolang een beeld ontbreekt, toont het spel initialen of een kleurvlak.", "",
   "Per god zijn er tien beelden: de god zelf, het Scheurbeeld, het epische monster, drie monsters en drie personages (en Ommeth heeft er één meer: de cultist). Begin met de goden en de epische monsters: die zie je het eerst.", "",
   "## Instructies voor de AI", "",
-  "1. Maak elk beeld precies in het opgegeven formaat.", "2. Gebruik de volledige prompt, inclusief de stijlregel aan het eind.", "3. Zet nooit tekst in een afbeelding.",
-  "4. Een Scheurbeeld wordt rond uitgesneden en klein getoond: zet het onderwerp in het midden, de rand loopt over in bijna zwart violet.",
-  "5. Lever PNG-bestanden op met precies de bestandsnaam die erbij staat, in de juiste submap van de Drive-map `Londen1888-art`.",
-  "6. Zet daarna de Drive-id's in `tools/art-drive.json` en haal ze op met `python3 -I tools/haal-art.py tools/art-drive.json`.", ""];
-const blok = (titel, bestand, soort, prompt) => { const [v, px, t] = F[soort]; r.push(`#### ${titel}`, "", `- Bestand: \`${bestand}\``, `- Formaat: ${v}, ${px} px`, "", "```", `${prompt}, ${t}. ${STIJL}. Avoid: ${NEG}.`, "```", ""); };
+  "Je maakt schilderijen voor een bordspel over Victoriaans Londen in 1888. Werk de lijst hieronder beeld voor beeld af.", "",
+  "1. Maak elk beeld precies in het opgegeven formaat (verhouding en pixels).",
+  "2. Gebruik de prompt in het codeblok volledig en letterlijk. De stijlregel staat er al achter; verander die niet.",
+  "3. Zet nooit tekst, letters of cijfers in een afbeelding.",
+  "4. Een Scheurbeeld wordt in het spel rond uitgesneden en klein getoond: zet het onderwerp in het midden, de rand loopt over in bijna zwart violet.",
+  "5. Lever elk beeld als PNG, met precies de bestandsnaam die erbij staat, in de map die erbij staat.",
+  "6. Lever niets anders op dan de beelden zelf.", "",
+  "## Waar elk beeld heen moet", "",
+  "Alle mappen staan in de Drive-map `Londen1888-art`. Maak een map aan als die nog niet bestaat.", "",
+  "| Map | Wat erin komt | Formaat |", "|---|---|---|",
+  "| `goden/` | De oude god zelf, een breed schilderij | 16:9, 2560 × 1440 px |",
+  "| `scheur/` | De blik door de Scheur, rond uitgesneden | 1:1, 1024 × 1024 px |",
+  "| `monsters/` | Epische monsters en gewone monsters | 1:1, 1536 × 1536 px |",
+  "| `personen/` | Personages, portret tot het middel | 3:4, 1536 × 2048 px |", "",
+  "Voorbeeld: het beeld van de god Ommeth heet `ommeth.png` en hoort in de map `goden/`, dus `Londen1888-art/goden/ommeth.png`.", "",
+  "## Afvinklijst", "", "/*LIJST*/", "",
+  "## Daarna (voor de maker van het spel, niet voor de AI)", "",
+  "Zet de Drive-id's in `tools/art-drive.json` en haal de beelden op met `python3 -I tools/haal-art.py tools/art-drive.json`. Het script verkleint ze en zet ze als JPG in `art/`.", "",
+  "## De prompts", ""];
+const lijst = [];
+const blok = (titel, bestand, soort, prompt) => {
+  const [v, px, t] = F[soort], [map, naam] = bestand.split("/");
+  lijst.push(`- [ ] \`${map}/${naam}\` · ${titel}`);
+  r.push(`#### ${titel}`, "", `- Map: \`${map}/\``, `- Bestandsnaam: \`${naam}\``, `- Volledig pad: \`Londen1888-art/${map}/${naam}\``, `- Formaat: ${v}, ${px} px`, "", "```", `${prompt}, ${t}. ${STIJL}. Avoid: ${NEG}.`, "```", "");
+};
 const goden = lees("oude-goden.json"), monsters = lees("monsters.json"), epische = lees("epische-monsters.json"), personen = lees("personen.json");
 const bestaand = new Set(goden.filter(g => !GODEN.includes(g.id)).flatMap(g => g.monsters));
 let n = 0;
 for (const id of GODEN) {
   const g = goden.find(x => x.id === id);
-  r.push(`## ${g.naam}, ${g.titel}`, "");
+  r.push(`### ${g.naam}, ${g.titel}`, "");
   blok(`${g.naam}`, `goden/${g.id}.png`, "god", g.prompt); n++;
   blok(`De Scheur van ${g.naam}`, `scheur/${g.id}.png`, "scheur", SCHEUR[id]); n++;
   const e = epische.find(x => x.id === g.episch);
@@ -47,5 +67,5 @@ for (const id of GODEN) {
   for (const m of eigen) { blok(m.naam, `monsters/${m.id}.png`, "monster", m.prompt); n++; }
   for (const p of personen.filter(p => p.god === id)) { blok(p.naam, `personen/${p.id}.png`, "persoon", p.prompt); n++; }
 }
-fs.writeFileSync(path.join(root, "ontwerp", "beeldopdracht-nieuwe-goden.md"), r.join("\n"));
+fs.writeFileSync(path.join(root, "ontwerp", "beeldopdracht-nieuwe-goden.md"), r.join("\n").replace("/*LIJST*/", lijst.join("\n")) + "\n");
 console.log(`ontwerp/beeldopdracht-nieuwe-goden.md: ${n} beelden`);

@@ -6,18 +6,107 @@ Per god zijn er tien beelden: de god zelf, het Scheurbeeld, het epische monster,
 
 ## Instructies voor de AI
 
-1. Maak elk beeld precies in het opgegeven formaat.
-2. Gebruik de volledige prompt, inclusief de stijlregel aan het eind.
-3. Zet nooit tekst in een afbeelding.
-4. Een Scheurbeeld wordt rond uitgesneden en klein getoond: zet het onderwerp in het midden, de rand loopt over in bijna zwart violet.
-5. Lever PNG-bestanden op met precies de bestandsnaam die erbij staat, in de juiste submap van de Drive-map `Londen1888-art`.
-6. Zet daarna de Drive-id's in `tools/art-drive.json` en haal ze op met `python3 -I tools/haal-art.py tools/art-drive.json`.
+Je maakt schilderijen voor een bordspel over Victoriaans Londen in 1888. Werk de lijst hieronder beeld voor beeld af.
 
-## Ommeth, De Herder die zijn kudde telt
+1. Maak elk beeld precies in het opgegeven formaat (verhouding en pixels).
+2. Gebruik de prompt in het codeblok volledig en letterlijk. De stijlregel staat er al achter; verander die niet.
+3. Zet nooit tekst, letters of cijfers in een afbeelding.
+4. Een Scheurbeeld wordt in het spel rond uitgesneden en klein getoond: zet het onderwerp in het midden, de rand loopt over in bijna zwart violet.
+5. Lever elk beeld als PNG, met precies de bestandsnaam die erbij staat, in de map die erbij staat.
+6. Lever niets anders op dan de beelden zelf.
+
+## Waar elk beeld heen moet
+
+Alle mappen staan in de Drive-map `Londen1888-art`. Maak een map aan als die nog niet bestaat.
+
+| Map | Wat erin komt | Formaat |
+|---|---|---|
+| `goden/` | De oude god zelf, een breed schilderij | 16:9, 2560 × 1440 px |
+| `scheur/` | De blik door de Scheur, rond uitgesneden | 1:1, 1024 × 1024 px |
+| `monsters/` | Epische monsters en gewone monsters | 1:1, 1536 × 1536 px |
+| `personen/` | Personages, portret tot het middel | 3:4, 1536 × 2048 px |
+
+Voorbeeld: het beeld van de god Ommeth heet `ommeth.png` en hoort in de map `goden/`, dus `Londen1888-art/goden/ommeth.png`.
+
+## Afvinklijst
+
+- [ ] `goden/ommeth.png` · Ommeth
+- [ ] `scheur/ommeth.png` · De Scheur van Ommeth
+- [ ] `monsters/broeder-absalom.png` · Broeder Absalom (episch monster)
+- [ ] `monsters/cultist.png` · Cultist
+- [ ] `monsters/kuddeleider.png` · Kuddeleider
+- [ ] `monsters/zingend-koor.png` · Zingend koor
+- [ ] `personen/absalom-crewe.png` · Broeder Absalom Crewe
+- [ ] `personen/martha-coyle.png` · Martha Coyle
+- [ ] `personen/agatha-pike.png` · Zuster Agatha Pike
+- [ ] `goden/karathos.png` · Karathos
+- [ ] `scheur/karathos.png` · De Scheur van Karathos
+- [ ] `monsters/de-conservator.png` · De Conservator (episch monster)
+- [ ] `monsters/splintergeest.png` · Splintergeest
+- [ ] `monsters/vitrinewachter.png` · Vitrinewachter
+- [ ] `monsters/reliekjager.png` · Reliekjager
+- [ ] `personen/horace-quill.png` · Mr. Horace Quill
+- [ ] `personen/amelia-fenwick.png` · Dr. Amelia Fenwick
+- [ ] `personen/anselm-drury.png` · Pater Anselm Drury
+- [ ] `goden/ulvereth.png` · Ulvereth
+- [ ] `scheur/ulvereth.png` · De Scheur van Ulvereth
+- [ ] `monsters/koning-van-de-vorstmarkt.png` · De Koning van de Vorstmarkt (episch monster)
+- [ ] `monsters/rijpwicht.png` · Rijpwicht
+- [ ] `monsters/smogslang.png` · Smogslang
+- [ ] `monsters/bliksemvanger.png` · Bliksemvanger
+- [ ] `personen/ephraim-gale.png` · Mr. Ephraim Gale
+- [ ] `personen/nell-bligh.png` · Kapitein Nell Bligh
+- [ ] `personen/tom-pennock.png` · Old Tom Pennock
+- [ ] `goden/sirrhae.png` · Sirrhae
+- [ ] `scheur/sirrhae.png` · De Scheur van Sirrhae
+- [ ] `monsters/de-muze.png` · De Muze (episch monster)
+- [ ] `monsters/bewonderaar.png` · Bewonderaar
+- [ ] `monsters/maskerdanser.png` · Maskerdanser
+- [ ] `monsters/betoverde-dichter.png` · Betoverde dichter
+- [ ] `personen/edmund-haversham.png` · Sir Edmund Haversham
+- [ ] `personen/lucien-marchetti.png` · Lucien Marchetti
+- [ ] `personen/rosalind-ashe.png` · Rosalind Ashe
+- [ ] `goden/ouroch.png` · Ouroch
+- [ ] `scheur/ouroch.png` · De Scheur van Ouroch
+- [ ] `monsters/de-uurwerkman.png` · De Uurwerkman (episch monster)
+- [ ] `monsters/opwindsoldaat.png` · Opwindsoldaat
+- [ ] `monsters/tijdverlorene.png` · Tijdverlorene
+- [ ] `monsters/slingerhond.png` · Slingerhond
+- [ ] `personen/obadiah-penrose.png` · Obadiah Penrose
+- [ ] `personen/dora-whitby.png` · Dora Whitby
+- [ ] `personen/ignatius-fell.png` · Ignatius Fell
+- [ ] `goden/yth-nemora.png` · Yth-Nemora
+- [ ] `scheur/yth-nemora.png` · De Scheur van Yth-Nemora
+- [ ] `monsters/de-redacteur.png` · De Redacteur (episch monster)
+- [ ] `monsters/krantenjongen.png` · Krantenjongen
+- [ ] `monsters/leugenaar.png` · Leugenaar
+- [ ] `monsters/gerucht.png` · Gerucht
+- [ ] `personen/horatio-vance.png` · Mr. Horatio Vance
+- [ ] `personen/kitty-lark.png` · Kitty Lark
+- [ ] `personen/fennimore-blight.png` · Fennimore Blight
+- [ ] `goden/gul-marrach.png` · Gul-Marrach
+- [ ] `scheur/gul-marrach.png` · De Scheur van Gul-Marrach
+- [ ] `monsters/de-makelaar.png` · De Makelaar (episch monster)
+- [ ] `monsters/deurwaarder.png` · Deurwaarder
+- [ ] `monsters/schuldspook.png` · Schuldspook
+- [ ] `monsters/goudworm.png` · Goudworm
+- [ ] `personen/reginald-kettering.png` · Sir Reginald Kettering
+- [ ] `personen/edwin-pratt.png` · Edwin Pratt
+- [ ] `personen/bessie-doyle.png` · Mrs. Bessie Doyle
+
+## Daarna (voor de maker van het spel, niet voor de AI)
+
+Zet de Drive-id's in `tools/art-drive.json` en haal de beelden op met `python3 -I tools/haal-art.py tools/art-drive.json`. Het script verkleint ze en zet ze als JPG in `art/`.
+
+## De prompts
+
+### Ommeth, De Herder die zijn kudde telt
 
 #### Ommeth
 
-- Bestand: `goden/ommeth.png`
+- Map: `goden/`
+- Bestandsnaam: `ommeth.png`
+- Volledig pad: `Londen1888-art/goden/ommeth.png`
 - Formaat: 16:9, 2560 × 1440 px
 
 ```
@@ -26,7 +115,9 @@ an endless torchlit procession of ragged Victorian East End workers filling a na
 
 #### De Scheur van Ommeth
 
-- Bestand: `scheur/ommeth.png`
+- Map: `scheur/`
+- Bestandsnaam: `ommeth.png`
+- Volledig pad: `Londen1888-art/scheur/ommeth.png`
 - Formaat: 1:1, 1024 × 1024 px
 
 ```
@@ -35,7 +126,9 @@ A view through a jagged vertical tear in reality, the torn edges glowing sickly 
 
 #### Broeder Absalom (episch monster)
 
-- Bestand: `monsters/broeder-absalom.png`
+- Map: `monsters/`
+- Bestandsnaam: `broeder-absalom.png`
+- Volledig pad: `Londen1888-art/monsters/broeder-absalom.png`
 - Formaat: 1:1, 1536 × 1536 px
 
 ```
@@ -44,7 +137,9 @@ a gaunt Victorian street preacher in a long threadbare black coat and battered t
 
 #### Cultist
 
-- Bestand: `monsters/cultist.png`
+- Map: `monsters/`
+- Bestandsnaam: `cultist.png`
+- Volledig pad: `Londen1888-art/monsters/cultist.png`
 - Formaat: 1:1, 1536 × 1536 px
 
 ```
@@ -53,7 +148,9 @@ a hollow-eyed Victorian dockworker in a flat cap and patched coat, holding a tal
 
 #### Kuddeleider
 
-- Bestand: `monsters/kuddeleider.png`
+- Map: `monsters/`
+- Bestandsnaam: `kuddeleider.png`
+- Volledig pad: `Londen1888-art/monsters/kuddeleider.png`
 - Formaat: 1:1, 1536 × 1536 px
 
 ```
@@ -62,7 +159,9 @@ a broad-shouldered Victorian man in a long grey smock carrying a shepherd's croo
 
 #### Zingend koor
 
-- Bestand: `monsters/zingend-koor.png`
+- Map: `monsters/`
+- Bestandsnaam: `zingend-koor.png`
+- Volledig pad: `Londen1888-art/monsters/zingend-koor.png`
 - Formaat: 1:1, 1536 × 1536 px
 
 ```
@@ -71,7 +170,9 @@ six pale Victorian choir singers in grubby white surplices standing shoulder to 
 
 #### Broeder Absalom Crewe
 
-- Bestand: `personen/absalom-crewe.png`
+- Map: `personen/`
+- Bestandsnaam: `absalom-crewe.png`
+- Volledig pad: `Londen1888-art/personen/absalom-crewe.png`
 - Formaat: 3:4, 1536 × 2048 px
 
 ```
@@ -80,7 +181,9 @@ a gaunt Victorian street preacher in his fifties with burning pale eyes, threadb
 
 #### Martha Coyle
 
-- Bestand: `personen/martha-coyle.png`
+- Map: `personen/`
+- Bestandsnaam: `martha-coyle.png`
+- Volledig pad: `Londen1888-art/personen/martha-coyle.png`
 - Formaat: 3:4, 1536 × 2048 px
 
 ```
@@ -89,18 +192,22 @@ a tough Victorian washerwoman in her forties with red chapped hands and rolled s
 
 #### Zuster Agatha Pike
 
-- Bestand: `personen/agatha-pike.png`
+- Map: `personen/`
+- Bestandsnaam: `agatha-pike.png`
+- Volledig pad: `Londen1888-art/personen/agatha-pike.png`
 - Formaat: 3:4, 1536 × 2048 px
 
 ```
 a stern elderly Victorian nun in a plain grey habit and white wimple, sleeves rolled up, ladling soup in a crowded Spitalfields soup kitchen lit by oil lamps, half-length portrait, figure centred, head in upper third, background fades into darkness at the edges. Late-Victorian oil painting, 1888 London, rich dark palette of soot black, deep teal and oxblood, warm amber gaslight against cold green-grey fog, visible loose brushstrokes and canvas texture, dramatic chiaroscuro, slightly uncanny atmosphere, museum-quality academic painting. Avoid: no text, no letters, no captions, no watermark, no signature, no frame, no border, no modern objects, no photograph look, no 3D render, no anime, no gore.
 ```
 
-## Karathos, De Verdeelde, die heel wil worden
+### Karathos, De Verdeelde, die heel wil worden
 
 #### Karathos
 
-- Bestand: `goden/karathos.png`
+- Map: `goden/`
+- Bestandsnaam: `karathos.png`
+- Volledig pad: `Londen1888-art/goden/karathos.png`
 - Formaat: 16:9, 2560 × 1440 px
 
 ```
@@ -109,7 +216,9 @@ a vast shattered figure of black glass and old gold hanging in the air above the
 
 #### De Scheur van Karathos
 
-- Bestand: `scheur/karathos.png`
+- Map: `scheur/`
+- Bestandsnaam: `karathos.png`
+- Volledig pad: `Londen1888-art/scheur/karathos.png`
 - Formaat: 1:1, 1024 × 1024 px
 
 ```
@@ -118,7 +227,9 @@ A view through a jagged vertical tear in reality, the torn edges glowing sickly 
 
 #### De Conservator (episch monster)
 
-- Bestand: `monsters/de-conservator.png`
+- Map: `monsters/`
+- Bestandsnaam: `de-conservator.png`
+- Volledig pad: `Londen1888-art/monsters/de-conservator.png`
 - Formaat: 1:1, 1536 × 1536 px
 
 ```
@@ -127,7 +238,9 @@ a thin elderly Victorian museum curator in a dusty frock coat and white cotton g
 
 #### Splintergeest
 
-- Bestand: `monsters/splintergeest.png`
+- Map: `monsters/`
+- Bestandsnaam: `splintergeest.png`
+- Volledig pad: `Londen1888-art/monsters/splintergeest.png`
 - Formaat: 1:1, 1536 × 1536 px
 
 ```
@@ -136,7 +249,9 @@ a translucent spectral figure made of cracked black glass shards floating in a V
 
 #### Vitrinewachter
 
-- Bestand: `monsters/vitrinewachter.png`
+- Map: `monsters/`
+- Bestandsnaam: `vitrinewachter.png`
+- Volledig pad: `Londen1888-art/monsters/vitrinewachter.png`
 - Formaat: 1:1, 1536 × 1536 px
 
 ```
@@ -145,7 +260,9 @@ an empty medieval suit of Templar armour with a white surcoat and red cross walk
 
 #### Reliekjager
 
-- Bestand: `monsters/reliekjager.png`
+- Map: `monsters/`
+- Bestandsnaam: `reliekjager.png`
+- Volledig pad: `Londen1888-art/monsters/reliekjager.png`
 - Formaat: 1:1, 1536 × 1536 px
 
 ```
@@ -154,7 +271,9 @@ a sharp-featured Victorian collector's agent in a bowler hat and long overcoat, 
 
 #### Mr. Horace Quill
 
-- Bestand: `personen/horace-quill.png`
+- Map: `personen/`
+- Bestandsnaam: `horace-quill.png`
+- Volledig pad: `Londen1888-art/personen/horace-quill.png`
 - Formaat: 3:4, 1536 × 2048 px
 
 ```
@@ -163,7 +282,9 @@ a thin elderly Victorian museum curator with wispy white hair and half-moon spec
 
 #### Dr. Amelia Fenwick
 
-- Bestand: `personen/amelia-fenwick.png`
+- Map: `personen/`
+- Bestandsnaam: `amelia-fenwick.png`
+- Volledig pad: `Londen1888-art/personen/amelia-fenwick.png`
 - Formaat: 3:4, 1536 × 2048 px
 
 ```
@@ -172,18 +293,22 @@ a sharp-eyed Victorian woman scholar in her thirties with ink-stained fingers an
 
 #### Pater Anselm Drury
 
-- Bestand: `personen/anselm-drury.png`
+- Map: `personen/`
+- Bestandsnaam: `anselm-drury.png`
+- Volledig pad: `Londen1888-art/personen/anselm-drury.png`
 - Formaat: 3:4, 1536 × 2048 px
 
 ```
 an old frail Victorian Jesuit priest in a black cassock with a worn breviary, deep-set kind eyes, standing in a candlelit cloister library behind Westminster Abbey, half-length portrait, figure centred, head in upper third, background fades into darkness at the edges. Late-Victorian oil painting, 1888 London, rich dark palette of soot black, deep teal and oxblood, warm amber gaslight against cold green-grey fog, visible loose brushstrokes and canvas texture, dramatic chiaroscuro, slightly uncanny atmosphere, museum-quality academic painting. Avoid: no text, no letters, no captions, no watermark, no signature, no frame, no border, no modern objects, no photograph look, no 3D render, no anime, no gore.
 ```
 
-## Ulvereth, De Hemel die omslaat
+### Ulvereth, De Hemel die omslaat
 
 #### Ulvereth
 
-- Bestand: `goden/ulvereth.png`
+- Map: `goden/`
+- Bestandsnaam: `ulvereth.png`
+- Volledig pad: `Londen1888-art/goden/ulvereth.png`
 - Formaat: 16:9, 2560 × 1440 px
 
 ```
@@ -192,7 +317,9 @@ a colossal face formed from swirling storm clouds looming over Victorian London,
 
 #### De Scheur van Ulvereth
 
-- Bestand: `scheur/ulvereth.png`
+- Map: `scheur/`
+- Bestandsnaam: `ulvereth.png`
+- Volledig pad: `Londen1888-art/scheur/ulvereth.png`
 - Formaat: 1:1, 1024 × 1024 px
 
 ```
@@ -201,7 +328,9 @@ A view through a jagged vertical tear in reality, the torn edges glowing sickly 
 
 #### De Koning van de Vorstmarkt (episch monster)
 
-- Bestand: `monsters/koning-van-de-vorstmarkt.png`
+- Map: `monsters/`
+- Bestandsnaam: `koning-van-de-vorstmarkt.png`
+- Volledig pad: `Londen1888-art/monsters/koning-van-de-vorstmarkt.png`
 - Formaat: 1:1, 1536 × 1536 px
 
 ```
@@ -210,7 +339,9 @@ a towering figure made of blue river ice dressed in the tattered finery of a Reg
 
 #### Rijpwicht
 
-- Bestand: `monsters/rijpwicht.png`
+- Map: `monsters/`
+- Bestandsnaam: `rijpwicht.png`
+- Volledig pad: `Londen1888-art/monsters/rijpwicht.png`
 - Formaat: 1:1, 1536 × 1536 px
 
 ```
@@ -219,7 +350,9 @@ a small hunched figure made of hoarfrost and frozen breath, with long icicle fin
 
 #### Smogslang
 
-- Bestand: `monsters/smogslang.png`
+- Map: `monsters/`
+- Bestandsnaam: `smogslang.png`
+- Volledig pad: `Londen1888-art/monsters/smogslang.png`
 - Formaat: 1:1, 1536 × 1536 px
 
 ```
@@ -228,7 +361,9 @@ a vast serpent made of thick yellow-green London smog coiling between gas lamps 
 
 #### Bliksemvanger
 
-- Bestand: `monsters/bliksemvanger.png`
+- Map: `monsters/`
+- Bestandsnaam: `bliksemvanger.png`
+- Volledig pad: `Londen1888-art/monsters/bliksemvanger.png`
 - Formaat: 1:1, 1536 × 1536 px
 
 ```
@@ -237,7 +372,9 @@ a wild-eyed Victorian man in an oilskin coat holding a tall copper lightning rod
 
 #### Mr. Ephraim Gale
 
-- Bestand: `personen/ephraim-gale.png`
+- Map: `personen/`
+- Bestandsnaam: `ephraim-gale.png`
+- Volledig pad: `Londen1888-art/personen/ephraim-gale.png`
 - Formaat: 3:4, 1536 × 2048 px
 
 ```
@@ -246,7 +383,9 @@ a nervous Victorian instrument maker in his sixties with mutton-chop whiskers an
 
 #### Kapitein Nell Bligh
 
-- Bestand: `personen/nell-bligh.png`
+- Map: `personen/`
+- Bestandsnaam: `nell-bligh.png`
+- Volledig pad: `Londen1888-art/personen/nell-bligh.png`
 - Formaat: 3:4, 1536 × 2048 px
 
 ```
@@ -255,18 +394,22 @@ a weathered Victorian river pilot woman in her forties in a heavy pea coat and k
 
 #### Old Tom Pennock
 
-- Bestand: `personen/tom-pennock.png`
+- Map: `personen/`
+- Bestandsnaam: `tom-pennock.png`
+- Volledig pad: `Londen1888-art/personen/tom-pennock.png`
 - Formaat: 3:4, 1536 × 2048 px
 
 ```
 a very old Victorian man with a white beard and a moth-eaten coat, sitting by a small coal fire in a Southwark attic, holding a faded printed souvenir from the 1814 frost fair, half-length portrait, figure centred, head in upper third, background fades into darkness at the edges. Late-Victorian oil painting, 1888 London, rich dark palette of soot black, deep teal and oxblood, warm amber gaslight against cold green-grey fog, visible loose brushstrokes and canvas texture, dramatic chiaroscuro, slightly uncanny atmosphere, museum-quality academic painting. Avoid: no text, no letters, no captions, no watermark, no signature, no frame, no border, no modern objects, no photograph look, no 3D render, no anime, no gore.
 ```
 
-## Sirrhae, De Stem achter de waaier
+### Sirrhae, De Stem achter de waaier
 
 #### Sirrhae
 
-- Bestand: `goden/sirrhae.png`
+- Map: `goden/`
+- Bestandsnaam: `sirrhae.png`
+- Volledig pad: `Londen1888-art/goden/sirrhae.png`
 - Formaat: 16:9, 2560 × 1440 px
 
 ```
@@ -275,7 +418,9 @@ an impossibly beautiful woman half hidden behind an enormous black lace fan, sea
 
 #### De Scheur van Sirrhae
 
-- Bestand: `scheur/sirrhae.png`
+- Map: `scheur/`
+- Bestandsnaam: `sirrhae.png`
+- Volledig pad: `Londen1888-art/scheur/sirrhae.png`
 - Formaat: 1:1, 1024 × 1024 px
 
 ```
@@ -284,7 +429,9 @@ A view through a jagged vertical tear in reality, the torn edges glowing sickly 
 
 #### De Muze (episch monster)
 
-- Bestand: `monsters/de-muze.png`
+- Map: `monsters/`
+- Bestandsnaam: `de-muze.png`
+- Volledig pad: `Londen1888-art/monsters/de-muze.png`
 - Formaat: 1:1, 1536 × 1536 px
 
 ```
@@ -293,7 +440,9 @@ a radiant opera diva in a gown of midnight silk and pearls singing on the stage 
 
 #### Bewonderaar
 
-- Bestand: `monsters/bewonderaar.png`
+- Map: `monsters/`
+- Bestandsnaam: `bewonderaar.png`
+- Volledig pad: `Londen1888-art/monsters/bewonderaar.png`
 - Formaat: 1:1, 1536 × 1536 px
 
 ```
@@ -302,7 +451,9 @@ a well-dressed young Victorian gentleman with a carnation in his lapel and a fix
 
 #### Maskerdanser
 
-- Bestand: `monsters/maskerdanser.png`
+- Map: `monsters/`
+- Bestandsnaam: `maskerdanser.png`
+- Volledig pad: `Londen1888-art/monsters/maskerdanser.png`
 - Formaat: 1:1, 1536 × 1536 px
 
 ```
@@ -311,7 +462,9 @@ a slender masked dancer in a black domino costume and white porcelain Venetian m
 
 #### Betoverde dichter
 
-- Bestand: `monsters/betoverde-dichter.png`
+- Map: `monsters/`
+- Bestandsnaam: `betoverde-dichter.png`
+- Volledig pad: `Londen1888-art/monsters/betoverde-dichter.png`
 - Formaat: 1:1, 1536 × 1536 px
 
 ```
@@ -320,7 +473,9 @@ a pale dishevelled Victorian poet with long hair and an open collar, ink-stained
 
 #### Sir Edmund Haversham
 
-- Bestand: `personen/edmund-haversham.png`
+- Map: `personen/`
+- Bestandsnaam: `edmund-haversham.png`
+- Volledig pad: `Londen1888-art/personen/edmund-haversham.png`
 - Formaat: 3:4, 1536 × 2048 px
 
 ```
@@ -329,7 +484,9 @@ a portly middle-aged Victorian parliamentarian in an evening tailcoat with an un
 
 #### Lucien Marchetti
 
-- Bestand: `personen/lucien-marchetti.png`
+- Map: `personen/`
+- Bestandsnaam: `lucien-marchetti.png`
+- Volledig pad: `Londen1888-art/personen/lucien-marchetti.png`
 - Formaat: 3:4, 1536 × 2048 px
 
 ```
@@ -338,18 +495,22 @@ a haggard handsome Italian painter in his thirties in a paint-spattered smock, s
 
 #### Rosalind Ashe
 
-- Bestand: `personen/rosalind-ashe.png`
+- Map: `personen/`
+- Bestandsnaam: `rosalind-ashe.png`
+- Volledig pad: `Londen1888-art/personen/rosalind-ashe.png`
 - Formaat: 3:4, 1536 × 2048 px
 
 ```
 a composed Victorian schoolmistress in her early thirties in a plain grey dress with a high collar, sharp intelligent face, standing in a Marylebone schoolroom with all the mirrors turned to face the wall, half-length portrait, figure centred, head in upper third, background fades into darkness at the edges. Late-Victorian oil painting, 1888 London, rich dark palette of soot black, deep teal and oxblood, warm amber gaslight against cold green-grey fog, visible loose brushstrokes and canvas texture, dramatic chiaroscuro, slightly uncanny atmosphere, museum-quality academic painting. Avoid: no text, no letters, no captions, no watermark, no signature, no frame, no border, no modern objects, no photograph look, no 3D render, no anime, no gore.
 ```
 
-## Ouroch, De Dertiende Slag
+### Ouroch, De Dertiende Slag
 
 #### Ouroch
 
-- Bestand: `goden/ouroch.png`
+- Map: `goden/`
+- Bestandsnaam: `ouroch.png`
+- Volledig pad: `Londen1888-art/goden/ouroch.png`
 - Formaat: 16:9, 2560 × 1440 px
 
 ```
@@ -358,7 +519,9 @@ the clock tower of Westminster at night with a thirteenth numeral glowing on its
 
 #### De Scheur van Ouroch
 
-- Bestand: `scheur/ouroch.png`
+- Map: `scheur/`
+- Bestandsnaam: `ouroch.png`
+- Volledig pad: `Londen1888-art/scheur/ouroch.png`
 - Formaat: 1:1, 1024 × 1024 px
 
 ```
@@ -367,7 +530,9 @@ A view through a jagged vertical tear in reality, the torn edges glowing sickly 
 
 #### De Uurwerkman (episch monster)
 
-- Bestand: `monsters/de-uurwerkman.png`
+- Map: `monsters/`
+- Bestandsnaam: `de-uurwerkman.png`
+- Volledig pad: `Londen1888-art/monsters/de-uurwerkman.png`
 - Formaat: 1:1, 1536 × 1536 px
 
 ```
@@ -376,7 +541,9 @@ a tall gaunt man in a Victorian clock-winder's coat whose chest is an open brass
 
 #### Opwindsoldaat
 
-- Bestand: `monsters/opwindsoldaat.png`
+- Map: `monsters/`
+- Bestandsnaam: `opwindsoldaat.png`
+- Volledig pad: `Londen1888-art/monsters/opwindsoldaat.png`
 - Formaat: 1:1, 1536 × 1536 px
 
 ```
@@ -385,7 +552,9 @@ a man-sized Victorian tin toy soldier with chipped red paint and a large brass w
 
 #### Tijdverlorene
 
-- Bestand: `monsters/tijdverlorene.png`
+- Map: `monsters/`
+- Bestandsnaam: `tijdverlorene.png`
+- Volledig pad: `Londen1888-art/monsters/tijdverlorene.png`
 - Formaat: 1:1, 1536 × 1536 px
 
 ```
@@ -394,7 +563,9 @@ a faded translucent Victorian gentleman from an earlier decade in an outdated fr
 
 #### Slingerhond
 
-- Bestand: `monsters/slingerhond.png`
+- Map: `monsters/`
+- Bestandsnaam: `slingerhond.png`
+- Volledig pad: `Londen1888-art/monsters/slingerhond.png`
 - Formaat: 1:1, 1536 × 1536 px
 
 ```
@@ -403,7 +574,9 @@ a lean hound made of brass and clockwork, its tail a swinging pendulum, eyes of 
 
 #### Obadiah Penrose
 
-- Bestand: `personen/obadiah-penrose.png`
+- Map: `personen/`
+- Bestandsnaam: `obadiah-penrose.png`
+- Volledig pad: `Londen1888-art/personen/obadiah-penrose.png`
 - Formaat: 3:4, 1536 × 2048 px
 
 ```
@@ -412,7 +585,9 @@ an elderly Victorian Huguenot clockmaker with a loupe in one eye and a long whit
 
 #### Dora Whitby
 
-- Bestand: `personen/dora-whitby.png`
+- Map: `personen/`
+- Bestandsnaam: `dora-whitby.png`
+- Volledig pad: `Londen1888-art/personen/dora-whitby.png`
 - Formaat: 3:4, 1536 × 2048 px
 
 ```
@@ -421,18 +596,22 @@ a young Victorian woman telegraph operator with rolled sleeves and ink on her fi
 
 #### Ignatius Fell
 
-- Bestand: `personen/ignatius-fell.png`
+- Map: `personen/`
+- Bestandsnaam: `ignatius-fell.png`
+- Volledig pad: `Londen1888-art/personen/ignatius-fell.png`
 - Formaat: 3:4, 1536 × 2048 px
 
 ```
 a gaunt elderly Victorian clock winder in a long grey coat climbing the spiral stairs inside a great clock tower, holding a huge brass winding key, a faint ticking glow visible through his shirt, half-length portrait, figure centred, head in upper third, background fades into darkness at the edges. Late-Victorian oil painting, 1888 London, rich dark palette of soot black, deep teal and oxblood, warm amber gaslight against cold green-grey fog, visible loose brushstrokes and canvas texture, dramatic chiaroscuro, slightly uncanny atmosphere, museum-quality academic painting. Avoid: no text, no letters, no captions, no watermark, no signature, no frame, no border, no modern objects, no photograph look, no 3D render, no anime, no gore.
 ```
 
-## Yth-Nemora, De Leugen die rondgaat
+### Yth-Nemora, De Leugen die rondgaat
 
 #### Yth-Nemora
 
-- Bestand: `goden/yth-nemora.png`
+- Map: `goden/`
+- Bestandsnaam: `yth-nemora.png`
+- Volledig pad: `Londen1888-art/goden/yth-nemora.png`
 - Formaat: 16:9, 2560 × 1440 px
 
 ```
@@ -441,7 +620,9 @@ a monstrous shape made of countless overlapping newspaper pages towering over Fl
 
 #### De Scheur van Yth-Nemora
 
-- Bestand: `scheur/yth-nemora.png`
+- Map: `scheur/`
+- Bestandsnaam: `yth-nemora.png`
+- Volledig pad: `Londen1888-art/scheur/yth-nemora.png`
 - Formaat: 1:1, 1024 × 1024 px
 
 ```
@@ -450,7 +631,9 @@ A view through a jagged vertical tear in reality, the torn edges glowing sickly 
 
 #### De Redacteur (episch monster)
 
-- Bestand: `monsters/de-redacteur.png`
+- Map: `monsters/`
+- Bestandsnaam: `de-redacteur.png`
+- Volledig pad: `Londen1888-art/monsters/de-redacteur.png`
 - Formaat: 1:1, 1536 × 1536 px
 
 ```
@@ -459,7 +642,9 @@ a tall Victorian newspaper editor in shirtsleeves and an ink-stained waistcoat, 
 
 #### Krantenjongen
 
-- Bestand: `monsters/krantenjongen.png`
+- Map: `monsters/`
+- Bestandsnaam: `krantenjongen.png`
+- Volledig pad: `Londen1888-art/monsters/krantenjongen.png`
 - Formaat: 1:1, 1536 × 1536 px
 
 ```
@@ -468,7 +653,9 @@ a grinning ragged Victorian newsboy in an oversized cap with a satchel of newspa
 
 #### Leugenaar
 
-- Bestand: `monsters/leugenaar.png`
+- Map: `monsters/`
+- Bestandsnaam: `leugenaar.png`
+- Volledig pad: `Londen1888-art/monsters/leugenaar.png`
 - Formaat: 1:1, 1536 × 1536 px
 
 ```
@@ -477,7 +664,9 @@ a shabby Victorian man in a bowler hat with an earnest honest face, hand on hear
 
 #### Gerucht
 
-- Bestand: `monsters/gerucht.png`
+- Map: `monsters/`
+- Bestandsnaam: `gerucht.png`
+- Volledig pad: `Londen1888-art/monsters/gerucht.png`
 - Formaat: 1:1, 1536 × 1536 px
 
 ```
@@ -486,7 +675,9 @@ a whispering shape made of torn paper scraps and cigarette smoke drifting throug
 
 #### Mr. Horatio Vance
 
-- Bestand: `personen/horatio-vance.png`
+- Map: `personen/`
+- Bestandsnaam: `horatio-vance.png`
+- Volledig pad: `Londen1888-art/personen/horatio-vance.png`
 - Formaat: 3:4, 1536 × 2048 px
 
 ```
@@ -495,7 +686,9 @@ a sharp-dressed Victorian newspaper editor in his fifties with slicked hair and 
 
 #### Kitty Lark
 
-- Bestand: `personen/kitty-lark.png`
+- Map: `personen/`
+- Bestandsnaam: `kitty-lark.png`
+- Volledig pad: `Londen1888-art/personen/kitty-lark.png`
 - Formaat: 3:4, 1536 × 2048 px
 
 ```
@@ -504,18 +697,22 @@ a sharp-eyed twelve-year-old Victorian newsgirl in a too-large coat and cap, a b
 
 #### Fennimore Blight
 
-- Bestand: `personen/fennimore-blight.png`
+- Map: `personen/`
+- Bestandsnaam: `fennimore-blight.png`
+- Volledig pad: `Londen1888-art/personen/fennimore-blight.png`
 - Formaat: 3:4, 1536 × 2048 px
 
 ```
 a thin nervous Victorian typesetter in a printer's apron with ink-black fingers and spectacles, swearing on a bible in a magistrate's court, sweat on his brow, half-length portrait, figure centred, head in upper third, background fades into darkness at the edges. Late-Victorian oil painting, 1888 London, rich dark palette of soot black, deep teal and oxblood, warm amber gaslight against cold green-grey fog, visible loose brushstrokes and canvas texture, dramatic chiaroscuro, slightly uncanny atmosphere, museum-quality academic painting. Avoid: no text, no letters, no captions, no watermark, no signature, no frame, no border, no modern objects, no photograph look, no 3D render, no anime, no gore.
 ```
 
-## Gul-Marrach, De Onzichtbare Hand
+### Gul-Marrach, De Onzichtbare Hand
 
 #### Gul-Marrach
 
-- Bestand: `goden/gul-marrach.png`
+- Map: `goden/`
+- Bestandsnaam: `gul-marrach.png`
+- Volledig pad: `Londen1888-art/goden/gul-marrach.png`
 - Formaat: 16:9, 2560 × 1440 px
 
 ```
@@ -524,7 +721,9 @@ an enormous pale hand with too many rings rising from beneath the Bank of Englan
 
 #### De Scheur van Gul-Marrach
 
-- Bestand: `scheur/gul-marrach.png`
+- Map: `scheur/`
+- Bestandsnaam: `gul-marrach.png`
+- Volledig pad: `Londen1888-art/scheur/gul-marrach.png`
 - Formaat: 1:1, 1024 × 1024 px
 
 ```
@@ -533,7 +732,9 @@ A view through a jagged vertical tear in reality, the torn edges glowing sickly 
 
 #### De Makelaar (episch monster)
 
-- Bestand: `monsters/de-makelaar.png`
+- Map: `monsters/`
+- Bestandsnaam: `de-makelaar.png`
+- Volledig pad: `Londen1888-art/monsters/de-makelaar.png`
 - Formaat: 1:1, 1536 × 1536 px
 
 ```
@@ -542,7 +743,9 @@ a corpulent Victorian financier in an immaculate frock coat and silk hat, his fa
 
 #### Deurwaarder
 
-- Bestand: `monsters/deurwaarder.png`
+- Map: `monsters/`
+- Bestandsnaam: `deurwaarder.png`
+- Volledig pad: `Londen1888-art/monsters/deurwaarder.png`
 - Formaat: 1:1, 1536 × 1536 px
 
 ```
@@ -551,7 +754,9 @@ a heavy-set Victorian bailiff in a bowler hat and long coat, holding a rolled su
 
 #### Schuldspook
 
-- Bestand: `monsters/schuldspook.png`
+- Map: `monsters/`
+- Bestandsnaam: `schuldspook.png`
+- Volledig pad: `Londen1888-art/monsters/schuldspook.png`
 - Formaat: 1:1, 1536 × 1536 px
 
 ```
@@ -560,7 +765,9 @@ a translucent grey ghost of a Victorian debtor in prison rags, chains of coins a
 
 #### Goudworm
 
-- Bestand: `monsters/goudworm.png`
+- Map: `monsters/`
+- Bestandsnaam: `goudworm.png`
+- Volledig pad: `Londen1888-art/monsters/goudworm.png`
 - Formaat: 1:1, 1536 × 1536 px
 
 ```
@@ -569,7 +776,9 @@ a long segmented worm with a hide of fused gold coins burrowing out of a bank va
 
 #### Sir Reginald Kettering
 
-- Bestand: `personen/reginald-kettering.png`
+- Map: `personen/`
+- Bestandsnaam: `reginald-kettering.png`
+- Volledig pad: `Londen1888-art/personen/reginald-kettering.png`
 - Formaat: 3:4, 1536 × 2048 px
 
 ```
@@ -578,7 +787,9 @@ a heavy elderly Victorian banker with grey mutton-chop whiskers, impeccable blac
 
 #### Edwin Pratt
 
-- Bestand: `personen/edwin-pratt.png`
+- Map: `personen/`
+- Bestandsnaam: `edwin-pratt.png`
+- Volledig pad: `Londen1888-art/personen/edwin-pratt.png`
 - Formaat: 3:4, 1536 × 2048 px
 
 ```
@@ -587,9 +798,12 @@ a thin nervous young Victorian bank clerk with ink-stained cuffs and round spect
 
 #### Mrs. Bessie Doyle
 
-- Bestand: `personen/bessie-doyle.png`
+- Map: `personen/`
+- Bestandsnaam: `bessie-doyle.png`
+- Volledig pad: `Londen1888-art/personen/bessie-doyle.png`
 - Formaat: 3:4, 1536 × 2048 px
 
 ```
 a proud weathered Victorian woman in her fifties in a coarse workhouse uniform, sitting on a narrow iron bed in a crowded dormitory, the wall beside her covered with tiny handwritten names and sums, half-length portrait, figure centred, head in upper third, background fades into darkness at the edges. Late-Victorian oil painting, 1888 London, rich dark palette of soot black, deep teal and oxblood, warm amber gaslight against cold green-grey fog, visible loose brushstrokes and canvas texture, dramatic chiaroscuro, slightly uncanny atmosphere, museum-quality academic painting. Avoid: no text, no letters, no captions, no watermark, no signature, no frame, no border, no modern objects, no photograph look, no 3D render, no anime, no gore.
 ```
+
