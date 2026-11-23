@@ -648,3 +648,9 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);ou
 .sorteer{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:4px 0 12px}
 .sorteer .optie.klein{min-height:36px;padding:6px 12px;font-size:14px}
 .heldkaart .getallen b{color:var(--accent)}
+/* zwaarte van een god op het startscherm */
+.zwaarte{font-size:13.5px;padding:4px 8px;border-left:4px solid var(--line);background:var(--bg);margin-top:4px}
+.zwaarte small{font-size:12.5px;color:var(--muted)}
+.zwaarte.z-zwaar{border-left-color:var(--bad)}
+.zwaarte.z-licht{border-left-color:var(--good)}
+.zwaarte.z-midden{border-left-color:var(--mist, var(--line))}

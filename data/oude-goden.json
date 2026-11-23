@@ -42,9 +42,10 @@
       },
       {
         "naam": "Het getij keren",
-        "doel": "Reis naar Westminster en overtuig de ingenieurs van de Metropolitan Board of Works om de sluizen van de nieuwe riolen te sluiten (Charisma 8).",
-        "type": "test",
+        "doel": "Breng samen 2 Aanwijzingen naar Westminster en overtuig daar de ingenieurs van de Metropolitan Board of Works om de sluizen van de nieuwe riolen te sluiten (Charisma 8).",
+        "type": "aanwijzingen",
         "plek": "westminster",
+        "aantal": 2,
         "kenmerk": "overtuiging",
         "moeilijkheid": 8
       }
@@ -64,7 +65,7 @@
     "id": "azh-ilareth",
     "naam": "Azh-Ilareth",
     "titel": "De ster die te veel is",
-    "mist": 10,
+    "mist": 11,
     "verhaal": "Op een heldere novembernacht verscheen er een ster die op geen enkele kaart staat. Ze is wit met een rand van ziekelijk violet en komt elke nacht een fractie dichterbij. Wie te lang kijkt, gaat haar tekenen, op muren, in kantlijnen en in het zand. Dichters schrijven verzen die ze zich niet herinneren, en de spiegels in de salons van Mayfair tonen een hemel die niet boven Londen hangt.",
     "regel": "Elke spreuk kost 1 Geest extra. Wie op Hampstead staat, mag elke ronde 1 Geest herstellen.",
     "verdachten": "De Orde van de Bleke Lantaarn: een hermetische loge die de ster als een openbaring ziet.",
@@ -233,9 +234,10 @@
       },
       {
         "naam": "Het verbroken wiegelied",
-        "doel": "Zoek in de leeszaal van het British Museum in Bloomsbury het oude wiegelied dat de Doornkoningin ooit bond (Kennis 8).",
-        "type": "test",
+        "doel": "Breng samen 2 Aanwijzingen naar Bloomsbury en zoek in de leeszaal van het British Museum het oude wiegelied dat de Doornkoningin ooit bond (Kennis 8).",
+        "type": "aanwijzingen",
         "plek": "bloomsbury",
+        "aantal": 2,
         "kenmerk": "kennis",
         "moeilijkheid": 8
       }

@@ -33,7 +33,9 @@ const DIENSTUITLEG = {
 };
 const COACH_RONDES = 3; /* zoveel rondes geeft de tutorial-coach een uitgewerkte suggestie */
 const STATIONS = ["marylebone", "kings-cross", "city", "westminster"];
-const LANGE_NACHT = { mist: 5, extraMysteries: 2 };
+/* De Lange Nacht: 2 mysteries meer, en een ruimere Mist die afhangt van het aantal helden
+   (4 helden doen per ronde twee keer zoveel, dus 2 helden krijgen meer tijd) */
+const LANGE_NACHT = { mist: { 2: 7, 4: 4 }, extraMysteries: 2 };
 /* Tests bij ontmoetingen zijn 1 zwaarder: zonder uitrusting of groei haal je ze niet zeker */
 const ONTMOETING_ZWAARDER = 1;
 const MOEILIJKHEID = {
@@ -77,14 +79,26 @@ const KLOKKEN = [
 ];
 const klok = id => !!S?.klokken?.includes(id);
 const bootPrijs = () => klok("gesloten-lijnen") ? 4 : 2;
+/* Hoe zwaar is een god in de gekozen stand, met het gekozen aantal helden? Uit het klokkenmodel (testbotmetingen).
+   Niet elke god is even zwaar; dat is zo bedoeld. De kaart op het startscherm laat het zien. */
+function godZwaarte(god, stand, aantal, modus) {
+  const k = schatKans(god, stand, aantal, [], modus); if (k == null) return null;
+  const alle = D.goden.map(g => schatKans(g.id, stand, aantal, [], modus)).filter(x => x != null);
+  const gem = alle.reduce((a, b) => a + b, 0) / alle.length, ander = schatKans(god, stand, aantal === 2 ? 4 : 2, [], modus);
+  const label = k <= gem - 0.06 ? ["zwaar", "Zwaarder"] : k >= gem + 0.06 ? ["licht", "Makkelijker"] : ["midden", "Gemiddeld"];
+  const noot = ander != null && ander - k >= 0.1 ? (aantal === 2 ? "Met 4 helden een stuk makkelijker dan met 2." : "Met 2 helden een stuk makkelijker dan met 4.") : "";
+  return { kans: k, cls: label[0], label: label[1], noot };
+}
 const ROMEINS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII"];
 /* Uit data/klokken.json (gemeten met tools/meet-klokken.js): de winkans zonder klokken en het effect van elke klok, als logit. */
 const klokEffect = (id, stand) => { if (id === "geen-genade" && stand === "genadeloos") return 0; return Math.min(0, D.klokmodel?.klokken.find(k => k.id === id)?.logit || 0); };
 const klokSlagen = id => Math.max(1, Math.min(4, Math.round(-klokEffect(id, "normaal") / 0.35)));
-function schatKans(god, stand, aantal, klokken) {
+function schatKans(god, stand, aantal, klokken, modus) {
   const m = D.klokmodel; if (!m) return null;
-  const goden = god && m.basis[god] ? [god] : Object.keys(m.basis);
-  const ps = goden.map(g => { const b = m.basis[g][stand][aantal]; let l = Math.log(b / (1 - b)); for (const id of klokken) l += klokEffect(id, stand); return 1 / (1 + Math.exp(-l)); });
+  /* De Lange Nacht heeft een eigen basis (uit ontwerp/balans-lang.json); de klokken werken daar hetzelfde */
+  const basis = modus === "lang" && m.basisLang ? m.basisLang : m.basis;
+  const goden = god && basis[god] ? [god] : Object.keys(basis);
+  const ps = goden.map(g => { const b = basis[g][stand][aantal]; let l = Math.log(b / (1 - b)); for (const id of klokken) l += klokEffect(id, stand); return 1 / (1 + Math.exp(-l)); });
   return ps.reduce((a, b) => a + b, 0) / ps.length;
 }
 /* Punten bij winst: hoe kleiner de kans vooraf, hoe meer punten. Op het nippertje (laatste nacht) telt voor driekwart. */
@@ -820,8 +834,8 @@ function nieuwSpel(godId, moeilijkheid, heldIds, opties = {}) {
     modus: opties.modus === "lang" ? "lang" : "gewoon", bedrijf: 1
   };
   /* De Lange Nacht: één mysterie meer en een ruimere Mist */
-  if (S.modus === "lang") { S.nodig = Math.min(g.mysteries.length, S.nodig + LANGE_NACHT.extraMysteries); S.mist += LANGE_NACHT.mist; }
-  S.kans = schatKans(godId, moeilijkheid, heldIds.length, S.klokken);
+  if (S.modus === "lang") { S.nodig = Math.min(g.mysteries.length, S.nodig + LANGE_NACHT.extraMysteries); S.mist += LANGE_NACHT.mist[heldIds.length] ?? LANGE_NACHT.mist[2]; }
+  S.kans = schatKans(godId, moeilijkheid, heldIds.length, S.klokken, S.modus);
   if (klok("dikke-mist")) S.mist -= 2;
   if (klok("ongeduldige-god")) S.nodig += 1;
   S.mistStart = S.mist;
@@ -1871,9 +1885,10 @@ async function onheilsfase() {
   if (uitputting && !S.uitputtingGemeld) { S.uitputtingGemeld = true; await melding("De Mist kruipt in je hoofd", "De Mist is tot de helft gezakt. Vanaf nu verliest elke held in Londen aan het eind van elke ronde 1 Geest. Rust, vlugzout en genezing worden kostbaar."); }
   for (const h of S.helden) {
     if (uitputting && !isOverzee(h.plek) && !h.uit) { h.G--; }
-    if (S.god === "nebet-ankhu" && h.artefacten.length) h.G--;
+    /* geen dubbele Geest-straf: slaat de uitputting toe, dan kosten de regels van Nebet-Ankhu en Ysmara geen extra Geest */
+    if (S.god === "nebet-ankhu" && !uitputting && h.artefacten.length) h.G--;
     if (S.god === "azh-ilareth" && h.plek === "hampstead") h.G = Math.min(h.maxG, h.G + 1);
-    if (S.god === "ysmara" && !isOverzee(h.plek) && S.helden.filter(x => x.plek === h.plek).length === 1) { h.G--; log(`${korteNaam(heldDef(h).naam)} staat alleen en hoort de Doornkoningin roepen: −1 Geest`); }
+    if (S.god === "ysmara" && !uitputting && !isOverzee(h.plek) && S.helden.filter(x => x.plek === h.plek).length === 1) { h.G--; log(`${korteNaam(heldDef(h).naam)} staat alleen en hoort de Doornkoningin roepen: −1 Geest`); }
     if (h.artefacten.includes("kristallen-schedel") && d6() === 1) h.G--;
     for (const id of h.artefacten) { const v = artDef(id)?.vloek; if (v && d6() <= v.kans) { await pasToe(h, v.effect); log(`${artDef(id).naam} eist zijn prijs van ${korteNaam(heldDef(h).naam)}`); } }
     if (heeft(h, "verslaafd")) { if (h.pond > 0) h.pond--; else h.G--; }
@@ -2652,7 +2667,8 @@ function tekenStart() {
     <div><span class="muted">Een coöperatief spel voor 2 of 4 helden</span><h1>Londen, 1888</h1></div>
     <div class="opties"><button class="btn" data-act="tutorial">Leer spelen (tutorial)</button><button class="btn ghost" data-act="handboek">Handleiding</button><a class="btn ghost" href="lore/index.html">Lore-boek</a><button class="btn ghost" data-act="nieuws">Wat is er nieuw</button><button class="btn ghost" data-act="scorebord">Scorebord</button></div>
     ${opgeslagen && !opgeslagen.einde ? `<div class="hint">Er is een spel bezig tegen ${esc(byId(D.goden, opgeslagen.god)?.naam)}, ronde ${opgeslagen.ronde}. <button class="btn small" data-act="verder">Verder spelen</button></div>` : ""}
-    <section><h2>Tegen wie?</h2><div class="goden">${D.goden.map(g => `<button class="optie" data-god="${g.id}" aria-pressed="${u.god === g.id}">${art(`art/goden/${g.id}.jpg`) ? `<img class="godbeeld" src="art/goden/${g.id}.jpg" alt="">` : ""}<b>${esc(g.naam)}</b><span class="muted">${esc(g.titel)}</span><span>${esc(g.regel)}</span></button>`).join("")}</div></section>
+    <section><h2>Tegen wie?</h2><div class="goden">${D.goden.map(g => `<button class="optie" data-god="${g.id}" aria-pressed="${u.god === g.id}">${art(`art/goden/${g.id}.jpg`) ? `<img class="godbeeld" src="art/goden/${g.id}.jpg" alt="">` : ""}<b>${esc(g.naam)}</b><span class="muted">${esc(g.titel)}</span><span>${esc(g.regel)}</span>${(() => { const z = godZwaarte(g.id, u.moeilijkheid, u.aantal, u.modus); return z ? `<span class="zwaarte z-${z.cls}"><b>${z.label}</b> · winkans ongeveer ${Math.round(100 * z.kans)}% met ${u.aantal} helden${z.noot ? `<br><small>${esc(z.noot)}</small>` : ""}</span>` : ""; })()}</button>`).join("")}</div>
+      <p class="muted">Niet elke god is even zwaar, en dat is zo bedoeld. De winkans komt uit duizenden potjes van een voorzichtige testspeler, voor de gekozen stand, speelduur en het aantal helden. Echte spelers doen het vaak beter.</p></section>
     <section><h2>Moeilijkheid</h2><div class="opties">${Object.entries(MOEILIJKHEID).map(([k, m]) => `<button class="optie" data-moeilijk="${k}" aria-pressed="${u.moeilijkheid === k}">${m.naam}: ${m.nodig} mysteries</button>`).join("")}</div></section>
     <section><h2>Speelduur</h2><div class="opties"><button class="optie" data-modus="gewoon" aria-pressed="${u.modus !== "lang"}">Gewoon: ongeveer 45 minuten</button><button class="optie" data-modus="lang" aria-pressed="${u.modus === "lang"}">De Lange Nacht: 90 tot 120 minuten</button></div>
       ${u.modus === "lang" ? `<p class="muted">Twee mysteries meer en een veel ruimere Mist. Na elk mysterie een beloningsronde, en Londen wordt per bedrijf grimmiger.</p>` : ""}</section>
@@ -2713,7 +2729,7 @@ function klokSvg(aan, laatst) {
   </svg>`;
 }
 function klokSectie(u) {
-  const kans = schatKans(u.god, u.moeilijkheid, u.aantal, u.klokken), basis = schatKans(u.god, u.moeilijkheid, u.aantal, []);
+  const kans = schatKans(u.god, u.moeilijkheid, u.aantal, u.klokken, u.modus), basis = schatKans(u.god, u.moeilijkheid, u.aantal, [], u.modus);
   const pct = kans == null ? null : Math.round(kans * 100), dreig = kans == null ? 0 : 1 - kans;
   const slagen = u.klokken.reduce((t, id) => t + klokSlagen(id), 0);
   const pips = n => `<span class="klokpips" aria-label="${n} ${n === 1 ? "slag" : "slagen"}">${"<i></i>".repeat(n)}</span>`;
@@ -2749,7 +2765,7 @@ async function toonKlokkenInfo() {
 function bewaarUitslag() {
   if (!S?.einde || S.uitslagId || S.tutorial || window.__bot) return;
   const winst = S.einde === "winst" || S.einde === "nipt";
-  const kans = S.kans ?? schatKans(S.god, S.moeilijkheid, S.helden.length, S.klokken || []);
+  const kans = S.kans ?? schatKans(S.god, S.moeilijkheid, S.helden.length, S.klokken || [], S.modus);
   let naam = ""; try { naam = localStorage.getItem(SPELERNAAM) || ""; } catch {}
   const e = { id: Date.now(), datum: new Date().toISOString().slice(0, 10), naam, god: S.god, stand: S.moeilijkheid, helden: S.helden.map(h => h.id), klokken: S.klokken || [],
     ronde: S.ronde, uitslag: S.einde, modus: S.modus || "gewoon", kans: kans == null ? null : +kans.toFixed(3), punten: winst && kans != null ? puntenVoor(kans, S.einde === "nipt") : 0, aangepast: !!S.aangepast };

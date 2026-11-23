@@ -4,72 +4,72 @@
   "basis": {
     "vathrun": {
       "ontspannen": {
-        "2": 0.944,
-        "4": 0.984
+        "2": 0.905,
+        "4": 0.954
       },
       "normaal": {
-        "2": 0.648,
-        "4": 0.757
+        "2": 0.698,
+        "4": 0.826
       },
       "genadeloos": {
-        "2": 0.283,
-        "4": 0.154
+        "2": 0.194,
+        "4": 0.184
       }
     },
     "azh-ilareth": {
       "ontspannen": {
-        "2": 0.796,
+        "2": 0.885,
         "4": 0.944
       },
       "normaal": {
-        "2": 0.698,
-        "4": 0.638
+        "2": 0.589,
+        "4": 0.885
       },
       "genadeloos": {
-        "2": 0.194,
-        "4": 0.095
+        "2": 0.253,
+        "4": 0.233
       }
     },
     "nebet-ankhu": {
       "ontspannen": {
-        "2": 0.875,
-        "4": 0.944
+        "2": 0.925,
+        "4": 0.974
       },
       "normaal": {
-        "2": 0.648,
-        "4": 0.806
+        "2": 0.826,
+        "4": 0.856
       },
       "genadeloos": {
         "2": 0.362,
-        "4": 0.302
+        "4": 0.431
       }
     },
     "ysmara": {
       "ontspannen": {
-        "2": 0.944,
-        "4": 0.954
+        "2": 0.856,
+        "4": 0.974
       },
       "normaal": {
-        "2": 0.638,
-        "4": 0.777
+        "2": 0.707,
+        "4": 0.826
       },
       "genadeloos": {
-        "2": 0.214,
-        "4": 0.154
+        "2": 0.164,
+        "4": 0.164
       }
     },
     "morghast": {
       "ontspannen": {
         "2": 0.826,
-        "4": 0.895
+        "4": 0.954
       },
       "normaal": {
-        "2": 0.678,
-        "4": 0.698
+        "2": 0.727,
+        "4": 0.648
       },
       "genadeloos": {
-        "2": 0.243,
-        "4": 0.095
+        "2": 0.194,
+        "4": 0.105
       }
     }
   },
@@ -316,5 +316,77 @@
     }
   ],
   "basisDatum": "2026-11-22",
-  "basisBron": "ontwerp/balans.json (testbot, 80 potjes per instelling, 23 november 2026: ontmoetingen 1 zwaarder, vijf mysteries, uitputting)"
+  "basisBron": "ontwerp/balans.json en ontwerp/balans-lang.json (testbot, 80 potjes per instelling, 23 november 2026: Lange Nacht naar aantal helden, geen dubbele Geest-straf, Azh-Ilareth Mist 11)",
+  "basisLang": {
+    "vathrun": {
+      "ontspannen": {
+        "2": 0.875,
+        "4": 0.974
+      },
+      "normaal": {
+        "2": 0.707,
+        "4": 0.806
+      },
+      "genadeloos": {
+        "2": 0.144,
+        "4": 0.115
+      }
+    },
+    "azh-ilareth": {
+      "ontspannen": {
+        "2": 0.786,
+        "4": 0.974
+      },
+      "normaal": {
+        "2": 0.737,
+        "4": 0.777
+      },
+      "genadeloos": {
+        "2": 0.144,
+        "4": 0.135
+      }
+    },
+    "nebet-ankhu": {
+      "ontspannen": {
+        "2": 0.905,
+        "4": 0.984
+      },
+      "normaal": {
+        "2": 0.678,
+        "4": 0.796
+      },
+      "genadeloos": {
+        "2": 0.233,
+        "4": 0.302
+      }
+    },
+    "ysmara": {
+      "ontspannen": {
+        "2": 0.707,
+        "4": 0.925
+      },
+      "normaal": {
+        "2": 0.559,
+        "4": 0.786
+      },
+      "genadeloos": {
+        "2": 0.056,
+        "4": 0.164
+      }
+    },
+    "morghast": {
+      "ontspannen": {
+        "2": 0.885,
+        "4": 0.944
+      },
+      "normaal": {
+        "2": 0.757,
+        "4": 0.757
+      },
+      "genadeloos": {
+        "2": 0.214,
+        "4": 0.194
+      }
+    }
+  }
 }

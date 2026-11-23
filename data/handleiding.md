@@ -111,7 +111,7 @@ Het huidige mysterie staat rechts in het groene kader. Elke oude god heeft vijf 
 
 ## Lichaam, Geest en waanzin
 
-- **De Mist kruipt in je hoofd.** Is de Mist tot de helft van zijn begin gezakt, dan verliest elke held in Londen aan het eind van elke ronde 1 Geest. Overzee ben je er veilig voor. Rusten, vlugzout en genezers worden dan belangrijk.
+- **De Mist kruipt in je hoofd.** Is de Mist tot de helft van zijn begin gezakt, dan verliest elke held in Londen aan het eind van elke ronde 1 Geest. Overzee ben je er veilig voor. Rusten, vlugzout en genezers worden dan belangrijk. In een ronde waarin de uitputting toeslaat, kosten de regels van Ysmara (alleen staan) en Nebet-Ankhu (artefacten) geen extra Geest: je verliest dan 1 Geest, niet 2.
 
 - **Lichaam op 0:** je wordt Gewond naar het ziekenhuis in The City gebracht. Met Gewond heb je 1 actie per ronde, tot je het daar laat verwijderen.
 - **Geest op 0:** je krijgt een **Waanzin**-kaart en je Geest gaat terug naar de helft. In Chelsea kun je een waanzin laten wegschilderen.
@@ -158,7 +158,7 @@ Met **3 Trofeeën** tik je op **Groeien**: +1 op een kenmerk (maximaal 5), +1 ma
 
 Een langere spelmodus van ongeveer 90 tot 120 minuten (zo'n 12 tot 14 rondes met 2 helden), voor als je je held echt wilt zien groeien. Kies hem op het beginscherm bij **Speelduur**.
 
-- Jullie moeten **2 mysteries meer** oplossen (ontspannen 4, normaal en genadeloos 5), en de Mist begint **5 hoger**.
+- Jullie moeten **2 mysteries meer** oplossen (ontspannen 4, normaal en genadeloos 5), en de Mist begint ruimer: **7 hoger met 2 helden, 4 hoger met 4 helden**. Vier helden doen per ronde twee keer zoveel.
 - Het spel heeft **bedrijven**. Na elk opgelost mysterie begint een nieuw bedrijf, en Londen wordt grimmiger:
   - Tweede bedrijf: gewone monsters hebben 1 Leven meer.
   - Derde bedrijf en later: gewone monsters doen ook 1 Schade meer.
@@ -184,6 +184,8 @@ Een langere spelmodus van ongeveer 90 tot 120 minuten (zo'n 12 tot 14 rondes met
 | Genadeloos | 3 lager | 3 | 3 | 1 moeilijker, geen laatste nacht |
 
 Met 4 helden begint de Mist 3 lager en is er één Scheur extra, want vier helden doen meer per ronde.
+
+**Niet elke god is even zwaar.** Op het beginscherm staat bij elke god of hij zwaarder, gemiddeld of makkelijker is, met de winkans voor de gekozen stand, speelduur en het aantal helden. Is een god met 4 helden een stuk makkelijker dan met 2 (of andersom), dan staat dat er ook bij. De winkansen komen uit duizenden potjes van een voorzichtige testspeler.
 
 Gemeten met een testspeler die honderden potjes speelde: ontspannen wint ongeveer 9 van de 10 potjes, normaal ongeveer 6 tot 8 van de 10 en genadeloos 1 tot 2 van de 10.
 
