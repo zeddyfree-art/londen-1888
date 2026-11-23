@@ -2,7 +2,21 @@
 
 Deze lijst werken we aan het einde van elk gesprek bij. Zet bij elke update die spelers merken een nieuw bericht bovenaan `data/nieuws.json` (met een hoger `id`): dat verschijnt één keer als "Wat is er nieuw" als de app opent.
 
-*Laatst bijgewerkt: 23 november 2026 (veertiende sessie)*
+*Laatst bijgewerkt: 23 november 2026 (vijftiende sessie)*
+
+## Gemeten na de vijftiende sessie (voorstel voor De Lange Nacht ingebouwd)
+
+Met `node tools/testbot.js 80` en `MODUS=lang node tools/testbot.js 80`. De Lange Nacht: Mist +7 met 2 helden en +4 met 4; geen dubbele Geest-straf (uitputting telt niet op bij Ysmara en Nebet-Ankhu); Azh-Ilareth Mist 11; *Het getij keren* en *Het verbroken wiegelied* vragen eerst 2 Aanwijzingen. Het klokkenmodel heeft nu ook een basis voor De Lange Nacht (`basisLang`), die het startscherm gebruikt.
+
+| God | Gewoon normaal 2 / 4 | Lange Nacht normaal 2 / 4 | Gewoon genadeloos 2 / 4 |
+|---|---|---|---|
+| Vathrûn | 70% / 83% | 71% / 81% | 19% / 18% |
+| Azh-Ilareth | 59% / 89% | 74% / 78% | 25% / 23% |
+| Nebet-Ankhu | 83% / 86% | 68% / 80% | 36% / 43% |
+| Ysmara | 71% / 83% | 56% / 79% | 16% / 16% |
+| Morghast | 73% / 65% | 76% / 76% | 19% / 10% |
+
+Gemiddeld: gewoon normaal 76%, Lange Nacht normaal 74% (2 helden 69%, 4 helden 79%; was 51% en 82%), genadeloos ~22%. Nebet-Ankhu is op genadeloos makkelijk (36 tot 43%); eventueel 1 Mist lager.
 
 ## Gemeten na de veertiende sessie (vijfde mysterie, ontmoetingen 1 zwaarder, uitputting, Arjan Singh)
 
@@ -175,7 +189,7 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 
 ### Veertiende sessie
 - [ ] Testers vragen naar het tikken: `testvraag-klikken.md`.
-- [ ] De Lange Nacht met 2 helden is zwaar tegen Ysmara (38%) en Azh-Ilareth (44%). Na echte potjes bekijken.
+- [ ] Nebet-Ankhu op genadeloos is makkelijk (36 tot 43%). Na echte potjes bekijken, eventueel 1 Mist lager.
 - [ ] Startplekken: er zijn 25 helden en 20 plekken, dus 5 plekken hebben er twee (Leicester Square, Bloomsbury, Marylebone, Soho, Pall Mall). Geen gelijke profielen meer op één plek.
 
 ### De Lange Nacht en de proefregels (dertiende sessie)
@@ -199,6 +213,8 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [ ] Testen: voelen de nieuwe geruchten (Scheur sluiten, monster verslaan) haalbaar?
 
 ## Klaar
+
+- [x] De Lange Nacht: Mist naar aantal helden, geen dubbele Geest-straf, Azh-Ilareth Mist 11; twee mysteries met een extra stap; zwaarte per god op het startscherm
 
 - [x] Beelden voor Daffadar Arjan Singh (portret, Tulwar van de Guides, Khaki-tuniek) in het spel en in `tools/art-drive.json`
 

@@ -17,7 +17,7 @@ Elke oude god heeft een eigen verhaallijn. De verhaalkaarten in het spel horen b
 2. *Sluit de oude riolen.* Sluit de scheuren langs de rivier, waar Vathrûns adem naar boven komt.
 3. *De verdronken bisschop.* Versla de Bisschop van het Slib voordat hij de deur voor Brine opent.
 4. *Het verloren rapport.* Het rapport dat Josiah Penhallow schreef, is nooit aangekomen: het Genootschap heeft het onderschept. Vind het in Southwark en breng het naar Hoofdinspecteur Voss. Daarin staat wat Penhallow achter de deur hoorde.
-5. *Het getij keren.* Overtuig de ingenieurs van de Metropolitan Board of Works in Westminster om de sluizen van de nieuwe riolen dicht te zetten, zodat Vathrûns adem niet meer naar boven kan.
+5. *Het getij keren.* Verzamel bewijs dat de nieuwe riolen Vathrûns adem naar boven brengen, en overtuig daarmee de ingenieurs van de Metropolitan Board of Works in Westminster om de sluizen van de nieuwe riolen dicht te zetten, zodat Vathrûns adem niet meer naar boven kan.
 
 ## Azh-Ilareth: de ster die te veel is
 
@@ -68,7 +68,7 @@ Elke oude god heeft een eigen verhaallijn. De verhaalkaarten in het spel horen b
 2. *De doornpoorten.* Sluit de poorten van het hof: een Scheur in Hampstead of Chelsea, en nog één.
 3. *Het weggelopen meisje.* Haal de kleine Ada uit het weeshuis van Mrs. Greaves en breng haar naar de kerk in Westminster.
 4. *De jacht op de heide.* Versla de Groene Jager.
-5. *Het verbroken wiegelied.* Zoek in de leeszaal van het British Museum het oude wiegelied dat de Doornkoningin ooit bond.
+5. *Het verbroken wiegelied.* Volg de sporen van het wiegelied door de stad, en zoek dan in de leeszaal van het British Museum het oude wiegelied dat de Doornkoningin ooit bond.
 
 **Wat speciaal is.** Wie aan het eind van een ronde alleen op een plek staat, hoort haar roepen en verliest Geest. Tegen Ysmara blijf je dus liever bij elkaar, en dat maakt verspreiden duur.
 
