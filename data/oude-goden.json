@@ -318,5 +318,441 @@
     ],
     "episch": "de-anatoom",
     "prompt": "a vast sleeping shape beneath the streets of the City of London, seen in cross-section through layers of plague bones, lime and old brick vaults, one enormous hollow eye socket opening in the dark, St Paul's dome above in the fog, a tiny lantern-lit railway tunnel cutting through the bones"
+  },
+  {
+    "id": "ommeth",
+    "naam": "Ommeth",
+    "titel": "De Herder die zijn kudde telt",
+    "mist": 14,
+    "verhaal": "In de East End trekt een prediker rond, Broeder Absalom Crewe, met een processie die elke avond langer wordt. Ze zingen een psalm die niemand kent, op een wijs die je de hele nacht blijft horen. Wie meeloopt, vergeet zijn naam en antwoordt alleen nog op 'kudde'. Ommeth heeft geen lichaam. Zijn lichaam is de menigte, en de menigte groeit.",
+    "regel": "Bij elke open Scheur komt elke ronde een Cultist bij. Drie op één plek houden een ritueel: de Mist daalt met 1. Een cultist kun je ook bekeren (Charisma 8).",
+    "verdachten": "De Kudde van de Herder: dokwerkers, naaisters en werkhuisbewoners, geleid door de prediker Absalom Crewe.",
+    "mysteries": [
+      {
+        "naam": "De processie volgen",
+        "doel": "Breng samen 3 Aanwijzingen naar Whitechapel en volg de route van de processie (Waarneming 8).",
+        "type": "aanwijzingen",
+        "plek": "whitechapel",
+        "aantal": 3,
+        "kenmerk": "scherpte",
+        "moeilijkheid": 8
+      },
+      {
+        "naam": "De kudde uiteendrijven",
+        "doel": "Verdrijf samen 6 Cultisten: versla ze, of bekeer ze met Charisma.",
+        "type": "cultisten",
+        "aantal": 6
+      },
+      {
+        "naam": "De preekstoel",
+        "doel": "Versla het epische monster Broeder Absalom, dat in Spitalfields verschijnt.",
+        "type": "episch",
+        "plek": "spitalfields"
+      },
+      {
+        "naam": "De weggelopen zoon",
+        "doel": "Haal Tommy Coyle weg uit de processie in Limehouse (Charisma 8) en breng hem naar de gaarkeuken in Spitalfields.",
+        "type": "breng",
+        "van": "limehouse",
+        "naar": "spitalfields",
+        "voorwerp": "Tommy Coyle",
+        "kenmerk": "overtuiging",
+        "moeilijkheid": 8
+      },
+      {
+        "naam": "De armenregisters",
+        "doel": "Breng samen 2 Aanwijzingen naar The City en zoek in de registers van de werkhuizen wie er verdween (Kennis 8).",
+        "type": "aanwijzingen",
+        "plek": "city",
+        "aantal": 2,
+        "kenmerk": "kennis",
+        "moeilijkheid": 8
+      }
+    ],
+    "ontwaken": "De processie stopt niet meer. Heel Londen loopt mee, zingend, in de richting van de rivier, en niemand weet nog hoe hij heet. Jullie verliezen.",
+    "monsters": [
+      "kuddeleider",
+      "zingend-koor",
+      "logebroeder",
+      "kraaienzwerm",
+      "lantaarndrager"
+    ],
+    "episch": "broeder-absalom",
+    "prompt": "an endless torchlit procession of ragged Victorian East End workers filling a narrow cobbled street at night, all singing with blank faces, and above the rooftops a vast shepherd-like shape made of the crowd's own shadows, holding a crook of smoke, gaslamps and fog"
+  },
+  {
+    "id": "karathos",
+    "naam": "Karathos",
+    "titel": "De Verdeelde, die heel wil worden",
+    "mist": 12,
+    "verhaal": "In 1307 braken de Tempeliers iets in zeven stukken en verstopten ze over de wereld. Het British Museum heeft er in dertig jaar, zonder het te weten, vier in één vitrine gezet. Nu roepen ze elkaar 's nachts. De bewakers horen ze fluisteren, de conservator slaapt niet meer, en elke relikwie die je vindt, is een splinter die heel wil worden.",
+    "regel": "Elk Artefact is een Splinter: zijn bonus is 1 hoger, maar elke ronde kan hij roepen en iets uit zichzelf doen. Draagt het team er 4 of meer, dan roepen ze vaker.",
+    "verdachten": "Het Genootschap van de Zeven Zegels: verzamelaars, museummensen en een conservator die al jaren niet meer naar huis gaat.",
+    "mysteries": [
+      {
+        "naam": "De vitrine in Bloomsbury",
+        "doel": "Breng samen 2 Artefacten naar Bloomsbury. Daar sluit het museum ze op in een loden kist, voorgoed.",
+        "type": "artefacten",
+        "plek": "bloomsbury",
+        "aantal": 2
+      },
+      {
+        "naam": "In de diepte",
+        "doel": "Breng een Artefact naar Wapping en werp het in het diepste deel van de Theems.",
+        "type": "artefacten",
+        "plek": "wapping",
+        "aantal": 1
+      },
+      {
+        "naam": "De zevende splinter",
+        "doel": "Reis naar de tempel in Yucatán en vind de plek waar de zevende splinter ligt (Waarneming 9).",
+        "type": "test",
+        "plek": "yucatan",
+        "kenmerk": "scherpte",
+        "moeilijkheid": 9
+      },
+      {
+        "naam": "De Conservator",
+        "doel": "Versla het epische monster De Conservator, dat in Bloomsbury verschijnt.",
+        "type": "episch",
+        "plek": "bloomsbury"
+      },
+      {
+        "naam": "De rol van de Tempeliers",
+        "doel": "Haal de rol van de Tempeliers uit de abdij in Westminster (Kennis 8) en breng hem naar King's College aan de Strand.",
+        "type": "breng",
+        "van": "westminster",
+        "naar": "strand",
+        "voorwerp": "de rol van de Tempeliers",
+        "kenmerk": "kennis",
+        "moeilijkheid": 8
+      }
+    ],
+    "ontwaken": "Zeven stukken vinden elkaar in de zaal met de Egyptische beelden. Wat heel wordt, is groter dan het museum, en dan groter dan Londen. Jullie verliezen.",
+    "monsters": [
+      "splintergeest",
+      "vitrinewachter",
+      "reliekjager",
+      "sluierhond",
+      "kraaienzwerm"
+    ],
+    "episch": "de-conservator",
+    "prompt": "a vast shattered figure of black glass and old gold hanging in the air above the British Museum at night, seven glowing fragments drifting toward each other across the foggy London sky, thin threads of light connecting them, gaslamps along Great Russell Street for scale"
+  },
+  {
+    "id": "ulvereth",
+    "naam": "Ulvereth",
+    "titel": "De Hemel die omslaat",
+    "mist": 12,
+    "verhaal": "Sinds de herfst gedraagt het weer boven Londen zich alsof iemand het bespeelt. Op dinsdag vriest de Theems dicht, voor het eerst sinds de laatste vorstmarkt van 1814. Op woensdag smelt het ijs in één nacht, en drijven er dingen boven die niemand in het water heeft gegooid. De barometers op Hampstead wijzen naar een stand die niet op de schaal staat. En soms, heel soms, is het een dag zo mooi dat je vergeet waarom je bang was.",
+    "regel": "Elke ronde begint met een Weerkaart. Zes ervan zijn heerlijk: zon, een zachte avond, een heldere nacht. De andere zeven brengen vorst, storm, mist of onweer.",
+    "verdachten": "De Bond van de Windroos: weerkundigen, schippers en barometermakers die geloven dat de hemel een stem heeft.",
+    "mysteries": [
+      {
+        "naam": "De barometer die doorslaat",
+        "doel": "Breng samen 3 Aanwijzingen naar de sterrenwacht op Hampstead en lees de vreemde stand af (Kennis 9).",
+        "type": "aanwijzingen",
+        "plek": "hampstead",
+        "aantal": 3,
+        "kenmerk": "kennis",
+        "moeilijkheid": 9
+      },
+      {
+        "naam": "De stormseinen van FitzRoy",
+        "doel": "Zoek in de Strand de verloren aantekeningen van admiraal FitzRoy (Waarneming 8) en breng ze naar Whitehall.",
+        "type": "breng",
+        "van": "strand",
+        "naar": "whitehall",
+        "voorwerp": "de aantekeningen van FitzRoy",
+        "kenmerk": "scherpte",
+        "moeilijkheid": 8
+      },
+      {
+        "naam": "De vorstmarkt",
+        "doel": "Versla het epische monster De Koning van de Vorstmarkt, dat in Southwark verschijnt.",
+        "type": "episch",
+        "plek": "southwark"
+      },
+      {
+        "naam": "Boven de wolken",
+        "doel": "Reis naar het Klooster van de Witte Wolken en lees de windstenen van de monniken (Kennis 8).",
+        "type": "test",
+        "plek": "himalaya",
+        "kenmerk": "kennis",
+        "moeilijkheid": 8
+      },
+      {
+        "naam": "Het oog van de storm",
+        "doel": "Sluit een Scheur op Hampstead of in King's Cross, en nog één ergens anders.",
+        "type": "scheuren",
+        "aantal": 2,
+        "minstensEen": [
+          "hampstead",
+          "kings-cross"
+        ]
+      }
+    ],
+    "ontwaken": "De hemel scheurt open boven de Theems. Het waait, het vriest en het brandt tegelijk, en het houdt niet meer op. Jullie verliezen.",
+    "monsters": [
+      "rijpwicht",
+      "smogslang",
+      "bliksemvanger",
+      "verdronkene",
+      "kraaienzwerm"
+    ],
+    "episch": "koning-van-de-vorstmarkt",
+    "prompt": "a colossal face formed from swirling storm clouds looming over Victorian London, one half lit by warm golden sunshine and the other half dark with sleet and lightning, the Thames below frozen solid with tiny tents of a frost fair on the ice, gaslamps for scale"
+  },
+  {
+    "id": "sirrhae",
+    "naam": "Sirrhae",
+    "titel": "De Stem achter de waaier",
+    "mist": 12,
+    "verhaal": "Niemand weet wie de gastvrouw is van de salon die elke week op een ander adres in Mayfair opengaat. Wie er geweest is, praat over haar zoals je over een eerste liefde praat. Dichters stoppen met schrijven, bankiers met rekenen, en een parlementslid stelde een vraag in het Lagerhuis die hij zich daarna niet herinnerde. Ze vraagt nooit iets. Ze laat je het aanbieden.",
+    "regel": "Haar wezens bekoren: je weerstaat ze met Charisma, en wie faalt, raakt Betoverd. Elke ronde biedt ze het team openlijk een gunst aan, met een prijs.",
+    "verdachten": "De Salon van de Waaier: dichters, schilders, politici en dames uit de beste kringen, die allemaal iets van haar hebben gekregen.",
+    "mysteries": [
+      {
+        "naam": "De gastenlijst",
+        "doel": "Breng samen 3 Aanwijzingen naar Mayfair en praat je de salon binnen (Charisma 9).",
+        "type": "aanwijzingen",
+        "plek": "mayfair",
+        "aantal": 3,
+        "kenmerk": "overtuiging",
+        "moeilijkheid": 9
+      },
+      {
+        "naam": "Het onvoltooide portret",
+        "doel": "Haal het onvoltooide portret van Sirrhae uit het atelier van Lucien Marchetti in Chelsea (Waarneming 8) en breng het naar de abdij in Westminster.",
+        "type": "breng",
+        "van": "chelsea",
+        "naar": "westminster",
+        "voorwerp": "het onvoltooide portret",
+        "kenmerk": "scherpte",
+        "moeilijkheid": 8
+      },
+      {
+        "naam": "De Muze",
+        "doel": "Versla het epische monster De Muze, dat in de opera van Covent Garden verschijnt. Je bevecht haar met Charisma.",
+        "type": "episch",
+        "plek": "covent-garden"
+      },
+      {
+        "naam": "Het parlementslid",
+        "doel": "Haal Sir Edmund Haversham weg uit de salon in Mayfair (Charisma 8) en breng hem naar Hoofdinspecteur Voss in Whitehall.",
+        "type": "breng",
+        "van": "mayfair",
+        "naar": "whitehall",
+        "voorwerp": "Sir Edmund Haversham",
+        "kenmerk": "overtuiging",
+        "moeilijkheid": 8
+      },
+      {
+        "naam": "Het vasten",
+        "doel": "Weiger 3 gunsten van Sirrhae achter elkaar. Neem je er een aan, dan begint het tellen opnieuw.",
+        "type": "weigeren",
+        "aantal": 3
+      }
+    ],
+    "ontwaken": "Heel Londen komt naar het feest. Niemand gaat meer naar huis, niemand werkt meer, niemand wil nog iets anders dan haar glimlach. Het is het mooiste feest dat er ooit was, en het houdt nooit op. Jullie verliezen.",
+    "monsters": [
+      "bewonderaar",
+      "maskerdanser",
+      "betoverde-dichter",
+      "spiegelgast",
+      "lantaarndrager"
+    ],
+    "episch": "de-muze",
+    "prompt": "an impossibly beautiful woman half hidden behind an enormous black lace fan, seated on a velvet chaise in a candlelit Mayfair salon, dozens of elegantly dressed Victorian guests kneeling around her with adoring blank eyes, her shadow on the wall far larger than she is and full of reaching hands"
+  },
+  {
+    "id": "ouroch",
+    "naam": "Ouroch",
+    "titel": "De Dertiende Slag",
+    "mist": 12,
+    "verhaal": "Sinds 1884 loopt de hele wereld op de tijd van Greenwich. Londen heeft de tijd van iedereen ingepikt, en iets wil hem terug. In Westminster slaat de klok dertien. Wie de dertiende slag hoort, verliest een uur dat hij nooit heeft beleefd. Klokkenmakers vinden tandwielen in hun brood, en in Spitalfields lopen mensen die al twintig jaar dood zijn, op weg naar een afspraak.",
+    "regel": "Zakt de Mist onder driekwart, de helft en een kwart van zijn begin, dan slaat de klok en gaat er een Klok van Westminster aan. Een opgelost mysterie zet er een stil.",
+    "verdachten": "Het Gilde van de Onrust: klokkenmakers, telegrafisten en opwinders die geloven dat de tijd een eigenaar heeft.",
+    "mysteries": [
+      {
+        "naam": "Het uurwerk van Westminster",
+        "doel": "Breng samen 3 Aanwijzingen naar Westminster en vind in het uurwerk van de toren het tandwiel dat er niet hoort (Kennis 9).",
+        "type": "aanwijzingen",
+        "plek": "westminster",
+        "aantal": 3,
+        "kenmerk": "kennis",
+        "moeilijkheid": 9
+      },
+      {
+        "naam": "De verloren uren",
+        "doel": "Haal het dagboek van klokkenmaker Obadiah Penrose uit zijn werkplaats in Spitalfields (Waarneming 8) en breng het naar Bloomsbury.",
+        "type": "breng",
+        "van": "spitalfields",
+        "naar": "bloomsbury",
+        "voorwerp": "het dagboek van Penrose",
+        "kenmerk": "scherpte",
+        "moeilijkheid": 8
+      },
+      {
+        "naam": "De Uurwerkman",
+        "doel": "Versla het epische monster De Uurwerkman, dat in de Strand verschijnt.",
+        "type": "episch",
+        "plek": "strand"
+      },
+      {
+        "naam": "Het klooster zonder tijd",
+        "doel": "Reis naar het Klooster van de Witte Wolken, waar de monniken geen klokken kennen, en leer hoe zij de tijd tellen (Kennis 8).",
+        "type": "test",
+        "plek": "himalaya",
+        "kenmerk": "kennis",
+        "moeilijkheid": 8
+      },
+      {
+        "naam": "Stilgezet",
+        "doel": "Sluit een Scheur in Westminster of Whitehall, en nog één ergens anders.",
+        "type": "scheuren",
+        "aantal": 2,
+        "minstensEen": [
+          "westminster",
+          "whitehall"
+        ]
+      }
+    ],
+    "ontwaken": "De klok slaat dertien, en dan veertien, en dan houdt hij niet meer op. Londen staat stil tussen twee seconden, voor altijd. Jullie verliezen.",
+    "monsters": [
+      "opwindsoldaat",
+      "tijdverlorene",
+      "slingerhond",
+      "mistdwaler",
+      "logebroeder"
+    ],
+    "episch": "de-uurwerkman",
+    "prompt": "the clock tower of Westminster at night with a thirteenth numeral glowing on its face, enormous brass gears and pendulums spilling out of the tower into the foggy sky like the limbs of a vast mechanical creature, the Thames reflecting the light, tiny figures on the bridge for scale"
+  },
+  {
+    "id": "yth-nemora",
+    "naam": "Yth-Nemora",
+    "titel": "De Leugen die rondgaat",
+    "mist": 11,
+    "verhaal": "In de herfst van 1888 drukken de kranten meer moord en geheim dan ooit, en de stad slurpt het op. Sommige berichten staan in kranten die nooit gedrukt zijn. Getuigen herinneren zich dingen die niet gebeurd zijn, en agenten zweren op sporen die er gisteren nog niet waren. Tegen de ochtend is het waar geworden. Iets leeft van wat Londen gelooft, en het wil dat Londen alles gelooft.",
+    "regel": "Aanwijzingen zijn onzeker tot je ze natrekt. Lever je ze in voor een mysterie, dan blijkt een op de drie vals, en dat kost Geest.",
+    "verdachten": "De Avondlantaarn: een krant, haar redacteur, haar zetters en de krantenjongens die alles verkopen wat ze drukken.",
+    "mysteries": [
+      {
+        "naam": "De zetterij",
+        "doel": "Breng samen 3 Aanwijzingen naar de Strand en vind de zetterij waar kranten worden gedrukt die niet bestaan (Waarneming 9).",
+        "type": "aanwijzingen",
+        "plek": "strand",
+        "aantal": 3,
+        "kenmerk": "scherpte",
+        "moeilijkheid": 9
+      },
+      {
+        "naam": "De getuige die liegt",
+        "doel": "Zoek de getuige Fennimore Blight in Whitechapel en laat hem de waarheid zeggen (Charisma 8). Breng hem naar Hoofdinspecteur Voss in Whitehall.",
+        "type": "breng",
+        "van": "whitechapel",
+        "naar": "whitehall",
+        "voorwerp": "Fennimore Blight",
+        "kenmerk": "overtuiging",
+        "moeilijkheid": 8
+      },
+      {
+        "naam": "De Redacteur",
+        "doel": "Versla het epische monster De Redacteur, dat in The City verschijnt, bij Fleet Street.",
+        "type": "episch",
+        "plek": "city"
+      },
+      {
+        "naam": "Het archief",
+        "doel": "Breng samen 2 Aanwijzingen naar de leeszaal in Bloomsbury en vergelijk ze met de echte kranten van de afgelopen tien jaar (Kennis 8).",
+        "type": "aanwijzingen",
+        "plek": "bloomsbury",
+        "aantal": 2,
+        "kenmerk": "kennis",
+        "moeilijkheid": 8
+      },
+      {
+        "naam": "Rectificatie",
+        "doel": "Sluit een Scheur in de Strand of The City, en nog één ergens anders.",
+        "type": "scheuren",
+        "aantal": 2,
+        "minstensEen": [
+          "strand",
+          "city"
+        ]
+      }
+    ],
+    "ontwaken": "Op een ochtend staat in alle kranten dat Londen nooit heeft bestaan. Iedereen leest het. Iedereen gelooft het. Jullie verliezen.",
+    "monsters": [
+      "krantenjongen",
+      "leugenaar",
+      "gerucht",
+      "mistdwaler",
+      "kraaienzwerm"
+    ],
+    "episch": "de-redacteur",
+    "prompt": "a monstrous shape made of countless overlapping newspaper pages towering over Fleet Street at night, ink dripping from it like rain onto the cobbles, its face a shifting headline, printing presses glowing in the windows below, gaslamps and fog"
+  },
+  {
+    "id": "gul-marrach",
+    "naam": "Gul-Marrach",
+    "titel": "De Onzichtbare Hand",
+    "mist": 12,
+    "verhaal": "In de City praten ze over de markt alsof het een persoon is. De markt is nerveus, de markt eist, de markt vergeeft niet. Op Threadneedle Street weet een handvol makelaars dat dat geen beeldspraak is. Onder de Bank of England zit iets dat zich voedt met schuld en honger. Het heeft de prijs van brood laten stijgen, de huur, de doodskisten. En sinds kort leent het terug, aan iedereen, tegen een rente die niemand ziet.",
+    "regel": "De koers (+0 tot +3) komt bovenop alles wat Ponden kost en stijgt elke ronde. Wie aan het eind van een ronde geen Pond heeft, verliest 1 Geest. Lenen bij de Hand kan altijd.",
+    "verdachten": "Het Syndicaat van de Ongeziene Hand: bankiers, makelaars, deurwaarders en huisjesmelkers in de City en Pall Mall.",
+    "mysteries": [
+      {
+        "naam": "Het grootboek",
+        "doel": "Breng samen 3 Aanwijzingen naar The City en lees het grootboek dat de Bank verborgen houdt (Kennis 9).",
+        "type": "aanwijzingen",
+        "plek": "city",
+        "aantal": 3,
+        "kenmerk": "kennis",
+        "moeilijkheid": 9
+      },
+      {
+        "naam": "Koop het werkhuis vrij",
+        "doel": "Betaal samen 6 Pond in Spitalfields, zodat het werkhuis niet in handen van het Syndicaat valt.",
+        "type": "betaal",
+        "plek": "spitalfields",
+        "aantal": 6
+      },
+      {
+        "naam": "De Makelaar",
+        "doel": "Versla het epische monster De Makelaar, dat in The City verschijnt.",
+        "type": "episch",
+        "plek": "city"
+      },
+      {
+        "naam": "De klerk die telde",
+        "doel": "Haal de klerk Edwin Pratt weg uit zijn club in Pall Mall (Charisma 8) en breng hem naar Hoofdinspecteur Voss in Whitehall.",
+        "type": "breng",
+        "van": "pall-mall",
+        "naar": "whitehall",
+        "voorwerp": "Edwin Pratt",
+        "kenmerk": "overtuiging",
+        "moeilijkheid": 8
+      },
+      {
+        "naam": "Het goud van de tempel",
+        "doel": "Reis naar de tempel in Yucatán en vind het goud dat het Syndicaat zoekt, voordat zij het vinden (Waarneming 9).",
+        "type": "test",
+        "plek": "yucatan",
+        "kenmerk": "scherpte",
+        "moeilijkheid": 9
+      }
+    ],
+    "ontwaken": "Op een maandagochtend kost alles alles. Een brood kost een huis, een huis kost een leven. Heel Londen staat in het grootboek, en niemand kan nog betalen. Jullie verliezen.",
+    "monsters": [
+      "deurwaarder",
+      "schuldspook",
+      "goudworm",
+      "lijkenrover",
+      "logebroeder"
+    ],
+    "episch": "de-makelaar",
+    "prompt": "an enormous pale hand with too many rings rising from beneath the Bank of England at night, its fingers holding puppet strings tied to tiny Victorian figures in the streets below, gold coins raining upward into the fog, gaslamps on Threadneedle Street for scale"
   }
 ]

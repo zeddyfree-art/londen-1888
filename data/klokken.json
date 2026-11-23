@@ -71,6 +71,104 @@
         "2": 0.194,
         "4": 0.105
       }
+    },
+    "karathos": {
+      "ontspannen": {
+        "2": 0.907,
+        "4": 0.981
+      },
+      "normaal": {
+        "2": 0.673,
+        "4": 0.87
+      },
+      "genadeloos": {
+        "2": 0.29,
+        "4": 0.241
+      }
+    },
+    "ulvereth": {
+      "ontspannen": {
+        "2": 0.944,
+        "4": 0.957
+      },
+      "normaal": {
+        "2": 0.784,
+        "4": 0.772
+      },
+      "genadeloos": {
+        "2": 0.253,
+        "4": 0.216
+      }
+    },
+    "ouroch": {
+      "ontspannen": {
+        "2": 0.858,
+        "4": 0.932
+      },
+      "normaal": {
+        "2": 0.549,
+        "4": 0.735
+      },
+      "genadeloos": {
+        "2": 0.302,
+        "4": 0.154
+      }
+    },
+    "yth-nemora": {
+      "ontspannen": {
+        "2": 0.944,
+        "4": 0.994
+      },
+      "normaal": {
+        "2": 0.71,
+        "4": 0.796
+      },
+      "genadeloos": {
+        "2": 0.117,
+        "4": 0.154
+      }
+    },
+    "gul-marrach": {
+      "ontspannen": {
+        "2": 0.92,
+        "4": 0.957
+      },
+      "normaal": {
+        "2": 0.636,
+        "4": 0.796
+      },
+      "genadeloos": {
+        "2": 0.253,
+        "4": 0.241
+      }
+    },
+    "sirrhae": {
+      "ontspannen": {
+        "2": 0.944,
+        "4": 0.981
+      },
+      "normaal": {
+        "2": 0.747,
+        "4": 0.747
+      },
+      "genadeloos": {
+        "2": 0.401,
+        "4": 0.216
+      }
+    },
+    "ommeth": {
+      "ontspannen": {
+        "2": 0.87,
+        "4": 0.969
+      },
+      "normaal": {
+        "2": 0.648,
+        "4": 0.623
+      },
+      "genadeloos": {
+        "2": 0.167,
+        "4": 0.13
+      }
     }
   },
   "basisRuw": {
@@ -233,6 +331,230 @@
           "n": 100
         }
       }
+    },
+    "karathos": {
+      "ontspannen": {
+        "2": {
+          "w": 73,
+          "n": 80
+        },
+        "4": {
+          "w": 79,
+          "n": 80
+        }
+      },
+      "normaal": {
+        "2": {
+          "w": 54,
+          "n": 80
+        },
+        "4": {
+          "w": 70,
+          "n": 80
+        }
+      },
+      "genadeloos": {
+        "2": {
+          "w": 23,
+          "n": 80
+        },
+        "4": {
+          "w": 19,
+          "n": 80
+        }
+      }
+    },
+    "ulvereth": {
+      "ontspannen": {
+        "2": {
+          "w": 76,
+          "n": 80
+        },
+        "4": {
+          "w": 77,
+          "n": 80
+        }
+      },
+      "normaal": {
+        "2": {
+          "w": 63,
+          "n": 80
+        },
+        "4": {
+          "w": 62,
+          "n": 80
+        }
+      },
+      "genadeloos": {
+        "2": {
+          "w": 20,
+          "n": 80
+        },
+        "4": {
+          "w": 17,
+          "n": 80
+        }
+      }
+    },
+    "ouroch": {
+      "ontspannen": {
+        "2": {
+          "w": 69,
+          "n": 80
+        },
+        "4": {
+          "w": 75,
+          "n": 80
+        }
+      },
+      "normaal": {
+        "2": {
+          "w": 44,
+          "n": 80
+        },
+        "4": {
+          "w": 59,
+          "n": 80
+        }
+      },
+      "genadeloos": {
+        "2": {
+          "w": 24,
+          "n": 80
+        },
+        "4": {
+          "w": 12,
+          "n": 80
+        }
+      }
+    },
+    "yth-nemora": {
+      "ontspannen": {
+        "2": {
+          "w": 76,
+          "n": 80
+        },
+        "4": {
+          "w": 80,
+          "n": 80
+        }
+      },
+      "normaal": {
+        "2": {
+          "w": 57,
+          "n": 80
+        },
+        "4": {
+          "w": 64,
+          "n": 80
+        }
+      },
+      "genadeloos": {
+        "2": {
+          "w": 9,
+          "n": 80
+        },
+        "4": {
+          "w": 12,
+          "n": 80
+        }
+      }
+    },
+    "gul-marrach": {
+      "ontspannen": {
+        "2": {
+          "w": 74,
+          "n": 80
+        },
+        "4": {
+          "w": 77,
+          "n": 80
+        }
+      },
+      "normaal": {
+        "2": {
+          "w": 51,
+          "n": 80
+        },
+        "4": {
+          "w": 64,
+          "n": 80
+        }
+      },
+      "genadeloos": {
+        "2": {
+          "w": 20,
+          "n": 80
+        },
+        "4": {
+          "w": 19,
+          "n": 80
+        }
+      }
+    },
+    "sirrhae": {
+      "ontspannen": {
+        "2": {
+          "w": 76,
+          "n": 80
+        },
+        "4": {
+          "w": 79,
+          "n": 80
+        }
+      },
+      "normaal": {
+        "2": {
+          "w": 60,
+          "n": 80
+        },
+        "4": {
+          "w": 60,
+          "n": 80
+        }
+      },
+      "genadeloos": {
+        "2": {
+          "w": 32,
+          "n": 80
+        },
+        "4": {
+          "w": 17,
+          "n": 80
+        }
+      }
+    },
+    "ommeth": {
+      "ontspannen": {
+        "2": {
+          "w": 70,
+          "n": 80
+        },
+        "4": {
+          "w": 78,
+          "n": 80
+        }
+      },
+      "normaal": {
+        "2": {
+          "w": 52,
+          "n": 80
+        },
+        "4": {
+          "w": 50,
+          "n": 80
+        }
+      },
+      "genadeloos": {
+        "2": {
+          "w": 13,
+          "n": 80
+        },
+        "4": {
+          "w": 10,
+          "n": 80
+        }
+      }
     }
   },
   "klokken": [
@@ -316,7 +638,7 @@
     }
   ],
   "basisDatum": "2026-11-22",
-  "basisBron": "ontwerp/balans.json en ontwerp/balans-lang.json (testbot, 80 potjes per instelling, 23 november 2026: Lange Nacht naar aantal helden, geen dubbele Geest-straf, Azh-Ilareth Mist 11); Nebet-Ankhu genadeloos opnieuw gemeten met Mist 1 lager (120 potjes)",
+  "basisBron": "ontwerp/balans.json en ontwerp/balans-lang.json (testbot, 80 potjes per instelling, 23 november 2026: Lange Nacht naar aantal helden, geen dubbele Geest-straf, Azh-Ilareth Mist 11); Nebet-Ankhu genadeloos opnieuw gemeten met Mist 1 lager (120 potjes); zeven nieuwe goden gemeten op 23 november 2026 (testbot, 80 potjes per instelling)",
   "basisLang": {
     "vathrun": {
       "ontspannen": {
@@ -386,6 +708,104 @@
       "genadeloos": {
         "2": 0.214,
         "4": 0.194
+      }
+    },
+    "karathos": {
+      "ontspannen": {
+        "2": 0.821,
+        "4": 0.895
+      },
+      "normaal": {
+        "2": 0.599,
+        "4": 0.821
+      },
+      "genadeloos": {
+        "2": 0.302,
+        "4": 0.142
+      }
+    },
+    "ulvereth": {
+      "ontspannen": {
+        "2": 0.883,
+        "4": 0.969
+      },
+      "normaal": {
+        "2": 0.648,
+        "4": 0.772
+      },
+      "genadeloos": {
+        "2": 0.167,
+        "4": 0.241
+      }
+    },
+    "ouroch": {
+      "ontspannen": {
+        "2": 0.821,
+        "4": 0.895
+      },
+      "normaal": {
+        "2": 0.698,
+        "4": 0.772
+      },
+      "genadeloos": {
+        "2": 0.068,
+        "4": 0.093
+      }
+    },
+    "yth-nemora": {
+      "ontspannen": {
+        "2": 0.895,
+        "4": 0.969
+      },
+      "normaal": {
+        "2": 0.821,
+        "4": 0.809
+      },
+      "genadeloos": {
+        "2": 0.191,
+        "4": 0.167
+      }
+    },
+    "gul-marrach": {
+      "ontspannen": {
+        "2": 0.66,
+        "4": 0.92
+      },
+      "normaal": {
+        "2": 0.599,
+        "4": 0.71
+      },
+      "genadeloos": {
+        "2": 0.093,
+        "4": 0.13
+      }
+    },
+    "sirrhae": {
+      "ontspannen": {
+        "2": 0.87,
+        "4": 0.957
+      },
+      "normaal": {
+        "2": 0.71,
+        "4": 0.685
+      },
+      "genadeloos": {
+        "2": 0.154,
+        "4": 0.08
+      }
+    },
+    "ommeth": {
+      "ontspannen": {
+        "2": 0.858,
+        "4": 0.907
+      },
+      "normaal": {
+        "2": 0.537,
+        "4": 0.648
+      },
+      "genadeloos": {
+        "2": 0.068,
+        "4": 0.093
       }
     }
   }

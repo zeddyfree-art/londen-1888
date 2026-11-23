@@ -1,0 +1,980 @@
+{
+  "god": {
+    "id": "yth-nemora",
+    "naam": "Yth-Nemora",
+    "titel": "De Leugen die rondgaat",
+    "mist": 11,
+    "verhaal": "In de herfst van 1888 drukken de kranten meer moord en geheim dan ooit, en de stad slurpt het op. Sommige berichten staan in kranten die nooit gedrukt zijn. Getuigen herinneren zich dingen die niet gebeurd zijn, en agenten zweren op sporen die er gisteren nog niet waren. Tegen de ochtend is het waar geworden. Iets leeft van wat Londen gelooft, en het wil dat Londen alles gelooft.",
+    "regel": "Aanwijzingen zijn onzeker tot je ze natrekt. Lever je ze in voor een mysterie, dan blijkt een op de drie vals, en dat kost Geest.",
+    "verdachten": "De Avondlantaarn: een krant, haar redacteur, haar zetters en de krantenjongens die alles verkopen wat ze drukken.",
+    "mysteries": [
+      {
+        "naam": "De zetterij",
+        "doel": "Breng samen 3 Aanwijzingen naar de Strand en vind de zetterij waar kranten worden gedrukt die niet bestaan (Waarneming 9).",
+        "type": "aanwijzingen",
+        "plek": "strand",
+        "aantal": 3,
+        "kenmerk": "scherpte",
+        "moeilijkheid": 9
+      },
+      {
+        "naam": "De getuige die liegt",
+        "doel": "Zoek de getuige Fennimore Blight in Whitechapel en laat hem de waarheid zeggen (Charisma 8). Breng hem naar Hoofdinspecteur Voss in Whitehall.",
+        "type": "breng",
+        "van": "whitechapel",
+        "naar": "whitehall",
+        "voorwerp": "Fennimore Blight",
+        "kenmerk": "overtuiging",
+        "moeilijkheid": 8
+      },
+      {
+        "naam": "De Redacteur",
+        "doel": "Versla het epische monster De Redacteur, dat in The City verschijnt, bij Fleet Street.",
+        "type": "episch",
+        "plek": "city"
+      },
+      {
+        "naam": "Het archief",
+        "doel": "Breng samen 2 Aanwijzingen naar de leeszaal in Bloomsbury en vergelijk ze met de echte kranten van de afgelopen tien jaar (Kennis 8).",
+        "type": "aanwijzingen",
+        "plek": "bloomsbury",
+        "aantal": 2,
+        "kenmerk": "kennis",
+        "moeilijkheid": 8
+      },
+      {
+        "naam": "Rectificatie",
+        "doel": "Sluit een Scheur in de Strand of The City, en nog één ergens anders.",
+        "type": "scheuren",
+        "aantal": 2,
+        "minstensEen": [
+          "strand",
+          "city"
+        ]
+      }
+    ],
+    "ontwaken": "Op een ochtend staat in alle kranten dat Londen nooit heeft bestaan. Iedereen leest het. Iedereen gelooft het. Jullie verliezen.",
+    "monsters": [
+      "krantenjongen",
+      "leugenaar",
+      "gerucht",
+      "mistdwaler",
+      "kraaienzwerm"
+    ],
+    "episch": "de-redacteur",
+    "prompt": "a monstrous shape made of countless overlapping newspaper pages towering over Fleet Street at night, ink dripping from it like rain onto the cobbles, its face a shifting headline, printing presses glowing in the windows below, gaslamps and fog"
+  },
+  "episch": {
+    "id": "de-redacteur",
+    "naam": "De Redacteur",
+    "gruwel": 2,
+    "taaiheid": 10,
+    "schade": 1,
+    "leven": 3,
+    "eigenschap": "Wat ooit Mr. Horatio Vance was, de hoofdredacteur van de Avondlantaarn. Verlies je van hem, dan raak je 1 Aanwijzing kwijt, en wat je zeker wist, is weer onzeker. Met 4 helden heeft hij 2 leven extra.",
+    "prompt": "a tall Victorian newspaper editor in shirtsleeves and an ink-stained waistcoat, green eyeshade, his face covered with moving printed words, holding a dripping red pen like a dagger, standing among roaring printing presses",
+    "mens": true,
+    "maaktOnzeker": true,
+    "verliesAanw": 1
+  },
+  "monsters": [
+    {
+      "id": "krantenjongen",
+      "naam": "Krantenjongen",
+      "gruwel": 0,
+      "taaiheid": 9,
+      "schade": 1,
+      "leven": 2,
+      "eigenschap": "Een jongen met een stapel kranten van morgen. Snel: hij beweegt elke Onheilsfase 2 plekken. Verlies je, dan steelt hij 1 Aanwijzing.",
+      "prompt": "a grinning ragged Victorian newsboy in an oversized cap with a satchel of newspapers whose headlines are moving, shouting on a foggy street corner, eyes far too old for his face",
+      "mens": true,
+      "beweging": {
+        "type": "willekeurig",
+        "stappen": 2
+      },
+      "verliesAanw": 1
+    },
+    {
+      "id": "leugenaar",
+      "naam": "Leugenaar",
+      "gruwel": 0,
+      "taaiheid": 9,
+      "schade": 1,
+      "leven": 2,
+      "eigenschap": "Een getuige die alles heeft gezien, behalve wat er gebeurde. Win je, dan krijg je 1 Aanwijzing. Of die waar is, weet je pas later.",
+      "prompt": "a shabby Victorian man in a bowler hat with an earnest honest face, hand on heart, swearing an oath in a dim pub while his shadow on the wall laughs",
+      "mens": true,
+      "beloning": {
+        "aanwijzing": 1
+      }
+    },
+    {
+      "id": "gerucht",
+      "naam": "Gerucht",
+      "gruwel": 2,
+      "taaiheid": 9,
+      "schade": 1,
+      "leven": 2,
+      "eigenschap": "Een fluistering met een lichaam. Na een gewonnen gevecht trek je geen trofee: het gerucht lost op. Verlies je, dan is wat je zeker wist weer onzeker.",
+      "prompt": "a whispering shape made of torn paper scraps and cigarette smoke drifting through a crowded Victorian street, faces of passers-by turned toward it, mouths moving",
+      "geenTrofee": true,
+      "maaktOnzeker": true
+    }
+  ],
+  "personen": [
+    {
+      "id": "horatio-vance",
+      "naam": "Mr. Horatio Vance",
+      "rol": "Hoofdredacteur van de Avondlantaarn",
+      "factie": "De Avondlantaarn",
+      "kort": "Een redacteur die elke nacht de waarheid herschrijft, en wiens krant altijd gelijk krijgt.",
+      "beschrijving": "Horatio Vance maakte van een vergeten avondblad de best verkochte krant van Londen. Hij schrijft de koppen zelf, 's nachts, alleen. Zijn verslaggevers weten dat ze moeten schrijven wat hij wil, want wat hij drukt, gebeurt. Hij gelooft dat hij de wereld verbetert. Hij heeft nooit gemerkt dat de woorden niet meer van hem zijn.",
+      "prompt": "a sharp-dressed Victorian newspaper editor in his fifties with slicked hair and a waxed moustache, green eyeshade pushed up, sleeves rolled, writing furiously at a desk in a lamp-lit office above Fleet Street"
+    },
+    {
+      "id": "kitty-lark",
+      "naam": "Kitty Lark",
+      "rol": "Krantenmeisje aan Fleet Street",
+      "factie": "Geen",
+      "kort": "Een krantenmeisje dat de kranten leest voordat ze ze verkoopt, en ziet dat ze veranderen.",
+      "beschrijving": "Kitty is twaalf en verkoopt de Avondlantaarn op de hoek van Fleet Street. Ze kan lezen, wat haar baas niet weet. Ze leest elke krant twee keer: als ze hem ophaalt, en als ze hem verkoopt. Steeds vaker staat er iets anders. Ze bewaart de oude versies onder haar matras.",
+      "prompt": "a sharp-eyed twelve-year-old Victorian newsgirl in a too-large coat and cap, a bundle of evening papers under her arm, reading one of them intently under a gas lamp on Fleet Street"
+    },
+    {
+      "id": "fennimore-blight",
+      "naam": "Fennimore Blight",
+      "rol": "Zetter en beroepsgetuige",
+      "factie": "De Avondlantaarn",
+      "kort": "Een zetter die zich alles herinnert, ook wat nooit gebeurde.",
+      "beschrijving": "Fennimore Blight zet al twintig jaar letters voor de Avondlantaarn. Vorig jaar begon hij te getuigen: bij de politie, bij de rechter, bij elke ramp. Hij weet alles. Hij zweert op alles. En het klopt allemaal, de volgende dag. Diep vanbinnen weet hij dat hij liegt, en hij is doodsbang voor wat er gebeurt als hij ophoudt.",
+      "prompt": "a thin nervous Victorian typesetter in a printer's apron with ink-black fingers and spectacles, swearing on a bible in a magistrate's court, sweat on his brow"
+    }
+  ],
+  "verhaal": [
+    {
+      "id": "v-yth-1",
+      "plek": "city",
+      "persoon": "kitty-lark",
+      "tekst": "Kitty Lark houdt je staande op de hoek van Fleet Street. 'Kijk,' zegt ze, en ze laat je twee kranten zien, allebei van vandaag. In de ene is een brand in Southwark. In de andere is er geen brand, maar een moord. 'Deze kocht ik om vier uur,' zegt ze. 'Die om vijf. En nu is er echt een moord.'",
+      "keuzes": [
+        {
+          "label": "De twee versies vergelijken (Waarneming 8)",
+          "test": {
+            "kenmerk": "scherpte",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Het zetsel is hetzelfde, op één regel na. Die regel is met de hand bijgezet, met een letter die niet in de kast van de Avondlantaarn hoort. Je weet nu waar hij vandaan komt.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Je leest ze om en om, en dan weet je niet meer welke waar is.",
+            "effect": [
+              {
+                "geest": -1
+              }
+            ]
+          }
+        },
+        {
+          "label": "Haar oude kranten vragen",
+          "tekst": "Ze haalt een pak onder haar matras vandaan, in ruil voor een warme maaltijd. Twintig kranten, elk in twee versies. Een schatkist.",
+          "effect": [
+            {
+              "pond": -1
+            },
+            {
+              "aanwijzing": 2
+            },
+            {
+              "vlag": "kitty-kranten"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-yth-2",
+      "plek": "whitechapel",
+      "persoon": "fennimore-blight",
+      "tekst": "In een kroeg in Whitechapel vertelt Fennimore Blight aan een tafel vol mensen wat hij gisteren zag. Een man met een mes. Een rijtuig zonder koetsier. Iedereen luistert ademloos. Jij weet dat hij gisteren de hele dag in de zetterij stond.",
+      "keuzes": [
+        {
+          "label": "Hem in het openbaar tegenspreken (Charisma 9)",
+          "test": {
+            "kenmerk": "overtuiging",
+            "moeilijkheid": 9
+          },
+          "gelukt": {
+            "tekst": "Je vraagt hem naar de kleur van het rijtuig, de tijd, het weer. Hij hapert. De mensen aan tafel beginnen te mompelen. Voor het eerst kijkt hij bang.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              },
+              {
+                "trofee": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Hij heeft overal een antwoord op. Aan het eind geloof jij hem ook.",
+            "effect": [
+              {
+                "geest": -2
+              }
+            ]
+          }
+        },
+        {
+          "label": "Hem buiten opwachten",
+          "tekst": "Als hij naar buiten komt, ga je naast hem lopen. 'Ik weet het,' zeg je alleen. Hij begint te huilen.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "geest": -1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-yth-3",
+      "plek": "strand",
+      "persoon": "horatio-vance",
+      "tekst": "Mr. Horatio Vance ontvangt je in zijn kantoor boven de persen. Hij is charmant en geestig. 'U bent die mensen van Voss,' zegt hij. 'Prachtig. Ik zou graag een stuk over u schrijven. Wat zou u willen dat er stond?'",
+      "keuzes": [
+        {
+          "label": "Niets zeggen en goed kijken (Waarneming 9)",
+          "test": {
+            "kenmerk": "scherpte",
+            "moeilijkheid": 9
+          },
+          "gelukt": {
+            "tekst": "Op zijn bureau ligt de krant van morgen, al gezet. Je leest de koppen ondersteboven. Twee ervan gaan over jullie, en ze zijn niet waar. Nog niet.",
+            "effect": [
+              {
+                "aanwijzing": 3
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Hij praat, jij luistert. Na een uur weet je niet meer wat je eigenlijk kwam doen.",
+            "effect": [
+              {
+                "geest": -2
+              }
+            ]
+          }
+        },
+        {
+          "label": "Hem een valse tip geven (Charisma 8)",
+          "test": {
+            "kenmerk": "overtuiging",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Je vertelt hem iets dat niet waar is, en dat niemand kwaad kan doen. De volgende dag staat het in de krant. Nu weet je hoe snel het gaat.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              },
+              {
+                "trofee": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Hij glimlacht. 'Dat is niet waar,' zegt hij. 'Maar het wordt het wel.' De volgende dag staat er iets over jou in.",
+            "effect": [
+              {
+                "toestand": "gezocht"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "v-yth-4",
+      "plek": "whitehall",
+      "persoon": "thaddeus-voss",
+      "tekst": "Voss staat bij het raam met de Avondlantaarn in zijn hand. 'Ik heb drie mannen opgepakt voor een moord die volgens deze krant is gepleegd,' zegt hij. 'Er is een lijk. Er is een getuige. Er is een mes. Alleen weet ik zeker dat het niet gebeurd is. Ik was erbij.'",
+      "keuzes": [
+        {
+          "label": "De bewijsstukken bekijken (Kennis 8)",
+          "test": {
+            "kenmerk": "kennis",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Het mes is nieuw, maar het heeft roest van twintig jaar. Het lijk heeft geen vingerafdrukken. Iemand heeft een verhaal gemaakt en vergeten dat de dingen ook een geschiedenis hebben.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Alles klopt. Te goed.",
+            "effect": [
+              {
+                "aanwijzing": 1
+              }
+            ]
+          }
+        },
+        {
+          "label": "Voss vragen om zijn archief",
+          "tekst": "Hij laat je in zijn kast kijken. Alle zaken waar hij aan twijfelt, met een rood lint. Het zijn er meer dan honderd.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-yth-5",
+      "plek": "covent-garden",
+      "tekst": "Op de markt staat een man op een kist, die vertelt dat de koningin gisteren is gestorven. Mensen huilen. Een vrouw begint een rouwband te knopen. Twee straten verder staat een andere man die vertelt dat ze vandaag naar Windsor rijdt. Beide mannen hebben dezelfde krant onder hun arm.",
+      "keuzes": [
+        {
+          "label": "Het gerucht de kop indrukken (Charisma 8)",
+          "test": {
+            "kenmerk": "overtuiging",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Je roept dat er een telegram is uit Windsor, en je zwaait met een papiertje. De menigte verspreidt zich. Leugen tegen leugen: het werkt, en het smaakt bitter.",
+            "effect": [
+              {
+                "trofee": 1
+              },
+              {
+                "mist": 1
+              },
+              {
+                "geest": -1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Niemand luistert naar jou. Je hebt geen krant.",
+            "effect": [
+              {
+                "geest": -1
+              }
+            ]
+          }
+        },
+        {
+          "label": "De twee mannen volgen (Waarneming 8)",
+          "test": {
+            "kenmerk": "scherpte",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Ze gaan naar hetzelfde huis, door dezelfde deur, en komen er niet meer uit.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Je raakt ze kwijt in de menigte.",
+            "effect": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "v-yth-6",
+      "plek": "bloomsbury",
+      "tekst": "In de leeszaal staat een bibliothecaris bij een stapel oude kranten. 'Ze veranderen,' fluistert hij. 'Kranten van tien jaar geleden. Ik heb ze vorig jaar nog gelezen, en nu staan er andere dingen in. Iemand schrijft het verleden bij.'",
+      "keuzes": [
+        {
+          "label": "Een oude krant vergelijken met je geheugen (Kennis 8)",
+          "test": {
+            "kenmerk": "kennis",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Je herinnert je die krant: hij ging over de bruiloft van een vriend. Nu gaat hij over een brand, op hetzelfde adres. De bibliothecaris schrijft het op, met trillende hand.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              },
+              {
+                "trofee": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Je weet niet meer zeker wat je je herinnert.",
+            "effect": [
+              {
+                "geest": -2
+              }
+            ]
+          }
+        },
+        {
+          "label": "Hem helpen een lijst te maken",
+          "held": [
+            "hester-quayle",
+            "winnie-lusk"
+          ],
+          "tekst": "Je kent de catalogus, de stempels, de inventaris. Samen vinden jullie de veranderde kranten in een uur. Ze zijn allemaal gedrukt op papier van de Avondlantaarn.",
+          "effect": [
+            {
+              "aanwijzing": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-yth-7",
+      "plek": "leicester-square",
+      "tekst": "In het theater wordt een stuk opgevoerd over 'de Moorden van Mayfair'. Er zijn geen moorden in Mayfair geweest. Het publiek zit op het puntje van de stoel. Na afloop praat iedereen erover alsof het nieuws is.",
+      "keuzes": [
+        {
+          "label": "De toneelschrijver spreken (Charisma 8)",
+          "test": {
+            "kenmerk": "overtuiging",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Hij geeft toe dat hij het verhaal uit de Avondlantaarn haalde, en dat hij het niet meer weet te stoppen. Elke avond staat er een scène in het script die hij niet schreef.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Hij is te druk met handtekeningen.",
+            "effect": []
+          }
+        },
+        {
+          "label": "Het script stelen (Waarneming 8)",
+          "test": {
+            "kenmerk": "scherpte",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "In de laatste akte staan de namen van echte mensen, en adressen. Je waarschuwt ze, een voor een.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              },
+              {
+                "trofee": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Een toneelknecht betrapt je.",
+            "effect": [
+              {
+                "toestand": "gezocht"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "v-yth-8",
+      "plek": "southwark",
+      "tekst": "Op de markt van Southwark staat een rij mensen voor een kraam waar een man 'ware verhalen' verkoopt, een penny per stuk. Je koopt er een. Het gaat over jou, en het is bijna waar. Bijna.",
+      "keuzes": [
+        {
+          "label": "Het verhaal lezen en vergelijken met je eigen leven (Kennis 8)",
+          "test": {
+            "kenmerk": "kennis",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Het klopt tot gisteren. Daarna loopt het door, en beschrijft het wat je morgen gaat doen. Als het waar wordt, weet je dat de leugen voor je loopt. Dat is te gebruiken.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Je merkt dat je het verhaal beter vindt dan je leven.",
+            "effect": [
+              {
+                "geest": -2
+              }
+            ]
+          }
+        },
+        {
+          "label": "De kraam omgooien (Kracht 7)",
+          "test": {
+            "kenmerk": "kracht",
+            "moeilijkheid": 7
+          },
+          "gelukt": {
+            "tekst": "De vellen waaien over de markt. Mensen rapen ze op, lezen ze, en lachen: zo onzinnig zien ze er ineens uit. De verkoper vlucht.",
+            "effect": [
+              {
+                "trofee": 1
+              },
+              {
+                "geest": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "De verkoper is sterker dan hij eruitziet.",
+            "effect": [
+              {
+                "lichaam": -1
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "v-yth-9",
+      "plek": "overal",
+      "persoon": "kitty-lark",
+      "vlag": "kitty-kranten",
+      "tekst": "Kitty Lark rent naar je toe, met een krant in haar hand en tranen op haar wangen. 'Ze hebben mijn moeder erin gezet,' zegt ze. 'Dat ze dood is. Ze is niet dood. Maar als het morgen in alle kranten staat...'",
+      "keuzes": [
+        {
+          "label": "Met haar naar de zetterij rennen (Kracht 8)",
+          "test": {
+            "kenmerk": "kracht",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Jullie zijn net op tijd. Je trekt de regel uit het zetsel, letter voor letter, terwijl de pers al draait. Kitty's moeder leeft. Kitty zal het nooit vergeten.",
+            "effect": [
+              {
+                "trofee": 2
+              },
+              {
+                "aanwijzing": 2
+              },
+              {
+                "wisVlag": "kitty-kranten"
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "De pers draait al. Je kunt alleen nog de stapels in brand steken, en dat doe je.",
+            "effect": [
+              {
+                "toestand": "gezocht"
+              },
+              {
+                "aanwijzing": 1
+              },
+              {
+                "wisVlag": "kitty-kranten"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Een tegenbericht laten drukken bij een andere krant (Charisma 8)",
+          "test": {
+            "kenmerk": "overtuiging",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "De Times drukt een kort bericht: Mrs. Lark maakt het goed. Waarheid tegen leugen. Het is genoeg, net.",
+            "effect": [
+              {
+                "trofee": 1
+              },
+              {
+                "aanwijzing": 1
+              },
+              {
+                "wisVlag": "kitty-kranten"
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Niemand wil een bericht drukken dat niemand wil lezen.",
+            "effect": [
+              {
+                "geest": -2
+              },
+              {
+                "wisVlag": "kitty-kranten"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "v-yth-10",
+      "plek": "city",
+      "mistTot": 6,
+      "tekst": "Fleet Street is bedekt met kranten. Ze liggen tot je enkels, en ze zijn allemaal van morgen. Mensen zitten midden op straat te lezen. Op elke voorpagina staat een andere ramp, en op elke voorpagina staat jouw naam.",
+      "keuzes": [
+        {
+          "label": "Niet lezen en doorlopen",
+          "tekst": "Je kijkt naar je voeten en loopt tot het einde van de straat. Het kost je alles. Maar je weet nog wie je bent.",
+          "effect": [
+            {
+              "geest": -1
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        {
+          "label": "De kranten verbranden (Kracht 9)",
+          "test": {
+            "kenmerk": "kracht",
+            "moeilijkheid": 9
+          },
+          "gelukt": {
+            "tekst": "Het vuur loopt over de straat als een rivier. De mensen kijken op, verbaasd, alsof ze wakker worden.",
+            "effect": [
+              {
+                "trofee": 2
+              },
+              {
+                "mist": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Het papier is nat van inkt en wil niet branden.",
+            "effect": [
+              {
+                "geest": -2
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "scheur": [
+    {
+      "id": "scheur-yth-1",
+      "tekst": "Je staat in een drukkerij zo groot als een stad. Duizend persen draaien. Op elk vel staat een andere versie van Londen. Op sommige ben jij er niet. Op één ben jij de enige die er nog is.",
+      "keuzes": [
+        {
+          "label": "Je eigen vel zoeken (Waarneming 9)",
+          "test": {
+            "kenmerk": "scherpte",
+            "moeilijkheid": 9
+          },
+          "gelukt": {
+            "tekst": "Je vindt het vel van dit Londen, en je ziet waar de leugens erin zijn gezet: zeven plekken, met rode inkt. Je neemt het mee.",
+            "effect": [
+              {
+                "aanwijzing": 3
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Je leest te veel versies. Bij de vijftigste weet je niet meer welke de jouwe is.",
+            "effect": [
+              {
+                "geest": -2
+              }
+            ]
+          }
+        },
+        {
+          "label": "Een pers stilzetten (Kracht 8)",
+          "test": {
+            "kenmerk": "kracht",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Je ramt een ijzeren staaf tussen de rollen. Een Londen houdt op met bestaan, ergens. Hopelijk niet het jouwe.",
+            "effect": [
+              {
+                "trofee": 1
+              },
+              {
+                "aanwijzing": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Je mouw raakt tussen de rollen.",
+            "effect": [
+              {
+                "lichaam": -2
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "scheur-yth-2",
+      "tekst": "Een rechtszaal. Op de stoel van de getuige zit jij. De rechter vraagt: 'Zweert u de waarheid te zeggen, en niets dan de waarheid?' In de zaal zitten alle mensen die je ooit hebt gekend.",
+      "keuzes": [
+        {
+          "label": "De waarheid zeggen (Charisma 8)",
+          "test": {
+            "kenmerk": "overtuiging",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Je vertelt alles, ook wat je niet wilt. De zaal is stil. Dan staat de rechter op en knikt. Je voelt je lichter dan in jaren.",
+            "effect": [
+              {
+                "geest": 2
+              },
+              {
+                "toestand": "gezegend"
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Je hoort jezelf liegen, en het klinkt overtuigend.",
+            "effect": [
+              {
+                "geest": -2
+              }
+            ]
+          }
+        },
+        {
+          "label": "Zwijgen",
+          "tekst": "De rechter slaat met zijn hamer. Je staat weer bij de Scheur, met een dossier in je handen dat je niet had.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "geest": -1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scheur-yth-3",
+      "tekst": "Een straat waar alle mensen tegelijk praten, en alles wat ze zeggen, wordt meteen waar. Een vrouw zegt dat het regent, en het regent. Een man zegt dat jij een dief bent.",
+      "keuzes": [
+        {
+          "label": "Iets zeggen voordat iemand anders het doet (Charisma 9)",
+          "test": {
+            "kenmerk": "overtuiging",
+            "moeilijkheid": 9
+          },
+          "gelukt": {
+            "tekst": "Je roept: 'Ik vind de weg terug, en ik neem mee wat ik nodig heb.' Het wordt waar.",
+            "effect": [
+              {
+                "trek": "artefacten"
+              },
+              {
+                "aanwijzing": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Je bent te laat. Iemand zegt dat je verdwaald bent.",
+            "effect": [
+              {
+                "geest": -1
+              },
+              {
+                "toestand": "verdwaald"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Je oren dichtstoppen",
+          "tekst": "Je hoort niets en je loopt terug. Op je jas zit een briefje met een adres, in een handschrift dat je niet kent.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "aanwijzing": [
+    {
+      "id": "aanw-yth-1",
+      "actie": "De getuige ondervragen",
+      "test": {
+        "kenmerk": "overtuiging",
+        "moeilijkheid": 7
+      },
+      "tekst": "Een vrouw zegt dat ze alles heeft gezien. Ze vertelt het heel precies, met kleuren en tijden. Een paar dingen kloppen niet met elkaar, maar ze lijkt het zelf te geloven.",
+      "mislukt": {
+        "tekst": "Ze vertelt het nog eens, en nu is het een ander verhaal.",
+        "effect": [
+          {
+            "geest": -1
+          }
+        ]
+      }
+    },
+    {
+      "id": "aanw-yth-2",
+      "actie": "De krant vergelijken",
+      "test": {
+        "kenmerk": "scherpte",
+        "moeilijkheid": 7
+      },
+      "tekst": "Op een bankje ligt een krant van vanochtend. Een van de berichten gaat over deze straat, en er staat iets in wat je zelf kunt controleren."
+    }
+  ],
+  "onheil": [
+    {
+      "id": "o-yth-1",
+      "naam": "Extra editie",
+      "mist": 1,
+      "scheur": 0,
+      "monster": 1,
+      "extra": "De held met de meeste Aanwijzingen verliest er 1. Er verschijnt een Krantenjongen.",
+      "tekst": "Om middernacht rennen de krantenjongens door de straten: extra editie! Niemand weet wat er gebeurd is, maar iedereen koopt er een. Morgen is het waar.",
+      "acties": [
+        {
+          "type": "aanwijzingRijkste",
+          "waarde": -1
+        },
+        {
+          "type": "voorkeurMonster",
+          "id": "krantenjongen"
+        }
+      ]
+    },
+    {
+      "id": "o-yth-2",
+      "naam": "Gezocht in de krant",
+      "persoon": "horatio-vance",
+      "mist": 1,
+      "scheur": 1,
+      "monster": 0,
+      "extra": "De held met de meeste Ponden wordt Gezocht.",
+      "tekst": "De Avondlantaarn drukt een tekening van een van jullie op de voorpagina, met een verhaal over een inbraak. Het is een goede tekening. Het verhaal is overtuigend.",
+      "acties": [
+        {
+          "type": "gezochtRijkste"
+        }
+      ]
+    },
+    {
+      "id": "o-yth-3",
+      "naam": "Kitty's stapel",
+      "persoon": "kitty-lark",
+      "mist": 0,
+      "scheur": 0,
+      "monster": 0,
+      "extra": "Leg 1 Aanwijzing op The City en 1 op de Strand. Elke held herstelt 1 Geest.",
+      "tekst": "Kitty Lark verkoopt geen kranten meer. Ze deelt de oude versies uit, met het verschil omcirkeld. Steeds meer mensen gaan zelf vergelijken.",
+      "acties": [
+        {
+          "type": "aanwijzingOp",
+          "plek": "city",
+          "aantal": 1
+        },
+        {
+          "type": "aanwijzingOp",
+          "plek": "strand",
+          "aantal": 1
+        },
+        {
+          "type": "geestAlle",
+          "waarde": 1
+        }
+      ]
+    },
+    {
+      "id": "o-yth-4",
+      "naam": "Gerucht: de ochtendeditie",
+      "persoon": "fennimore-blight",
+      "mist": 0,
+      "scheur": 0,
+      "monster": 0,
+      "gerucht": "Er verschijnt een Leugenaar in de Strand. Is hij na 2 rondes niet verslagen, dan daalt de Mist met 2.",
+      "tekst": "Fennimore Blight laat een briefje achter op je stoep: morgen getuigt hij in de rechtbank over iets dat nog moet gebeuren. 'Hou me tegen,' schrijft hij. 'Alsjeblieft.'",
+      "acties": [
+        {
+          "type": "gerucht",
+          "soort": "verslaan",
+          "plek": "strand",
+          "id": "leugenaar",
+          "rondes": 3,
+          "straf": 2
+        }
+      ]
+    }
+  ],
+  "expeditie": [
+    {
+      "id": "thebe-yth",
+      "plek": "thebe",
+      "tekst": "In een graf in de Vallei is een wand helemaal beschreven met hiërogliefen. Je gids, die ze kan lezen, wordt bleek. 'Hier staat dat de farao de Nijl liet bevriezen,' zegt hij. 'Daarna staat er dat het niet gebeurde. Daarna dat het toch gebeurde. Iemand heeft de waarheid steeds opnieuw gebeiteld, honderd keer, over elkaar heen.'",
+      "keuzes": [
+        {
+          "label": "De oudste laag zoeken (Kennis 9)",
+          "test": {
+            "kenmerk": "kennis",
+            "moeilijkheid": 9
+          },
+          "gelukt": {
+            "tekst": "Helemaal onderaan, in de diepste groef, staat wat er echt gebeurde, in een tekst van één regel. Je schrijft hem over. Het is de eerste zekere waarheid die je in weken hebt.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              },
+              {
+                "trofee": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "De lagen lopen door elkaar. Je gids zegt dat het tijd is om te gaan.",
+            "effect": [
+              {
+                "aanwijzing": 1
+              }
+            ]
+          }
+        },
+        {
+          "label": "Een stuk van de wand meenemen",
+          "tekst": "Een losse steen, met tekst aan beide kanten, die elkaar tegenspreken. Hij is zwaar, en zijn gewicht wisselt.",
+          "effect": [
+            {
+              "trek": "artefacten"
+            },
+            {
+              "geest": -1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

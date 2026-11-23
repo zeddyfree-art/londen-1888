@@ -1,0 +1,973 @@
+{
+  "god": {
+    "id": "ommeth",
+    "naam": "Ommeth",
+    "titel": "De Herder die zijn kudde telt",
+    "mist": 14,
+    "verhaal": "In de East End trekt een prediker rond, Broeder Absalom Crewe, met een processie die elke avond langer wordt. Ze zingen een psalm die niemand kent, op een wijs die je de hele nacht blijft horen. Wie meeloopt, vergeet zijn naam en antwoordt alleen nog op 'kudde'. Ommeth heeft geen lichaam. Zijn lichaam is de menigte, en de menigte groeit.",
+    "regel": "Bij elke open Scheur komt elke ronde een Cultist bij. Drie op één plek houden een ritueel: de Mist daalt met 1. Een cultist kun je ook bekeren (Charisma 8).",
+    "verdachten": "De Kudde van de Herder: dokwerkers, naaisters en werkhuisbewoners, geleid door de prediker Absalom Crewe.",
+    "mysteries": [
+      {
+        "naam": "De processie volgen",
+        "doel": "Breng samen 3 Aanwijzingen naar Whitechapel en volg de route van de processie (Waarneming 8).",
+        "type": "aanwijzingen",
+        "plek": "whitechapel",
+        "aantal": 3,
+        "kenmerk": "scherpte",
+        "moeilijkheid": 8
+      },
+      {
+        "naam": "De kudde uiteendrijven",
+        "doel": "Verdrijf samen 6 Cultisten: versla ze, of bekeer ze met Charisma.",
+        "type": "cultisten",
+        "aantal": 6
+      },
+      {
+        "naam": "De preekstoel",
+        "doel": "Versla het epische monster Broeder Absalom, dat in Spitalfields verschijnt.",
+        "type": "episch",
+        "plek": "spitalfields"
+      },
+      {
+        "naam": "De weggelopen zoon",
+        "doel": "Haal Tommy Coyle weg uit de processie in Limehouse (Charisma 8) en breng hem naar de gaarkeuken in Spitalfields.",
+        "type": "breng",
+        "van": "limehouse",
+        "naar": "spitalfields",
+        "voorwerp": "Tommy Coyle",
+        "kenmerk": "overtuiging",
+        "moeilijkheid": 8
+      },
+      {
+        "naam": "De armenregisters",
+        "doel": "Breng samen 2 Aanwijzingen naar The City en zoek in de registers van de werkhuizen wie er verdween (Kennis 8).",
+        "type": "aanwijzingen",
+        "plek": "city",
+        "aantal": 2,
+        "kenmerk": "kennis",
+        "moeilijkheid": 8
+      }
+    ],
+    "ontwaken": "De processie stopt niet meer. Heel Londen loopt mee, zingend, in de richting van de rivier, en niemand weet nog hoe hij heet. Jullie verliezen.",
+    "monsters": [
+      "kuddeleider",
+      "zingend-koor",
+      "logebroeder",
+      "kraaienzwerm",
+      "lantaarndrager"
+    ],
+    "episch": "broeder-absalom",
+    "prompt": "an endless torchlit procession of ragged Victorian East End workers filling a narrow cobbled street at night, all singing with blank faces, and above the rooftops a vast shepherd-like shape made of the crowd's own shadows, holding a crook of smoke, gaslamps and fog"
+  },
+  "episch": {
+    "id": "broeder-absalom",
+    "naam": "Broeder Absalom",
+    "gruwel": 2,
+    "taaiheid": 9,
+    "schade": 2,
+    "leven": 3,
+    "eigenschap": "De prediker van de kudde. Zolang hij leeft, komt er elke Onheilsfase een Cultist bij op zijn plek. Elk gevecht dat je tegen hem wint, jaagt de cultisten op zijn plek weg. Met 4 helden heeft hij 2 leven extra.",
+    "prompt": "a gaunt Victorian street preacher in a long threadbare black coat and battered top hat, standing on an upturned crate with arms spread wide, his open mouth glowing faintly, dozens of followers kneeling around him in a foggy Spitalfields market at night",
+    "mens": true,
+    "roeptCultisten": true,
+    "verjaagtBijRaak": true
+  },
+  "monsters": [
+    {
+      "id": "cultist",
+      "naam": "Cultist",
+      "gruwel": 0,
+      "taaiheid": 8,
+      "schade": 1,
+      "leven": 1,
+      "eigenschap": "Iemand uit de kudde van Ommeth, die zijn naam is vergeten. Je kunt hem verslaan of bekeren (Charisma 8): dan loopt hij naar huis en krijg je 1 Aanwijzing.",
+      "prompt": "a hollow-eyed Victorian dockworker in a flat cap and patched coat, holding a tallow candle, mouth open in a silent hymn, standing in a fog-filled alley",
+      "mens": true,
+      "bekeren": true
+    },
+    {
+      "id": "kuddeleider",
+      "naam": "Kuddeleider",
+      "gruwel": 1,
+      "taaiheid": 10,
+      "schade": 1,
+      "leven": 2,
+      "eigenschap": "Een mens met een herdersstaf en een stem die draagt. Versla je hem, dan vluchten alle cultisten op zijn plek.",
+      "prompt": "a broad-shouldered Victorian man in a long grey smock carrying a shepherd's crook hung with tin bells, leading a line of followers through a fog-bound street",
+      "mens": true,
+      "verjaagtCultisten": true
+    },
+    {
+      "id": "zingend-koor",
+      "naam": "Zingend koor",
+      "gruwel": 2,
+      "taaiheid": 9,
+      "schade": 1,
+      "leven": 2,
+      "eigenschap": "Zes stemmen die als één zingen. Elke held op dezelfde plek verliest elke ronde 1 Geest.",
+      "prompt": "six pale Victorian choir singers in grubby white surplices standing shoulder to shoulder, their mouths stretched impossibly wide in one shared note, in an abandoned mission hall",
+      "mens": true,
+      "aura": {
+        "geest": -1
+      }
+    }
+  ],
+  "personen": [
+    {
+      "id": "absalom-crewe",
+      "naam": "Broeder Absalom Crewe",
+      "rol": "Prediker van de kudde",
+      "factie": "De Kudde van de Herder",
+      "kort": "Een straatprediker wiens processie elke nacht langer wordt.",
+      "beschrijving": "Absalom Crewe was ooit een gewone zendeling van een kleine kapel aan de Commercial Road. Na de winter van '79, toen hij drie nachten zoek was in de bevroren dokken, kwam hij terug met een nieuwe psalm. Hij praat zacht en vriendelijk, en hij is nooit moe. Wie naast hem loopt, voelt een rust die hij nergens anders vindt.",
+      "prompt": "a gaunt Victorian street preacher in his fifties with burning pale eyes, threadbare black coat, battered top hat, holding a worn hymnal, standing under a gaslamp in Whitechapel fog"
+    },
+    {
+      "id": "martha-coyle",
+      "naam": "Martha Coyle",
+      "rol": "Wasvrouw uit Limehouse",
+      "factie": "Geen",
+      "kort": "Een moeder die haar zoon terug wil uit de processie.",
+      "beschrijving": "Martha wast voor de zeemanslogementen van Limehouse. Haar zoon Tommy, zestien, liep drie weken geleden achter de processie aan en kwam niet meer thuis. Ze ziet hem elke avond voorbijlopen, zingend, en hij kijkt dwars door haar heen. Ze is hard, praktisch en niet bang meer.",
+      "prompt": "a tough Victorian washerwoman in her forties with red chapped hands and rolled sleeves, shawl over her head, standing in a Limehouse doorway with steam rising behind her"
+    },
+    {
+      "id": "agatha-pike",
+      "naam": "Zuster Agatha Pike",
+      "rol": "Leidster van de gaarkeuken in Spitalfields",
+      "factie": "Geen",
+      "kort": "Een non die weet welke psalmen er wel en niet in het boek staan.",
+      "beschrijving": "Zuster Agatha deelt soep uit in Spitalfields sinds de jaren zestig. Ze heeft honderden mannen zien verdwijnen in de drank, de dokken en de werkhuizen. De kudde is anders, zegt ze: die mannen komen niet terug, en hun gezichten worden steeds gelukkiger. Ze heeft het oude kerkboek van haar orde, met de psalmen die eruit gescheurd zijn.",
+      "prompt": "a stern elderly Victorian nun in a plain grey habit and white wimple, sleeves rolled up, ladling soup in a crowded Spitalfields soup kitchen lit by oil lamps"
+    }
+  ],
+  "verhaal": [
+    {
+      "id": "v-omm-1",
+      "plek": "whitechapel",
+      "persoon": "absalom-crewe",
+      "tekst": "Onder een gaslantaarn op Whitechapel Road staat Broeder Absalom op een omgekeerde kist. Hij preekt niet over hel of hemel, maar over rust. 'Je hoeft niemand meer te zijn,' zegt hij. 'Je hoeft alleen mee te lopen.' Om je heen knikken mensen. Een vrouw naast je pakt je hand vast, zacht maar stevig.",
+      "keuzes": [
+        {
+          "label": "Luisteren naar wat hij echt zegt (Kennis 8)",
+          "test": {
+            "kenmerk": "kennis",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Onder de woorden hoor je een ritme, en het ritme is een telling. Hij telt zijn kudde. Bij tweehonderd stopt hij, glimlacht, en begint opnieuw. Je weet nu hoe groot ze zijn.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "De woorden zijn warm en zacht. Pas als de vrouw je hand loslaat, merk je dat je een half uur hebt staan knikken.",
+            "effect": [
+              {
+                "geest": -2
+              }
+            ]
+          }
+        },
+        {
+          "label": "Je hand lostrekken en weglopen (Kracht 8)",
+          "test": {
+            "kenmerk": "kracht",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Ze laat los zonder protest. Terwijl je wegloopt, roept ze je na: 'Je komt wel. Iedereen komt.'",
+            "effect": [
+              {
+                "geest": -1
+              },
+              {
+                "aanwijzing": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Haar greep is zacht als een handschoen en sterk als een ijzeren band. Pas bij de volgende hoek laat ze los. Achter je staan nu drie mensen meer dan eerst.",
+            "effect": [
+              {
+                "geest": -1
+              },
+              {
+                "monster": 1
+              }
+            ]
+          }
+        },
+        {
+          "label": "Een tegenpsalm zingen",
+          "held": [
+            "ezra-whitlock",
+            "benedict-ashcombe"
+          ],
+          "tekst": "Je kent de oude psalmen nog uit je tijd in de kerk. Je zingt er een, luid en vals. Een paar mensen houden op met knikken en kijken verward om zich heen. Absalom kijkt je recht aan, en voor het eerst glimlacht hij niet.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-omm-2",
+      "plek": "limehouse",
+      "persoon": "martha-coyle",
+      "tekst": "Martha Coyle hangt lakens op tussen twee huizen. 'Je zoekt ze ook,' zegt ze zonder om te kijken. 'Ze komen hier elke avond langs om negen uur. Mijn Tommy loopt achteraan, met een kaars. Hij heeft een litteken op zijn kin. Als je hem ziet, zeg dan dat zijn moeder soep heeft.'",
+      "keuzes": [
+        {
+          "label": "Vragen waar de processie heen gaat (Charisma 7)",
+          "test": {
+            "kenmerk": "overtuiging",
+            "moeilijkheid": 7
+          },
+          "gelukt": {
+            "tekst": "Ze heeft het bijgehouden, met krijt op de binnenkant van haar deur: elke avond een andere route, maar ze eindigen allemaal bij water. Ze geeft je het lijstje.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              },
+              {
+                "vlag": "martha-tommy"
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Ze haalt haar schouders op. 'Naar de rivier. Altijd naar de rivier.' Dan gaat ze verder met de was.",
+            "effect": [
+              {
+                "aanwijzing": 1
+              }
+            ]
+          }
+        },
+        {
+          "label": "Haar helpen met de was",
+          "tekst": "Een uur lang wring je lakens uit. Martha praat over Tommy, over zijn vader die op zee bleef, over hoe hij altijd zong. Pas aan het eind zegt ze dat hij die nieuwe psalm thuis al zong, een week voordat hij wegging.",
+          "effect": [
+            {
+              "geest": 1
+            },
+            {
+              "aanwijzing": 1
+            },
+            {
+              "vlag": "martha-tommy"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-omm-3",
+      "plek": "spitalfields",
+      "persoon": "agatha-pike",
+      "tekst": "In de gaarkeuken schept Zuster Agatha soep voor een rij mannen die tot buiten staat. 'De helft van mijn vaste klanten is weg,' zegt ze. 'Niet dood. Ze lopen mee.' Ze wijst naar een oud kerkboek op een plank. 'Daar zaten vroeger vier psalmen meer in. Iemand heeft ze eruit gescheurd, lang voordat ik hier kwam.'",
+      "keuzes": [
+        {
+          "label": "Het boek bestuderen (Kennis 8)",
+          "test": {
+            "kenmerk": "kennis",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "In de rug zitten nog snippers van de gescheurde bladzijden. Op een ervan staat een woord dat je niet kent, en de aantekening 'niet zingen, nooit tellen'. Je schrijft het over.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              },
+              {
+                "trofee": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Je leest tot de kaarsen bijna op zijn. Er staat niets bijzonders in, alleen psalmen die je al kent.",
+            "effect": [
+              {
+                "geest": -1
+              }
+            ]
+          }
+        },
+        {
+          "label": "Meehelpen met opscheppen",
+          "tekst": "Je schept tot je armen pijn doen. Een oude man fluistert bij het aanpakken van zijn kom dat hij gisteren zijn eigen broer heeft gezien in de processie, en dat zijn broer al twee jaar dood is.",
+          "effect": [
+            {
+              "geest": 1
+            },
+            {
+              "aanwijzing": 1
+            },
+            {
+              "lichaam": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-omm-4",
+      "plek": "st-katharine-docks",
+      "tekst": "Op de kade zitten dokwerkers te wachten op werk dat niet komt. Een van hen neuriet. Dan een tweede. Binnen een minuut neuriet de hele rij dezelfde melodie, zonder het te merken. De voorman kijkt je aan. 'Elke ochtend,' zegt hij. 'Elke ochtend beginnen ze ermee, en elke avond ben ik er twee kwijt.'",
+      "keuzes": [
+        {
+          "label": "De melodie onderbreken (Charisma 8)",
+          "test": {
+            "kenmerk": "overtuiging",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Je begint hard een zeemanslied te zingen. Eerst valt er een in, dan nog een. Het neuriën verdwijnt. De voorman geeft je een tik op je schouder en vertelt waar de kudde 's nachts slaapt.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Niemand hoort je. Erger: je merkt dat jij ook neuriet.",
+            "effect": [
+              {
+                "geest": -2
+              }
+            ]
+          }
+        },
+        {
+          "label": "De voorman een Pond geven voor de mannen",
+          "tekst": "Hij koopt er brood van. Mannen met brood in hun maag, zegt hij, neuriën minder. Hij belooft op je te letten.",
+          "effect": [
+            {
+              "pond": -1
+            },
+            {
+              "aanwijzing": 1
+            },
+            {
+              "trek": "bondgenoot"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-omm-5",
+      "plek": "covent-garden",
+      "tekst": "Tussen de bloemenkramen staat een meisje stil. Ze houdt een kaars vast en kijkt naar het oosten. Haar moeder trekt aan haar arm, maar het meisje beweegt niet. 'Ze roepen me,' zegt ze tegen jou, alsof ze je kent. 'Ze tellen tot ik er ben.'",
+      "keuzes": [
+        {
+          "label": "De kaars uitblazen",
+          "tekst": "Je blaast hem uit. Het meisje knippert, kijkt naar haar moeder en begint te huilen, zoals een gewoon kind huilt. De moeder drukt je een bos viooltjes in handen. Ergens in het oosten houdt een telling even op.",
+          "effect": [
+            {
+              "geest": 2
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        {
+          "label": "Vragen wie er telt (Waarneming 8)",
+          "test": {
+            "kenmerk": "scherpte",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Ze noemt een naam, en een straat in Spitalfields. Dan valt haar kaars uit zichzelf uit.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Ze zegt een getal. Het jouwe, denk je. Je weet niet waarom je dat denkt.",
+            "effect": [
+              {
+                "geest": -1
+              },
+              {
+                "mist": -1
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "v-omm-6",
+      "plek": "city",
+      "tekst": "In een werkhuisarchief achter Bishopsgate zit een klerk met inktvlekken tot zijn ellebogen. 'Vijftig namen deze maand,' zegt hij. 'Vertrokken zonder afmelding. Dat gebeurt nooit. Werkhuisbewoners vertrekken niet, ze worden weggedragen.' Hij schuift je een register toe.",
+      "keuzes": [
+        {
+          "label": "De namen naast elkaar leggen (Kennis 8)",
+          "test": {
+            "kenmerk": "kennis",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Ze vertrokken in groepjes van drie, elke keer op een avond na een nieuwe maan. En achter elk groepje heeft iemand met potlood een streepje gezet, zoals een herder schapen telt.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              },
+              {
+                "trofee": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "De namen lopen door elkaar. Je hoofd begint te bonzen op het ritme van de klok op de muur.",
+            "effect": [
+              {
+                "geest": -1
+              }
+            ]
+          }
+        },
+        {
+          "label": "De klerk vragen wat hij zelf weet (Charisma 8)",
+          "test": {
+            "kenmerk": "overtuiging",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Hij aarzelt, en vertelt dan dat zijn eigen zuster ook meeloopt. Hij weet waar ze slaapt: in een kerk zonder dak in Limehouse.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Hij klapt het register dicht. 'Ik heb al te veel gezegd.'",
+            "effect": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "v-omm-7",
+      "plek": "soho",
+      "tekst": "In een kroeg in Soho zit een student met een notitieboek vol muziek. 'Ik probeer hem op te schrijven,' zegt hij. 'De psalm. Hij heeft maar vijf tonen, maar ik krijg ze niet op papier. Elke keer als ik de laatste noot schrijf, is de eerste verdwenen.' Zijn handen trillen.",
+      "keuzes": [
+        {
+          "label": "Hem helpen de noten vast te leggen (Kennis 9)",
+          "test": {
+            "kenmerk": "kennis",
+            "moeilijkheid": 9
+          },
+          "gelukt": {
+            "tekst": "Je schrijft ze in een andere volgorde op, van achter naar voren. Ze blijven staan. De student staart naar de bladzijde. 'Dat is geen psalm,' zegt hij. 'Dat is een kaart.'",
+            "effect": [
+              {
+                "aanwijzing": 3
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "De noten verdwijnen ook bij jou. Maar de melodie niet. Die zit nu in je hoofd.",
+            "effect": [
+              {
+                "geest": -2
+              }
+            ]
+          }
+        },
+        {
+          "label": "Mee laten spelen op je viool",
+          "held": [
+            "clementine-ashby",
+            "esme-valentine"
+          ],
+          "tekst": "Je speelt de vijf tonen na, en dan een zesde die er niet in hoort. De student lacht van opluchting: de betovering breekt. Hij geeft je zijn notitieboek.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trofee": 1
+            },
+            {
+              "geest": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-omm-8",
+      "plek": "westminster",
+      "tekst": "Voor het parlement staat een processie van honderd mensen, roerloos, met kaarsen. De politie weet niet wat ze moet doen: ze doen niets verbodens. Een inspecteur wenkt je. 'U bent toch die mensen van Voss? Kunt u ze laten gaan? Morgen komt de koningin langs.'",
+      "keuzes": [
+        {
+          "label": "De voorste persoon aanspreken (Charisma 9)",
+          "test": {
+            "kenmerk": "overtuiging",
+            "moeilijkheid": 9
+          },
+          "gelukt": {
+            "tekst": "Ze kijkt je aan en zegt haar eigen naam, verbaasd, alsof ze hem terugvindt in een zak. Een voor een blazen de mensen achter haar hun kaarsen uit en lopen weg.",
+            "effect": [
+              {
+                "trofee": 2
+              },
+              {
+                "mist": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Ze glimlacht en blijft staan. Achter haar begint iemand te zingen.",
+            "effect": [
+              {
+                "geest": -2
+              }
+            ]
+          }
+        },
+        {
+          "label": "De inspecteur zeggen dat ze ze met rust moeten laten",
+          "tekst": "Hij knikt opgelucht. 's Nachts loopt de processie vanzelf weg, naar het oosten. Je volgt ze een stuk en ziet waar ze afslaan.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-omm-9",
+      "plek": "overal",
+      "persoon": "martha-coyle",
+      "vlag": "martha-tommy",
+      "tekst": "Het is negen uur. De processie komt langs, en achteraan loopt een jongen met een kaars en een litteken op zijn kin. Tommy Coyle. Hij kijkt je aan zonder je te zien. Martha's woorden zitten nog in je hoofd: zijn moeder heeft soep.",
+      "keuzes": [
+        {
+          "label": "Hem bij zijn naam roepen (Charisma 8)",
+          "test": {
+            "kenmerk": "overtuiging",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "'Tommy. Je moeder heeft soep.' Hij blijft staan. De kaars valt. Dan begint hij te huilen en loopt hij de verkeerde kant op, naar huis. Martha zal je nooit vergeten.",
+            "effect": [
+              {
+                "trofee": 2
+              },
+              {
+                "aanwijzing": 2
+              },
+              {
+                "wisVlag": "martha-tommy"
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Hij hoort je niet. De processie neemt hem mee, de mist in.",
+            "effect": [
+              {
+                "geest": -1
+              },
+              {
+                "wisVlag": "martha-tommy"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Hem uit de rij trekken (Kracht 8)",
+          "test": {
+            "kenmerk": "kracht",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Je pakt hem onder zijn armen en sleurt hem een portiek in. Hij vecht, en dan houdt hij op. 'Waar ben ik?' Je brengt hem naar Limehouse.",
+            "effect": [
+              {
+                "trofee": 1
+              },
+              {
+                "aanwijzing": 1
+              },
+              {
+                "wisVlag": "martha-tommy"
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "De hele processie draait zich om. Honderd gezichten kijken naar jou, en ze zingen sneller.",
+            "effect": [
+              {
+                "geest": -2
+              },
+              {
+                "monster": 1
+              },
+              {
+                "wisVlag": "martha-tommy"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "v-omm-10",
+      "plek": "whitechapel",
+      "mistTot": 6,
+      "tekst": "Op Whitechapel Road staat niemand meer stil. Iedereen loopt, dezelfde kant op, in hetzelfde tempo. Een kind trekt aan je mouw. 'Mama loopt mee,' zegt het. 'Mag ik bij jou?'",
+      "keuzes": [
+        {
+          "label": "Het kind meenemen naar een veilige plek",
+          "tekst": "Je brengt het naar de gaarkeuken. Onderweg wijst het naar een huis met een blauwe deur: daar komen 's nachts de leiders samen.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "geest": 1
+            }
+          ]
+        },
+        {
+          "label": "Achter de moeder aan gaan (Waarneming 9)",
+          "test": {
+            "kenmerk": "scherpte",
+            "moeilijkheid": 9
+          },
+          "gelukt": {
+            "tekst": "Je vindt haar, en ze herkent haar kind als je het noemt. Ze stapt uit de rij. Terwijl ze weglopen, hoor je de telling haperen.",
+            "effect": [
+              {
+                "trofee": 1
+              },
+              {
+                "mist": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Je raakt haar kwijt, en dan het kind ook.",
+            "effect": [
+              {
+                "geest": -2
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "scheur": [
+    {
+      "id": "scheur-omm-1",
+      "tekst": "Je staat in een vlakte vol mensen, zover als je kunt kijken. Ze staan in rijen, schouder aan schouder, allemaal met het gezicht naar een heuvel. Op de heuvel staat niemand. Toch zingen ze ervoor. Naast je staat iemand die je kent.",
+      "keuzes": [
+        {
+          "label": "Je bekende uit de rij trekken (Kracht 9)",
+          "test": {
+            "kenmerk": "kracht",
+            "moeilijkheid": 9
+          },
+          "gelukt": {
+            "tekst": "Het is een gezicht uit je jeugd. Hij struikelt mee, terug door de Scheur, en kijkt verbaasd naar Londen. Hij vertelt je hoe lang hij heeft gestaan.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              },
+              {
+                "trofee": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Hij laat zich niet trekken. Je laat los voordat je zelf in de rij staat.",
+            "effect": [
+              {
+                "geest": -2
+              }
+            ]
+          }
+        },
+        {
+          "label": "Langs de rijen terug lopen",
+          "tekst": "Je loopt tot je de Scheur weer ziet. Op de grond ligt een herdersbelletje van tin, dat niet klinkt als je het schudt.",
+          "effect": [
+            {
+              "geest": -1
+            },
+            {
+              "trek": "artefacten"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scheur-omm-2",
+      "tekst": "Een stal, eindeloos lang. In elk hok staat een mens, rustig, met een nummer om zijn hals. Aan het eind brandt een lantaarn, en daar zit iemand te tellen op een telraam van tanden.",
+      "keuzes": [
+        {
+          "label": "Het telraam stelen (Waarneming 9)",
+          "test": {
+            "kenmerk": "scherpte",
+            "moeilijkheid": 9
+          },
+          "gelukt": {
+            "tekst": "Je grist het van de tafel en rent. Achter je hoor je geen voetstappen, alleen een getal dat telkens opnieuw wordt uitgesproken, en telkens fout.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              },
+              {
+                "mist": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "De teller kijkt op. Er hangt nu een nummer om jouw hals.",
+            "effect": [
+              {
+                "geest": -2
+              },
+              {
+                "lichaam": -1
+              }
+            ]
+          }
+        },
+        {
+          "label": "De nummers lezen",
+          "tekst": "Je leest ze één voor één. Het zijn er duizenden. De laatste nummers hebben nog geen mens in het hok.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "geest": -1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scheur-omm-3",
+      "tekst": "Je staat op een kerkplein waar alle huizen naar binnen kijken. Op de stoep van de kerk zit een man met een herdersstaf, die je toeknikt. 'Je bent laat,' zegt hij. 'De anderen zijn al binnen.'",
+      "keuzes": [
+        {
+          "label": "Vragen wie de anderen zijn (Charisma 8)",
+          "test": {
+            "kenmerk": "overtuiging",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Hij noemt namen, vriendelijk, als een gastheer. Je herkent er drie uit de registers van de werkhuizen.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Hij noemt jouw naam, als laatste van de lijst.",
+            "effect": [
+              {
+                "geest": -2
+              }
+            ]
+          }
+        },
+        {
+          "label": "Niet naar binnen gaan",
+          "tekst": "Je draait je om. De huizen draaien met je mee, maar je vindt de Scheur terug.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "aanwijzing": [
+    {
+      "id": "aanw-omm-1",
+      "actie": "De kaarsstompjes tellen",
+      "test": {
+        "kenmerk": "scherpte",
+        "moeilijkheid": 7
+      },
+      "tekst": "Op een stoep staan tientallen kaarsstompjes in een kring, nog warm. In het midden is met krijt een herdersstaf getekend, en een getal dat iemand heeft doorgestreept en verhoogd."
+    },
+    {
+      "id": "aanw-omm-2",
+      "actie": "De zingende man aanspreken",
+      "test": {
+        "kenmerk": "overtuiging",
+        "moeilijkheid": 7
+      },
+      "tekst": "In een portiek zit een man die zachtjes zingt. Hij is net uit de processie gestapt en weet niet meer hoe hij heet. Wel weet hij nog waar ze vannacht heen gaan.",
+      "mislukt": {
+        "tekst": "Hij begint harder te zingen, en een tweede stem valt in, ergens achter je.",
+        "effect": [
+          {
+            "geest": -1
+          }
+        ]
+      }
+    }
+  ],
+  "onheil": [
+    {
+      "id": "o-omm-1",
+      "naam": "De processie groeit",
+      "mist": 1,
+      "scheur": 1,
+      "monster": 0,
+      "extra": "Er verschijnt een Cultist in Whitechapel en een in Limehouse.",
+      "tekst": "Vannacht lopen er tweehonderd mensen mee in plaats van honderd. Ze komen uit de werkhuizen, de logementen en de kerken, en ze zingen allemaal dezelfde vijf tonen.",
+      "acties": [
+        {
+          "type": "monsterOp",
+          "plek": "whitechapel",
+          "id": "cultist"
+        },
+        {
+          "type": "monsterOp",
+          "plek": "limehouse",
+          "id": "cultist"
+        }
+      ]
+    },
+    {
+      "id": "o-omm-2",
+      "naam": "De psalm in je hoofd",
+      "persoon": "absalom-crewe",
+      "mist": 1,
+      "scheur": 0,
+      "monster": 0,
+      "extra": "Elke held verliest 1 Geest. Helden met een spreuk herstellen er 1.",
+      "tekst": "Iedereen in Londen wordt wakker met dezelfde melodie in zijn hoofd. Wie een oud gebed kent, of een spreuk, kan hem verdrijven. De rest neuriet hem tot de middag.",
+      "acties": [
+        {
+          "type": "geestAlle",
+          "waarde": -1
+        },
+        {
+          "type": "geestMetSpreuk",
+          "waarde": 1
+        }
+      ]
+    },
+    {
+      "id": "o-omm-3",
+      "naam": "Zuster Agatha's soep",
+      "persoon": "agatha-pike",
+      "mist": 0,
+      "scheur": 0,
+      "monster": 0,
+      "extra": "Elke held in Spitalfields of Whitechapel herstelt 2 Geest. Leg 1 Aanwijzing op Spitalfields.",
+      "tekst": "Zuster Agatha zet de deuren van de gaarkeuken open, de hele nacht. Wie binnenkomt, krijgt soep en een oude psalm, de goede. Een man uit de kudde komt binnen, eet, en vertelt huilend wat hij weet.",
+      "acties": [
+        {
+          "type": "geestOp",
+          "plekken": [
+            "spitalfields",
+            "whitechapel"
+          ],
+          "waarde": 2
+        },
+        {
+          "type": "aanwijzingOp",
+          "plek": "spitalfields",
+          "aantal": 1
+        }
+      ]
+    },
+    {
+      "id": "o-omm-4",
+      "naam": "Gerucht: de nachtmis",
+      "persoon": "martha-coyle",
+      "mist": 0,
+      "scheur": 0,
+      "monster": 0,
+      "gerucht": "Er verschijnt een Kuddeleider in Limehouse. Is hij na 2 rondes niet verslagen, dan daalt de Mist met 2.",
+      "tekst": "Martha Coyle laat weten dat de kudde vannacht een mis houdt in de kerk zonder dak in Limehouse. Een nieuwe leider zal er gezalfd worden. 'Als jullie iets willen doen,' zegt ze, 'dan nu.'",
+      "acties": [
+        {
+          "type": "gerucht",
+          "soort": "verslaan",
+          "plek": "limehouse",
+          "id": "kuddeleider",
+          "rondes": 3,
+          "straf": 2
+        }
+      ]
+    }
+  ],
+  "expeditie": [
+    {
+      "id": "himalaya-omm",
+      "plek": "himalaya",
+      "tekst": "In een klooster op een bergkam zingen de monniken elke ochtend een gezang met vijf tonen. Je kent het. Je hebt het in Londen gehoord, uit de mond van dokwerkers. De oudste monnik ziet je schrikken. 'Het is een lokroep,' zegt hij. 'Wij zingen hem om hem af te houden. Bij jullie zingen ze hem om hem binnen te laten.'",
+      "keuzes": [
+        {
+          "label": "Het tegengezang leren (Kennis 9)",
+          "test": {
+            "kenmerk": "kennis",
+            "moeilijkheid": 9
+          },
+          "gelukt": {
+            "tekst": "Drie dagen oefen je, tot je keel rauw is. Het tegengezang heeft dezelfde vijf tonen, achterstevoren, en een zesde die alles breekt.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              },
+              {
+                "trek": "spreuken"
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Je krijgt de zesde toon niet te pakken. De monnik zegt dat je hem pas zult vinden als je hem nodig hebt.",
+            "effect": [
+              {
+                "geest": -1
+              },
+              {
+                "aanwijzing": 1
+              }
+            ]
+          }
+        },
+        {
+          "label": "Vragen wie de lokroep heeft meegenomen",
+          "tekst": "Een Engelsman, twintig jaar geleden, met de handen van een zeeman en de ogen van een prediker. Hij bleef een winter en vertrok zingend. De monnik geeft je een gebedsmolen mee voor onderweg.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "geest": 2
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

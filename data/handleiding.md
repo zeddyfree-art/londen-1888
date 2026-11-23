@@ -111,7 +111,7 @@ Het huidige mysterie staat rechts in het groene kader. Elke oude god heeft vijf 
 
 ## Lichaam, Geest en waanzin
 
-- **De Mist kruipt in je hoofd.** Is de Mist tot de helft van zijn begin gezakt, dan verliest elke held in Londen aan het eind van elke ronde 1 Geest. Overzee ben je er veilig voor. Rusten, vlugzout en genezers worden dan belangrijk. In een ronde waarin de uitputting toeslaat, kosten de regels van Ysmara (alleen staan) en Nebet-Ankhu (artefacten) geen extra Geest: je verliest dan 1 Geest, niet 2.
+- **De Mist kruipt in je hoofd.** Is de Mist tot de helft van zijn begin gezakt, dan verliest elke held in Londen aan het eind van elke ronde 1 Geest. Overzee ben je er veilig voor. Rusten, vlugzout en genezers worden dan belangrijk. In een ronde waarin de uitputting toeslaat, kosten de regels van Ysmara (alleen staan), Nebet-Ankhu (artefacten), Sirrhae (Betoverd) en Gul-Marrach (geen Pond) geen extra Geest: je verliest dan 1 Geest, niet 2.
 
 - **Lichaam op 0:** je wordt Gewond naar het ziekenhuis in The City gebracht. Met Gewond heb je 1 actie per ronde, tot je het daar laat verwijderen.
 - **Geest op 0:** je krijgt een **Waanzin**-kaart en je Geest gaat terug naar de helft. In Chelsea kun je een waanzin laten wegschilderen.
@@ -149,6 +149,20 @@ In **St Katharine Docks** koop je een bootkaartje (2 Pond) naar Thebe, de Himala
 Artefacten zijn sterk, maar bijna allemaal hebben ze een prijs. Sommige vragen elke ronde iets (gooi een dobbelsteen in de Onheilsfase: bij 1 verlies je Geest, word je Vervloekt of verschijnt er een monster). Andere kun je één keer gebruiken voor een groot effect, met een groot risico. Een paar zijn **episch**: zeldzame vondsten die een potje kunnen kantelen, zoals het Zwaard van de Tempeliers (+4 bij gevechten) of het Horloge dat terugloopt (de Mist stijgt met 2, als de Kennis-test lukt).
 
 Tik op een artefact om te zien wat het doet. Heeft het een knop **Gebruik**, dan kost dat geen actie.
+
+## De oude goden
+
+Elke oude god heeft een eigen regel. Die staat bij de start van het potje, en je leest hem terug door bovenaan op de naam van de god te tikken. Zeven goden brengen iets nieuws mee, met een eigen knop in de bovenbalk:
+
+| God | Wat er anders is |
+|---|---|
+| **Ommeth**, de Herder | Bij elke open Scheur komt elke ronde een **Cultist** bij. Drie op één plek houden een ritueel: de Mist daalt met 1. Een cultist kun je in het gevecht ook **bekeren** (Charisma 8): hij loopt naar huis en je krijgt een Aanwijzing. De knop **Kudde** telt ze. |
+| **Karathos**, de Verdeelde | Elk Artefact is een **Splinter**, met een bonus die 1 hoger is. Aan het eind van de ronde roept elke splinter bij een 1 (met 4 of meer in het team: bij 1 of 2) en doet hij iets uit zichzelf: een Aanwijzing, Geest kwijt, een monster, een Scheur, of hij springt naar een andere held. |
+| **Ulvereth**, de Hemel die omslaat | Elke ronde een **Weerkaart**. Zes zijn heerlijk (zon, een zachte avond, wandelweer, marktdag), zeven niet. Bij vorst kost reizen naar een **bevroren plek** (blauwe rand) 2 stappen, en wie er blijft staan, verliest Lichaam. Bij storm rijden geen treinen en boten. |
+| **Sirrhae**, de Stem achter de waaier | Haar wezens hebben **Bekoring**: die weersta je met Charisma in plaats van Kennis. Wie faalt, raakt **Betoverd** (−1 Geest per ronde). Verbreek het in de abdij, of laat een held op je plek je **terughalen** bij Rondkijken. Elke ronde biedt ze het team openlijk een **gunst** aan, met een prijs. Weigeren mag altijd. |
+| **Ouroch**, de Dertiende Slag | Zakt de Mist onder driekwart, de helft en een kwart van zijn begin, dan **slaat de klok** en gaat er een Klok van Westminster aan. Los een mysterie op, dan zet je er een weer stil. Klokken die de god laat slaan, geven geen extra punten. |
+| **Yth-Nemora**, de Leugen | Aanwijzingen zijn **onzeker** tot je ze natrekt (Rondkijken in de Strand, Whitehall of Bloomsbury, Waarneming 8). Lever je ze in voor een mysterie, dan blijkt een op de drie vals: die telt niet en kost 1 Geest. Helden met Waarneming 4 prikken overal doorheen. Iedereen ziet hoeveel onzekere Aanwijzingen elke held heeft. |
+| **Gul-Marrach**, de Onzichtbare Hand | De **koers** (+0 tot +3) komt bovenop alles wat Ponden kost. Hij stijgt elke ronde; een opgelost mysterie zet hem op 0. Het theater en de salon betalen 1 Pond meer. Wie aan het eind van de ronde geen Pond heeft, verliest 1 Geest. Bij Rondkijken kun je 4 Pond **lenen bij de Hand**, maar dan kan de Mist elke ronde dalen. |
 
 ## Groeien
 

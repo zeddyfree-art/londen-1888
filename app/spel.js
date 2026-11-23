@@ -77,8 +77,8 @@ const KLOKKEN = [
   { id: "dertien-slagen", naam: "Dertien slagen", tekst: "Elke test vraagt 1 meer." },
   { id: "geen-genade", naam: "Geen genade", tekst: "Geen laatste nacht: is de Mist op, dan is het voorbij." }
 ];
-const klok = id => !!S?.klokken?.includes(id);
-const bootPrijs = () => klok("gesloten-lijnen") ? 4 : 2;
+const klok = id => !!S?.klokken?.includes(id) || !!S?.godKlokken?.includes(id);
+const bootPrijs = () => prijs(klok("gesloten-lijnen") ? 4 : 2);
 /* Hoe zwaar is een god in de gekozen stand, met het gekozen aantal helden? Uit het klokkenmodel (testbotmetingen).
    Niet elke god is even zwaar; dat is zo bedoeld. De kaart op het startscherm laat het zien. */
 function godZwaarte(god, stand, aantal, modus) {
@@ -162,7 +162,7 @@ const monsterDef = id => {
 const overslag = () => Math.max(0, Math.floor((laatsteWorp.totaal - laatsteWorp.doel) / 3));
 let laatsteWorp = { totaal: 0, doel: 0 };
 /* Wat een artefact geeft: dezelfde bonusvelden als spullen */
-const artBonus = (h, k) => h.artefacten.reduce((t, id) => t + (artDef(id)?.bonus?.[k] || 0), 0);
+const artBonus = (h, k) => h.artefacten.reduce((t, id) => { const b = artDef(id)?.bonus?.[k] || 0; return t + b + (b > 0 && S?.god === "karathos" ? 1 : 0); }, 0);
 const spulDef = id => byId(D.spullen, id);
 const spreukDef = id => byId(D.spreuken, id);
 const artDef = id => byId(D.artefacten, id);
@@ -336,7 +336,7 @@ function maakBuren() {
 function burenVan(h, plek) {
   if (isOverzee(plek)) return ["st-katharine-docks"];
   const n = new Set(BUREN[plek]);
-  if (h && h.id === "paddy-flynn" && D.bord.rivier.includes(plek)) for (const r of D.bord.rivier) if (r !== plek) n.add(r);
+  if (((h && h.id === "paddy-flynn") || (h && weer("theems-dicht"))) && D.bord.rivier.includes(plek)) for (const r of D.bord.rivier) if (r !== plek) n.add(r);
   return [...n];
 }
 function afstanden(van) {
@@ -470,6 +470,8 @@ function rolDobbels(m) {
 /* Wat telt er bij een test op, en met hoeveel stenen gooi je? Gedeeld door test() en kans(). */
 function testOpzet(h, kenmerk, doel, opt = {}) {
   doel += MOEILIJKHEID[S.moeilijkheid].test + (klok("dertien-slagen") ? 1 : 0) + (window.__doelPlus || 0) + (opt.context === "ontmoeting" ? ONTMOETING_ZWAARDER : 0);
+  if (kenmerk === "scherpte" && weer("erwtensoep")) doel += 1;
+  if (kenmerk === "kennis" && weer("heldere-nacht")) doel -= 1;
   let extra = opt.extra || 0;
   if (kenmerk === "kennis" && h.id === "septimus-crane") extra += Math.min(2, h.aanw);
   if (heeft(h, "waanzin-stemmen") && opt.spreuk) extra += 1;
@@ -712,9 +714,11 @@ async function losOp() {
   S.opgelost++; log(`Mysterie opgelost: ${m.naam}`);
   if (S.opgelost >= S.nodig) { S.einde = "winst"; opslaan(); teken(); return; }
   S.mysterieIndex++; S.voortgang = { scheuren: [] };
+  if (S.god === "gul-marrach") S.koers = 0;
   Geluid.mysterie();
   await melding("Mysterie opgelost", `"${m.naam}" is opgelost. Het volgende mysterie: ${mysterie().naam}. ${mysterie().doel}`, `${S.opgelost} van ${S.nodig}`);
   await mysterieBuit();
+  if (S.god === "ouroch") await klokStilzetten();
   if (S.modus === "lang") await nieuwBedrijf();
   activeerMysterie();
 }
@@ -785,11 +789,25 @@ function mysterieActie(h) {
   }
   if (m.type === "breng" && h.plek === m.van && !S.helden.some(x => x.mysterieVoorwerp)) return { label: `Mysterie: zoek ${m.voorwerp}`, kan: true };
   if (m.type === "breng" && h.plek === m.naar && h.mysterieVoorwerp) return { label: `Mysterie: lever ${m.voorwerp} in`, kan: true };
+  if (m.type === "betaal" && h.plek === m.plek) {
+    const totaal = S.helden.filter(x => x.plek === m.plek).reduce((s, x) => s + x.pond, 0);
+    return { label: `Mysterie: ${m.naam}`, kan: totaal >= m.aantal, uitleg: `Samen ${totaal} van ${m.aantal} Pond hier` };
+  }
   return null;
 }
 async function doeMysterie(h) {
   const m = mysterie();
   if (m.type === "aanwijzingen") {
+    /* Yth-Nemora: eerst blijkt welke Aanwijzingen vals zijn */
+    if (isYth()) {
+      const wie = [h, ...S.helden.filter(x => x !== h && x.plek === m.plek)];
+      const regels = wie.map(x => { const v = trekNa(x, true); return v ? `${korteNaam(heldDef(x).naam)}: ${v} vals (−${v} Geest)` : ""; }).filter(Boolean);
+      const samen = wie.reduce((s, x) => s + x.aanw, 0);
+      if (regels.length) log(`Valse sporen: ${regels.join(", ")}`);
+      await melding("De Aanwijzingen naast elkaar", `${regels.length ? `Niet alles blijkt waar. ${regels.join(". ")}.` : "Alles klopt."} Jullie hebben samen ${samen} zekere Aanwijzing${samen === 1 ? "" : "en"}${samen < m.aantal ? `, en er zijn er ${m.aantal} nodig. Het lukt nog niet.` : "."}`, "Yth-Nemora");
+      await controleerAlles();
+      if (samen < m.aantal) return;
+    }
     if (await test(h, m.kenmerk, m.moeilijkheid, m.naam)) {
       let nog = m.aantal;
       for (const x of [h, ...S.helden.filter(x => x !== h && x.plek === m.plek)]) { const n = Math.min(nog, x.aanw); x.aanw -= n; nog -= n; }
@@ -807,6 +825,11 @@ async function doeMysterie(h) {
       if (await test(h, m.kenmerk, m.moeilijkheid, `Zoek ${m.voorwerp}`)) { h.mysterieVoorwerp = true; await melding(m.voorwerp, `${korteNaam(heldDef(h).naam)} draagt nu ${m.voorwerp}. Breng het naar ${plekNaam(m.naar)}.`); }
       else await melding(m.naam, "Je vindt het nog niet.");
     } else { h.mysterieVoorwerp = false; await losOp(); }
+  } else if (m.type === "betaal") {
+    let nog = m.aantal;
+    for (const x of [h, ...S.helden.filter(x => x !== h && x.plek === m.plek)]) { const n = Math.min(nog, x.pond); x.pond -= n; nog -= n; }
+    log(`${korteNaam(heldDef(h).naam)} betaalt ${m.aantal} Pond voor ${m.naam}`);
+    await losOp();
   }
 }
 function scheurGesloten(plek) {
@@ -817,6 +840,210 @@ function scheurGesloten(plek) {
   if (n < m.aantal) return false;
   if (m.minstensEen && !S.voortgang.scheuren.some(p => m.minstensEen.includes(p))) return false;
   return true;
+}
+
+/* ---------- de regels van de nieuwere goden ----------
+   Ommeth (cultisten), Karathos (splinters), Ulvereth (weer), Sirrhae (bekoring en gunsten),
+   Ouroch (de klok slaat), Yth-Nemora (onzekere Aanwijzingen) en Gul-Marrach (de koers). */
+
+/* Ulvereth: elke ronde een Weerkaart. Zes helpen, zeven niet. */
+const WEERKAARTEN = [
+  { id: "vorst", naam: "Strenge vorst", goed: false, tekst: "Twee plekken bevriezen. Reizen erheen kost 2 stappen, en wie er aan het eind van de ronde staat, verliest 1 Lichaam." },
+  { id: "vorst", naam: "IJzel", goed: false, tekst: "Twee plekken bevriezen. Reizen erheen kost 2 stappen, en wie er aan het eind van de ronde staat, verliest 1 Lichaam." },
+  { id: "theems-dicht", naam: "De Theems ligt dicht", goed: false, tekst: "Voor het eerst sinds de vorstmarkt van 1814. Alle plekken aan de rivier liggen deze ronde voor iedereen naast elkaar, maar er kruipt een monster uit het ijs." },
+  { id: "storm", naam: "Storm", goed: false, tekst: "Geen Ondergrondse, geen trein en geen boten. Wie aan het eind van de ronde aan de rivier staat, verliest 1 Lichaam." },
+  { id: "erwtensoep", naam: "Erwtensoep", goed: false, tekst: "Mist zo dik als soep. Waarneming-tests zijn 1 zwaarder." },
+  { id: "wolkbreuk", naam: "Wolkbreuk", goed: false, tekst: "De regen spoelt de sporen weg: op elke plek aan de rivier verdwijnt 1 Aanwijzing." },
+  { id: "onweer", naam: "Onweer boven de heide", goed: false, tekst: "De bliksem slaat in op Hampstead. Daar opent een Scheur." },
+  { id: "zonnig", naam: "Een zonnige ochtend", goed: true, tekst: "Voor het eerst in weken breekt de zon door. Elke held herstelt 1 Lichaam en 1 Geest." },
+  { id: "zachte-avond", naam: "Een zachte avond", goed: true, tekst: "Rusten herstelt deze ronde 1 Lichaam en 1 Geest extra." },
+  { id: "heldere-nacht", naam: "Een heldere nacht", goed: true, tekst: "De sterren staan scherp. Kennis-tests zijn deze ronde 1 makkelijker." },
+  { id: "mooie-dag", naam: "Wandelweer", goed: true, tekst: "Droge straten en een lage zon. Elke held krijgt deze ronde 1 gratis stap." },
+  { id: "regenboog", naam: "Een regenboog boven de Theems", goed: true, tekst: "Heel Londen kijkt omhoog, en wie omlaag kijkt, ziet wat anders verborgen blijft. Er komen 2 Aanwijzingen op het bord." },
+  { id: "marktdag", naam: "Marktdag in de zon", goed: true, tekst: "De kramen staan buiten. Spullen en spreuken kosten deze ronde 1 Pond minder (minimaal 1)." }
+];
+const weer = id => S?.god === "ulvereth" && S.weer?.id === id;
+const bevroren = plek => S?.god === "ulvereth" && !!S.weer?.bevroren?.includes(plek);
+const geslotenLijnen = () => klok("gesloten-lijnen") || weer("storm");
+async function trekWeer(melden) {
+  if (!S.weerStapel?.length) S.weerStapel = schud(WEERKAARTEN.map((_, i) => i));
+  const k = WEERKAARTEN[S.weerStapel.pop()];
+  S.weer = { id: k.id, naam: k.naam, goed: k.goed, tekst: k.tekst };
+  if (k.id === "vorst") S.weer.bevroren = schud(D.bord.plekken.map(p => p.id)).slice(0, 2);
+  if (k.id === "theems-dicht") spawnMonster(kies1(D.bord.rivier));
+  if (k.id === "wolkbreuk") for (const r of D.bord.rivier) if (S.plekken[r].aanw > 0) S.plekken[r].aanw--;
+  if (k.id === "onweer") openScheurOp("hampstead");
+  if (k.id === "zonnig") for (const h of S.helden) { h.L = Math.min(h.maxL, h.L + 1); h.G = Math.min(h.maxG, h.G + 1); }
+  if (k.id === "regenboog") legAanwijzing(2);
+  log(`Het weer: ${k.naam}`);
+  if (melden) await venster({ soort: "Het weer van vandaag", titel: k.naam, verhaal: k.tekst, html: S.weer.bevroren ? `<p>Bevroren: <b>${esc(S.weer.bevroren.map(plekNaam).join(" en "))}</b>.</p>` : "" });
+}
+
+/* Sirrhae: elke ronde biedt ze het team openlijk een gunst aan. Wie hem aanneemt, betaalt de prijs. */
+const GUNSTEN = [
+  { naam: "Een beurs vol sovereigns", krijg: [{ pond: 3 }], prijs: "mist", tekst: "Een zware fluwelen beurs, met haar monogram." },
+  { naam: "Een introductie", krijg: [{ trek: "bondgenoot" }], prijs: "betoverd", tekst: "Ze noemt een naam, en morgen staat die persoon voor je deur." },
+  { naam: "Iets uit haar vitrine", krijg: [{ trek: "artefacten" }], prijs: "ander", tekst: "Ze laat je kiezen uit een kast vol dingen die niemand hoort te bezitten." },
+  { naam: "Haar naam opent deuren", krijg: [{ aanwijzing: 2 }], prijs: "betoverd", tekst: "Met haar visitekaartje kom je overal binnen, en iedereen praat." },
+  { naam: "Een avond zonder zorgen", krijg: [{ lichaam: 9 }, { geest: 9 }], prijs: "mist", tekst: "Muziek, warmte, een bed met zijden lakens. Je slaapt voor het eerst in weken." },
+  { naam: "Een lofdicht op jou", krijg: [{ trofee: 2 }], prijs: "monster", tekst: "Haar dichter leest het voor, en de hele salon applaudisseert. Iets in de schaduw applaudisseert mee." },
+  { naam: "Een boek uit haar kast", krijg: [{ trek: "spreuken" }], prijs: "ander", tekst: "In de kantlijn staan aantekeningen in haar handschrift." },
+  { naam: "De zegen van de muze", krijg: [{ toestand: "gezegend" }, { geest: 1 }], prijs: "scheur", tekst: "Ze kust je voorhoofd. Ergens in de stad scheurt de lucht." },
+  { naam: "Een woordje bij de Yard", krijg: [{ verwijder: "gezocht" }, { verwijder: "vervloekt" }, { pond: 2 }], prijs: "betoverd", tekst: "Hoofdinspecteur Voss komt elke donderdag in haar salon." },
+  { naam: "Een uitnodiging voor iedereen", krijg: [{ aanwijzing: 1 }], allen: true, prijs: "mist", tekst: "Een gouden kaart voor elke held. Op het feest valt er veel te horen." },
+  { naam: "Een lening zonder rente", krijg: [{ pond: 4 }], prijs: "gezocht", tekst: "Het geld komt van een rekening die de politie al maanden zoekt." },
+  { naam: "Een kus op je wang", krijg: [{ geest: 3 }], prijs: "betoverd", tekst: "Het voelt als thuiskomen." }
+];
+const PRIJSTEKST = { mist: "De Mist daalt met 1.", betoverd: "Wie hem aanneemt, wordt Betoverd.", ander: "Een andere held verliest 2 Geest.", monster: "Er verschijnt een monster op de plek van wie hem aanneemt.", scheur: "Er opent een Scheur.", gezocht: "Wie hem aanneemt, wordt Gezocht." };
+async function sirrhaeGunst() {
+  if (!S.gunstStapel?.length) S.gunstStapel = schud(GUNSTEN.map((_, i) => i));
+  const g = GUNSTEN[S.gunstStapel.pop()];
+  const levend = S.helden.filter(h => !h.uit);
+  const k = await venster({ soort: "Een gunst van Sirrhae", titel: g.naam, verhaal: g.tekst,
+    html: `<p><b>Je krijgt:</b> ${esc(gunstTekst(g))}</p><p><b>De prijs:</b> ${esc(PRIJSTEKST[g.prijs])}</p><p class="muted">Het hele team ziet het aanbod. Weigeren mag altijd${levend.some(h => heeft(h, "betoverd")) ? ", maar wie Betoverd is, verliest dan 1 Geest" : ""}.</p>`,
+    knoppen: [...levend.map(h => ({ label: g.allen ? `Aannemen (${korteNaam(heldDef(h).naam)} betaalt)` : `${korteNaam(heldDef(h).naam)} neemt hem aan`, waarde: h })), { label: "Weigeren", waarde: null, ghost: true }] });
+  if (!k) {
+    S.voortgang.geweigerd = (S.voortgang.geweigerd || 0) + 1;
+    for (const h of levend) if (heeft(h, "betoverd")) { h.G--; log(`${korteNaam(heldDef(h).naam)} mist haar: −1 Geest`); }
+    log(`Het team weigert ${g.naam}`);
+    const m = mysterie();
+    if (m?.type === "weigeren" && S.voortgang.geweigerd >= m.aantal) await losOp();
+    return;
+  }
+  S.voortgang.geweigerd = 0;
+  let html = "";
+  for (const h of g.allen ? levend : [k]) html += await pasToe(h, g.krijg);
+  if (g.prijs === "mist") { S.mist--; html += `<div class="effecten"><span class="effect min">Mist −1</span></div>`; }
+  if (g.prijs === "betoverd") { geefToestand(k, "betoverd"); html += `<div class="effecten"><span class="effect min">${esc(korteNaam(heldDef(k).naam))} is Betoverd</span></div>`; }
+  if (g.prijs === "gezocht") { geefToestand(k, "gezocht"); html += `<div class="effecten"><span class="effect min">Gezocht</span></div>`; }
+  if (g.prijs === "monster") { const m = spawnMonster(isOverzee(k.plek) ? "st-katharine-docks" : k.plek); if (m) html += `<div class="effecten"><span class="effect min">${esc(monsterDef(m).naam)} verschijnt</span></div>`; }
+  if (g.prijs === "scheur") { const p = trekScheurPlek(); openScheurOp(p); html += `<div class="effecten"><span class="effect min">Een Scheur in ${esc(plekNaam(p))}</span></div>`; }
+  if (g.prijs === "ander") { const a = levend.filter(x => x !== k); const x = a.length ? kies1(a) : k; x.G -= 2; html += `<div class="effecten"><span class="effect min">${esc(korteNaam(heldDef(x).naam))}: −2 Geest</span></div>`; }
+  log(`${korteNaam(heldDef(k).naam)} neemt ${g.naam} aan`);
+  await venster({ soort: "Een gunst van Sirrhae", titel: g.naam, html });
+  await controleerAlles();
+}
+const gunstTekst = g => g.krijg.map(e => { const [k, v] = Object.entries(e)[0]; return k === "pond" ? `${v} Pond` : k === "aanwijzing" ? `${v} Aanwijzing${v > 1 ? "en" : ""}${g.allen ? " voor elke held" : ""}` : k === "trofee" ? `${v} Trofeeën` : k === "lichaam" ? "al je Lichaam terug" : k === "geest" ? (v > 3 ? "al je Geest terug" : `${v} Geest`) : k === "toestand" ? "Gezegend" : k === "verwijder" ? `${toestDef(v).naam} weg` : k === "trek" ? { bondgenoot: "een bondgenoot", artefacten: "een artefact", spreuken: "een spreuk" }[v] : ""; }).filter(Boolean).join(", ");
+
+/* Ommeth: de kudde groeit bij elke open Scheur. Drie cultisten op één plek houden een ritueel: de Mist daalt met 1. */
+const CULTIST_VOORRAAD = 15;
+const telCultisten = () => alleMonsters().filter(({ m }) => m.id === "cultist").length;
+function zetCultist(plek) {
+  if (telCultisten() >= CULTIST_VOORRAAD) { S.mist--; log("De kudde is compleet: de Mist daalt met 1"); return false; }
+  S.plekken[plek].monsters.push({ uid: ++S.teller, id: "cultist", leven: monsterDef("cultist").leven });
+  return true;
+}
+async function ommethRonde() {
+  for (const [plek, p] of Object.entries(S.plekken)) {
+    if (p.scheur) zetCultist(plek);
+    if (p.monsters.some(m => monsterDef(m.id)?.roeptCultisten)) zetCultist(plek);
+  }
+  for (const [plek, p] of Object.entries(S.plekken)) {
+    const c = p.monsters.filter(m => m.id === "cultist");
+    if (c.length < 3) continue;
+    for (const m of c.slice(0, 3)) verwijderMonster(plek, m.uid);
+    S.mist--;
+    log(`Ritueel in ${plekNaam(plek)}: de Mist daalt met 1`);
+    await melding("Een ritueel", `Drie cultisten in ${plekNaam(plek)} heffen de psalm aan die niemand kent. Ze lossen op in de menigte, en de Mist daalt met 1.`, "Ommeth");
+  }
+}
+async function cultistWeg(h) {
+  S.voortgang.cultisten = (S.voortgang.cultisten || 0) + 1;
+  const m = mysterie();
+  if (m?.type === "cultisten" && S.voortgang.cultisten >= m.aantal) await losOp();
+}
+
+/* Karathos: elke Splinter (Artefact) roept. Hoe meer splinters het team draagt, hoe vaker. */
+const SPLINTERROEP = [
+  ["fluistert", "De splinter fluistert je iets toe over de andere stukken. +1 Aanwijzing."],
+  ["brandt", "De splinter wordt gloeiend heet. −1 Geest."],
+  ["wachter", "De splinter roept iets dat hem wil bewaken."],
+  ["scheur", "De splinter zoekt een weg naar huis en scheurt de wereld open."],
+  ["trekt", "De splinter trekt aan je, richting het museum in Bloomsbury."],
+  ["springt", "De splinter wil bij een ander stuk zijn, en is ineens niet meer van jou."]
+];
+async function splinterRoep(h, id) {
+  const [soort, tekst] = kies1(SPLINTERROEP), naam = artDef(id).naam, inLonden = !isOverzee(h.plek);
+  let extra = "";
+  if (soort === "fluistert") h.aanw++;
+  if (soort === "brandt" || (!inLonden && (soort === "wachter" || soort === "scheur"))) h.G--;
+  if (soort === "wachter" && inLonden) { const m = spawnMonster(h.plek); if (m) extra = ` ${monsterDef(m).naam} verschijnt bij je.`; }
+  if (soort === "scheur" && inLonden) openScheurOp(h.plek);
+  if (soort === "trekt" && inLonden && h.plek !== "bloomsbury") { h.plek = stapNaar(h.plek, "bloomsbury"); extra = ` Je staat nu in ${plekNaam(h.plek)}.`; }
+  if (soort === "springt") {
+    const ander = S.helden.filter(x => x !== h && !x.uit).sort((a, b) => b.artefacten.length - a.artefacten.length)[0];
+    if (ander) { h.artefacten = h.artefacten.filter(x => x !== id); ander.artefacten.push(id); extra = ` ${korteNaam(heldDef(ander).naam)} heeft hem nu.`; } else h.G--;
+  }
+  log(`${naam} roept (${korteNaam(heldDef(h).naam)})`);
+  await melding(`${naam} roept`, tekst + extra, "Karathos");
+}
+
+/* Ouroch: zakt de Mist onder driekwart, de helft en een kwart van zijn begin, dan slaat de klok en gaat er een Klok aan. */
+const SLAGKLOKKEN = ["gesloten-lijnen", "zware-benen", "taaie-wezens", "huiveringwekkend", "slapeloze-nachten", "geen-tweede-worp", "dertien-slagen"];
+async function ouroch() {
+  const start = S.mistStart || S.mist;
+  for (const f of [0.75, 0.5, 0.25]) {
+    const drempel = Math.round(start * f);
+    S.slagen ??= [];
+    if (S.mist > drempel || S.slagen.includes(f)) continue;
+    S.slagen.push(f);
+    const vrij = SLAGKLOKKEN.filter(id => !klok(id));
+    if (!vrij.length) continue;
+    const id = kies1(vrij), k = KLOKKEN.find(x => x.id === id);
+    (S.godKlokken ??= []).push(id); S.slagRonde = S.ronde;
+    log(`De klok slaat dertien: ${k.naam}`);
+    Geluid.onheil?.();
+    await melding("De dertiende slag", `Boven Westminster slaat de klok dertien. Klok ${ROMEINS[KLOKKEN.indexOf(k)]} gaat aan: ${k.naam}. ${k.tekst} Los een mysterie op om een klok weer stil te zetten.`, "Ouroch");
+  }
+}
+async function klokStilzetten() {
+  if (!S.godKlokken?.length) return;
+  const id = S.godKlokken.length === 1 ? S.godKlokken[0] : await venster({ soort: "De klok stilzetten", titel: "Welke klok zet je stil?", html: "<p>Het mysterie is opgelost. Eén klok die Ouroch liet slaan, valt stil.</p>",
+    knoppen: S.godKlokken.map(x => ({ label: KLOKKEN.find(k => k.id === x).naam, waarde: x })) });
+  S.godKlokken = S.godKlokken.filter(x => x !== id);
+  log(`${KLOKKEN.find(k => k.id === id).naam} valt stil`);
+  await melding("De klok valt stil", `${KLOKKEN.find(k => k.id === id).naam} geldt niet meer.`, "Ouroch");
+}
+
+/* Yth-Nemora: een Aanwijzing is pas zeker als je hem hebt nagetrokken. Bij het inleveren blijkt een op de drie onzekere vals. */
+const isYth = () => S?.god === "yth-nemora";
+const zeker = h => h.kenm.scherpte >= 4 ? h.aanw : Math.min(h.aanwZeker || 0, h.aanw);
+const onzeker = h => h.aanw - zeker(h);
+/* Trekt de onzekere Aanwijzingen van een held na: een op de drie blijkt vals. Geeft het aantal valse terug. */
+function trekNa(h, straf) {
+  let vals = 0;
+  for (let i = onzeker(h); i > 0; i--) if (d6() <= 2) { h.aanw--; vals++; if (straf) h.G--; }
+  h.aanwZeker = h.aanw;
+  return vals;
+}
+
+/* Gul-Marrach: alles wat Ponden kost, kost de koers extra. */
+const koers = () => S?.god === "gul-marrach" ? (S.koers || 0) : 0;
+const prijs = n => n > 0 ? n + koers() : n;
+/* Marktdag (Ulvereth) maakt winkelen 1 Pond goedkoper */
+const winkelPrijs = n => Math.max(n > 0 ? 1 : 0, prijs(n) - (weer("marktdag") ? 1 : 0));
+
+/* Wat de god van deze ronde in de bovenbalk laat zien */
+function godChip() {
+  if (S.god === "ulvereth" && S.weer) return `<button class="stat godchip ${S.weer.goed ? "goed" : "slecht"}" data-act="god-info" title="${esc(S.weer.tekst)}">Weer: <b>${esc(S.weer.naam)}</b></button>`;
+  if (S.god === "ommeth") return `<button class="stat godchip" data-act="god-info" title="Cultisten op het bord">Kudde <b>${telCultisten()}/${CULTIST_VOORRAAD}</b></button>`;
+  if (S.god === "gul-marrach") return `<button class="stat godchip" data-act="god-info" title="Alles wat Ponden kost, kost de koers extra">Koers <b>+${koers()}</b></button>`;
+  if (S.god === "karathos") return `<button class="stat godchip" data-act="god-info" title="Splinters in het team">Splinters <b>${S.helden.reduce((t, h) => t + h.artefacten.length, 0)}</b></button>`;
+  if (isYth()) return `<button class="stat godchip" data-act="god-info" title="Aanwijzingen die nog niet zijn nagetrokken">Onzeker <b>${S.helden.reduce((t, h) => t + onzeker(h), 0)}</b></button>`;
+  if (S.god === "sirrhae" && S.helden.some(h => heeft(h, "betoverd"))) return `<button class="stat godchip slecht" data-act="god-info">Betoverd <b>${S.helden.filter(h => heeft(h, "betoverd")).length}</b></button>`;
+  return "";
+}
+async function godInfo() {
+  const teksten = {
+    ulvereth: () => `<p><b>${esc(S.weer.naam)}.</b> ${esc(S.weer.tekst)}</p>${S.weer.bevroren ? `<p>Bevroren: <b>${esc(S.weer.bevroren.map(plekNaam).join(" en "))}</b>.</p>` : ""}`,
+    ommeth: () => `<p>Er staan <b>${telCultisten()}</b> van de ${CULTIST_VOORRAAD} cultisten op het bord. Elke Onheilsfase komt er 1 bij op elke plek met een Scheur. Staan er 3 op één plek, dan houden ze een ritueel: ze verdwijnen en de Mist daalt met 1. Is de kudde compleet, dan daalt de Mist in plaats daarvan. In een gevecht kun je een cultist ook bekeren (Charisma 8).</p><p class="muted">Cultisten verdreven: ${S.voortgang.cultisten || 0}.</p>`,
+    "gul-marrach": () => `<p>De koers staat op <b>+${koers()}</b>: alles wat Ponden kost, kost zoveel extra. Elke Onheilsfase stijgt hij (tot +3). Een opgelost mysterie zet hem op 0. Wie aan het eind van de ronde in Londen geen Pond heeft, verliest 1 Geest. Bij Rondkijken kun je lenen bij de Hand.</p>`,
+    karathos: () => `<p>Elk Artefact is een Splinter van Karathos, met een bonus die 1 hoger is. Aan het eind van elke ronde roept elke splinter bij een 1 (bij 4 of meer splinters in het team: bij 1 of 2), en dan doet hij iets uit zichzelf.</p>`,
+    "yth-nemora": () => `<p>Aanwijzingen die je niet hebt nagetrokken, zijn onzeker. Lever je ze in voor een mysterie, dan blijkt een op de drie vals: die telt niet en kost 1 Geest. Natrekken doe je bij Rondkijken in de Strand, Whitehall of Bloomsbury (Waarneming 8). Helden met Waarneming 4 prikken overal doorheen.</p><ul>${S.helden.map(h => `<li>${esc(korteNaam(heldDef(h).naam))}: ${zeker(h)} zeker, ${onzeker(h)} onzeker</li>`).join("")}</ul>`,
+    sirrhae: () => `<p>Betoverd: aan het eind van elke ronde −1 Geest, en nog 1 als het team een gunst weigert. Laat het verbreken in de abdij in Westminster, of laat een held op jouw plek je terughalen bij Rondkijken (Charisma 8).</p>`
+  };
+  if (!teksten[S.god]) return;
+  await venster({ soort: god().naam, titel: god().titel, html: teksten[S.god]() });
 }
 
 /* ---------- start ---------- */
@@ -846,6 +1073,8 @@ function nieuwSpel(godId, moeilijkheid, heldIds, opties = {}) {
   for (let i = 0; i < n; i++) { const p = trekScheurPlek(); S.plekken[p].scheur = true; spawnMonster(p); }
   legAanwijzing(klok("zwijgende-getuigen") ? 0 : 3);
   activeerMysterie();
+  if (godId === "karathos") for (const o of Object.values(S.overzee)) o.artefact = true;
+  if (godId === "ulvereth") trekWeer(false);
   log(`Het spel begint. ${g.naam} roert zich.`);
   startHeldenbeurt(false);
   if (!window.__bot) setTimeout(() => veilig(async () => { await godIntro(true); await beurtIntro(); }), 10);
@@ -886,6 +1115,7 @@ function startHeldenbeurt(intro = true) {
   if (h.id === "owen-marsh") h.stappen++;
   for (const id of h.spullen) h.stappen += spulDef(id)?.bonus?.stap || 0;
   h.stappen += artBonus(h, "stap");
+  if (weer("mooie-dag")) h.stappen++;
   delete h.ronde.wake; delete h.ronde.doodsmasker;
   UI.bekeken = S.actief;
   opslaan(); teken();
@@ -896,11 +1126,14 @@ function bereikbaar(h) {
   if (S.fase !== "helden" || h !== actief()) return [];
   const kanActie = h.acties > 0 && !(klok("zware-benen") && h.reisActies >= 1); /* reizen mag met beide acties */
   if (h.stappen <= 0 && !kanActie) return [];
-  return [...new Set([...burenVan(h, h.plek), ...metroDoelen(h)])];
+  const doelen = [...new Set([...burenVan(h, h.plek), ...metroDoelen(h)])];
+  /* Ulvereth: een bevroren plek kost 2 stappen */
+  const budget = h.stappen + (kanActie ? (klok("zware-benen") ? 1 : h.acties) : 0);
+  return doelen.filter(p => !bevroren(p) || budget >= 2);
 }
 /* De Ondergrondse: vanaf een station reis je voor 1 Pond naar elk ander station, als gewone reisstap. */
 function metroDoelen(h) {
-  if (!STATIONS.includes(h.plek) || h.pond < 1 || klok("gesloten-lijnen")) return [];
+  if (!STATIONS.includes(h.plek) || h.pond < prijs(1) || geslotenLijnen()) return [];
   const buren = burenVan(h, h.plek);
   return STATIONS.filter(x => x !== h.plek && !buren.includes(x));
 }
@@ -910,9 +1143,11 @@ function reis(doel) {
   if (!bereikbaar(h).includes(doel)) return;
   const metro = isMetro(h, doel);
   UI.undo.push({ staat: JSON.stringify(S), label: `${metro ? "de Ondergrondse naar" : "reizen naar"} ${plekNaam(doel)}`, ronde: S.ronde, actief: S.actief });
-  if (h.stappen > 0) h.stappen--;
-  else { h.acties--; h.reisActies = (h.reisActies || 0) + 1; }
-  if (metro) h.pond--;
+  for (let k = bevroren(doel) ? 2 : 1; k > 0; k--) {
+    if (h.stappen > 0) h.stappen--;
+    else { h.acties--; h.reisActies = (h.reisActies || 0) + 1; }
+  }
+  if (metro) h.pond -= prijs(1);
   const van = plekDef(h.plek);
   UI.reis = { i: S.actief, van: { x: van.x, y: van.y }, naar: doel, t: Date.now() };
   Geluid.reis(); verbergPlekInfo();
@@ -975,27 +1210,47 @@ async function journalist(h) {
 }
 /* Rondkijken: op elke plek in Londen, één keer per beurt, kost een actie. Zodat een beurt nooit leeg is.
    Zie ontwerp/voorstel-overal-iets-te-doen.md. */
+/* Extra keuzes bij Rondkijken, alleen tegen bepaalde goden */
+function godRondkijken(h) {
+  const k = [];
+  if (S.god === "sirrhae" && S.helden.some(x => x !== h && x.plek === h.plek && heeft(x, "betoverd"))) k.push({ label: `Een betoverde held terughalen (Charisma ${metStand(8)}${kansTxt(h, "overtuiging", 8)})`, waarde: "terughalen" });
+  if (S.god === "gul-marrach" && !heeft(h, "schuld-hand")) k.push({ label: "Lenen bij de Onzichtbare Hand: +4 Pond (Schuld aan de Hand)", waarde: "lening" });
+  if (isYth() && onzeker(h) > 0 && ["strand", "whitehall", "bloomsbury"].includes(h.plek)) k.push({ label: `Aanwijzingen natrekken (Waarneming ${metStand(8)}${kansTxt(h, "scherpte", 8)}): ${onzeker(h)} onzeker`, waarde: "natrekken" });
+  return k;
+}
 async function rondkijken(h) {
   if (isOverzee(h.plek)) return;
   const k = await venster({ soort: "Rondkijken", titel: plekNaam(h.plek), beeld: `art/plekken/${h.plek}.jpg`,
     html: `<p class="muted">Je hebt ${h.pond} Pond. Kies één ding; het kost een actie.</p>`,
     knoppen: [
       { label: "Inkopen: trek 2 spullen, koop er één voor 1 Pond meer", waarde: "inkopen", uit: heeft(h, "gezocht") || !kanDragen(h) || h.pond < 1 },
-      { label: "Rijtuigkaartje kopen (1 Pond): later 2 stappen zonder actie", waarde: "kaartje", uit: h.pond < 1 || !kanDragen(h) },
+      { label: `Rijtuigkaartje kopen (${prijs(1)} Pond): later 2 stappen zonder actie`, waarde: "kaartje", uit: h.pond < prijs(1) || !kanDragen(h) },
       { label: `Rondhoren (Waarneming ${metStand(9, "ontmoeting")}${kansTxt(h, "scherpte", 9, { context: "ontmoeting" })}): 1 Aanwijzing, mislukt −1 Geest`, waarde: "rondhoren" },
+      ...godRondkijken(h),
       { label: "Toch niet", waarde: null, ghost: true }] });
   if (!k) return;
   const voor = JSON.stringify(S);
   gebruikActie(h, "rondkijken");
   const naam = korteNaam(heldDef(h).naam);
   if (k === "inkopen") {
-    const gekocht = await winkel(h, aanbod(h, "inkopen", "spullen", 2), "spul", d => d.prijs + 1);
+    const gekocht = await winkel(h, aanbod(h, "inkopen", "spullen", 2), "spul", d => winkelPrijs(d.prijs + 1));
     if (gekocht) terugPunt(voor, `inkopen: ${gekocht}`); else geefActieTerug(h);
   }
-  if (k === "kaartje") { h.pond--; h.spullen.push("rijtuig"); log(`${naam} koopt een rijtuigkaartje`); terugPunt(voor, "rijtuigkaartje kopen"); await melding("Rijtuigkaartje", "Je koopt een kaartje bij een koetsier op de hoek. Gebruik het in een eigen beurt: 2 stappen zonder actie."); }
+  if (k === "kaartje") { h.pond -= prijs(1); h.spullen.push("rijtuig"); log(`${naam} koopt een rijtuigkaartje`); terugPunt(voor, "rijtuigkaartje kopen"); await melding("Rijtuigkaartje", "Je koopt een kaartje bij een koetsier op de hoek. Gebruik het in een eigen beurt: 2 stappen zonder actie."); }
   if (k === "rondhoren") {
     if (await test(h, "scherpte", 9, "Rondhoren in de buurt", { context: "ontmoeting" })) { h.aanw++; log(`${naam} hoort iets en krijgt 1 Aanwijzing`); await melding("Rondhoren", "In een kroeg, bij een pomp of op de trap van een kerk vang je iets op dat je verder helpt. +1 Aanwijzing."); }
     else { h.G--; log(`${naam} praat met de verkeerde mensen: −1 Geest`); await melding("Rondhoren", "Je stelt je vragen aan de verkeerde mensen. Ze kijken je na tot je om de hoek bent. −1 Geest."); }
+  }
+  if (k === "terughalen") {
+    const doel = S.helden.filter(x => x !== h && x.plek === h.plek && heeft(x, "betoverd"));
+    const x = doel.length === 1 ? doel[0] : await venster({ soort: "Terughalen", titel: "Wie haal je terug?", knoppen: doel.map(x => ({ label: korteNaam(heldDef(x).naam), waarde: x })) });
+    if (await test(h, "overtuiging", 8, `${korteNaam(heldDef(x).naam)} terughalen`)) { x.toestanden = x.toestanden.filter(t => t !== "betoverd"); log(`${naam} haalt ${korteNaam(heldDef(x).naam)} terug`); await melding("Terug", `${korteNaam(heldDef(x).naam)} knippert, kijkt je aan en is weer zichzelf. De betovering is verbroken.`); }
+    else await melding("Nog niet", "Je praat op haar in, maar haar ogen blijven ergens anders.");
+  }
+  if (k === "lening") { h.pond += 4; geefToestand(h, "schuld-hand"); log(`${naam} leent bij de Onzichtbare Hand`); terugPunt(voor, "lenen bij de Hand"); await melding("De Onzichtbare Hand", "Een heer zonder gezicht telt vier sovereigns in je hand. Hij wil geen handtekening. Hij weet je naam al. +4 Pond, en je hebt Schuld aan de Hand."); }
+  if (k === "natrekken") {
+    if (await test(h, "scherpte", 8, "Aanwijzingen natrekken")) { const v = trekNa(h, false); log(`${naam} trekt de Aanwijzingen na: ${v} vals`); await melding("Nagetrokken", v ? `Je legt je aantekeningen naast de archieven. ${v} ${v === 1 ? "spoor blijkt" : "sporen blijken"} vals en ${v === 1 ? "gaat" : "gaan"} de prullenbak in. De rest is zeker.` : "Alles klopt. Je Aanwijzingen zijn zeker."); }
+    else await melding("Niet nagetrokken", "De archivaris kijkt je aan alsof je zelf het gerucht bent.");
   }
   await controleerHeld(h); opslaan(); teken();
 }
@@ -1013,6 +1268,7 @@ async function rust(h) {
   h.L = Math.min(h.maxL, h.L + 1); if (!heeft(h, "waanzin-slapeloos")) h.G = Math.min(h.maxG, h.G + 1);
   if (h.id === "ezra-whitlock") for (const x of S.helden) if (x.plek === h.plek) x.L = Math.min(x.maxL, x.L + 1);
   if (h.id === "pema-lhamo") h.G = Math.min(h.maxG, h.G + 1);
+  if (weer("zachte-avond")) { h.L = Math.min(h.maxL, h.L + 1); h.G = Math.min(h.maxG, h.G + 1); }
   log(`${korteNaam(heldDef(h).naam)} rust uit`);
   opslaan(); teken();
 }
@@ -1074,11 +1330,11 @@ async function dienst(h) {
     case "sterrenwacht": await kijkOnheil(2, true); break;
     case "seance": await venster({ soort: "Seance", titel: p.naam, html: await pasToe(h, [{ geest: -1 }, { aanwijzing: 1 }]) }); break;
     case "station": {
-      if (klok("gesloten-lijnen")) { await melding("Station", "De klok heeft geslagen: de treinen rijden niet."); h.acties++; h.gebruikt.pop(); break; }
+      if (geslotenLijnen()) { await melding("Station", weer("storm") ? "Het stormt: de treinen rijden niet." : "De klok heeft geslagen: de treinen rijden niet."); h.acties++; h.gebruikt.pop(); break; }
       const doelen = Object.entries(S.plekken).filter(([, x]) => x.scheur).map(([id]) => id);
-      if (h.pond < 1 || !doelen.length) { await melding("Station", h.pond < 1 ? "Je hebt geen geld voor een kaartje." : "Er is nergens een Scheur."); geefActieTerug(h); break; }
-      const d = await venster({ soort: "Trein (1 Pond)", titel: "Waarheen?", knoppen: [...doelen.map(id => ({ label: plekNaam(id), waarde: id })), { label: "Toch niet", waarde: null, ghost: true }] });
-      if (d) { h.pond--; h.plek = d; log(`${naam} neemt de trein naar ${plekNaam(d)}`); terugPunt(voor, `de trein naar ${plekNaam(d)}`); } else geefActieTerug(h);
+      if (h.pond < prijs(1) || !doelen.length) { await melding("Station", h.pond < prijs(1) ? "Je hebt geen geld voor een kaartje." : "Er is nergens een Scheur."); geefActieTerug(h); break; }
+      const d = await venster({ soort: `Trein (${prijs(1)} Pond)`, titel: "Waarheen?", knoppen: [...doelen.map(id => ({ label: plekNaam(id), waarde: id })), { label: "Toch niet", waarde: null, ghost: true }] });
+      if (d) { h.pond -= prijs(1); h.plek = d; log(`${naam} neemt de trein naar ${plekNaam(d)}`); terugPunt(voor, `de trein naar ${plekNaam(d)}`); } else geefActieTerug(h);
       break;
     }
     case "bibliotheek": {
@@ -1090,27 +1346,28 @@ async function dienst(h) {
     }
     case "occulte-boekwinkel": case "markt": {
       const gekocht = soort === "markt"
-        ? await winkel(h, aanbod(h, "markt", "spullen", h.id === "hester-quayle" ? 4 : 3), "spul", d => Math.max(d.prijs ? 1 : 0, d.prijs - korting))
-        : await winkel(h, aanbod(h, "boekwinkel", "spreuken", 3), "spreuk", () => 2 - korting);
+        ? await winkel(h, aanbod(h, "markt", "spullen", h.id === "hester-quayle" ? 4 : 3), "spul", d => winkelPrijs(Math.max(d.prijs ? 1 : 0, d.prijs - korting)))
+        : await winkel(h, aanbod(h, "boekwinkel", "spreuken", 3), "spreuk", () => winkelPrijs(2 - korting));
       if (gekocht) terugPunt(voor, `kopen: ${gekocht}`); else geefActieTerug(h);
       break;
     }
     case "salon": {
       if (await test(h, "overtuiging", 8, "In de salon")) {
         const k = await venster({ soort: "Salon", titel: "Wat vraag je?", knoppen: [{ label: "2 Pond", waarde: "pond" }, { label: "Een bondgenoot", waarde: "bg" }] });
-        await venster({ soort: "Salon", titel: p.naam, html: await pasToe(h, [k === "pond" ? { pond: 2 } : { trek: "bondgenoot" }]) });
+        await venster({ soort: "Salon", titel: p.naam, html: await pasToe(h, [k === "pond" ? { pond: S.god === "gul-marrach" ? 3 : 2 } : { trek: "bondgenoot" }]) });
       }
       break;
     }
     case "theater": {
-      await pasToe(h, [{ pond: 2 }]);
-      const k = await venster({ soort: "Theater", titel: "Je verdient 2 Pond", html: "<p>Wil je een extra nummer doen voor 1 Pond meer? (Charisma 9)</p>", knoppen: [{ label: "Ja", waarde: true }, { label: "Nee", waarde: false, ghost: true }] });
+      const loon = S.god === "gul-marrach" ? 3 : 2;
+      await pasToe(h, [{ pond: loon }]);
+      const k = await venster({ soort: "Theater", titel: `Je verdient ${loon} Pond`, html: "<p>Wil je een extra nummer doen voor 1 Pond meer? (Charisma 9)</p>", knoppen: [{ label: "Ja", waarde: true }, { label: "Nee", waarde: false, ghost: true }] });
       if (k && await test(h, "overtuiging", 9, "Een extra nummer")) await pasToe(h, [{ pond: 1 }]);
       break;
     }
     case "club": {
-      if (h.pond < 3) { await melding("Club", "Je hebt 3 Pond nodig."); geefActieTerug(h); break; }
-      h.pond -= 3; h.artefactGerucht = true; terugPunt(voor, "een gerucht kopen in de club");
+      if (h.pond < prijs(3)) { await melding("Club", `Je hebt ${prijs(3)} Pond nodig.`); geefActieTerug(h); break; }
+      h.pond -= prijs(3); h.artefactGerucht = true; terugPunt(voor, "een gerucht kopen in de club");
       await melding("Een gerucht in de club", "Je betaalt 3 Pond. Bij je volgende expeditie overzee vind je zeker een artefact.");
       break;
     }
@@ -1121,12 +1378,14 @@ async function dienst(h) {
       break;
     }
     case "ziekenhuis": {
-      const k = await venster({ soort: "Ziekenhuis en bank", titel: "The City", knoppen: [{ label: "Verzorgen: alle Lichaam (1 Pond)", waarde: "heel", uit: h.pond < 1 }, { label: "Gewond laten verwijderen", waarde: "gewond", uit: !heeft(h, "gewond") }, { label: "Lenen: +3 Pond (Schuld)", waarde: "leen", uit: heeft(h, "schuld") }, { label: "Schuld aflossen (4 Pond)", waarde: "los", uit: !heeft(h, "schuld") || h.pond < 4 }, { label: "Niets", waarde: null, ghost: true }] });
-      if (k === "heel") { h.pond--; h.L = h.maxL; log(`${naam} wordt verzorgd`); }
+      const k = await venster({ soort: "Ziekenhuis en bank", titel: "The City", knoppen: [{ label: `Verzorgen: alle Lichaam (${prijs(1)} Pond)`, waarde: "heel", uit: h.pond < prijs(1) },
+        ...(heeft(h, "schuld-hand") ? [{ label: "Schuld aan de Hand aflossen (5 Pond)", waarde: "hand", uit: h.pond < 5 }] : []), { label: "Gewond laten verwijderen", waarde: "gewond", uit: !heeft(h, "gewond") }, { label: "Lenen: +3 Pond (Schuld)", waarde: "leen", uit: heeft(h, "schuld") }, { label: "Schuld aflossen (4 Pond)", waarde: "los", uit: !heeft(h, "schuld") || h.pond < 4 }, { label: "Niets", waarde: null, ghost: true }] });
+      if (k === "heel") { h.pond -= prijs(1); h.L = h.maxL; log(`${naam} wordt verzorgd`); }
+      if (k === "hand") { h.pond -= 5; h.toestanden = h.toestanden.filter(t => t !== "schuld-hand"); log(`${naam} lost de schuld aan de Hand af`); }
       if (k === "gewond") h.toestanden = h.toestanden.filter(t => t !== "gewond");
       if (k === "leen") { h.pond += 3; geefToestand(h, "schuld"); log(`${naam} leent 3 Pond`); }
       if (k === "los") { h.pond -= 4; h.toestanden = h.toestanden.filter(t => t !== "schuld"); log(`${naam} lost de schuld af`); }
-      if (k) terugPunt(voor, { heel: "verzorgen", gewond: "Gewond laten verwijderen", leen: "lenen", los: "schuld aflossen" }[k]); else geefActieTerug(h);
+      if (k) terugPunt(voor, { heel: "verzorgen", gewond: "Gewond laten verwijderen", leen: "lenen", los: "schuld aflossen", hand: "de Hand afbetalen" }[k]); else geefActieTerug(h);
       break;
     }
     case "gaarkeuken": {
@@ -1157,8 +1416,8 @@ async function dienst(h) {
       break;
     }
     case "kerk": {
-      const k = await venster({ soort: "De abdij", titel: p.naam, knoppen: [{ label: "Vloek laten opheffen", waarde: "v", uit: !heeft(h, "vervloekt") }, { label: "Zegen ontvangen", waarde: "z", uit: heeft(h, "gezegend") }, { label: "Niets", waarde: null, ghost: true }] });
-      if (k) { await pasToe(h, [k === "v" ? { verwijder: "vervloekt" } : { toestand: "gezegend" }]); terugPunt(voor, k === "v" ? "de vloek laten opheffen" : "de zegen ontvangen"); } else geefActieTerug(h);
+      const k = await venster({ soort: "De abdij", titel: p.naam, knoppen: [{ label: "Vloek laten opheffen", waarde: "v", uit: !heeft(h, "vervloekt") }, { label: "Zegen ontvangen", waarde: "z", uit: heeft(h, "gezegend") }, ...(heeft(h, "betoverd") ? [{ label: "De betovering laten verbreken", waarde: "b" }] : []), { label: "Niets", waarde: null, ghost: true }] });
+      if (k) { await pasToe(h, [k === "v" ? { verwijder: "vervloekt" } : k === "b" ? { verwijder: "betoverd" } : { toestand: "gezegend" }]); terugPunt(voor, k === "v" ? "de vloek laten opheffen" : k === "b" ? "de betovering laten verbreken" : "de zegen ontvangen"); } else geefActieTerug(h);
       break;
     }
     case "kunstenaars": {
@@ -1169,6 +1428,7 @@ async function dienst(h) {
       break;
     }
     case "haven": {
+      if (weer("storm")) { await melding("De dokken", "Het stormt. Geen kapitein vaart vandaag uit."); geefActieTerug(h); break; }
       if (h.pond < bootPrijs()) { await melding("De dokken", `Een bootkaartje kost ${bootPrijs()} Pond.`); geefActieTerug(h); break; }
       const d = await venster({ soort: `Bootkaartje (${bootPrijs()} Pond)`, titel: "Op expeditie", knoppen: [...D.bord.overzee.map(o => ({ label: o.naam, waarde: o.id })), { label: "Toch niet", waarde: null, ghost: true }] });
       if (d) { h.pond -= bootPrijs(); h.plek = d; log(`${naam} vaart naar ${plekNaam(d)}`); terugPunt(voor, `de boot naar ${plekNaam(d)}`); } else geefActieTerug(h);
@@ -1257,7 +1517,7 @@ async function gebruikSpul(h, id, doelMonster = null) {
     }
     case "stappen2": if (S.fase !== "helden" || h !== actief()) return melding(s.naam, "Dit kun je alleen in je eigen beurt gebruiken."); weg(); h.stappen += 2; break;
     case "ondergronds": {
-      if (klok("gesloten-lijnen")) return melding(s.naam, "De Ondergrondse rijdt niet.");
+      if (geslotenLijnen()) return melding(s.naam, "De Ondergrondse rijdt niet.");
       if (S.fase !== "helden" || h !== actief() || !STATIONS.includes(h.plek)) return melding(s.naam, "Je moet in je beurt op een station van de Ondergrondse staan.");
       const d = await venster({ soort: "De Ondergrondse", titel: "Naar welk station?", knoppen: STATIONS.filter(x => x !== h.plek).map(x => ({ label: plekNaam(x), waarde: x })) });
       weg(); h.plek = d; break;
@@ -1517,6 +1777,8 @@ async function monsterVerslagen(h, plek, m) {
   if (!d.geenTrofee) h.trofee++;
   if (d.beloning) await pasToe(h, Object.entries(d.beloning).map(([k, v]) => ({ [k]: v })));
   log(`${naam} verslaat ${d.naam}`);
+  if (d.verjaagtCultisten) { const c = S.plekken[plek].monsters.filter(x => x.id === "cultist"); for (const x of c) verwijderMonster(plek, x.uid); if (c.length) { log(`${c.length} cultisten vluchten uit ${plekNaam(plek)}`); await melding("De kudde vlucht", `Zonder hun leider weten de ${c.length} cultisten in ${plekNaam(plek)} niet meer wat ze moeten zingen. Ze verspreiden zich.`, "Gevecht"); } }
+  if (m.id === "cultist") await cultistWeg(h);
   /* Morghast: de doden blijven niet liggen */
   if (S.god === "morghast" && !byId(D.epische, m.id) && !d.komtTerug && d6() === 1) { const p = kies1(D.bord.plekken).id; S.plekken[p].monsters.push({ uid: ++S.teller, id: m.id, leven: d.leven }); log(`${d.naam} staat weer op in ${plekNaam(p)}`); await melding("De doden blijven niet liggen", `${d.naam} staat weer op, in ${plekNaam(p)}.`); }
   if (d.komtTerug && d6() <= 2) { const p = d.id === "knekelman" ? kies1(D.bord.plekken).id : kies1(D.bord.rivier); S.plekken[p].monsters.push({ uid: ++S.teller, id: m.id, leven: d.leven }); log(`${d.naam} komt terug in ${plekNaam(p)}`); await melding("Het komt terug", `${d.naam} is niet voorgoed weg. Het duikt weer op, in ${plekNaam(p)}.`, "Gevecht"); }
@@ -1579,6 +1841,8 @@ async function vecht(h, plek, m) {
   if (h.spreuken.includes("verbanning")) opties.push({ label: "Hermetische verbanning", waarde: "verban" });
   if (!ep && h.spullen.includes("dynamiet")) opties.push({ label: "Dynamiet", waarde: "dyn", ghost: true });
   if (d.mens && h.spullen.includes("chloroform")) opties.push({ label: "Chloroform", waarde: "chl", ghost: true });
+  /* Ommeth: een cultist kun je ook bekeren */
+  if (d.bekeren) opties.push({ label: `Bekeren (Charisma ${metStand(8)}${kansTxt(h, "overtuiging", 8)})`, waarde: "bekeer" });
   const zwaard = h.id === "julian-hartwell" && !d.vechtMet; /* Zwaard van licht: Kennis in plaats van Kracht, wapens tellen mee */
   const kenmerk = d.vechtMet || (zwaard ? "kennis" : "kracht");
   const nebet = S.god === "nebet-ankhu" && h.artefacten.length ? 1 : 0;
@@ -1588,17 +1852,34 @@ async function vecht(h, plek, m) {
   const bonus = (kenmerk === "kracht" || zwaard ? wapenBonus(h, d.mens) : 0) + nebet + kogels + terrier;
   const voorbereid = h.ronde.voorbereid ? 1 : 0;
   const gruwel = S.plekken[plek]?.belRonde === S.ronde ? 0 : d.gruwel;
+  /* Sirrhae: haar wezens bekoren. De Gruwel-test is dan een Charisma-test, en wie faalt, raakt Betoverd. */
+  const gruwelKenm = d.bekoring ? "overtuiging" : "kennis";
   const gruwelOpt = () => ({ extra: (h.ronde.pentagram ? 1 : 0) + (S.helden.some(x => x.id === "arjan-singh" && x.plek === plek && !x.uit) ? 1 : 0), bonus: (h.artefacten.includes("jade-masker") ? 2 : 0) + artBonus(h, "gruwel") + h.spullen.reduce((t, id) => t + (spulDef(id)?.bonus?.gruwel || 0), 0) });
-  const kansen = [gruwel > 0 && !h.ronde.wake ? `gruwel weerstaan ${kans(h, "kennis", 8, gruwelOpt())}%` : "", `raken ${kans(h, kenmerk, d.taaiheid, { bonus, extra: voorbereid })}%`].filter(Boolean).join(" · ");
+  const kansen = [gruwel > 0 && !h.ronde.wake ? `${d.bekoring ? "bekoring" : "gruwel"} weerstaan ${kans(h, gruwelKenm, 8, gruwelOpt())}%` : "", `raken ${kans(h, kenmerk, d.taaiheid, { bonus, extra: voorbereid })}%`].filter(Boolean).join(" · ");
   if (h.spreuken.includes("verbanning")) opties.find(o => o.waarde === "verban").label += kansTxt(h, "kennis", d.taaiheid, { bonus: nebet, spreuk: true, extra: voorbereid });
   const k = await venster({ soort: ep ? "Episch monster" : "Gevecht", thema: "monster", titel: d.naam, beeld: `art/monsters/${d.id}.jpg`, zij: true, achterkant: "monster", geluid: "monster", verhaal: d.eigenschap,
     html: `<p>Gruwel <b>${d.gruwel}</b> · Taaiheid <b>${d.taaiheid}</b> · Schade <b>${d.schade}</b> · Leven <b>${m.leven}</b></p><p class="muted">${esc(naam)} vecht met ${KNAAM[kenmerk]}${voorbereid ? ", voorbereid (+1 dobbelsteen)" : ""}. Kans: ${kansen}.</p>${middelenHtml(h, { kenmerk, gevecht: true, mens: !!d.mens, episch: ep })}`, knoppen: opties });
   if (k === "dyn") { await gebruikSpul(h, "dynamiet", m); return true; }
   if (k === "chl") { await gebruikSpul(h, "chloroform", m); return true; }
   if (k === "glorie") { h.ronde.glorie = true; log(`${naam} glipt ongezien langs ${d.naam}`); return false; }
+  if (k === "bekeer") {
+    if (await test(h, "overtuiging", 8, `${d.naam} bekeren`)) {
+      verwijderMonster(plek, m.uid); h.aanw++; log(`${naam} bekeert een ${d.naam}`);
+      await melding("Bekeerd", `De ${d.naam} luistert, en zegt dan zijn eigen naam, voor het eerst in weken. Hij vertelt je wat hij weet en loopt naar huis. +1 Aanwijzing.`, "Gevecht");
+      await cultistWeg(h); return true;
+    }
+    h.G--; log(`${naam} kan de ${d.naam} niet bereiken: −1 Geest`);
+    await melding("Niet bekeerd", `Hij zingt dwars door je woorden heen. −1 Geest. Nu moet je vechten.`, "Gevecht");
+    await controleerHeld(h); if (h.plek !== plek) return false;
+  }
   if (gruwel > 0 && !h.ronde.wake) {
     const go = gruwelOpt(); delete h.ronde.pentagram;
-    if (!await test(h, "kennis", 8, `Gruwel van ${d.naam}`, go)) { const g = gruwel + (h.id === "julian-hartwell" ? 1 : 0); h.G -= g; log(`${naam} verliest ${g} Geest door gruwel`); }
+    if (d.bekoring) {
+      if (!await test(h, "overtuiging", 8, `Bekoring van ${d.naam}`, go)) {
+        if (!heeft(h, "betoverd")) { geefToestand(h, "betoverd"); log(`${naam} raakt Betoverd door ${d.naam}`); await melding("Betoverd", `${d.naam} glimlacht, en je vergeet even waarom je hier bent. Je bent Betoverd.`, "Gevecht"); }
+        else { h.G -= gruwel; log(`${naam} verliest ${gruwel} Geest door bekoring`); }
+      }
+    } else if (!await test(h, "kennis", 8, `Gruwel van ${d.naam}`, go)) { const g = gruwel + (h.id === "julian-hartwell" ? 1 : 0); h.G -= g; log(`${naam} verliest ${g} Geest door gruwel`); }
     await controleerHeld(h);
     if (h.plek !== plek) return false;
   }
@@ -1615,7 +1896,9 @@ async function vecht(h, plek, m) {
     m.leven -= schade;
     const extraTxt = schade > 1 ? ` Overslag: ${schade} schade.` : "";
     if (m.leven <= 0) { await monsterVerslagen(h, plek, m); await melding("Verslagen", `${d.naam} is verslagen.${extraTxt}`, "Gevecht"); return true; }
-    await melding("Raak", `${d.naam} is gewond maar staat nog (${m.leven} leven).${extraTxt}`, "Gevecht");
+    let verjaagd = "";
+    if (d.verjaagtBijRaak) { const c = S.plekken[plek].monsters.filter(x => x.id === "cultist"); for (const x of c) verwijderMonster(plek, x.uid); if (c.length) verjaagd = ` Zijn ${c.length} volgelingen vluchten.`; }
+    await melding("Raak", `${d.naam} is gewond maar staat nog (${m.leven} leven).${extraTxt}${verjaagd}`, "Gevecht");
     return false;
   }
   /* artefacten met een prijs bij een misser (het Zwaard van de Tempeliers) */
@@ -1629,6 +1912,14 @@ async function vecht(h, plek, m) {
   let extra = "";
   if (d.verliesWaanzin) extra = ` Je krijgt waanzin: ${geefWaanzin(h)}.`;
   if (d.verliesPond && h.pond > 0) { h.pond = Math.max(0, h.pond - d.verliesPond); extra += ` Het steelt ${d.verliesPond} Pond.`; }
+  if (d.verliesToestand && !heeft(h, d.verliesToestand)) { geefToestand(h, d.verliesToestand); extra += ` Je bent ${toestDef(d.verliesToestand).naam}.`; }
+  if (d.verliesAanw && h.aanw > 0) { h.aanw = Math.max(0, h.aanw - d.verliesAanw); extra += ` Je raakt ${d.verliesAanw} Aanwijzing kwijt.`; }
+  if (d.maaktOnzeker && isYth() && h.aanwZeker) { h.aanwZeker = 0; extra += " Wat je zeker wist, is ineens weer onzeker."; }
+  if (d.steeltArtefact && h.artefacten.length) {
+    const a = kies1(h.artefacten); h.artefacten = h.artefacten.filter(x => x !== a);
+    extra += ` Het grijpt ${artDef(a).naam} en is weg.`;
+    if (!byId(D.epische, m.id)) { verwijderMonster(plek, m.uid); S.plekken[kies1(D.bord.plekken).id].monsters.push(m); }
+  }
   if (d.herstelt && m.leven < d.leven + (S.helden.length === 4 && byId(D.epische, m.id) ? 2 : 0)) { m.leven += d.herstelt; extra += ` ${d.naam} naait zichzelf dicht: +${d.herstelt} leven.`; }
   if (d.id === "rivierwiedde") { const r = burenVan(null, plek).filter(x => D.bord.rivier.includes(x)); if (r.length) { h.plek = kies1(r); extra += ` Je wordt meegesleurd naar ${plekNaam(h.plek)}.`; } }
   await melding("Verloren", `${d.naam} raakt je: −${verloren} Lichaam.${extra}`, "Gevecht");
@@ -1878,8 +2169,15 @@ async function onheilsfase() {
     }
   }
   /* vaste gevolgen elke ronde */
+  if (S.god === "ommeth") await ommethRonde();
+  if (S.god === "gul-marrach") S.koers = Math.min(3, (S.koers || 0) + 1);
   beweegMonsters(false);
-  for (const { plek, m } of alleMonsters()) { const d = monsterDef(m.id); if (d.aura) for (const h of S.helden) if (h.plek === plek) h.G += d.aura.geest; }
+  for (const { plek, m } of alleMonsters()) {
+    const d = monsterDef(m.id);
+    if (d.aura) for (const h of S.helden) if (h.plek === plek) { if (d.aura.geest) h.G += d.aura.geest; if (d.aura.lichaam) verliesLichaam(h, -d.aura.lichaam); }
+    /* De Uurwerkman windt zichzelf om de ronde op, behalve in de ronde dat de klok slaat */
+    if (d.herstelRonde && S.slagRonde !== S.ronde && S.ronde % 2 === 0) m.leven = Math.min(d.leven + (S.helden.length === 4 ? 2 : 0), m.leven + d.herstelRonde);
+  }
   /* De Mist kruipt in je hoofd: is de Mist tot de helft gezakt, dan verliest elke held in Londen elke ronde 1 Geest */
   const uitputting = S.mist <= Math.floor((S.mistStart ?? S.mist) / 2);
   if (uitputting && !S.uitputtingGemeld) { S.uitputtingGemeld = true; await melding("De Mist kruipt in je hoofd", "De Mist is tot de helft gezakt. Vanaf nu verliest elke held in Londen aan het eind van elke ronde 1 Geest. Rust, vlugzout en genezing worden kostbaar."); }
@@ -1889,6 +2187,15 @@ async function onheilsfase() {
     if (S.god === "nebet-ankhu" && !uitputting && h.artefacten.length) h.G--;
     if (S.god === "azh-ilareth" && h.plek === "hampstead") h.G = Math.min(h.maxG, h.G + 1);
     if (S.god === "ysmara" && !uitputting && !isOverzee(h.plek) && S.helden.filter(x => x.plek === h.plek).length === 1) { h.G--; log(`${korteNaam(heldDef(h).naam)} staat alleen en hoort de Doornkoningin roepen: −1 Geest`); }
+    if (heeft(h, "betoverd") && !uitputting) { h.G--; log(`${korteNaam(heldDef(h).naam)} denkt aan Sirrhae: −1 Geest`); }
+    if (bevroren(h.plek)) { verliesLichaam(h, 1); log(`${korteNaam(heldDef(h).naam)} staat in de vorst: −1 Lichaam`); }
+    if (weer("storm") && D.bord.rivier.includes(h.plek)) { verliesLichaam(h, 1); log(`${korteNaam(heldDef(h).naam)} staat in de storm aan de rivier: −1 Lichaam`); }
+    if (S.god === "gul-marrach" && !uitputting && !isOverzee(h.plek) && h.pond === 0) { h.G--; log(`${korteNaam(heldDef(h).naam)} heeft geen penny: −1 Geest`); }
+    if (heeft(h, "schuld-hand") && d6() === 1) { S.mist--; log(`De Onzichtbare Hand int rente bij ${korteNaam(heldDef(h).naam)}: de Mist daalt met 1`); await melding("De Hand int rente", `Een heer zonder gezicht wacht ${korteNaam(heldDef(h).naam)} op. Hij neemt geen geld aan. De Mist daalt met 1.`, "Gul-Marrach"); }
+    if (S.god === "karathos") {
+      const drempel = S.helden.reduce((t, x) => t + x.artefacten.length, 0) >= 4 ? 2 : 1;
+      for (const id of [...h.artefacten]) if (h.artefacten.includes(id) && d6() <= drempel) await splinterRoep(h, id);
+    }
     if (h.artefacten.includes("kristallen-schedel") && d6() === 1) h.G--;
     for (const id of h.artefacten) { const v = artDef(id)?.vloek; if (v && d6() <= v.kans) { await pasToe(h, v.effect); log(`${artDef(id).naam} eist zijn prijs van ${korteNaam(heldDef(h).naam)}`); } }
     if (heeft(h, "verslaafd")) { if (h.pond > 0) h.pond--; else h.G--; }
@@ -1911,10 +2218,13 @@ async function onheilsfase() {
   }
   await zorgVoorScheuren(true);
   if (klok("slapeloze-nachten") && S.ronde % 3 === 0) { S.mist -= 1; log("Big Ben slaat dertien: de Mist daalt 1 extra"); await melding("Slapeloze nachten", "Big Ben slaat dertien. De Mist daalt 1 extra.", "De Klokken van Westminster"); }
+  if (S.god === "sirrhae" && S.mist > 0) await sirrhaeGunst();
+  if (S.god === "ouroch" && S.mist > 0) await ouroch();
   await controleerAlles();
   if (S.mist <= 0) return ontwaken();
   S.ronde++; S.rondeGebruikt = {};
   for (const h of S.helden) { h.ronde = { wake: h.ronde.wake }; }
+  if (S.god === "ulvereth") await trekWeer(true);
   S.fase = "helden"; S.actief = 0;
   startHeldenbeurt();
 }
@@ -2025,6 +2335,9 @@ function advies(h) {
   if (m?.type === "episch") return `Het epische monster staat in <b>${esc(plekNaam(m.plek))}</b>. Ga er samen heen met wapens of spreuken, en het liefst met volle Lichaam en Geest.`;
   if (m?.type === "test") return isOverzee(h.plek) ? `Je bent overzee.` : `Reis naar St Katharine Docks en koop daar een bootkaartje (2 Pond) naar <b>${esc(plekNaam(m.plek))}</b>.`;
   if (m?.type === "artefacten") return `Verzamel ${m.aantal} Artefacten en breng ze naar <b>${esc(plekNaam(m.plek))}</b>. Artefacten vind je vooral overzee, via St Katharine Docks.`;
+  if (m?.type === "cultisten") { const d = dichtsbij(h, x => S.plekken[x].monsters.some(y => y.id === "cultist")); return d ? `Verdrijf cultisten: versla of bekeer ze. De dichtstbijzijnde staan in <b>${esc(plekNaam(d[0]))}</b>.` : "Er staan nu geen cultisten op het bord. Ze komen bij open Scheuren."; }
+  if (m?.type === "weigeren") return "Weiger de gunsten van Sirrhae, ronde na ronde. Neem je er een aan, dan begint het tellen opnieuw.";
+  if (m?.type === "betaal") return `Verdien Ponden (het theater op Leicester Square, de salon in Mayfair) en betaal samen ${m.aantal} Pond in <b>${esc(plekNaam(m.plek))}</b>.`;
   if (m?.type === "breng") return S.helden.some(x => x.mysterieVoorwerp) ? `Breng ${esc(m.voorwerp)} naar <b>${esc(plekNaam(m.naar))}</b>.` : isOverzee(m.van) ? `Reis via St Katharine Docks naar <b>${esc(plekNaam(m.van))}</b> en zoek daar ${esc(m.voorwerp)}.` : `Ga naar <b>${esc(plekNaam(m.van))}</b> en zoek daar ${esc(m.voorwerp)}.`;
   if (h.pond >= 2 && h.spullen.length < 2) return "Je hebt geld en weinig spullen. Op een markt (Covent Garden, Southwark, Limehouse) kun je winkelen.";
   return "Verzamel Aanwijzingen en sluit Scheuren voordat de Mist op is.";
@@ -2265,6 +2578,7 @@ async function godIntro(begin) {
     html: `${img ? `<img class="godintro" src="${img}" alt="">` : ""}<p class="verhaal">${esc(g.verhaal)}</p>
       <p><b>Speciale regel:</b> ${esc(g.regel)}</p><p><b>Tegenspelers:</b> ${esc(g.verdachten)}</p>
       ${mys ? `<p><b>Eerste mysterie: ${esc(mys.naam)}.</b> ${esc(mys.doel)}</p>` : ""}
+      ${S.god === "ulvereth" && S.weer && begin ? `<p><b>Het weer van vandaag: ${esc(S.weer.naam)}.</b> ${esc(S.weer.tekst)}</p>` : ""}
       <p class="muted">Los ${S.nodig} mysteries op voordat de Mist (nu ${S.mist}) op 0 staat.</p>`,
     knoppen: [{ label: begin ? "Aan de slag" : "Sluiten", waarde: true }] });
 }
@@ -2358,7 +2672,8 @@ function teken() {
       <span class="stat" title="Mist">Mist <b>${S.mist}</b></span>
       <span class="mistbalk" aria-hidden="true">${Array.from({ length: S.mistStart || g.mist }, (_, i) => `<i class="${i < S.mist ? "" : "weg"}"></i>`).join("")}</span>
       <span class="stat">Mysteries <b>${S.opgelost}/${S.nodig}</b>${mys ? `: ${esc(mys.naam)}` : ""}</span>
-      ${S.klokken?.length ? `<button class="stat klokchip" data-act="klokken-info" title="${esc(S.klokken.map(id => KLOKKEN.find(k => k.id === id)?.naam).join(", "))}">Klokken <b>${S.klokken.map(id => ROMEINS[KLOKKEN.findIndex(k => k.id === id)]).join(" ")}</b></button>` : ""}
+      ${alleKlokken().length ? `<button class="stat klokchip" data-act="klokken-info" title="${esc(alleKlokken().map(id => KLOKKEN.find(k => k.id === id)?.naam).join(", "))}">Klokken <b>${alleKlokken().map(id => ROMEINS[KLOKKEN.findIndex(k => k.id === id)]).join(" ")}</b></button>` : ""}
+      ${godChip()}
       ${S.fase === "helden" ? `<span class="stat beurtchip" style="--kleur:${KLEUREN[S.actief]}">Aan de beurt: <b>${esc(korteNaam(heldDef(actief()).naam))}</b></span>` : ""}
       <div class="rechts"><button class="btn small ghost" data-act="geluid" aria-pressed="${Geluid.aan}">${Geluid.aan ? "Geluid uit" : "Geluid aan"}</button>${Geluid.heeftMuziek && Geluid.aan ? `<button class="btn small ghost" data-act="muziek" aria-pressed="${Geluid.muziekAan}">${Geluid.muziekAan ? "Muziek uit" : "Muziek aan"}</button>` : ""}<button class="btn small ghost" data-act="tips" aria-pressed="${!!(S.tutorial || UI.tips)}" data-uitleg="${S.tutorial ? "Zet de tutorial uit: geen uitlegvensters en geen suggesties meer." : UI.tips ? "Verberg het tipvak met een suggestie in je beurt." : "Toon in je beurt een tipvak met een suggestie: waar je heen kunt en wat je kunt doen."}">${S.tutorial || UI.tips ? "Tips uit" : "Tips aan"}</button><button class="btn small ghost" data-act="handboek">Handleiding</button><button class="btn small ghost" data-act="stoppen">Stoppen</button></div>
     </header>
@@ -2382,7 +2697,7 @@ function tekenBord() {
   const tokens = b.plekken.map(p => {
     const s = S.plekken[p.id], hier = S.helden.map((x, i) => [x, i]).filter(([x]) => x.plek === p.id && !x.uit);
     const img = art(`art/plekken/${p.id}.jpg`), bereik = reik.includes(p.id);
-    return `<g class="plek${bereik ? " bereik" : ""}${s.scheur ? " open" : ""}" data-plek="${p.id}" tabindex="0" role="button" aria-label="${bereik ? "Reis naar " : ""}${esc(p.naam)}">
+    return `<g class="plek${bereik ? " bereik" : ""}${s.scheur ? " open" : ""}${bevroren(p.id) ? " bevroren" : ""}" data-plek="${p.id}" tabindex="0" role="button" aria-label="${bereik ? "Reis naar " : ""}${esc(p.naam)}">
       ${bereik ? `<circle class="reikring" cx="${p.x}" cy="${p.y}" r="${R + 7}"/>` : ""}
       ${UI.plan?.plek === p.id ? `<circle class="coachring" cx="${p.x}" cy="${p.y}" r="${R + 16}"/>` : ""}
       ${s.scheur ? `<circle class="scheurgloed" cx="${p.x}" cy="${p.y}" r="${R + 10}"/><circle class="scheurring" cx="${p.x}" cy="${p.y}" r="${R + 5}"/>` : ""}
@@ -2541,7 +2856,7 @@ function tekenPaneel() {
         <div><h2>${esc(d.naam)}</h2><div class="muted">${esc(d.rol)} · ${esc(plekNaam(h.plek))}</div></div>
       </div>
       <div class="pools">
-        <div>Lichaam<b>${h.L}/${h.maxL}</b></div><div>Geest<b>${h.G}/${h.maxG}</b></div><div>Pond<b>${h.pond}</b></div><div>Aanwijz.<b>${h.aanw}</b></div><div>Trofee<b>${h.trofee}</b></div>
+        <div>Lichaam<b>${h.L}/${h.maxL}</b></div><div>Geest<b>${h.G}/${h.maxG}</b></div><div>Pond<b>${h.pond}</b></div><div>Aanwijz.<b>${h.aanw}${isYth() && onzeker(h) ? `<small title="onzeker">${onzeker(h)}?</small>` : ""}</b></div><div>Trofee<b>${h.trofee}</b></div>
       </div>
       <div class="kenm">${KENMERKEN.map(([k, l]) => `<div title="${esc(KUITLEG[k])}">${l}<b>${h.kenm[k]}${bonusVoor(h, k) ? `<small>+${bonusVoor(h, k)}</small>` : ""}</b></div>`).join("")}</div>
       ${isActief && heeft(h, "verdwaald") ? `<div class="acties"><button class="btn breed" data-act="zoekweg" ${h.acties > 0 ? "" : "disabled"} data-uitleg="Kost al je acties. Lukt het, dan sta je op een willekeurige plek in Londen.">Zoek de weg terug (Waarneming 8)</button><button class="btn ghost breed" data-act="klaar">Beurt klaar</button></div>` : isActief ? `<div class="acties">
@@ -2574,6 +2889,8 @@ function tekenPaneel() {
     <div class="log" aria-label="Logboek">${S.log.slice(0, 30).map(l => `<span>${esc(l)}</span>`).join("")}</div>`;
 }
 function mysterieVoortgang(m) {
+  if (m.type === "cultisten") return `<span class="muted">Verdreven: ${S.voortgang.cultisten || 0} van ${m.aantal}.</span>`;
+  if (m.type === "weigeren") return `<span class="muted">Achter elkaar geweigerd: ${S.voortgang.geweigerd || 0} van ${m.aantal}.</span>`;
   const nog = scheurenNog(m);
   if (!nog) return "";
   return `<span class="muted">Gesloten: ${nog.dicht} van ${m.aantal}${nog.vast ? `. Nog nodig: een Scheur in ${nog.vast.map(plekNaam).join(" of ")}` : ""}.</span>`;
@@ -2755,9 +3072,11 @@ function klokSectie(u) {
         <span class="kk-tekst"><b>${ic ? `${ROMEINS[i]} · ` : ""}${esc(k.naam)}</b><small>${esc(k.tekst)}${nut ? " (Genadeloos heeft al geen laatste nacht.)" : ""}</small></span>${pips(klokSlagen(k.id))}</button>`; }).join("")}</div>
   </section>`;
 }
+const alleKlokken = () => [...(S.klokken || []), ...(S.godKlokken || [])];
 async function toonKlokkenInfo() {
-  await venster({ soort: "De Klokken van Westminster", titel: `${S.klokken.length} ${S.klokken.length === 1 ? "klok luidt" : "klokken luiden"}`, breed: true,
-    html: `<ul class="klokinfo">${S.klokken.map(id => { const i = KLOKKEN.findIndex(k => k.id === id), k = KLOKKEN[i], ic = art(`art/klokken/${id}.jpg`); return `<li>${ic ? `<img src="${ic}" alt="">` : `<span class="klokcijfer">${ROMEINS[i]}</span>`}<span><b>${ROMEINS[i]} · ${esc(k.naam)}.</b> ${esc(k.tekst)}</span></li>`; }).join("")}</ul>
+  const alle = alleKlokken();
+  await venster({ soort: "De Klokken van Westminster", titel: `${alle.length} ${alle.length === 1 ? "klok luidt" : "klokken luiden"}`, breed: true,
+    html: `${S.godKlokken?.length ? `<p class="muted">Ouroch liet ${S.godKlokken.length === 1 ? "één klok" : `${S.godKlokken.length} klokken`} slaan. Een opgelost mysterie zet er een stil.</p>` : ""}<ul class="klokinfo">${alle.map(id => { const i = KLOKKEN.findIndex(k => k.id === id), k = KLOKKEN[i], ic = art(`art/klokken/${id}.jpg`); return `<li>${ic ? `<img src="${ic}" alt="">` : `<span class="klokcijfer">${ROMEINS[i]}</span>`}<span><b>${ROMEINS[i]} · ${esc(k.naam)}.</b> ${esc(k.tekst)}</span></li>`; }).join("")}</ul>
       ${S.kans != null ? `<p class="muted">Winkans bij de start: ongeveer ${Math.round(S.kans * 100)}%. Winnen levert ${puntenVoor(S.kans, false)} punten op.</p>` : ""}` });
 }
 
@@ -2826,6 +3145,7 @@ app.addEventListener("click", e => {
     case "klokken-uit": u.klokken = []; bewaarKlokkeuze(); return teken();
     case "klokken-alle": u.klokken = KLOKKEN.map(k => k.id); bewaarKlokkeuze(); return teken();
     case "klokken-info": return veilig(toonKlokkenInfo);
+    case "god-info": return veilig(godInfo);
     case "scorebord": return veilig(() => toonScorebord());
     case "deel-score": {
       const veld = document.getElementById("spelernaam");

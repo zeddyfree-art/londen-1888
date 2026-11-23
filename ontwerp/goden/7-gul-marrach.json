@@ -1,0 +1,932 @@
+{
+  "god": {
+    "id": "gul-marrach",
+    "naam": "Gul-Marrach",
+    "titel": "De Onzichtbare Hand",
+    "mist": 12,
+    "verhaal": "In de City praten ze over de markt alsof het een persoon is. De markt is nerveus, de markt eist, de markt vergeeft niet. Op Threadneedle Street weet een handvol makelaars dat dat geen beeldspraak is. Onder de Bank of England zit iets dat zich voedt met schuld en honger. Het heeft de prijs van brood laten stijgen, de huur, de doodskisten. En sinds kort leent het terug, aan iedereen, tegen een rente die niemand ziet.",
+    "regel": "De koers (+0 tot +3) komt bovenop alles wat Ponden kost en stijgt elke ronde. Wie aan het eind van een ronde geen Pond heeft, verliest 1 Geest. Lenen bij de Hand kan altijd.",
+    "verdachten": "Het Syndicaat van de Ongeziene Hand: bankiers, makelaars, deurwaarders en huisjesmelkers in de City en Pall Mall.",
+    "mysteries": [
+      {
+        "naam": "Het grootboek",
+        "doel": "Breng samen 3 Aanwijzingen naar The City en lees het grootboek dat de Bank verborgen houdt (Kennis 9).",
+        "type": "aanwijzingen",
+        "plek": "city",
+        "aantal": 3,
+        "kenmerk": "kennis",
+        "moeilijkheid": 9
+      },
+      {
+        "naam": "Koop het werkhuis vrij",
+        "doel": "Betaal samen 6 Pond in Spitalfields, zodat het werkhuis niet in handen van het Syndicaat valt.",
+        "type": "betaal",
+        "plek": "spitalfields",
+        "aantal": 6
+      },
+      {
+        "naam": "De Makelaar",
+        "doel": "Versla het epische monster De Makelaar, dat in The City verschijnt.",
+        "type": "episch",
+        "plek": "city"
+      },
+      {
+        "naam": "De klerk die telde",
+        "doel": "Haal de klerk Edwin Pratt weg uit zijn club in Pall Mall (Charisma 8) en breng hem naar Hoofdinspecteur Voss in Whitehall.",
+        "type": "breng",
+        "van": "pall-mall",
+        "naar": "whitehall",
+        "voorwerp": "Edwin Pratt",
+        "kenmerk": "overtuiging",
+        "moeilijkheid": 8
+      },
+      {
+        "naam": "Het goud van de tempel",
+        "doel": "Reis naar de tempel in Yucatán en vind het goud dat het Syndicaat zoekt, voordat zij het vinden (Waarneming 9).",
+        "type": "test",
+        "plek": "yucatan",
+        "kenmerk": "scherpte",
+        "moeilijkheid": 9
+      }
+    ],
+    "ontwaken": "Op een maandagochtend kost alles alles. Een brood kost een huis, een huis kost een leven. Heel Londen staat in het grootboek, en niemand kan nog betalen. Jullie verliezen.",
+    "monsters": [
+      "deurwaarder",
+      "schuldspook",
+      "goudworm",
+      "lijkenrover",
+      "logebroeder"
+    ],
+    "episch": "de-makelaar",
+    "prompt": "an enormous pale hand with too many rings rising from beneath the Bank of England at night, its fingers holding puppet strings tied to tiny Victorian figures in the streets below, gold coins raining upward into the fog, gaslamps on Threadneedle Street for scale"
+  },
+  "episch": {
+    "id": "de-makelaar",
+    "naam": "De Makelaar",
+    "gruwel": 1,
+    "taaiheid": 10,
+    "schade": 1,
+    "leven": 3,
+    "eigenschap": "Sir Reginald Kettering, die een contract tekende dat hij niet had gelezen. Wint hij een gevecht, dan neemt hij tot 5 Pond van je af. Met 4 helden heeft hij 2 leven extra.",
+    "prompt": "a corpulent Victorian financier in an immaculate frock coat and silk hat, his face a smooth blank mask of gold, ledger in one hand and a quill dripping black ink in the other, standing in a marble banking hall full of empty desks",
+    "mens": true,
+    "verliesPond": 5
+  },
+  "monsters": [
+    {
+      "id": "deurwaarder",
+      "naam": "Deurwaarder",
+      "gruwel": 0,
+      "taaiheid": 10,
+      "schade": 1,
+      "leven": 2,
+      "eigenschap": "Een mens met een dagvaarding en een knuppel. Verlies je, dan heb je Schuld.",
+      "prompt": "a heavy-set Victorian bailiff in a bowler hat and long coat, holding a rolled summons and a cudgel, blocking a narrow tenement doorway",
+      "mens": true,
+      "verliesToestand": "schuld"
+    },
+    {
+      "id": "schuldspook",
+      "naam": "Schuldspook",
+      "gruwel": 2,
+      "taaiheid": 10,
+      "schade": 1,
+      "leven": 2,
+      "eigenschap": "De schim van iemand die nooit kon afbetalen. Verlies je, dan neemt hij 2 Pond mee.",
+      "prompt": "a translucent grey ghost of a Victorian debtor in prison rags, chains of coins around its wrists, holding out empty hands in a debtors' prison corridor",
+      "verliesPond": 2
+    },
+    {
+      "id": "goudworm",
+      "naam": "Goudworm",
+      "gruwel": 1,
+      "taaiheid": 11,
+      "schade": 2,
+      "leven": 2,
+      "eigenschap": "Een worm die door de kluizen kruipt en munten eet. Win je, dan krijg je 3 Pond uit zijn buik.",
+      "prompt": "a long segmented worm with a hide of fused gold coins burrowing out of a bank vault wall, coins spilling from its mouth, lit by a single lantern",
+      "beloning": {
+        "pond": 3
+      }
+    }
+  ],
+  "personen": [
+    {
+      "id": "reginald-kettering",
+      "naam": "Sir Reginald Kettering",
+      "rol": "Directeur van de Kettering Bank",
+      "factie": "Het Syndicaat van de Ongeziene Hand",
+      "kort": "Een bankier die zijn ziel verpandde, en de rente nog moet betalen.",
+      "beschrijving": "Sir Reginald was in 1866 bijna failliet, toen de bank van Overend en Gurney viel en half Londen meetrok. Op de avond dat hij zich wilde ophangen, vond hij een contract op zijn bureau. Hij tekende het. Sindsdien kan hij niet meer verliezen. Hij is de rijkste man van de City, en hij heeft al tien jaar niets meer geproefd.",
+      "prompt": "a heavy elderly Victorian banker with grey mutton-chop whiskers, impeccable black frock coat and gold watch chain, sitting behind a vast mahogany desk in a dim City office, his hands resting on a ledger, his eyes tired and hollow"
+    },
+    {
+      "id": "edwin-pratt",
+      "naam": "Edwin Pratt",
+      "rol": "Klerk bij de Kettering Bank",
+      "factie": "Geen",
+      "kort": "Een klerk die de cijfers optelde en zag dat ze niet kloppen.",
+      "beschrijving": "Edwin Pratt werkt al twaalf jaar aan de hoge lessenaar van de Kettering Bank. Hij telt. Vorige maand telde hij de boeken van het Syndicaat op, voor de grap, uit verveling, en de uitkomst was een getal dat groter is dan al het geld in de wereld. Sindsdien wordt hij gevolgd. Hij verstopt zich in een club in Pall Mall, waar hij lid van werd met zijn laatste spaargeld.",
+      "prompt": "a thin nervous young Victorian bank clerk with ink-stained cuffs and round spectacles, clutching a ledger to his chest, hiding in the deep leather armchair of a gentlemen's club in Pall Mall"
+    },
+    {
+      "id": "bessie-doyle",
+      "naam": "Mrs. Bessie Doyle",
+      "rol": "Werkhuisbewoonster in Spitalfields",
+      "factie": "Geen",
+      "kort": "Een vrouw die alles kwijt is, behalve haar trots en haar geheugen.",
+      "beschrijving": "Bessie Doyle had een kruidenierswinkel in Bethnal Green, tot de huur drie keer in een jaar steeg. Nu woont ze in het werkhuis van Spitalfields en plukt ze touw. Ze weet precies wie haar huisbaas was, en wie zijn huisbaas, en wie daarboven zat. Ze heeft het allemaal opgeschreven op het behang naast haar bed.",
+      "prompt": "a proud weathered Victorian woman in her fifties in a coarse workhouse uniform, sitting on a narrow iron bed in a crowded dormitory, the wall beside her covered with tiny handwritten names and sums"
+    }
+  ],
+  "verhaal": [
+    {
+      "id": "v-gul-1",
+      "plek": "city",
+      "persoon": "reginald-kettering",
+      "tekst": "Sir Reginald Kettering ontvangt je in zijn kantoor, met een glas sherry dat hij niet drinkt. 'U wilt weten wat de Hand is,' zegt hij. 'Ik zal het u zeggen. Het is de markt. Hij neemt wat hij wil, en hij geeft wat u nodig hebt. Wat hebt u nodig?' Hij schuift een envelop over het bureau.",
+      "keuzes": [
+        {
+          "label": "De envelop aannemen",
+          "tekst": "Er zitten vijf sovereigns in. Kettering glimlacht, voor het eerst. 'De rente,' zegt hij, 'betaalt u later.' Je voelt hem op je rug, een kleine koude hand.",
+          "effect": [
+            {
+              "pond": 5
+            },
+            {
+              "toestand": "schuld-hand"
+            }
+          ]
+        },
+        {
+          "label": "Weigeren en goed kijken (Waarneming 8)",
+          "test": {
+            "kenmerk": "scherpte",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Op zijn bureau ligt een contract, met een handtekening in bruine inkt. Je ziet de datum: 11 mei 1866, Zwarte Vrijdag. Je weet nu waar het begon.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              },
+              {
+                "vlag": "kettering-contract"
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Hij ziet je kijken en schuift het grootboek over de papieren. 'U bent ongeduldig,' zegt hij. 'Dat kost geld.'",
+            "effect": [
+              {
+                "pond": -1
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "v-gul-2",
+      "plek": "spitalfields",
+      "persoon": "bessie-doyle",
+      "tekst": "In het werkhuis van Spitalfields plukt Bessie Doyle touw, met bloedende vingers. Naast haar bed is het behang vol geschreven met kleine letters. 'Mijn huisbaas,' zegt ze, 'en zijn huisbaas, en de bank, en de bank daarboven. Wil je zien waar het eindigt?'",
+      "keuzes": [
+        {
+          "label": "Het behang lezen (Kennis 8)",
+          "test": {
+            "kenmerk": "kennis",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Het is een stamboom van schulden. Alle takken komen samen bij één naam, en die naam is geen persoon maar een adres: Threadneedle Street, onder de grond.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              },
+              {
+                "trofee": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "De namen lopen door elkaar. Bessie zucht en begint opnieuw uit te leggen.",
+            "effect": [
+              {
+                "aanwijzing": 1
+              }
+            ]
+          }
+        },
+        {
+          "label": "Haar 2 Pond geven",
+          "tekst": "Ze kijkt naar het geld en dan naar jou. Ze neemt het niet aan. 'Koop er het werkhuis mee vrij,' zegt ze. 'Niet mij. Allemaal.' Maar ze vertelt je wel wie het werkhuis wil kopen.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "geest": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-gul-3",
+      "plek": "pall-mall",
+      "persoon": "edwin-pratt",
+      "tekst": "In de leeszaal van een club in Pall Mall zit Edwin Pratt diep in een fauteuil, achter een krant. Hij laat hem zakken als je naast hem gaat zitten. 'Ze staan buiten,' fluistert hij. 'Twee mannen in bolhoeden. Ik heb het uitgerekend. Wilt u het getal zien? Het is groter dan alles.'",
+      "keuzes": [
+        {
+          "label": "Zijn berekening nalopen (Kennis 9)",
+          "test": {
+            "kenmerk": "kennis",
+            "moeilijkheid": 9
+          },
+          "gelukt": {
+            "tekst": "Het klopt. Het Syndicaat heeft meer uitgeleend dan er geld bestaat. Wat ze terugvragen, is dus geen geld. Je ziet nu wat het wel is.",
+            "effect": [
+              {
+                "aanwijzing": 3
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "De getallen worden groter terwijl je ze optelt.",
+            "effect": [
+              {
+                "geest": -2
+              }
+            ]
+          }
+        },
+        {
+          "label": "Hem geruststellen (Charisma 7)",
+          "test": {
+            "kenmerk": "overtuiging",
+            "moeilijkheid": 7
+          },
+          "gelukt": {
+            "tekst": "Hij ontspant een beetje en vertelt je over de man voor wie hij werkt: Sir Reginald Kettering, die nooit eet.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Hij springt op als een deur dichtslaat en vlucht naar de bibliotheek.",
+            "effect": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "v-gul-4",
+      "plek": "covent-garden",
+      "tekst": "Op de markt van Covent Garden is de prijs van appels sinds gisteren verdubbeld. Niemand weet waarom. De koopvrouwen zijn kwaad, de kopers zijn kwaad. Bij een kraam staat een man in een goed pak, die alles opkoopt wat er ligt, tegen elke prijs.",
+      "keuzes": [
+        {
+          "label": "De opkoper volgen (Waarneming 8)",
+          "test": {
+            "kenmerk": "scherpte",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Hij laat alles naar een pakhuis in Southwark brengen, waar het ligt te rotten. Het gaat niet om de appels. Het gaat om de honger.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Hij stapt in een rijtuig en is weg.",
+            "effect": []
+          }
+        },
+        {
+          "label": "Appels kopen voor de kinderen van de markt (2 Pond)",
+          "tekst": "Je koopt een mand en deelt uit. De koopvrouwen lachen voor het eerst die dag. Een van hen vertelt je wie de opkoper stuurt.",
+          "effect": [
+            {
+              "pond": -2
+            },
+            {
+              "aanwijzing": 1
+            },
+            {
+              "geest": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-gul-5",
+      "plek": "whitechapel",
+      "tekst": "In een logement in Whitechapel zet een deurwaarder een gezin op straat. Een moeder, drie kinderen, een bed. De huur is in een week gestegen van vier shilling naar twaalf. De deurwaarder heeft een papier met een zegel dat je niet kent: een hand met een ring.",
+      "keuzes": [
+        {
+          "label": "De huur voor ze betalen (3 Pond)",
+          "tekst": "De deurwaarder neemt het geld, telt het twee keer en schrijft een kwitantie. Op de kwitantie verschijnt een getal dat er niet stond. Maar het gezin mag blijven.",
+          "effect": [
+            {
+              "pond": -3
+            },
+            {
+              "trofee": 1
+            },
+            {
+              "geest": 2
+            }
+          ]
+        },
+        {
+          "label": "De deurwaarder uitdagen (Kracht 8)",
+          "test": {
+            "kenmerk": "kracht",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Hij druipt af, met zijn papier. Het gezin sleept het bed weer naar binnen. De moeder geeft je de oude huurbrief, met de naam van de eigenaar.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Hij is niet alleen. Twee mannen komen om de hoek.",
+            "effect": [
+              {
+                "monster": 1
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "v-gul-6",
+      "plek": "leicester-square",
+      "tekst": "Na de voorstelling in het theater krijgt elke artiest een envelop met gage. In de jouwe zit een sovereign te veel, en een briefje: 'Met de complimenten van een bewonderaar. Rente volgt.'",
+      "keuzes": [
+        {
+          "label": "Het geld houden",
+          "tekst": "Het is goed geld, en je hebt het nodig. Je zet het briefje uit je hoofd.",
+          "effect": [
+            {
+              "pond": 2
+            },
+            {
+              "toestand": "schuld-hand"
+            }
+          ]
+        },
+        {
+          "label": "Het teruggeven aan de theaterdirecteur (Charisma 7)",
+          "test": {
+            "kenmerk": "overtuiging",
+            "moeilijkheid": 7
+          },
+          "gelukt": {
+            "tekst": "Hij kijkt je verbaasd aan, en dan opgelucht. Hij heeft er ook een gekregen, vorige maand. Hij laat je zijn contract zien.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Hij wil het niet aannemen. 'Niet van mij,' zegt hij, en hij loopt weg.",
+            "effect": [
+              {
+                "pond": 1
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "v-gul-7",
+      "plek": "st-katharine-docks",
+      "tekst": "In de dokken ligt een schip dat niemand mag lossen. De lading is verzekerd voor een bedrag dat hoger is dan het schip. De verzekeraars hopen dat het zinkt. De bemanning hoopt dat niet. De kapitein vraagt of je iets weet van de Hand.",
+      "keuzes": [
+        {
+          "label": "De vrachtpapieren bekijken (Kennis 8)",
+          "test": {
+            "kenmerk": "kennis",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "De lading is goud uit Yucatán, maar er staat niet bij van wie. Er staat alleen een zegel: een hand met een ring.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              },
+              {
+                "trofee": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Het is een doolhof van verzekeringen, herverzekeringen en schulden.",
+            "effect": [
+              {
+                "aanwijzing": 1
+              }
+            ]
+          }
+        },
+        {
+          "label": "De bemanning helpen lossen (Kracht 8)",
+          "test": {
+            "kenmerk": "kracht",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Jullie lossen in één nacht. De kapitein betaalt je uit eigen zak, en vertelt je wie het schip wilde laten zinken.",
+            "effect": [
+              {
+                "pond": 2
+              },
+              {
+                "aanwijzing": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Een kist valt op je voet.",
+            "effect": [
+              {
+                "lichaam": -2
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "v-gul-8",
+      "plek": "mayfair",
+      "tekst": "Op een diner in Mayfair praten de gasten alleen over geld. Hoeveel ze hebben, hoeveel ze schuldig zijn, hoeveel hun buren schuldig zijn. Bij het dessert begint een dame te huilen, omdat ze uitrekent dat ze haar kinderen heeft verpand. Niemand reageert.",
+      "keuzes": [
+        {
+          "label": "Met de dame praten (Charisma 8)",
+          "test": {
+            "kenmerk": "overtuiging",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Ze vertelt over een man die haar man een lening gaf, op een avond dat ze bijna alles kwijt waren. Ze tekende mee. Ze weet niet meer waarvoor.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Ze droogt haar tranen en vraagt hoeveel jij waard bent.",
+            "effect": [
+              {
+                "geest": -1
+              }
+            ]
+          }
+        },
+        {
+          "label": "Het gesprek naar je hand zetten",
+          "held": [
+            "cordelia-vane"
+          ],
+          "tekst": "Je kent dit gezelschap. Je stelt een vraag over Kettering, met de juiste glimlach. Binnen een uur weet je wie hem geld schuldig is, en wie hij geld schuldig is.",
+          "effect": [
+            {
+              "aanwijzing": 3
+            },
+            {
+              "pond": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-gul-9",
+      "plek": "overal",
+      "persoon": "reginald-kettering",
+      "vlag": "kettering-contract",
+      "tekst": "Sir Reginald Kettering staat ineens naast je, zonder hoed, met verwarde haren. 'U hebt het contract gezien,' zegt hij. 'Ik wil eruit. Ik heb het geprobeerd. Elke keer dat ik iets weggeef, krijg ik het dubbel terug. Help me, of laat me met rust.'",
+      "keuzes": [
+        {
+          "label": "Hem helpen alles weg te geven (Charisma 9)",
+          "test": {
+            "kenmerk": "overtuiging",
+            "moeilijkheid": 9
+          },
+          "gelukt": {
+            "tekst": "Jullie lopen een nacht door de East End. Hij geeft alles weg aan mensen die het niet terug kunnen betalen, want aan hen kan de Hand niets verdienen. Bij zonsopgang heeft hij niets meer. Hij huilt van geluk.",
+            "effect": [
+              {
+                "trofee": 2
+              },
+              {
+                "mist": 1
+              },
+              {
+                "wisVlag": "kettering-contract"
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Bij elke munt die hij weggeeft, vallen er twee uit zijn zakken. Hij geeft het op.",
+            "effect": [
+              {
+                "geest": -2
+              },
+              {
+                "pond": 2
+              },
+              {
+                "wisVlag": "kettering-contract"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Het contract van hem kopen",
+          "tekst": "Hij verkoopt het je voor een penny. Het voelt zwaar, en het is koud. Maar het staat nu op jouw naam, en de Hand kijkt naar jou.",
+          "effect": [
+            {
+              "trek": "artefacten"
+            },
+            {
+              "toestand": "schuld-hand"
+            },
+            {
+              "wisVlag": "kettering-contract"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-gul-10",
+      "plek": "city",
+      "mistTot": 6,
+      "tekst": "Voor de Bank of England staat een rij die tot aan St Paul's loopt. Iedereen wil zijn geld terug, en de bank betaalt uit in munten die in je hand veranderen in koude stenen. Niemand gaat weg. Iedereen wacht.",
+      "keuzes": [
+        {
+          "label": "De mensen naar huis sturen (Charisma 9)",
+          "test": {
+            "kenmerk": "overtuiging",
+            "moeilijkheid": 9
+          },
+          "gelukt": {
+            "tekst": "Je roept dat de bank morgen weer opengaat. Een paar mensen geloven je, dan een paar meer. De rij wordt korter. De Hand heeft vannacht minder om van te eten.",
+            "effect": [
+              {
+                "trofee": 2
+              },
+              {
+                "mist": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Je staat ineens zelf in de rij.",
+            "effect": [
+              {
+                "geest": -2
+              },
+              {
+                "pond": -2
+              }
+            ]
+          }
+        },
+        {
+          "label": "Naar binnen gaan (Waarneming 9)",
+          "test": {
+            "kenmerk": "scherpte",
+            "moeilijkheid": 9
+          },
+          "gelukt": {
+            "tekst": "Achter de loketten is een trap naar beneden, en onder de kluis is nog een kluis. Daar ligt het grootboek, open, en het schrijft zichzelf.",
+            "effect": [
+              {
+                "aanwijzing": 3
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Een bewaker zet je buiten.",
+            "effect": [
+              {
+                "toestand": "gezocht"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "scheur": [
+    {
+      "id": "scheur-gul-1",
+      "tekst": "Je staat in een kluis zonder einde, vol goud tot aan het plafond. In het goud zitten mensen, tot hun nek, die rekenen. Een van hen kijkt op. 'Help me,' zegt hij. 'Ik ben bijna klaar met aflossen.'",
+      "keuzes": [
+        {
+          "label": "Hem eruit trekken (Kracht 9)",
+          "test": {
+            "kenmerk": "kracht",
+            "moeilijkheid": 9
+          },
+          "gelukt": {
+            "tekst": "Het goud laat hem met tegenzin los. Hij is iemand uit de registers van de Kettering Bank. Terug in Londen vertelt hij je alles.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              },
+              {
+                "trofee": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Het goud trekt aan je benen. Je komt los, zonder je schoenen.",
+            "effect": [
+              {
+                "lichaam": -2
+              }
+            ]
+          }
+        },
+        {
+          "label": "Een handvol goud meenemen",
+          "tekst": "Het is echt goud, en het is zwaar. Thuis is het nog steeds goud. Maar je droomt die nacht van een kluis.",
+          "effect": [
+            {
+              "pond": 4
+            },
+            {
+              "toestand": "schuld-hand"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scheur-gul-2",
+      "tekst": "Een marktplein waar alles te koop is: herinneringen, jaren, kleuren. Een koopman biedt je een jaar extra leven aan. 'Voor bijna niets,' zegt hij. 'Een kleinigheid. U merkt het niet eens.'",
+      "keuzes": [
+        {
+          "label": "Afdingen (Charisma 9)",
+          "test": {
+            "kenmerk": "overtuiging",
+            "moeilijkheid": 9
+          },
+          "gelukt": {
+            "tekst": "Je dingt af tot hij lacht. Hij geeft je iets kleiners, maar eerlijk: een geheim, voor niets.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Je betaalt meer dan je wilde. Je weet niet meer precies wat.",
+            "effect": [
+              {
+                "geest": -2
+              }
+            ]
+          }
+        },
+        {
+          "label": "Niets kopen en doorlopen",
+          "tekst": "De kooplieden roepen je na, steeds harder, tot je de Scheur bereikt.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scheur-gul-3",
+      "tekst": "Een kantoor zonder ramen met duizend lessenaars. Aan elke lessenaar zit een klerk die een getal opschrijft. Aan het eind van de zaal ligt een grootboek open, en een hand zonder lichaam schrijft erin.",
+      "keuzes": [
+        {
+          "label": "Een bladzijde uitscheuren (Waarneming 9)",
+          "test": {
+            "kenmerk": "scherpte",
+            "moeilijkheid": 9
+          },
+          "gelukt": {
+            "tekst": "Je scheurt hem eruit terwijl de hand de pagina omslaat. Er staan namen op, en bedragen. Een van de namen is van een Londense bisschop.",
+            "effect": [
+              {
+                "aanwijzing": 3
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "De hand grijpt je pols. Je komt los, maar er staat nu een getal op je huid.",
+            "effect": [
+              {
+                "toestand": "schuld-hand"
+              },
+              {
+                "geest": -1
+              }
+            ]
+          }
+        },
+        {
+          "label": "Een klerk vragen wat hij schrijft",
+          "tekst": "'Wat iedereen kost,' zegt hij zonder op te kijken. 'Jij bent goedkoop.'",
+          "effect": [
+            {
+              "geest": -1
+            },
+            {
+              "aanwijzing": 1
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "aanwijzing": [
+    {
+      "id": "aanw-gul-1",
+      "actie": "De kwitantie lezen",
+      "test": {
+        "kenmerk": "kennis",
+        "moeilijkheid": 7
+      },
+      "tekst": "In de goot ligt een kwitantie, uitgeschreven aan een weduwe in Bethnal Green. Het bedrag is betaald, maar eronder staat een tweede bedrag, in een ander handschrift, dat ze nog schuldig is."
+    },
+    {
+      "id": "aanw-gul-2",
+      "actie": "De pandjesbaas spreken",
+      "test": {
+        "kenmerk": "overtuiging",
+        "moeilijkheid": 7
+      },
+      "tekst": "Een pandjesbaas laat je zijn boek zien. Al wekenlang komen er mensen die alles verpanden voor één ding: de huur. Hij weet wie de huizen heeft gekocht.",
+      "mislukt": {
+        "tekst": "Hij rekent je een shilling voor het kijken.",
+        "effect": [
+          {
+            "pond": -1
+          }
+        ]
+      }
+    }
+  ],
+  "onheil": [
+    {
+      "id": "o-gul-1",
+      "naam": "Paniek op de beurs",
+      "mist": 1,
+      "scheur": 0,
+      "monster": 1,
+      "extra": "Elke held verliest 1 Pond.",
+      "tekst": "Om elf uur stort de beurs in, zonder reden. Om twaalf uur staat hij weer hoger dan ooit. In dat uur verliest half Londen zijn spaargeld, en iets onder de Bank eet zich vol.",
+      "acties": [
+        {
+          "type": "pondAlle",
+          "waarde": -1
+        }
+      ]
+    },
+    {
+      "id": "o-gul-2",
+      "naam": "De huur gaat omhoog",
+      "persoon": "reginald-kettering",
+      "mist": 1,
+      "scheur": 1,
+      "monster": 0,
+      "extra": "Er verschijnt een Deurwaarder in Whitechapel. De held met de meeste Ponden wordt Gezocht.",
+      "tekst": "In Whitechapel, Spitalfields en Limehouse gaat de huur van de ene op de andere dag omhoog. De eigenaar is overal dezelfde, al heeft hij overal een andere naam.",
+      "acties": [
+        {
+          "type": "monsterOp",
+          "plek": "whitechapel",
+          "id": "deurwaarder"
+        },
+        {
+          "type": "gezochtRijkste"
+        }
+      ]
+    },
+    {
+      "id": "o-gul-3",
+      "naam": "Een gift van de armen",
+      "persoon": "bessie-doyle",
+      "mist": 0,
+      "scheur": 0,
+      "monster": 0,
+      "extra": "Elke held krijgt 1 Pond. Leg 1 Aanwijzing op Spitalfields.",
+      "tekst": "De vrouwen van het werkhuis hebben gespaard, penny voor penny. Bessie Doyle stuurt het geld naar jullie, met een briefje: 'Voor wie de Hand wil breken.'",
+      "acties": [
+        {
+          "type": "pondAlle",
+          "waarde": 1
+        },
+        {
+          "type": "aanwijzingOp",
+          "plek": "spitalfields",
+          "aantal": 1
+        }
+      ]
+    },
+    {
+      "id": "o-gul-4",
+      "naam": "Gerucht: de stille verkoop",
+      "persoon": "edwin-pratt",
+      "mist": 0,
+      "scheur": 0,
+      "monster": 0,
+      "gerucht": "Er verschijnt een Goudworm in The City. Is hij na 2 rondes niet verslagen, dan daalt de Mist met 2.",
+      "tekst": "Edwin Pratt laat weten dat het Syndicaat vannacht de kluizen van drie banken leeghaalt. 'Wat eruit komt,' schrijft hij, 'is geen geld. Het kruipt.'",
+      "acties": [
+        {
+          "type": "gerucht",
+          "soort": "verslaan",
+          "plek": "city",
+          "id": "goudworm",
+          "rondes": 3,
+          "straf": 2
+        }
+      ]
+    }
+  ],
+  "expeditie": [
+    {
+      "id": "yucatan-gul",
+      "plek": "yucatan",
+      "tekst": "Bij de tempel staat een kamp van een Engelse mijnmaatschappij. De mannen graven niet naar goud, ze graven het in: ze begraven kisten vol munten onder de treden van de piramide. De opzichter heeft een zegel op zijn ring: een hand met een ring.",
+      "keuzes": [
+        {
+          "label": "Een kist opgraven (Kracht 9)",
+          "test": {
+            "kenmerk": "kracht",
+            "moeilijkheid": 9
+          },
+          "gelukt": {
+            "tekst": "In de kist zitten geen munten, maar contracten. Honderden, getekend in bruine inkt. Je neemt er een paar mee als bewijs, en een handvol goud voor de reis.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              },
+              {
+                "pond": 3
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "De opzichter ziet je, en zijn mannen jagen je het oerwoud in.",
+            "effect": [
+              {
+                "lichaam": -2
+              }
+            ]
+          }
+        },
+        {
+          "label": "De oude priester van het dorp spreken (Charisma 8)",
+          "test": {
+            "kenmerk": "overtuiging",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Hij vertelt dat de tempel een offerplaats was voor een god van de handel, die zich voedde met wat mensen elkaar schuldig waren. De Engelsen voeren hem nu weer.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              },
+              {
+                "trofee": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Hij wil niet praten met een man die geld bij zich heeft.",
+            "effect": [
+              {
+                "aanwijzing": 1
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

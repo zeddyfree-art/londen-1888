@@ -3528,5 +3528,3631 @@
         ]
       }
     ]
+  },
+  {
+    "id": "v-omm-1",
+    "plek": "whitechapel",
+    "persoon": "absalom-crewe",
+    "tekst": "Onder een gaslantaarn op Whitechapel Road staat Broeder Absalom op een omgekeerde kist. Hij preekt niet over hel of hemel, maar over rust. 'Je hoeft niemand meer te zijn,' zegt hij. 'Je hoeft alleen mee te lopen.' Om je heen knikken mensen. Een vrouw naast je pakt je hand vast, zacht maar stevig.",
+    "keuzes": [
+      {
+        "label": "Luisteren naar wat hij echt zegt (Kennis 8)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Onder de woorden hoor je een ritme, en het ritme is een telling. Hij telt zijn kudde. Bij tweehonderd stopt hij, glimlacht, en begint opnieuw. Je weet nu hoe groot ze zijn.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De woorden zijn warm en zacht. Pas als de vrouw je hand loslaat, merk je dat je een half uur hebt staan knikken.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "Je hand lostrekken en weglopen (Kracht 8)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Ze laat los zonder protest. Terwijl je wegloopt, roept ze je na: 'Je komt wel. Iedereen komt.'",
+          "effect": [
+            {
+              "geest": -1
+            },
+            {
+              "aanwijzing": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Haar greep is zacht als een handschoen en sterk als een ijzeren band. Pas bij de volgende hoek laat ze los. Achter je staan nu drie mensen meer dan eerst.",
+          "effect": [
+            {
+              "geest": -1
+            },
+            {
+              "monster": 1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Een tegenpsalm zingen",
+        "held": [
+          "ezra-whitlock",
+          "benedict-ashcombe"
+        ],
+        "tekst": "Je kent de oude psalmen nog uit je tijd in de kerk. Je zingt er een, luid en vals. Een paar mensen houden op met knikken en kijken verward om zich heen. Absalom kijkt je recht aan, en voor het eerst glimlacht hij niet.",
+        "effect": [
+          {
+            "aanwijzing": 2
+          },
+          {
+            "trofee": 1
+          }
+        ]
+      }
+    ],
+    "god": "ommeth"
+  },
+  {
+    "id": "v-omm-2",
+    "plek": "limehouse",
+    "persoon": "martha-coyle",
+    "tekst": "Martha Coyle hangt lakens op tussen twee huizen. 'Je zoekt ze ook,' zegt ze zonder om te kijken. 'Ze komen hier elke avond langs om negen uur. Mijn Tommy loopt achteraan, met een kaars. Hij heeft een litteken op zijn kin. Als je hem ziet, zeg dan dat zijn moeder soep heeft.'",
+    "keuzes": [
+      {
+        "label": "Vragen waar de processie heen gaat (Charisma 7)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 7
+        },
+        "gelukt": {
+          "tekst": "Ze heeft het bijgehouden, met krijt op de binnenkant van haar deur: elke avond een andere route, maar ze eindigen allemaal bij water. Ze geeft je het lijstje.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "vlag": "martha-tommy"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Ze haalt haar schouders op. 'Naar de rivier. Altijd naar de rivier.' Dan gaat ze verder met de was.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Haar helpen met de was",
+        "tekst": "Een uur lang wring je lakens uit. Martha praat over Tommy, over zijn vader die op zee bleef, over hoe hij altijd zong. Pas aan het eind zegt ze dat hij die nieuwe psalm thuis al zong, een week voordat hij wegging.",
+        "effect": [
+          {
+            "geest": 1
+          },
+          {
+            "aanwijzing": 1
+          },
+          {
+            "vlag": "martha-tommy"
+          }
+        ]
+      }
+    ],
+    "god": "ommeth"
+  },
+  {
+    "id": "v-omm-3",
+    "plek": "spitalfields",
+    "persoon": "agatha-pike",
+    "tekst": "In de gaarkeuken schept Zuster Agatha soep voor een rij mannen die tot buiten staat. 'De helft van mijn vaste klanten is weg,' zegt ze. 'Niet dood. Ze lopen mee.' Ze wijst naar een oud kerkboek op een plank. 'Daar zaten vroeger vier psalmen meer in. Iemand heeft ze eruit gescheurd, lang voordat ik hier kwam.'",
+    "keuzes": [
+      {
+        "label": "Het boek bestuderen (Kennis 8)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "In de rug zitten nog snippers van de gescheurde bladzijden. Op een ervan staat een woord dat je niet kent, en de aantekening 'niet zingen, nooit tellen'. Je schrijft het over.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je leest tot de kaarsen bijna op zijn. Er staat niets bijzonders in, alleen psalmen die je al kent.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Meehelpen met opscheppen",
+        "tekst": "Je schept tot je armen pijn doen. Een oude man fluistert bij het aanpakken van zijn kom dat hij gisteren zijn eigen broer heeft gezien in de processie, en dat zijn broer al twee jaar dood is.",
+        "effect": [
+          {
+            "geest": 1
+          },
+          {
+            "aanwijzing": 1
+          },
+          {
+            "lichaam": 1
+          }
+        ]
+      }
+    ],
+    "god": "ommeth"
+  },
+  {
+    "id": "v-omm-4",
+    "plek": "st-katharine-docks",
+    "tekst": "Op de kade zitten dokwerkers te wachten op werk dat niet komt. Een van hen neuriet. Dan een tweede. Binnen een minuut neuriet de hele rij dezelfde melodie, zonder het te merken. De voorman kijkt je aan. 'Elke ochtend,' zegt hij. 'Elke ochtend beginnen ze ermee, en elke avond ben ik er twee kwijt.'",
+    "keuzes": [
+      {
+        "label": "De melodie onderbreken (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je begint hard een zeemanslied te zingen. Eerst valt er een in, dan nog een. Het neuriën verdwijnt. De voorman geeft je een tik op je schouder en vertelt waar de kudde 's nachts slaapt.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Niemand hoort je. Erger: je merkt dat jij ook neuriet.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "De voorman een Pond geven voor de mannen",
+        "tekst": "Hij koopt er brood van. Mannen met brood in hun maag, zegt hij, neuriën minder. Hij belooft op je te letten.",
+        "effect": [
+          {
+            "pond": -1
+          },
+          {
+            "aanwijzing": 1
+          },
+          {
+            "trek": "bondgenoot"
+          }
+        ]
+      }
+    ],
+    "god": "ommeth"
+  },
+  {
+    "id": "v-omm-5",
+    "plek": "covent-garden",
+    "tekst": "Tussen de bloemenkramen staat een meisje stil. Ze houdt een kaars vast en kijkt naar het oosten. Haar moeder trekt aan haar arm, maar het meisje beweegt niet. 'Ze roepen me,' zegt ze tegen jou, alsof ze je kent. 'Ze tellen tot ik er ben.'",
+    "keuzes": [
+      {
+        "label": "De kaars uitblazen",
+        "tekst": "Je blaast hem uit. Het meisje knippert, kijkt naar haar moeder en begint te huilen, zoals een gewoon kind huilt. De moeder drukt je een bos viooltjes in handen. Ergens in het oosten houdt een telling even op.",
+        "effect": [
+          {
+            "geest": 2
+          },
+          {
+            "trofee": 1
+          }
+        ]
+      },
+      {
+        "label": "Vragen wie er telt (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Ze noemt een naam, en een straat in Spitalfields. Dan valt haar kaars uit zichzelf uit.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Ze zegt een getal. Het jouwe, denk je. Je weet niet waarom je dat denkt.",
+          "effect": [
+            {
+              "geest": -1
+            },
+            {
+              "mist": -1
+            }
+          ]
+        }
+      }
+    ],
+    "god": "ommeth"
+  },
+  {
+    "id": "v-omm-6",
+    "plek": "city",
+    "tekst": "In een werkhuisarchief achter Bishopsgate zit een klerk met inktvlekken tot zijn ellebogen. 'Vijftig namen deze maand,' zegt hij. 'Vertrokken zonder afmelding. Dat gebeurt nooit. Werkhuisbewoners vertrekken niet, ze worden weggedragen.' Hij schuift je een register toe.",
+    "keuzes": [
+      {
+        "label": "De namen naast elkaar leggen (Kennis 8)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Ze vertrokken in groepjes van drie, elke keer op een avond na een nieuwe maan. En achter elk groepje heeft iemand met potlood een streepje gezet, zoals een herder schapen telt.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De namen lopen door elkaar. Je hoofd begint te bonzen op het ritme van de klok op de muur.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "De klerk vragen wat hij zelf weet (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Hij aarzelt, en vertelt dan dat zijn eigen zuster ook meeloopt. Hij weet waar ze slaapt: in een kerk zonder dak in Limehouse.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij klapt het register dicht. 'Ik heb al te veel gezegd.'",
+          "effect": []
+        }
+      }
+    ],
+    "god": "ommeth"
+  },
+  {
+    "id": "v-omm-7",
+    "plek": "soho",
+    "tekst": "In een kroeg in Soho zit een student met een notitieboek vol muziek. 'Ik probeer hem op te schrijven,' zegt hij. 'De psalm. Hij heeft maar vijf tonen, maar ik krijg ze niet op papier. Elke keer als ik de laatste noot schrijf, is de eerste verdwenen.' Zijn handen trillen.",
+    "keuzes": [
+      {
+        "label": "Hem helpen de noten vast te leggen (Kennis 9)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Je schrijft ze in een andere volgorde op, van achter naar voren. Ze blijven staan. De student staart naar de bladzijde. 'Dat is geen psalm,' zegt hij. 'Dat is een kaart.'",
+          "effect": [
+            {
+              "aanwijzing": 3
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De noten verdwijnen ook bij jou. Maar de melodie niet. Die zit nu in je hoofd.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "Mee laten spelen op je viool",
+        "held": [
+          "clementine-ashby",
+          "esme-valentine"
+        ],
+        "tekst": "Je speelt de vijf tonen na, en dan een zesde die er niet in hoort. De student lacht van opluchting: de betovering breekt. Hij geeft je zijn notitieboek.",
+        "effect": [
+          {
+            "aanwijzing": 2
+          },
+          {
+            "trofee": 1
+          },
+          {
+            "geest": 1
+          }
+        ]
+      }
+    ],
+    "god": "ommeth"
+  },
+  {
+    "id": "v-omm-8",
+    "plek": "westminster",
+    "tekst": "Voor het parlement staat een processie van honderd mensen, roerloos, met kaarsen. De politie weet niet wat ze moet doen: ze doen niets verbodens. Een inspecteur wenkt je. 'U bent toch die mensen van Voss? Kunt u ze laten gaan? Morgen komt de koningin langs.'",
+    "keuzes": [
+      {
+        "label": "De voorste persoon aanspreken (Charisma 9)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Ze kijkt je aan en zegt haar eigen naam, verbaasd, alsof ze hem terugvindt in een zak. Een voor een blazen de mensen achter haar hun kaarsen uit en lopen weg.",
+          "effect": [
+            {
+              "trofee": 2
+            },
+            {
+              "mist": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Ze glimlacht en blijft staan. Achter haar begint iemand te zingen.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "De inspecteur zeggen dat ze ze met rust moeten laten",
+        "tekst": "Hij knikt opgelucht. 's Nachts loopt de processie vanzelf weg, naar het oosten. Je volgt ze een stuk en ziet waar ze afslaan.",
+        "effect": [
+          {
+            "aanwijzing": 1
+          }
+        ]
+      }
+    ],
+    "god": "ommeth"
+  },
+  {
+    "id": "v-omm-9",
+    "plek": "overal",
+    "persoon": "martha-coyle",
+    "vlag": "martha-tommy",
+    "tekst": "Het is negen uur. De processie komt langs, en achteraan loopt een jongen met een kaars en een litteken op zijn kin. Tommy Coyle. Hij kijkt je aan zonder je te zien. Martha's woorden zitten nog in je hoofd: zijn moeder heeft soep.",
+    "keuzes": [
+      {
+        "label": "Hem bij zijn naam roepen (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "'Tommy. Je moeder heeft soep.' Hij blijft staan. De kaars valt. Dan begint hij te huilen en loopt hij de verkeerde kant op, naar huis. Martha zal je nooit vergeten.",
+          "effect": [
+            {
+              "trofee": 2
+            },
+            {
+              "aanwijzing": 2
+            },
+            {
+              "wisVlag": "martha-tommy"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij hoort je niet. De processie neemt hem mee, de mist in.",
+          "effect": [
+            {
+              "geest": -1
+            },
+            {
+              "wisVlag": "martha-tommy"
+            }
+          ]
+        }
+      },
+      {
+        "label": "Hem uit de rij trekken (Kracht 8)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je pakt hem onder zijn armen en sleurt hem een portiek in. Hij vecht, en dan houdt hij op. 'Waar ben ik?' Je brengt hem naar Limehouse.",
+          "effect": [
+            {
+              "trofee": 1
+            },
+            {
+              "aanwijzing": 1
+            },
+            {
+              "wisVlag": "martha-tommy"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De hele processie draait zich om. Honderd gezichten kijken naar jou, en ze zingen sneller.",
+          "effect": [
+            {
+              "geest": -2
+            },
+            {
+              "monster": 1
+            },
+            {
+              "wisVlag": "martha-tommy"
+            }
+          ]
+        }
+      }
+    ],
+    "god": "ommeth"
+  },
+  {
+    "id": "v-omm-10",
+    "plek": "whitechapel",
+    "mistTot": 6,
+    "tekst": "Op Whitechapel Road staat niemand meer stil. Iedereen loopt, dezelfde kant op, in hetzelfde tempo. Een kind trekt aan je mouw. 'Mama loopt mee,' zegt het. 'Mag ik bij jou?'",
+    "keuzes": [
+      {
+        "label": "Het kind meenemen naar een veilige plek",
+        "tekst": "Je brengt het naar de gaarkeuken. Onderweg wijst het naar een huis met een blauwe deur: daar komen 's nachts de leiders samen.",
+        "effect": [
+          {
+            "aanwijzing": 2
+          },
+          {
+            "geest": 1
+          }
+        ]
+      },
+      {
+        "label": "Achter de moeder aan gaan (Waarneming 9)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Je vindt haar, en ze herkent haar kind als je het noemt. Ze stapt uit de rij. Terwijl ze weglopen, hoor je de telling haperen.",
+          "effect": [
+            {
+              "trofee": 1
+            },
+            {
+              "mist": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je raakt haar kwijt, en dan het kind ook.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      }
+    ],
+    "god": "ommeth"
+  },
+  {
+    "id": "v-kar-1",
+    "plek": "bloomsbury",
+    "persoon": "horace-quill",
+    "tekst": "In de middeleeuwse zaal van het museum staat Mr. Quill voor een vitrine met vier zwarte scherven. 'Ze zijn ongerust,' fluistert hij. 'Er ontbreken er drie. Ze voelen waar die zijn. U draagt er een, nietwaar? Ik kan het horen.'",
+    "keuzes": [
+      {
+        "label": "Hem laten vertellen wat hij hoort (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Hij beschrijft drie plekken: een tempel in een oerwoud, de bodem van een rivier, en een kist in een abdij. Hij praat alsof hij het gesprek van anderen naspeelt.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij wordt achterdochtig en roept de bewakers. Je wordt het museum uit gezet.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "De vitrine van dichtbij bekijken (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "De breuklijnen passen in elkaar, maar er is een vijfde lijn die nergens op aansluit. Op het glas aan de binnenkant staan vingerafdrukken. Van binnenuit.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je kijkt te lang. De scherven kijken terug.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      }
+    ],
+    "god": "karathos"
+  },
+  {
+    "id": "v-kar-2",
+    "plek": "bloomsbury",
+    "persoon": "amelia-fenwick",
+    "tekst": "In een kelder vol kisten zit Dr. Amelia Fenwick tussen stapels inventarislijsten. 'Vier stukken, vier landen, dezelfde breuk,' zegt ze, zonder op te kijken. 'Iemand heeft ze gebroken met één klap. En iemand heeft ze verzameld, één voor één, alsof hij een boodschappenlijst afwerkte.'",
+    "keuzes": [
+      {
+        "label": "Haar helpen met de lijsten (Kennis 8)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Na een avond werk vind je de naam van de schenker van alle vier: een stichting met een adres in Pall Mall. Amelia vloekt in het Duits.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "vlag": "fenwick-stichting"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De lijsten lopen door elkaar. Amelia zucht en stuurt je naar boven.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Haar je artefact laten bekijken",
+        "tekst": "Ze bekijkt het met een loep en zegt niets, wat erger is dan iets zeggen. Dan schrijft ze een nummer op een kaartje: dit is stuk vijf.",
+        "effect": [
+          {
+            "aanwijzing": 1
+          },
+          {
+            "trofee": 1
+          }
+        ]
+      }
+    ],
+    "god": "karathos"
+  },
+  {
+    "id": "v-kar-3",
+    "plek": "westminster",
+    "persoon": "anselm-drury",
+    "tekst": "Achter de abdij woont Pater Drury tussen zijn boeken. Hij hoest bloed in een zakdoek en glimlacht. 'De Tempeliers waren geen heiligen,' zegt hij. 'Maar ze wisten wat ze deden toen ze het braken. Ze lieten een rol achter, voor wie het ooit weer heel zou willen maken.'",
+    "keuzes": [
+      {
+        "label": "De rol vragen te mogen lezen (Kennis 9)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Het Latijn is oud en slordig, geschreven in een cel. Maar je leest het: de stukken mogen nooit samen in één stad liggen. Niet in Parijs. Niet in Londen.",
+          "effect": [
+            {
+              "aanwijzing": 3
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je leest wel, maar je begrijpt het niet. De pater legt een hand op je schouder.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Voor hem bidden",
+        "held": [
+          "ezra-whitlock",
+          "benedict-ashcombe"
+        ],
+        "tekst": "Je bidt met hem, in het Latijn dat je nog kent. Daarna geeft hij je een klein loden kistje. 'Voor één splinter,' zegt hij. 'Daar hoort hij hem niet in.'",
+        "effect": [
+          {
+            "toestand": "gezegend"
+          },
+          {
+            "trek": "artefacten"
+          },
+          {
+            "geest": 1
+          }
+        ]
+      }
+    ],
+    "god": "karathos"
+  },
+  {
+    "id": "v-kar-4",
+    "plek": "pall-mall",
+    "tekst": "In een club aan Pall Mall loopt een veiling van 'curiosa uit een nalatenschap'. Het publiek is beschaafd en heel rijk. Kavel twaalf is een zwarte scherf in een fluwelen doosje. Een heer naast je steekt zijn bordje op voordat de veilingmeester begint.",
+    "keuzes": [
+      {
+        "label": "Meebieden (3 Pond)",
+        "tekst": "Je biedt drie pond. De heer naast je kijkt je verbaasd aan en laat het gaan. Thuis merk je dat het doosje warm is.",
+        "effect": [
+          {
+            "pond": -3
+          },
+          {
+            "trek": "artefacten"
+          }
+        ]
+      },
+      {
+        "label": "Uitzoeken wie de koper is (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Zijn handschoenen hebben het monogram van het Genootschap. Je volgt hem tot een huis in Mayfair en noteert het adres.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij merkt je op. Buiten wacht er iemand op je met een mes.",
+          "effect": [
+            {
+              "monster": 1
+            }
+          ]
+        }
+      }
+    ],
+    "god": "karathos"
+  },
+  {
+    "id": "v-kar-5",
+    "plek": "wapping",
+    "tekst": "Een rivierpolitieagent laat je een sloep zien die vanochtend leeg dreef. De kapitein en twee knechten zijn weg. In de bodem van de sloep ligt een zwarte scherf, en het water eromheen staat stil, ook al stroomt de rivier.",
+    "keuzes": [
+      {
+        "label": "De scherf oppakken",
+        "tekst": "Hij is ijskoud en zwaar als lood. Op het moment dat je hem oppakt, gaat het water weer stromen. De agent kruist zich.",
+        "effect": [
+          {
+            "trek": "artefacten"
+          },
+          {
+            "geest": -1
+          }
+        ]
+      },
+      {
+        "label": "Uitzoeken waar de sloep vandaan kwam (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Het logboek staat nog in de kajuit: de sloep kwam van een schip uit Mexico. De vracht: 'kisten met stenen, voor het museum'.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De bladzijden van het logboek zijn nat en leeg.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            }
+          ]
+        }
+      }
+    ],
+    "god": "karathos"
+  },
+  {
+    "id": "v-kar-6",
+    "plek": "strand",
+    "tekst": "In King's College geeft een hoogleraar een lezing over 'de zeven relieken van de Tempeliers, een mythe ontmaskerd'. De zaal is halfvol. Halverwege houdt hij op met praten en kijkt hij naar zijn handen. 'Neem me niet kwalijk,' zegt hij. 'Ik hoor iets.'",
+    "keuzes": [
+      {
+        "label": "Na afloop met hem praten (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Hij geeft toe dat hij de mythe niet gelooft, en dat hij daarom elke nacht over de zevende splinter droomt. Hij weet waar die ligt: in een tempel zonder ingang, in Yucatán.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij is al weg, met zijn papieren tegen zijn borst gedrukt.",
+          "effect": []
+        }
+      },
+      {
+        "label": "Zijn aantekeningen lezen terwijl hij praat (Kennis 8)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "In de kantlijn staan zeven plaatsnamen. Vijf zijn doorgestreept.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Het handschrift wordt kleiner en kleiner tot het een spiraal is.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      }
+    ],
+    "god": "karathos"
+  },
+  {
+    "id": "v-kar-7",
+    "plek": "soho",
+    "tekst": "In een occulte boekwinkel in Soho ligt een zwarte scherf op de toonbank, als presse-papier. De eigenaar haalt zijn schouders op. 'Iemand ruilde hem tegen een boek. Hij bijt, als je hem te lang vasthoudt.'",
+    "keuzes": [
+      {
+        "label": "Hem ruilen tegen een spreuk die je kent",
+        "tekst": "De eigenaar is tevreden met de ruil. De scherf bijt inderdaad, maar je went eraan.",
+        "effect": [
+          {
+            "trek": "artefacten"
+          },
+          {
+            "lichaam": -1
+          }
+        ]
+      },
+      {
+        "label": "Vragen wie hem bracht (Charisma 7)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 7
+        },
+        "gelukt": {
+          "tekst": "Een jonge vrouw met inkt aan haar vingers. Ze zei dat hij beter niet in het museum kon liggen. Hij beschrijft Amelia Fenwick.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij weet het niet meer. Of hij wil het niet weten.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            }
+          ]
+        }
+      }
+    ],
+    "god": "karathos"
+  },
+  {
+    "id": "v-kar-8",
+    "plek": "st-katharine-docks",
+    "tekst": "Drie kisten met het stempel van het British Museum staan op de kade. Een van de deksels beweegt. De sjouwers weigeren ze aan te raken. 'Die heeft de hele overtocht geklopt,' zegt er een. 'Van binnen.'",
+    "keuzes": [
+      {
+        "label": "De kist openbreken (Kracht 8)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Erin ligt een harnas, en in het harnas niemand. Op de borstplaat is een kruis gekrast, en eronder een splinter vastgesmolten. Je wrikt hem los.",
+          "effect": [
+            {
+              "trek": "artefacten"
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Het deksel vliegt open voordat je klaar bent. Het harnas komt overeind.",
+          "effect": [
+            {
+              "monster": 1
+            },
+            {
+              "lichaam": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "De vrachtbrief lezen",
+        "tekst": "Verzonden uit Luxor, uit Darjeeling en uit Progreso, alle drie aan Mr. H. Quill. Je schrijft de data over.",
+        "effect": [
+          {
+            "aanwijzing": 1
+          }
+        ]
+      }
+    ],
+    "god": "karathos"
+  },
+  {
+    "id": "v-kar-9",
+    "plek": "overal",
+    "persoon": "amelia-fenwick",
+    "vlag": "fenwick-stichting",
+    "tekst": "Amelia Fenwick haalt je in op straat, buiten adem. 'De stichting in Pall Mall,' zegt ze. 'Ik ben er gisteren geweest. Er woont niemand. Er staan alleen vitrines, en ze zijn allemaal leeg, op één na.' Ze drukt je een sleutel in handen.",
+    "keuzes": [
+      {
+        "label": "De sleutel aannemen en gaan kijken (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "In de laatste vitrine ligt een kaart van de wereld, met zeven spelden. Vijf zijn zwart, twee zijn rood. Je neemt hem mee.",
+          "effect": [
+            {
+              "aanwijzing": 3
+            },
+            {
+              "wisVlag": "fenwick-stichting"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je vindt het huis, maar de sleutel past niet meer. Iemand heeft het slot vervangen.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "wisVlag": "fenwick-stichting"
+            }
+          ]
+        }
+      },
+      {
+        "label": "Haar meenemen naar Pater Drury",
+        "tekst": "Ze praten de hele middag, de priester en de wetenschapster, in het Latijn en het Duits. Je begrijpt de helft. De helft is genoeg.",
+        "effect": [
+          {
+            "aanwijzing": 2
+          },
+          {
+            "geest": 1
+          },
+          {
+            "wisVlag": "fenwick-stichting"
+          }
+        ]
+      }
+    ],
+    "god": "karathos"
+  },
+  {
+    "id": "v-kar-10",
+    "plek": "bloomsbury",
+    "mistTot": 6,
+    "tekst": "Het museum is gesloten, maar de deur staat open. In de grote zaal staan alle vitrines open. De stukken liggen op de vloer, in een kring, met een lege plek in het midden. Een bewaker zit in een hoek en zingt een kinderliedje.",
+    "keuzes": [
+      {
+        "label": "De kring verstoren (Kracht 9)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Je schopt de stukken uit elkaar. Ze glijden over de marmeren vloer, en ergens in de stad hoor je iets van glas breken.",
+          "effect": [
+            {
+              "trofee": 2
+            },
+            {
+              "mist": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De stukken schuiven terug, alsof ze aan touwtjes hangen.",
+          "effect": [
+            {
+              "geest": -2
+            },
+            {
+              "lichaam": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "De bewaker meenemen naar buiten",
+        "tekst": "Buiten houdt hij op met zingen. Hij vertelt dat de conservator elke nacht in de kring gaat liggen, op de lege plek.",
+        "effect": [
+          {
+            "aanwijzing": 2
+          }
+        ]
+      }
+    ],
+    "god": "karathos"
+  },
+  {
+    "id": "v-ulv-1",
+    "plek": "strand",
+    "persoon": "ephraim-gale",
+    "tekst": "In de werkplaats van Ephraim Gale tikken honderd klokken en wijzen dertig barometers allemaal dezelfde kant op: naar een stand die niet op de schaal staat. Gale staat midden in zijn winkel, met zijn handen in zijn haar. 'Ik heb hem niet uitgevonden,' zegt hij. 'Hij vond mij.'",
+    "keuzes": [
+      {
+        "label": "De barometer onderzoeken (Kennis 8)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "In de glazen buis zit geen kwik maar iets dat lijkt op levend weer, een miniatuurstorm. Er zitten zeven kleine streepjes op het glas. Vier zijn al gekleurd.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "vlag": "gale-barometer"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Terwijl je kijkt, slaat de buis om. Buiten begint het te hagelen.",
+          "effect": [
+            {
+              "lichaam": -1
+            },
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Hem geruststellen (Charisma 7)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 7
+        },
+        "gelukt": {
+          "tekst": "Hij gaat zitten, drinkt thee en vertelt over de kist van zijn grootvader. Er lag een brief bij, gericht aan 'de Bond'. Hij geeft hem aan jou.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij hoort je niet. Hij luistert naar het tikken.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            }
+          ]
+        }
+      }
+    ],
+    "god": "ulvereth"
+  },
+  {
+    "id": "v-ulv-2",
+    "plek": "wapping",
+    "persoon": "nell-bligh",
+    "tekst": "Kapitein Nell Bligh neemt je mee in haar loodsboot. Het water is zwart en traag, en er drijven schotsen ijs, in november. 'Kijk eens onder het ijs,' zegt ze. Je kijkt. Er beweegt een licht, zo groot als een huis, langzaam stroomopwaarts.",
+    "keuzes": [
+      {
+        "label": "Het licht volgen (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Het stopt onder London Bridge en blijft daar, als een oog. Nell noteert de plek en de tijd. 'Zelfde plek als in '14,' zegt ze. 'Mijn vader zag het ook.'",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Het ijs kraakt om de boot. Nell moet hard roeien om los te komen.",
+          "effect": [
+            {
+              "lichaam": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Haar helpen roeien (Kracht 8)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Jullie halen het tot Southwark. Nell knikt goedkeurend. 'Jij mag vaker mee.' Ze leert je de oude loodsentekens.",
+          "effect": [
+            {
+              "trofee": 1
+            },
+            {
+              "aanwijzing": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je handen bevriezen aan de riemen.",
+          "effect": [
+            {
+              "lichaam": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "Het ijs lezen zoals een rivierman",
+        "held": [
+          "paddy-flynn"
+        ],
+        "tekst": "Je kent dit water. Je ziet dat het ijs zich vormt in een patroon, als de veren van een vogel die op de rivier ligt. Nell kijkt je met nieuw respect aan.",
+        "effect": [
+          {
+            "aanwijzing": 3
+          }
+        ]
+      }
+    ],
+    "god": "ulvereth"
+  },
+  {
+    "id": "v-ulv-3",
+    "plek": "southwark",
+    "persoon": "tom-pennock",
+    "tekst": "Old Tom Pennock zit bij een vuurtje van drie kooltjes. 'Ik was negen,' zegt hij. 'We verkochten peperkoek op het ijs, en er was een kermiskoning met een papieren kroon. Op de laatste avond wilde hij niet van het ijs af. Hij zei dat de rivier hem had beloofd dat hij voor altijd koning zou zijn.'",
+    "keuzes": [
+      {
+        "label": "Vragen wat er toen gebeurde (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Het ijs brak, zegt Tom, en de koning zakte erin, langzaam, zonder te schreeuwen. Hij hield zijn kroon op. Tom heeft een stukje van die kroon bewaard, al zeventig jaar.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Tom wordt stil en kijkt naar het vuur. 'Dat vertel ik niet,' zegt hij.",
+          "effect": []
+        }
+      },
+      {
+        "label": "Kolen voor hem kopen (1 Pond)",
+        "tekst": "Het vuur wordt groot en warm. Tom vertelt urenlang, en tussen de verhalen door hoor je waar de koning nu nog staat, als het vriest.",
+        "effect": [
+          {
+            "pond": -1
+          },
+          {
+            "aanwijzing": 2
+          },
+          {
+            "geest": 1
+          }
+        ]
+      }
+    ],
+    "god": "ulvereth"
+  },
+  {
+    "id": "v-ulv-4",
+    "plek": "hampstead",
+    "tekst": "Op de heide van Hampstead staat de sterrenwacht in de mist. De weerkundige van dienst heeft drie nachten niet geslapen. 'Het weer komt niet meer uit het westen,' zegt hij. 'Het komt van boven. Recht van boven, van één punt.'",
+    "keuzes": [
+      {
+        "label": "Zijn metingen doorrekenen (Kennis 8)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Het punt ligt precies boven de Theems, en het zakt elke week een paar honderd voet.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De getallen draaien in je hoofd tot je duizelig wordt.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Samen naar de hemel kijken",
+        "tekst": "Even breekt de mist open en zie je de sterren, scherp en helder. Het is mooi. Je had vergeten hoe mooi het kon zijn.",
+        "effect": [
+          {
+            "geest": 2
+          }
+        ]
+      }
+    ],
+    "god": "ulvereth"
+  },
+  {
+    "id": "v-ulv-5",
+    "plek": "covent-garden",
+    "tekst": "Op de markt van Covent Garden schijnt de zon voor het eerst in een week. De kooplieden hebben hun kramen buiten gezet, kinderen spelen tussen de bloemen. Een bloemenverkoopster kijkt op naar de hemel, en dan naar jou. 'Geniet ervan,' zegt ze. 'Morgen sneeuwt het rozen.'",
+    "keuzes": [
+      {
+        "label": "Van de dag genieten",
+        "tekst": "Je koopt een warme appel en gaat op een trap zitten in de zon. Een uur lang ben je niets anders dan een mens op een markt.",
+        "effect": [
+          {
+            "geest": 2
+          },
+          {
+            "lichaam": 1
+          }
+        ]
+      },
+      {
+        "label": "Vragen wat ze bedoelt (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Ze heeft het weer van morgen gedroomd, zoals elke nacht. Ze droomt het altijd goed. Ze vertelt je wat ze heeft gezien.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Ze lacht je uit en verkoopt je een bos tulpen.",
+          "effect": [
+            {
+              "pond": -1
+            },
+            {
+              "geest": 1
+            }
+          ]
+        }
+      }
+    ],
+    "god": "ulvereth"
+  },
+  {
+    "id": "v-ulv-6",
+    "plek": "kings-cross",
+    "tekst": "Op het station van King's Cross staat een trein die vanochtend uit Edinburgh vertrok. Hij is helemaal bedekt met ijs, tot de schoorsteen toe. De reizigers zitten nog binnen. Ze zijn niet bevroren. Ze slapen, glimlachend.",
+    "keuzes": [
+      {
+        "label": "Een coupé openbreken (Kracht 8)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "De reizigers worden wakker en weten niets meer. Een van hen houdt nog een krant vast van een datum die nog moet komen.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Het ijs bijt in je handen als een dier.",
+          "effect": [
+            {
+              "lichaam": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "De machinist zoeken (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Hij zit op het perron, trillend. Bij York, zegt hij, kwam er een wolk naast de trein rijden. Een wolk met een gezicht.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Niemand weet waar hij is.",
+          "effect": []
+        }
+      }
+    ],
+    "god": "ulvereth"
+  },
+  {
+    "id": "v-ulv-7",
+    "plek": "limehouse",
+    "tekst": "In Limehouse is een schip binnengekomen dat de storm overleefde. De bemanning zit in een kroeg en drinkt zwijgend. De bootsman kijkt je aan. 'De wind sprak,' zegt hij. 'Hij noemde onze namen, één voor één. Twee mannen gingen overboord toen ze hun naam hoorden.'",
+    "keuzes": [
+      {
+        "label": "Een rondje geven en luisteren (1 Pond)",
+        "tekst": "De rum maakt ze los. Ze vertellen over een stilte midden in de storm, waar de zee glad was als glas en de hemel zich opende als een oog.",
+        "effect": [
+          {
+            "pond": -1
+          },
+          {
+            "aanwijzing": 2
+          }
+        ]
+      },
+      {
+        "label": "De logboeken lezen (Kennis 8)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "De kapitein heeft alles bijgehouden. De storm draaide tegen de klok in, wat in het noorden niet kan, en precies om Londen heen.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De inkt is uitgelopen door het zeewater.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            }
+          ]
+        }
+      }
+    ],
+    "god": "ulvereth"
+  },
+  {
+    "id": "v-ulv-8",
+    "plek": "chelsea",
+    "tekst": "Aan de oever van Chelsea schildert een kunstenaar de lucht boven de Theems, elke dag op hetzelfde uur. Zijn doeken hangen naast elkaar in zijn atelier. Op de eerste zie je wolken. Op de laatste zie je een gezicht.",
+    "keuzes": [
+      {
+        "label": "De doeken in volgorde bekijken (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Het gezicht wordt elke dag duidelijker, en het kijkt elke dag een stukje meer naar beneden. Naar Londen.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je kijkt te lang naar het laatste doek. Het knippert.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "Met hem schilderen",
+        "tekst": "Je schildert een uur naast hem, een gewone lucht met gewone wolken. Hij zegt dat het de mooiste lucht is die hij in weken heeft gezien.",
+        "effect": [
+          {
+            "geest": 2
+          }
+        ]
+      }
+    ],
+    "god": "ulvereth"
+  },
+  {
+    "id": "v-ulv-9",
+    "plek": "overal",
+    "persoon": "ephraim-gale",
+    "vlag": "gale-barometer",
+    "tekst": "Ephraim Gale komt je achterna in de regen, zijn barometer in een doek gewikkeld. 'Het vijfde streepje kleurt,' zegt hij. 'Bij het zevende is het voorbij, voor ons allemaal. Ik kan hem niet kapotmaken. Ik heb het geprobeerd.'",
+    "keuzes": [
+      {
+        "label": "De barometer stukslaan (Kracht 9)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Het glas breekt, en de storm in de buis ontsnapt met een zucht. Het regent nog even hard, en dan houdt het op. Gale huilt van opluchting.",
+          "effect": [
+            {
+              "trofee": 2
+            },
+            {
+              "mist": 1
+            },
+            {
+              "wisVlag": "gale-barometer"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Het glas buigt maar breekt niet. Een bliksem slaat in naast jullie.",
+          "effect": [
+            {
+              "lichaam": -2
+            },
+            {
+              "wisVlag": "gale-barometer"
+            }
+          ]
+        }
+      },
+      {
+        "label": "Hem naar de sterrenwacht laten brengen",
+        "tekst": "Je stuurt hem met een rijtuig naar Hampstead. Daar kunnen ze de barometer bestuderen. Gale belooft je elke dag te laten weten wat hij aanwijst.",
+        "effect": [
+          {
+            "aanwijzing": 2
+          },
+          {
+            "wisVlag": "gale-barometer"
+          }
+        ]
+      }
+    ],
+    "god": "ulvereth"
+  },
+  {
+    "id": "v-ulv-10",
+    "plek": "westminster",
+    "mistTot": 6,
+    "tekst": "Over Westminster hangt een wolk die niet beweegt. Uit de wolk valt sneeuw, maar alleen op de brug. Op de brug staan mensen die omhoog kijken, met sneeuw op hun gezicht, en niet weggaan.",
+    "keuzes": [
+      {
+        "label": "Ze van de brug halen (Charisma 9)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Een voor een lopen ze mee. Op de laatste na, een oude vrouw die blijft staan. 'Het is zo mooi,' zegt ze. Je laat haar.",
+          "effect": [
+            {
+              "trofee": 1
+            },
+            {
+              "geest": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Ze horen je niet. De sneeuw valt nu ook op jou.",
+          "effect": [
+            {
+              "lichaam": -1
+            },
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Naar de wolk kijken (Kennis 9)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "In de wolk zie je de vorm van de stad, maar ondersteboven, alsof de hemel een spiegel is. Je weet nu waar het hart van de storm ligt.",
+          "effect": [
+            {
+              "aanwijzing": 3
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je kunt niet meer wegkijken.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      }
+    ],
+    "god": "ulvereth"
+  },
+  {
+    "id": "v-sir-1",
+    "plek": "mayfair",
+    "persoon": "edmund-haversham",
+    "tekst": "Door een hoog raam zie je de salon: kaarslicht, muziek, gelach. Op een stoel bij het raam zit Sir Edmund Haversham te schrijven. Hij kijkt op, ziet je, en glimlacht zoals een kind glimlacht. Hij gebaart dat je binnen moet komen. Achter hem gaat een waaier open.",
+    "keuzes": [
+      {
+        "label": "Zijn aandacht trekken en hem naar buiten lokken (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je houdt een krant tegen het glas met de naam van zijn vrouw erop. Hij fronst. Even, heel even, is hij zichzelf. Hij schuift een papier onder het raam door.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij blijft glimlachen en schrijft verder. Je merkt dat je zelf ook glimlacht.",
+          "effect": [
+            {
+              "toestand": "betoverd"
+            }
+          ]
+        }
+      },
+      {
+        "label": "Het huis tekenen en weglopen",
+        "tekst": "Je noteert het adres, de ramen, de uitgangen. Morgen is de salon ergens anders. Maar je weet nu hoe hij eruitziet.",
+        "effect": [
+          {
+            "aanwijzing": 1
+          }
+        ]
+      }
+    ],
+    "god": "sirrhae"
+  },
+  {
+    "id": "v-sir-2",
+    "plek": "chelsea",
+    "persoon": "lucien-marchetti",
+    "tekst": "Lucien Marchetti laat je binnen in zijn atelier. Hij heeft niet geslapen. In de hoek staat een groot doek onder een laken, en het laken ademt. 'Haar ogen zijn klaar,' zegt hij. 'Ze kijken naar me, de hele nacht. Als ik haar mond schilder, gaat ze praten.'",
+    "keuzes": [
+      {
+        "label": "Onder het laken kijken (Kennis 9)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Je kijkt alleen naar de randen, nooit naar de ogen. In de achtergrond van het portret heeft Marchetti, zonder het te weten, de echte salon geschilderd: het huis waar ze altijd is, achter alle adressen.",
+          "effect": [
+            {
+              "aanwijzing": 3
+            },
+            {
+              "vlag": "marchetti-portret"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je kijkt in haar ogen. Je bent een uur weg, en Marchetti schudt je wakker.",
+          "effect": [
+            {
+              "toestand": "betoverd"
+            },
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Hem overhalen het doek te verbranden (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Hij wil het, maar hij kan het niet. Wel belooft hij je het portret te geven als je erom komt.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "vlag": "marchetti-portret"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij gaat voor het doek staan, met zijn armen wijd, alsof je een kind wilt slaan.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      }
+    ],
+    "god": "sirrhae"
+  },
+  {
+    "id": "v-sir-3",
+    "plek": "marylebone",
+    "persoon": "rosalind-ashe",
+    "tekst": "In een klaslokaal in Marylebone hangen alle spiegels met hun gezicht naar de muur. Rosalind Ashe corrigeert dictees. 'Ze heeft je al gezien,' zegt ze zonder op te kijken. 'Dat zie ik aan hoe je staat. Ga zitten. Ik zal je vertellen hoe ik ben weggekomen.'",
+    "keuzes": [
+      {
+        "label": "Luisteren en vragen stellen (Charisma 7)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 7
+        },
+        "gelukt": {
+          "tekst": "Ze vertelt over de spiegel waarin ze niemand zag, en wat ze daarna deed: ze zei hardop haar eigen naam, haar moeders naam, haar geboortedorp. 'Ze kan alleen nemen wat je vergeten bent,' zegt ze.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "verwijder": "betoverd"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Ze ziet dat je niet echt luistert, en houdt op. 'Kom terug als je weet waarom je hier bent.'",
+          "effect": [
+            {
+              "aanwijzing": 1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Haar je eigen naam laten horen",
+        "tekst": "Je zegt je volledige naam, je geboortedatum, de naam van je eerste huis. Rosalind knikt. 'Goed,' zegt ze. 'Doe dat elke ochtend.' Je voelt je helderder dan in dagen.",
+        "effect": [
+          {
+            "geest": 2
+          },
+          {
+            "verwijder": "betoverd"
+          }
+        ]
+      }
+    ],
+    "god": "sirrhae"
+  },
+  {
+    "id": "v-sir-4",
+    "plek": "covent-garden",
+    "tekst": "In de opera van Covent Garden zingt vanavond een diva die niemand kent. Het programma noemt geen naam. De zaal is uitverkocht, en na de eerste aria staat iedereen op en applaudisseert een kwartier lang, ook de mannen die je in de loges ziet huilen.",
+    "keuzes": [
+      {
+        "label": "Met watten in je oren de voorstelling bekijken (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Zonder haar stem zie je wat de anderen niet zien: dat het publiek bij elke aria iets ouder wordt, en zij iets jonger.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je haalt de watten eruit, alleen voor één noot. Het is genoeg.",
+          "effect": [
+            {
+              "toestand": "betoverd"
+            }
+          ]
+        }
+      },
+      {
+        "label": "Achter het toneel rondsnuffelen (Kennis 8)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "In haar kleedkamer staan geen spiegels, alleen een waaier op een kussen, en een lijst met namen van mensen in de zaal.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Een toneelknecht zet je buiten, beleefd en onvermurwbaar.",
+          "effect": []
+        }
+      },
+      {
+        "label": "Mee zingen, tegen haar in",
+        "held": [
+          "esme-valentine"
+        ],
+        "tekst": "Je kent de aria. Je zingt hem mee vanaf de engelenbak, een halve toon hoger. Een paar mensen kijken om, en schudden hun hoofd alsof ze wakker worden. De diva zingt door, maar ze heeft je gezien.",
+        "effect": [
+          {
+            "aanwijzing": 2
+          },
+          {
+            "trofee": 2
+          },
+          {
+            "geest": -1
+          }
+        ]
+      }
+    ],
+    "god": "sirrhae"
+  },
+  {
+    "id": "v-sir-5",
+    "plek": "whitehall",
+    "persoon": "thaddeus-voss",
+    "tekst": "Hoofdinspecteur Voss heeft een stapel aangiftes op zijn bureau. 'Echtgenoten die niet meer thuiskomen, kassiers die het geld weggeven, een bisschop die de kerk verkocht. Allemaal gingen ze naar een feestje in Mayfair. Niemand doet aangifte tegen de gastvrouw. Ze willen allemaal terug.'",
+    "keuzes": [
+      {
+        "label": "De aangiftes doorlezen (Kennis 8)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Iedereen kreeg een cadeau, en elk cadeau kostte iemand anders iets. De kassier kreeg een horloge; zijn bank ging failliet. Het patroon is duidelijk: ze geeft nooit gratis.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De verhalen lijken allemaal op elkaar, tot je niet meer weet welke welke was.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Voss vragen om een agent",
+        "tekst": "Hij geeft je een jonge agent mee, die nog nooit van Mayfair heeft gehoord. 'Dat is mijn beste wapen,' zegt Voss. 'Iemand die niets wil.'",
+        "effect": [
+          {
+            "trek": "bondgenoot"
+          }
+        ]
+      }
+    ],
+    "god": "sirrhae"
+  },
+  {
+    "id": "v-sir-6",
+    "plek": "soho",
+    "tekst": "In een kroeg in Soho zit een jonge dichter met een boek vol gedichten over één vrouw. Hij leest ze voor aan iedereen die wil luisteren. Ze zijn prachtig. Halverwege het derde gedicht merk je dat jij haar ook mist, terwijl je haar nooit hebt gezien.",
+    "keuzes": [
+      {
+        "label": "Het boek van hem afpakken (Kracht 7)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 7
+        },
+        "gelukt": {
+          "tekst": "Je pakt het af en gooit het in het vuur. Hij huilt, en dan begint hij over zijn moeder te praten, voor het eerst in maanden.",
+          "effect": [
+            {
+              "trofee": 1
+            },
+            {
+              "geest": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij houdt het vast met een kracht die je niet van een dichter verwacht.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "De gedichten analyseren (Kennis 8)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "In elk gedicht zit een adres, verstopt in het rijm. Zeven adressen in Mayfair, in een vaste volgorde.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je leest ze nog eens. En nog eens.",
+          "effect": [
+            {
+              "toestand": "betoverd"
+            }
+          ]
+        }
+      }
+    ],
+    "god": "sirrhae"
+  },
+  {
+    "id": "v-sir-7",
+    "plek": "pall-mall",
+    "tekst": "In een club aan Pall Mall zitten de leden in stilte. Ze hebben allemaal een parfumkaartje voor zich liggen, dezelfde geur, hetzelfde handschrift: 'Donderdag'. Een oude kolonel trekt je apart. 'Ik heb het mijne verbrand,' fluistert hij. 'Ik weet niet of ik er goed aan deed.'",
+    "keuzes": [
+      {
+        "label": "Een kaartje stelen (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Op de achterkant staat een adres in een geheime inkt, die verschijnt als je hem bij een kaars houdt.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je ruikt eraan voordat je het wegstopt. Donderdag lijkt ineens heel ver weg.",
+          "effect": [
+            {
+              "geest": -1
+            },
+            {
+              "toestand": "betoverd"
+            }
+          ]
+        }
+      },
+      {
+        "label": "De kolonel geruststellen",
+        "tekst": "Je vertelt hem dat hij er goed aan deed. Hij lacht, opgelucht, en geeft je zijn oude dienstrevolver. 'Ik heb hem niet meer nodig. Ik heb weer zin in mijn leven.'",
+        "effect": [
+          {
+            "trek": "spullen"
+          },
+          {
+            "geest": 1
+          }
+        ]
+      }
+    ],
+    "god": "sirrhae"
+  },
+  {
+    "id": "v-sir-8",
+    "plek": "leicester-square",
+    "tekst": "In het theater op Leicester Square treedt een goochelaar op die beweert dat hij het hart van een dame kan laten verdwijnen. Hij roept een vrijwilligster op het toneel. Ze komt naar voren met een waaier, en het publiek houdt de adem in.",
+    "keuzes": [
+      {
+        "label": "De truc doorzien (Waarneming 9)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Het is geen truc. De goochelaar is doodsbang. Na de voorstelling vertelt hij je dat ze elke avond komt, op een andere stoel.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je ziet niets bijzonders, en je applaudisseert, en je weet niet waarom je tranen in je ogen hebt.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "De goochelaar ontmaskeren",
+        "held": [
+          "albert-gosling"
+        ],
+        "tekst": "Je kent elk trucje uit het vak. Dit is er geen. Je springt op het toneel en klapt de waaier dicht voordat ze iets kan doen. Het publiek denkt dat het bij de act hoort en juicht.",
+        "effect": [
+          {
+            "aanwijzing": 2
+          },
+          {
+            "trofee": 2
+          }
+        ]
+      }
+    ],
+    "god": "sirrhae"
+  },
+  {
+    "id": "v-sir-9",
+    "plek": "overal",
+    "persoon": "lucien-marchetti",
+    "vlag": "marchetti-portret",
+    "tekst": "Lucien Marchetti staat voor je, zonder hoed, met verf op zijn handen. 'Ze is het atelier binnengekomen,' zegt hij. 'Ze wil dat ik haar mond schilder. Vannacht. Help me, alsjeblieft. Ik kan niet nee zeggen.'",
+    "keuzes": [
+      {
+        "label": "Met hem mee naar Chelsea (Charisma 9)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Je praat tussen hen in, tot de ochtend. Bij het eerste licht is ze weg. Op het doek staat haar mond, maar gesloten. Ze zal niet praten.",
+          "effect": [
+            {
+              "trofee": 2
+            },
+            {
+              "aanwijzing": 2
+            },
+            {
+              "wisVlag": "marchetti-portret"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Ze kijkt je één keer aan, en je gaat zitten, en je kijkt toe terwijl hij schildert.",
+          "effect": [
+            {
+              "toestand": "betoverd"
+            },
+            {
+              "geest": -2
+            },
+            {
+              "wisVlag": "marchetti-portret"
+            }
+          ]
+        }
+      },
+      {
+        "label": "Hem verstoppen bij Rosalind Ashe",
+        "tekst": "Rosalind laat hem binnen, draait zijn gezicht naar de muur en laat hem zijn eigen naam zeggen, honderd keer. Hij slaapt die nacht voor het eerst in een jaar.",
+        "effect": [
+          {
+            "aanwijzing": 1
+          },
+          {
+            "geest": 1
+          },
+          {
+            "wisVlag": "marchetti-portret"
+          }
+        ]
+      }
+    ],
+    "god": "sirrhae"
+  },
+  {
+    "id": "v-sir-10",
+    "plek": "mayfair",
+    "mistTot": 6,
+    "tekst": "Het feest is naar buiten gekomen. Op Grosvenor Square dansen honderden mensen in avondkleding, op muziek die niemand speelt. Een vrouw met een waaier wenkt je, vriendelijk, alsof ze op je heeft gewacht.",
+    "keuzes": [
+      {
+        "label": "Je eigen naam hardop zeggen en weglopen",
+        "tekst": "Je zegt je naam, je moeders naam, je geboortedorp. De muziek wordt zachter. Je loopt weg, en ze laat je gaan, met een glimlach die belooft dat je terugkomt.",
+        "effect": [
+          {
+            "geest": -1
+          },
+          {
+            "aanwijzing": 1
+          }
+        ]
+      },
+      {
+        "label": "Met haar dansen (Charisma 10)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 10
+        },
+        "gelukt": {
+          "tekst": "Je danst, en je blijft jezelf. Ze is verrast, en daarna nieuwsgierig. Ze fluistert je iets toe wat ze nooit tegen iemand zegt.",
+          "effect": [
+            {
+              "aanwijzing": 3
+            },
+            {
+              "trofee": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je danst tot de ochtend en weet niet meer met wie.",
+          "effect": [
+            {
+              "toestand": "betoverd"
+            },
+            {
+              "geest": -2
+            },
+            {
+              "mist": -1
+            }
+          ]
+        }
+      }
+    ],
+    "god": "sirrhae"
+  },
+  {
+    "id": "v-our-1",
+    "plek": "spitalfields",
+    "persoon": "obadiah-penrose",
+    "tekst": "De werkplaats van Obadiah Penrose staat open. Er is niemand. Honderd klokken tikken, allemaal achteruit. Op de werkbank ligt een klok met dertien uren, half af, en daarnaast een dagboek waarvan de laatste bladzijde gisteren is geschreven, in een handschrift dat beeft.",
+    "keuzes": [
+      {
+        "label": "Het dagboek lezen (Kennis 8)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Penrose schrijft dat hij het dertiende uur niet heeft uitgevonden, maar gevonden: in de toren van Westminster, achter een tandwiel dat daar niet hoort. 'Iemand heeft het erin gezet,' schrijft hij. 'Iemand die wacht.'",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "vlag": "penrose-dagboek"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je leest de bladzijde drie keer, en elke keer staat er iets anders.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "De klokken stilzetten (Kracht 7)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 7
+        },
+        "gelukt": {
+          "tekst": "Je houdt de slingers een voor een vast. Bij de laatste is het stil, en in die stilte hoor je ergens onder de vloer nog één klok tikken.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Een slinger slaat je hand open.",
+          "effect": [
+            {
+              "lichaam": -1
+            }
+          ]
+        }
+      }
+    ],
+    "god": "ouroch"
+  },
+  {
+    "id": "v-our-2",
+    "plek": "westminster",
+    "persoon": "dora-whitby",
+    "tekst": "In het telegraafkantoor zit Dora Whitby met een schrift vol berichten. 'Deze kwam vannacht binnen,' zegt ze, en ze laat je een strook papier zien. De datum is van volgende week. Het bericht is één regel: 'Toren valt stil om dertien uur. Niemand overleeft.'",
+    "keuzes": [
+      {
+        "label": "Haar schrift doorrekenen (Kennis 8)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Alle berichten komen van dezelfde zender, en die zender verschuift elke dag een paar seconden in de tijd. Achteruit. Je rekent uit waar hij was op het moment dat het begon.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De data duizelen. Was het nu gisteren of morgen?",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Een bericht terug sturen",
+        "tekst": "Dora tikt wat je dicteert: 'Wie ben je?' Er komt meteen antwoord, voordat ze klaar is met tikken. Het is je eigen naam.",
+        "effect": [
+          {
+            "aanwijzing": 2
+          },
+          {
+            "geest": -2
+          }
+        ]
+      }
+    ],
+    "god": "ouroch"
+  },
+  {
+    "id": "v-our-3",
+    "plek": "strand",
+    "persoon": "ignatius-fell",
+    "tekst": "Op de Strand loopt een lange man in een grijze jas, met een enorme sleutel over zijn schouder. Het is Ignatius Fell, de opwinder. Hij blijft voor je staan en buigt zijn hoofd, alsof hij luistert. 'U loopt achter,' zegt hij vriendelijk. 'Twee minuten. Dat kan ik verhelpen.'",
+    "keuzes": [
+      {
+        "label": "Hem laten praten (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Hij vertelt over de dertiende slag, met de liefde van een vader. 'Bij de laatste slag,' zegt hij, 'loopt alles gelijk. Iedereen. Voor altijd.' Je weet nu wanneer hij weer klimt.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij steekt de sleutel in je richting, zonder je aan te raken. Je verliest twee minuten. Je weet niet waar ze zijn gebleven.",
+          "effect": [
+            {
+              "geest": -1
+            },
+            {
+              "mist": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Weglopen voordat hij iets kan doen",
+        "tekst": "Je draait je om en loopt snel weg. Achter je hoor je hem zachtjes tikken.",
+        "effect": [
+          {
+            "geest": -1
+          }
+        ]
+      }
+    ],
+    "god": "ouroch"
+  },
+  {
+    "id": "v-our-4",
+    "plek": "city",
+    "tekst": "In de City lopen alle mensen in de maat. Klerken, koopmannen, bezorgers: hun voeten raken tegelijk de stenen, tik, tik, tik. Niemand merkt het. Een bloemenmeisje in een portiek kijkt je bang aan. Zij loopt niet mee.",
+    "keuzes": [
+      {
+        "label": "Het meisje vragen wat ze ziet (Charisma 7)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 7
+        },
+        "gelukt": {
+          "tekst": "Ze ziet het sinds de nacht van de dertiende slag. Ze sliep toen, en ze hoorde hem niet. 'Iedereen die hem hoorde,' zegt ze, 'loopt nu zo.'",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Ze rent weg, uit de maat.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Uit de maat lopen (Kracht 8)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Het kost moeite, alsof je tegen een stroom in loopt. Maar je doet het, en een paar mensen om je heen struikelen en kijken verbaasd op.",
+          "effect": [
+            {
+              "trofee": 1
+            },
+            {
+              "geest": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Na een paar passen loop je weer mee. Het voelt prettig.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      }
+    ],
+    "god": "ouroch"
+  },
+  {
+    "id": "v-our-5",
+    "plek": "bloomsbury",
+    "tekst": "In de leeszaal van het British Museum staat de grote klok stil, al drie dagen. De bibliothecarissen werken door, maar niemand gaat naar huis. Een oude lezer tikt je op de schouder. 'Het is nog steeds dinsdag,' fluistert hij. 'Al drie dagen dinsdag.'",
+    "keuzes": [
+      {
+        "label": "De klok laten lopen (Kennis 8)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "In het uurwerk zit een tandwiel met dertien tanden, waar er twaalf horen. Je haalt het eruit. De klok slaat, en heel de leeszaal zucht. Het is woensdag.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je draait aan de wijzers, en het wordt weer maandag.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "De oude lezer laten vertellen",
+        "tekst": "Hij leest al drie dagen hetzelfde boek, over de kalenderhervorming van 1752, toen Engeland elf dagen oversloeg. 'Die dagen zijn niet weg,' zegt hij. 'Iemand heeft ze bewaard.'",
+        "effect": [
+          {
+            "aanwijzing": 1
+          },
+          {
+            "geest": 1
+          }
+        ]
+      }
+    ],
+    "god": "ouroch"
+  },
+  {
+    "id": "v-our-6",
+    "plek": "kings-cross",
+    "tekst": "Op King's Cross komt de trein van half negen binnen om kwart over acht. Een kwartier te vroeg. De reizigers stappen uit en lopen langs zichzelf, die op het perron staan te wachten. Niemand lijkt het vreemd te vinden.",
+    "keuzes": [
+      {
+        "label": "Een reiziger aanspreken die zichzelf ziet (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Een vrouw kijkt van haar dubbelganger naar jou en begint te lachen, zenuwachtig. Ze vertelt dat de conducteur bij Peterborough zijn horloge in het raam hield en dat iedereen ernaar keek.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je ziet jezelf ook, aan de overkant van het perron. Hij zwaait.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "De dienstregeling stelen",
+        "tekst": "Je neemt het boekje mee van de stationschef. De tijden zijn met potlood aangepast, elke dag een paar minuten, in een handschrift dat je eerder hebt gezien.",
+        "effect": [
+          {
+            "aanwijzing": 1
+          },
+          {
+            "trofee": 1
+          }
+        ]
+      }
+    ],
+    "god": "ouroch"
+  },
+  {
+    "id": "v-our-7",
+    "plek": "whitehall",
+    "persoon": "thaddeus-voss",
+    "tekst": "Voss gooit een stapel rapporten op zijn bureau. 'Twintig mensen die zeggen dat ze een uur kwijt zijn. Vier die zeggen dat ze een dag kwijt zijn. En één die zegt dat hij in 1866 is begonnen aan zijn wandeling naar huis.' Hij wrijft over zijn ogen. 'Die laatste heeft de kleren van toen nog aan.'",
+    "keuzes": [
+      {
+        "label": "De man uit 1866 spreken (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Hij is beleefd en verward. Hij liep langs de toren toen de klok dertien sloeg, en toen hij de hoek om ging, was het nu. Hij beschrijft precies welke hoek.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Midden in een zin verdwijnt hij. Op zijn stoel ligt een zakhorloge zonder wijzers.",
+          "effect": [
+            {
+              "geest": -1
+            },
+            {
+              "trek": "spullen"
+            }
+          ]
+        }
+      },
+      {
+        "label": "De rapporten op een kaart zetten (Kennis 8)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Alle verdwenen uren liggen in een cirkel rond de toren, en de cirkel wordt groter.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De punten lijken nergens op.",
+          "effect": []
+        }
+      }
+    ],
+    "god": "ouroch"
+  },
+  {
+    "id": "v-our-8",
+    "plek": "southwark",
+    "tekst": "Bij de kerk van Southwark staat een groep mensen te wachten op een begrafenis die gisteren al was. Ze dragen rouwkleding en kijken steeds op hun horloge. De pastoor komt naar buiten en zegt dat er niemand begraven wordt. 'Nog niet,' zegt een van de rouwenden. 'Over een uur.'",
+    "keuzes": [
+      {
+        "label": "Uitzoeken voor wie ze rouwen (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Op het rouwkaartje staat een naam die je kent: Obadiah Penrose. De datum is morgen.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Ze kijken je aan alsof jij de dode bent.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Met de pastoor bidden",
+        "held": [
+          "ezra-whitlock",
+          "benedict-ashcombe"
+        ],
+        "tekst": "Jullie bidden samen het gebed voor de stervenden. Een voor een kijken de rouwenden op, beschaamd, en gaan naar huis. De pastoor geeft je zijn zegen.",
+        "effect": [
+          {
+            "toestand": "gezegend"
+          },
+          {
+            "aanwijzing": 1
+          },
+          {
+            "geest": 1
+          }
+        ]
+      }
+    ],
+    "god": "ouroch"
+  },
+  {
+    "id": "v-our-9",
+    "plek": "overal",
+    "persoon": "obadiah-penrose",
+    "vlag": "penrose-dagboek",
+    "tekst": "Een oude man met een loep in zijn oog trekt aan je mouw. Obadiah Penrose. Hij ziet er doorschijnend uit. 'U hebt mijn dagboek gelezen,' zegt hij. 'Dan weet u het. Ik moet terug naar de toren om het tandwiel eruit te halen, maar ik besta nog maar half. Ik heb uw handen nodig.'",
+    "keuzes": [
+      {
+        "label": "Met hem de toren in gaan (Kracht 9)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Je klimt driehonderd treden. Hij wijst, jij trekt. Het tandwiel komt los, en de hele toren zucht. Penrose glimlacht, en is weg. Hij was al veel langer weg dan je dacht.",
+          "effect": [
+            {
+              "trofee": 2
+            },
+            {
+              "mist": 1
+            },
+            {
+              "wisVlag": "penrose-dagboek"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Halverwege slaat de klok. Je valt van de trap, en Penrose is verdwenen.",
+          "effect": [
+            {
+              "lichaam": -2
+            },
+            {
+              "wisVlag": "penrose-dagboek"
+            }
+          ]
+        }
+      },
+      {
+        "label": "Hem laten uitleggen hoe het moet",
+        "tekst": "Hij tekent het uurwerk voor je op een servet, tot in het kleinste tandwiel. Dan valt zijn hand door het tafelblad. 'Haast u,' zegt hij.",
+        "effect": [
+          {
+            "aanwijzing": 2
+          },
+          {
+            "wisVlag": "penrose-dagboek"
+          }
+        ]
+      }
+    ],
+    "god": "ouroch"
+  },
+  {
+    "id": "v-our-10",
+    "plek": "westminster",
+    "mistTot": 6,
+    "tekst": "De wijzers van de toren draaien rond, steeds sneller. Op de brug staan mensen die in een paar minuten oud worden en weer jong. Een kind wordt een man en weer een kind, en huilt.",
+    "keuzes": [
+      {
+        "label": "De mensen van de brug halen (Kracht 9)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Wie van de brug af is, blijft zoals hij is. Je haalt er twintig weg voordat je zelf grijze haren krijgt.",
+          "effect": [
+            {
+              "trofee": 2
+            },
+            {
+              "lichaam": -1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je staat te lang op de brug. Je handen zijn ouder dan ze waren.",
+          "effect": [
+            {
+              "lichaam": -2
+            },
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Naar de wijzers kijken en tellen (Kennis 9)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "In het draaien zit een patroon: twaalf rondes snel, één langzaam. In die ene ronde is de toren kwetsbaar.",
+          "effect": [
+            {
+              "aanwijzing": 3
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je telt mee tot je niet meer weet welk jaar het is.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      }
+    ],
+    "god": "ouroch"
+  },
+  {
+    "id": "v-yth-1",
+    "plek": "city",
+    "persoon": "kitty-lark",
+    "tekst": "Kitty Lark houdt je staande op de hoek van Fleet Street. 'Kijk,' zegt ze, en ze laat je twee kranten zien, allebei van vandaag. In de ene is een brand in Southwark. In de andere is er geen brand, maar een moord. 'Deze kocht ik om vier uur,' zegt ze. 'Die om vijf. En nu is er echt een moord.'",
+    "keuzes": [
+      {
+        "label": "De twee versies vergelijken (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Het zetsel is hetzelfde, op één regel na. Die regel is met de hand bijgezet, met een letter die niet in de kast van de Avondlantaarn hoort. Je weet nu waar hij vandaan komt.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je leest ze om en om, en dan weet je niet meer welke waar is.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Haar oude kranten vragen",
+        "tekst": "Ze haalt een pak onder haar matras vandaan, in ruil voor een warme maaltijd. Twintig kranten, elk in twee versies. Een schatkist.",
+        "effect": [
+          {
+            "pond": -1
+          },
+          {
+            "aanwijzing": 2
+          },
+          {
+            "vlag": "kitty-kranten"
+          }
+        ]
+      }
+    ],
+    "god": "yth-nemora"
+  },
+  {
+    "id": "v-yth-2",
+    "plek": "whitechapel",
+    "persoon": "fennimore-blight",
+    "tekst": "In een kroeg in Whitechapel vertelt Fennimore Blight aan een tafel vol mensen wat hij gisteren zag. Een man met een mes. Een rijtuig zonder koetsier. Iedereen luistert ademloos. Jij weet dat hij gisteren de hele dag in de zetterij stond.",
+    "keuzes": [
+      {
+        "label": "Hem in het openbaar tegenspreken (Charisma 9)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Je vraagt hem naar de kleur van het rijtuig, de tijd, het weer. Hij hapert. De mensen aan tafel beginnen te mompelen. Voor het eerst kijkt hij bang.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij heeft overal een antwoord op. Aan het eind geloof jij hem ook.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "Hem buiten opwachten",
+        "tekst": "Als hij naar buiten komt, ga je naast hem lopen. 'Ik weet het,' zeg je alleen. Hij begint te huilen.",
+        "effect": [
+          {
+            "aanwijzing": 1
+          },
+          {
+            "geest": -1
+          }
+        ]
+      }
+    ],
+    "god": "yth-nemora"
+  },
+  {
+    "id": "v-yth-3",
+    "plek": "strand",
+    "persoon": "horatio-vance",
+    "tekst": "Mr. Horatio Vance ontvangt je in zijn kantoor boven de persen. Hij is charmant en geestig. 'U bent die mensen van Voss,' zegt hij. 'Prachtig. Ik zou graag een stuk over u schrijven. Wat zou u willen dat er stond?'",
+    "keuzes": [
+      {
+        "label": "Niets zeggen en goed kijken (Waarneming 9)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Op zijn bureau ligt de krant van morgen, al gezet. Je leest de koppen ondersteboven. Twee ervan gaan over jullie, en ze zijn niet waar. Nog niet.",
+          "effect": [
+            {
+              "aanwijzing": 3
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij praat, jij luistert. Na een uur weet je niet meer wat je eigenlijk kwam doen.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "Hem een valse tip geven (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je vertelt hem iets dat niet waar is, en dat niemand kwaad kan doen. De volgende dag staat het in de krant. Nu weet je hoe snel het gaat.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij glimlacht. 'Dat is niet waar,' zegt hij. 'Maar het wordt het wel.' De volgende dag staat er iets over jou in.",
+          "effect": [
+            {
+              "toestand": "gezocht"
+            }
+          ]
+        }
+      }
+    ],
+    "god": "yth-nemora"
+  },
+  {
+    "id": "v-yth-4",
+    "plek": "whitehall",
+    "persoon": "thaddeus-voss",
+    "tekst": "Voss staat bij het raam met de Avondlantaarn in zijn hand. 'Ik heb drie mannen opgepakt voor een moord die volgens deze krant is gepleegd,' zegt hij. 'Er is een lijk. Er is een getuige. Er is een mes. Alleen weet ik zeker dat het niet gebeurd is. Ik was erbij.'",
+    "keuzes": [
+      {
+        "label": "De bewijsstukken bekijken (Kennis 8)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Het mes is nieuw, maar het heeft roest van twintig jaar. Het lijk heeft geen vingerafdrukken. Iemand heeft een verhaal gemaakt en vergeten dat de dingen ook een geschiedenis hebben.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Alles klopt. Te goed.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Voss vragen om zijn archief",
+        "tekst": "Hij laat je in zijn kast kijken. Alle zaken waar hij aan twijfelt, met een rood lint. Het zijn er meer dan honderd.",
+        "effect": [
+          {
+            "aanwijzing": 1
+          },
+          {
+            "trofee": 1
+          }
+        ]
+      }
+    ],
+    "god": "yth-nemora"
+  },
+  {
+    "id": "v-yth-5",
+    "plek": "covent-garden",
+    "tekst": "Op de markt staat een man op een kist, die vertelt dat de koningin gisteren is gestorven. Mensen huilen. Een vrouw begint een rouwband te knopen. Twee straten verder staat een andere man die vertelt dat ze vandaag naar Windsor rijdt. Beide mannen hebben dezelfde krant onder hun arm.",
+    "keuzes": [
+      {
+        "label": "Het gerucht de kop indrukken (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je roept dat er een telegram is uit Windsor, en je zwaait met een papiertje. De menigte verspreidt zich. Leugen tegen leugen: het werkt, en het smaakt bitter.",
+          "effect": [
+            {
+              "trofee": 1
+            },
+            {
+              "mist": 1
+            },
+            {
+              "geest": -1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Niemand luistert naar jou. Je hebt geen krant.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "De twee mannen volgen (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Ze gaan naar hetzelfde huis, door dezelfde deur, en komen er niet meer uit.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je raakt ze kwijt in de menigte.",
+          "effect": []
+        }
+      }
+    ],
+    "god": "yth-nemora"
+  },
+  {
+    "id": "v-yth-6",
+    "plek": "bloomsbury",
+    "tekst": "In de leeszaal staat een bibliothecaris bij een stapel oude kranten. 'Ze veranderen,' fluistert hij. 'Kranten van tien jaar geleden. Ik heb ze vorig jaar nog gelezen, en nu staan er andere dingen in. Iemand schrijft het verleden bij.'",
+    "keuzes": [
+      {
+        "label": "Een oude krant vergelijken met je geheugen (Kennis 8)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je herinnert je die krant: hij ging over de bruiloft van een vriend. Nu gaat hij over een brand, op hetzelfde adres. De bibliothecaris schrijft het op, met trillende hand.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je weet niet meer zeker wat je je herinnert.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "Hem helpen een lijst te maken",
+        "held": [
+          "hester-quayle",
+          "winnie-lusk"
+        ],
+        "tekst": "Je kent de catalogus, de stempels, de inventaris. Samen vinden jullie de veranderde kranten in een uur. Ze zijn allemaal gedrukt op papier van de Avondlantaarn.",
+        "effect": [
+          {
+            "aanwijzing": 3
+          }
+        ]
+      }
+    ],
+    "god": "yth-nemora"
+  },
+  {
+    "id": "v-yth-7",
+    "plek": "leicester-square",
+    "tekst": "In het theater wordt een stuk opgevoerd over 'de Moorden van Mayfair'. Er zijn geen moorden in Mayfair geweest. Het publiek zit op het puntje van de stoel. Na afloop praat iedereen erover alsof het nieuws is.",
+    "keuzes": [
+      {
+        "label": "De toneelschrijver spreken (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Hij geeft toe dat hij het verhaal uit de Avondlantaarn haalde, en dat hij het niet meer weet te stoppen. Elke avond staat er een scène in het script die hij niet schreef.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij is te druk met handtekeningen.",
+          "effect": []
+        }
+      },
+      {
+        "label": "Het script stelen (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "In de laatste akte staan de namen van echte mensen, en adressen. Je waarschuwt ze, een voor een.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Een toneelknecht betrapt je.",
+          "effect": [
+            {
+              "toestand": "gezocht"
+            }
+          ]
+        }
+      }
+    ],
+    "god": "yth-nemora"
+  },
+  {
+    "id": "v-yth-8",
+    "plek": "southwark",
+    "tekst": "Op de markt van Southwark staat een rij mensen voor een kraam waar een man 'ware verhalen' verkoopt, een penny per stuk. Je koopt er een. Het gaat over jou, en het is bijna waar. Bijna.",
+    "keuzes": [
+      {
+        "label": "Het verhaal lezen en vergelijken met je eigen leven (Kennis 8)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Het klopt tot gisteren. Daarna loopt het door, en beschrijft het wat je morgen gaat doen. Als het waar wordt, weet je dat de leugen voor je loopt. Dat is te gebruiken.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je merkt dat je het verhaal beter vindt dan je leven.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "De kraam omgooien (Kracht 7)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 7
+        },
+        "gelukt": {
+          "tekst": "De vellen waaien over de markt. Mensen rapen ze op, lezen ze, en lachen: zo onzinnig zien ze er ineens uit. De verkoper vlucht.",
+          "effect": [
+            {
+              "trofee": 1
+            },
+            {
+              "geest": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De verkoper is sterker dan hij eruitziet.",
+          "effect": [
+            {
+              "lichaam": -1
+            }
+          ]
+        }
+      }
+    ],
+    "god": "yth-nemora"
+  },
+  {
+    "id": "v-yth-9",
+    "plek": "overal",
+    "persoon": "kitty-lark",
+    "vlag": "kitty-kranten",
+    "tekst": "Kitty Lark rent naar je toe, met een krant in haar hand en tranen op haar wangen. 'Ze hebben mijn moeder erin gezet,' zegt ze. 'Dat ze dood is. Ze is niet dood. Maar als het morgen in alle kranten staat...'",
+    "keuzes": [
+      {
+        "label": "Met haar naar de zetterij rennen (Kracht 8)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Jullie zijn net op tijd. Je trekt de regel uit het zetsel, letter voor letter, terwijl de pers al draait. Kitty's moeder leeft. Kitty zal het nooit vergeten.",
+          "effect": [
+            {
+              "trofee": 2
+            },
+            {
+              "aanwijzing": 2
+            },
+            {
+              "wisVlag": "kitty-kranten"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De pers draait al. Je kunt alleen nog de stapels in brand steken, en dat doe je.",
+          "effect": [
+            {
+              "toestand": "gezocht"
+            },
+            {
+              "aanwijzing": 1
+            },
+            {
+              "wisVlag": "kitty-kranten"
+            }
+          ]
+        }
+      },
+      {
+        "label": "Een tegenbericht laten drukken bij een andere krant (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "De Times drukt een kort bericht: Mrs. Lark maakt het goed. Waarheid tegen leugen. Het is genoeg, net.",
+          "effect": [
+            {
+              "trofee": 1
+            },
+            {
+              "aanwijzing": 1
+            },
+            {
+              "wisVlag": "kitty-kranten"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Niemand wil een bericht drukken dat niemand wil lezen.",
+          "effect": [
+            {
+              "geest": -2
+            },
+            {
+              "wisVlag": "kitty-kranten"
+            }
+          ]
+        }
+      }
+    ],
+    "god": "yth-nemora"
+  },
+  {
+    "id": "v-yth-10",
+    "plek": "city",
+    "mistTot": 6,
+    "tekst": "Fleet Street is bedekt met kranten. Ze liggen tot je enkels, en ze zijn allemaal van morgen. Mensen zitten midden op straat te lezen. Op elke voorpagina staat een andere ramp, en op elke voorpagina staat jouw naam.",
+    "keuzes": [
+      {
+        "label": "Niet lezen en doorlopen",
+        "tekst": "Je kijkt naar je voeten en loopt tot het einde van de straat. Het kost je alles. Maar je weet nog wie je bent.",
+        "effect": [
+          {
+            "geest": -1
+          },
+          {
+            "trofee": 1
+          }
+        ]
+      },
+      {
+        "label": "De kranten verbranden (Kracht 9)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Het vuur loopt over de straat als een rivier. De mensen kijken op, verbaasd, alsof ze wakker worden.",
+          "effect": [
+            {
+              "trofee": 2
+            },
+            {
+              "mist": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Het papier is nat van inkt en wil niet branden.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      }
+    ],
+    "god": "yth-nemora"
+  },
+  {
+    "id": "v-gul-1",
+    "plek": "city",
+    "persoon": "reginald-kettering",
+    "tekst": "Sir Reginald Kettering ontvangt je in zijn kantoor, met een glas sherry dat hij niet drinkt. 'U wilt weten wat de Hand is,' zegt hij. 'Ik zal het u zeggen. Het is de markt. Hij neemt wat hij wil, en hij geeft wat u nodig hebt. Wat hebt u nodig?' Hij schuift een envelop over het bureau.",
+    "keuzes": [
+      {
+        "label": "De envelop aannemen",
+        "tekst": "Er zitten vijf sovereigns in. Kettering glimlacht, voor het eerst. 'De rente,' zegt hij, 'betaalt u later.' Je voelt hem op je rug, een kleine koude hand.",
+        "effect": [
+          {
+            "pond": 5
+          },
+          {
+            "toestand": "schuld-hand"
+          }
+        ]
+      },
+      {
+        "label": "Weigeren en goed kijken (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Op zijn bureau ligt een contract, met een handtekening in bruine inkt. Je ziet de datum: 11 mei 1866, Zwarte Vrijdag. Je weet nu waar het begon.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "vlag": "kettering-contract"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij ziet je kijken en schuift het grootboek over de papieren. 'U bent ongeduldig,' zegt hij. 'Dat kost geld.'",
+          "effect": [
+            {
+              "pond": -1
+            }
+          ]
+        }
+      }
+    ],
+    "god": "gul-marrach"
+  },
+  {
+    "id": "v-gul-2",
+    "plek": "spitalfields",
+    "persoon": "bessie-doyle",
+    "tekst": "In het werkhuis van Spitalfields plukt Bessie Doyle touw, met bloedende vingers. Naast haar bed is het behang vol geschreven met kleine letters. 'Mijn huisbaas,' zegt ze, 'en zijn huisbaas, en de bank, en de bank daarboven. Wil je zien waar het eindigt?'",
+    "keuzes": [
+      {
+        "label": "Het behang lezen (Kennis 8)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Het is een stamboom van schulden. Alle takken komen samen bij één naam, en die naam is geen persoon maar een adres: Threadneedle Street, onder de grond.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De namen lopen door elkaar. Bessie zucht en begint opnieuw uit te leggen.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Haar 2 Pond geven",
+        "tekst": "Ze kijkt naar het geld en dan naar jou. Ze neemt het niet aan. 'Koop er het werkhuis mee vrij,' zegt ze. 'Niet mij. Allemaal.' Maar ze vertelt je wel wie het werkhuis wil kopen.",
+        "effect": [
+          {
+            "aanwijzing": 2
+          },
+          {
+            "geest": 1
+          }
+        ]
+      }
+    ],
+    "god": "gul-marrach"
+  },
+  {
+    "id": "v-gul-3",
+    "plek": "pall-mall",
+    "persoon": "edwin-pratt",
+    "tekst": "In de leeszaal van een club in Pall Mall zit Edwin Pratt diep in een fauteuil, achter een krant. Hij laat hem zakken als je naast hem gaat zitten. 'Ze staan buiten,' fluistert hij. 'Twee mannen in bolhoeden. Ik heb het uitgerekend. Wilt u het getal zien? Het is groter dan alles.'",
+    "keuzes": [
+      {
+        "label": "Zijn berekening nalopen (Kennis 9)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Het klopt. Het Syndicaat heeft meer uitgeleend dan er geld bestaat. Wat ze terugvragen, is dus geen geld. Je ziet nu wat het wel is.",
+          "effect": [
+            {
+              "aanwijzing": 3
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De getallen worden groter terwijl je ze optelt.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "Hem geruststellen (Charisma 7)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 7
+        },
+        "gelukt": {
+          "tekst": "Hij ontspant een beetje en vertelt je over de man voor wie hij werkt: Sir Reginald Kettering, die nooit eet.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij springt op als een deur dichtslaat en vlucht naar de bibliotheek.",
+          "effect": []
+        }
+      }
+    ],
+    "god": "gul-marrach"
+  },
+  {
+    "id": "v-gul-4",
+    "plek": "covent-garden",
+    "tekst": "Op de markt van Covent Garden is de prijs van appels sinds gisteren verdubbeld. Niemand weet waarom. De koopvrouwen zijn kwaad, de kopers zijn kwaad. Bij een kraam staat een man in een goed pak, die alles opkoopt wat er ligt, tegen elke prijs.",
+    "keuzes": [
+      {
+        "label": "De opkoper volgen (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Hij laat alles naar een pakhuis in Southwark brengen, waar het ligt te rotten. Het gaat niet om de appels. Het gaat om de honger.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij stapt in een rijtuig en is weg.",
+          "effect": []
+        }
+      },
+      {
+        "label": "Appels kopen voor de kinderen van de markt (2 Pond)",
+        "tekst": "Je koopt een mand en deelt uit. De koopvrouwen lachen voor het eerst die dag. Een van hen vertelt je wie de opkoper stuurt.",
+        "effect": [
+          {
+            "pond": -2
+          },
+          {
+            "aanwijzing": 1
+          },
+          {
+            "geest": 2
+          }
+        ]
+      }
+    ],
+    "god": "gul-marrach"
+  },
+  {
+    "id": "v-gul-5",
+    "plek": "whitechapel",
+    "tekst": "In een logement in Whitechapel zet een deurwaarder een gezin op straat. Een moeder, drie kinderen, een bed. De huur is in een week gestegen van vier shilling naar twaalf. De deurwaarder heeft een papier met een zegel dat je niet kent: een hand met een ring.",
+    "keuzes": [
+      {
+        "label": "De huur voor ze betalen (3 Pond)",
+        "tekst": "De deurwaarder neemt het geld, telt het twee keer en schrijft een kwitantie. Op de kwitantie verschijnt een getal dat er niet stond. Maar het gezin mag blijven.",
+        "effect": [
+          {
+            "pond": -3
+          },
+          {
+            "trofee": 1
+          },
+          {
+            "geest": 2
+          }
+        ]
+      },
+      {
+        "label": "De deurwaarder uitdagen (Kracht 8)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Hij druipt af, met zijn papier. Het gezin sleept het bed weer naar binnen. De moeder geeft je de oude huurbrief, met de naam van de eigenaar.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij is niet alleen. Twee mannen komen om de hoek.",
+          "effect": [
+            {
+              "monster": 1
+            }
+          ]
+        }
+      }
+    ],
+    "god": "gul-marrach"
+  },
+  {
+    "id": "v-gul-6",
+    "plek": "leicester-square",
+    "tekst": "Na de voorstelling in het theater krijgt elke artiest een envelop met gage. In de jouwe zit een sovereign te veel, en een briefje: 'Met de complimenten van een bewonderaar. Rente volgt.'",
+    "keuzes": [
+      {
+        "label": "Het geld houden",
+        "tekst": "Het is goed geld, en je hebt het nodig. Je zet het briefje uit je hoofd.",
+        "effect": [
+          {
+            "pond": 2
+          },
+          {
+            "toestand": "schuld-hand"
+          }
+        ]
+      },
+      {
+        "label": "Het teruggeven aan de theaterdirecteur (Charisma 7)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 7
+        },
+        "gelukt": {
+          "tekst": "Hij kijkt je verbaasd aan, en dan opgelucht. Hij heeft er ook een gekregen, vorige maand. Hij laat je zijn contract zien.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij wil het niet aannemen. 'Niet van mij,' zegt hij, en hij loopt weg.",
+          "effect": [
+            {
+              "pond": 1
+            }
+          ]
+        }
+      }
+    ],
+    "god": "gul-marrach"
+  },
+  {
+    "id": "v-gul-7",
+    "plek": "st-katharine-docks",
+    "tekst": "In de dokken ligt een schip dat niemand mag lossen. De lading is verzekerd voor een bedrag dat hoger is dan het schip. De verzekeraars hopen dat het zinkt. De bemanning hoopt dat niet. De kapitein vraagt of je iets weet van de Hand.",
+    "keuzes": [
+      {
+        "label": "De vrachtpapieren bekijken (Kennis 8)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "De lading is goud uit Yucatán, maar er staat niet bij van wie. Er staat alleen een zegel: een hand met een ring.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Het is een doolhof van verzekeringen, herverzekeringen en schulden.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            }
+          ]
+        }
+      },
+      {
+        "label": "De bemanning helpen lossen (Kracht 8)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Jullie lossen in één nacht. De kapitein betaalt je uit eigen zak, en vertelt je wie het schip wilde laten zinken.",
+          "effect": [
+            {
+              "pond": 2
+            },
+            {
+              "aanwijzing": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Een kist valt op je voet.",
+          "effect": [
+            {
+              "lichaam": -2
+            }
+          ]
+        }
+      }
+    ],
+    "god": "gul-marrach"
+  },
+  {
+    "id": "v-gul-8",
+    "plek": "mayfair",
+    "tekst": "Op een diner in Mayfair praten de gasten alleen over geld. Hoeveel ze hebben, hoeveel ze schuldig zijn, hoeveel hun buren schuldig zijn. Bij het dessert begint een dame te huilen, omdat ze uitrekent dat ze haar kinderen heeft verpand. Niemand reageert.",
+    "keuzes": [
+      {
+        "label": "Met de dame praten (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Ze vertelt over een man die haar man een lening gaf, op een avond dat ze bijna alles kwijt waren. Ze tekende mee. Ze weet niet meer waarvoor.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Ze droogt haar tranen en vraagt hoeveel jij waard bent.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Het gesprek naar je hand zetten",
+        "held": [
+          "cordelia-vane"
+        ],
+        "tekst": "Je kent dit gezelschap. Je stelt een vraag over Kettering, met de juiste glimlach. Binnen een uur weet je wie hem geld schuldig is, en wie hij geld schuldig is.",
+        "effect": [
+          {
+            "aanwijzing": 3
+          },
+          {
+            "pond": 2
+          }
+        ]
+      }
+    ],
+    "god": "gul-marrach"
+  },
+  {
+    "id": "v-gul-9",
+    "plek": "overal",
+    "persoon": "reginald-kettering",
+    "vlag": "kettering-contract",
+    "tekst": "Sir Reginald Kettering staat ineens naast je, zonder hoed, met verwarde haren. 'U hebt het contract gezien,' zegt hij. 'Ik wil eruit. Ik heb het geprobeerd. Elke keer dat ik iets weggeef, krijg ik het dubbel terug. Help me, of laat me met rust.'",
+    "keuzes": [
+      {
+        "label": "Hem helpen alles weg te geven (Charisma 9)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Jullie lopen een nacht door de East End. Hij geeft alles weg aan mensen die het niet terug kunnen betalen, want aan hen kan de Hand niets verdienen. Bij zonsopgang heeft hij niets meer. Hij huilt van geluk.",
+          "effect": [
+            {
+              "trofee": 2
+            },
+            {
+              "mist": 1
+            },
+            {
+              "wisVlag": "kettering-contract"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Bij elke munt die hij weggeeft, vallen er twee uit zijn zakken. Hij geeft het op.",
+          "effect": [
+            {
+              "geest": -2
+            },
+            {
+              "pond": 2
+            },
+            {
+              "wisVlag": "kettering-contract"
+            }
+          ]
+        }
+      },
+      {
+        "label": "Het contract van hem kopen",
+        "tekst": "Hij verkoopt het je voor een penny. Het voelt zwaar, en het is koud. Maar het staat nu op jouw naam, en de Hand kijkt naar jou.",
+        "effect": [
+          {
+            "trek": "artefacten"
+          },
+          {
+            "toestand": "schuld-hand"
+          },
+          {
+            "wisVlag": "kettering-contract"
+          }
+        ]
+      }
+    ],
+    "god": "gul-marrach"
+  },
+  {
+    "id": "v-gul-10",
+    "plek": "city",
+    "mistTot": 6,
+    "tekst": "Voor de Bank of England staat een rij die tot aan St Paul's loopt. Iedereen wil zijn geld terug, en de bank betaalt uit in munten die in je hand veranderen in koude stenen. Niemand gaat weg. Iedereen wacht.",
+    "keuzes": [
+      {
+        "label": "De mensen naar huis sturen (Charisma 9)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Je roept dat de bank morgen weer opengaat. Een paar mensen geloven je, dan een paar meer. De rij wordt korter. De Hand heeft vannacht minder om van te eten.",
+          "effect": [
+            {
+              "trofee": 2
+            },
+            {
+              "mist": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je staat ineens zelf in de rij.",
+          "effect": [
+            {
+              "geest": -2
+            },
+            {
+              "pond": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "Naar binnen gaan (Waarneming 9)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Achter de loketten is een trap naar beneden, en onder de kluis is nog een kluis. Daar ligt het grootboek, open, en het schrijft zichzelf.",
+          "effect": [
+            {
+              "aanwijzing": 3
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Een bewaker zet je buiten.",
+          "effect": [
+            {
+              "toestand": "gezocht"
+            }
+          ]
+        }
+      }
+    ],
+    "god": "gul-marrach"
   }
 ]

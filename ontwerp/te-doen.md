@@ -2,7 +2,23 @@
 
 Deze lijst werken we aan het einde van elk gesprek bij. Zet bij elke update die spelers merken een nieuw bericht bovenaan `data/nieuws.json` (met een hoger `id`): dat verschijnt één keer als "Wat is er nieuw" als de app opent.
 
-*Laatst bijgewerkt: 23 november 2026 (vijftiende sessie)*
+*Laatst bijgewerkt: 23 november 2026 (zestiende sessie)*
+
+## Gemeten na de zestiende sessie (zeven nieuwe goden)
+
+Met `GODEN=ommeth,karathos,ulvereth,sirrhae,ouroch,yth-nemora,gul-marrach node tools/testbot.js 80` en hetzelfde met `MODUS=lang`. De oude vijf goden zijn niet opnieuw gemeten. De uitslagen staan in `ontwerp/balans.json` en `ontwerp/balans-lang.json`, en de basis in het klokkenmodel (`data/klokken.json`).
+
+| God | Mist | Gewoon normaal 2 / 4 | Lange Nacht normaal 2 / 4 | Gewoon genadeloos 2 / 4 |
+|---|---|---|---|---|
+| Ommeth | 14 | 65% / 63% | 54% / 65% | 16% / 13% |
+| Karathos | 12 | 68% / 88% | 60% / 83% | 29% / 24% |
+| Ulvereth | 12 | 79% / 78% | 65% / 78% | 25% / 21% |
+| Sirrhae | 12 | 75% / 75% | 71% / 69% | 40% / 21% |
+| Ouroch | 12 | 55% / 74% | 70% / 78% | 30% / 15% |
+| Yth-Nemora | 11 | 71% / 80% | 83% / 81% | 11% / 15% |
+| Gul-Marrach | 12 | 64% / 80% | 60% / 71% | 25% / 24% |
+
+Onderweg bijgesteld: een ritueel van Ommeth opende eerst ook een Scheur (dat werd een spiraal: normaal 35% met 2 helden); nu kost het alleen 1 Mist. *De processie volgen* van Waarneming 9 naar 8, *Koop het werkhuis vrij* van 8 naar 6 Pond, en de Uurwerkman windt zich om de ronde op in plaats van elke ronde. De testbot weigert alle gunsten van Sirrhae en leent nooit bij de Hand; echte spelers spelen die goden anders.
 
 ## Gemeten na de vijftiende sessie (voorstel voor De Lange Nacht ingebouwd)
 
@@ -169,6 +185,18 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 
 ## Open taken
 
+- [ ] Beelden voor de zeven nieuwe goden: 63 stuks in `ontwerp/beeldopdracht-nieuwe-goden.md` (goden, Scheurbeelden, epische monsters, monsters, personages). Daarna in `tools/art-drive.json` en ophalen.
+- [ ] Sfeergeluiden voor de zeven nieuwe goden: zie `ontwerp/geluidsopdracht.md` (`sfeer-ommeth.mp3` tot `sfeer-gul-marrach.mp3`). Tot ze er zijn, klinkt de sfeer van het startscherm.
+- [ ] Het gedeelde scorebord kent de nieuwe goden pas als de Worker opnieuw online staat: `NODE_USE_ENV_PROXY=1 node tools/zet-scorebord-online.js`. Tot dan worden overwinningen tegen de nieuwe goden geweigerd (onbekende god).
+- [ ] Het klokkenmodel heeft voor de nieuwe goden een eigen basis, maar de klokeffecten zijn gemeten met de oude vijf. Bij de volgende volledige meting (`node tools/meet-klokken.js 100`) gaan alle twaalf mee.
+- [ ] Testen met echte potjes: Sirrhae. Nemen spelers gunsten aan, en is de prijs dan te laag of te hoog? Voelt Betoverd niet als straf zonder uitweg?
+- [ ] Testen: Ulvereth. Is de spreiding tussen goede en slechte rondes leuk? Zijn bevroren plekken duidelijk genoeg op het bord?
+- [ ] Testen: Yth-Nemora. Wordt natrekken gebruikt, of gokken spelers? Is een op de drie vals niet te frustrerend?
+- [ ] Testen: Ommeth. Is het opruimen van cultisten leuk, of wordt het een lange reeks kleine gevechten?
+- [ ] Testen: Karathos. Zijn de splinters met +1 niet te sterk, en is het roepen (een op de zes) merkbaar genoeg?
+- [ ] Testen: Gul-Marrach. Is de koers van +3 aan het eind van een mysterie te hard? Wordt de lening bij de Hand gebruikt?
+- [ ] Testen: Ouroch. Voelt de klokslag eerlijk, of als straf voor iets wat je niet kon tegenhouden?
+- [ ] De drie losse ideeën uit de stemronde (de Ondergrondse, twee fronten overzee, de slaper die meedroomt) kregen ook een 4. Uitwerken als de zeven nieuwe goden getest zijn.
 ### Balans en tests (zie `tests-en-geluk.md`)
 - [ ] Klokkenmodel opnieuw meten als de balans verandert: `node tools/meet-klokken.js 100`, en daarna `NODE_USE_ENV_PROXY=1 node tools/zet-scorebord-online.js`, zodat de server met hetzelfde model rekent. (Laatst gedaan in de negende sessie.)
 - [ ] Twee klokken doen bijna niets: *Zware benen* (75% naar 76%) en *Zwijgende getuigen* (75% naar 74%). Sterker maken of minder slagen geven.
@@ -213,6 +241,7 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 
 ## Klaar
 
+- [x] Zeven nieuwe oude goden uit de stemronde: Ommeth, Karathos, Ulvereth, Sirrhae, Ouroch, Yth-Nemora en Gul-Marrach. Elk met regel, vijf mysteries, episch monster, drie monsters, drie personages, tien verhaalkaarten (met vervolg), drie scheurkaarten, twee aanwijzingen, vier onheilskaarten en een expeditie. Bundels in `ontwerp/goden/`, samenvoegen met `node tools/voeg-goden-toe.js`. Verwerkt uit de stemming: geen verbrande Aanwijzingen, bekeren als keuze in het gevecht, splinters die zelf roepen, geen verplichte stap bij Betoverd, open gunsten, elke ronde weer met echte meevallers, en iedereen ziet elkaars onzekere Aanwijzingen.
 - [x] Nebet-Ankhu op genadeloos 1 Mist lager (`mistPerStand` in `oude-goden.json`): gewoon 23% / 19% (was 36% / 43%), Lange Nacht 27% / 18%
 
 - [x] De Lange Nacht: Mist naar aantal helden, geen dubbele Geest-straf, Azh-Ilareth Mist 11; twee mysteries met een extra stap; zwaarte per god op het startscherm

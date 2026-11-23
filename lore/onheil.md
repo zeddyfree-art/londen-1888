@@ -333,3 +333,185 @@ In Soho en Whitechapel breekt de cholera weer uit, voor het eerst in jaren. De d
 *Met Jebediah Sallow.* Jebediah Sallow laat via een straatjongen weten dat het Genootschap vannacht de diepste put opengraaft, onder de kerk van St Giles-without-Cripplegate. 'Als ze daar doorbreken,' schrijft hij in kromme letters, 'dan wordt hij wakker.'
 
 **In het spel:** Er opent een Scheur in The City. Is die na 2 rondes niet gesloten, dan daalt de Mist met 2.
+
+## Ommeth
+
+### De processie groeit
+
+Vannacht lopen er tweehonderd mensen mee in plaats van honderd. Ze komen uit de werkhuizen, de logementen en de kerken, en ze zingen allemaal dezelfde vijf tonen.
+
+**In het spel:** Mist −1 · 1 Scheur · Er verschijnt een Cultist in Whitechapel en een in Limehouse.
+
+### De psalm in je hoofd
+
+*Met Broeder Absalom Crewe.* Iedereen in Londen wordt wakker met dezelfde melodie in zijn hoofd. Wie een oud gebed kent, of een spreuk, kan hem verdrijven. De rest neuriet hem tot de middag.
+
+**In het spel:** Mist −1 · Elke held verliest 1 Geest. Helden met een spreuk herstellen er 1.
+
+### Zuster Agatha's soep
+
+*Met Zuster Agatha Pike.* Zuster Agatha zet de deuren van de gaarkeuken open, de hele nacht. Wie binnenkomt, krijgt soep en een oude psalm, de goede. Een man uit de kudde komt binnen, eet, en vertelt huilend wat hij weet.
+
+**In het spel:** Elke held in Spitalfields of Whitechapel herstelt 2 Geest. Leg 1 Aanwijzing op Spitalfields.
+
+### Gerucht: de nachtmis
+
+*Met Martha Coyle.* Martha Coyle laat weten dat de kudde vannacht een mis houdt in de kerk zonder dak in Limehouse. Een nieuwe leider zal er gezalfd worden. 'Als jullie iets willen doen,' zegt ze, 'dan nu.'
+
+**In het spel:** Er verschijnt een Kuddeleider in Limehouse. Is hij na 2 rondes niet verslagen, dan daalt de Mist met 2.
+
+## Karathos
+
+### Een splinter op drift
+
+Uit een schip in de dokken wordt een kist gestolen. Iemand anders vindt hem eerder dan de dieven: een splinter die zelf een weg zoekt.
+
+**In het spel:** Mist −1 · 1 monster · Overzee ligt een artefact klaar. Er verschijnt een monster.
+
+### De stukken zingen
+
+*Met Mr. Horace Quill.* In het museum zingen de vier stukken een toon die door de muren gaat. In heel Bloomsbury barsten de ruiten. Mr. Quill zit ervoor op een krukje en dirigeert.
+
+**In het spel:** Mist −1 · 1 Scheur · Elke held verliest 1 Geest.
+
+### De rol van de pater
+
+*Met Pater Anselm Drury.* Pater Drury leest de rol voor in de abdij, met de deuren open. Wie het hoort, voelt hoe de splinters even stil worden.
+
+**In het spel:** Elke held in Westminster of Whitehall krijgt 1 Aanwijzing. Iedereen herstelt 1 Geest.
+
+### Gerucht: de nachtelijke inbraak
+
+*Met Dr. Amelia Fenwick.* Amelia Fenwick laat weten dat het Genootschap vannacht het museum binnengaat, om de vier stukken mee te nemen naar een plek waar niemand ze meer terugvindt.
+
+**In het spel:** Er verschijnt een Reliekjager in Bloomsbury. Is hij na 2 rondes niet verslagen, dan daalt de Mist met 2.
+
+## Ulvereth
+
+### Hagel uit een heldere hemel
+
+Om twaalf uur 's middags valt er hagel zo groot als duiveneieren, uit een strakblauwe lucht. Het duurt drie minuten. Daarna is het windstil, en vogels vallen dood van het dak.
+
+**In het spel:** Mist −1 · 1 monster · Elke held verliest 1 Lichaam.
+
+### De Theems kookt
+
+*Met Kapitein Nell Bligh.* Nell Bligh brengt bericht: bij Wapping stijgt stoom op van het water, in november. Vissen drijven met hun buik naar boven. Iets onder het water draait zich om.
+
+**In het spel:** Mist −1 · 1 Scheur · Er verschijnt een monster aan de rivier. Elke held aan de rivier verliest 1 Lichaam.
+
+### Een gouden middag
+
+Een middag zo mooi dat heel Londen naar buiten komt. In de parken zingen mensen. Op Hampstead ziet de weerkundige in het heldere licht iets wat hij nooit eerder kon zien.
+
+**In het spel:** Elke held herstelt 1 Lichaam en 1 Geest. Leg 1 Aanwijzing op Hampstead.
+
+### Gerucht: de bliksemtoren
+
+*Met Mr. Ephraim Gale.* Ephraim Gale laat weten dat de Bond van de Windroos vannacht een koperen toren opricht op de heide. 'Ze willen de bliksem roepen,' schrijft hij. 'Allemaal tegelijk.'
+
+**In het spel:** Er opent een Scheur op Hampstead. Is die na 2 rondes niet gesloten, dan daalt de Mist met 2.
+
+## Sirrhae
+
+### Een uitnodiging voor iedereen
+
+In elke brievenbus van Mayfair ligt vanochtend een parfumkaartje. Ook in de jouwe. Wie het weggooit, raapt het een uur later weer op.
+
+**In het spel:** Mist −1 · 1 monster · Er verschijnt een Bewonderaar. Elke held verliest 1 Geest.
+
+### Het Lagerhuis zwijgt
+
+*Met Sir Edmund Haversham.* Sir Edmund Haversham staat op in het Lagerhuis en stelt voor om alle wetten van het rijk te schrappen 'ten behoeve van een feest'. Een derde van de leden applaudisseert. Voss laat weten dat hij de notulen heeft.
+
+**In het spel:** Mist −1 · 1 Scheur · Leg 1 Aanwijzing op Whitehall.
+
+### Rosalind's les
+
+*Met Rosalind Ashe.* Rosalind Ashe laat haar meisjes een gedicht van buiten leren: een lijst met de namen van alles wat ze liefhebben. Ze stuurt het naar jullie, met de opdracht het elke ochtend hardop te zeggen.
+
+**In het spel:** Niemand is nog Betoverd. Elke held herstelt 1 Geest.
+
+### Gerucht: het feest in de opera
+
+*Met Lucien Marchetti.* Lucien Marchetti hoort dat er na de voorstelling in de opera een gemaskerd bal is. Wie er danst, komt er niet meer uit. 'Ze heeft een nieuw portret nodig,' zegt hij. 'Een levend.'
+
+**In het spel:** Er verschijnt een Maskerdanser in Covent Garden. Is hij na 2 rondes niet verslagen, dan daalt de Mist met 2.
+
+## Ouroch
+
+### Een gestolen uur
+
+Heel Londen wordt om acht uur wakker, terwijl het negen uur is. Niemand weet waar het uur is gebleven. In Spitalfields ligt een man op straat die al twintig jaar vermist was, en die denkt dat het zijn verjaardag is.
+
+**In het spel:** Mist −1 · 1 monster · Elke held verliest 1 Geest.
+
+### De toren slaat verkeerd
+
+*Met Ignatius Fell.* Ignatius Fell klimt de toren in, buiten zijn dienst. Een uur later slaat de klok zeven keer om twaalf uur. Bij de zevende slag marcheert er iets de trappen af.
+
+**In het spel:** Mist −1 · 1 Scheur · Er verschijnt een Opwindsoldaat in Westminster.
+
+### Een bericht van morgen
+
+*Met Dora Whitby.* Dora Whitby stuurt een jongen met een strook telegrafiepapier. Het bericht is van morgen, en het beschrijft waar jullie zullen zijn. Daar kun je je voordeel mee doen.
+
+**In het spel:** Elke held in Westminster of Whitehall krijgt 1 Aanwijzing. Leg 1 Aanwijzing op Spitalfields.
+
+### Gerucht: de opwindnacht
+
+*Met Ignatius Fell.* Dora Whitby ontvangt een bericht van overmorgen: 'Toren volledig opgewonden. Dertiende slag om middernacht.' Ze weet niet wie het stuurde. Ze weet wel dat elk bericht tot nu toe is uitgekomen.
+
+**In het spel:** Er opent een Scheur in Westminster. Is die na 2 rondes niet gesloten, dan daalt de Mist met 2.
+
+## Yth-Nemora
+
+### Extra editie
+
+Om middernacht rennen de krantenjongens door de straten: extra editie! Niemand weet wat er gebeurd is, maar iedereen koopt er een. Morgen is het waar.
+
+**In het spel:** Mist −1 · 1 monster · De held met de meeste Aanwijzingen verliest er 1. Er verschijnt een Krantenjongen.
+
+### Gezocht in de krant
+
+*Met Mr. Horatio Vance.* De Avondlantaarn drukt een tekening van een van jullie op de voorpagina, met een verhaal over een inbraak. Het is een goede tekening. Het verhaal is overtuigend.
+
+**In het spel:** Mist −1 · 1 Scheur · De held met de meeste Ponden wordt Gezocht.
+
+### Kitty's stapel
+
+*Met Kitty Lark.* Kitty Lark verkoopt geen kranten meer. Ze deelt de oude versies uit, met het verschil omcirkeld. Steeds meer mensen gaan zelf vergelijken.
+
+**In het spel:** Leg 1 Aanwijzing op The City en 1 op de Strand. Elke held herstelt 1 Geest.
+
+### Gerucht: de ochtendeditie
+
+*Met Fennimore Blight.* Fennimore Blight laat een briefje achter op je stoep: morgen getuigt hij in de rechtbank over iets dat nog moet gebeuren. 'Hou me tegen,' schrijft hij. 'Alsjeblieft.'
+
+**In het spel:** Er verschijnt een Leugenaar in de Strand. Is hij na 2 rondes niet verslagen, dan daalt de Mist met 2.
+
+## Gul-Marrach
+
+### Paniek op de beurs
+
+Om elf uur stort de beurs in, zonder reden. Om twaalf uur staat hij weer hoger dan ooit. In dat uur verliest half Londen zijn spaargeld, en iets onder de Bank eet zich vol.
+
+**In het spel:** Mist −1 · 1 monster · Elke held verliest 1 Pond.
+
+### De huur gaat omhoog
+
+*Met Sir Reginald Kettering.* In Whitechapel, Spitalfields en Limehouse gaat de huur van de ene op de andere dag omhoog. De eigenaar is overal dezelfde, al heeft hij overal een andere naam.
+
+**In het spel:** Mist −1 · 1 Scheur · Er verschijnt een Deurwaarder in Whitechapel. De held met de meeste Ponden wordt Gezocht.
+
+### Een gift van de armen
+
+*Met Mrs. Bessie Doyle.* De vrouwen van het werkhuis hebben gespaard, penny voor penny. Bessie Doyle stuurt het geld naar jullie, met een briefje: 'Voor wie de Hand wil breken.'
+
+**In het spel:** Elke held krijgt 1 Pond. Leg 1 Aanwijzing op Spitalfields.
+
+### Gerucht: de stille verkoop
+
+*Met Edwin Pratt.* Edwin Pratt laat weten dat het Syndicaat vannacht de kluizen van drie banken leeghaalt. 'Wat eruit komt,' schrijft hij, 'is geen geld. Het kruipt.'
+
+**In het spel:** Er verschijnt een Goudworm in The City. Is hij na 2 rondes niet verslagen, dan daalt de Mist met 2.
