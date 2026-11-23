@@ -185,6 +185,9 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 
 ## Open taken
 
+- [ ] Beelden voor Kaarten van de Oude Wereld: 42 stuks in `ontwerp/beeldopdracht-oude-wereld.md` (27 plekken, 6 schatten, 3 helden en 6 persoonlijke spullen). Tot ze er zijn, toont het spel een kleurvlak.
+- [ ] Testen met echte potjes: Kaarten van de Oude Wereld. Is de Gevaarstapel spannend? Komen spelers in het hart? Voelt Post naar huis nuttig? Is de Mist-beloning (terug uit de tweede ring +1, het hart +2) te sterk voor spelers die het goed doen?
+- [ ] Kaarten van de Oude Wereld met De Lange Nacht en het klokkenmodel: nog niet apart gemeten. De winkans op het startscherm houdt nu geen rekening met de uitbreiding.
 - [ ] Sfeergeluiden voor de zeven nieuwe goden: zie `ontwerp/geluidsopdracht.md` (`sfeer-ommeth.mp3` tot `sfeer-gul-marrach.mp3`). Tot ze er zijn, klinkt de sfeer van het startscherm.
 - [ ] Het gedeelde scorebord kent de nieuwe goden pas als de Worker opnieuw online staat: `NODE_USE_ENV_PROXY=1 node tools/zet-scorebord-online.js`. Tot dan worden overwinningen tegen de nieuwe goden geweigerd (onbekende god).
 - [ ] Het klokkenmodel (versie 2, gefit op 40.000 potjes) kent de zeven nieuwe goden alleen via hun testbotmeting zonder klokken. Bij de volgende meting met `node tools/meet-klokken.js` gaan alle twaalf goden mee.
@@ -240,6 +243,7 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 
 ## Klaar
 
+- [x] Uitbreiding Kaarten van de Oude Wereld (de open kaart, optie B uit de stemming): per regio zeven plekken, Gevaarstapel met paren, kist, het hart met een bewaker en twee schatten, terugtocht, gids, Post naar huis en drie nieuwe helden. Aan of uit op het startscherm. Gemeten op normaal (testbot, 60 potjes per god en aantal): 2 helden 66,9% met tegen 69,4% zonder, 4 helden 75,6% tegen 78,7%.
 - [x] Alle 63 beelden van de zeven nieuwe goden staan in het spel (goden, Scheurbeelden, epische monsters, monsters en personages).
 - [x] Zeven nieuwe oude goden uit de stemronde: Ommeth, Karathos, Ulvereth, Sirrhae, Ouroch, Yth-Nemora en Gul-Marrach. Elk met regel, vijf mysteries, episch monster, drie monsters, drie personages, tien verhaalkaarten (met vervolg), drie scheurkaarten, twee aanwijzingen, vier onheilskaarten en een expeditie. Bundels in `ontwerp/goden/`, samenvoegen met `node tools/voeg-goden-toe.js`. Verwerkt uit de stemming: geen verbrande Aanwijzingen, bekeren als keuze in het gevecht, splinters die zelf roepen, geen verplichte stap bij Betoverd, open gunsten, elke ronde weer met echte meevallers, en iedereen ziet elkaars onzekere Aanwijzingen.
 - [x] Nebet-Ankhu op genadeloos 1 Mist lager (`mistPerStand` in `oude-goden.json`): gewoon 23% / 19% (was 36% / 43%), Lange Nacht 27% / 18%

@@ -33,13 +33,20 @@ const server = http.createServer((req, res) => {
   /* MODUS=lang meet De Lange Nacht; de uitslag gaat dan naar ontwerp/balans-lang.json */
   const modus = process.env.MODUS || "gewoon";
   await page.evaluate(v => { window.__modus = v; }, modus);
+  /* OUDEWERELD=1 meet met de uitbreiding Kaarten van de Oude Wereld; de uitslag gaat dan naar ontwerp/balans-oude-wereld.json */
+  const ow = !!process.env.OUDEWERELD;
+  await page.evaluate(v => { window.__oudeWereld = v; }, ow);
 
   const goden = process.env.GODEN ? process.env.GODEN.split(",") : JSON.parse(fs.readFileSync(path.join(root, "data", "oude-goden.json"), "utf8")).map(g => g.id);
-  const standen = ["ontspannen", "normaal", "genadeloos"];
+  const standen = process.env.STANDEN ? process.env.STANDEN.split(",") : ["ontspannen", "normaal", "genadeloos"];
+  /* BOTOW=0: de testspeler gaat met de uitbreiding niet vrijwillig op expeditie (alleen voor mysteries) */
+  await page.evaluate(v => { window.__botOW = v; }, process.env.BOTOW !== "0");
+  /* OUDEHELDEN=1: alleen de helden van het basisspel */
+  await page.evaluate(v => { window.__oudeHelden = v; }, !!process.env.OUDEHELDEN);
   const rijen = [], mys = {};
   for (const god of goden) for (const stand of standen) for (const aantal of [2, 4]) {
     const uitslagen = await page.evaluate(async ([god, stand, aantal, n]) => {
-      const helden = window.__spel.D.helden.map(h => h.id);
+      const helden = window.__spel.D.helden.filter(h => (window.__oudeWereld && !window.__oudeHelden) || !h.uitbreiding).map(h => h.id);
       const out = [];
       for (let i = 0; i < n; i++) {
         const gekozen = helden.slice().sort(() => Math.random() - 0.5).slice(0, aantal);
@@ -59,12 +66,13 @@ const server = http.createServer((req, res) => {
       mysteries: +(ok.reduce((s, u) => s + u.opgelost, 0) / ok.length).toFixed(2),
       gevallen: +(ok.reduce((s, u) => s + u.gevallen, 0) / ok.length).toFixed(2),
       vast: tel(u => !u.einde),
+      ow: ow ? Object.fromEntries(["expedities", "thuis", "rampen", "harten"].map(k => [k, +(ok.reduce((t, u) => t + (u.owTel?.[k] || 0), 0) / ok.length).toFixed(2)])) : undefined,
       fouten: uitslagen.filter(u => u.fout).map(u => u.fout.split("\n").slice(0, 2).join(" ")).slice(0, 2)
     });
     const r = rijen.at(-1);
     console.log(`${god.padEnd(12)} ${stand.padEnd(11)} ${aantal} helden: winst ${String(r.winst).padStart(3)}% (nipt ${r.nipt}%), ${r.rondes} rondes, ${r.mysteries} mysteries, ${r.gevallen} gevallen${r.vast ? `, ${r.vast} vast` : ""}${r.fouten.length ? "  FOUT: " + r.fouten[0] : ""}`);
   }
-  fs.writeFileSync(path.join(root, "ontwerp", doelPlus ? `balans-doelplus${doelPlus}.json` : modus === "lang" ? "balans-lang.json" : "balans.json"), JSON.stringify({ datum: new Date().toISOString().slice(0, 10), potjesPerInstelling: n, rijen }, null, 2) + "\n");
+  fs.writeFileSync(path.join(root, "ontwerp", doelPlus ? `balans-doelplus${doelPlus}.json` : ow ? `balans-oude-wereld${modus === "lang" ? "-lang" : ""}.json` : modus === "lang" ? "balans-lang.json" : "balans.json"), JSON.stringify({ datum: new Date().toISOString().slice(0, 10), potjesPerInstelling: n, rijen }, null, 2) + "\n");
   console.log("\nPer mysterie (opgelost / bleef op hangen):");
   for (const [m, v] of Object.entries(mys)) console.log(`  ${m.padEnd(28)} ${v.opgelost} / ${v.vast}`);
   if (fouten.length) console.log("Paginafouten:", [...new Set(fouten)].slice(0, 5));

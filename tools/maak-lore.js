@@ -5,9 +5,10 @@ const root = path.join(__dirname, "..");
 const lees = f => JSON.parse(fs.readFileSync(path.join(root, "data", f), "utf8"));
 const schrijf = (f, t) => fs.writeFileSync(path.join(root, "lore", f), t.trim() + "\n");
 const KN = { kennis: "Kennis", scherpte: "Waarneming", kracht: "Kracht", overtuiging: "Charisma" };
-const helden = lees("helden.json"), personen = lees("personen.json"), bord = lees("bord.json"), goden = lees("oude-goden.json");
-const monsters = lees("monsters.json"), epische = lees("epische-monsters.json"), artefacten = lees("artefacten.json"), spreuken = lees("spreuken.json");
-const verhaal = lees("ontmoetingen/verhaal.json"), stad = lees("ontmoetingen/stad.json"), persoonlijk = lees("persoonlijk.json"), onheil = lees("onheil.json");
+const ow = lees("oude-wereld.json");
+const helden = [...lees("helden.json"), ...ow.helden], personen = lees("personen.json"), bord = lees("bord.json"), goden = lees("oude-goden.json");
+const monsters = lees("monsters.json"), epische = lees("epische-monsters.json"), artefacten = [...lees("artefacten.json"), ...ow.schatten], spreuken = lees("spreuken.json");
+const verhaal = lees("ontmoetingen/verhaal.json"), stad = lees("ontmoetingen/stad.json"), persoonlijk = [...lees("persoonlijk.json"), ...ow.persoonlijk], onheil = lees("onheil.json");
 const gen = "*Deze pagina wordt gegenereerd uit de speldata (`tools/maak-lore.js`). Pas de data aan, niet deze pagina.*";
 const godNaam = id => goden.find(g => g.id === id)?.naam || "Alle verhalen";
 
