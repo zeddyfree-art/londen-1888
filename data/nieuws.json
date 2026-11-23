@@ -1,5 +1,15 @@
 [
   {
+    "id": 20,
+    "datum": "23 november 2026",
+    "titel": "Je tas: weggooien en waarschuwingen",
+    "punten": [
+      "Bij je tableau zie je hoeveel plekken van je tas in gebruik zijn, bijvoorbeeld 4 van 6. Is hij vol, dan kleurt de teller rood.",
+      "Tik op een spul of spreuk en kies Weggooien. Het spel vraagt eerst of je het zeker weet, en je kunt het in je beurt ongedaan maken.",
+      "Is je tas vol, dan waarschuwt het spel al voordat je koopt. Wil je toch kopen, dan kies je wat je weggooit, of je ziet ervan af."
+    ]
+  },
+  {
     "id": 19,
     "datum": "23 november 2026",
     "titel": "De Lange Nacht in balans, en hoe zwaar elke god is",

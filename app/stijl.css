@@ -654,3 +654,11 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);ou
 .zwaarte.z-zwaar{border-left-color:var(--bad)}
 .zwaarte.z-licht{border-left-color:var(--good)}
 .zwaarte.z-midden{border-left-color:var(--mist, var(--line))}
+/* ===== Tas: hoeveel plekken zijn in gebruik ===== */
+.sectie h3 .tas{float:right;display:inline-flex;align-items:center;gap:3px;font-family:var(--body);font-size:13px;font-weight:400;letter-spacing:0;text-transform:none;color:var(--muted)}
+.sectie h3 .tas i{width:9px;height:9px;border-radius:2px;border:1px solid var(--muted);display:inline-block}
+.sectie h3 .tas i.aan{background:var(--accent);border-color:var(--accent)}
+.sectie h3 .tas b{margin-left:4px;color:var(--ink)}
+.sectie h3 .tas.vol,.sectie h3 .tas.vol b{color:var(--bad)}
+.sectie h3 .tas.vol i.aan{background:var(--bad);border-color:var(--bad)}
+.tasvol-melding{margin:6px 0 10px;padding:8px 10px;border-left:4px solid var(--bad);background:color-mix(in srgb,var(--bad) 12%,var(--paper));font-size:14px}
