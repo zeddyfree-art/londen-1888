@@ -1,19 +1,1004 @@
 [
-  { "id": "thebe-1", "plek": "thebe", "tekst": "Na twee dagen rijden op een muilezel bereik je de vallei. In de verzengende hitte vind je een graf dat op geen enkele kaart staat, met een ingang die half door puin is bedekt. Je dragers weigeren verder te gaan dan de drempel. In het lamplicht lijken de schilderingen op de wanden met je mee te kijken.", "test": { "kenmerk": "kennis", "moeilijkheid": 8 }, "gelukt": { "tekst": "Je leest de hiërogliefen en ziet op tijd de loze steen in de vloer: een valkuil voor grafrovers. In de achterste kamer staat een kistje dat niemand heeft durven openen.", "effect": [{ "trek": "artefacten" }, { "aanwijzing": 1 }] }, "mislukt": { "tekst": "De vloer geeft mee. Je valt in een donkere schacht en klimt er pas na uren uit, met kapotte handen en een hoofd vol fluisteringen.", "effect": [{ "lichaam": -2 }, { "geest": -1 }] } },
-  { "id": "thebe-2", "plek": "thebe", "tekst": "Een dag rijden verderop ligt het verlaten kamp van de expeditie-Harrowgate. De tenten staan nog, half weggewaaid. Op een tafel ligt een geopend logboek, en in het zand staan voetsporen die van het graf naar het kamp lopen. Geen enkel spoor loopt terug.", "test": { "kenmerk": "scherpte", "moeilijkheid": 8 }, "gelukt": { "tekst": "Het logboek is van Dr. Moss. Op de laatste pagina staat: 'Hamdi had gelijk. Het graf was leeg omdat het niet leeg moest blijven.' Je neemt het boek mee.", "effect": [{ "aanwijzing": 2 }] }, "mislukt": { "tekst": "Terwijl je door de tenten zoekt, steekt er een zandstorm op. Je zit een nacht vast zonder genoeg water.", "effect": [{ "lichaam": -2 }] } },
-  { "id": "thebe-3", "plek": "thebe", "tekst": "Een zandstorm drijft je een tempel in die je bij aankomst niet had gezien. De zuilen zijn bedekt met gezichten, honderden, allemaal net iets anders. Op het altaar ligt iets onder een laag stof. Buiten giert de wind en roept iets je naam.", "test": { "kenmerk": "kracht", "moeilijkheid": 8 }, "gelukt": { "tekst": "Je pakt wat er op het altaar ligt en worstelt je tegen de wind in naar buiten. Als de storm gaat liggen, is de tempel verdwenen. Het voorwerp niet.", "effect": [{ "trek": "artefacten" }] }, "mislukt": { "tekst": "De storm gaat liggen, de tempel is verdwenen, en je hebt drie dagen verloren die je je niet kunt herinneren.", "effect": [{ "mist": -1 }, { "geest": -1 }] } },
-  { "id": "thebe-hamdi", "plek": "thebe", "god": "nebet-ankhu", "persoon": "youssef-hamdi", "tekst": "In het dorp aan de rand van de vallei word je bij het vuur ontvangen door raïs Youssef Hamdi. Hij ziet er ouder uit dan zijn vijftig jaar. Hij heeft de Engelsen gewaarschuwd, zegt hij, en ze hebben niet geluisterd. Als je hem met respect benadert, vertelt hij het verhaal dat de dorpen al eeuwen doorgeven: over de koning zonder gezicht, en hoe hij de eerste keer werd opgesloten.", "keuzes": [ { "label": "Luisteren naar het verhaal (Charisma 7)", "test": { "kenmerk": "overtuiging", "moeilijkheid": 7 }, "gelukt": { "tekst": "De koning werd opgesloten door wie zijn ware naam uitsprak, vertelt Hamdi, in zijn gezicht. Hij leert je de naam, en hij geeft je een amulet van zijn grootmoeder.", "effect": [{ "aanwijzing": 2 }, { "toestand": "gezegend" }] }, "mislukt": { "tekst": "Je stelt te snel te veel vragen. Hamdi zwijgt en schenkt thee. Het is een vriendelijke, maar duidelijke afwijzing.", "effect": [{ "aanwijzing": 1 }] } }, { "label": "Hem vragen je naar het graf te brengen (Kracht 8)", "test": { "kenmerk": "kracht", "moeilijkheid": 8 }, "gelukt": { "tekst": "Hamdi brengt je bij zonsopgang naar een tweede ingang die de Engelsen nooit vonden. Daar ligt wat de wachters bewaakten. Hij laat je alleen naar binnen gaan.", "effect": [{ "trek": "artefacten" }, { "trofee": 1 }] }, "mislukt": { "tekst": "De klim is zwaar, en halverwege glijd je weg. Hamdi trekt je omhoog, maar je enkel is gekneusd.", "effect": [{ "lichaam": -2 }] } } ] },
-  { "id": "himalaya-1", "plek": "himalaya", "tekst": "Na een tocht van weken bereik je het Klooster van de Witte Wolken. De monniken zwijgen, maar ze wijzen naar de bronzen bel in de toren. Al een maand luidt hij vanzelf, telkens als de vreemde ster opkomt. De abt, een kleine oude man, vraagt met gebaren of je wilt mediteren.", "test": { "kenmerk": "kennis", "moeilijkheid": 8 }, "gelukt": { "tekst": "Je zit drie dagen in stilte met de monniken. Op de derde nacht zwijgt de bel. De abt geeft je met beide handen iets mee voor de reis.", "effect": [{ "trek": "artefacten" }, { "geest": 2 }] }, "mislukt": { "tekst": "De bel luidt door je hele lichaam. Je wordt pas wakker in de ziekenzaal van het klooster, waar een monnik je thee met boter voert.", "effect": [{ "geest": -2 }] } },
-  { "id": "himalaya-2", "plek": "himalaya", "tekst": "Het pad over de bergkam is smal en bevroren. Je gids Pemba blijft staan en zegt zacht dat er iemand achter jullie loopt. Je kijkt om en ziet alleen jullie eigen sporen in de sneeuw. Pemba wil omkeren.", "keuzes": [ { "label": "Doorlopen (Kracht 8)", "test": { "kenmerk": "kracht", "moeilijkheid": 8 }, "gelukt": { "tekst": "Je haalt het klooster voordat het donker wordt. Pemba zegt de hele avond niets, maar hij deelt zijn eten met je.", "effect": [{ "trofee": 1 }] }, "mislukt": { "tekst": "Je glijdt uit op het ijs. Een sterke hand trekt je terug, maar niemand van jullie groep stond dichtbij genoeg.", "effect": [{ "lichaam": -2 }, { "geest": -1 }] } }, { "label": "Een nacht schuilen in een grot", "tekst": "Je wacht met Pemba in een grot tot het licht wordt. 's Nachts hoor je voetstappen langs de ingang lopen, heen en terug. Bij zonsopgang zijn er geen sporen.", "effect": [{ "geest": -1 }, { "lichaam": 1 }] } ] },
-  { "id": "himalaya-3", "plek": "himalaya", "tekst": "In een grot boven het klooster woont een oude kluizenaar die sterrenkaarten op de rotswand schildert. Hij heeft de nieuwe ster al getekend, honderd jaar geleden, zegt hij lachend, en de keer daarvoor ook. Hij biedt je thee aan en vraagt wat je ervoor overhebt om de rest te zien.", "test": { "kenmerk": "overtuiging", "moeilijkheid": 8 }, "gelukt": { "tekst": "Hij laat je de hele wand zien: de ster die komt, en de ster die gaat. Hij leert je een gebed dat hij 'de weg terug' noemt.", "effect": [{ "aanwijzing": 2 }, { "trek": "spreuken" }] }, "mislukt": { "tekst": "Hij lacht, en hij blijft lachen tot je de grot uit bent.", "effect": [{ "geest": -1 }] } },
-  { "id": "himalaya-kaart", "plek": "himalaya", "god": "azh-ilareth", "tekst": "In de bibliotheek van het klooster brengt een jonge monnik je naar een lange houten kist. Daarin ligt een sterrenkaart op zijde, eeuwen oud. Er staat een ster op in rood, met een lijn die naar de aarde loopt en dan weer terugbuigt. Langs de lijn staan aantekeningen in een schrift dat de monnik voor je kan vertalen, als je geduld hebt.", "test": { "kenmerk": "kennis", "moeilijkheid": 8 }, "gelukt": { "tekst": "De kaart laat zien wat de ster de vorige keer terugduwde: geen wapen, maar een moment waarop niemand keek. De monniken doofden alle lichten en bedekten alle spiegels. Je weet nu wat de Orde in Londen nooit mag doen, en wat jij moet doen.", "effect": [{ "aanwijzing": 2 }, { "geest": 1 }] }, "mislukt": { "tekst": "De vertaling duurt dagen, en je raakt de draad kwijt. De monnik belooft je een afschrift te sturen.", "effect": [{ "aanwijzing": 1 }] } },
-  { "id": "yucatan-1", "plek": "yucatan", "tekst": "De regen houdt niet op. De overwoekerde piramide is groter dan je gids beloofde, en alle stenen hoofden op de trappen kijken dezelfde kant op, niet naar het oosten waar de zon opkomt, maar naar het noorden. Je gids Mateo zegt dat zijn grootvader daar nooit wilde praten.", "test": { "kenmerk": "scherpte", "moeilijkheid": 8 }, "gelukt": { "tekst": "Je volgt de blik van de beelden naar een deur achter een gordijn van lianen. Daarachter ligt een kamer vol jade, en één voorwerp dat nog warm is.", "effect": [{ "trek": "artefacten" }] }, "mislukt": { "tekst": "Je dwaalt uren door de gangen voordat je de uitgang terugvindt, en je weet niet meer welke kant je op bent gegaan.", "effect": [{ "geest": -1 }, { "lichaam": -1 }] } },
-  { "id": "yucatan-2", "plek": "yucatan", "tekst": "Mateo, je gids uit het dorp, vertelt bij het kampvuur dat hij hier zijn broer is kwijtgeraakt, vorig jaar, tijdens het zoeken naar een tempel. Hij wil met je mee om hem te vinden. 'Levend of niet,' zegt hij. 'Mijn moeder wil het weten.'", "test": { "kenmerk": "overtuiging", "moeilijkheid": 7 }, "gelukt": { "tekst": "Je neemt hem mee. Mateo kent de veilige paden en blijft je trouw. Bij de piramide vinden jullie de rugzak van zijn broer, met een kaart erin.", "effect": [{ "trek": "bondgenoot" }, { "aanwijzing": 1 }] }, "mislukt": { "tekst": "Mateo verdwijnt de eerste nacht. Zijn hangmat is nat van rivierwater, ver van elke rivier.", "effect": [{ "geest": -2 }] } },
-  { "id": "yucatan-3", "plek": "yucatan", "tekst": "Een hangbrug over een kloof is half verrot. Aan de overkant ligt het pad naar de tempel, en achter je klinkt al een uur het geluid van iets dat in de bomen meebeweegt. Je moet beslissen voordat het donker wordt.", "test": { "kenmerk": "kracht", "moeilijkheid": 8 }, "gelukt": { "tekst": "Je komt aan de overkant door je zweep om een tak te slaan. In een rotsspleet vind je de schuilplaats van een eerdere expeditie, met spullen en geld die niemand meer komt halen.", "effect": [{ "trek": "spullen" }, { "pond": 2 }] }, "mislukt": { "tekst": "Een plank breekt. Je hangt aan de touwen tot je jezelf omhoog hebt getrokken, met brandende handen.", "effect": [{ "lichaam": -2 }] } },
-  { "id": "yucatan-cenote", "plek": "yucatan", "god": "vathrun", "tekst": "Diep in het oerwoud ligt een cenote, een ronde put vol donker water. Op de rand staan zeven stenen beelden, en in elk beeld is een golf gekerfd met zeven streepjes. Hetzelfde teken als in de riolen van Londen. Mateo wil er niet dichtbij komen. 'Het water hier,' zegt hij, 'ademt.'", "test": { "kenmerk": "kennis", "moeilijkheid": 8 }, "gelukt": { "tekst": "Je begrijpt het: Vathrûn slaapt niet alleen onder Londen. Overal waar water diep genoeg is, kan hij ademen. Hier werd hij ooit tegengehouden met zout en gezang. Je schrijft het gezang over.", "effect": [{ "aanwijzing": 2 }, { "trek": "spreuken" }] }, "mislukt": { "tekst": "Je buigt je over de rand. Het water komt omhoog, langzaam, tot aan je gezicht. Mateo trekt je weg.", "effect": [{ "geest": -2 }] } },
-  { "id": "thebe-4", "plek": "thebe", "tekst": "In de nacht hoor je je dragers fluisteren bij het vuur. Ze willen niet verder. Een van hen, de jongste, zegt dat hij de vorige keer een man in de woestijn zag lopen zonder voetsporen achter te laten. De anderen zeggen dat hij moet zwijgen. Je kamelen zijn onrustig.", "keuzes": [{ "label": "De dragers moed inspreken (Charisma 8)", "test": { "kenmerk": "overtuiging", "moeilijkheid": 8 }, "gelukt": { "tekst": "Je belooft ze dubbel loon en vertelt over Londen tot ze lachen. 's Ochtends gaan ze met je mee, en de jongste wijst je de plek waar hij de man zag. Daar steekt iets uit het zand.", "effect": [{ "pond": -1 }, { "trek": "artefacten" }] }, "mislukt": { "tekst": "Ze vertrekken voor zonsopgang, met de helft van je water.", "effect": [{ "lichaam": -2 }] } }, { "label": "Zelf de nacht in gaan (Waarneming 9)", "test": { "kenmerk": "scherpte", "moeilijkheid": 9 }, "gelukt": { "tekst": "In het maanlicht zie je hem: een gestalte in linnen, die rondjes loopt om een steen. Als het licht wordt, is hij weg, maar onder de steen zit een kistje.", "effect": [{ "trek": "artefacten" }, { "geest": -1 }] }, "mislukt": { "tekst": "Je verdwaalt in de duinen en vindt pas bij daglicht het kamp terug.", "effect": [{ "lichaam": -1 }, { "geest": -1 }] } }] },
-  { "id": "himalaya-4", "plek": "himalaya", "tekst": "Halverwege de pas vind je een tent die is achtergelaten door een andere expeditie. Binnen liggen slaapzakken, een dagboek en een fototoestel. Er is niemand. Het dagboek eindigt drie weken geleden, midden in een zin: 'We hebben de monniken gevonden, en ze zeggen dat we'", "keuzes": [{ "label": "Het dagboek lezen (Kennis 8)", "test": { "kenmerk": "kennis", "moeilijkheid": 8 }, "gelukt": { "tekst": "De laatste bladzijden staan vol met sterrenposities, dezelfde die je in Hampstead zag. De expeditie was je voor. Je neemt het dagboek mee.", "effect": [{ "aanwijzing": 2 }] }, "mislukt": { "tekst": "Het handschrift wordt bij elke bladzijde wilder. Je leest het uit, en daarna slaap je slecht.", "effect": [{ "geest": -2 }] } }, { "label": "Het fototoestel meenemen (Kracht 8)", "test": { "kenmerk": "kracht", "moeilijkheid": 8 }, "gelukt": { "tekst": "Het is zwaar, maar je sleept het naar beneden. In Londen laat je de platen ontwikkelen. Op de laatste staat iets wat niet in de lucht hoort.", "effect": [{ "aanwijzing": 1 }, { "trofee": 1 }] }, "mislukt": { "tekst": "Je glijdt uit op het ijs met het toestel op je rug.", "effect": [{ "lichaam": -2 }] } }] },
-  { "id": "yucatan-4", "plek": "yucatan", "tekst": "Op de rivier naar het binnenland stopt je gids bij een dorp waar een feest gaande is. Iedereen draagt maskers van veren en jade, en ze dansen rond een vuur. Ze nodigen je uit. De gids zegt dat het een eer is, en een gevaar, en dat het allebei tegelijk kan.", "keuzes": [{ "label": "Meedansen (Charisma 8)", "test": { "kenmerk": "overtuiging", "moeilijkheid": 8 }, "gelukt": { "tekst": "Je danst tot de ochtend. Bij het afscheid geeft de oudste vrouw je een klein masker, en de naam van een plek waar je niet heen moet gaan, tenzij je moet.", "effect": [{ "trek": "artefacten" }] }, "mislukt": { "tekst": "Je struikelt in de dans en valt bijna in het vuur. De muziek stopt.", "effect": [{ "lichaam": -1 }, { "geest": -1 }] } }, { "label": "Beleefd weigeren en toekijken", "tekst": "Je kijkt vanaf de rand. Bij het hoogtepunt van de dans doen alle dansers tegelijk hun masker af. Je had dat niet mogen zien. Ze laten je toch gaan, maar je ziet hun gezichten nog lang.", "effect": [{ "aanwijzing": 2 }, { "geest": -1 }] }] },
-  { "id": "yucatan-ysm", "god": "ysmara", "plek": "yucatan", "tekst": "Diep in het oerwoud van Yucatán vind je een open plek waar een boom staat die hier niet hoort: een meidoorn, oud en knoestig, in volle bloei. Aan de takken hangen kleine geschenken: linten, knopen, haarlokken. Je gids zegt dat de boom er was voordat de Maya kwamen, en dat er kinderen onder begraven liggen die niet dood zijn.", "keuzes": [{ "label": "Een geschenk van de boom nemen (Waarneming 9)", "test": { "kenmerk": "scherpte", "moeilijkheid": 9 }, "gelukt": { "tekst": "Tussen de linten hangt een medaillon met een portretje: een meisje in Engelse kleren, uit deze eeuw. Achterop staat 'Greaves'.", "effect": [{ "aanwijzing": 2 }, { "trek": "artefacten" }] }, "mislukt": { "tekst": "De takken grijpen naar je pols. Je rukt je los en laat bloed achter op de bast.", "effect": [{ "lichaam": -1 }, { "geest": -1 }] } }, { "label": "Iets van jezelf ophangen", "tekst": "Je knoopt een lint uit je jas aan een tak. De boom ritselt tevreden, en je gids zegt dat je nu veilig door het oerwoud zult komen. 's Nachts droom je van een feest.", "effect": [{ "geest": 1 }, { "toestand": "gezegend" }] }] },
-  { "id": "thebe-mor", "god": "morghast", "plek": "thebe", "tekst": "In een dodenstad bij Thebe ontmoet je een Engelse arts die hier mummies opkoopt 'voor de wetenschap'. Hij verscheept ze naar Londen, naar een genootschap van chirurgen. Hij is opgewekt en onbezorgd. Achter hem, in de schaduw van de tent, beweegt een van zijn ingepakte aanwinsten.", "keuzes": [{ "label": "Zijn administratie inzien (Waarneming 8)", "test": { "kenmerk": "scherpte", "moeilijkheid": 8 }, "gelukt": { "tekst": "Elke zending gaat naar Dr. L. Grieve, Guy's Hospital, en bij elke zending staat: 'nog warm'. Je neemt een vrachtbrief mee.", "effect": [{ "aanwijzing": 2 }] }, "mislukt": { "tekst": "Hij merkt je nieuwsgierigheid en wordt kil. Je wordt het kamp uit gezet.", "effect": [{ "geest": -1 }] } }, { "label": "De bewegende mummie bevrijden (Kracht 9)", "test": { "kenmerk": "kracht", "moeilijkheid": 9 }, "gelukt": { "tekst": "Je snijdt de windsels los. Erin zit geen mummie maar een man van de expeditie, uitgedroogd en nauwelijks levend. Hij fluistert de naam van de tentarts, en geeft je een amulet uit zijn vuist.", "effect": [{ "trek": "artefacten" }, { "trofee": 1 }] }, "mislukt": { "tekst": "De windsels slingeren zich om je arm. Je krijgt ze er pas met een mes af.", "effect": [{ "lichaam": -2 }] } }] }
+  {
+    "id": "thebe-1",
+    "plek": "thebe",
+    "tekst": "Na twee dagen rijden op een muilezel bereik je de vallei. In de verzengende hitte vind je een graf dat op geen enkele kaart staat, met een ingang die half door puin is bedekt. Je dragers weigeren verder te gaan dan de drempel. In het lamplicht lijken de schilderingen op de wanden met je mee te kijken.",
+    "test": {
+      "kenmerk": "kennis",
+      "moeilijkheid": 8
+    },
+    "gelukt": {
+      "tekst": "Je leest de hiërogliefen en ziet op tijd de loze steen in de vloer: een valkuil voor grafrovers. In de achterste kamer staat een kistje dat niemand heeft durven openen.",
+      "effect": [
+        {
+          "trek": "artefacten"
+        },
+        {
+          "aanwijzing": 1
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "De vloer geeft mee. Je valt in een donkere schacht en klimt er pas na uren uit, met kapotte handen en een hoofd vol fluisteringen.",
+      "effect": [
+        {
+          "lichaam": -2
+        },
+        {
+          "geest": -1
+        }
+      ]
+    }
+  },
+  {
+    "id": "thebe-2",
+    "plek": "thebe",
+    "tekst": "Een dag rijden verderop ligt het verlaten kamp van de expeditie-Harrowgate. De tenten staan nog, half weggewaaid. Op een tafel ligt een geopend logboek, en in het zand staan voetsporen die van het graf naar het kamp lopen. Geen enkel spoor loopt terug.",
+    "test": {
+      "kenmerk": "scherpte",
+      "moeilijkheid": 8
+    },
+    "gelukt": {
+      "tekst": "Het logboek is van Dr. Moss. Op de laatste pagina staat: 'Hamdi had gelijk. Het graf was leeg omdat het niet leeg moest blijven.' Je neemt het boek mee.",
+      "effect": [
+        {
+          "aanwijzing": 2
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "Terwijl je door de tenten zoekt, steekt er een zandstorm op. Je zit een nacht vast zonder genoeg water.",
+      "effect": [
+        {
+          "lichaam": -2
+        }
+      ]
+    }
+  },
+  {
+    "id": "thebe-3",
+    "plek": "thebe",
+    "tekst": "Een zandstorm drijft je een tempel in die je bij aankomst niet had gezien. De zuilen zijn bedekt met gezichten, honderden, allemaal net iets anders. Op het altaar ligt iets onder een laag stof. Buiten giert de wind en roept iets je naam.",
+    "test": {
+      "kenmerk": "kracht",
+      "moeilijkheid": 8
+    },
+    "gelukt": {
+      "tekst": "Je pakt wat er op het altaar ligt en worstelt je tegen de wind in naar buiten. Als de storm gaat liggen, is de tempel verdwenen. Het voorwerp niet.",
+      "effect": [
+        {
+          "trek": "artefacten"
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "De storm gaat liggen, de tempel is verdwenen, en je hebt drie dagen verloren die je je niet kunt herinneren.",
+      "effect": [
+        {
+          "mist": -1
+        },
+        {
+          "geest": -1
+        }
+      ]
+    }
+  },
+  {
+    "id": "thebe-hamdi",
+    "plek": "thebe",
+    "god": "nebet-ankhu",
+    "persoon": "youssef-hamdi",
+    "tekst": "In het dorp aan de rand van de vallei word je bij het vuur ontvangen door raïs Youssef Hamdi. Hij ziet er ouder uit dan zijn vijftig jaar. Hij heeft de Engelsen gewaarschuwd, zegt hij, en ze hebben niet geluisterd. Als je hem met respect benadert, vertelt hij het verhaal dat de dorpen al eeuwen doorgeven: over de koning zonder gezicht, en hoe hij de eerste keer werd opgesloten.",
+    "keuzes": [
+      {
+        "label": "Luisteren naar het verhaal (Charisma 7)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 7
+        },
+        "gelukt": {
+          "tekst": "De koning werd opgesloten door wie zijn ware naam uitsprak, vertelt Hamdi, in zijn gezicht. Hij leert je de naam, en hij geeft je een amulet van zijn grootmoeder.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "toestand": "gezegend"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je stelt te snel te veel vragen. Hamdi zwijgt en schenkt thee. Het is een vriendelijke, maar duidelijke afwijzing.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Hem vragen je naar het graf te brengen (Kracht 8)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Hamdi brengt je bij zonsopgang naar een tweede ingang die de Engelsen nooit vonden. Daar ligt wat de wachters bewaakten. Hij laat je alleen naar binnen gaan.",
+          "effect": [
+            {
+              "trek": "artefacten"
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De klim is zwaar, en halverwege glijd je weg. Hamdi trekt je omhoog, maar je enkel is gekneusd.",
+          "effect": [
+            {
+              "lichaam": -2
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "himalaya-1",
+    "plek": "himalaya",
+    "tekst": "Na een tocht van weken bereik je het Klooster van de Witte Wolken. De monniken zwijgen, maar ze wijzen naar de bronzen bel in de toren. Al een maand luidt hij vanzelf, telkens als de vreemde ster opkomt. De abt, een kleine oude man, vraagt met gebaren of je wilt mediteren.",
+    "test": {
+      "kenmerk": "kennis",
+      "moeilijkheid": 8
+    },
+    "gelukt": {
+      "tekst": "Je zit drie dagen in stilte met de monniken. Op de derde nacht zwijgt de bel. De abt geeft je met beide handen iets mee voor de reis.",
+      "effect": [
+        {
+          "trek": "artefacten"
+        },
+        {
+          "geest": 2
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "De bel luidt door je hele lichaam. Je wordt pas wakker in de ziekenzaal van het klooster, waar een monnik je thee met boter voert.",
+      "effect": [
+        {
+          "geest": -2
+        }
+      ]
+    }
+  },
+  {
+    "id": "himalaya-2",
+    "plek": "himalaya",
+    "tekst": "Het pad over de bergkam is smal en bevroren. Je gids Pemba blijft staan en zegt zacht dat er iemand achter jullie loopt. Je kijkt om en ziet alleen jullie eigen sporen in de sneeuw. Pemba wil omkeren.",
+    "keuzes": [
+      {
+        "label": "Doorlopen (Kracht 8)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je haalt het klooster voordat het donker wordt. Pemba zegt de hele avond niets, maar hij deelt zijn eten met je.",
+          "effect": [
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je glijdt uit op het ijs. Een sterke hand trekt je terug, maar niemand van jullie groep stond dichtbij genoeg.",
+          "effect": [
+            {
+              "lichaam": -2
+            },
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Een nacht schuilen in een grot",
+        "tekst": "Je wacht met Pemba in een grot tot het licht wordt. 's Nachts hoor je voetstappen langs de ingang lopen, heen en terug. Bij zonsopgang zijn er geen sporen.",
+        "effect": [
+          {
+            "geest": -1
+          },
+          {
+            "lichaam": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "himalaya-3",
+    "plek": "himalaya",
+    "tekst": "In een grot boven het klooster woont een oude kluizenaar die sterrenkaarten op de rotswand schildert. Hij heeft de nieuwe ster al getekend, honderd jaar geleden, zegt hij lachend, en de keer daarvoor ook. Hij biedt je thee aan en vraagt wat je ervoor overhebt om de rest te zien.",
+    "test": {
+      "kenmerk": "overtuiging",
+      "moeilijkheid": 8
+    },
+    "gelukt": {
+      "tekst": "Hij laat je de hele wand zien: de ster die komt, en de ster die gaat. Hij leert je een gebed dat hij 'de weg terug' noemt.",
+      "effect": [
+        {
+          "aanwijzing": 2
+        },
+        {
+          "trek": "spreuken"
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "Hij lacht, en hij blijft lachen tot je de grot uit bent.",
+      "effect": [
+        {
+          "geest": -1
+        }
+      ]
+    }
+  },
+  {
+    "id": "himalaya-kaart",
+    "plek": "himalaya",
+    "god": "azh-ilareth",
+    "tekst": "In de bibliotheek van het klooster brengt een jonge monnik je naar een lange houten kist. Daarin ligt een sterrenkaart op zijde, eeuwen oud. Er staat een ster op in rood, met een lijn die naar de aarde loopt en dan weer terugbuigt. Langs de lijn staan aantekeningen in een schrift dat de monnik voor je kan vertalen, als je geduld hebt.",
+    "test": {
+      "kenmerk": "kennis",
+      "moeilijkheid": 8
+    },
+    "gelukt": {
+      "tekst": "De kaart laat zien wat de ster de vorige keer terugduwde: geen wapen, maar een moment waarop niemand keek. De monniken doofden alle lichten en bedekten alle spiegels. Je weet nu wat de Orde in Londen nooit mag doen, en wat jij moet doen.",
+      "effect": [
+        {
+          "aanwijzing": 2
+        },
+        {
+          "geest": 1
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "De vertaling duurt dagen, en je raakt de draad kwijt. De monnik belooft je een afschrift te sturen.",
+      "effect": [
+        {
+          "aanwijzing": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "yucatan-1",
+    "plek": "yucatan",
+    "tekst": "De regen houdt niet op. De overwoekerde piramide is groter dan je gids beloofde, en alle stenen hoofden op de trappen kijken dezelfde kant op, niet naar het oosten waar de zon opkomt, maar naar het noorden. Je gids Mateo zegt dat zijn grootvader daar nooit wilde praten.",
+    "test": {
+      "kenmerk": "scherpte",
+      "moeilijkheid": 8
+    },
+    "gelukt": {
+      "tekst": "Je volgt de blik van de beelden naar een deur achter een gordijn van lianen. Daarachter ligt een kamer vol jade, en één voorwerp dat nog warm is.",
+      "effect": [
+        {
+          "trek": "artefacten"
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "Je dwaalt uren door de gangen voordat je de uitgang terugvindt, en je weet niet meer welke kant je op bent gegaan.",
+      "effect": [
+        {
+          "geest": -1
+        },
+        {
+          "lichaam": -1
+        }
+      ]
+    }
+  },
+  {
+    "id": "yucatan-2",
+    "plek": "yucatan",
+    "tekst": "Mateo, je gids uit het dorp, vertelt bij het kampvuur dat hij hier zijn broer is kwijtgeraakt, vorig jaar, tijdens het zoeken naar een tempel. Hij wil met je mee om hem te vinden. 'Levend of niet,' zegt hij. 'Mijn moeder wil het weten.'",
+    "test": {
+      "kenmerk": "overtuiging",
+      "moeilijkheid": 7
+    },
+    "gelukt": {
+      "tekst": "Je neemt hem mee. Mateo kent de veilige paden en blijft je trouw. Bij de piramide vinden jullie de rugzak van zijn broer, met een kaart erin.",
+      "effect": [
+        {
+          "trek": "bondgenoot"
+        },
+        {
+          "aanwijzing": 1
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "Mateo verdwijnt de eerste nacht. Zijn hangmat is nat van rivierwater, ver van elke rivier.",
+      "effect": [
+        {
+          "geest": -2
+        }
+      ]
+    }
+  },
+  {
+    "id": "yucatan-3",
+    "plek": "yucatan",
+    "tekst": "Een hangbrug over een kloof is half verrot. Aan de overkant ligt het pad naar de tempel, en achter je klinkt al een uur het geluid van iets dat in de bomen meebeweegt. Je moet beslissen voordat het donker wordt.",
+    "test": {
+      "kenmerk": "kracht",
+      "moeilijkheid": 8
+    },
+    "gelukt": {
+      "tekst": "Je komt aan de overkant door je zweep om een tak te slaan. In een rotsspleet vind je de schuilplaats van een eerdere expeditie, met spullen en geld die niemand meer komt halen.",
+      "effect": [
+        {
+          "trek": "spullen"
+        },
+        {
+          "pond": 2
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "Een plank breekt. Je hangt aan de touwen tot je jezelf omhoog hebt getrokken, met brandende handen.",
+      "effect": [
+        {
+          "lichaam": -2
+        }
+      ]
+    }
+  },
+  {
+    "id": "yucatan-cenote",
+    "plek": "yucatan",
+    "god": "vathrun",
+    "tekst": "Diep in het oerwoud ligt een cenote, een ronde put vol donker water. Op de rand staan zeven stenen beelden, en in elk beeld is een golf gekerfd met zeven streepjes. Hetzelfde teken als in de riolen van Londen. Mateo wil er niet dichtbij komen. 'Het water hier,' zegt hij, 'ademt.'",
+    "test": {
+      "kenmerk": "kennis",
+      "moeilijkheid": 8
+    },
+    "gelukt": {
+      "tekst": "Je begrijpt het: Vathrûn slaapt niet alleen onder Londen. Overal waar water diep genoeg is, kan hij ademen. Hier werd hij ooit tegengehouden met zout en gezang. Je schrijft het gezang over.",
+      "effect": [
+        {
+          "aanwijzing": 2
+        },
+        {
+          "trek": "spreuken"
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "Je buigt je over de rand. Het water komt omhoog, langzaam, tot aan je gezicht. Mateo trekt je weg.",
+      "effect": [
+        {
+          "geest": -2
+        }
+      ]
+    }
+  },
+  {
+    "id": "thebe-4",
+    "plek": "thebe",
+    "tekst": "In de nacht hoor je je dragers fluisteren bij het vuur. Ze willen niet verder. Een van hen, de jongste, zegt dat hij de vorige keer een man in de woestijn zag lopen zonder voetsporen achter te laten. De anderen zeggen dat hij moet zwijgen. Je kamelen zijn onrustig.",
+    "keuzes": [
+      {
+        "label": "De dragers moed inspreken (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je belooft ze dubbel loon en vertelt over Londen tot ze lachen. 's Ochtends gaan ze met je mee, en de jongste wijst je de plek waar hij de man zag. Daar steekt iets uit het zand.",
+          "effect": [
+            {
+              "pond": -1
+            },
+            {
+              "trek": "artefacten"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Ze vertrekken voor zonsopgang, met de helft van je water.",
+          "effect": [
+            {
+              "lichaam": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "Zelf de nacht in gaan (Waarneming 9)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "In het maanlicht zie je hem: een gestalte in linnen, die rondjes loopt om een steen. Als het licht wordt, is hij weg, maar onder de steen zit een kistje.",
+          "effect": [
+            {
+              "trek": "artefacten"
+            },
+            {
+              "geest": -1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je verdwaalt in de duinen en vindt pas bij daglicht het kamp terug.",
+          "effect": [
+            {
+              "lichaam": -1
+            },
+            {
+              "geest": -1
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "himalaya-4",
+    "plek": "himalaya",
+    "tekst": "Halverwege de pas vind je een tent die is achtergelaten door een andere expeditie. Binnen liggen slaapzakken, een dagboek en een fototoestel. Er is niemand. Het dagboek eindigt drie weken geleden, midden in een zin: 'We hebben de monniken gevonden, en ze zeggen dat we'",
+    "keuzes": [
+      {
+        "label": "Het dagboek lezen (Kennis 8)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "De laatste bladzijden staan vol met sterrenposities, dezelfde die je in Hampstead zag. De expeditie was je voor. Je neemt het dagboek mee.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Het handschrift wordt bij elke bladzijde wilder. Je leest het uit, en daarna slaap je slecht.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "Het fototoestel meenemen (Kracht 8)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Het is zwaar, maar je sleept het naar beneden. In Londen laat je de platen ontwikkelen. Op de laatste staat iets wat niet in de lucht hoort.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je glijdt uit op het ijs met het toestel op je rug.",
+          "effect": [
+            {
+              "lichaam": -2
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "yucatan-4",
+    "plek": "yucatan",
+    "tekst": "Op de rivier naar het binnenland stopt je gids bij een dorp waar een feest gaande is. Iedereen draagt maskers van veren en jade, en ze dansen rond een vuur. Ze nodigen je uit. De gids zegt dat het een eer is, en een gevaar, en dat het allebei tegelijk kan.",
+    "keuzes": [
+      {
+        "label": "Meedansen (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je danst tot de ochtend. Bij het afscheid geeft de oudste vrouw je een klein masker, en de naam van een plek waar je niet heen moet gaan, tenzij je moet.",
+          "effect": [
+            {
+              "trek": "artefacten"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je struikelt in de dans en valt bijna in het vuur. De muziek stopt.",
+          "effect": [
+            {
+              "lichaam": -1
+            },
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Beleefd weigeren en toekijken",
+        "tekst": "Je kijkt vanaf de rand. Bij het hoogtepunt van de dans doen alle dansers tegelijk hun masker af. Je had dat niet mogen zien. Ze laten je toch gaan, maar je ziet hun gezichten nog lang.",
+        "effect": [
+          {
+            "aanwijzing": 2
+          },
+          {
+            "geest": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "yucatan-ysm",
+    "god": "ysmara",
+    "plek": "yucatan",
+    "tekst": "Diep in het oerwoud van Yucatán vind je een open plek waar een boom staat die hier niet hoort: een meidoorn, oud en knoestig, in volle bloei. Aan de takken hangen kleine geschenken: linten, knopen, haarlokken. Je gids zegt dat de boom er was voordat de Maya kwamen, en dat er kinderen onder begraven liggen die niet dood zijn.",
+    "keuzes": [
+      {
+        "label": "Een geschenk van de boom nemen (Waarneming 9)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Tussen de linten hangt een medaillon met een portretje: een meisje in Engelse kleren, uit deze eeuw. Achterop staat 'Greaves'.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trek": "artefacten"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De takken grijpen naar je pols. Je rukt je los en laat bloed achter op de bast.",
+          "effect": [
+            {
+              "lichaam": -1
+            },
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Iets van jezelf ophangen",
+        "tekst": "Je knoopt een lint uit je jas aan een tak. De boom ritselt tevreden, en je gids zegt dat je nu veilig door het oerwoud zult komen. 's Nachts droom je van een feest.",
+        "effect": [
+          {
+            "geest": 1
+          },
+          {
+            "toestand": "gezegend"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "thebe-mor",
+    "god": "morghast",
+    "plek": "thebe",
+    "tekst": "In een dodenstad bij Thebe ontmoet je een Engelse arts die hier mummies opkoopt 'voor de wetenschap'. Hij verscheept ze naar Londen, naar een genootschap van chirurgen. Hij is opgewekt en onbezorgd. Achter hem, in de schaduw van de tent, beweegt een van zijn ingepakte aanwinsten.",
+    "keuzes": [
+      {
+        "label": "Zijn administratie inzien (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Elke zending gaat naar Dr. L. Grieve, Guy's Hospital, en bij elke zending staat: 'nog warm'. Je neemt een vrachtbrief mee.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij merkt je nieuwsgierigheid en wordt kil. Je wordt het kamp uit gezet.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "De bewegende mummie bevrijden (Kracht 9)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Je snijdt de windsels los. Erin zit geen mummie maar een man van de expeditie, uitgedroogd en nauwelijks levend. Hij fluistert de naam van de tentarts, en geeft je een amulet uit zijn vuist.",
+          "effect": [
+            {
+              "trek": "artefacten"
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De windsels slingeren zich om je arm. Je krijgt ze er pas met een mes af.",
+          "effect": [
+            {
+              "lichaam": -2
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "himalaya-omm",
+    "plek": "himalaya",
+    "tekst": "In een klooster op een bergkam zingen de monniken elke ochtend een gezang met vijf tonen. Je kent het. Je hebt het in Londen gehoord, uit de mond van dokwerkers. De oudste monnik ziet je schrikken. 'Het is een lokroep,' zegt hij. 'Wij zingen hem om hem af te houden. Bij jullie zingen ze hem om hem binnen te laten.'",
+    "keuzes": [
+      {
+        "label": "Het tegengezang leren (Kennis 9)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Drie dagen oefen je, tot je keel rauw is. Het tegengezang heeft dezelfde vijf tonen, achterstevoren, en een zesde die alles breekt.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trek": "spreuken"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je krijgt de zesde toon niet te pakken. De monnik zegt dat je hem pas zult vinden als je hem nodig hebt.",
+          "effect": [
+            {
+              "geest": -1
+            },
+            {
+              "aanwijzing": 1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Vragen wie de lokroep heeft meegenomen",
+        "tekst": "Een Engelsman, twintig jaar geleden, met de handen van een zeeman en de ogen van een prediker. Hij bleef een winter en vertrok zingend. De monnik geeft je een gebedsmolen mee voor onderweg.",
+        "effect": [
+          {
+            "aanwijzing": 1
+          },
+          {
+            "geest": 2
+          }
+        ]
+      }
+    ],
+    "god": "ommeth"
+  },
+  {
+    "id": "yucatan-kar",
+    "plek": "yucatan",
+    "tekst": "Midden in de tempel is een kamer zonder deur. Je gids zegt dat er een stuk zwart glas in ligt dat de oude koningen niet durfden aan te raken. Door een spleet in de muur zie je het liggen, op een altaar, in een plas zonlicht die er niet kan zijn.",
+    "keuzes": [
+      {
+        "label": "Door de spleet kruipen (Kracht 9)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Je schaaft je schouders open, maar je bent binnen. Het glas is koud. Je neemt het mee, en de zon verdwijnt.",
+          "effect": [
+            {
+              "trek": "artefacten"
+            },
+            {
+              "lichaam": -1
+            },
+            {
+              "aanwijzing": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je komt klem te zitten. Je gids moet je er aan je enkels uittrekken.",
+          "effect": [
+            {
+              "lichaam": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "De muurschilderingen lezen",
+        "tekst": "Ze tonen zeven stukken die van de hemel vallen, en zeven volken die elk een stuk begraven. Het laatste volk draagt hoeden en jassen.",
+        "effect": [
+          {
+            "aanwijzing": 2
+          }
+        ]
+      }
+    ],
+    "god": "karathos"
+  },
+  {
+    "id": "himalaya-ulv",
+    "plek": "himalaya",
+    "tekst": "Op de bergkam boven het klooster staan zeven stenen in een kring, met gaten erin. Als de wind erdoor waait, maken ze geluid. De monniken zeggen dat ze het weer van de hele wereld kunnen horen, als je weet hoe je moet luisteren. Vandaag zingen ze een lied dat ze nog nooit hebben gezongen.",
+    "keuzes": [
+      {
+        "label": "Luisteren naar de stenen (Kennis 9)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Je hoort Londen in de wind: de vorst, de storm, en daaronder een stem. De monniken leren je hoe je hem kunt laten zwijgen, voor even.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trek": "spreuken"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De wind is te koud. Je hoort alleen je eigen hartslag.",
+          "effect": [
+            {
+              "lichaam": -1
+            },
+            {
+              "aanwijzing": 1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Een gebedsvlag ophangen",
+        "tekst": "Je hangt hem op tussen de stenen. De wind neemt je gebed mee naar het westen. Je voelt je rustiger dan in maanden.",
+        "effect": [
+          {
+            "geest": 2
+          },
+          {
+            "toestand": "gezegend"
+          }
+        ]
+      }
+    ],
+    "god": "ulvereth"
+  },
+  {
+    "id": "thebe-sir",
+    "plek": "thebe",
+    "tekst": "In een graf in de Vallei hangt een schildering van een koningin die geen farao ooit heeft gehad. Ze houdt een waaier van struisvogelveren voor haar gezicht. Voor haar knielen honderd figuren, en elk biedt haar iets aan: een stad, een oogst, een kind. Je gids weigert verder te gaan. 'Zij nam alles,' zegt hij, 'en ze gaf er iets moois voor terug.'",
+    "keuzes": [
+      {
+        "label": "De inscriptie lezen (Kennis 9)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Het is een waarschuwing, geen lofzang. Onderaan staat hoe een priester haar wegstuurde: door niets aan te nemen, zeven dagen lang.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je kijkt te lang naar de waaier.",
+          "effect": [
+            {
+              "toestand": "betoverd"
+            }
+          ]
+        }
+      },
+      {
+        "label": "Een geschenk uit het graf nemen",
+        "tekst": "Er ligt een gouden scarabee voor haar voeten. Hij is mooi, en hij voelt aan alsof hij van jou was, altijd al.",
+        "effect": [
+          {
+            "trek": "artefacten"
+          },
+          {
+            "toestand": "betoverd"
+          }
+        ]
+      }
+    ],
+    "god": "sirrhae"
+  },
+  {
+    "id": "himalaya-our",
+    "plek": "himalaya",
+    "tekst": "In het klooster hangen geen klokken. De monniken weten hoe laat het is aan de schaduw van een berg en de geur van de wind. De oudste lama vraagt of je een horloge draagt. Als je het hem laat zien, legt hij het op een steen en slaat het met een andere steen kapot. 'Nu kun je luisteren,' zegt hij.",
+    "keuzes": [
+      {
+        "label": "Leren tellen zonder klok (Kennis 9)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Na drie dagen weet je hoe laat het is zonder te kijken. En je weet hoe je de tijd kunt vasthouden, even, als je adem.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trek": "spreuken"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je mist je horloge meer dan je had gedacht.",
+          "effect": [
+            {
+              "geest": -1
+            },
+            {
+              "aanwijzing": 1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Mediteren met de monniken",
+        "tekst": "Je zit een dag stil. De tijd gaat voorbij zoals water. Als je opstaat, voel je je uitgerust als na een maand slaap.",
+        "effect": [
+          {
+            "geest": 3
+          },
+          {
+            "lichaam": 1
+          }
+        ]
+      }
+    ],
+    "god": "ouroch"
+  },
+  {
+    "id": "thebe-yth",
+    "plek": "thebe",
+    "tekst": "In een graf in de Vallei is een wand helemaal beschreven met hiërogliefen. Je gids, die ze kan lezen, wordt bleek. 'Hier staat dat de farao de Nijl liet bevriezen,' zegt hij. 'Daarna staat er dat het niet gebeurde. Daarna dat het toch gebeurde. Iemand heeft de waarheid steeds opnieuw gebeiteld, honderd keer, over elkaar heen.'",
+    "keuzes": [
+      {
+        "label": "De oudste laag zoeken (Kennis 9)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Helemaal onderaan, in de diepste groef, staat wat er echt gebeurde, in een tekst van één regel. Je schrijft hem over. Het is de eerste zekere waarheid die je in weken hebt.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De lagen lopen door elkaar. Je gids zegt dat het tijd is om te gaan.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Een stuk van de wand meenemen",
+        "tekst": "Een losse steen, met tekst aan beide kanten, die elkaar tegenspreken. Hij is zwaar, en zijn gewicht wisselt.",
+        "effect": [
+          {
+            "trek": "artefacten"
+          },
+          {
+            "geest": -1
+          }
+        ]
+      }
+    ],
+    "god": "yth-nemora"
+  },
+  {
+    "id": "yucatan-gul",
+    "plek": "yucatan",
+    "tekst": "Bij de tempel staat een kamp van een Engelse mijnmaatschappij. De mannen graven niet naar goud, ze graven het in: ze begraven kisten vol munten onder de treden van de piramide. De opzichter heeft een zegel op zijn ring: een hand met een ring.",
+    "keuzes": [
+      {
+        "label": "Een kist opgraven (Kracht 9)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "In de kist zitten geen munten, maar contracten. Honderden, getekend in bruine inkt. Je neemt er een paar mee als bewijs, en een handvol goud voor de reis.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "pond": 3
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De opzichter ziet je, en zijn mannen jagen je het oerwoud in.",
+          "effect": [
+            {
+              "lichaam": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "De oude priester van het dorp spreken (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Hij vertelt dat de tempel een offerplaats was voor een god van de handel, die zich voedde met wat mensen elkaar schuldig waren. De Engelsen voeren hem nu weer.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij wil niet praten met een man die geld bij zich heeft.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            }
+          ]
+        }
+      }
+    ],
+    "god": "gul-marrach"
+  }
 ]

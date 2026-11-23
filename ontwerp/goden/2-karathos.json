@@ -1,0 +1,902 @@
+{
+  "god": {
+    "id": "karathos",
+    "naam": "Karathos",
+    "titel": "De Verdeelde, die heel wil worden",
+    "mist": 12,
+    "verhaal": "In 1307 braken de Tempeliers iets in zeven stukken en verstopten ze over de wereld. Het British Museum heeft er in dertig jaar, zonder het te weten, vier in één vitrine gezet. Nu roepen ze elkaar 's nachts. De bewakers horen ze fluisteren, de conservator slaapt niet meer, en elke relikwie die je vindt, is een splinter die heel wil worden.",
+    "regel": "Elk Artefact is een Splinter: zijn bonus is 1 hoger, maar elke ronde kan hij roepen en iets uit zichzelf doen. Draagt het team er 4 of meer, dan roepen ze vaker.",
+    "verdachten": "Het Genootschap van de Zeven Zegels: verzamelaars, museummensen en een conservator die al jaren niet meer naar huis gaat.",
+    "mysteries": [
+      {
+        "naam": "De vitrine in Bloomsbury",
+        "doel": "Breng samen 2 Artefacten naar Bloomsbury. Daar sluit het museum ze op in een loden kist, voorgoed.",
+        "type": "artefacten",
+        "plek": "bloomsbury",
+        "aantal": 2
+      },
+      {
+        "naam": "In de diepte",
+        "doel": "Breng een Artefact naar Wapping en werp het in het diepste deel van de Theems.",
+        "type": "artefacten",
+        "plek": "wapping",
+        "aantal": 1
+      },
+      {
+        "naam": "De zevende splinter",
+        "doel": "Reis naar de tempel in Yucatán en vind de plek waar de zevende splinter ligt (Waarneming 9).",
+        "type": "test",
+        "plek": "yucatan",
+        "kenmerk": "scherpte",
+        "moeilijkheid": 9
+      },
+      {
+        "naam": "De Conservator",
+        "doel": "Versla het epische monster De Conservator, dat in Bloomsbury verschijnt.",
+        "type": "episch",
+        "plek": "bloomsbury"
+      },
+      {
+        "naam": "De rol van de Tempeliers",
+        "doel": "Haal de rol van de Tempeliers uit de abdij in Westminster (Kennis 8) en breng hem naar King's College aan de Strand.",
+        "type": "breng",
+        "van": "westminster",
+        "naar": "strand",
+        "voorwerp": "de rol van de Tempeliers",
+        "kenmerk": "kennis",
+        "moeilijkheid": 8
+      }
+    ],
+    "ontwaken": "Zeven stukken vinden elkaar in de zaal met de Egyptische beelden. Wat heel wordt, is groter dan het museum, en dan groter dan Londen. Jullie verliezen.",
+    "monsters": [
+      "splintergeest",
+      "vitrinewachter",
+      "reliekjager",
+      "sluierhond",
+      "kraaienzwerm"
+    ],
+    "episch": "de-conservator",
+    "prompt": "a vast shattered figure of black glass and old gold hanging in the air above the British Museum at night, seven glowing fragments drifting toward each other across the foggy London sky, thin threads of light connecting them, gaslamps along Great Russell Street for scale"
+  },
+  "episch": {
+    "id": "de-conservator",
+    "naam": "De Conservator",
+    "gruwel": 2,
+    "taaiheid": 10,
+    "schade": 2,
+    "leven": 3,
+    "eigenschap": "Mr. Horace Quill, die te lang tussen de splinters sliep. Hij loopt naar de held met de meeste Artefacten. Wint hij een gevecht, dan neemt hij een Artefact van je af. Met 4 helden heeft hij 2 leven extra.",
+    "prompt": "a thin elderly Victorian museum curator in a dusty frock coat and white cotton gloves, his eyes replaced by two glowing shards of black glass, holding a ring of keys, standing among glass display cases in a dark museum gallery",
+    "mens": true,
+    "steeltArtefact": true,
+    "beweging": {
+      "type": "naarArtefact"
+    }
+  },
+  "monsters": [
+    {
+      "id": "splintergeest",
+      "naam": "Splintergeest",
+      "gruwel": 2,
+      "taaiheid": 10,
+      "schade": 1,
+      "leven": 2,
+      "eigenschap": "Een schim van glas en echo. Verlies je, dan grijpt hij een Artefact van je en vlucht.",
+      "prompt": "a translucent spectral figure made of cracked black glass shards floating in a Victorian museum corridor, reaching out with long fingers toward a glowing relic",
+      "steeltArtefact": true
+    },
+    {
+      "id": "vitrinewachter",
+      "naam": "Vitrinewachter",
+      "gruwel": 1,
+      "taaiheid": 12,
+      "schade": 2,
+      "leven": 3,
+      "eigenschap": "Een harnas uit de wapenzaal dat zijn post heeft verlaten. Je moet hem drie keer raken.",
+      "prompt": "an empty medieval suit of Templar armour with a white surcoat and red cross walking out of a museum display case, its visor dark, a sword in hand, Victorian gallery lit by moonlight"
+    },
+    {
+      "id": "reliekjager",
+      "naam": "Reliekjager",
+      "gruwel": 0,
+      "taaiheid": 9,
+      "schade": 1,
+      "leven": 2,
+      "eigenschap": "Een mens van het Genootschap, met een catalogus en een mes. Hij loopt naar de held met de meeste Artefacten. Win je, dan krijg je 1 Aanwijzing: zijn catalogus.",
+      "prompt": "a sharp-featured Victorian collector's agent in a bowler hat and long overcoat, holding an annotated catalogue and a thin knife, lurking in a foggy alley behind an auction house",
+      "mens": true,
+      "beweging": {
+        "type": "naarArtefact"
+      },
+      "beloning": {
+        "aanwijzing": 1
+      }
+    }
+  ],
+  "personen": [
+    {
+      "id": "horace-quill",
+      "naam": "Mr. Horace Quill",
+      "rol": "Conservator van de middeleeuwse collectie",
+      "factie": "Het Genootschap van de Zeven Zegels",
+      "kort": "Een conservator die al maanden in zijn museum slaapt.",
+      "beschrijving": "Horace Quill heeft veertig jaar lang de middeleeuwse collectie van het British Museum beheerd, met een liefde die zijn collega's ontroerend vonden. Sinds de vierde splinter binnenkwam, gaat hij niet meer naar huis. Hij slaapt op een veldbed tussen de vitrines en praat tegen de stukken. Ze praten terug, zegt hij, en ze hebben het koud.",
+      "prompt": "a thin elderly Victorian museum curator with wispy white hair and half-moon spectacles, dusty frock coat, white cotton gloves, standing among glass cases in a dim gallery, holding a glowing black shard with reverence"
+    },
+    {
+      "id": "amelia-fenwick",
+      "naam": "Dr. Amelia Fenwick",
+      "rol": "Assistent-conservator, mediëvist",
+      "factie": "Geen",
+      "kort": "Quills assistente, die als eerste begreep wat de splinters zijn.",
+      "beschrijving": "Amelia Fenwick promoveerde in Zürich, omdat Oxford geen vrouwen toeliet, en kreeg in het museum een bureau in de kelder. Ze las de inventarislijsten na en vond dat vier stukken uit vier landen dezelfde breuklijn hebben. Ze is nuchter, snel en woedend dat niemand naar haar luistert.",
+      "prompt": "a sharp-eyed Victorian woman scholar in her thirties with ink-stained fingers and her hair pinned up, plain dark dress with a magnifying glass on a chain, sitting at a cluttered desk in a museum basement full of crates"
+    },
+    {
+      "id": "anselm-drury",
+      "naam": "Pater Anselm Drury",
+      "rol": "Jezuïet en archivaris",
+      "factie": "Geen",
+      "kort": "Een oude priester die de laatste brieven van de Tempeliers heeft gelezen.",
+      "beschrijving": "Pater Drury beheert een kleine bibliotheek achter de abdij in Westminster. Hij weet wat de Tempeliers braken, en waarom: ze hoopten dat zeven stukken nooit meer bij elkaar zouden komen. Hij is oud en ziek, en hij heeft maar één wens: dat het lukt voordat hij sterft.",
+      "prompt": "an old frail Victorian Jesuit priest in a black cassock with a worn breviary, deep-set kind eyes, standing in a candlelit cloister library behind Westminster Abbey"
+    }
+  ],
+  "verhaal": [
+    {
+      "id": "v-kar-1",
+      "plek": "bloomsbury",
+      "persoon": "horace-quill",
+      "tekst": "In de middeleeuwse zaal van het museum staat Mr. Quill voor een vitrine met vier zwarte scherven. 'Ze zijn ongerust,' fluistert hij. 'Er ontbreken er drie. Ze voelen waar die zijn. U draagt er een, nietwaar? Ik kan het horen.'",
+      "keuzes": [
+        {
+          "label": "Hem laten vertellen wat hij hoort (Charisma 8)",
+          "test": {
+            "kenmerk": "overtuiging",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Hij beschrijft drie plekken: een tempel in een oerwoud, de bodem van een rivier, en een kist in een abdij. Hij praat alsof hij het gesprek van anderen naspeelt.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Hij wordt achterdochtig en roept de bewakers. Je wordt het museum uit gezet.",
+            "effect": [
+              {
+                "geest": -1
+              }
+            ]
+          }
+        },
+        {
+          "label": "De vitrine van dichtbij bekijken (Waarneming 8)",
+          "test": {
+            "kenmerk": "scherpte",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "De breuklijnen passen in elkaar, maar er is een vijfde lijn die nergens op aansluit. Op het glas aan de binnenkant staan vingerafdrukken. Van binnenuit.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              },
+              {
+                "trofee": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Je kijkt te lang. De scherven kijken terug.",
+            "effect": [
+              {
+                "geest": -2
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "v-kar-2",
+      "plek": "bloomsbury",
+      "persoon": "amelia-fenwick",
+      "tekst": "In een kelder vol kisten zit Dr. Amelia Fenwick tussen stapels inventarislijsten. 'Vier stukken, vier landen, dezelfde breuk,' zegt ze, zonder op te kijken. 'Iemand heeft ze gebroken met één klap. En iemand heeft ze verzameld, één voor één, alsof hij een boodschappenlijst afwerkte.'",
+      "keuzes": [
+        {
+          "label": "Haar helpen met de lijsten (Kennis 8)",
+          "test": {
+            "kenmerk": "kennis",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Na een avond werk vind je de naam van de schenker van alle vier: een stichting met een adres in Pall Mall. Amelia vloekt in het Duits.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              },
+              {
+                "vlag": "fenwick-stichting"
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "De lijsten lopen door elkaar. Amelia zucht en stuurt je naar boven.",
+            "effect": [
+              {
+                "geest": -1
+              }
+            ]
+          }
+        },
+        {
+          "label": "Haar je artefact laten bekijken",
+          "tekst": "Ze bekijkt het met een loep en zegt niets, wat erger is dan iets zeggen. Dan schrijft ze een nummer op een kaartje: dit is stuk vijf.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-kar-3",
+      "plek": "westminster",
+      "persoon": "anselm-drury",
+      "tekst": "Achter de abdij woont Pater Drury tussen zijn boeken. Hij hoest bloed in een zakdoek en glimlacht. 'De Tempeliers waren geen heiligen,' zegt hij. 'Maar ze wisten wat ze deden toen ze het braken. Ze lieten een rol achter, voor wie het ooit weer heel zou willen maken.'",
+      "keuzes": [
+        {
+          "label": "De rol vragen te mogen lezen (Kennis 9)",
+          "test": {
+            "kenmerk": "kennis",
+            "moeilijkheid": 9
+          },
+          "gelukt": {
+            "tekst": "Het Latijn is oud en slordig, geschreven in een cel. Maar je leest het: de stukken mogen nooit samen in één stad liggen. Niet in Parijs. Niet in Londen.",
+            "effect": [
+              {
+                "aanwijzing": 3
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Je leest wel, maar je begrijpt het niet. De pater legt een hand op je schouder.",
+            "effect": [
+              {
+                "aanwijzing": 1
+              }
+            ]
+          }
+        },
+        {
+          "label": "Voor hem bidden",
+          "held": [
+            "ezra-whitlock",
+            "benedict-ashcombe"
+          ],
+          "tekst": "Je bidt met hem, in het Latijn dat je nog kent. Daarna geeft hij je een klein loden kistje. 'Voor één splinter,' zegt hij. 'Daar hoort hij hem niet in.'",
+          "effect": [
+            {
+              "toestand": "gezegend"
+            },
+            {
+              "trek": "artefacten"
+            },
+            {
+              "geest": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-kar-4",
+      "plek": "pall-mall",
+      "tekst": "In een club aan Pall Mall loopt een veiling van 'curiosa uit een nalatenschap'. Het publiek is beschaafd en heel rijk. Kavel twaalf is een zwarte scherf in een fluwelen doosje. Een heer naast je steekt zijn bordje op voordat de veilingmeester begint.",
+      "keuzes": [
+        {
+          "label": "Meebieden (3 Pond)",
+          "tekst": "Je biedt drie pond. De heer naast je kijkt je verbaasd aan en laat het gaan. Thuis merk je dat het doosje warm is.",
+          "effect": [
+            {
+              "pond": -3
+            },
+            {
+              "trek": "artefacten"
+            }
+          ]
+        },
+        {
+          "label": "Uitzoeken wie de koper is (Waarneming 8)",
+          "test": {
+            "kenmerk": "scherpte",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Zijn handschoenen hebben het monogram van het Genootschap. Je volgt hem tot een huis in Mayfair en noteert het adres.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Hij merkt je op. Buiten wacht er iemand op je met een mes.",
+            "effect": [
+              {
+                "monster": 1
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "v-kar-5",
+      "plek": "wapping",
+      "tekst": "Een rivierpolitieagent laat je een sloep zien die vanochtend leeg dreef. De kapitein en twee knechten zijn weg. In de bodem van de sloep ligt een zwarte scherf, en het water eromheen staat stil, ook al stroomt de rivier.",
+      "keuzes": [
+        {
+          "label": "De scherf oppakken",
+          "tekst": "Hij is ijskoud en zwaar als lood. Op het moment dat je hem oppakt, gaat het water weer stromen. De agent kruist zich.",
+          "effect": [
+            {
+              "trek": "artefacten"
+            },
+            {
+              "geest": -1
+            }
+          ]
+        },
+        {
+          "label": "Uitzoeken waar de sloep vandaan kwam (Waarneming 8)",
+          "test": {
+            "kenmerk": "scherpte",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Het logboek staat nog in de kajuit: de sloep kwam van een schip uit Mexico. De vracht: 'kisten met stenen, voor het museum'.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "De bladzijden van het logboek zijn nat en leeg.",
+            "effect": [
+              {
+                "aanwijzing": 1
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "v-kar-6",
+      "plek": "strand",
+      "tekst": "In King's College geeft een hoogleraar een lezing over 'de zeven relieken van de Tempeliers, een mythe ontmaskerd'. De zaal is halfvol. Halverwege houdt hij op met praten en kijkt hij naar zijn handen. 'Neem me niet kwalijk,' zegt hij. 'Ik hoor iets.'",
+      "keuzes": [
+        {
+          "label": "Na afloop met hem praten (Charisma 8)",
+          "test": {
+            "kenmerk": "overtuiging",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Hij geeft toe dat hij de mythe niet gelooft, en dat hij daarom elke nacht over de zevende splinter droomt. Hij weet waar die ligt: in een tempel zonder ingang, in Yucatán.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              },
+              {
+                "trofee": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Hij is al weg, met zijn papieren tegen zijn borst gedrukt.",
+            "effect": []
+          }
+        },
+        {
+          "label": "Zijn aantekeningen lezen terwijl hij praat (Kennis 8)",
+          "test": {
+            "kenmerk": "kennis",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "In de kantlijn staan zeven plaatsnamen. Vijf zijn doorgestreept.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Het handschrift wordt kleiner en kleiner tot het een spiraal is.",
+            "effect": [
+              {
+                "geest": -1
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "v-kar-7",
+      "plek": "soho",
+      "tekst": "In een occulte boekwinkel in Soho ligt een zwarte scherf op de toonbank, als presse-papier. De eigenaar haalt zijn schouders op. 'Iemand ruilde hem tegen een boek. Hij bijt, als je hem te lang vasthoudt.'",
+      "keuzes": [
+        {
+          "label": "Hem ruilen tegen een spreuk die je kent",
+          "tekst": "De eigenaar is tevreden met de ruil. De scherf bijt inderdaad, maar je went eraan.",
+          "effect": [
+            {
+              "trek": "artefacten"
+            },
+            {
+              "lichaam": -1
+            }
+          ]
+        },
+        {
+          "label": "Vragen wie hem bracht (Charisma 7)",
+          "test": {
+            "kenmerk": "overtuiging",
+            "moeilijkheid": 7
+          },
+          "gelukt": {
+            "tekst": "Een jonge vrouw met inkt aan haar vingers. Ze zei dat hij beter niet in het museum kon liggen. Hij beschrijft Amelia Fenwick.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Hij weet het niet meer. Of hij wil het niet weten.",
+            "effect": [
+              {
+                "aanwijzing": 1
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "v-kar-8",
+      "plek": "st-katharine-docks",
+      "tekst": "Drie kisten met het stempel van het British Museum staan op de kade. Een van de deksels beweegt. De sjouwers weigeren ze aan te raken. 'Die heeft de hele overtocht geklopt,' zegt er een. 'Van binnen.'",
+      "keuzes": [
+        {
+          "label": "De kist openbreken (Kracht 8)",
+          "test": {
+            "kenmerk": "kracht",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Erin ligt een harnas, en in het harnas niemand. Op de borstplaat is een kruis gekrast, en eronder een splinter vastgesmolten. Je wrikt hem los.",
+            "effect": [
+              {
+                "trek": "artefacten"
+              },
+              {
+                "trofee": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Het deksel vliegt open voordat je klaar bent. Het harnas komt overeind.",
+            "effect": [
+              {
+                "monster": 1
+              },
+              {
+                "lichaam": -1
+              }
+            ]
+          }
+        },
+        {
+          "label": "De vrachtbrief lezen",
+          "tekst": "Verzonden uit Luxor, uit Darjeeling en uit Progreso, alle drie aan Mr. H. Quill. Je schrijft de data over.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-kar-9",
+      "plek": "overal",
+      "persoon": "amelia-fenwick",
+      "vlag": "fenwick-stichting",
+      "tekst": "Amelia Fenwick haalt je in op straat, buiten adem. 'De stichting in Pall Mall,' zegt ze. 'Ik ben er gisteren geweest. Er woont niemand. Er staan alleen vitrines, en ze zijn allemaal leeg, op één na.' Ze drukt je een sleutel in handen.",
+      "keuzes": [
+        {
+          "label": "De sleutel aannemen en gaan kijken (Waarneming 8)",
+          "test": {
+            "kenmerk": "scherpte",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "In de laatste vitrine ligt een kaart van de wereld, met zeven spelden. Vijf zijn zwart, twee zijn rood. Je neemt hem mee.",
+            "effect": [
+              {
+                "aanwijzing": 3
+              },
+              {
+                "wisVlag": "fenwick-stichting"
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Je vindt het huis, maar de sleutel past niet meer. Iemand heeft het slot vervangen.",
+            "effect": [
+              {
+                "aanwijzing": 1
+              },
+              {
+                "wisVlag": "fenwick-stichting"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Haar meenemen naar Pater Drury",
+          "tekst": "Ze praten de hele middag, de priester en de wetenschapster, in het Latijn en het Duits. Je begrijpt de helft. De helft is genoeg.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "geest": 1
+            },
+            {
+              "wisVlag": "fenwick-stichting"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-kar-10",
+      "plek": "bloomsbury",
+      "mistTot": 6,
+      "tekst": "Het museum is gesloten, maar de deur staat open. In de grote zaal staan alle vitrines open. De stukken liggen op de vloer, in een kring, met een lege plek in het midden. Een bewaker zit in een hoek en zingt een kinderliedje.",
+      "keuzes": [
+        {
+          "label": "De kring verstoren (Kracht 9)",
+          "test": {
+            "kenmerk": "kracht",
+            "moeilijkheid": 9
+          },
+          "gelukt": {
+            "tekst": "Je schopt de stukken uit elkaar. Ze glijden over de marmeren vloer, en ergens in de stad hoor je iets van glas breken.",
+            "effect": [
+              {
+                "trofee": 2
+              },
+              {
+                "mist": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "De stukken schuiven terug, alsof ze aan touwtjes hangen.",
+            "effect": [
+              {
+                "geest": -2
+              },
+              {
+                "lichaam": -1
+              }
+            ]
+          }
+        },
+        {
+          "label": "De bewaker meenemen naar buiten",
+          "tekst": "Buiten houdt hij op met zingen. Hij vertelt dat de conservator elke nacht in de kring gaat liggen, op de lege plek.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "scheur": [
+    {
+      "id": "scheur-kar-1",
+      "tekst": "Je staat in een zaal zonder muren, vol vitrines tot aan de horizon. In elke vitrine ligt een stuk van iets. In de dichtstbijzijnde ligt je eigen gezicht, in zeven stukken.",
+      "keuzes": [
+        {
+          "label": "Een vitrine openen",
+          "tekst": "Je neemt mee wat erin ligt. Het is warm, en het fluistert je naam.",
+          "effect": [
+            {
+              "trek": "artefacten"
+            },
+            {
+              "geest": -2
+            }
+          ]
+        },
+        {
+          "label": "Het opschrift lezen (Kennis 8)",
+          "test": {
+            "kenmerk": "kennis",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "'Hier ligt wat gebroken werd, zodat de wereld heel kon blijven.' Je begrijpt nu waarom de stukken nooit samen mogen komen.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "De letters veranderen terwijl je kijkt. Het laatste woord is je eigen naam.",
+            "effect": [
+              {
+                "geest": -1
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "scheur-kar-2",
+      "tekst": "Een woestijn van zwart glas, gebarsten in zeven richtingen. Uit elke barst klinkt een stem, en alle zeven roepen hetzelfde: kom.",
+      "keuzes": [
+        {
+          "label": "Een barst volgen (Waarneming 9)",
+          "test": {
+            "kenmerk": "scherpte",
+            "moeilijkheid": 9
+          },
+          "gelukt": {
+            "tekst": "Je komt uit bij een plek die je kent: de bodem van de Theems, bij Wapping. Nu weet je waar een stuk ligt.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              },
+              {
+                "trofee": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Het glas snijdt door je schoenen heen.",
+            "effect": [
+              {
+                "lichaam": -2
+              }
+            ]
+          }
+        },
+        {
+          "label": "Je oren dichtstoppen en teruglopen",
+          "tekst": "Je hoort ze nog steeds, maar zachter.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scheur-kar-3",
+      "tekst": "Een kapel in de vorm van een kruis. Op het altaar ligt een zwaard, gebroken. Zeven ridders liggen op de grond, in een kring, met hun handen gevouwen. Een van hen opent zijn ogen.",
+      "keuzes": [
+        {
+          "label": "Met hem praten (Charisma 9)",
+          "test": {
+            "kenmerk": "overtuiging",
+            "moeilijkheid": 9
+          },
+          "gelukt": {
+            "tekst": "Hij spreekt Normandisch Frans, maar je begrijpt hem. 'Verberg ze,' zegt hij. 'Breng ze naar plekken waar niemand zoekt. Het water. Het lood.' Dan sluit hij zijn ogen.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              },
+              {
+                "toestand": "gezegend"
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Hij ziet de splinter in je zak en grijpt naar zijn zwaard.",
+            "effect": [
+              {
+                "lichaam": -2
+              }
+            ]
+          }
+        },
+        {
+          "label": "Een knie buigen en vertrekken",
+          "tekst": "De ridder knikt. Je voelt je lichter.",
+          "effect": [
+            {
+              "geest": 1
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "aanwijzing": [
+    {
+      "id": "aanw-kar-1",
+      "actie": "De breuklijn volgen",
+      "test": {
+        "kenmerk": "kennis",
+        "moeilijkheid": 7
+      },
+      "tekst": "In een etalage van een antiquair ligt een stuk zwart glas met een breuklijn die je eerder hebt gezien. Op het prijskaartje staat 'niet te koop', en een adres."
+    },
+    {
+      "id": "aanw-kar-2",
+      "actie": "De koerier volgen",
+      "test": {
+        "kenmerk": "scherpte",
+        "moeilijkheid": 7
+      },
+      "tekst": "Een koerier draagt een loden kistje alsof het een baby is. Hij kijkt steeds om. Op het kistje staat het zegel van het museum.",
+      "mislukt": {
+        "tekst": "Hij duikt een steeg in, en je hoort het kistje kloppen.",
+        "effect": [
+          {
+            "geest": -1
+          }
+        ]
+      }
+    }
+  ],
+  "onheil": [
+    {
+      "id": "o-kar-1",
+      "naam": "Een splinter op drift",
+      "mist": 1,
+      "scheur": 0,
+      "monster": 1,
+      "extra": "Overzee ligt een artefact klaar. Er verschijnt een monster.",
+      "tekst": "Uit een schip in de dokken wordt een kist gestolen. Iemand anders vindt hem eerder dan de dieven: een splinter die zelf een weg zoekt.",
+      "acties": [
+        {
+          "type": "artefactKlaar"
+        },
+        {
+          "type": "voorkeurMonster",
+          "id": "splintergeest"
+        }
+      ]
+    },
+    {
+      "id": "o-kar-2",
+      "naam": "De stukken zingen",
+      "persoon": "horace-quill",
+      "mist": 1,
+      "scheur": 1,
+      "monster": 0,
+      "extra": "Elke held verliest 1 Geest.",
+      "tekst": "In het museum zingen de vier stukken een toon die door de muren gaat. In heel Bloomsbury barsten de ruiten. Mr. Quill zit ervoor op een krukje en dirigeert.",
+      "acties": [
+        {
+          "type": "geestAlle",
+          "waarde": -1
+        }
+      ]
+    },
+    {
+      "id": "o-kar-3",
+      "naam": "De rol van de pater",
+      "persoon": "anselm-drury",
+      "mist": 0,
+      "scheur": 0,
+      "monster": 0,
+      "extra": "Elke held in Westminster of Whitehall krijgt 1 Aanwijzing. Iedereen herstelt 1 Geest.",
+      "tekst": "Pater Drury leest de rol voor in de abdij, met de deuren open. Wie het hoort, voelt hoe de splinters even stil worden.",
+      "acties": [
+        {
+          "type": "aanwijzingOpHelden",
+          "plekken": [
+            "westminster",
+            "whitehall"
+          ],
+          "aantal": 1
+        },
+        {
+          "type": "geestAlle",
+          "waarde": 1
+        }
+      ]
+    },
+    {
+      "id": "o-kar-4",
+      "naam": "Gerucht: de nachtelijke inbraak",
+      "persoon": "amelia-fenwick",
+      "mist": 0,
+      "scheur": 0,
+      "monster": 0,
+      "gerucht": "Er verschijnt een Reliekjager in Bloomsbury. Is hij na 2 rondes niet verslagen, dan daalt de Mist met 2.",
+      "tekst": "Amelia Fenwick laat weten dat het Genootschap vannacht het museum binnengaat, om de vier stukken mee te nemen naar een plek waar niemand ze meer terugvindt.",
+      "acties": [
+        {
+          "type": "gerucht",
+          "soort": "verslaan",
+          "plek": "bloomsbury",
+          "id": "reliekjager",
+          "rondes": 3,
+          "straf": 2
+        }
+      ]
+    }
+  ],
+  "expeditie": [
+    {
+      "id": "yucatan-kar",
+      "plek": "yucatan",
+      "tekst": "Midden in de tempel is een kamer zonder deur. Je gids zegt dat er een stuk zwart glas in ligt dat de oude koningen niet durfden aan te raken. Door een spleet in de muur zie je het liggen, op een altaar, in een plas zonlicht die er niet kan zijn.",
+      "keuzes": [
+        {
+          "label": "Door de spleet kruipen (Kracht 9)",
+          "test": {
+            "kenmerk": "kracht",
+            "moeilijkheid": 9
+          },
+          "gelukt": {
+            "tekst": "Je schaaft je schouders open, maar je bent binnen. Het glas is koud. Je neemt het mee, en de zon verdwijnt.",
+            "effect": [
+              {
+                "trek": "artefacten"
+              },
+              {
+                "lichaam": -1
+              },
+              {
+                "aanwijzing": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Je komt klem te zitten. Je gids moet je er aan je enkels uittrekken.",
+            "effect": [
+              {
+                "lichaam": -2
+              }
+            ]
+          }
+        },
+        {
+          "label": "De muurschilderingen lezen",
+          "tekst": "Ze tonen zeven stukken die van de hemel vallen, en zeven volken die elk een stuk begraven. Het laatste volk draagt hoeden en jassen.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

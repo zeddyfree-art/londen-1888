@@ -51,6 +51,13 @@ Ze spelen zacht op de achtergrond zolang het potje duurt, één per oude god, pl
 | `sfeer-nebet-ankhu.mp3` | Potje tegen Nebet-Ankhu | 22 s | `seamless loop, creaking wooden crates in a dark dockside warehouse, ropes and ship timbers groaning, faint desert wind, distant whispering voices, ominous, no music` |
 | `sfeer-ysmara.mp3` | Potje tegen Ysmara | 22 s | `seamless loop, wind rustling through leaves and hawthorn branches at night, distant children softly singing a nursery rhyme, faint wooden flute far away, a creaking garden gate, enchanting and eerie, no music` |
 | `sfeer-morghast.mp3` | Potje tegen Morghast | 22 s | `seamless loop, a deep underground vault, slow dripping water, a shovel scraping in earth far away, bones shifting softly, a very slow deep breathing below, a distant hospital bell, dread, no music` |
+| `sfeer-ommeth.mp3` | Potje tegen Ommeth | 22 s | `seamless loop, a distant crowd of hundreds of people humming the same five slow notes in an East End street at night, shuffling footsteps on wet cobblestones, a single tin bell, hypnotic and eerie, no instruments, no music` |
+| `sfeer-karathos.mp3` | Potje tegen Karathos | 22 s | `seamless loop, a vast empty museum gallery at night, faint high ringing of glass, slow footsteps on marble far away, a low resonant hum like a wet finger on a crystal glass, whispering echoes, ominous, no music` |
+| `sfeer-ulvereth.mp3` | Potje tegen Ulvereth | 22 s | `seamless loop, wind gusting over rooftops and chimney pots, distant rolling thunder, ice cracking on a river, sleet against window glass, then a moment of calm birdsong, unsettled weather, no music` |
+| `sfeer-sirrhae.mp3` | Potje tegen Sirrhae | 22 s | `seamless loop, a distant elegant salon party heard through a closed door, muffled laughter, clinking glasses, a faint waltz on a piano far away, the rustle of silk and a fan opening, seductive and uneasy` |
+| `sfeer-ouroch.mp3` | Potje tegen Ouroch | 22 s | `seamless loop, many clocks ticking slightly out of sync in a dark room, a slow heavy pendulum, gears turning, a distant tower bell striking very slowly, tense and mechanical, no music` |
+| `sfeer-yth-nemora.mp3` | Potje tegen Yth-Nemora | 22 s | `seamless loop, a printing press thumping rhythmically in a basement, paper rustling, newsboys shouting indistinct words in the street far away, many whispering voices overlapping, uneasy, no music` |
+| `sfeer-gul-marrach.mp3` | Potje tegen Gul-Marrach | 22 s | `seamless loop, coins clinking and being counted in a quiet marble banking hall, a pen scratching in a ledger, a heavy vault door creaking far away, a slow deep heartbeat underneath, cold and ominous, no music` |
 
 ## Achtergrondmuziek
 

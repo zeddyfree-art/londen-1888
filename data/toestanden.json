@@ -70,5 +70,17 @@
     "naam": "Waanzin: het teken",
     "soort": "Waanzin",
     "tekst": "Je tekent overal hetzelfde symbool. Aan het eind van elke ronde: gooi een dobbelsteen, bij 1 opent er een Scheur op jouw plek."
+  },
+  {
+    "id": "betoverd",
+    "naam": "Betoverd",
+    "soort": "Betovering",
+    "tekst": "Aan het eind van elke ronde verlies je 1 Geest, en nog 1 als het team een gunst van Sirrhae weigert. Verbreek het in de abdij (Westminster), of laat een held op jouw plek je terughalen bij Rondkijken (Charisma 8)."
+  },
+  {
+    "id": "schuld-hand",
+    "naam": "Schuld aan de Hand",
+    "soort": "Geld",
+    "tekst": "Je leende bij de Onzichtbare Hand. Elke ronde: gooi een dobbelsteen, bij 1 daalt de Mist met 1. Los af in The City voor 5 Pond."
   }
 ]

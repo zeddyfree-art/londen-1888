@@ -1,24 +1,421 @@
 [
-  { "id": "aanw-1", "tekst": "Een krijttekening op een muur, half weggeregend: een pijl, een datum en een teken dat je eerder hebt gezien. Iemand wilde dat dit gevonden werd, door de juiste persoon." },
-  { "id": "aanw-2", "tekst": "Een getuige, een bakker die vroeg op moet, wil alleen praten als je met hem meeloopt naar de oven, zodat niemand jullie samen ziet. Hij heeft iets gezien, vannacht, en hij wil het kwijt.", "actie": "Meelopen naar de oven", "test": { "kenmerk": "overtuiging", "moeilijkheid": 7 } },
-  { "id": "aanw-3", "tekst": "In een brievenbus die al jaren niet wordt geleegd, steekt een brief zonder postzegel. Het adres is goed, maar de naam is die van iemand die hier al tien jaar niet meer woont." },
-  { "id": "aanw-4", "tekst": "Op de natte stenen staan voetafdrukken van blote voeten, die bij een putdeksel ophouden. Het deksel is van binnenuit verschoven. Ernaast ligt een knoop van een jas.", "actie": "Het putdeksel optillen", "test": { "kenmerk": "kracht", "moeilijkheid": 7 }, "mislukt": { "tekst": "Het deksel schuift terug en klemt je vingers. Onder je voeten hoor je iets wegschuifelen, de duisternis in.", "effect": [{ "lichaam": -1 }] } },
-  { "id": "aanw-5", "tekst": "Een pandjesbaas heeft een opvallende voorraad: zilveren kandelaars, allemaal met hetzelfde kleine wapen erin gegraveerd. Hij weet precies wie ze bracht, en hij is bereid het te vertellen voor een goed woord bij de politie.", "actie": "Onderhandelen", "test": { "kenmerk": "overtuiging", "moeilijkheid": 7 } },
-  { "id": "aanw-6", "tekst": "Een kind zingt een aftelrijmpje over de rivier. In het refrein komt een straatnaam voor die niet in het rijmpje hoort. Het kind weet niet waar het die naam heeft gehoord.", "actie": "Het rijmpje navragen", "test": { "kenmerk": "overtuiging", "moeilijkheid": 6 } },
-  { "id": "aanw-7", "god": "vathrun", "tekst": "In een kelder staat het water tot je enkels, terwijl het buiten al dagen droog is. Op de muur heeft iemand met een spijker een golf met zeven streepjes gekrast, en eronder: 'nog vier'." },
-  { "id": "aanw-8", "god": "azh-ilareth", "tekst": "In een portiek ligt een verfrommelde sterrenkaart, getekend met een vaste, kundige hand. In de hoek staan de initialen I.L., en een woord dat dik is doorgestreept: 'help'." },
-  { "id": "aanw-9", "god": "nebet-ankhu", "tekst": "Op straat ligt een gebroken stukje klei met een half zegel erop. Het is nog warm. Een spoor van dezelfde scherven loopt naar het oosten, naar de dokken." },
-  { "id": "aanw-10", "actie": "Ontcijferen", "test": { "kenmerk": "kennis", "moeilijkheid": 7 }, "tekst": "In de achterste kerkbank heeft iemand met een speld letters in het hout gekrast. Het is geen Engels en geen Latijn, maar een eenvoudig geheimschrift dat schooljongens gebruiken. Wie het schreef, had haast: de laatste regel is maar half af." },
-  { "id": "aanw-11", "actie": "Naar boven klimmen", "test": { "kenmerk": "kracht", "moeilijkheid": 7 }, "tekst": "In een dakgoot, twee verdiepingen hoog, hangt een tas aan zijn hengsel te bungelen. Volgens de kinderen in de straat gooide een man hem daar vannacht neer, vlak voordat hij door de agenten werd ingehaald. De regenpijp ziet er niet al te betrouwbaar uit.", "mislukt": { "tekst": "Halverwege laat een beugel los. Je glijdt naar beneden en landt hard op de keien, onder luid gejuich van de kinderen.", "effect": [{ "lichaam": -1 }] } },
-  { "id": "aanw-12", "actie": "Een rondje geven", "test": { "kenmerk": "overtuiging", "moeilijkheid": 7 }, "tekst": "In de gelagkamer van The Ten Bells zit een sjouwer die al de hele avond hetzelfde verhaal vertelt aan wie het maar horen wil. Over een rijtuig zonder koetsier, om drie uur 's nachts. Hoe meer hij drinkt, hoe meer details hij zich herinnert. Of verzint.", "mislukt": { "tekst": "Hij drinkt je rondje op, en het volgende ook, en valt dan midden in een zin in slaap op de tafel.", "effect": [{ "pond": -1 }] } },
-  { "id": "aanw-13", "actie": "De resten bekijken", "test": { "kenmerk": "scherpte", "moeilijkheid": 8 }, "tekst": "In de haard van een verlaten kamer liggen de resten van een stapel brieven. Iemand heeft ze verbrand, maar niet goed genoeg: aan de randen zijn nog woorden te lezen. Een datum, een deel van een handtekening, en drie keer het woord 'vergeef'." },
-  { "id": "aanw-14", "actie": "Het luik openbreken", "test": { "kenmerk": "kracht", "moeilijkheid": 6 }, "tekst": "De hond van de slager blaft al de hele ochtend naar hetzelfde kelderluik en is niet weg te slaan. De slager zelf wil er niet aan komen. 'Die kelder is van de vorige huurder,' zegt hij. 'En die heb ik al een maand niet gezien.'" },
-  { "id": "aanw-15", "actie": "Het steno lezen", "test": { "kenmerk": "kennis", "moeilijkheid": 7 }, "tekst": "Een stenograaf van de politierechtbank heeft zijn aantekeningenboekje laten liggen op een bank in het park. De meeste bladzijden gaan over dronkenschap en zakkenrollerij. Maar op één bladzijde zijn de haaltjes slordig en gehaast, alsof zijn hand trilde toen hij het opschreef." },
-  { "id": "aanw-16", "god": "vathrun", "actie": "Het rooster lichten", "test": { "kenmerk": "kracht", "moeilijkheid": 7 }, "tekst": "Uit een rioolrooster komt een geur van zout en wier, midden in de stad, mijlen van de zee. Tussen de spijlen klemt een stukje papier, doorweekt maar nog leesbaar: het briefhoofd van de Metropolitan Board of Works, en een handtekening die begint met 'J. Pen'.", "mislukt": { "tekst": "Het rooster is vastgeroest. Als je het eindelijk loskrijgt, is het papiertje weggespoeld, de duisternis in.", "effect": [{ "lichaam": -1 }] } },
-  { "id": "aanw-17", "god": "azh-ilareth", "actie": "De berekening volgen", "test": { "kenmerk": "kennis", "moeilijkheid": 8 }, "tekst": "Op de achterkant van een theaterprogramma heeft iemand met potlood een lange som gemaakt: hoeken, afstanden, een datum die steeds opnieuw is uitgerekend. Bij elke nieuwe poging komt de datum een paar dagen dichterbij. Onderaan staat de laatste uitkomst, omcirkeld." },
-  { "id": "aanw-18", "god": "nebet-ankhu", "actie": "De smokkelaar uithoren", "test": { "kenmerk": "overtuiging", "moeilijkheid": 7 }, "tekst": "Een smokkelaar met een Maltees accent biedt je in een portiek 'echte mummiepoeder' aan, goed tegen alles. Het spul is nep, dat ziet een kind. Maar het kistje waar hij het uit schept, is dat niet: het draagt het zegel van een schip uit Alexandrië, en het is nog geen week oud." },
-  { "id": "aanw-ysm-1", "god": "ysmara", "actie": "De kinderen uithoren", "test": { "kenmerk": "overtuiging", "moeilijkheid": 7 }, "tekst": "Op de stoep hebben kinderen met krijt een hinkelbaan getekend, maar de vakjes zijn rond en er staat een kroon in het laatste. Ze willen best vertellen wie hen het spelletje leerde, als je eerst een keer meedoet." },
-  { "id": "aanw-ysm-2", "god": "ysmara", "actie": "De bloesem volgen", "test": { "kenmerk": "scherpte", "moeilijkheid": 7 }, "tekst": "Een spoor van witte meidoornbloesem loopt over de straatstenen, alsof iemand er een mand mee leegschudde. Het ligt er al uren, maar het is niet vertrapt. Niemand stapt erop." },
-  { "id": "aanw-mor-1", "god": "morghast", "actie": "Het graf openen", "test": { "kenmerk": "kracht", "moeilijkheid": 7 }, "tekst": "Op een kerkhof is een graf van vorige week alweer ingezakt. De aarde is van onderaf losgewoeld, en tussen de kluiten ligt een koperen plaatje met een nummer. Het nummer staat ook in het register van een anatomieschool.", "mislukt": { "tekst": "De spade breekt, en je handen zitten tot je ellebogen in koude aarde voordat je het opgeeft.", "effect": [{ "lichaam": -1 }] } },
-  { "id": "aanw-mor-2", "god": "morghast", "actie": "Het register doorbladeren", "test": { "kenmerk": "kennis", "moeilijkheid": 7 }, "tekst": "De koster van een kleine parochiekerk laat je het begrafenisregister zien. Achter een rij namen uit deze maand heeft iemand in rode inkt een kruisje gezet. Achter de kruisjes staat telkens dezelfde initialen." }
+  {
+    "id": "aanw-1",
+    "tekst": "Een krijttekening op een muur, half weggeregend: een pijl, een datum en een teken dat je eerder hebt gezien. Iemand wilde dat dit gevonden werd, door de juiste persoon."
+  },
+  {
+    "id": "aanw-2",
+    "tekst": "Een getuige, een bakker die vroeg op moet, wil alleen praten als je met hem meeloopt naar de oven, zodat niemand jullie samen ziet. Hij heeft iets gezien, vannacht, en hij wil het kwijt.",
+    "actie": "Meelopen naar de oven",
+    "test": {
+      "kenmerk": "overtuiging",
+      "moeilijkheid": 7
+    }
+  },
+  {
+    "id": "aanw-3",
+    "tekst": "In een brievenbus die al jaren niet wordt geleegd, steekt een brief zonder postzegel. Het adres is goed, maar de naam is die van iemand die hier al tien jaar niet meer woont."
+  },
+  {
+    "id": "aanw-4",
+    "tekst": "Op de natte stenen staan voetafdrukken van blote voeten, die bij een putdeksel ophouden. Het deksel is van binnenuit verschoven. Ernaast ligt een knoop van een jas.",
+    "actie": "Het putdeksel optillen",
+    "test": {
+      "kenmerk": "kracht",
+      "moeilijkheid": 7
+    },
+    "mislukt": {
+      "tekst": "Het deksel schuift terug en klemt je vingers. Onder je voeten hoor je iets wegschuifelen, de duisternis in.",
+      "effect": [
+        {
+          "lichaam": -1
+        }
+      ]
+    }
+  },
+  {
+    "id": "aanw-5",
+    "tekst": "Een pandjesbaas heeft een opvallende voorraad: zilveren kandelaars, allemaal met hetzelfde kleine wapen erin gegraveerd. Hij weet precies wie ze bracht, en hij is bereid het te vertellen voor een goed woord bij de politie.",
+    "actie": "Onderhandelen",
+    "test": {
+      "kenmerk": "overtuiging",
+      "moeilijkheid": 7
+    }
+  },
+  {
+    "id": "aanw-6",
+    "tekst": "Een kind zingt een aftelrijmpje over de rivier. In het refrein komt een straatnaam voor die niet in het rijmpje hoort. Het kind weet niet waar het die naam heeft gehoord.",
+    "actie": "Het rijmpje navragen",
+    "test": {
+      "kenmerk": "overtuiging",
+      "moeilijkheid": 6
+    }
+  },
+  {
+    "id": "aanw-7",
+    "god": "vathrun",
+    "tekst": "In een kelder staat het water tot je enkels, terwijl het buiten al dagen droog is. Op de muur heeft iemand met een spijker een golf met zeven streepjes gekrast, en eronder: 'nog vier'."
+  },
+  {
+    "id": "aanw-8",
+    "god": "azh-ilareth",
+    "tekst": "In een portiek ligt een verfrommelde sterrenkaart, getekend met een vaste, kundige hand. In de hoek staan de initialen I.L., en een woord dat dik is doorgestreept: 'help'."
+  },
+  {
+    "id": "aanw-9",
+    "god": "nebet-ankhu",
+    "tekst": "Op straat ligt een gebroken stukje klei met een half zegel erop. Het is nog warm. Een spoor van dezelfde scherven loopt naar het oosten, naar de dokken."
+  },
+  {
+    "id": "aanw-10",
+    "actie": "Ontcijferen",
+    "test": {
+      "kenmerk": "kennis",
+      "moeilijkheid": 7
+    },
+    "tekst": "In de achterste kerkbank heeft iemand met een speld letters in het hout gekrast. Het is geen Engels en geen Latijn, maar een eenvoudig geheimschrift dat schooljongens gebruiken. Wie het schreef, had haast: de laatste regel is maar half af."
+  },
+  {
+    "id": "aanw-11",
+    "actie": "Naar boven klimmen",
+    "test": {
+      "kenmerk": "kracht",
+      "moeilijkheid": 7
+    },
+    "tekst": "In een dakgoot, twee verdiepingen hoog, hangt een tas aan zijn hengsel te bungelen. Volgens de kinderen in de straat gooide een man hem daar vannacht neer, vlak voordat hij door de agenten werd ingehaald. De regenpijp ziet er niet al te betrouwbaar uit.",
+    "mislukt": {
+      "tekst": "Halverwege laat een beugel los. Je glijdt naar beneden en landt hard op de keien, onder luid gejuich van de kinderen.",
+      "effect": [
+        {
+          "lichaam": -1
+        }
+      ]
+    }
+  },
+  {
+    "id": "aanw-12",
+    "actie": "Een rondje geven",
+    "test": {
+      "kenmerk": "overtuiging",
+      "moeilijkheid": 7
+    },
+    "tekst": "In de gelagkamer van The Ten Bells zit een sjouwer die al de hele avond hetzelfde verhaal vertelt aan wie het maar horen wil. Over een rijtuig zonder koetsier, om drie uur 's nachts. Hoe meer hij drinkt, hoe meer details hij zich herinnert. Of verzint.",
+    "mislukt": {
+      "tekst": "Hij drinkt je rondje op, en het volgende ook, en valt dan midden in een zin in slaap op de tafel.",
+      "effect": [
+        {
+          "pond": -1
+        }
+      ]
+    }
+  },
+  {
+    "id": "aanw-13",
+    "actie": "De resten bekijken",
+    "test": {
+      "kenmerk": "scherpte",
+      "moeilijkheid": 8
+    },
+    "tekst": "In de haard van een verlaten kamer liggen de resten van een stapel brieven. Iemand heeft ze verbrand, maar niet goed genoeg: aan de randen zijn nog woorden te lezen. Een datum, een deel van een handtekening, en drie keer het woord 'vergeef'."
+  },
+  {
+    "id": "aanw-14",
+    "actie": "Het luik openbreken",
+    "test": {
+      "kenmerk": "kracht",
+      "moeilijkheid": 6
+    },
+    "tekst": "De hond van de slager blaft al de hele ochtend naar hetzelfde kelderluik en is niet weg te slaan. De slager zelf wil er niet aan komen. 'Die kelder is van de vorige huurder,' zegt hij. 'En die heb ik al een maand niet gezien.'"
+  },
+  {
+    "id": "aanw-15",
+    "actie": "Het steno lezen",
+    "test": {
+      "kenmerk": "kennis",
+      "moeilijkheid": 7
+    },
+    "tekst": "Een stenograaf van de politierechtbank heeft zijn aantekeningenboekje laten liggen op een bank in het park. De meeste bladzijden gaan over dronkenschap en zakkenrollerij. Maar op één bladzijde zijn de haaltjes slordig en gehaast, alsof zijn hand trilde toen hij het opschreef."
+  },
+  {
+    "id": "aanw-16",
+    "god": "vathrun",
+    "actie": "Het rooster lichten",
+    "test": {
+      "kenmerk": "kracht",
+      "moeilijkheid": 7
+    },
+    "tekst": "Uit een rioolrooster komt een geur van zout en wier, midden in de stad, mijlen van de zee. Tussen de spijlen klemt een stukje papier, doorweekt maar nog leesbaar: het briefhoofd van de Metropolitan Board of Works, en een handtekening die begint met 'J. Pen'.",
+    "mislukt": {
+      "tekst": "Het rooster is vastgeroest. Als je het eindelijk loskrijgt, is het papiertje weggespoeld, de duisternis in.",
+      "effect": [
+        {
+          "lichaam": -1
+        }
+      ]
+    }
+  },
+  {
+    "id": "aanw-17",
+    "god": "azh-ilareth",
+    "actie": "De berekening volgen",
+    "test": {
+      "kenmerk": "kennis",
+      "moeilijkheid": 8
+    },
+    "tekst": "Op de achterkant van een theaterprogramma heeft iemand met potlood een lange som gemaakt: hoeken, afstanden, een datum die steeds opnieuw is uitgerekend. Bij elke nieuwe poging komt de datum een paar dagen dichterbij. Onderaan staat de laatste uitkomst, omcirkeld."
+  },
+  {
+    "id": "aanw-18",
+    "god": "nebet-ankhu",
+    "actie": "De smokkelaar uithoren",
+    "test": {
+      "kenmerk": "overtuiging",
+      "moeilijkheid": 7
+    },
+    "tekst": "Een smokkelaar met een Maltees accent biedt je in een portiek 'echte mummiepoeder' aan, goed tegen alles. Het spul is nep, dat ziet een kind. Maar het kistje waar hij het uit schept, is dat niet: het draagt het zegel van een schip uit Alexandrië, en het is nog geen week oud."
+  },
+  {
+    "id": "aanw-ysm-1",
+    "god": "ysmara",
+    "actie": "De kinderen uithoren",
+    "test": {
+      "kenmerk": "overtuiging",
+      "moeilijkheid": 7
+    },
+    "tekst": "Op de stoep hebben kinderen met krijt een hinkelbaan getekend, maar de vakjes zijn rond en er staat een kroon in het laatste. Ze willen best vertellen wie hen het spelletje leerde, als je eerst een keer meedoet."
+  },
+  {
+    "id": "aanw-ysm-2",
+    "god": "ysmara",
+    "actie": "De bloesem volgen",
+    "test": {
+      "kenmerk": "scherpte",
+      "moeilijkheid": 7
+    },
+    "tekst": "Een spoor van witte meidoornbloesem loopt over de straatstenen, alsof iemand er een mand mee leegschudde. Het ligt er al uren, maar het is niet vertrapt. Niemand stapt erop."
+  },
+  {
+    "id": "aanw-mor-1",
+    "god": "morghast",
+    "actie": "Het graf openen",
+    "test": {
+      "kenmerk": "kracht",
+      "moeilijkheid": 7
+    },
+    "tekst": "Op een kerkhof is een graf van vorige week alweer ingezakt. De aarde is van onderaf losgewoeld, en tussen de kluiten ligt een koperen plaatje met een nummer. Het nummer staat ook in het register van een anatomieschool.",
+    "mislukt": {
+      "tekst": "De spade breekt, en je handen zitten tot je ellebogen in koude aarde voordat je het opgeeft.",
+      "effect": [
+        {
+          "lichaam": -1
+        }
+      ]
+    }
+  },
+  {
+    "id": "aanw-mor-2",
+    "god": "morghast",
+    "actie": "Het register doorbladeren",
+    "test": {
+      "kenmerk": "kennis",
+      "moeilijkheid": 7
+    },
+    "tekst": "De koster van een kleine parochiekerk laat je het begrafenisregister zien. Achter een rij namen uit deze maand heeft iemand in rode inkt een kruisje gezet. Achter de kruisjes staat telkens dezelfde initialen."
+  },
+  {
+    "id": "aanw-omm-1",
+    "actie": "De kaarsstompjes tellen",
+    "test": {
+      "kenmerk": "scherpte",
+      "moeilijkheid": 7
+    },
+    "tekst": "Op een stoep staan tientallen kaarsstompjes in een kring, nog warm. In het midden is met krijt een herdersstaf getekend, en een getal dat iemand heeft doorgestreept en verhoogd.",
+    "god": "ommeth"
+  },
+  {
+    "id": "aanw-omm-2",
+    "actie": "De zingende man aanspreken",
+    "test": {
+      "kenmerk": "overtuiging",
+      "moeilijkheid": 7
+    },
+    "tekst": "In een portiek zit een man die zachtjes zingt. Hij is net uit de processie gestapt en weet niet meer hoe hij heet. Wel weet hij nog waar ze vannacht heen gaan.",
+    "mislukt": {
+      "tekst": "Hij begint harder te zingen, en een tweede stem valt in, ergens achter je.",
+      "effect": [
+        {
+          "geest": -1
+        }
+      ]
+    },
+    "god": "ommeth"
+  },
+  {
+    "id": "aanw-kar-1",
+    "actie": "De breuklijn volgen",
+    "test": {
+      "kenmerk": "kennis",
+      "moeilijkheid": 7
+    },
+    "tekst": "In een etalage van een antiquair ligt een stuk zwart glas met een breuklijn die je eerder hebt gezien. Op het prijskaartje staat 'niet te koop', en een adres.",
+    "god": "karathos"
+  },
+  {
+    "id": "aanw-kar-2",
+    "actie": "De koerier volgen",
+    "test": {
+      "kenmerk": "scherpte",
+      "moeilijkheid": 7
+    },
+    "tekst": "Een koerier draagt een loden kistje alsof het een baby is. Hij kijkt steeds om. Op het kistje staat het zegel van het museum.",
+    "mislukt": {
+      "tekst": "Hij duikt een steeg in, en je hoort het kistje kloppen.",
+      "effect": [
+        {
+          "geest": -1
+        }
+      ]
+    },
+    "god": "karathos"
+  },
+  {
+    "id": "aanw-ulv-1",
+    "actie": "De windwijzers aflezen",
+    "test": {
+      "kenmerk": "kennis",
+      "moeilijkheid": 7
+    },
+    "tekst": "Op alle daken van de straat wijzen de windwijzers naar het midden van de straat, naar elkaar, hoewel het waait. Op één dak staat een windwijzer die anders wijst.",
+    "god": "ulvereth"
+  },
+  {
+    "id": "aanw-ulv-2",
+    "actie": "De ijsbloemen lezen",
+    "test": {
+      "kenmerk": "scherpte",
+      "moeilijkheid": 7
+    },
+    "tekst": "Op een raam staan ijsbloemen, maar het vriest niet. De bloemen vormen letters, in een handschrift dat je eerder zag in de werkplaats van Gale.",
+    "mislukt": {
+      "tekst": "Je adem ontdooit de letters voordat je ze kunt lezen.",
+      "effect": [
+        {
+          "geest": -1
+        }
+      ]
+    },
+    "god": "ulvereth"
+  },
+  {
+    "id": "aanw-sir-1",
+    "actie": "Het parfumkaartje lezen",
+    "test": {
+      "kenmerk": "scherpte",
+      "moeilijkheid": 7
+    },
+    "tekst": "Op de stoep ligt een parfumkaartje met één woord: 'Donderdag'. Wie eraan ruikt, wil gaan. Wie het omdraait, vindt een adres.",
+    "mislukt": {
+      "tekst": "Je ruikt eraan voordat je het kunt tegenhouden.",
+      "effect": [
+        {
+          "geest": -1
+        }
+      ]
+    },
+    "god": "sirrhae"
+  },
+  {
+    "id": "aanw-sir-2",
+    "actie": "De koetsier ondervragen",
+    "test": {
+      "kenmerk": "overtuiging",
+      "moeilijkheid": 7
+    },
+    "tekst": "Een koetsier zit te wachten voor een huis met dichte gordijnen. Hij brengt elke week gasten naar de salon, en elke week naar een ander adres. Hij heeft ze allemaal opgeschreven.",
+    "god": "sirrhae"
+  },
+  {
+    "id": "aanw-our-1",
+    "actie": "Het zakhorloge openen",
+    "test": {
+      "kenmerk": "kennis",
+      "moeilijkheid": 7
+    },
+    "tekst": "In de goot ligt een zakhorloge met dertien uren op de wijzerplaat. Aan de binnenkant van het deksel staat een naam gegraveerd, en een adres in Spitalfields.",
+    "god": "ouroch"
+  },
+  {
+    "id": "aanw-our-2",
+    "actie": "De opwinder volgen",
+    "test": {
+      "kenmerk": "scherpte",
+      "moeilijkheid": 7
+    },
+    "tekst": "Een man met een grote sleutel loopt door de straat en blijft bij elke klok staan om hem een paar minuten te verzetten. Niemand houdt hem tegen.",
+    "mislukt": {
+      "tekst": "Hij draait zich om en verzet jouw horloge.",
+      "effect": [
+        {
+          "geest": -1
+        }
+      ]
+    },
+    "god": "ouroch"
+  },
+  {
+    "id": "aanw-yth-1",
+    "actie": "De getuige ondervragen",
+    "test": {
+      "kenmerk": "overtuiging",
+      "moeilijkheid": 7
+    },
+    "tekst": "Een vrouw zegt dat ze alles heeft gezien. Ze vertelt het heel precies, met kleuren en tijden. Een paar dingen kloppen niet met elkaar, maar ze lijkt het zelf te geloven.",
+    "mislukt": {
+      "tekst": "Ze vertelt het nog eens, en nu is het een ander verhaal.",
+      "effect": [
+        {
+          "geest": -1
+        }
+      ]
+    },
+    "god": "yth-nemora"
+  },
+  {
+    "id": "aanw-yth-2",
+    "actie": "De krant vergelijken",
+    "test": {
+      "kenmerk": "scherpte",
+      "moeilijkheid": 7
+    },
+    "tekst": "Op een bankje ligt een krant van vanochtend. Een van de berichten gaat over deze straat, en er staat iets in wat je zelf kunt controleren.",
+    "god": "yth-nemora"
+  },
+  {
+    "id": "aanw-gul-1",
+    "actie": "De kwitantie lezen",
+    "test": {
+      "kenmerk": "kennis",
+      "moeilijkheid": 7
+    },
+    "tekst": "In de goot ligt een kwitantie, uitgeschreven aan een weduwe in Bethnal Green. Het bedrag is betaald, maar eronder staat een tweede bedrag, in een ander handschrift, dat ze nog schuldig is.",
+    "god": "gul-marrach"
+  },
+  {
+    "id": "aanw-gul-2",
+    "actie": "De pandjesbaas spreken",
+    "test": {
+      "kenmerk": "overtuiging",
+      "moeilijkheid": 7
+    },
+    "tekst": "Een pandjesbaas laat je zijn boek zien. Al wekenlang komen er mensen die alles verpanden voor één ding: de huur. Hij weet wie de huizen heeft gekocht.",
+    "mislukt": {
+      "tekst": "Hij rekent je een shilling voor het kijken.",
+      "effect": [
+        {
+          "pond": -1
+        }
+      ]
+    },
+    "god": "gul-marrach"
+  }
 ]

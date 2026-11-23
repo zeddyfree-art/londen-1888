@@ -73,6 +73,104 @@
         "2": 0.285,
         "4": 0.21
       }
+    },
+    "ommeth": {
+      "ontspannen": {
+        "2": 0.87,
+        "4": 0.969
+      },
+      "normaal": {
+        "2": 0.648,
+        "4": 0.623
+      },
+      "genadeloos": {
+        "2": 0.167,
+        "4": 0.13
+      }
+    },
+    "karathos": {
+      "ontspannen": {
+        "2": 0.907,
+        "4": 0.981
+      },
+      "normaal": {
+        "2": 0.673,
+        "4": 0.87
+      },
+      "genadeloos": {
+        "2": 0.29,
+        "4": 0.241
+      }
+    },
+    "ulvereth": {
+      "ontspannen": {
+        "2": 0.944,
+        "4": 0.957
+      },
+      "normaal": {
+        "2": 0.784,
+        "4": 0.772
+      },
+      "genadeloos": {
+        "2": 0.253,
+        "4": 0.216
+      }
+    },
+    "sirrhae": {
+      "ontspannen": {
+        "2": 0.944,
+        "4": 0.981
+      },
+      "normaal": {
+        "2": 0.747,
+        "4": 0.747
+      },
+      "genadeloos": {
+        "2": 0.401,
+        "4": 0.216
+      }
+    },
+    "ouroch": {
+      "ontspannen": {
+        "2": 0.858,
+        "4": 0.932
+      },
+      "normaal": {
+        "2": 0.549,
+        "4": 0.735
+      },
+      "genadeloos": {
+        "2": 0.302,
+        "4": 0.154
+      }
+    },
+    "yth-nemora": {
+      "ontspannen": {
+        "2": 0.944,
+        "4": 0.994
+      },
+      "normaal": {
+        "2": 0.71,
+        "4": 0.796
+      },
+      "genadeloos": {
+        "2": 0.117,
+        "4": 0.154
+      }
+    },
+    "gul-marrach": {
+      "ontspannen": {
+        "2": 0.92,
+        "4": 0.957
+      },
+      "normaal": {
+        "2": 0.636,
+        "4": 0.796
+      },
+      "genadeloos": {
+        "2": 0.253,
+        "4": 0.241
+      }
     }
   },
   "basisLang": {
@@ -144,6 +242,104 @@
       "genadeloos": {
         "2": 0.378,
         "4": 0.27
+      }
+    },
+    "ommeth": {
+      "ontspannen": {
+        "2": 0.858,
+        "4": 0.907
+      },
+      "normaal": {
+        "2": 0.537,
+        "4": 0.648
+      },
+      "genadeloos": {
+        "2": 0.068,
+        "4": 0.093
+      }
+    },
+    "karathos": {
+      "ontspannen": {
+        "2": 0.821,
+        "4": 0.895
+      },
+      "normaal": {
+        "2": 0.599,
+        "4": 0.821
+      },
+      "genadeloos": {
+        "2": 0.302,
+        "4": 0.142
+      }
+    },
+    "ulvereth": {
+      "ontspannen": {
+        "2": 0.883,
+        "4": 0.969
+      },
+      "normaal": {
+        "2": 0.648,
+        "4": 0.772
+      },
+      "genadeloos": {
+        "2": 0.167,
+        "4": 0.241
+      }
+    },
+    "sirrhae": {
+      "ontspannen": {
+        "2": 0.87,
+        "4": 0.957
+      },
+      "normaal": {
+        "2": 0.71,
+        "4": 0.685
+      },
+      "genadeloos": {
+        "2": 0.154,
+        "4": 0.08
+      }
+    },
+    "ouroch": {
+      "ontspannen": {
+        "2": 0.821,
+        "4": 0.895
+      },
+      "normaal": {
+        "2": 0.698,
+        "4": 0.772
+      },
+      "genadeloos": {
+        "2": 0.068,
+        "4": 0.093
+      }
+    },
+    "yth-nemora": {
+      "ontspannen": {
+        "2": 0.895,
+        "4": 0.969
+      },
+      "normaal": {
+        "2": 0.821,
+        "4": 0.809
+      },
+      "genadeloos": {
+        "2": 0.191,
+        "4": 0.167
+      }
+    },
+    "gul-marrach": {
+      "ontspannen": {
+        "2": 0.66,
+        "4": 0.92
+      },
+      "normaal": {
+        "2": 0.599,
+        "4": 0.71
+      },
+      "genadeloos": {
+        "2": 0.093,
+        "4": 0.13
       }
     }
   },
@@ -257,5 +453,6 @@
         "genadeloos": 0
       }
     }
-  ]
+  ],
+  "basisNieuweGoden": "De basis van de zeven nieuwe goden komt uit de testbot (80 potjes per instelling, zonder klokken), nog niet uit het gefitte model. Bij de volgende meting met tools/meet-klokken.js gaan ze mee."
 }

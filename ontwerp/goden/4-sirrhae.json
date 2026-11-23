@@ -1,0 +1,957 @@
+{
+  "god": {
+    "id": "sirrhae",
+    "naam": "Sirrhae",
+    "titel": "De Stem achter de waaier",
+    "mist": 12,
+    "verhaal": "Niemand weet wie de gastvrouw is van de salon die elke week op een ander adres in Mayfair opengaat. Wie er geweest is, praat over haar zoals je over een eerste liefde praat. Dichters stoppen met schrijven, bankiers met rekenen, en een parlementslid stelde een vraag in het Lagerhuis die hij zich daarna niet herinnerde. Ze vraagt nooit iets. Ze laat je het aanbieden.",
+    "regel": "Haar wezens bekoren: je weerstaat ze met Charisma, en wie faalt, raakt Betoverd. Elke ronde biedt ze het team openlijk een gunst aan, met een prijs.",
+    "verdachten": "De Salon van de Waaier: dichters, schilders, politici en dames uit de beste kringen, die allemaal iets van haar hebben gekregen.",
+    "mysteries": [
+      {
+        "naam": "De gastenlijst",
+        "doel": "Breng samen 3 Aanwijzingen naar Mayfair en praat je de salon binnen (Charisma 9).",
+        "type": "aanwijzingen",
+        "plek": "mayfair",
+        "aantal": 3,
+        "kenmerk": "overtuiging",
+        "moeilijkheid": 9
+      },
+      {
+        "naam": "Het onvoltooide portret",
+        "doel": "Haal het onvoltooide portret van Sirrhae uit het atelier van Lucien Marchetti in Chelsea (Waarneming 8) en breng het naar de abdij in Westminster.",
+        "type": "breng",
+        "van": "chelsea",
+        "naar": "westminster",
+        "voorwerp": "het onvoltooide portret",
+        "kenmerk": "scherpte",
+        "moeilijkheid": 8
+      },
+      {
+        "naam": "De Muze",
+        "doel": "Versla het epische monster De Muze, dat in de opera van Covent Garden verschijnt. Je bevecht haar met Charisma.",
+        "type": "episch",
+        "plek": "covent-garden"
+      },
+      {
+        "naam": "Het parlementslid",
+        "doel": "Haal Sir Edmund Haversham weg uit de salon in Mayfair (Charisma 8) en breng hem naar Hoofdinspecteur Voss in Whitehall.",
+        "type": "breng",
+        "van": "mayfair",
+        "naar": "whitehall",
+        "voorwerp": "Sir Edmund Haversham",
+        "kenmerk": "overtuiging",
+        "moeilijkheid": 8
+      },
+      {
+        "naam": "Het vasten",
+        "doel": "Weiger 3 gunsten van Sirrhae achter elkaar. Neem je er een aan, dan begint het tellen opnieuw.",
+        "type": "weigeren",
+        "aantal": 3
+      }
+    ],
+    "ontwaken": "Heel Londen komt naar het feest. Niemand gaat meer naar huis, niemand werkt meer, niemand wil nog iets anders dan haar glimlach. Het is het mooiste feest dat er ooit was, en het houdt nooit op. Jullie verliezen.",
+    "monsters": [
+      "bewonderaar",
+      "maskerdanser",
+      "betoverde-dichter",
+      "spiegelgast",
+      "lantaarndrager"
+    ],
+    "episch": "de-muze",
+    "prompt": "an impossibly beautiful woman half hidden behind an enormous black lace fan, seated on a velvet chaise in a candlelit Mayfair salon, dozens of elegantly dressed Victorian guests kneeling around her with adoring blank eyes, her shadow on the wall far larger than she is and full of reaching hands"
+  },
+  "episch": {
+    "id": "de-muze",
+    "naam": "De Muze",
+    "gruwel": 2,
+    "taaiheid": 9,
+    "schade": 1,
+    "leven": 3,
+    "eigenschap": "Sirrhae's stem op aarde, in de gedaante van een diva. Bekoring: je weerstaat haar met Charisma, en je bevecht haar met Charisma. Met 4 helden heeft ze 2 leven extra.",
+    "prompt": "a radiant opera diva in a gown of midnight silk and pearls singing on the stage of the Royal Opera House, her voice visible as golden threads that wind around the necks of the entranced audience in the dark stalls",
+    "bekoring": true,
+    "vechtMet": "overtuiging"
+  },
+  "monsters": [
+    {
+      "id": "bewonderaar",
+      "naam": "Bewonderaar",
+      "gruwel": 1,
+      "taaiheid": 9,
+      "schade": 1,
+      "leven": 2,
+      "eigenschap": "Een mens die alleen nog over haar praat. Bekoring: weersta hem met Charisma. Hij loopt naar de dichtstbijzijnde held.",
+      "prompt": "a well-dressed young Victorian gentleman with a carnation in his lapel and a fixed adoring smile, holding out a perfumed invitation card, stepping out of fog",
+      "mens": true,
+      "bekoring": true,
+      "beweging": {
+        "type": "naarHeld"
+      }
+    },
+    {
+      "id": "maskerdanser",
+      "naam": "Maskerdanser",
+      "gruwel": 2,
+      "taaiheid": 10,
+      "schade": 1,
+      "leven": 2,
+      "eigenschap": "Een danser zonder gezicht achter het masker. Bekoring: weersta hem met Charisma.",
+      "prompt": "a slender masked dancer in a black domino costume and white porcelain Venetian mask, mid-pirouette in an empty Victorian ballroom, nothing visible behind the eye holes",
+      "bekoring": true
+    },
+    {
+      "id": "betoverde-dichter",
+      "naam": "Betoverde dichter",
+      "gruwel": 1,
+      "taaiheid": 9,
+      "schade": 1,
+      "leven": 2,
+      "eigenschap": "Een dichter die alleen nog haar naam rijmt. Bekoring: weersta hem met Charisma. Verlies je, dan leent hij 1 Pond van je, voor bloemen.",
+      "prompt": "a pale dishevelled Victorian poet with long hair and an open collar, ink-stained fingers clutching pages covered with one repeated name, standing in a candlelit garret",
+      "mens": true,
+      "bekoring": true,
+      "verliesPond": 1
+    }
+  ],
+  "personen": [
+    {
+      "id": "edmund-haversham",
+      "naam": "Sir Edmund Haversham",
+      "rol": "Parlementslid voor een kiesdistrict dat hij is vergeten",
+      "factie": "De Salon van de Waaier",
+      "kort": "Een politicus die al drie weken de salon niet uit is gekomen.",
+      "beschrijving": "Sir Edmund was een saaie, betrouwbare man, getrouwd met de onstuimige Lady Constance, die al jaren doet wat ze wil. Hij ging één keer naar de salon, om zijn vrouw op te halen. Zijn vrouw kwam terug. Hij niet. Hij schrijft wetsvoorstellen in een handschrift dat niet het zijne is.",
+      "prompt": "a portly middle-aged Victorian parliamentarian in an evening tailcoat with an undone white tie, sitting dazed on a gilded chair in a candlelit salon, holding a quill and papers, eyes fixed adoringly on something out of frame"
+    },
+    {
+      "id": "lucien-marchetti",
+      "naam": "Lucien Marchetti",
+      "rol": "Portretschilder in Chelsea",
+      "factie": "Geen",
+      "kort": "Een schilder die haar portret begon en het niet kan afmaken.",
+      "beschrijving": "Lucien Marchetti kwam uit Turijn naar Londen en schildert de dames van Mayfair. Een jaar geleden zat Sirrhae voor hem. Hij schilderde haar ogen en haar handen, en toen kon hij niet verder. Elke nacht wordt hij wakker met het penseel in zijn hand. Het portret staat met een laken erover in een hoek van zijn atelier, en het laken beweegt.",
+      "prompt": "a haggard handsome Italian painter in his thirties in a paint-spattered smock, standing in a Chelsea studio full of canvases, one large canvas covered with a sheet that seems to ripple on its own"
+    },
+    {
+      "id": "rosalind-ashe",
+      "naam": "Rosalind Ashe",
+      "rol": "Voormalige muze, nu kostschoollerares",
+      "factie": "Geen",
+      "kort": "De enige die ooit uit de salon wegliep, en dat wil bewijzen.",
+      "beschrijving": "Tien jaar geleden was Rosalind de muze van een beroemde schilder, en ging ze elke week naar een salon in Mayfair. Op een avond keek ze in een spiegel en zag ze niemand. Ze liep weg, zonder jas, door de sneeuw. Nu geeft ze Frans op een meisjesschool in Marylebone, en ze heeft sindsdien nooit meer in een spiegel gekeken.",
+      "prompt": "a composed Victorian schoolmistress in her early thirties in a plain grey dress with a high collar, sharp intelligent face, standing in a Marylebone schoolroom with all the mirrors turned to face the wall"
+    }
+  ],
+  "verhaal": [
+    {
+      "id": "v-sir-1",
+      "plek": "mayfair",
+      "persoon": "edmund-haversham",
+      "tekst": "Door een hoog raam zie je de salon: kaarslicht, muziek, gelach. Op een stoel bij het raam zit Sir Edmund Haversham te schrijven. Hij kijkt op, ziet je, en glimlacht zoals een kind glimlacht. Hij gebaart dat je binnen moet komen. Achter hem gaat een waaier open.",
+      "keuzes": [
+        {
+          "label": "Zijn aandacht trekken en hem naar buiten lokken (Charisma 8)",
+          "test": {
+            "kenmerk": "overtuiging",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Je houdt een krant tegen het glas met de naam van zijn vrouw erop. Hij fronst. Even, heel even, is hij zichzelf. Hij schuift een papier onder het raam door.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Hij blijft glimlachen en schrijft verder. Je merkt dat je zelf ook glimlacht.",
+            "effect": [
+              {
+                "toestand": "betoverd"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Het huis tekenen en weglopen",
+          "tekst": "Je noteert het adres, de ramen, de uitgangen. Morgen is de salon ergens anders. Maar je weet nu hoe hij eruitziet.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-sir-2",
+      "plek": "chelsea",
+      "persoon": "lucien-marchetti",
+      "tekst": "Lucien Marchetti laat je binnen in zijn atelier. Hij heeft niet geslapen. In de hoek staat een groot doek onder een laken, en het laken ademt. 'Haar ogen zijn klaar,' zegt hij. 'Ze kijken naar me, de hele nacht. Als ik haar mond schilder, gaat ze praten.'",
+      "keuzes": [
+        {
+          "label": "Onder het laken kijken (Kennis 9)",
+          "test": {
+            "kenmerk": "kennis",
+            "moeilijkheid": 9
+          },
+          "gelukt": {
+            "tekst": "Je kijkt alleen naar de randen, nooit naar de ogen. In de achtergrond van het portret heeft Marchetti, zonder het te weten, de echte salon geschilderd: het huis waar ze altijd is, achter alle adressen.",
+            "effect": [
+              {
+                "aanwijzing": 3
+              },
+              {
+                "vlag": "marchetti-portret"
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Je kijkt in haar ogen. Je bent een uur weg, en Marchetti schudt je wakker.",
+            "effect": [
+              {
+                "toestand": "betoverd"
+              },
+              {
+                "geest": -1
+              }
+            ]
+          }
+        },
+        {
+          "label": "Hem overhalen het doek te verbranden (Charisma 8)",
+          "test": {
+            "kenmerk": "overtuiging",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Hij wil het, maar hij kan het niet. Wel belooft hij je het portret te geven als je erom komt.",
+            "effect": [
+              {
+                "aanwijzing": 1
+              },
+              {
+                "vlag": "marchetti-portret"
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Hij gaat voor het doek staan, met zijn armen wijd, alsof je een kind wilt slaan.",
+            "effect": [
+              {
+                "geest": -1
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "v-sir-3",
+      "plek": "marylebone",
+      "persoon": "rosalind-ashe",
+      "tekst": "In een klaslokaal in Marylebone hangen alle spiegels met hun gezicht naar de muur. Rosalind Ashe corrigeert dictees. 'Ze heeft je al gezien,' zegt ze zonder op te kijken. 'Dat zie ik aan hoe je staat. Ga zitten. Ik zal je vertellen hoe ik ben weggekomen.'",
+      "keuzes": [
+        {
+          "label": "Luisteren en vragen stellen (Charisma 7)",
+          "test": {
+            "kenmerk": "overtuiging",
+            "moeilijkheid": 7
+          },
+          "gelukt": {
+            "tekst": "Ze vertelt over de spiegel waarin ze niemand zag, en wat ze daarna deed: ze zei hardop haar eigen naam, haar moeders naam, haar geboortedorp. 'Ze kan alleen nemen wat je vergeten bent,' zegt ze.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              },
+              {
+                "verwijder": "betoverd"
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Ze ziet dat je niet echt luistert, en houdt op. 'Kom terug als je weet waarom je hier bent.'",
+            "effect": [
+              {
+                "aanwijzing": 1
+              }
+            ]
+          }
+        },
+        {
+          "label": "Haar je eigen naam laten horen",
+          "tekst": "Je zegt je volledige naam, je geboortedatum, de naam van je eerste huis. Rosalind knikt. 'Goed,' zegt ze. 'Doe dat elke ochtend.' Je voelt je helderder dan in dagen.",
+          "effect": [
+            {
+              "geest": 2
+            },
+            {
+              "verwijder": "betoverd"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-sir-4",
+      "plek": "covent-garden",
+      "tekst": "In de opera van Covent Garden zingt vanavond een diva die niemand kent. Het programma noemt geen naam. De zaal is uitverkocht, en na de eerste aria staat iedereen op en applaudisseert een kwartier lang, ook de mannen die je in de loges ziet huilen.",
+      "keuzes": [
+        {
+          "label": "Met watten in je oren de voorstelling bekijken (Waarneming 8)",
+          "test": {
+            "kenmerk": "scherpte",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Zonder haar stem zie je wat de anderen niet zien: dat het publiek bij elke aria iets ouder wordt, en zij iets jonger.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              },
+              {
+                "trofee": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Je haalt de watten eruit, alleen voor één noot. Het is genoeg.",
+            "effect": [
+              {
+                "toestand": "betoverd"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Achter het toneel rondsnuffelen (Kennis 8)",
+          "test": {
+            "kenmerk": "kennis",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "In haar kleedkamer staan geen spiegels, alleen een waaier op een kussen, en een lijst met namen van mensen in de zaal.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Een toneelknecht zet je buiten, beleefd en onvermurwbaar.",
+            "effect": []
+          }
+        },
+        {
+          "label": "Mee zingen, tegen haar in",
+          "held": [
+            "esme-valentine"
+          ],
+          "tekst": "Je kent de aria. Je zingt hem mee vanaf de engelenbak, een halve toon hoger. Een paar mensen kijken om, en schudden hun hoofd alsof ze wakker worden. De diva zingt door, maar ze heeft je gezien.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trofee": 2
+            },
+            {
+              "geest": -1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-sir-5",
+      "plek": "whitehall",
+      "persoon": "thaddeus-voss",
+      "tekst": "Hoofdinspecteur Voss heeft een stapel aangiftes op zijn bureau. 'Echtgenoten die niet meer thuiskomen, kassiers die het geld weggeven, een bisschop die de kerk verkocht. Allemaal gingen ze naar een feestje in Mayfair. Niemand doet aangifte tegen de gastvrouw. Ze willen allemaal terug.'",
+      "keuzes": [
+        {
+          "label": "De aangiftes doorlezen (Kennis 8)",
+          "test": {
+            "kenmerk": "kennis",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Iedereen kreeg een cadeau, en elk cadeau kostte iemand anders iets. De kassier kreeg een horloge; zijn bank ging failliet. Het patroon is duidelijk: ze geeft nooit gratis.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "De verhalen lijken allemaal op elkaar, tot je niet meer weet welke welke was.",
+            "effect": [
+              {
+                "aanwijzing": 1
+              }
+            ]
+          }
+        },
+        {
+          "label": "Voss vragen om een agent",
+          "tekst": "Hij geeft je een jonge agent mee, die nog nooit van Mayfair heeft gehoord. 'Dat is mijn beste wapen,' zegt Voss. 'Iemand die niets wil.'",
+          "effect": [
+            {
+              "trek": "bondgenoot"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-sir-6",
+      "plek": "soho",
+      "tekst": "In een kroeg in Soho zit een jonge dichter met een boek vol gedichten over één vrouw. Hij leest ze voor aan iedereen die wil luisteren. Ze zijn prachtig. Halverwege het derde gedicht merk je dat jij haar ook mist, terwijl je haar nooit hebt gezien.",
+      "keuzes": [
+        {
+          "label": "Het boek van hem afpakken (Kracht 7)",
+          "test": {
+            "kenmerk": "kracht",
+            "moeilijkheid": 7
+          },
+          "gelukt": {
+            "tekst": "Je pakt het af en gooit het in het vuur. Hij huilt, en dan begint hij over zijn moeder te praten, voor het eerst in maanden.",
+            "effect": [
+              {
+                "trofee": 1
+              },
+              {
+                "geest": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Hij houdt het vast met een kracht die je niet van een dichter verwacht.",
+            "effect": [
+              {
+                "geest": -1
+              }
+            ]
+          }
+        },
+        {
+          "label": "De gedichten analyseren (Kennis 8)",
+          "test": {
+            "kenmerk": "kennis",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "In elk gedicht zit een adres, verstopt in het rijm. Zeven adressen in Mayfair, in een vaste volgorde.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Je leest ze nog eens. En nog eens.",
+            "effect": [
+              {
+                "toestand": "betoverd"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "v-sir-7",
+      "plek": "pall-mall",
+      "tekst": "In een club aan Pall Mall zitten de leden in stilte. Ze hebben allemaal een parfumkaartje voor zich liggen, dezelfde geur, hetzelfde handschrift: 'Donderdag'. Een oude kolonel trekt je apart. 'Ik heb het mijne verbrand,' fluistert hij. 'Ik weet niet of ik er goed aan deed.'",
+      "keuzes": [
+        {
+          "label": "Een kaartje stelen (Waarneming 8)",
+          "test": {
+            "kenmerk": "scherpte",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Op de achterkant staat een adres in een geheime inkt, die verschijnt als je hem bij een kaars houdt.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Je ruikt eraan voordat je het wegstopt. Donderdag lijkt ineens heel ver weg.",
+            "effect": [
+              {
+                "geest": -1
+              },
+              {
+                "toestand": "betoverd"
+              }
+            ]
+          }
+        },
+        {
+          "label": "De kolonel geruststellen",
+          "tekst": "Je vertelt hem dat hij er goed aan deed. Hij lacht, opgelucht, en geeft je zijn oude dienstrevolver. 'Ik heb hem niet meer nodig. Ik heb weer zin in mijn leven.'",
+          "effect": [
+            {
+              "trek": "spullen"
+            },
+            {
+              "geest": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-sir-8",
+      "plek": "leicester-square",
+      "tekst": "In het theater op Leicester Square treedt een goochelaar op die beweert dat hij het hart van een dame kan laten verdwijnen. Hij roept een vrijwilligster op het toneel. Ze komt naar voren met een waaier, en het publiek houdt de adem in.",
+      "keuzes": [
+        {
+          "label": "De truc doorzien (Waarneming 9)",
+          "test": {
+            "kenmerk": "scherpte",
+            "moeilijkheid": 9
+          },
+          "gelukt": {
+            "tekst": "Het is geen truc. De goochelaar is doodsbang. Na de voorstelling vertelt hij je dat ze elke avond komt, op een andere stoel.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              },
+              {
+                "trofee": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Je ziet niets bijzonders, en je applaudisseert, en je weet niet waarom je tranen in je ogen hebt.",
+            "effect": [
+              {
+                "geest": -1
+              }
+            ]
+          }
+        },
+        {
+          "label": "De goochelaar ontmaskeren",
+          "held": [
+            "albert-gosling"
+          ],
+          "tekst": "Je kent elk trucje uit het vak. Dit is er geen. Je springt op het toneel en klapt de waaier dicht voordat ze iets kan doen. Het publiek denkt dat het bij de act hoort en juicht.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trofee": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-sir-9",
+      "plek": "overal",
+      "persoon": "lucien-marchetti",
+      "vlag": "marchetti-portret",
+      "tekst": "Lucien Marchetti staat voor je, zonder hoed, met verf op zijn handen. 'Ze is het atelier binnengekomen,' zegt hij. 'Ze wil dat ik haar mond schilder. Vannacht. Help me, alsjeblieft. Ik kan niet nee zeggen.'",
+      "keuzes": [
+        {
+          "label": "Met hem mee naar Chelsea (Charisma 9)",
+          "test": {
+            "kenmerk": "overtuiging",
+            "moeilijkheid": 9
+          },
+          "gelukt": {
+            "tekst": "Je praat tussen hen in, tot de ochtend. Bij het eerste licht is ze weg. Op het doek staat haar mond, maar gesloten. Ze zal niet praten.",
+            "effect": [
+              {
+                "trofee": 2
+              },
+              {
+                "aanwijzing": 2
+              },
+              {
+                "wisVlag": "marchetti-portret"
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Ze kijkt je één keer aan, en je gaat zitten, en je kijkt toe terwijl hij schildert.",
+            "effect": [
+              {
+                "toestand": "betoverd"
+              },
+              {
+                "geest": -2
+              },
+              {
+                "wisVlag": "marchetti-portret"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Hem verstoppen bij Rosalind Ashe",
+          "tekst": "Rosalind laat hem binnen, draait zijn gezicht naar de muur en laat hem zijn eigen naam zeggen, honderd keer. Hij slaapt die nacht voor het eerst in een jaar.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "geest": 1
+            },
+            {
+              "wisVlag": "marchetti-portret"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-sir-10",
+      "plek": "mayfair",
+      "mistTot": 6,
+      "tekst": "Het feest is naar buiten gekomen. Op Grosvenor Square dansen honderden mensen in avondkleding, op muziek die niemand speelt. Een vrouw met een waaier wenkt je, vriendelijk, alsof ze op je heeft gewacht.",
+      "keuzes": [
+        {
+          "label": "Je eigen naam hardop zeggen en weglopen",
+          "tekst": "Je zegt je naam, je moeders naam, je geboortedorp. De muziek wordt zachter. Je loopt weg, en ze laat je gaan, met een glimlach die belooft dat je terugkomt.",
+          "effect": [
+            {
+              "geest": -1
+            },
+            {
+              "aanwijzing": 1
+            }
+          ]
+        },
+        {
+          "label": "Met haar dansen (Charisma 10)",
+          "test": {
+            "kenmerk": "overtuiging",
+            "moeilijkheid": 10
+          },
+          "gelukt": {
+            "tekst": "Je danst, en je blijft jezelf. Ze is verrast, en daarna nieuwsgierig. Ze fluistert je iets toe wat ze nooit tegen iemand zegt.",
+            "effect": [
+              {
+                "aanwijzing": 3
+              },
+              {
+                "trofee": 2
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Je danst tot de ochtend en weet niet meer met wie.",
+            "effect": [
+              {
+                "toestand": "betoverd"
+              },
+              {
+                "geest": -2
+              },
+              {
+                "mist": -1
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "scheur": [
+    {
+      "id": "scheur-sir-1",
+      "tekst": "Je staat in een balzaal zonder einde. Overal dansen paren, en iedereen draagt een masker van je eigen gezicht. Aan het eind van de zaal zit iemand op een troon, met een waaier voor haar gezicht.",
+      "keuzes": [
+        {
+          "label": "Een masker afnemen (Kracht 8)",
+          "test": {
+            "kenmerk": "kracht",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Onder het masker zit een man die je kent van een aangifte bij Voss. Hij knippert en vraagt waar hij is. Je neemt hem mee terug.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              },
+              {
+                "trofee": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Onder het masker zit nog een masker. En nog een.",
+            "effect": [
+              {
+                "geest": -2
+              }
+            ]
+          }
+        },
+        {
+          "label": "Langs de rand van de zaal sluipen",
+          "tekst": "Niemand houdt je tegen. Op een tafel ligt een waaier van zwart kant, die je meeneemt.",
+          "effect": [
+            {
+              "trek": "artefacten"
+            },
+            {
+              "toestand": "betoverd"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scheur-sir-2",
+      "tekst": "Een spiegelzaal. In elke spiegel zie je jezelf, maar mooier, rijker, gelukkiger. Een van de spiegelbeelden stapt naar voren en steekt zijn hand naar je uit.",
+      "keuzes": [
+        {
+          "label": "De hand niet aannemen (Charisma 8)",
+          "test": {
+            "kenmerk": "overtuiging",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Je zegt nee. Het spiegelbeeld trekt zijn hand terug en wordt gewoon, en dan wordt het jij, zoals je bent. Dat is genoeg.",
+            "effect": [
+              {
+                "geest": 2
+              },
+              {
+                "aanwijzing": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Je pakt de hand. Hij is koud als glas.",
+            "effect": [
+              {
+                "toestand": "betoverd"
+              },
+              {
+                "geest": -1
+              }
+            ]
+          }
+        },
+        {
+          "label": "Een spiegel breken",
+          "tekst": "Je slaat met je vuist. Je hand bloedt, maar alle spiegelbeelden houden op met glimlachen.",
+          "effect": [
+            {
+              "lichaam": -1
+            },
+            {
+              "aanwijzing": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scheur-sir-3",
+      "tekst": "Een tuin vol rozen die naar haar parfum ruiken. Tussen de rozen staan beelden van mensen, in het wit, allemaal met een glimlach. Op de sokkels staan namen. Je herkent er een uit de krant.",
+      "keuzes": [
+        {
+          "label": "De namen opschrijven (Waarneming 8)",
+          "test": {
+            "kenmerk": "scherpte",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Je schrijft er twintig op voordat de rozen hun kop naar je toe draaien.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "De geur maakt je slaperig.",
+            "effect": [
+              {
+                "geest": -1
+              },
+              {
+                "toestand": "betoverd"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Een roos plukken",
+          "tekst": "Hij verwelkt in je hand, en de beelden draaien allemaal hun hoofd naar je toe.",
+          "effect": [
+            {
+              "geest": -2
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "aanwijzing": [
+    {
+      "id": "aanw-sir-1",
+      "actie": "Het parfumkaartje lezen",
+      "test": {
+        "kenmerk": "scherpte",
+        "moeilijkheid": 7
+      },
+      "tekst": "Op de stoep ligt een parfumkaartje met één woord: 'Donderdag'. Wie eraan ruikt, wil gaan. Wie het omdraait, vindt een adres.",
+      "mislukt": {
+        "tekst": "Je ruikt eraan voordat je het kunt tegenhouden.",
+        "effect": [
+          {
+            "geest": -1
+          }
+        ]
+      }
+    },
+    {
+      "id": "aanw-sir-2",
+      "actie": "De koetsier ondervragen",
+      "test": {
+        "kenmerk": "overtuiging",
+        "moeilijkheid": 7
+      },
+      "tekst": "Een koetsier zit te wachten voor een huis met dichte gordijnen. Hij brengt elke week gasten naar de salon, en elke week naar een ander adres. Hij heeft ze allemaal opgeschreven."
+    }
+  ],
+  "onheil": [
+    {
+      "id": "o-sir-1",
+      "naam": "Een uitnodiging voor iedereen",
+      "mist": 1,
+      "scheur": 0,
+      "monster": 1,
+      "extra": "Er verschijnt een Bewonderaar. Elke held verliest 1 Geest.",
+      "tekst": "In elke brievenbus van Mayfair ligt vanochtend een parfumkaartje. Ook in de jouwe. Wie het weggooit, raapt het een uur later weer op.",
+      "acties": [
+        {
+          "type": "voorkeurMonster",
+          "id": "bewonderaar"
+        },
+        {
+          "type": "geestAlle",
+          "waarde": -1
+        }
+      ]
+    },
+    {
+      "id": "o-sir-2",
+      "naam": "Het Lagerhuis zwijgt",
+      "persoon": "edmund-haversham",
+      "mist": 1,
+      "scheur": 1,
+      "monster": 0,
+      "extra": "Leg 1 Aanwijzing op Whitehall.",
+      "tekst": "Sir Edmund Haversham staat op in het Lagerhuis en stelt voor om alle wetten van het rijk te schrappen 'ten behoeve van een feest'. Een derde van de leden applaudisseert. Voss laat weten dat hij de notulen heeft.",
+      "acties": [
+        {
+          "type": "aanwijzingOp",
+          "plek": "whitehall",
+          "aantal": 1
+        }
+      ]
+    },
+    {
+      "id": "o-sir-3",
+      "naam": "Rosalind's les",
+      "persoon": "rosalind-ashe",
+      "mist": 0,
+      "scheur": 0,
+      "monster": 0,
+      "extra": "Niemand is nog Betoverd. Elke held herstelt 1 Geest.",
+      "tekst": "Rosalind Ashe laat haar meisjes een gedicht van buiten leren: een lijst met de namen van alles wat ze liefhebben. Ze stuurt het naar jullie, met de opdracht het elke ochtend hardop te zeggen.",
+      "acties": [
+        {
+          "type": "verwijderAlle",
+          "toestand": "betoverd"
+        },
+        {
+          "type": "geestAlle",
+          "waarde": 1
+        }
+      ]
+    },
+    {
+      "id": "o-sir-4",
+      "naam": "Gerucht: het feest in de opera",
+      "persoon": "lucien-marchetti",
+      "mist": 0,
+      "scheur": 0,
+      "monster": 0,
+      "gerucht": "Er verschijnt een Maskerdanser in Covent Garden. Is hij na 2 rondes niet verslagen, dan daalt de Mist met 2.",
+      "tekst": "Lucien Marchetti hoort dat er na de voorstelling in de opera een gemaskerd bal is. Wie er danst, komt er niet meer uit. 'Ze heeft een nieuw portret nodig,' zegt hij. 'Een levend.'",
+      "acties": [
+        {
+          "type": "gerucht",
+          "soort": "verslaan",
+          "plek": "covent-garden",
+          "id": "maskerdanser",
+          "rondes": 3,
+          "straf": 2
+        }
+      ]
+    }
+  ],
+  "expeditie": [
+    {
+      "id": "thebe-sir",
+      "plek": "thebe",
+      "tekst": "In een graf in de Vallei hangt een schildering van een koningin die geen farao ooit heeft gehad. Ze houdt een waaier van struisvogelveren voor haar gezicht. Voor haar knielen honderd figuren, en elk biedt haar iets aan: een stad, een oogst, een kind. Je gids weigert verder te gaan. 'Zij nam alles,' zegt hij, 'en ze gaf er iets moois voor terug.'",
+      "keuzes": [
+        {
+          "label": "De inscriptie lezen (Kennis 9)",
+          "test": {
+            "kenmerk": "kennis",
+            "moeilijkheid": 9
+          },
+          "gelukt": {
+            "tekst": "Het is een waarschuwing, geen lofzang. Onderaan staat hoe een priester haar wegstuurde: door niets aan te nemen, zeven dagen lang.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              },
+              {
+                "trofee": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Je kijkt te lang naar de waaier.",
+            "effect": [
+              {
+                "toestand": "betoverd"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Een geschenk uit het graf nemen",
+          "tekst": "Er ligt een gouden scarabee voor haar voeten. Hij is mooi, en hij voelt aan alsof hij van jou was, altijd al.",
+          "effect": [
+            {
+              "trek": "artefacten"
+            },
+            {
+              "toestand": "betoverd"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

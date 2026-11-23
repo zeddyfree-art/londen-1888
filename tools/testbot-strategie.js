@@ -38,14 +38,19 @@ window.__testbot = async function speel(godId, moeilijkheid, heldIds, seed) {
       if (soort === "Gevecht" || soort === "Episch monster") {
         if (w.includes("dyn")) return "dyn";
         if (w.includes("chl")) return "chl";
+        if (w.includes("bekeer") && h.kenm.overtuiging >= 3 && h.G > 2) return "bekeer";
         if (w.includes("verban") && h.kenm.kennis > h.kenm.kracht + A.wapenBonus(h, false)) return "verban";
         return "vecht";
       }
       if (soort === "Ziekenhuis en bank") return w.includes("gewond") ? "gewond" : w.includes("heel") && h.L < h.maxL ? "heel" : null;
       if (soort === "Salon") return "pond";
       if (soort === "Scotland Yard") return w.includes("g") ? "g" : null;
-      if (soort === "De abdij") return w.includes("v") ? "v" : w.includes("z") ? "z" : null;
+      if (soort === "De abdij") return w.includes("b") ? "b" : w.includes("v") ? "v" : w.includes("z") ? "z" : null;
       if (soort === "Hulp van de Bleke Lantaarn") return "a";
+      /* Sirrhae: een voorzichtige speler weigert haar gunsten, behalve als het team er goed voor staat en de prijs geen Mist kost */
+      if (soort === "Een gunst van Sirrhae") return null;
+      if (soort === "De klok stilzetten") return w[0];
+      if (soort === "Terughalen") return w[0];
       if (soort === "Doorvechter") return h.L > 3;
       if (soort === "Rondkijken") return knoppen.some(k => k.waarde === rondkijkWens && !k.uit) ? rondkijkWens : null;
       if (soort === "Brede schouders") { const ag = S().helden.find(x => x.id === "aggie-pruitt"); return !!ag && ag.L > 3; }
@@ -81,6 +86,10 @@ window.__testbot = async function speel(godId, moeilijkheid, heldIds, seed) {
     if (h.L <= 2 || A.heeft(h, "gewond")) return "city";
     if (h.G <= 2) return "spitalfields";
     const scheuren = Object.keys(st.plekken).filter(p => st.plekken[p].scheur);
+    if (st.god === "ommeth" && (h.kenm.kracht + A.wapenBonus(h, false) >= 4 || h.kenm.overtuiging >= 3)) {
+      const kudde = dichtsbij(h, p => st.plekken[p].monsters.filter(x => x.id === "cultist").length >= 2);
+      if (kudde && dist(h.plek, kudde) <= 3) return kudde;
+    }
     if (scheuren.length >= 4 && h.aanw > 0) return dichtsbij(h, p => st.plekken[p].scheur);
     if (!m) return null;
     if (m.type === "aanwijzingen") {
@@ -97,6 +106,13 @@ window.__testbot = async function speel(godId, moeilijkheid, heldIds, seed) {
       if (n >= m.aantal) return m.plek;
       if (h.artefacten.length && n >= m.aantal) return m.plek;
       return geld(h) || A.isOverzee(h.plek) ? (h.plek === "thebe" ? "himalaya" : "thebe") : "leicester-square";
+    }
+    if (m.type === "cultisten") return dichtsbij(h, p => st.plekken[p].monsters.some(x => x.id === "cultist")) || dichtsbij(h, p => st.plekken[p].scheur);
+    if (m.type === "weigeren") return h.aanw < 3 ? dichtsbij(h, p => st.plekken[p].aanw > 0) : dichtsbij(h, p => st.plekken[p].scheur);
+    if (m.type === "betaal") {
+      const geld = st.helden.reduce((s, x) => s + x.pond, 0);
+      if (geld >= m.aantal) return m.plek;
+      return h.kenm.overtuiging >= 3 ? "mayfair" : "leicester-square";
     }
     if (m.type === "breng") {
       const drager = st.helden.find(x => x.mysterieVoorwerp);
@@ -155,6 +171,8 @@ window.__testbot = async function speel(godId, moeilijkheid, heldIds, seed) {
       if (!h.gebruikt.includes("rondkijken") && !h.ronde.botRondkijken && h.acties > 0 && !A.isOverzee(h.plek)) {
         h.ronde.botRondkijken = true;
         rondkijkWens = h.pond >= 3 && !h.spullen.includes("rijtuig") ? "kaartje" : h.pond >= 3 && !A.heeft(h, "gezocht") ? "inkopen" : h.L >= h.maxL - 1 && h.G >= h.maxG - 1 && h.G > 2 ? "rondhoren" : null;
+        if (S().god === "yth-nemora" && h.aanw - Math.min(h.aanwZeker || 0, h.aanw) >= 2 && h.kenm.scherpte < 4 && ["strand", "whitehall", "bloomsbury"].includes(h.plek)) rondkijkWens = "natrekken";
+        if (S().god === "sirrhae" && S().helden.some(x => x !== h && x.plek === h.plek && A.heeft(x, "betoverd"))) rondkijkWens = "terughalen";
         if (rondkijkWens) { await A.rondkijken(h); continue; }
       }
       const mon = S().plekken[h.plek]?.monsters.length;

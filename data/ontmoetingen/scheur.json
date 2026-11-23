@@ -1,36 +1,2462 @@
 [
-  { "id": "scheur-1", "tekst": "Je stapt door de scheur en staat op dezelfde straat, maar dan zoals hij over honderd jaar zal zijn: de huizen zijn hoger, de lucht is groen en de lantaarns branden zonder gas. Achter elk raam staat iemand die je kent, met de rug naar je toe. Je weet dat je niet moet kijken wie het zijn.", "test": { "kenmerk": "kennis", "moeilijkheid": 8 }, "gelukt": { "tekst": "Je houdt je ogen op de stenen en telt je stappen tot je de terugweg voelt. Onderweg zie je toch één ding: een bord met een straatnaam die je herkent.", "effect": [{ "aanwijzing": 1 }] }, "mislukt": { "tekst": "Je kijkt één raam te lang. Je ziet wie het is. Je zult het nooit meer vergeten.", "effect": [{ "geest": -2 }] } },
-  { "id": "scheur-2", "tekst": "Aan de andere kant ben je onder water, maar je kunt ademen. Een rij lantaarns loopt over de bodem naar iets dat heel groot is en heel langzaam beweegt, zoals een berg die slaapt. De stroming trekt zachtjes aan je, als een hand.", "test": { "kenmerk": "kracht", "moeilijkheid": 8 }, "gelukt": { "tekst": "Je zwemt tegen de stroom in terug voordat het je opmerkt. Op de kade lig je hijgend in de mist, maar je hebt gezien hoe groot het is.", "effect": [{ "trofee": 1 }] }, "mislukt": { "tekst": "De stroom trekt je mee. Je komt bij op de kade, hoestend, met slib in je longen.", "effect": [{ "lichaam": -2 }] } },
-  { "id": "scheur-3", "tekst": "Je staat in een bibliotheek die geen einde heeft. De boeken hebben alleen een rug, en op elke rug staat een naam. Je loopt langs de planken tot je stilstaat bij één boek. Op de rug staat jouw naam, en een jaartal dat nog niet is geweest.", "test": { "kenmerk": "kennis", "moeilijkheid": 9 }, "gelukt": { "tekst": "Je durft het boek te openen en leest alleen de bladzijde van vandaag. Er staat in wat je moet weten, niet wat je zult worden. Dan zet je het terug.", "effect": [{ "aanwijzing": 2 }] }, "mislukt": { "tekst": "Je leest verder dan vandaag, en verder dan je wilde.", "effect": [{ "waanzin": 1 }] } },
-  { "id": "scheur-4", "tekst": "Een woestijn van zwart glas onder een hemel met twee zonnen. In de verte staan torens die niet door mensenhanden zijn gebouwd, maar ook niet door de wind. Iets heeft hier ooit een stad gebouwd, en is vertrokken. Het glas onder je voeten is nog warm.", "test": { "kenmerk": "scherpte", "moeilijkheid": 8 }, "gelukt": { "tekst": "In de ruïnes vind je een voorwerp dat de reis waard is. Als je het oppakt, voel je de weg terug onder je voeten.", "effect": [{ "trek": "artefacten" }] }, "mislukt": { "tekst": "De hitte is ondraaglijk en de weg terug is langer dan de weg heen.", "effect": [{ "lichaam": -1 }, { "geest": -1 }] } },
-  { "id": "scheur-5", "tekst": "Je staat in een gang vol deuren. Achter elke deur hoor je een seance aan de gang, en in elke seance noemt iemand jouw naam, alsof jij de geest bent die ze oproepen. De stemmen worden dringender.", "test": { "kenmerk": "overtuiging", "moeilijkheid": 8 }, "gelukt": { "tekst": "Je antwoordt één keer, met gezag: 'Ik ben niet dood, en ik kom niet.' Alle deuren slaan tegelijk dicht. De stilte voelt als een overwinning.", "effect": [{ "geest": 1 }, { "trofee": 1 }] }, "mislukt": { "tekst": "Je antwoordt elke keer opnieuw. Als je terug bent, is je stem schor en kun je een dag niet praten.", "effect": [{ "geest": -2 }] } },
-  { "id": "scheur-6", "tekst": "Je staat op een ijsvlakte onder een ster die veel te groot is. Onder je voeten, diep in het ijs, staat een stad met de torens naar beneden, alsof iemand hem ondersteboven heeft begraven. In de torens brandt nog licht.", "test": { "kenmerk": "kennis", "moeilijkheid": 8 }, "gelukt": { "tekst": "Je herkent de stand van de sterren en kunt uitrekenen hoe lang het nog duurt voordat het licht in de torens dooft. Het geeft je tijd.", "effect": [{ "aanwijzing": 1 }, { "mist": 1 }] }, "mislukt": { "tekst": "De kou kruipt in je botten en blijft daar nog dagen zitten.", "effect": [{ "lichaam": -2 }] } },
-  { "id": "scheur-7", "tekst": "Een feestzaal in Mayfair, maar alle gasten dragen maskers van gezichten die je ooit hebt gekend: je ouders, je oude leraar, een vriend die verdronk. De muziek speelt te langzaam en niemand danst in de maat. Iemand reikt je een masker aan.", "test": { "kenmerk": "scherpte", "moeilijkheid": 8 }, "gelukt": { "tekst": "Je ziet wie er geen masker draagt: een jongen bij de deur, die je wenkt. Je volgt hem naar buiten en staat weer in Londen.", "effect": [{ "aanwijzing": 1 }] }, "mislukt": { "tekst": "Iemand zet je het masker op. Het past precies, en het is moeilijk om het weer af te zetten.", "effect": [{ "geest": -1 }, { "toestand": "vervloekt" }] } },
-  { "id": "scheur-8", "tekst": "Je staat op een kale heuvel onder een violette hemel. Een man in een wit gewaad heft een lantaarn op, alsof hij je de weg wil wijzen. Zijn gezicht is vriendelijk, en dat maakt het erger. 'Kom maar,' zegt hij. 'Het is niet ver.'", "test": { "kenmerk": "kracht", "moeilijkheid": 8 }, "gelukt": { "tekst": "Je rukt hem de lantaarn uit handen en gooit hem kapot op de stenen. Het licht gaat uit en de heuvel verdwijnt.", "effect": [{ "trofee": 1 }, { "aanwijzing": 1 }] }, "mislukt": { "tekst": "Het licht van de lantaarn vult je ogen. Je loopt achter hem aan tot de scheur je terugduwt.", "effect": [{ "geest": -1 }, { "lichaam": -1 }] } },
-  { "id": "scheur-vat-1", "god": "vathrun", "tekst": "Je staat in een ronde kamer van oude stenen, diep onder de rivier. Het water staat tot je knieën en is warm. Voor je is een deur met zeven ronde zegels. Drie zijn zwart en gebarsten. Aan de andere kant van de deur ademt iets, langzaam en diep.", "test": { "kenmerk": "kennis", "moeilijkheid": 9 }, "gelukt": { "tekst": "Je legt je hand op een van de hele zegels en spreekt de woorden die je kent. Het zegel wordt koel. Iets aan de andere kant zucht, teleurgesteld, en de ademhaling vertraagt.", "effect": [{ "mist": 1 }, { "trofee": 1 }] }, "mislukt": { "tekst": "Het vierde zegel kraakt onder je hand. Je trekt je terug, maar het is te laat.", "effect": [{ "mist": -1 }, { "geest": -1 }] } },
-  { "id": "scheur-vat-2", "god": "vathrun", "persoon": "josiah-penhallow", "tekst": "Je staat in een rioolgang die je kent, maar die eindeloos lijkt door te lopen. Verderop brandt een lamp. Josiah Penhallow zit op een kist met tekeningen op zijn knieën, en hij kijkt op alsof hij je verwacht. 'Ze denken dat ik dood ben,' zegt hij. 'Ik ben alleen aan de verkeerde kant van de deur.'", "keuzes": [ { "label": "Naar de zegels vragen (Kennis 8)", "test": { "kenmerk": "kennis", "moeilijkheid": 8 }, "gelukt": { "tekst": "Penhallow geeft je zijn laatste tekening: welke zegels nog heel zijn en hoe diep ze liggen. 'Zeg Martha dat ik het geprobeerd heb.'", "effect": [{ "aanwijzing": 2 }] }, "mislukt": { "tekst": "Hij praat steeds sneller en steeds minder samenhangend. De lamp gaat uit.", "effect": [{ "geest": -1 }] } }, { "label": "Proberen hem mee terug te nemen (Kracht 9)", "test": { "kenmerk": "kracht", "moeilijkheid": 9 }, "gelukt": { "tekst": "Je trekt hem mee naar het licht. Aan deze kant blijft alleen zijn jas in je handen achter, maar in de zak zit zijn rapport, voor het eerst compleet.", "effect": [{ "aanwijzing": 2 }, { "trofee": 1 }] }, "mislukt": { "tekst": "Hij is zwaar als natte klei. Je laat los en valt achterover terug in Londen.", "effect": [{ "lichaam": -2 }] } } ] },
-  { "id": "scheur-azh-1", "god": "azh-ilareth", "tekst": "Je staat in een zaal vol spiegels, en in elke spiegel staat de ster, groter dan in de vorige. De spiegels hangen zo dat het licht van de een naar de ander wordt doorgegeven, als een weg. Aan het einde van de zaal staat een lege stoel. Op de leuning ligt een witte lantaarn.", "test": { "kenmerk": "kracht", "moeilijkheid": 8 }, "gelukt": { "tekst": "Je draait één spiegel om naar de muur. Het licht breekt, de weg is onderbroken. Overal in de zaal hoor je glas springen.", "effect": [{ "mist": 1 }, { "trofee": 1 }] }, "mislukt": { "tekst": "Het licht valt vol in je gezicht. Een tijdlang zie je de ster als je je ogen sluit.", "effect": [{ "geest": -2 }] } },
-  { "id": "scheur-azh-2", "god": "azh-ilareth", "persoon": "lucan-vey", "tekst": "Je staat op een balkon boven een stad van wit licht. Naast je staat Lucan Vey, zonder jas, met een pen in zijn hand die op niets schrijft. 'Ik moet hem een naam geven,' zegt hij, 'dan kan hij komen. Help me het woord te vinden.'", "keuzes": [ { "label": "Hem een ander woord geven (Charisma 8)", "test": { "kenmerk": "overtuiging", "moeilijkheid": 8 }, "gelukt": { "tekst": "Je fluistert hem een gewoon woord in: de naam van zijn moeder. Hij schrijft het op, verbaasd, en begint te huilen. De witte stad wordt grijs.", "effect": [{ "mist": 1 }, { "geest": 1 }] }, "mislukt": { "tekst": "Hij hoort je niet meer. De pen schrijft verder, en een deel van het woord brandt in je hoofd.", "effect": [{ "geest": -1 }, { "mist": -1 }] } }, { "label": "De pen afpakken (Kracht 8)", "test": { "kenmerk": "kracht", "moeilijkheid": 8 }, "gelukt": { "tekst": "Je rukt de pen uit zijn hand. Hij is zwaarder dan hij lijkt, en koud. Je neemt hem mee terug.", "effect": [{ "trek": "artefacten" }] }, "mislukt": { "tekst": "De pen snijdt in je hand als een mes. Lucan kijkt niet eens op.", "effect": [{ "lichaam": -2 }] } } ] },
-  { "id": "scheur-neb-1", "god": "nebet-ankhu", "tekst": "Je staat in een graf zonder versiering, zonder naam en zonder sarcofaag. Langs de muren staan honderden maskers van goud, en allemaal hebben ze een ander gezicht. Eén plek aan de muur is leeg. Het masker dat daar hoort, heeft jouw gezicht.", "test": { "kenmerk": "kennis", "moeilijkheid": 9 }, "gelukt": { "tekst": "Je pakt het masker met jouw gezicht van de grond en breekt het doormidden. De farao heeft één gezicht minder om te lenen.", "effect": [{ "trofee": 1 }, { "mist": 1 }] }, "mislukt": { "tekst": "Je kijkt te lang naar het masker. Als je terug bent, herken je jezelf even niet in de spiegel.", "effect": [{ "geest": -2 }] } },
-  { "id": "scheur-neb-2", "god": "nebet-ankhu", "persoon": "lucius-harrowgate", "tekst": "Je staat in de privékamer van Sir Lucius Harrowgate, maar alle meubels zijn van zandsteen. Harrowgate zit aan zijn bureau en schrijft. Zijn gezicht is een gouden vlak, en hij schrijft in hiërogliefen. 'Ik heb hem een thuis gegeven,' zegt hij, met een stem die van ver komt. 'Hij is dankbaar.'", "test": { "kenmerk": "scherpte", "moeilijkheid": 8 }, "gelukt": { "tekst": "Op het bureau ligt de lijst met kopers, nu in het Egyptisch. Je herkent de namen toch, aan de volgorde. Je weet waar de laatste zegels zijn.", "effect": [{ "aanwijzing": 2 }] }, "mislukt": { "tekst": "Harrowgate kijkt op. Het gouden vlak toont kort jouw gezicht.", "effect": [{ "geest": -2 }] } },
-  { "id": "scheur-9", "tekst": "Aan de andere kant is het Londen van vroeger, de stad van de grote brand. De huizen van hout en vakwerk staan in lichterlaaie, maar het vuur maakt geen geluid en geeft geen warmte. Mensen lopen kalm door de vlammen met emmers vol zwart water. Een vrouw met een verbrand schort pakt je bij de arm. 'Je bent te vroeg,' zegt ze. 'Of te laat. Dat weet ik nooit.'", "keuzes": [ { "label": "Met haar meelopen (Charisma 8)", "test": { "kenmerk": "overtuiging", "moeilijkheid": 8 }, "gelukt": { "tekst": "Ze brengt je naar een kelder waar het vuur niet komt, en wijst op een steen in de muur. 'Daar begon het, en daar eindigt het.' Als je de steen aanraakt, sta je weer in je eigen tijd, met as op je mouwen en een plek in je hoofd.", "effect": [{ "aanwijzing": 1 }, { "trofee": 1 }] }, "mislukt": { "tekst": "Ze laat je los en loopt verder zonder om te kijken. Het stille vuur kruipt over je laarzen. Het doet geen pijn, maar je ruikt het dagenlang.", "effect": [{ "geest": -1 }, { "lichaam": -1 }] } }, { "label": "Zelf de weg terug zoeken (Waarneming 8)", "test": { "kenmerk": "scherpte", "moeilijkheid": 8 }, "gelukt": { "tekst": "Je volgt de rook, die als enige de verkeerde kant op waait, en stapt zo terug in de mist van 1888. In je zak zit een verkoold muntje uit een andere eeuw.", "effect": [{ "pond": 1 }, { "trofee": 1 }] }, "mislukt": { "tekst": "Je loopt in een kring tot je benen het opgeven. Als je terugkomt, is er een nacht voorbij die je je niet herinnert.", "effect": [{ "geest": -2 }] } } ] },
-  { "id": "scheur-10", "tekst": "Je zit in de stalles van een leeg theater. Het doek gaat open, en op het toneel speelt een gezelschap zonder gezichten een stuk over jouw leven. Ze zijn al bij vanavond aangekomen. De acteur die jou speelt, kijkt de zaal in en wacht op een tekst die niet in het script staat. Achter je hoor je iemand zacht 'nu' fluisteren.", "keuzes": [ { "label": "Het toneel op gaan en je eigen tekst zeggen (Charisma 9)", "test": { "kenmerk": "overtuiging", "moeilijkheid": 9 }, "gelukt": { "tekst": "Je klimt over de voetlichten en zegt wat je werkelijk denkt. De acteurs buigen voor je en het doek valt. Als het weer opgaat, staat er een decor van een plek in Londen die je kent, met een kruisje op de vloer.", "effect": [{ "aanwijzing": 1 }, { "trofee": 1 }] }, "mislukt": { "tekst": "Je staat op het toneel en er komt geen woord. De acteurs zeggen het dan maar voor je, en het is niet wat je wilde zeggen.", "effect": [{ "waanzin": 1 }] } }, { "label": "Blijven zitten en goed kijken (Waarneming 8)", "test": { "kenmerk": "scherpte", "moeilijkheid": 8 }, "gelukt": { "tekst": "In het decor zie je details die je in het echt gemist hebt: een sleutel op een schoorsteenmantel, een naam op een kist. Als het licht uitgaat, sta je weer buiten, met alles nog in je hoofd.", "effect": [{ "aanwijzing": 2 }, { "geest": -1 }] }, "mislukt": { "tekst": "Het stuk gaat verder dan vanavond. Je doet je ogen dicht, maar je hoort nog hoe het afloopt.", "effect": [{ "geest": -2 }] } } ] },
-  { "id": "scheur-11", "tekst": "Aan de andere kant regent het omhoog. De druppels stijgen van de straatstenen naar een hemel zonder sterren, en in elke druppel zie je een stukje van een kamer die je kent. Iemand roept je naam vanaf een dak, in de stem van je moeder. De straat helt steeds verder naar boven.", "test": { "kenmerk": "kracht", "moeilijkheid": 8 }, "gelukt": { "tekst": "Je klemt je vast aan een lantaarnpaal en wacht tot de regen stopt. Dan valt alles in één klap terug naar beneden, en jij ook, terug door de scheur, op de natte stenen van Londen.", "effect": [{ "trofee": 1 }] }, "mislukt": { "tekst": "Je laat los. Je valt omhoog, lang, tot je ergens tegen een harde grond slaat. Het is de kade, en het is ochtend.", "effect": [{ "lichaam": -2 }, { "geest": -1 }] } },
-  { "id": "scheur-vat-3", "god": "vathrun", "tekst": "Je staat op de bodem van de Theems, maar de rivier is drooggevallen. Overal liggen wrakken, kettingen en de botten van wat in honderden jaren is verdronken. Een smalle sloot water kronkelt naar het oosten, en daarlangs loopt een man in een bisschopsmantel die voor elke schedel stilstaat en een zegen prevelt. Hij kijkt niet op.", "keuzes": [ { "label": "De bisschop aanspreken (Charisma 9)", "test": { "kenmerk": "overtuiging", "moeilijkheid": 9 }, "gelukt": { "tekst": "Hij kijkt je aan met ogen vol slib, maar zijn stem is nog die van een mens. 'Ik was het eerste slot,' zegt hij. 'Breek mij en de deur gaat open. Vergeet dat niet.' Daarna is hij weer weg in zijn gebeden.", "effect": [{ "aanwijzing": 2 }] }, "mislukt": { "tekst": "Hij draait zich langzaam om en het water in de sloot begint te stijgen. Je rent naar de kant en haalt het nog net.", "effect": [{ "lichaam": -1 }, { "mist": -1 }] } }, { "label": "Ongezien tussen de wrakken zoeken (Waarneming 8)", "test": { "kenmerk": "scherpte", "moeilijkheid": 8 }, "gelukt": { "tekst": "In een gezonken kist vind je een zegelring met zeven streepjes, groen uitgeslagen. Hij is nog warm.", "effect": [{ "trek": "artefacten" }] }, "mislukt": { "tekst": "Een wrak zakt onder je voeten weg en trekt je mee. Je komt hoestend boven, aan de goede kant van de scheur.", "effect": [{ "lichaam": -2 }] } } ] },
-  { "id": "scheur-azh-3", "god": "azh-ilareth", "tekst": "Je staat op een kale heide onder een hemel waar de ster zo dichtbij is dat hij de helft van de lucht vult. Het licht heeft geen kleur en werpt geen schaduw. In het gras zitten mensen in witte gewaden, met hun gezicht omhoog en hun ogen wijd open. Je herkent sommigen van de salons in Mayfair. Ze glimlachen allemaal.", "test": { "kenmerk": "kennis", "moeilijkheid": 9 }, "gelukt": { "tekst": "Je houdt je hand voor je ogen en telt de sterren eromheen, zoals de monniken op hun kaart deden. Het patroon klopt. Je weet nu hoe ver hij nog moet, en dat het minder ver is dan je hoopte.", "effect": [{ "aanwijzing": 1 }, { "trofee": 1 }] }, "mislukt": { "tekst": "Je kijkt omhoog, heel even maar. Als je weer terug bent, zie je de ster ook met je ogen dicht.", "effect": [{ "geest": -2 }, { "mist": -1 }] } },
-  { "id": "scheur-neb-3", "god": "nebet-ankhu", "tekst": "Je loopt door een gang van zandsteen, verlicht door olielampjes die niemand heeft aangestoken. Langs de muren hangen honderden gezichten, van was en goud en gewone huid, als maskers aan haken. Sommige knipperen. Aan het eind van de gang staat een lege troon, en daarvoor ligt een spiegel met de voorkant naar beneden.", "keuzes": [ { "label": "De spiegel omdraaien (Kracht 8)", "test": { "kenmerk": "kracht", "moeilijkheid": 8 }, "gelukt": { "tekst": "Je draait hem om en ziet geen gezicht, alleen een gang die eindigt in het pakhuis in St Katharine Docks. Je weet nu waar de farao zijn gezichten bewaart, en je bent eruit voordat iets je volgt.", "effect": [{ "aanwijzing": 2 }, { "geest": -1 }] }, "mislukt": { "tekst": "De spiegel is zwaarder dan hij lijkt. Als hij half omhoog is, zie je in het glas een gezicht dat het jouwe probeert te worden. Je laat hem vallen en rent.", "effect": [{ "geest": -2 }] } }, { "label": "Teruglopen zonder om te kijken", "tekst": "Je draait je om en loopt terug, langzaam, met je ogen op de vloer. Achter je hoor je hoe de gezichten aan de muur zich één voor één naar je omdraaien. Je kijkt niet, en je komt veilig terug.", "effect": [{ "geest": -1 }] } ] },
-  { "id": "scheur-12", "tekst": "Je stapt in een eindeloze wachtkamer van een station. De klok aan de muur heeft geen wijzers, en op de banken zitten reizigers met kaartjes naar plaatsen die niet bestaan. Een conducteur loopt langs en knipt elk kaartje. Als hij bij jou komt, steekt hij zijn hand uit en wacht.", "keuzes": [{ "label": "Een kaartje verzinnen (Charisma 8)", "test": { "kenmerk": "overtuiging", "moeilijkheid": 8 }, "gelukt": { "tekst": "Je geeft hem een gevouwen stukje papier en zegt met vaste stem: 'Retour Londen.' Hij knipt het, tikt tegen zijn pet en wijst je een deur. In het voorbijgaan lees je de bestemmingen op de andere kaartjes, en één ervan ken je wel.", "effect": [{ "aanwijzing": 1 }] }, "mislukt": { "tekst": "Hij kijkt lang naar het papiertje en schudt dan zijn hoofd. Je moet wachten, zegt hij, net als de anderen. Het duurt uren voordat je een deur vindt die hij niet bewaakt.", "effect": [{ "geest": -1 }, { "mist": -1 }] } }, { "label": "Op de klok letten (Waarneming 8)", "test": { "kenmerk": "scherpte", "moeilijkheid": 8 }, "gelukt": { "tekst": "Na een poos zie je dat de klok wel degelijk loopt, maar achteruit, en alleen als niemand kijkt. Je telt mee en weet precies wanneer de deur opengaat. Je bent er als eerste doorheen.", "effect": [{ "aanwijzing": 1 }, { "geest": 1 }] }, "mislukt": { "tekst": "Je kijkt zo lang naar de wijzerplaat dat je vergeet waarom. Als je weer terug bent, mis je een paar uur.", "effect": [{ "geest": -2 }] } }, { "label": "Je politiepenning laten zien", "tekst": "De conducteur kijkt naar de penning, recht zijn rug en tikt tegen zijn pet. 'Dienst gaat voor, meneer,' zegt hij, en hij knipt niets. Hij laat je door de deur van het personeel, en in het voorbijgaan zie je het dienstrooster aan de muur hangen, met namen die je kent.", "effect": [{ "aanwijzing": 1 }, { "trofee": 1 }], "held": ["owen-marsh", "paddy-flynn"] }] },
-  { "id": "scheur-13", "tekst": "Je staat in een tuin vol witte rozen, onder een maan die te groot is. Tussen de struiken staat een theetafel gedekt voor tien, maar er zit niemand. De thee is nog warm. Bij elk kopje ligt een naamkaartje, en op één ervan staat jouw naam, in een handschrift dat je kent: dat van je moeder.", "keuzes": [{ "label": "Gaan zitten en drinken (Kennis 9)", "test": { "kenmerk": "kennis", "moeilijkheid": 9 }, "gelukt": { "tekst": "Je herkent de geur van de thee: het is het brouwsel dat de Bleke Lantaarn gebruikt om visioenen op te roepen. Je doet alsof je drinkt, en luistert naar wat de lege stoelen tegen elkaar zeggen.", "effect": [{ "aanwijzing": 2 }] }, "mislukt": { "tekst": "De thee smaakt naar thuis. Je drinkt het kopje leeg voordat je weet wat je doet, en daarna wil je nooit meer weg. Het kost je alles om op te staan.", "effect": [{ "geest": -2 }, { "toestand": "verdwaald" }] } }, { "label": "Het naamkaartje omdraaien en weglopen", "tekst": "Op de achterkant staat een adres in Londen. Je stopt het kaartje in je zak en loopt de tuin uit, zonder om te kijken naar de stoel die achter je wordt aangeschoven.", "effect": [{ "aanwijzing": 1 }, { "geest": -1 }] }, { "label": "De rozen bezweren met zout", "tekst": "Je strooit een cirkel zout rond de tafel, zoals je grootmoeder in Cork deed. De rozen worden zwart en de maan krimpt tot hij weer gewoon is. In het servet bij jouw kopje zit een gedroogd blad met een teken erop.", "effect": [{ "aanwijzing": 1 }, { "trofee": 1 }], "held": ["bridie-kavanagh"] }] },
-  { "id": "scheur-14", "tekst": "Aan de andere kant is het Londen, maar onder water. Je kunt ademen, maar het kost moeite, alsof je door honing ademt. Vissen zwemmen door de ramen van de huizen. Op de bodem van Fleet Street rijdt een omnibus zonder paarden, vol passagiers die allemaal naar boven kijken, naar het licht.", "test": { "kenmerk": "kracht", "moeilijkheid": 8 }, "gelukt": { "tekst": "Je zet je af tegen de bodem en zwemt naar het licht, sneller dan de stroming. Onderweg grijp je een tas die uit een raam dobbert. Hij is van iemand die vorige week verdween.", "effect": [{ "aanwijzing": 1 }, { "trofee": 1 }] }, "mislukt": { "tekst": "De stroming trekt je naar beneden, naar de omnibus. Een conducteur zonder ogen steekt zijn hand uit. Je rukt je los, maar je longen branden nog dagen.", "effect": [{ "lichaam": -2 }] } },
-  { "id": "scheur-15", "tekst": "Je stapt in een zaal met spiegels, en in elke spiegel sta jij, maar telkens een ander leven. In de ene ben je rijk, in de andere dood, in een derde heb je nooit van Londen gehoord. Eén spiegelbeeld zwaait naar je en wijst naar een deur die jij niet ziet.", "keuzes": [{ "label": "Het wijzende spiegelbeeld volgen (Waarneming 9)", "test": { "kenmerk": "scherpte", "moeilijkheid": 9 }, "gelukt": { "tekst": "Je volgt zijn vinger en vindt de deur, half verborgen achter een draperie. Je spiegelbeeld knikt tevreden. Voordat je erdoor stapt, zie je in de verte een gestalte die door alle spiegels tegelijk loopt.", "effect": [{ "aanwijzing": 1 }, { "trofee": 1 }] }, "mislukt": { "tekst": "Je loopt tegen glas. Nog een keer, en nog een keer. Als je eindelijk een uitgang vindt, weet je niet meer zeker welke van de spiegelbeelden er is uitgestapt.", "effect": [{ "geest": -2 }] } }, { "label": "Je ogen sluiten en op de tast teruglopen", "tekst": "Je loopt met je handen langs het koude glas tot je weer stenen voelt. Het kost tijd, en de hele weg hoor je jezelf fluisteren. Maar je bent er heelhuids uit.", "effect": [{ "geest": -1 }] }, { "label": "De truc doorzien", "tekst": "Spiegels zijn je vak. Je ziet meteen welke hoeken vals zijn, waar het licht wordt gebogen en welk glas maar een gordijn is. Je stapt er dwars doorheen, en neemt een van de scherven mee.", "effect": [{ "trek": "artefacten" }], "held": ["albert-gosling", "violet-thorne"] }] },
-  { "id": "scheur-16", "tekst": "Je staat in een ziekenzaal van een hospitaal dat honderd jaar geleden is afgebroken. In elk bed ligt iemand onder een laken, en ze ademen allemaal tegelijk. Een verpleegster in een grijze jurk loopt van bed naar bed met een lamp. Ze vraagt of je komt helpen. Er zijn er zoveel.", "keuzes": [{ "label": "Helpen (Kennis 8)", "test": { "kenmerk": "kennis", "moeilijkheid": 8 }, "gelukt": { "tekst": "Je loopt met haar mee en doet wat je kunt. Bij het laatste bed tilt ze het laken op: eronder ligt niemand, maar een opengeslagen boek met de namen van alle zieken. Ze scheurt de laatste bladzijde eruit en geeft hem aan jou.", "effect": [{ "aanwijzing": 1 }, { "geest": 1 }] }, "mislukt": { "tekst": "Het zijn er te veel. Bij elk bed dat je verlaat, gaat er een ademhaling uit. Als je terugkomt in Londen, hoor je ze nog.", "effect": [{ "geest": -2 }] } }, { "label": "Weigeren en de deur zoeken", "tekst": "De verpleegster kijkt je na, niet boos, alleen moe. 'Ze vragen allemaal naar de deur,' zegt ze. Je vindt hem, maar haar stem blijft bij je.", "effect": [{ "geest": -1 }] }, { "label": "Een gebed uitspreken over de zieken", "tekst": "Je knielt en bidt zoals je dat in de gaarkeuken elke avond doet. Een voor een houden de lakens op met ademen, rustig, alsof ze eindelijk mogen slapen. De verpleegster dooft haar lamp en raakt je schouder aan.", "effect": [{ "toestand": "gezegend" }, { "trofee": 1 }], "held": ["ezra-whitlock", "odile-fairweather"] }] },
-  { "id": "scheur-vat-4", "god": "vathrun", "tekst": "Je staat in een tunnel van gemetselde baksteen, tot je knieën in zwart water. Langs de muur loopt een koperen buis met elke twintig passen een meter. Alle naalden staan in het rood. Verderop hoor je iemand hijgen en met een moersleutel op ijzer slaan. Een lamp schommelt aan een haak.", "keuzes": [{ "label": "Naar het geluid lopen (Kracht 8)", "test": { "kenmerk": "kracht", "moeilijkheid": 8 }, "gelukt": { "tekst": "Je vindt een man in het uniform van de Board of Works, die als een bezetene aan een afsluiter draait. Samen krijgen jullie hem dicht. Hij drukt je zijn tekening in handen. 'Penhallow moet dit zien,' zegt hij, en dan is hij weg, in het water opgelost.", "effect": [{ "aanwijzing": 2 }] }, "mislukt": { "tekst": "Het water stijgt sneller dan je loopt. Je klimt in een schacht en komt hoestend en doorweekt uit de scheur.", "effect": [{ "lichaam": -2 }] } }, { "label": "De meters aflezen (Kennis 8)", "test": { "kenmerk": "kennis", "moeilijkheid": 8 }, "gelukt": { "tekst": "De druk stijgt in een ritme. Het is geen getij: het is een ademhaling. Je schrijft de tijden op die tussen de pieken zitten. Ze worden korter.", "effect": [{ "aanwijzing": 1 }, { "trofee": 1 }] }, "mislukt": { "tekst": "De cijfers dansen voor je ogen. Achter je klinkt een gorgelend geluid, alsof iets in de buis je naam probeert te zeggen.", "effect": [{ "geest": -1 }, { "mist": -1 }] } }] },
-  { "id": "scheur-azh-4", "god": "azh-ilareth", "persoon": "aurelian-croft", "tekst": "Je zit op de eerste rij van een concertzaal zonder plafond. Boven je brandt de nieuwe ster. Op het podium dirigeert Aurelian Croft een orkest van mensen met verbonden ogen. De muziek is zo mooi dat je niet kunt bewegen. Op de lessenaar voor hem ligt een partituur die met elke maat langer wordt.", "keuzes": [{ "label": "De partituur lezen (Kennis 9)", "test": { "kenmerk": "kennis", "moeilijkheid": 9 }, "gelukt": { "tekst": "Je kunt geen noten lezen, maar dit zijn geen noten: het zijn coördinaten, in maten van drie. Je prent de laatste regel in je geheugen voordat de muziek je weer meesleept.", "effect": [{ "aanwijzing": 2 }] }, "mislukt": { "tekst": "Je leest één maat en hoort hem daarna overal: in de wielen van een rijtuig, in de regen, in je eigen hartslag.", "effect": [{ "geest": -2 }, { "waanzin": 1 }] } }, { "label": "Opstaan en weglopen (Kracht 8)", "test": { "kenmerk": "kracht", "moeilijkheid": 8 }, "gelukt": { "tekst": "Het kost je alle kracht die je hebt, alsof je tegen een storm in loopt. Bij de uitgang draai je je om. Croft dirigeert nog steeds, maar hij kijkt je recht aan, en hij glimlacht niet meer.", "effect": [{ "trofee": 1 }] }, "mislukt": { "tekst": "Je benen willen niet. Pas als het stuk afgelopen is, laat de muziek je los, en dan staat de ster weer een stukje dichterbij.", "effect": [{ "geest": -1 }, { "mist": -1 }] } }, { "label": "Een valse noot spelen", "tekst": "Je neuriet, fluit of strijkt precies één toon ernaast, zoals je dat ooit leerde om een zaal wakker te schudden. Het orkest stokt. Croft laat zijn stokje zakken, en in de stilte trekt de scheur zich om je heen dicht.", "effect": [{ "trofee": 1 }, { "aanwijzing": 1 }], "held": ["clementine-ashby", "esme-valentine"] }] },
-  { "id": "scheur-neb-4", "god": "nebet-ankhu", "tekst": "Je staat in een tentoonstellingszaal van het British Museum, maar dan bij nacht en zonder één bezoeker. De vitrines zijn leeg. De beelden staan niet op hun sokkels maar in een lange rij voor de uitgang, alsof ze ergens op wachten. Aan het hoofd van de rij staat een kleine gestalte in linnen gewikkeld.", "keuzes": [{ "label": "Langs de rij sluipen (Waarneming 9)", "test": { "kenmerk": "scherpte", "moeilijkheid": 9 }, "gelukt": { "tekst": "Je glijdt van schaduw naar schaduw. Op de sokkel van het eerste beeld staat een naam gekrast, in een schrift dat je net kunt lezen: een plek in Londen, en een datum.", "effect": [{ "aanwijzing": 2 }] }, "mislukt": { "tekst": "Een van de beelden draait zijn stenen hoofd naar je om. Je rent, en de hele rij draait zich langzaam mee.", "effect": [{ "geest": -1 }, { "lichaam": -1 }] } }, { "label": "De gestalte in het oud-Egyptisch aanspreken", "tekst": "Je groet de kleine gestalte met de woorden die je in Thebe leerde, de groet voor de doden. Hij buigt zijn hoofd, en de rij beelden zakt terug op de sokkels. Hij reikt je iets aan uit zijn windsels.", "effect": [{ "trek": "artefacten" }, { "aanwijzing": 1 }], "held": ["cornelius-bray", "septimus-crane", "hester-quayle"] }, { "label": "Terug door de scheur", "tekst": "Je wilt er niets mee te maken hebben. Je stapt terug, maar de laatste blik die je opvangt, is die van de kleine gestalte, die zijn hoofd schuin houdt alsof hij je naam onthoudt.", "effect": [{ "geest": -1 }] }] },
-  { "id": "scheur-ysm-1", "god": "ysmara", "tekst": "Je stapt in een woud waar Londen had moeten zijn. De bomen zijn zo hoog dat je de toppen niet ziet, en tussen de stammen hangen lantaarns van glas en dauw. Aan een lange tafel zit een feestmaal klaar, voor honderd gasten. Alle stoelen zijn leeg, op één na: een kind met een kroontje, dat je wenkt.", "keuzes": [{ "label": "Niets eten en doorlopen", "tekst": "Je loopt langs de tafel zonder te kijken. Het eten ruikt naar alles waar je ooit van hield. Aan het eind van de tafel ligt een dolk van zwart hout, die je meeneemt.", "effect": [{ "geest": -1 }, { "trek": "artefacten" }] }, { "label": "Met het kind praten (Charisma 9)", "test": { "kenmerk": "overtuiging", "moeilijkheid": 9 }, "gelukt": { "tekst": "Het kind is een prinsje van het hof, en verveelt zich. Het vertelt je, in ruil voor een verhaal over Londen, wie de Koningin dient in de stad.", "effect": [{ "aanwijzing": 2 }] }, "mislukt": { "tekst": "Het kind wordt boos omdat je verhaal saai is. De lantaarns gaan uit.", "effect": [{ "geest": -2 }] } }] },
-  { "id": "scheur-ysm-2", "god": "ysmara", "tekst": "Aan de andere kant is het zomer, en je staat op een heuvel vol meidoorn. In de verte zie je Londen, maar klein, als een speelgoedstad. Om de heuvel loopt een rij kinderen, hand in hand, steeds rond en rond. Ze zingen het rijmpje. Bij elke ronde is er één kind meer.", "test": { "kenmerk": "scherpte", "moeilijkheid": 9 }, "gelukt": { "tekst": "Je telt de kinderen en onthoudt hun gezichten. Eén ervan herken je van een opsporingsbericht. Je weet nu dat ze nog leven, ergens.", "effect": [{ "aanwijzing": 2 }, { "trofee": 1 }] }, "mislukt": { "tekst": "Je telt mee, en bij de laatste tel sta je zelf in de kring. Iemand trekt je eruit aan je jas. Je weet niet wie.", "effect": [{ "geest": -2 }, { "mist": -1 }] } },
-  { "id": "scheur-ysm-3", "god": "ysmara", "tekst": "Je staat in een slaapzaal van een weeshuis, maar de bedden zijn van mos en de dekens van bladeren. In elk bed ligt een kind te slapen, met een glimlach. Bij het raam zit een vrouw met een kroon van doorns te breien, aan iets dat op een kinderhemdje lijkt, maar van spinrag is.", "keuzes": [{ "label": "Een kind wakker maken (Kracht 8)", "test": { "kenmerk": "kracht", "moeilijkheid": 8 }, "gelukt": { "tekst": "Je schudt een meisje wakker en draagt haar naar het raam. De vrouw kijkt niet op van haar breiwerk. Je springt, en landt met het kind in je armen op de stoep in Chelsea.", "effect": [{ "trofee": 1 }, { "geest": 1 }] }, "mislukt": { "tekst": "Het kind wordt niet wakker. Het weegt meer dan een kind hoort te wegen. Je moet het laten liggen.", "effect": [{ "geest": -2 }] } }, { "label": "Het breiwerk bekijken (Kennis 9)", "test": { "kenmerk": "kennis", "moeilijkheid": 9 }, "gelukt": { "tekst": "Het is geen hemdje. Het is een kaart, gebreid in groen en wit: de straten van Londen, en de plek waar de draden samenkomen.", "effect": [{ "aanwijzing": 2 }] }, "mislukt": { "tekst": "Ze kijkt op. Je kunt je niet meer bewegen tot ze weer verder breit.", "effect": [{ "geest": -1 }, { "lichaam": -1 }] } }, { "label": "Naast haar gaan zitten en meebreien", "tekst": "Je pakt de draad op en breit verder, steek voor steek, en zij laat het toe. Je breit een fout in het patroon, expres. Overal in de zaal worden kinderen wakker.", "effect": [{ "trofee": 1 }, { "aanwijzing": 1 }], "held": ["aggie-pruitt"] }] },
-  { "id": "scheur-mor-1", "god": "morghast", "tekst": "Je staat in Londen, in 1665. De huizen hebben rode kruisen op de deur, en in de straat rijdt een kar met lichamen, getrokken door een man met een bel. 'Breng uw doden,' roept hij. Hij stopt voor jou en kijkt je aan. 'U staat al op mijn lijst,' zegt hij vriendelijk.", "keuzes": [{ "label": "Zeggen dat hij zich vergist (Charisma 9)", "test": { "kenmerk": "overtuiging", "moeilijkheid": 9 }, "gelukt": { "tekst": "Hij kijkt in zijn boek, fronst, en streept je naam door. Onder jouw naam staat een andere, die je wel kent, van iemand uit jouw tijd. Je weet nu wie de volgende is.", "effect": [{ "aanwijzing": 2 }] }, "mislukt": { "tekst": "Hij schudt zijn hoofd en schrijft iets bij je naam. Je voelt je ineens heel koud.", "effect": [{ "lichaam": -1 }, { "geest": -1 }] } }, { "label": "Op de kar klimmen en de lichamen tellen (Kracht 9)", "test": { "kenmerk": "kracht", "moeilijkheid": 9 }, "gelukt": { "tekst": "Tussen de doden ligt iemand die leeft, een jongen. Je trekt hem eraf en draagt hem door de scheur terug. In jouw Londen is hij een oude man, die je huilend bedankt.", "effect": [{ "trofee": 1 }, { "geest": 1 }] }, "mislukt": { "tekst": "De lichamen grijpen je. Je komt terug met de geur van kalk die niet meer van je huid wil.", "effect": [{ "lichaam": -2 }] } }] },
-  { "id": "scheur-mor-2", "god": "morghast", "tekst": "Je staat in een eindeloze anatomiezaal. Op honderden tafels liggen lichamen onder lakens, en tussen de tafels lopen chirurgen zonder gezicht. Op elk laken staat een naam en een datum. Ze zijn allemaal van volgende week.", "test": { "kenmerk": "scherpte", "moeilijkheid": 9 }, "gelukt": { "tekst": "Je loopt tussen de tafels en leest snel. De meeste namen ken je niet, maar ze komen allemaal uit dezelfde drie straten. Je weet nu waar het gaat beginnen.", "effect": [{ "aanwijzing": 2 }, { "trofee": 1 }] }, "mislukt": { "tekst": "Een chirurg zonder gezicht pakt je bij je arm en leidt je naar een lege tafel. Je rukt je los, maar het laken met jouw naam heb je gezien.", "effect": [{ "geest": -2 }, { "mist": -1 }] } },
-  { "id": "scheur-mor-3", "god": "morghast", "tekst": "Aan de andere kant is het donker en het ruikt naar kalk. Je staat tot je middel in beenderen, in een put zonder wanden. Ver boven je schijnt een cirkel van grijs licht. Onder je, heel diep, ademt iets langzaam in en uit, en bij elke ademhaling zakken de beenderen een stukje.", "keuzes": [{ "label": "Naar het licht klimmen (Kracht 9)", "test": { "kenmerk": "kracht", "moeilijkheid": 9 }, "gelukt": { "tekst": "Je klimt over schedels en ribben, met je tanden op elkaar. Boven kom je uit op een kerkhof in Spitalfields, met een handvol beenderen in je vuist die een richting aanwijzen als je ze laat vallen.", "effect": [{ "aanwijzing": 1 }, { "trofee": 1 }] }, "mislukt": { "tekst": "Je zakt dieper. Het ademen komt dichterbij. Je weet niet meer hoe je eruit kwam.", "effect": [{ "lichaam": -1 }, { "geest": -2 }] } }, { "label": "Luisteren naar de ademhaling (Kennis 10)", "test": { "kenmerk": "kennis", "moeilijkheid": 10 }, "gelukt": { "tekst": "Het is een ritme, en het ritme heeft een betekenis: het telt af. Je weet nu hoe lang de Slaper nog slaapt.", "effect": [{ "aanwijzing": 3 }] }, "mislukt": { "tekst": "Je luistert te goed. Je eigen hart gaat meeslaan in het ritme.", "effect": [{ "geest": -2 }, { "waanzin": 1 }] } }, { "label": "Een gebed voor de doden opzeggen", "tekst": "Je bidt voor ze, alle duizenden, bij naam als je kon. De beenderen houden op met zakken. Er komt een trap van ribben naar je toe, en je klimt eruit.", "effect": [{ "trofee": 1 }, { "mist": 1 }], "held": ["ezra-whitlock"] }] }
+  {
+    "id": "scheur-1",
+    "tekst": "Je stapt door de scheur en staat op dezelfde straat, maar dan zoals hij over honderd jaar zal zijn: de huizen zijn hoger, de lucht is groen en de lantaarns branden zonder gas. Achter elk raam staat iemand die je kent, met de rug naar je toe. Je weet dat je niet moet kijken wie het zijn.",
+    "test": {
+      "kenmerk": "kennis",
+      "moeilijkheid": 8
+    },
+    "gelukt": {
+      "tekst": "Je houdt je ogen op de stenen en telt je stappen tot je de terugweg voelt. Onderweg zie je toch één ding: een bord met een straatnaam die je herkent.",
+      "effect": [
+        {
+          "aanwijzing": 1
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "Je kijkt één raam te lang. Je ziet wie het is. Je zult het nooit meer vergeten.",
+      "effect": [
+        {
+          "geest": -2
+        }
+      ]
+    }
+  },
+  {
+    "id": "scheur-2",
+    "tekst": "Aan de andere kant ben je onder water, maar je kunt ademen. Een rij lantaarns loopt over de bodem naar iets dat heel groot is en heel langzaam beweegt, zoals een berg die slaapt. De stroming trekt zachtjes aan je, als een hand.",
+    "test": {
+      "kenmerk": "kracht",
+      "moeilijkheid": 8
+    },
+    "gelukt": {
+      "tekst": "Je zwemt tegen de stroom in terug voordat het je opmerkt. Op de kade lig je hijgend in de mist, maar je hebt gezien hoe groot het is.",
+      "effect": [
+        {
+          "trofee": 1
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "De stroom trekt je mee. Je komt bij op de kade, hoestend, met slib in je longen.",
+      "effect": [
+        {
+          "lichaam": -2
+        }
+      ]
+    }
+  },
+  {
+    "id": "scheur-3",
+    "tekst": "Je staat in een bibliotheek die geen einde heeft. De boeken hebben alleen een rug, en op elke rug staat een naam. Je loopt langs de planken tot je stilstaat bij één boek. Op de rug staat jouw naam, en een jaartal dat nog niet is geweest.",
+    "test": {
+      "kenmerk": "kennis",
+      "moeilijkheid": 9
+    },
+    "gelukt": {
+      "tekst": "Je durft het boek te openen en leest alleen de bladzijde van vandaag. Er staat in wat je moet weten, niet wat je zult worden. Dan zet je het terug.",
+      "effect": [
+        {
+          "aanwijzing": 2
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "Je leest verder dan vandaag, en verder dan je wilde.",
+      "effect": [
+        {
+          "waanzin": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "scheur-4",
+    "tekst": "Een woestijn van zwart glas onder een hemel met twee zonnen. In de verte staan torens die niet door mensenhanden zijn gebouwd, maar ook niet door de wind. Iets heeft hier ooit een stad gebouwd, en is vertrokken. Het glas onder je voeten is nog warm.",
+    "test": {
+      "kenmerk": "scherpte",
+      "moeilijkheid": 8
+    },
+    "gelukt": {
+      "tekst": "In de ruïnes vind je een voorwerp dat de reis waard is. Als je het oppakt, voel je de weg terug onder je voeten.",
+      "effect": [
+        {
+          "trek": "artefacten"
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "De hitte is ondraaglijk en de weg terug is langer dan de weg heen.",
+      "effect": [
+        {
+          "lichaam": -1
+        },
+        {
+          "geest": -1
+        }
+      ]
+    }
+  },
+  {
+    "id": "scheur-5",
+    "tekst": "Je staat in een gang vol deuren. Achter elke deur hoor je een seance aan de gang, en in elke seance noemt iemand jouw naam, alsof jij de geest bent die ze oproepen. De stemmen worden dringender.",
+    "test": {
+      "kenmerk": "overtuiging",
+      "moeilijkheid": 8
+    },
+    "gelukt": {
+      "tekst": "Je antwoordt één keer, met gezag: 'Ik ben niet dood, en ik kom niet.' Alle deuren slaan tegelijk dicht. De stilte voelt als een overwinning.",
+      "effect": [
+        {
+          "geest": 1
+        },
+        {
+          "trofee": 1
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "Je antwoordt elke keer opnieuw. Als je terug bent, is je stem schor en kun je een dag niet praten.",
+      "effect": [
+        {
+          "geest": -2
+        }
+      ]
+    }
+  },
+  {
+    "id": "scheur-6",
+    "tekst": "Je staat op een ijsvlakte onder een ster die veel te groot is. Onder je voeten, diep in het ijs, staat een stad met de torens naar beneden, alsof iemand hem ondersteboven heeft begraven. In de torens brandt nog licht.",
+    "test": {
+      "kenmerk": "kennis",
+      "moeilijkheid": 8
+    },
+    "gelukt": {
+      "tekst": "Je herkent de stand van de sterren en kunt uitrekenen hoe lang het nog duurt voordat het licht in de torens dooft. Het geeft je tijd.",
+      "effect": [
+        {
+          "aanwijzing": 1
+        },
+        {
+          "mist": 1
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "De kou kruipt in je botten en blijft daar nog dagen zitten.",
+      "effect": [
+        {
+          "lichaam": -2
+        }
+      ]
+    }
+  },
+  {
+    "id": "scheur-7",
+    "tekst": "Een feestzaal in Mayfair, maar alle gasten dragen maskers van gezichten die je ooit hebt gekend: je ouders, je oude leraar, een vriend die verdronk. De muziek speelt te langzaam en niemand danst in de maat. Iemand reikt je een masker aan.",
+    "test": {
+      "kenmerk": "scherpte",
+      "moeilijkheid": 8
+    },
+    "gelukt": {
+      "tekst": "Je ziet wie er geen masker draagt: een jongen bij de deur, die je wenkt. Je volgt hem naar buiten en staat weer in Londen.",
+      "effect": [
+        {
+          "aanwijzing": 1
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "Iemand zet je het masker op. Het past precies, en het is moeilijk om het weer af te zetten.",
+      "effect": [
+        {
+          "geest": -1
+        },
+        {
+          "toestand": "vervloekt"
+        }
+      ]
+    }
+  },
+  {
+    "id": "scheur-8",
+    "tekst": "Je staat op een kale heuvel onder een violette hemel. Een man in een wit gewaad heft een lantaarn op, alsof hij je de weg wil wijzen. Zijn gezicht is vriendelijk, en dat maakt het erger. 'Kom maar,' zegt hij. 'Het is niet ver.'",
+    "test": {
+      "kenmerk": "kracht",
+      "moeilijkheid": 8
+    },
+    "gelukt": {
+      "tekst": "Je rukt hem de lantaarn uit handen en gooit hem kapot op de stenen. Het licht gaat uit en de heuvel verdwijnt.",
+      "effect": [
+        {
+          "trofee": 1
+        },
+        {
+          "aanwijzing": 1
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "Het licht van de lantaarn vult je ogen. Je loopt achter hem aan tot de scheur je terugduwt.",
+      "effect": [
+        {
+          "geest": -1
+        },
+        {
+          "lichaam": -1
+        }
+      ]
+    }
+  },
+  {
+    "id": "scheur-vat-1",
+    "god": "vathrun",
+    "tekst": "Je staat in een ronde kamer van oude stenen, diep onder de rivier. Het water staat tot je knieën en is warm. Voor je is een deur met zeven ronde zegels. Drie zijn zwart en gebarsten. Aan de andere kant van de deur ademt iets, langzaam en diep.",
+    "test": {
+      "kenmerk": "kennis",
+      "moeilijkheid": 9
+    },
+    "gelukt": {
+      "tekst": "Je legt je hand op een van de hele zegels en spreekt de woorden die je kent. Het zegel wordt koel. Iets aan de andere kant zucht, teleurgesteld, en de ademhaling vertraagt.",
+      "effect": [
+        {
+          "mist": 1
+        },
+        {
+          "trofee": 1
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "Het vierde zegel kraakt onder je hand. Je trekt je terug, maar het is te laat.",
+      "effect": [
+        {
+          "mist": -1
+        },
+        {
+          "geest": -1
+        }
+      ]
+    }
+  },
+  {
+    "id": "scheur-vat-2",
+    "god": "vathrun",
+    "persoon": "josiah-penhallow",
+    "tekst": "Je staat in een rioolgang die je kent, maar die eindeloos lijkt door te lopen. Verderop brandt een lamp. Josiah Penhallow zit op een kist met tekeningen op zijn knieën, en hij kijkt op alsof hij je verwacht. 'Ze denken dat ik dood ben,' zegt hij. 'Ik ben alleen aan de verkeerde kant van de deur.'",
+    "keuzes": [
+      {
+        "label": "Naar de zegels vragen (Kennis 8)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Penhallow geeft je zijn laatste tekening: welke zegels nog heel zijn en hoe diep ze liggen. 'Zeg Martha dat ik het geprobeerd heb.'",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij praat steeds sneller en steeds minder samenhangend. De lamp gaat uit.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Proberen hem mee terug te nemen (Kracht 9)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Je trekt hem mee naar het licht. Aan deze kant blijft alleen zijn jas in je handen achter, maar in de zak zit zijn rapport, voor het eerst compleet.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij is zwaar als natte klei. Je laat los en valt achterover terug in Londen.",
+          "effect": [
+            {
+              "lichaam": -2
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "scheur-azh-1",
+    "god": "azh-ilareth",
+    "tekst": "Je staat in een zaal vol spiegels, en in elke spiegel staat de ster, groter dan in de vorige. De spiegels hangen zo dat het licht van de een naar de ander wordt doorgegeven, als een weg. Aan het einde van de zaal staat een lege stoel. Op de leuning ligt een witte lantaarn.",
+    "test": {
+      "kenmerk": "kracht",
+      "moeilijkheid": 8
+    },
+    "gelukt": {
+      "tekst": "Je draait één spiegel om naar de muur. Het licht breekt, de weg is onderbroken. Overal in de zaal hoor je glas springen.",
+      "effect": [
+        {
+          "mist": 1
+        },
+        {
+          "trofee": 1
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "Het licht valt vol in je gezicht. Een tijdlang zie je de ster als je je ogen sluit.",
+      "effect": [
+        {
+          "geest": -2
+        }
+      ]
+    }
+  },
+  {
+    "id": "scheur-azh-2",
+    "god": "azh-ilareth",
+    "persoon": "lucan-vey",
+    "tekst": "Je staat op een balkon boven een stad van wit licht. Naast je staat Lucan Vey, zonder jas, met een pen in zijn hand die op niets schrijft. 'Ik moet hem een naam geven,' zegt hij, 'dan kan hij komen. Help me het woord te vinden.'",
+    "keuzes": [
+      {
+        "label": "Hem een ander woord geven (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je fluistert hem een gewoon woord in: de naam van zijn moeder. Hij schrijft het op, verbaasd, en begint te huilen. De witte stad wordt grijs.",
+          "effect": [
+            {
+              "mist": 1
+            },
+            {
+              "geest": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij hoort je niet meer. De pen schrijft verder, en een deel van het woord brandt in je hoofd.",
+          "effect": [
+            {
+              "geest": -1
+            },
+            {
+              "mist": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "De pen afpakken (Kracht 8)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je rukt de pen uit zijn hand. Hij is zwaarder dan hij lijkt, en koud. Je neemt hem mee terug.",
+          "effect": [
+            {
+              "trek": "artefacten"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De pen snijdt in je hand als een mes. Lucan kijkt niet eens op.",
+          "effect": [
+            {
+              "lichaam": -2
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "scheur-neb-1",
+    "god": "nebet-ankhu",
+    "tekst": "Je staat in een graf zonder versiering, zonder naam en zonder sarcofaag. Langs de muren staan honderden maskers van goud, en allemaal hebben ze een ander gezicht. Eén plek aan de muur is leeg. Het masker dat daar hoort, heeft jouw gezicht.",
+    "test": {
+      "kenmerk": "kennis",
+      "moeilijkheid": 9
+    },
+    "gelukt": {
+      "tekst": "Je pakt het masker met jouw gezicht van de grond en breekt het doormidden. De farao heeft één gezicht minder om te lenen.",
+      "effect": [
+        {
+          "trofee": 1
+        },
+        {
+          "mist": 1
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "Je kijkt te lang naar het masker. Als je terug bent, herken je jezelf even niet in de spiegel.",
+      "effect": [
+        {
+          "geest": -2
+        }
+      ]
+    }
+  },
+  {
+    "id": "scheur-neb-2",
+    "god": "nebet-ankhu",
+    "persoon": "lucius-harrowgate",
+    "tekst": "Je staat in de privékamer van Sir Lucius Harrowgate, maar alle meubels zijn van zandsteen. Harrowgate zit aan zijn bureau en schrijft. Zijn gezicht is een gouden vlak, en hij schrijft in hiërogliefen. 'Ik heb hem een thuis gegeven,' zegt hij, met een stem die van ver komt. 'Hij is dankbaar.'",
+    "test": {
+      "kenmerk": "scherpte",
+      "moeilijkheid": 8
+    },
+    "gelukt": {
+      "tekst": "Op het bureau ligt de lijst met kopers, nu in het Egyptisch. Je herkent de namen toch, aan de volgorde. Je weet waar de laatste zegels zijn.",
+      "effect": [
+        {
+          "aanwijzing": 2
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "Harrowgate kijkt op. Het gouden vlak toont kort jouw gezicht.",
+      "effect": [
+        {
+          "geest": -2
+        }
+      ]
+    }
+  },
+  {
+    "id": "scheur-9",
+    "tekst": "Aan de andere kant is het Londen van vroeger, de stad van de grote brand. De huizen van hout en vakwerk staan in lichterlaaie, maar het vuur maakt geen geluid en geeft geen warmte. Mensen lopen kalm door de vlammen met emmers vol zwart water. Een vrouw met een verbrand schort pakt je bij de arm. 'Je bent te vroeg,' zegt ze. 'Of te laat. Dat weet ik nooit.'",
+    "keuzes": [
+      {
+        "label": "Met haar meelopen (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Ze brengt je naar een kelder waar het vuur niet komt, en wijst op een steen in de muur. 'Daar begon het, en daar eindigt het.' Als je de steen aanraakt, sta je weer in je eigen tijd, met as op je mouwen en een plek in je hoofd.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Ze laat je los en loopt verder zonder om te kijken. Het stille vuur kruipt over je laarzen. Het doet geen pijn, maar je ruikt het dagenlang.",
+          "effect": [
+            {
+              "geest": -1
+            },
+            {
+              "lichaam": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Zelf de weg terug zoeken (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je volgt de rook, die als enige de verkeerde kant op waait, en stapt zo terug in de mist van 1888. In je zak zit een verkoold muntje uit een andere eeuw.",
+          "effect": [
+            {
+              "pond": 1
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je loopt in een kring tot je benen het opgeven. Als je terugkomt, is er een nacht voorbij die je je niet herinnert.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "scheur-10",
+    "tekst": "Je zit in de stalles van een leeg theater. Het doek gaat open, en op het toneel speelt een gezelschap zonder gezichten een stuk over jouw leven. Ze zijn al bij vanavond aangekomen. De acteur die jou speelt, kijkt de zaal in en wacht op een tekst die niet in het script staat. Achter je hoor je iemand zacht 'nu' fluisteren.",
+    "keuzes": [
+      {
+        "label": "Het toneel op gaan en je eigen tekst zeggen (Charisma 9)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Je klimt over de voetlichten en zegt wat je werkelijk denkt. De acteurs buigen voor je en het doek valt. Als het weer opgaat, staat er een decor van een plek in Londen die je kent, met een kruisje op de vloer.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je staat op het toneel en er komt geen woord. De acteurs zeggen het dan maar voor je, en het is niet wat je wilde zeggen.",
+          "effect": [
+            {
+              "waanzin": 1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Blijven zitten en goed kijken (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "In het decor zie je details die je in het echt gemist hebt: een sleutel op een schoorsteenmantel, een naam op een kist. Als het licht uitgaat, sta je weer buiten, met alles nog in je hoofd.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "geest": -1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Het stuk gaat verder dan vanavond. Je doet je ogen dicht, maar je hoort nog hoe het afloopt.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "scheur-11",
+    "tekst": "Aan de andere kant regent het omhoog. De druppels stijgen van de straatstenen naar een hemel zonder sterren, en in elke druppel zie je een stukje van een kamer die je kent. Iemand roept je naam vanaf een dak, in de stem van je moeder. De straat helt steeds verder naar boven.",
+    "test": {
+      "kenmerk": "kracht",
+      "moeilijkheid": 8
+    },
+    "gelukt": {
+      "tekst": "Je klemt je vast aan een lantaarnpaal en wacht tot de regen stopt. Dan valt alles in één klap terug naar beneden, en jij ook, terug door de scheur, op de natte stenen van Londen.",
+      "effect": [
+        {
+          "trofee": 1
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "Je laat los. Je valt omhoog, lang, tot je ergens tegen een harde grond slaat. Het is de kade, en het is ochtend.",
+      "effect": [
+        {
+          "lichaam": -2
+        },
+        {
+          "geest": -1
+        }
+      ]
+    }
+  },
+  {
+    "id": "scheur-vat-3",
+    "god": "vathrun",
+    "tekst": "Je staat op de bodem van de Theems, maar de rivier is drooggevallen. Overal liggen wrakken, kettingen en de botten van wat in honderden jaren is verdronken. Een smalle sloot water kronkelt naar het oosten, en daarlangs loopt een man in een bisschopsmantel die voor elke schedel stilstaat en een zegen prevelt. Hij kijkt niet op.",
+    "keuzes": [
+      {
+        "label": "De bisschop aanspreken (Charisma 9)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Hij kijkt je aan met ogen vol slib, maar zijn stem is nog die van een mens. 'Ik was het eerste slot,' zegt hij. 'Breek mij en de deur gaat open. Vergeet dat niet.' Daarna is hij weer weg in zijn gebeden.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij draait zich langzaam om en het water in de sloot begint te stijgen. Je rent naar de kant en haalt het nog net.",
+          "effect": [
+            {
+              "lichaam": -1
+            },
+            {
+              "mist": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Ongezien tussen de wrakken zoeken (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "In een gezonken kist vind je een zegelring met zeven streepjes, groen uitgeslagen. Hij is nog warm.",
+          "effect": [
+            {
+              "trek": "artefacten"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Een wrak zakt onder je voeten weg en trekt je mee. Je komt hoestend boven, aan de goede kant van de scheur.",
+          "effect": [
+            {
+              "lichaam": -2
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "scheur-azh-3",
+    "god": "azh-ilareth",
+    "tekst": "Je staat op een kale heide onder een hemel waar de ster zo dichtbij is dat hij de helft van de lucht vult. Het licht heeft geen kleur en werpt geen schaduw. In het gras zitten mensen in witte gewaden, met hun gezicht omhoog en hun ogen wijd open. Je herkent sommigen van de salons in Mayfair. Ze glimlachen allemaal.",
+    "test": {
+      "kenmerk": "kennis",
+      "moeilijkheid": 9
+    },
+    "gelukt": {
+      "tekst": "Je houdt je hand voor je ogen en telt de sterren eromheen, zoals de monniken op hun kaart deden. Het patroon klopt. Je weet nu hoe ver hij nog moet, en dat het minder ver is dan je hoopte.",
+      "effect": [
+        {
+          "aanwijzing": 1
+        },
+        {
+          "trofee": 1
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "Je kijkt omhoog, heel even maar. Als je weer terug bent, zie je de ster ook met je ogen dicht.",
+      "effect": [
+        {
+          "geest": -2
+        },
+        {
+          "mist": -1
+        }
+      ]
+    }
+  },
+  {
+    "id": "scheur-neb-3",
+    "god": "nebet-ankhu",
+    "tekst": "Je loopt door een gang van zandsteen, verlicht door olielampjes die niemand heeft aangestoken. Langs de muren hangen honderden gezichten, van was en goud en gewone huid, als maskers aan haken. Sommige knipperen. Aan het eind van de gang staat een lege troon, en daarvoor ligt een spiegel met de voorkant naar beneden.",
+    "keuzes": [
+      {
+        "label": "De spiegel omdraaien (Kracht 8)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je draait hem om en ziet geen gezicht, alleen een gang die eindigt in het pakhuis in St Katharine Docks. Je weet nu waar de farao zijn gezichten bewaart, en je bent eruit voordat iets je volgt.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "geest": -1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De spiegel is zwaarder dan hij lijkt. Als hij half omhoog is, zie je in het glas een gezicht dat het jouwe probeert te worden. Je laat hem vallen en rent.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "Teruglopen zonder om te kijken",
+        "tekst": "Je draait je om en loopt terug, langzaam, met je ogen op de vloer. Achter je hoor je hoe de gezichten aan de muur zich één voor één naar je omdraaien. Je kijkt niet, en je komt veilig terug.",
+        "effect": [
+          {
+            "geest": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "scheur-12",
+    "tekst": "Je stapt in een eindeloze wachtkamer van een station. De klok aan de muur heeft geen wijzers, en op de banken zitten reizigers met kaartjes naar plaatsen die niet bestaan. Een conducteur loopt langs en knipt elk kaartje. Als hij bij jou komt, steekt hij zijn hand uit en wacht.",
+    "keuzes": [
+      {
+        "label": "Een kaartje verzinnen (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je geeft hem een gevouwen stukje papier en zegt met vaste stem: 'Retour Londen.' Hij knipt het, tikt tegen zijn pet en wijst je een deur. In het voorbijgaan lees je de bestemmingen op de andere kaartjes, en één ervan ken je wel.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij kijkt lang naar het papiertje en schudt dan zijn hoofd. Je moet wachten, zegt hij, net als de anderen. Het duurt uren voordat je een deur vindt die hij niet bewaakt.",
+          "effect": [
+            {
+              "geest": -1
+            },
+            {
+              "mist": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Op de klok letten (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Na een poos zie je dat de klok wel degelijk loopt, maar achteruit, en alleen als niemand kijkt. Je telt mee en weet precies wanneer de deur opengaat. Je bent er als eerste doorheen.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "geest": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je kijkt zo lang naar de wijzerplaat dat je vergeet waarom. Als je weer terug bent, mis je een paar uur.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "Je politiepenning laten zien",
+        "tekst": "De conducteur kijkt naar de penning, recht zijn rug en tikt tegen zijn pet. 'Dienst gaat voor, meneer,' zegt hij, en hij knipt niets. Hij laat je door de deur van het personeel, en in het voorbijgaan zie je het dienstrooster aan de muur hangen, met namen die je kent.",
+        "effect": [
+          {
+            "aanwijzing": 1
+          },
+          {
+            "trofee": 1
+          }
+        ],
+        "held": [
+          "owen-marsh",
+          "paddy-flynn"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "scheur-13",
+    "tekst": "Je staat in een tuin vol witte rozen, onder een maan die te groot is. Tussen de struiken staat een theetafel gedekt voor tien, maar er zit niemand. De thee is nog warm. Bij elk kopje ligt een naamkaartje, en op één ervan staat jouw naam, in een handschrift dat je kent: dat van je moeder.",
+    "keuzes": [
+      {
+        "label": "Gaan zitten en drinken (Kennis 9)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Je herkent de geur van de thee: het is het brouwsel dat de Bleke Lantaarn gebruikt om visioenen op te roepen. Je doet alsof je drinkt, en luistert naar wat de lege stoelen tegen elkaar zeggen.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De thee smaakt naar thuis. Je drinkt het kopje leeg voordat je weet wat je doet, en daarna wil je nooit meer weg. Het kost je alles om op te staan.",
+          "effect": [
+            {
+              "geest": -2
+            },
+            {
+              "toestand": "verdwaald"
+            }
+          ]
+        }
+      },
+      {
+        "label": "Het naamkaartje omdraaien en weglopen",
+        "tekst": "Op de achterkant staat een adres in Londen. Je stopt het kaartje in je zak en loopt de tuin uit, zonder om te kijken naar de stoel die achter je wordt aangeschoven.",
+        "effect": [
+          {
+            "aanwijzing": 1
+          },
+          {
+            "geest": -1
+          }
+        ]
+      },
+      {
+        "label": "De rozen bezweren met zout",
+        "tekst": "Je strooit een cirkel zout rond de tafel, zoals je grootmoeder in Cork deed. De rozen worden zwart en de maan krimpt tot hij weer gewoon is. In het servet bij jouw kopje zit een gedroogd blad met een teken erop.",
+        "effect": [
+          {
+            "aanwijzing": 1
+          },
+          {
+            "trofee": 1
+          }
+        ],
+        "held": [
+          "bridie-kavanagh"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "scheur-14",
+    "tekst": "Aan de andere kant is het Londen, maar onder water. Je kunt ademen, maar het kost moeite, alsof je door honing ademt. Vissen zwemmen door de ramen van de huizen. Op de bodem van Fleet Street rijdt een omnibus zonder paarden, vol passagiers die allemaal naar boven kijken, naar het licht.",
+    "test": {
+      "kenmerk": "kracht",
+      "moeilijkheid": 8
+    },
+    "gelukt": {
+      "tekst": "Je zet je af tegen de bodem en zwemt naar het licht, sneller dan de stroming. Onderweg grijp je een tas die uit een raam dobbert. Hij is van iemand die vorige week verdween.",
+      "effect": [
+        {
+          "aanwijzing": 1
+        },
+        {
+          "trofee": 1
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "De stroming trekt je naar beneden, naar de omnibus. Een conducteur zonder ogen steekt zijn hand uit. Je rukt je los, maar je longen branden nog dagen.",
+      "effect": [
+        {
+          "lichaam": -2
+        }
+      ]
+    }
+  },
+  {
+    "id": "scheur-15",
+    "tekst": "Je stapt in een zaal met spiegels, en in elke spiegel sta jij, maar telkens een ander leven. In de ene ben je rijk, in de andere dood, in een derde heb je nooit van Londen gehoord. Eén spiegelbeeld zwaait naar je en wijst naar een deur die jij niet ziet.",
+    "keuzes": [
+      {
+        "label": "Het wijzende spiegelbeeld volgen (Waarneming 9)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Je volgt zijn vinger en vindt de deur, half verborgen achter een draperie. Je spiegelbeeld knikt tevreden. Voordat je erdoor stapt, zie je in de verte een gestalte die door alle spiegels tegelijk loopt.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je loopt tegen glas. Nog een keer, en nog een keer. Als je eindelijk een uitgang vindt, weet je niet meer zeker welke van de spiegelbeelden er is uitgestapt.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "Je ogen sluiten en op de tast teruglopen",
+        "tekst": "Je loopt met je handen langs het koude glas tot je weer stenen voelt. Het kost tijd, en de hele weg hoor je jezelf fluisteren. Maar je bent er heelhuids uit.",
+        "effect": [
+          {
+            "geest": -1
+          }
+        ]
+      },
+      {
+        "label": "De truc doorzien",
+        "tekst": "Spiegels zijn je vak. Je ziet meteen welke hoeken vals zijn, waar het licht wordt gebogen en welk glas maar een gordijn is. Je stapt er dwars doorheen, en neemt een van de scherven mee.",
+        "effect": [
+          {
+            "trek": "artefacten"
+          }
+        ],
+        "held": [
+          "albert-gosling",
+          "violet-thorne"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "scheur-16",
+    "tekst": "Je staat in een ziekenzaal van een hospitaal dat honderd jaar geleden is afgebroken. In elk bed ligt iemand onder een laken, en ze ademen allemaal tegelijk. Een verpleegster in een grijze jurk loopt van bed naar bed met een lamp. Ze vraagt of je komt helpen. Er zijn er zoveel.",
+    "keuzes": [
+      {
+        "label": "Helpen (Kennis 8)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je loopt met haar mee en doet wat je kunt. Bij het laatste bed tilt ze het laken op: eronder ligt niemand, maar een opengeslagen boek met de namen van alle zieken. Ze scheurt de laatste bladzijde eruit en geeft hem aan jou.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "geest": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Het zijn er te veel. Bij elk bed dat je verlaat, gaat er een ademhaling uit. Als je terugkomt in Londen, hoor je ze nog.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "Weigeren en de deur zoeken",
+        "tekst": "De verpleegster kijkt je na, niet boos, alleen moe. 'Ze vragen allemaal naar de deur,' zegt ze. Je vindt hem, maar haar stem blijft bij je.",
+        "effect": [
+          {
+            "geest": -1
+          }
+        ]
+      },
+      {
+        "label": "Een gebed uitspreken over de zieken",
+        "tekst": "Je knielt en bidt zoals je dat in de gaarkeuken elke avond doet. Een voor een houden de lakens op met ademen, rustig, alsof ze eindelijk mogen slapen. De verpleegster dooft haar lamp en raakt je schouder aan.",
+        "effect": [
+          {
+            "toestand": "gezegend"
+          },
+          {
+            "trofee": 1
+          }
+        ],
+        "held": [
+          "ezra-whitlock",
+          "odile-fairweather"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "scheur-vat-4",
+    "god": "vathrun",
+    "tekst": "Je staat in een tunnel van gemetselde baksteen, tot je knieën in zwart water. Langs de muur loopt een koperen buis met elke twintig passen een meter. Alle naalden staan in het rood. Verderop hoor je iemand hijgen en met een moersleutel op ijzer slaan. Een lamp schommelt aan een haak.",
+    "keuzes": [
+      {
+        "label": "Naar het geluid lopen (Kracht 8)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je vindt een man in het uniform van de Board of Works, die als een bezetene aan een afsluiter draait. Samen krijgen jullie hem dicht. Hij drukt je zijn tekening in handen. 'Penhallow moet dit zien,' zegt hij, en dan is hij weg, in het water opgelost.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Het water stijgt sneller dan je loopt. Je klimt in een schacht en komt hoestend en doorweekt uit de scheur.",
+          "effect": [
+            {
+              "lichaam": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "De meters aflezen (Kennis 8)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "De druk stijgt in een ritme. Het is geen getij: het is een ademhaling. Je schrijft de tijden op die tussen de pieken zitten. Ze worden korter.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De cijfers dansen voor je ogen. Achter je klinkt een gorgelend geluid, alsof iets in de buis je naam probeert te zeggen.",
+          "effect": [
+            {
+              "geest": -1
+            },
+            {
+              "mist": -1
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "scheur-azh-4",
+    "god": "azh-ilareth",
+    "persoon": "aurelian-croft",
+    "tekst": "Je zit op de eerste rij van een concertzaal zonder plafond. Boven je brandt de nieuwe ster. Op het podium dirigeert Aurelian Croft een orkest van mensen met verbonden ogen. De muziek is zo mooi dat je niet kunt bewegen. Op de lessenaar voor hem ligt een partituur die met elke maat langer wordt.",
+    "keuzes": [
+      {
+        "label": "De partituur lezen (Kennis 9)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Je kunt geen noten lezen, maar dit zijn geen noten: het zijn coördinaten, in maten van drie. Je prent de laatste regel in je geheugen voordat de muziek je weer meesleept.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je leest één maat en hoort hem daarna overal: in de wielen van een rijtuig, in de regen, in je eigen hartslag.",
+          "effect": [
+            {
+              "geest": -2
+            },
+            {
+              "waanzin": 1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Opstaan en weglopen (Kracht 8)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Het kost je alle kracht die je hebt, alsof je tegen een storm in loopt. Bij de uitgang draai je je om. Croft dirigeert nog steeds, maar hij kijkt je recht aan, en hij glimlacht niet meer.",
+          "effect": [
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je benen willen niet. Pas als het stuk afgelopen is, laat de muziek je los, en dan staat de ster weer een stukje dichterbij.",
+          "effect": [
+            {
+              "geest": -1
+            },
+            {
+              "mist": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Een valse noot spelen",
+        "tekst": "Je neuriet, fluit of strijkt precies één toon ernaast, zoals je dat ooit leerde om een zaal wakker te schudden. Het orkest stokt. Croft laat zijn stokje zakken, en in de stilte trekt de scheur zich om je heen dicht.",
+        "effect": [
+          {
+            "trofee": 1
+          },
+          {
+            "aanwijzing": 1
+          }
+        ],
+        "held": [
+          "clementine-ashby",
+          "esme-valentine"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "scheur-neb-4",
+    "god": "nebet-ankhu",
+    "tekst": "Je staat in een tentoonstellingszaal van het British Museum, maar dan bij nacht en zonder één bezoeker. De vitrines zijn leeg. De beelden staan niet op hun sokkels maar in een lange rij voor de uitgang, alsof ze ergens op wachten. Aan het hoofd van de rij staat een kleine gestalte in linnen gewikkeld.",
+    "keuzes": [
+      {
+        "label": "Langs de rij sluipen (Waarneming 9)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Je glijdt van schaduw naar schaduw. Op de sokkel van het eerste beeld staat een naam gekrast, in een schrift dat je net kunt lezen: een plek in Londen, en een datum.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Een van de beelden draait zijn stenen hoofd naar je om. Je rent, en de hele rij draait zich langzaam mee.",
+          "effect": [
+            {
+              "geest": -1
+            },
+            {
+              "lichaam": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "De gestalte in het oud-Egyptisch aanspreken",
+        "tekst": "Je groet de kleine gestalte met de woorden die je in Thebe leerde, de groet voor de doden. Hij buigt zijn hoofd, en de rij beelden zakt terug op de sokkels. Hij reikt je iets aan uit zijn windsels.",
+        "effect": [
+          {
+            "trek": "artefacten"
+          },
+          {
+            "aanwijzing": 1
+          }
+        ],
+        "held": [
+          "cornelius-bray",
+          "septimus-crane",
+          "hester-quayle"
+        ]
+      },
+      {
+        "label": "Terug door de scheur",
+        "tekst": "Je wilt er niets mee te maken hebben. Je stapt terug, maar de laatste blik die je opvangt, is die van de kleine gestalte, die zijn hoofd schuin houdt alsof hij je naam onthoudt.",
+        "effect": [
+          {
+            "geest": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "scheur-ysm-1",
+    "god": "ysmara",
+    "tekst": "Je stapt in een woud waar Londen had moeten zijn. De bomen zijn zo hoog dat je de toppen niet ziet, en tussen de stammen hangen lantaarns van glas en dauw. Aan een lange tafel zit een feestmaal klaar, voor honderd gasten. Alle stoelen zijn leeg, op één na: een kind met een kroontje, dat je wenkt.",
+    "keuzes": [
+      {
+        "label": "Niets eten en doorlopen",
+        "tekst": "Je loopt langs de tafel zonder te kijken. Het eten ruikt naar alles waar je ooit van hield. Aan het eind van de tafel ligt een dolk van zwart hout, die je meeneemt.",
+        "effect": [
+          {
+            "geest": -1
+          },
+          {
+            "trek": "artefacten"
+          }
+        ]
+      },
+      {
+        "label": "Met het kind praten (Charisma 9)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Het kind is een prinsje van het hof, en verveelt zich. Het vertelt je, in ruil voor een verhaal over Londen, wie de Koningin dient in de stad.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Het kind wordt boos omdat je verhaal saai is. De lantaarns gaan uit.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "scheur-ysm-2",
+    "god": "ysmara",
+    "tekst": "Aan de andere kant is het zomer, en je staat op een heuvel vol meidoorn. In de verte zie je Londen, maar klein, als een speelgoedstad. Om de heuvel loopt een rij kinderen, hand in hand, steeds rond en rond. Ze zingen het rijmpje. Bij elke ronde is er één kind meer.",
+    "test": {
+      "kenmerk": "scherpte",
+      "moeilijkheid": 9
+    },
+    "gelukt": {
+      "tekst": "Je telt de kinderen en onthoudt hun gezichten. Eén ervan herken je van een opsporingsbericht. Je weet nu dat ze nog leven, ergens.",
+      "effect": [
+        {
+          "aanwijzing": 2
+        },
+        {
+          "trofee": 1
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "Je telt mee, en bij de laatste tel sta je zelf in de kring. Iemand trekt je eruit aan je jas. Je weet niet wie.",
+      "effect": [
+        {
+          "geest": -2
+        },
+        {
+          "mist": -1
+        }
+      ]
+    }
+  },
+  {
+    "id": "scheur-ysm-3",
+    "god": "ysmara",
+    "tekst": "Je staat in een slaapzaal van een weeshuis, maar de bedden zijn van mos en de dekens van bladeren. In elk bed ligt een kind te slapen, met een glimlach. Bij het raam zit een vrouw met een kroon van doorns te breien, aan iets dat op een kinderhemdje lijkt, maar van spinrag is.",
+    "keuzes": [
+      {
+        "label": "Een kind wakker maken (Kracht 8)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je schudt een meisje wakker en draagt haar naar het raam. De vrouw kijkt niet op van haar breiwerk. Je springt, en landt met het kind in je armen op de stoep in Chelsea.",
+          "effect": [
+            {
+              "trofee": 1
+            },
+            {
+              "geest": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Het kind wordt niet wakker. Het weegt meer dan een kind hoort te wegen. Je moet het laten liggen.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "Het breiwerk bekijken (Kennis 9)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Het is geen hemdje. Het is een kaart, gebreid in groen en wit: de straten van Londen, en de plek waar de draden samenkomen.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Ze kijkt op. Je kunt je niet meer bewegen tot ze weer verder breit.",
+          "effect": [
+            {
+              "geest": -1
+            },
+            {
+              "lichaam": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Naast haar gaan zitten en meebreien",
+        "tekst": "Je pakt de draad op en breit verder, steek voor steek, en zij laat het toe. Je breit een fout in het patroon, expres. Overal in de zaal worden kinderen wakker.",
+        "effect": [
+          {
+            "trofee": 1
+          },
+          {
+            "aanwijzing": 1
+          }
+        ],
+        "held": [
+          "aggie-pruitt"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "scheur-mor-1",
+    "god": "morghast",
+    "tekst": "Je staat in Londen, in 1665. De huizen hebben rode kruisen op de deur, en in de straat rijdt een kar met lichamen, getrokken door een man met een bel. 'Breng uw doden,' roept hij. Hij stopt voor jou en kijkt je aan. 'U staat al op mijn lijst,' zegt hij vriendelijk.",
+    "keuzes": [
+      {
+        "label": "Zeggen dat hij zich vergist (Charisma 9)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Hij kijkt in zijn boek, fronst, en streept je naam door. Onder jouw naam staat een andere, die je wel kent, van iemand uit jouw tijd. Je weet nu wie de volgende is.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij schudt zijn hoofd en schrijft iets bij je naam. Je voelt je ineens heel koud.",
+          "effect": [
+            {
+              "lichaam": -1
+            },
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Op de kar klimmen en de lichamen tellen (Kracht 9)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Tussen de doden ligt iemand die leeft, een jongen. Je trekt hem eraf en draagt hem door de scheur terug. In jouw Londen is hij een oude man, die je huilend bedankt.",
+          "effect": [
+            {
+              "trofee": 1
+            },
+            {
+              "geest": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De lichamen grijpen je. Je komt terug met de geur van kalk die niet meer van je huid wil.",
+          "effect": [
+            {
+              "lichaam": -2
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "scheur-mor-2",
+    "god": "morghast",
+    "tekst": "Je staat in een eindeloze anatomiezaal. Op honderden tafels liggen lichamen onder lakens, en tussen de tafels lopen chirurgen zonder gezicht. Op elk laken staat een naam en een datum. Ze zijn allemaal van volgende week.",
+    "test": {
+      "kenmerk": "scherpte",
+      "moeilijkheid": 9
+    },
+    "gelukt": {
+      "tekst": "Je loopt tussen de tafels en leest snel. De meeste namen ken je niet, maar ze komen allemaal uit dezelfde drie straten. Je weet nu waar het gaat beginnen.",
+      "effect": [
+        {
+          "aanwijzing": 2
+        },
+        {
+          "trofee": 1
+        }
+      ]
+    },
+    "mislukt": {
+      "tekst": "Een chirurg zonder gezicht pakt je bij je arm en leidt je naar een lege tafel. Je rukt je los, maar het laken met jouw naam heb je gezien.",
+      "effect": [
+        {
+          "geest": -2
+        },
+        {
+          "mist": -1
+        }
+      ]
+    }
+  },
+  {
+    "id": "scheur-mor-3",
+    "god": "morghast",
+    "tekst": "Aan de andere kant is het donker en het ruikt naar kalk. Je staat tot je middel in beenderen, in een put zonder wanden. Ver boven je schijnt een cirkel van grijs licht. Onder je, heel diep, ademt iets langzaam in en uit, en bij elke ademhaling zakken de beenderen een stukje.",
+    "keuzes": [
+      {
+        "label": "Naar het licht klimmen (Kracht 9)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Je klimt over schedels en ribben, met je tanden op elkaar. Boven kom je uit op een kerkhof in Spitalfields, met een handvol beenderen in je vuist die een richting aanwijzen als je ze laat vallen.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je zakt dieper. Het ademen komt dichterbij. Je weet niet meer hoe je eruit kwam.",
+          "effect": [
+            {
+              "lichaam": -1
+            },
+            {
+              "geest": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "Luisteren naar de ademhaling (Kennis 10)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 10
+        },
+        "gelukt": {
+          "tekst": "Het is een ritme, en het ritme heeft een betekenis: het telt af. Je weet nu hoe lang de Slaper nog slaapt.",
+          "effect": [
+            {
+              "aanwijzing": 3
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je luistert te goed. Je eigen hart gaat meeslaan in het ritme.",
+          "effect": [
+            {
+              "geest": -2
+            },
+            {
+              "waanzin": 1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Een gebed voor de doden opzeggen",
+        "tekst": "Je bidt voor ze, alle duizenden, bij naam als je kon. De beenderen houden op met zakken. Er komt een trap van ribben naar je toe, en je klimt eruit.",
+        "effect": [
+          {
+            "trofee": 1
+          },
+          {
+            "mist": 1
+          }
+        ],
+        "held": [
+          "ezra-whitlock"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "scheur-omm-1",
+    "tekst": "Je staat in een vlakte vol mensen, zover als je kunt kijken. Ze staan in rijen, schouder aan schouder, allemaal met het gezicht naar een heuvel. Op de heuvel staat niemand. Toch zingen ze ervoor. Naast je staat iemand die je kent.",
+    "keuzes": [
+      {
+        "label": "Je bekende uit de rij trekken (Kracht 9)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Het is een gezicht uit je jeugd. Hij struikelt mee, terug door de Scheur, en kijkt verbaasd naar Londen. Hij vertelt je hoe lang hij heeft gestaan.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij laat zich niet trekken. Je laat los voordat je zelf in de rij staat.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "Langs de rijen terug lopen",
+        "tekst": "Je loopt tot je de Scheur weer ziet. Op de grond ligt een herdersbelletje van tin, dat niet klinkt als je het schudt.",
+        "effect": [
+          {
+            "geest": -1
+          },
+          {
+            "trek": "artefacten"
+          }
+        ]
+      }
+    ],
+    "god": "ommeth"
+  },
+  {
+    "id": "scheur-omm-2",
+    "tekst": "Een stal, eindeloos lang. In elk hok staat een mens, rustig, met een nummer om zijn hals. Aan het eind brandt een lantaarn, en daar zit iemand te tellen op een telraam van tanden.",
+    "keuzes": [
+      {
+        "label": "Het telraam stelen (Waarneming 9)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Je grist het van de tafel en rent. Achter je hoor je geen voetstappen, alleen een getal dat telkens opnieuw wordt uitgesproken, en telkens fout.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "mist": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De teller kijkt op. Er hangt nu een nummer om jouw hals.",
+          "effect": [
+            {
+              "geest": -2
+            },
+            {
+              "lichaam": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "De nummers lezen",
+        "tekst": "Je leest ze één voor één. Het zijn er duizenden. De laatste nummers hebben nog geen mens in het hok.",
+        "effect": [
+          {
+            "aanwijzing": 1
+          },
+          {
+            "geest": -1
+          }
+        ]
+      }
+    ],
+    "god": "ommeth"
+  },
+  {
+    "id": "scheur-omm-3",
+    "tekst": "Je staat op een kerkplein waar alle huizen naar binnen kijken. Op de stoep van de kerk zit een man met een herdersstaf, die je toeknikt. 'Je bent laat,' zegt hij. 'De anderen zijn al binnen.'",
+    "keuzes": [
+      {
+        "label": "Vragen wie de anderen zijn (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Hij noemt namen, vriendelijk, als een gastheer. Je herkent er drie uit de registers van de werkhuizen.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij noemt jouw naam, als laatste van de lijst.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "Niet naar binnen gaan",
+        "tekst": "Je draait je om. De huizen draaien met je mee, maar je vindt de Scheur terug.",
+        "effect": [
+          {
+            "geest": -1
+          }
+        ]
+      }
+    ],
+    "god": "ommeth"
+  },
+  {
+    "id": "scheur-kar-1",
+    "tekst": "Je staat in een zaal zonder muren, vol vitrines tot aan de horizon. In elke vitrine ligt een stuk van iets. In de dichtstbijzijnde ligt je eigen gezicht, in zeven stukken.",
+    "keuzes": [
+      {
+        "label": "Een vitrine openen",
+        "tekst": "Je neemt mee wat erin ligt. Het is warm, en het fluistert je naam.",
+        "effect": [
+          {
+            "trek": "artefacten"
+          },
+          {
+            "geest": -2
+          }
+        ]
+      },
+      {
+        "label": "Het opschrift lezen (Kennis 8)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "'Hier ligt wat gebroken werd, zodat de wereld heel kon blijven.' Je begrijpt nu waarom de stukken nooit samen mogen komen.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De letters veranderen terwijl je kijkt. Het laatste woord is je eigen naam.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      }
+    ],
+    "god": "karathos"
+  },
+  {
+    "id": "scheur-kar-2",
+    "tekst": "Een woestijn van zwart glas, gebarsten in zeven richtingen. Uit elke barst klinkt een stem, en alle zeven roepen hetzelfde: kom.",
+    "keuzes": [
+      {
+        "label": "Een barst volgen (Waarneming 9)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Je komt uit bij een plek die je kent: de bodem van de Theems, bij Wapping. Nu weet je waar een stuk ligt.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Het glas snijdt door je schoenen heen.",
+          "effect": [
+            {
+              "lichaam": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "Je oren dichtstoppen en teruglopen",
+        "tekst": "Je hoort ze nog steeds, maar zachter.",
+        "effect": [
+          {
+            "geest": -1
+          }
+        ]
+      }
+    ],
+    "god": "karathos"
+  },
+  {
+    "id": "scheur-kar-3",
+    "tekst": "Een kapel in de vorm van een kruis. Op het altaar ligt een zwaard, gebroken. Zeven ridders liggen op de grond, in een kring, met hun handen gevouwen. Een van hen opent zijn ogen.",
+    "keuzes": [
+      {
+        "label": "Met hem praten (Charisma 9)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Hij spreekt Normandisch Frans, maar je begrijpt hem. 'Verberg ze,' zegt hij. 'Breng ze naar plekken waar niemand zoekt. Het water. Het lood.' Dan sluit hij zijn ogen.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "toestand": "gezegend"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Hij ziet de splinter in je zak en grijpt naar zijn zwaard.",
+          "effect": [
+            {
+              "lichaam": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "Een knie buigen en vertrekken",
+        "tekst": "De ridder knikt. Je voelt je lichter.",
+        "effect": [
+          {
+            "geest": 1
+          }
+        ]
+      }
+    ],
+    "god": "karathos"
+  },
+  {
+    "id": "scheur-ulv-1",
+    "tekst": "Je staat op een vlakte van ijs zo glad als glas. Onder het ijs zie je Londen, ondersteboven. Boven je is niets: geen hemel, geen sterren, alleen weer, dat draait als een wiel.",
+    "keuzes": [
+      {
+        "label": "Over het ijs lopen (Kracht 8)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je loopt tot je boven je eigen huis staat. Daar ligt een kompas op het ijs dat niet naar het noorden wijst, maar naar de storm.",
+          "effect": [
+            {
+              "trek": "artefacten"
+            },
+            {
+              "lichaam": -1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je glijdt uit en valt. Het ijs is koud tot in je botten.",
+          "effect": [
+            {
+              "lichaam": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "Het wiel van het weer bekijken (Kennis 9)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Je ziet het patroon: drie slechte dagen, één goede. Telkens weer. Je onthoudt de volgorde.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je wordt duizelig en valt op het ijs.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      }
+    ],
+    "god": "ulvereth"
+  },
+  {
+    "id": "scheur-ulv-2",
+    "tekst": "Een tuin in volle zon, warm als juni. Er staat een tafel met thee en taart. Een vrouw in een wit zomerjurk wenkt je. 'Blijf toch,' zegt ze. 'Hier is het altijd mooi weer.'",
+    "keuzes": [
+      {
+        "label": "Een kopje thee drinken",
+        "tekst": "Het is de beste thee van je leven. Na een kopje sta je op, met grote moeite. Je bent uitgerust als nooit tevoren.",
+        "effect": [
+          {
+            "lichaam": 3
+          },
+          {
+            "geest": 2
+          },
+          {
+            "mist": -1
+          }
+        ]
+      },
+      {
+        "label": "Vragen wie ze is (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Ze is de goede helft, zegt ze. Ze is moe. Ze vertelt je hoe ze de slechte helft in bedwang houdt, als iemand haar helpt.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "toestand": "gezegend"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Ze glimlacht en schenkt in. Achter haar betrekt de lucht.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      }
+    ],
+    "god": "ulvereth"
+  },
+  {
+    "id": "scheur-ulv-3",
+    "tekst": "Je staat midden in een onweer dat al duizend jaar duurt. De bliksem slaat in op een toren van zwart glas. Elke keer licht er een raam op, en achter elk raam staat iemand die naar Londen kijkt.",
+    "keuzes": [
+      {
+        "label": "Naar de toren rennen (Kracht 9)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Bij de voet van de toren vind je een koperen staaf, half gesmolten. Hij trilt in je hand.",
+          "effect": [
+            {
+              "trek": "artefacten"
+            },
+            {
+              "aanwijzing": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De bliksem slaat vlak naast je in.",
+          "effect": [
+            {
+              "lichaam": -2
+            },
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Schuilen tot het lichter wordt",
+        "tekst": "Het wordt niet lichter. Na een uur geef je het op en zoek je de Scheur terug.",
+        "effect": [
+          {
+            "geest": -1
+          }
+        ]
+      }
+    ],
+    "god": "ulvereth"
+  },
+  {
+    "id": "scheur-sir-1",
+    "tekst": "Je staat in een balzaal zonder einde. Overal dansen paren, en iedereen draagt een masker van je eigen gezicht. Aan het eind van de zaal zit iemand op een troon, met een waaier voor haar gezicht.",
+    "keuzes": [
+      {
+        "label": "Een masker afnemen (Kracht 8)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Onder het masker zit een man die je kent van een aangifte bij Voss. Hij knippert en vraagt waar hij is. Je neemt hem mee terug.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Onder het masker zit nog een masker. En nog een.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "Langs de rand van de zaal sluipen",
+        "tekst": "Niemand houdt je tegen. Op een tafel ligt een waaier van zwart kant, die je meeneemt.",
+        "effect": [
+          {
+            "trek": "artefacten"
+          },
+          {
+            "toestand": "betoverd"
+          }
+        ]
+      }
+    ],
+    "god": "sirrhae"
+  },
+  {
+    "id": "scheur-sir-2",
+    "tekst": "Een spiegelzaal. In elke spiegel zie je jezelf, maar mooier, rijker, gelukkiger. Een van de spiegelbeelden stapt naar voren en steekt zijn hand naar je uit.",
+    "keuzes": [
+      {
+        "label": "De hand niet aannemen (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je zegt nee. Het spiegelbeeld trekt zijn hand terug en wordt gewoon, en dan wordt het jij, zoals je bent. Dat is genoeg.",
+          "effect": [
+            {
+              "geest": 2
+            },
+            {
+              "aanwijzing": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je pakt de hand. Hij is koud als glas.",
+          "effect": [
+            {
+              "toestand": "betoverd"
+            },
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Een spiegel breken",
+        "tekst": "Je slaat met je vuist. Je hand bloedt, maar alle spiegelbeelden houden op met glimlachen.",
+        "effect": [
+          {
+            "lichaam": -1
+          },
+          {
+            "aanwijzing": 1
+          }
+        ]
+      }
+    ],
+    "god": "sirrhae"
+  },
+  {
+    "id": "scheur-sir-3",
+    "tekst": "Een tuin vol rozen die naar haar parfum ruiken. Tussen de rozen staan beelden van mensen, in het wit, allemaal met een glimlach. Op de sokkels staan namen. Je herkent er een uit de krant.",
+    "keuzes": [
+      {
+        "label": "De namen opschrijven (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je schrijft er twintig op voordat de rozen hun kop naar je toe draaien.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De geur maakt je slaperig.",
+          "effect": [
+            {
+              "geest": -1
+            },
+            {
+              "toestand": "betoverd"
+            }
+          ]
+        }
+      },
+      {
+        "label": "Een roos plukken",
+        "tekst": "Hij verwelkt in je hand, en de beelden draaien allemaal hun hoofd naar je toe.",
+        "effect": [
+          {
+            "geest": -2
+          },
+          {
+            "trofee": 1
+          }
+        ]
+      }
+    ],
+    "god": "sirrhae"
+  },
+  {
+    "id": "scheur-our-1",
+    "tekst": "Je staat in een kamer vol klokken, zo groot als een kathedraal. Ze slaan allemaal tegelijk, maar elk een ander uur. Tussen de slingers loopt een kind met een sleutel, dat ze een voor een opwindt.",
+    "keuzes": [
+      {
+        "label": "Het kind de sleutel afnemen (Kracht 8)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Het kind laat los en kijkt verbaasd. De klokken lopen langzamer. De sleutel is warm en gaat mee terug.",
+          "effect": [
+            {
+              "trek": "artefacten"
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Het kind steekt de sleutel in jouw rug en draait één keer.",
+          "effect": [
+            {
+              "geest": -2
+            },
+            {
+              "lichaam": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "De klokken tellen (Kennis 9)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Er zijn er 1888. Elke klok is een jaar. Die van dit jaar staat het dichtst bij de deur, en hij tikt het hardst.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Bij de vierhonderdste raak je de tel kwijt, en een stukje van jezelf.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      }
+    ],
+    "god": "ouroch"
+  },
+  {
+    "id": "scheur-our-2",
+    "tekst": "Een straat in Londen, maar honderd jaar terug. Mensen in pruiken lopen langs zonder je te zien. Op een muur hangt een aanplakbiljet: de elf dagen van 1752 worden overgeslagen. Iemand heeft eronder geschreven: 'Wie krijgt ze?'",
+    "keuzes": [
+      {
+        "label": "De schrijver zoeken (Waarneming 8)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Het is een klokkenmaker met een Franse naam en een loep in zijn oog. Hij lijkt op Penrose, maar ouder. Hij geeft je een tandwiel met dertien tanden.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De straat schuift verder, een jaar, tien jaar.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Snel terug naar de Scheur",
+        "tekst": "Je haalt hem net. Op je jas zit een laagje stof van honderd jaar.",
+        "effect": [
+          {
+            "geest": -1
+          }
+        ]
+      }
+    ],
+    "god": "ouroch"
+  },
+  {
+    "id": "scheur-our-3",
+    "tekst": "Je staat tussen twee seconden in. Alles staat stil: een vogel in de lucht, een regendruppel, een man die struikelt. Alleen jij beweegt. In de verte tikt iets, heel langzaam, steeds dichterbij.",
+    "keuzes": [
+      {
+        "label": "De struikelende man opvangen",
+        "tekst": "Je zet hem rechtop en loopt verder. Als de tijd weer gaat lopen, zal hij niet vallen. Het voelt als iets goeds.",
+        "effect": [
+          {
+            "geest": 2
+          },
+          {
+            "trofee": 1
+          }
+        ]
+      },
+      {
+        "label": "Naar het tikken toe lopen (Kennis 9)",
+        "test": {
+          "kenmerk": "kennis",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Het is een uurwerk zo groot als een stad, en het staat op het punt dertien te slaan. Je ziet waar het zwak is.",
+          "effect": [
+            {
+              "aanwijzing": 3
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Het tikken komt naar jou toe.",
+          "effect": [
+            {
+              "geest": -2
+            },
+            {
+              "monster": 1
+            }
+          ]
+        }
+      }
+    ],
+    "god": "ouroch"
+  },
+  {
+    "id": "scheur-yth-1",
+    "tekst": "Je staat in een drukkerij zo groot als een stad. Duizend persen draaien. Op elk vel staat een andere versie van Londen. Op sommige ben jij er niet. Op één ben jij de enige die er nog is.",
+    "keuzes": [
+      {
+        "label": "Je eigen vel zoeken (Waarneming 9)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Je vindt het vel van dit Londen, en je ziet waar de leugens erin zijn gezet: zeven plekken, met rode inkt. Je neemt het mee.",
+          "effect": [
+            {
+              "aanwijzing": 3
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je leest te veel versies. Bij de vijftigste weet je niet meer welke de jouwe is.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "Een pers stilzetten (Kracht 8)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je ramt een ijzeren staaf tussen de rollen. Een Londen houdt op met bestaan, ergens. Hopelijk niet het jouwe.",
+          "effect": [
+            {
+              "trofee": 1
+            },
+            {
+              "aanwijzing": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je mouw raakt tussen de rollen.",
+          "effect": [
+            {
+              "lichaam": -2
+            }
+          ]
+        }
+      }
+    ],
+    "god": "yth-nemora"
+  },
+  {
+    "id": "scheur-yth-2",
+    "tekst": "Een rechtszaal. Op de stoel van de getuige zit jij. De rechter vraagt: 'Zweert u de waarheid te zeggen, en niets dan de waarheid?' In de zaal zitten alle mensen die je ooit hebt gekend.",
+    "keuzes": [
+      {
+        "label": "De waarheid zeggen (Charisma 8)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 8
+        },
+        "gelukt": {
+          "tekst": "Je vertelt alles, ook wat je niet wilt. De zaal is stil. Dan staat de rechter op en knikt. Je voelt je lichter dan in jaren.",
+          "effect": [
+            {
+              "geest": 2
+            },
+            {
+              "toestand": "gezegend"
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je hoort jezelf liegen, en het klinkt overtuigend.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "Zwijgen",
+        "tekst": "De rechter slaat met zijn hamer. Je staat weer bij de Scheur, met een dossier in je handen dat je niet had.",
+        "effect": [
+          {
+            "aanwijzing": 1
+          },
+          {
+            "geest": -1
+          }
+        ]
+      }
+    ],
+    "god": "yth-nemora"
+  },
+  {
+    "id": "scheur-yth-3",
+    "tekst": "Een straat waar alle mensen tegelijk praten, en alles wat ze zeggen, wordt meteen waar. Een vrouw zegt dat het regent, en het regent. Een man zegt dat jij een dief bent.",
+    "keuzes": [
+      {
+        "label": "Iets zeggen voordat iemand anders het doet (Charisma 9)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Je roept: 'Ik vind de weg terug, en ik neem mee wat ik nodig heb.' Het wordt waar.",
+          "effect": [
+            {
+              "trek": "artefacten"
+            },
+            {
+              "aanwijzing": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je bent te laat. Iemand zegt dat je verdwaald bent.",
+          "effect": [
+            {
+              "geest": -1
+            },
+            {
+              "toestand": "verdwaald"
+            }
+          ]
+        }
+      },
+      {
+        "label": "Je oren dichtstoppen",
+        "tekst": "Je hoort niets en je loopt terug. Op je jas zit een briefje met een adres, in een handschrift dat je niet kent.",
+        "effect": [
+          {
+            "aanwijzing": 1
+          }
+        ]
+      }
+    ],
+    "god": "yth-nemora"
+  },
+  {
+    "id": "scheur-gul-1",
+    "tekst": "Je staat in een kluis zonder einde, vol goud tot aan het plafond. In het goud zitten mensen, tot hun nek, die rekenen. Een van hen kijkt op. 'Help me,' zegt hij. 'Ik ben bijna klaar met aflossen.'",
+    "keuzes": [
+      {
+        "label": "Hem eruit trekken (Kracht 9)",
+        "test": {
+          "kenmerk": "kracht",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Het goud laat hem met tegenzin los. Hij is iemand uit de registers van de Kettering Bank. Terug in Londen vertelt hij je alles.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Het goud trekt aan je benen. Je komt los, zonder je schoenen.",
+          "effect": [
+            {
+              "lichaam": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "Een handvol goud meenemen",
+        "tekst": "Het is echt goud, en het is zwaar. Thuis is het nog steeds goud. Maar je droomt die nacht van een kluis.",
+        "effect": [
+          {
+            "pond": 4
+          },
+          {
+            "toestand": "schuld-hand"
+          }
+        ]
+      }
+    ],
+    "god": "gul-marrach"
+  },
+  {
+    "id": "scheur-gul-2",
+    "tekst": "Een marktplein waar alles te koop is: herinneringen, jaren, kleuren. Een koopman biedt je een jaar extra leven aan. 'Voor bijna niets,' zegt hij. 'Een kleinigheid. U merkt het niet eens.'",
+    "keuzes": [
+      {
+        "label": "Afdingen (Charisma 9)",
+        "test": {
+          "kenmerk": "overtuiging",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Je dingt af tot hij lacht. Hij geeft je iets kleiners, maar eerlijk: een geheim, voor niets.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "Je betaalt meer dan je wilde. Je weet niet meer precies wat.",
+          "effect": [
+            {
+              "geest": -2
+            }
+          ]
+        }
+      },
+      {
+        "label": "Niets kopen en doorlopen",
+        "tekst": "De kooplieden roepen je na, steeds harder, tot je de Scheur bereikt.",
+        "effect": [
+          {
+            "geest": -1
+          }
+        ]
+      }
+    ],
+    "god": "gul-marrach"
+  },
+  {
+    "id": "scheur-gul-3",
+    "tekst": "Een kantoor zonder ramen met duizend lessenaars. Aan elke lessenaar zit een klerk die een getal opschrijft. Aan het eind van de zaal ligt een grootboek open, en een hand zonder lichaam schrijft erin.",
+    "keuzes": [
+      {
+        "label": "Een bladzijde uitscheuren (Waarneming 9)",
+        "test": {
+          "kenmerk": "scherpte",
+          "moeilijkheid": 9
+        },
+        "gelukt": {
+          "tekst": "Je scheurt hem eruit terwijl de hand de pagina omslaat. Er staan namen op, en bedragen. Een van de namen is van een Londense bisschop.",
+          "effect": [
+            {
+              "aanwijzing": 3
+            }
+          ]
+        },
+        "mislukt": {
+          "tekst": "De hand grijpt je pols. Je komt los, maar er staat nu een getal op je huid.",
+          "effect": [
+            {
+              "toestand": "schuld-hand"
+            },
+            {
+              "geest": -1
+            }
+          ]
+        }
+      },
+      {
+        "label": "Een klerk vragen wat hij schrijft",
+        "tekst": "'Wat iedereen kost,' zegt hij zonder op te kijken. 'Jij bent goedkoop.'",
+        "effect": [
+          {
+            "geest": -1
+          },
+          {
+            "aanwijzing": 1
+          }
+        ]
+      }
+    ],
+    "god": "gul-marrach"
+  }
 ]

@@ -662,3 +662,9 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);ou
 .sectie h3 .tas.vol,.sectie h3 .tas.vol b{color:var(--bad)}
 .sectie h3 .tas.vol i.aan{background:var(--bad);border-color:var(--bad)}
 .tasvol-melding{margin:6px 0 10px;padding:8px 10px;border-left:4px solid var(--bad);background:color-mix(in srgb,var(--bad) 12%,var(--paper));font-size:14px}
+/* Nieuwere goden: een chip in de bovenbalk (weer, kudde, koers, splinters, onzekere Aanwijzingen) en bevroren plekken op het bord */
+.godchip{appearance:none;cursor:pointer;color:inherit;font:inherit;background:transparent;border:1px solid var(--mist);border-radius:4px;padding:2px 8px}
+.godchip.goed{border-color:var(--good)}
+.godchip.slecht{border-color:var(--bad)}
+.bord .plek.bevroren .medaillon{stroke:#cfefff;stroke-width:5;stroke-dasharray:3 3}
+.pools small{font-size:11px;margin-left:3px;color:var(--mist)}

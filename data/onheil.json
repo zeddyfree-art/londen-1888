@@ -934,5 +934,592 @@
         "waarde": -1
       }
     ]
+  },
+  {
+    "id": "o-omm-1",
+    "naam": "De processie groeit",
+    "mist": 1,
+    "scheur": 1,
+    "monster": 0,
+    "extra": "Er verschijnt een Cultist in Whitechapel en een in Limehouse.",
+    "tekst": "Vannacht lopen er tweehonderd mensen mee in plaats van honderd. Ze komen uit de werkhuizen, de logementen en de kerken, en ze zingen allemaal dezelfde vijf tonen.",
+    "acties": [
+      {
+        "type": "monsterOp",
+        "plek": "whitechapel",
+        "id": "cultist"
+      },
+      {
+        "type": "monsterOp",
+        "plek": "limehouse",
+        "id": "cultist"
+      }
+    ],
+    "god": "ommeth"
+  },
+  {
+    "id": "o-omm-2",
+    "naam": "De psalm in je hoofd",
+    "persoon": "absalom-crewe",
+    "mist": 1,
+    "scheur": 0,
+    "monster": 0,
+    "extra": "Elke held verliest 1 Geest. Helden met een spreuk herstellen er 1.",
+    "tekst": "Iedereen in Londen wordt wakker met dezelfde melodie in zijn hoofd. Wie een oud gebed kent, of een spreuk, kan hem verdrijven. De rest neuriet hem tot de middag.",
+    "acties": [
+      {
+        "type": "geestAlle",
+        "waarde": -1
+      },
+      {
+        "type": "geestMetSpreuk",
+        "waarde": 1
+      }
+    ],
+    "god": "ommeth"
+  },
+  {
+    "id": "o-omm-3",
+    "naam": "Zuster Agatha's soep",
+    "persoon": "agatha-pike",
+    "mist": 0,
+    "scheur": 0,
+    "monster": 0,
+    "extra": "Elke held in Spitalfields of Whitechapel herstelt 2 Geest. Leg 1 Aanwijzing op Spitalfields.",
+    "tekst": "Zuster Agatha zet de deuren van de gaarkeuken open, de hele nacht. Wie binnenkomt, krijgt soep en een oude psalm, de goede. Een man uit de kudde komt binnen, eet, en vertelt huilend wat hij weet.",
+    "acties": [
+      {
+        "type": "geestOp",
+        "plekken": [
+          "spitalfields",
+          "whitechapel"
+        ],
+        "waarde": 2
+      },
+      {
+        "type": "aanwijzingOp",
+        "plek": "spitalfields",
+        "aantal": 1
+      }
+    ],
+    "god": "ommeth"
+  },
+  {
+    "id": "o-omm-4",
+    "naam": "Gerucht: de nachtmis",
+    "persoon": "martha-coyle",
+    "mist": 0,
+    "scheur": 0,
+    "monster": 0,
+    "gerucht": "Er verschijnt een Kuddeleider in Limehouse. Is hij na 2 rondes niet verslagen, dan daalt de Mist met 2.",
+    "tekst": "Martha Coyle laat weten dat de kudde vannacht een mis houdt in de kerk zonder dak in Limehouse. Een nieuwe leider zal er gezalfd worden. 'Als jullie iets willen doen,' zegt ze, 'dan nu.'",
+    "acties": [
+      {
+        "type": "gerucht",
+        "soort": "verslaan",
+        "plek": "limehouse",
+        "id": "kuddeleider",
+        "rondes": 3,
+        "straf": 2
+      }
+    ],
+    "god": "ommeth"
+  },
+  {
+    "id": "o-kar-1",
+    "naam": "Een splinter op drift",
+    "mist": 1,
+    "scheur": 0,
+    "monster": 1,
+    "extra": "Overzee ligt een artefact klaar. Er verschijnt een monster.",
+    "tekst": "Uit een schip in de dokken wordt een kist gestolen. Iemand anders vindt hem eerder dan de dieven: een splinter die zelf een weg zoekt.",
+    "acties": [
+      {
+        "type": "artefactKlaar"
+      },
+      {
+        "type": "voorkeurMonster",
+        "id": "splintergeest"
+      }
+    ],
+    "god": "karathos"
+  },
+  {
+    "id": "o-kar-2",
+    "naam": "De stukken zingen",
+    "persoon": "horace-quill",
+    "mist": 1,
+    "scheur": 1,
+    "monster": 0,
+    "extra": "Elke held verliest 1 Geest.",
+    "tekst": "In het museum zingen de vier stukken een toon die door de muren gaat. In heel Bloomsbury barsten de ruiten. Mr. Quill zit ervoor op een krukje en dirigeert.",
+    "acties": [
+      {
+        "type": "geestAlle",
+        "waarde": -1
+      }
+    ],
+    "god": "karathos"
+  },
+  {
+    "id": "o-kar-3",
+    "naam": "De rol van de pater",
+    "persoon": "anselm-drury",
+    "mist": 0,
+    "scheur": 0,
+    "monster": 0,
+    "extra": "Elke held in Westminster of Whitehall krijgt 1 Aanwijzing. Iedereen herstelt 1 Geest.",
+    "tekst": "Pater Drury leest de rol voor in de abdij, met de deuren open. Wie het hoort, voelt hoe de splinters even stil worden.",
+    "acties": [
+      {
+        "type": "aanwijzingOpHelden",
+        "plekken": [
+          "westminster",
+          "whitehall"
+        ],
+        "aantal": 1
+      },
+      {
+        "type": "geestAlle",
+        "waarde": 1
+      }
+    ],
+    "god": "karathos"
+  },
+  {
+    "id": "o-kar-4",
+    "naam": "Gerucht: de nachtelijke inbraak",
+    "persoon": "amelia-fenwick",
+    "mist": 0,
+    "scheur": 0,
+    "monster": 0,
+    "gerucht": "Er verschijnt een Reliekjager in Bloomsbury. Is hij na 2 rondes niet verslagen, dan daalt de Mist met 2.",
+    "tekst": "Amelia Fenwick laat weten dat het Genootschap vannacht het museum binnengaat, om de vier stukken mee te nemen naar een plek waar niemand ze meer terugvindt.",
+    "acties": [
+      {
+        "type": "gerucht",
+        "soort": "verslaan",
+        "plek": "bloomsbury",
+        "id": "reliekjager",
+        "rondes": 3,
+        "straf": 2
+      }
+    ],
+    "god": "karathos"
+  },
+  {
+    "id": "o-ulv-1",
+    "naam": "Hagel uit een heldere hemel",
+    "mist": 1,
+    "scheur": 0,
+    "monster": 1,
+    "extra": "Elke held verliest 1 Lichaam.",
+    "tekst": "Om twaalf uur 's middags valt er hagel zo groot als duiveneieren, uit een strakblauwe lucht. Het duurt drie minuten. Daarna is het windstil, en vogels vallen dood van het dak.",
+    "acties": [
+      {
+        "type": "lichaamAlle",
+        "waarde": -1
+      }
+    ],
+    "god": "ulvereth"
+  },
+  {
+    "id": "o-ulv-2",
+    "naam": "De Theems kookt",
+    "persoon": "nell-bligh",
+    "mist": 1,
+    "scheur": 1,
+    "monster": 0,
+    "extra": "Er verschijnt een monster aan de rivier. Elke held aan de rivier verliest 1 Lichaam.",
+    "tekst": "Nell Bligh brengt bericht: bij Wapping stijgt stoom op van het water, in november. Vissen drijven met hun buik naar boven. Iets onder het water draait zich om.",
+    "acties": [
+      {
+        "type": "monsterRivier"
+      },
+      {
+        "type": "lichaamOp",
+        "plekken": [
+          "strand",
+          "city",
+          "westminster",
+          "chelsea",
+          "southwark",
+          "st-katharine-docks",
+          "wapping",
+          "limehouse"
+        ],
+        "waarde": -1
+      }
+    ],
+    "god": "ulvereth"
+  },
+  {
+    "id": "o-ulv-3",
+    "naam": "Een gouden middag",
+    "mist": 0,
+    "scheur": 0,
+    "monster": 0,
+    "extra": "Elke held herstelt 1 Lichaam en 1 Geest. Leg 1 Aanwijzing op Hampstead.",
+    "tekst": "Een middag zo mooi dat heel Londen naar buiten komt. In de parken zingen mensen. Op Hampstead ziet de weerkundige in het heldere licht iets wat hij nooit eerder kon zien.",
+    "acties": [
+      {
+        "type": "lichaamAlle",
+        "waarde": 1
+      },
+      {
+        "type": "geestAlle",
+        "waarde": 1
+      },
+      {
+        "type": "aanwijzingOp",
+        "plek": "hampstead",
+        "aantal": 1
+      }
+    ],
+    "god": "ulvereth"
+  },
+  {
+    "id": "o-ulv-4",
+    "naam": "Gerucht: de bliksemtoren",
+    "persoon": "ephraim-gale",
+    "mist": 0,
+    "scheur": 0,
+    "monster": 0,
+    "gerucht": "Er opent een Scheur op Hampstead. Is die na 2 rondes niet gesloten, dan daalt de Mist met 2.",
+    "tekst": "Ephraim Gale laat weten dat de Bond van de Windroos vannacht een koperen toren opricht op de heide. 'Ze willen de bliksem roepen,' schrijft hij. 'Allemaal tegelijk.'",
+    "acties": [
+      {
+        "type": "gerucht",
+        "soort": "sluiten",
+        "plek": "hampstead",
+        "rondes": 3,
+        "straf": 2
+      }
+    ],
+    "god": "ulvereth"
+  },
+  {
+    "id": "o-sir-1",
+    "naam": "Een uitnodiging voor iedereen",
+    "mist": 1,
+    "scheur": 0,
+    "monster": 1,
+    "extra": "Er verschijnt een Bewonderaar. Elke held verliest 1 Geest.",
+    "tekst": "In elke brievenbus van Mayfair ligt vanochtend een parfumkaartje. Ook in de jouwe. Wie het weggooit, raapt het een uur later weer op.",
+    "acties": [
+      {
+        "type": "voorkeurMonster",
+        "id": "bewonderaar"
+      },
+      {
+        "type": "geestAlle",
+        "waarde": -1
+      }
+    ],
+    "god": "sirrhae"
+  },
+  {
+    "id": "o-sir-2",
+    "naam": "Het Lagerhuis zwijgt",
+    "persoon": "edmund-haversham",
+    "mist": 1,
+    "scheur": 1,
+    "monster": 0,
+    "extra": "Leg 1 Aanwijzing op Whitehall.",
+    "tekst": "Sir Edmund Haversham staat op in het Lagerhuis en stelt voor om alle wetten van het rijk te schrappen 'ten behoeve van een feest'. Een derde van de leden applaudisseert. Voss laat weten dat hij de notulen heeft.",
+    "acties": [
+      {
+        "type": "aanwijzingOp",
+        "plek": "whitehall",
+        "aantal": 1
+      }
+    ],
+    "god": "sirrhae"
+  },
+  {
+    "id": "o-sir-3",
+    "naam": "Rosalind's les",
+    "persoon": "rosalind-ashe",
+    "mist": 0,
+    "scheur": 0,
+    "monster": 0,
+    "extra": "Niemand is nog Betoverd. Elke held herstelt 1 Geest.",
+    "tekst": "Rosalind Ashe laat haar meisjes een gedicht van buiten leren: een lijst met de namen van alles wat ze liefhebben. Ze stuurt het naar jullie, met de opdracht het elke ochtend hardop te zeggen.",
+    "acties": [
+      {
+        "type": "verwijderAlle",
+        "toestand": "betoverd"
+      },
+      {
+        "type": "geestAlle",
+        "waarde": 1
+      }
+    ],
+    "god": "sirrhae"
+  },
+  {
+    "id": "o-sir-4",
+    "naam": "Gerucht: het feest in de opera",
+    "persoon": "lucien-marchetti",
+    "mist": 0,
+    "scheur": 0,
+    "monster": 0,
+    "gerucht": "Er verschijnt een Maskerdanser in Covent Garden. Is hij na 2 rondes niet verslagen, dan daalt de Mist met 2.",
+    "tekst": "Lucien Marchetti hoort dat er na de voorstelling in de opera een gemaskerd bal is. Wie er danst, komt er niet meer uit. 'Ze heeft een nieuw portret nodig,' zegt hij. 'Een levend.'",
+    "acties": [
+      {
+        "type": "gerucht",
+        "soort": "verslaan",
+        "plek": "covent-garden",
+        "id": "maskerdanser",
+        "rondes": 3,
+        "straf": 2
+      }
+    ],
+    "god": "sirrhae"
+  },
+  {
+    "id": "o-our-1",
+    "naam": "Een gestolen uur",
+    "mist": 1,
+    "scheur": 0,
+    "monster": 1,
+    "extra": "Elke held verliest 1 Geest.",
+    "tekst": "Heel Londen wordt om acht uur wakker, terwijl het negen uur is. Niemand weet waar het uur is gebleven. In Spitalfields ligt een man op straat die al twintig jaar vermist was, en die denkt dat het zijn verjaardag is.",
+    "acties": [
+      {
+        "type": "geestAlle",
+        "waarde": -1
+      }
+    ],
+    "god": "ouroch"
+  },
+  {
+    "id": "o-our-2",
+    "naam": "De toren slaat verkeerd",
+    "persoon": "ignatius-fell",
+    "mist": 1,
+    "scheur": 1,
+    "monster": 0,
+    "extra": "Er verschijnt een Opwindsoldaat in Westminster.",
+    "tekst": "Ignatius Fell klimt de toren in, buiten zijn dienst. Een uur later slaat de klok zeven keer om twaalf uur. Bij de zevende slag marcheert er iets de trappen af.",
+    "acties": [
+      {
+        "type": "monsterOp",
+        "plek": "westminster",
+        "id": "opwindsoldaat"
+      }
+    ],
+    "god": "ouroch"
+  },
+  {
+    "id": "o-our-3",
+    "naam": "Een bericht van morgen",
+    "persoon": "dora-whitby",
+    "mist": 0,
+    "scheur": 0,
+    "monster": 0,
+    "extra": "Elke held in Westminster of Whitehall krijgt 1 Aanwijzing. Leg 1 Aanwijzing op Spitalfields.",
+    "tekst": "Dora Whitby stuurt een jongen met een strook telegrafiepapier. Het bericht is van morgen, en het beschrijft waar jullie zullen zijn. Daar kun je je voordeel mee doen.",
+    "acties": [
+      {
+        "type": "aanwijzingOpHelden",
+        "plekken": [
+          "westminster",
+          "whitehall"
+        ],
+        "aantal": 1
+      },
+      {
+        "type": "aanwijzingOp",
+        "plek": "spitalfields",
+        "aantal": 1
+      }
+    ],
+    "god": "ouroch"
+  },
+  {
+    "id": "o-our-4",
+    "naam": "Gerucht: de opwindnacht",
+    "persoon": "ignatius-fell",
+    "mist": 0,
+    "scheur": 0,
+    "monster": 0,
+    "gerucht": "Er opent een Scheur in Westminster. Is die na 2 rondes niet gesloten, dan daalt de Mist met 2.",
+    "tekst": "Dora Whitby ontvangt een bericht van overmorgen: 'Toren volledig opgewonden. Dertiende slag om middernacht.' Ze weet niet wie het stuurde. Ze weet wel dat elk bericht tot nu toe is uitgekomen.",
+    "acties": [
+      {
+        "type": "gerucht",
+        "soort": "sluiten",
+        "plek": "westminster",
+        "rondes": 3,
+        "straf": 2
+      }
+    ],
+    "god": "ouroch"
+  },
+  {
+    "id": "o-yth-1",
+    "naam": "Extra editie",
+    "mist": 1,
+    "scheur": 0,
+    "monster": 1,
+    "extra": "De held met de meeste Aanwijzingen verliest er 1. Er verschijnt een Krantenjongen.",
+    "tekst": "Om middernacht rennen de krantenjongens door de straten: extra editie! Niemand weet wat er gebeurd is, maar iedereen koopt er een. Morgen is het waar.",
+    "acties": [
+      {
+        "type": "aanwijzingRijkste",
+        "waarde": -1
+      },
+      {
+        "type": "voorkeurMonster",
+        "id": "krantenjongen"
+      }
+    ],
+    "god": "yth-nemora"
+  },
+  {
+    "id": "o-yth-2",
+    "naam": "Gezocht in de krant",
+    "persoon": "horatio-vance",
+    "mist": 1,
+    "scheur": 1,
+    "monster": 0,
+    "extra": "De held met de meeste Ponden wordt Gezocht.",
+    "tekst": "De Avondlantaarn drukt een tekening van een van jullie op de voorpagina, met een verhaal over een inbraak. Het is een goede tekening. Het verhaal is overtuigend.",
+    "acties": [
+      {
+        "type": "gezochtRijkste"
+      }
+    ],
+    "god": "yth-nemora"
+  },
+  {
+    "id": "o-yth-3",
+    "naam": "Kitty's stapel",
+    "persoon": "kitty-lark",
+    "mist": 0,
+    "scheur": 0,
+    "monster": 0,
+    "extra": "Leg 1 Aanwijzing op The City en 1 op de Strand. Elke held herstelt 1 Geest.",
+    "tekst": "Kitty Lark verkoopt geen kranten meer. Ze deelt de oude versies uit, met het verschil omcirkeld. Steeds meer mensen gaan zelf vergelijken.",
+    "acties": [
+      {
+        "type": "aanwijzingOp",
+        "plek": "city",
+        "aantal": 1
+      },
+      {
+        "type": "aanwijzingOp",
+        "plek": "strand",
+        "aantal": 1
+      },
+      {
+        "type": "geestAlle",
+        "waarde": 1
+      }
+    ],
+    "god": "yth-nemora"
+  },
+  {
+    "id": "o-yth-4",
+    "naam": "Gerucht: de ochtendeditie",
+    "persoon": "fennimore-blight",
+    "mist": 0,
+    "scheur": 0,
+    "monster": 0,
+    "gerucht": "Er verschijnt een Leugenaar in de Strand. Is hij na 2 rondes niet verslagen, dan daalt de Mist met 2.",
+    "tekst": "Fennimore Blight laat een briefje achter op je stoep: morgen getuigt hij in de rechtbank over iets dat nog moet gebeuren. 'Hou me tegen,' schrijft hij. 'Alsjeblieft.'",
+    "acties": [
+      {
+        "type": "gerucht",
+        "soort": "verslaan",
+        "plek": "strand",
+        "id": "leugenaar",
+        "rondes": 3,
+        "straf": 2
+      }
+    ],
+    "god": "yth-nemora"
+  },
+  {
+    "id": "o-gul-1",
+    "naam": "Paniek op de beurs",
+    "mist": 1,
+    "scheur": 0,
+    "monster": 1,
+    "extra": "Elke held verliest 1 Pond.",
+    "tekst": "Om elf uur stort de beurs in, zonder reden. Om twaalf uur staat hij weer hoger dan ooit. In dat uur verliest half Londen zijn spaargeld, en iets onder de Bank eet zich vol.",
+    "acties": [
+      {
+        "type": "pondAlle",
+        "waarde": -1
+      }
+    ],
+    "god": "gul-marrach"
+  },
+  {
+    "id": "o-gul-2",
+    "naam": "De huur gaat omhoog",
+    "persoon": "reginald-kettering",
+    "mist": 1,
+    "scheur": 1,
+    "monster": 0,
+    "extra": "Er verschijnt een Deurwaarder in Whitechapel. De held met de meeste Ponden wordt Gezocht.",
+    "tekst": "In Whitechapel, Spitalfields en Limehouse gaat de huur van de ene op de andere dag omhoog. De eigenaar is overal dezelfde, al heeft hij overal een andere naam.",
+    "acties": [
+      {
+        "type": "monsterOp",
+        "plek": "whitechapel",
+        "id": "deurwaarder"
+      },
+      {
+        "type": "gezochtRijkste"
+      }
+    ],
+    "god": "gul-marrach"
+  },
+  {
+    "id": "o-gul-3",
+    "naam": "Een gift van de armen",
+    "persoon": "bessie-doyle",
+    "mist": 0,
+    "scheur": 0,
+    "monster": 0,
+    "extra": "Elke held krijgt 1 Pond. Leg 1 Aanwijzing op Spitalfields.",
+    "tekst": "De vrouwen van het werkhuis hebben gespaard, penny voor penny. Bessie Doyle stuurt het geld naar jullie, met een briefje: 'Voor wie de Hand wil breken.'",
+    "acties": [
+      {
+        "type": "pondAlle",
+        "waarde": 1
+      },
+      {
+        "type": "aanwijzingOp",
+        "plek": "spitalfields",
+        "aantal": 1
+      }
+    ],
+    "god": "gul-marrach"
+  },
+  {
+    "id": "o-gul-4",
+    "naam": "Gerucht: de stille verkoop",
+    "persoon": "edwin-pratt",
+    "mist": 0,
+    "scheur": 0,
+    "monster": 0,
+    "gerucht": "Er verschijnt een Goudworm in The City. Is hij na 2 rondes niet verslagen, dan daalt de Mist met 2.",
+    "tekst": "Edwin Pratt laat weten dat het Syndicaat vannacht de kluizen van drie banken leeghaalt. 'Wat eruit komt,' schrijft hij, 'is geen geld. Het kruipt.'",
+    "acties": [
+      {
+        "type": "gerucht",
+        "soort": "verslaan",
+        "plek": "city",
+        "id": "goudworm",
+        "rondes": 3,
+        "straf": 2
+      }
+    ],
+    "god": "gul-marrach"
   }
 ]

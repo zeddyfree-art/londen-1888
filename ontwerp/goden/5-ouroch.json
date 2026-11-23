@@ -1,0 +1,955 @@
+{
+  "god": {
+    "id": "ouroch",
+    "naam": "Ouroch",
+    "titel": "De Dertiende Slag",
+    "mist": 12,
+    "verhaal": "Sinds 1884 loopt de hele wereld op de tijd van Greenwich. Londen heeft de tijd van iedereen ingepikt, en iets wil hem terug. In Westminster slaat de klok dertien. Wie de dertiende slag hoort, verliest een uur dat hij nooit heeft beleefd. Klokkenmakers vinden tandwielen in hun brood, en in Spitalfields lopen mensen die al twintig jaar dood zijn, op weg naar een afspraak.",
+    "regel": "Zakt de Mist onder driekwart, de helft en een kwart van zijn begin, dan slaat de klok en gaat er een Klok van Westminster aan. Een opgelost mysterie zet er een stil.",
+    "verdachten": "Het Gilde van de Onrust: klokkenmakers, telegrafisten en opwinders die geloven dat de tijd een eigenaar heeft.",
+    "mysteries": [
+      {
+        "naam": "Het uurwerk van Westminster",
+        "doel": "Breng samen 3 Aanwijzingen naar Westminster en vind in het uurwerk van de toren het tandwiel dat er niet hoort (Kennis 9).",
+        "type": "aanwijzingen",
+        "plek": "westminster",
+        "aantal": 3,
+        "kenmerk": "kennis",
+        "moeilijkheid": 9
+      },
+      {
+        "naam": "De verloren uren",
+        "doel": "Haal het dagboek van klokkenmaker Obadiah Penrose uit zijn werkplaats in Spitalfields (Waarneming 8) en breng het naar Bloomsbury.",
+        "type": "breng",
+        "van": "spitalfields",
+        "naar": "bloomsbury",
+        "voorwerp": "het dagboek van Penrose",
+        "kenmerk": "scherpte",
+        "moeilijkheid": 8
+      },
+      {
+        "naam": "De Uurwerkman",
+        "doel": "Versla het epische monster De Uurwerkman, dat in de Strand verschijnt.",
+        "type": "episch",
+        "plek": "strand"
+      },
+      {
+        "naam": "Het klooster zonder tijd",
+        "doel": "Reis naar het Klooster van de Witte Wolken, waar de monniken geen klokken kennen, en leer hoe zij de tijd tellen (Kennis 8).",
+        "type": "test",
+        "plek": "himalaya",
+        "kenmerk": "kennis",
+        "moeilijkheid": 8
+      },
+      {
+        "naam": "Stilgezet",
+        "doel": "Sluit een Scheur in Westminster of Whitehall, en nog één ergens anders.",
+        "type": "scheuren",
+        "aantal": 2,
+        "minstensEen": [
+          "westminster",
+          "whitehall"
+        ]
+      }
+    ],
+    "ontwaken": "De klok slaat dertien, en dan veertien, en dan houdt hij niet meer op. Londen staat stil tussen twee seconden, voor altijd. Jullie verliezen.",
+    "monsters": [
+      "opwindsoldaat",
+      "tijdverlorene",
+      "slingerhond",
+      "mistdwaler",
+      "logebroeder"
+    ],
+    "episch": "de-uurwerkman",
+    "prompt": "the clock tower of Westminster at night with a thirteenth numeral glowing on its face, enormous brass gears and pendulums spilling out of the tower into the foggy sky like the limbs of a vast mechanical creature, the Thames reflecting the light, tiny figures on the bridge for scale"
+  },
+  "episch": {
+    "id": "de-uurwerkman",
+    "naam": "De Uurwerkman",
+    "gruwel": 2,
+    "taaiheid": 10,
+    "schade": 2,
+    "leven": 3,
+    "eigenschap": "Wat ooit Ignatius Fell was, de opwinder van de klokkentoren. Om de ronde windt hij zichzelf op: hij krijgt 1 leven terug, behalve in een ronde waarin de klok slaat. Met 4 helden heeft hij 2 leven extra.",
+    "prompt": "a tall gaunt man in a Victorian clock-winder's coat whose chest is an open brass clockwork mechanism, a large winding key turning slowly in his back, pocket watches hanging from chains all over his body, standing in a gaslit street on the Strand",
+    "herstelRonde": 1
+  },
+  "monsters": [
+    {
+      "id": "opwindsoldaat",
+      "naam": "Opwindsoldaat",
+      "gruwel": 1,
+      "taaiheid": 12,
+      "schade": 2,
+      "leven": 3,
+      "eigenschap": "Een tinnen soldaat zo groot als een man, met een sleutel in zijn rug. Je moet hem drie keer raken.",
+      "prompt": "a man-sized Victorian tin toy soldier with chipped red paint and a large brass winding key in its back, marching stiffly through a foggy street with a bayonet"
+    },
+    {
+      "id": "tijdverlorene",
+      "naam": "Tijdverlorene",
+      "gruwel": 2,
+      "taaiheid": 10,
+      "schade": 1,
+      "leven": 2,
+      "eigenschap": "Iemand die al jaren op weg is naar een afspraak. Verlies je, dan raak je Verdwaald, tussen twee uren in.",
+      "prompt": "a faded translucent Victorian gentleman from an earlier decade in an outdated frock coat, staring at a pocket watch with no hands, walking through a wall in a foggy street",
+      "verliesToestand": "verdwaald"
+    },
+    {
+      "id": "slingerhond",
+      "naam": "Slingerhond",
+      "gruwel": 1,
+      "taaiheid": 10,
+      "schade": 2,
+      "leven": 2,
+      "eigenschap": "Een hond van messing met een slinger als staart. Hij loopt elke Onheilsfase naar de dichtstbijzijnde held.",
+      "prompt": "a lean hound made of brass and clockwork, its tail a swinging pendulum, eyes of watch-glass, prowling through a Victorian alley at night",
+      "beweging": {
+        "type": "naarHeld"
+      }
+    }
+  ],
+  "personen": [
+    {
+      "id": "obadiah-penrose",
+      "naam": "Obadiah Penrose",
+      "rol": "Klokkenmaker in Spitalfields",
+      "factie": "Het Gilde van de Onrust",
+      "kort": "Een oude klokkenmaker die een uurwerk bouwde met dertien uren.",
+      "beschrijving": "Obadiah Penrose leerde het vak van zijn vader, een Hugenoot, en die van de zijne. Toen Londen de tijd van Greenwich aan de wereld oplegde, bouwde hij uit protest een klok met dertien uren. Hij is nooit klaar gekomen. Of wel, en toen begon het. Hij is verdwenen. Zijn werkplaats staat open, en alle klokken lopen achteruit.",
+      "prompt": "an elderly Victorian Huguenot clockmaker with a loupe in one eye and a long white beard, leather apron, bent over an intricate clock face with thirteen numerals in a cluttered Spitalfields workshop"
+    },
+    {
+      "id": "dora-whitby",
+      "naam": "Dora Whitby",
+      "rol": "Telegrafiste in Westminster",
+      "factie": "Geen",
+      "kort": "Een telegrafiste die berichten ontvangt van morgen.",
+      "beschrijving": "Dora Whitby werkt nachtdiensten op het telegraafkantoor bij Westminster. Sinds een maand komen er berichten binnen met een datum die nog moet komen. Ze schrijft ze over in een schrift, en tot nu toe is elk bericht uitgekomen. Ze is negentien, snel en niet bang, maar ze slaapt niet meer.",
+      "prompt": "a young Victorian woman telegraph operator with rolled sleeves and ink on her fingers, sitting at a brass telegraph key late at night, a notebook full of dates open beside her"
+    },
+    {
+      "id": "ignatius-fell",
+      "naam": "Ignatius Fell",
+      "rol": "Opwinder van de klokkentoren",
+      "factie": "Het Gilde van de Onrust",
+      "kort": "De man die elke week de grote klok opwindt, en die steeds minder mens is.",
+      "beschrijving": "Ignatius Fell windt al dertig jaar het uurwerk van de toren op, drie keer per week, honderden treden omhoog. Op een nacht hoorde hij de dertiende slag als eerste. Sindsdien tikt er iets in zijn borst. Hij weet het, en hij is er blij mee. 'Eindelijk loop ik gelijk,' zegt hij.",
+      "prompt": "a gaunt elderly Victorian clock winder in a long grey coat climbing the spiral stairs inside a great clock tower, holding a huge brass winding key, a faint ticking glow visible through his shirt"
+    }
+  ],
+  "verhaal": [
+    {
+      "id": "v-our-1",
+      "plek": "spitalfields",
+      "persoon": "obadiah-penrose",
+      "tekst": "De werkplaats van Obadiah Penrose staat open. Er is niemand. Honderd klokken tikken, allemaal achteruit. Op de werkbank ligt een klok met dertien uren, half af, en daarnaast een dagboek waarvan de laatste bladzijde gisteren is geschreven, in een handschrift dat beeft.",
+      "keuzes": [
+        {
+          "label": "Het dagboek lezen (Kennis 8)",
+          "test": {
+            "kenmerk": "kennis",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Penrose schrijft dat hij het dertiende uur niet heeft uitgevonden, maar gevonden: in de toren van Westminster, achter een tandwiel dat daar niet hoort. 'Iemand heeft het erin gezet,' schrijft hij. 'Iemand die wacht.'",
+            "effect": [
+              {
+                "aanwijzing": 2
+              },
+              {
+                "vlag": "penrose-dagboek"
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Je leest de bladzijde drie keer, en elke keer staat er iets anders.",
+            "effect": [
+              {
+                "geest": -1
+              }
+            ]
+          }
+        },
+        {
+          "label": "De klokken stilzetten (Kracht 7)",
+          "test": {
+            "kenmerk": "kracht",
+            "moeilijkheid": 7
+          },
+          "gelukt": {
+            "tekst": "Je houdt de slingers een voor een vast. Bij de laatste is het stil, en in die stilte hoor je ergens onder de vloer nog één klok tikken.",
+            "effect": [
+              {
+                "aanwijzing": 1
+              },
+              {
+                "trofee": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Een slinger slaat je hand open.",
+            "effect": [
+              {
+                "lichaam": -1
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "v-our-2",
+      "plek": "westminster",
+      "persoon": "dora-whitby",
+      "tekst": "In het telegraafkantoor zit Dora Whitby met een schrift vol berichten. 'Deze kwam vannacht binnen,' zegt ze, en ze laat je een strook papier zien. De datum is van volgende week. Het bericht is één regel: 'Toren valt stil om dertien uur. Niemand overleeft.'",
+      "keuzes": [
+        {
+          "label": "Haar schrift doorrekenen (Kennis 8)",
+          "test": {
+            "kenmerk": "kennis",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Alle berichten komen van dezelfde zender, en die zender verschuift elke dag een paar seconden in de tijd. Achteruit. Je rekent uit waar hij was op het moment dat het begon.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              },
+              {
+                "trofee": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "De data duizelen. Was het nu gisteren of morgen?",
+            "effect": [
+              {
+                "geest": -1
+              }
+            ]
+          }
+        },
+        {
+          "label": "Een bericht terug sturen",
+          "tekst": "Dora tikt wat je dicteert: 'Wie ben je?' Er komt meteen antwoord, voordat ze klaar is met tikken. Het is je eigen naam.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "geest": -2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-our-3",
+      "plek": "strand",
+      "persoon": "ignatius-fell",
+      "tekst": "Op de Strand loopt een lange man in een grijze jas, met een enorme sleutel over zijn schouder. Het is Ignatius Fell, de opwinder. Hij blijft voor je staan en buigt zijn hoofd, alsof hij luistert. 'U loopt achter,' zegt hij vriendelijk. 'Twee minuten. Dat kan ik verhelpen.'",
+      "keuzes": [
+        {
+          "label": "Hem laten praten (Charisma 8)",
+          "test": {
+            "kenmerk": "overtuiging",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Hij vertelt over de dertiende slag, met de liefde van een vader. 'Bij de laatste slag,' zegt hij, 'loopt alles gelijk. Iedereen. Voor altijd.' Je weet nu wanneer hij weer klimt.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Hij steekt de sleutel in je richting, zonder je aan te raken. Je verliest twee minuten. Je weet niet waar ze zijn gebleven.",
+            "effect": [
+              {
+                "geest": -1
+              },
+              {
+                "mist": -1
+              }
+            ]
+          }
+        },
+        {
+          "label": "Weglopen voordat hij iets kan doen",
+          "tekst": "Je draait je om en loopt snel weg. Achter je hoor je hem zachtjes tikken.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-our-4",
+      "plek": "city",
+      "tekst": "In de City lopen alle mensen in de maat. Klerken, koopmannen, bezorgers: hun voeten raken tegelijk de stenen, tik, tik, tik. Niemand merkt het. Een bloemenmeisje in een portiek kijkt je bang aan. Zij loopt niet mee.",
+      "keuzes": [
+        {
+          "label": "Het meisje vragen wat ze ziet (Charisma 7)",
+          "test": {
+            "kenmerk": "overtuiging",
+            "moeilijkheid": 7
+          },
+          "gelukt": {
+            "tekst": "Ze ziet het sinds de nacht van de dertiende slag. Ze sliep toen, en ze hoorde hem niet. 'Iedereen die hem hoorde,' zegt ze, 'loopt nu zo.'",
+            "effect": [
+              {
+                "aanwijzing": 2
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Ze rent weg, uit de maat.",
+            "effect": [
+              {
+                "aanwijzing": 1
+              }
+            ]
+          }
+        },
+        {
+          "label": "Uit de maat lopen (Kracht 8)",
+          "test": {
+            "kenmerk": "kracht",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Het kost moeite, alsof je tegen een stroom in loopt. Maar je doet het, en een paar mensen om je heen struikelen en kijken verbaasd op.",
+            "effect": [
+              {
+                "trofee": 1
+              },
+              {
+                "geest": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Na een paar passen loop je weer mee. Het voelt prettig.",
+            "effect": [
+              {
+                "geest": -2
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "v-our-5",
+      "plek": "bloomsbury",
+      "tekst": "In de leeszaal van het British Museum staat de grote klok stil, al drie dagen. De bibliothecarissen werken door, maar niemand gaat naar huis. Een oude lezer tikt je op de schouder. 'Het is nog steeds dinsdag,' fluistert hij. 'Al drie dagen dinsdag.'",
+      "keuzes": [
+        {
+          "label": "De klok laten lopen (Kennis 8)",
+          "test": {
+            "kenmerk": "kennis",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "In het uurwerk zit een tandwiel met dertien tanden, waar er twaalf horen. Je haalt het eruit. De klok slaat, en heel de leeszaal zucht. Het is woensdag.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              },
+              {
+                "trofee": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Je draait aan de wijzers, en het wordt weer maandag.",
+            "effect": [
+              {
+                "geest": -2
+              }
+            ]
+          }
+        },
+        {
+          "label": "De oude lezer laten vertellen",
+          "tekst": "Hij leest al drie dagen hetzelfde boek, over de kalenderhervorming van 1752, toen Engeland elf dagen oversloeg. 'Die dagen zijn niet weg,' zegt hij. 'Iemand heeft ze bewaard.'",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "geest": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-our-6",
+      "plek": "kings-cross",
+      "tekst": "Op King's Cross komt de trein van half negen binnen om kwart over acht. Een kwartier te vroeg. De reizigers stappen uit en lopen langs zichzelf, die op het perron staan te wachten. Niemand lijkt het vreemd te vinden.",
+      "keuzes": [
+        {
+          "label": "Een reiziger aanspreken die zichzelf ziet (Waarneming 8)",
+          "test": {
+            "kenmerk": "scherpte",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Een vrouw kijkt van haar dubbelganger naar jou en begint te lachen, zenuwachtig. Ze vertelt dat de conducteur bij Peterborough zijn horloge in het raam hield en dat iedereen ernaar keek.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Je ziet jezelf ook, aan de overkant van het perron. Hij zwaait.",
+            "effect": [
+              {
+                "geest": -2
+              }
+            ]
+          }
+        },
+        {
+          "label": "De dienstregeling stelen",
+          "tekst": "Je neemt het boekje mee van de stationschef. De tijden zijn met potlood aangepast, elke dag een paar minuten, in een handschrift dat je eerder hebt gezien.",
+          "effect": [
+            {
+              "aanwijzing": 1
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-our-7",
+      "plek": "whitehall",
+      "persoon": "thaddeus-voss",
+      "tekst": "Voss gooit een stapel rapporten op zijn bureau. 'Twintig mensen die zeggen dat ze een uur kwijt zijn. Vier die zeggen dat ze een dag kwijt zijn. En één die zegt dat hij in 1866 is begonnen aan zijn wandeling naar huis.' Hij wrijft over zijn ogen. 'Die laatste heeft de kleren van toen nog aan.'",
+      "keuzes": [
+        {
+          "label": "De man uit 1866 spreken (Charisma 8)",
+          "test": {
+            "kenmerk": "overtuiging",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Hij is beleefd en verward. Hij liep langs de toren toen de klok dertien sloeg, en toen hij de hoek om ging, was het nu. Hij beschrijft precies welke hoek.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              },
+              {
+                "trofee": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Midden in een zin verdwijnt hij. Op zijn stoel ligt een zakhorloge zonder wijzers.",
+            "effect": [
+              {
+                "geest": -1
+              },
+              {
+                "trek": "spullen"
+              }
+            ]
+          }
+        },
+        {
+          "label": "De rapporten op een kaart zetten (Kennis 8)",
+          "test": {
+            "kenmerk": "kennis",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Alle verdwenen uren liggen in een cirkel rond de toren, en de cirkel wordt groter.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "De punten lijken nergens op.",
+            "effect": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "v-our-8",
+      "plek": "southwark",
+      "tekst": "Bij de kerk van Southwark staat een groep mensen te wachten op een begrafenis die gisteren al was. Ze dragen rouwkleding en kijken steeds op hun horloge. De pastoor komt naar buiten en zegt dat er niemand begraven wordt. 'Nog niet,' zegt een van de rouwenden. 'Over een uur.'",
+      "keuzes": [
+        {
+          "label": "Uitzoeken voor wie ze rouwen (Waarneming 8)",
+          "test": {
+            "kenmerk": "scherpte",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Op het rouwkaartje staat een naam die je kent: Obadiah Penrose. De datum is morgen.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Ze kijken je aan alsof jij de dode bent.",
+            "effect": [
+              {
+                "geest": -1
+              }
+            ]
+          }
+        },
+        {
+          "label": "Met de pastoor bidden",
+          "held": [
+            "ezra-whitlock",
+            "benedict-ashcombe"
+          ],
+          "tekst": "Jullie bidden samen het gebed voor de stervenden. Een voor een kijken de rouwenden op, beschaamd, en gaan naar huis. De pastoor geeft je zijn zegen.",
+          "effect": [
+            {
+              "toestand": "gezegend"
+            },
+            {
+              "aanwijzing": 1
+            },
+            {
+              "geest": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-our-9",
+      "plek": "overal",
+      "persoon": "obadiah-penrose",
+      "vlag": "penrose-dagboek",
+      "tekst": "Een oude man met een loep in zijn oog trekt aan je mouw. Obadiah Penrose. Hij ziet er doorschijnend uit. 'U hebt mijn dagboek gelezen,' zegt hij. 'Dan weet u het. Ik moet terug naar de toren om het tandwiel eruit te halen, maar ik besta nog maar half. Ik heb uw handen nodig.'",
+      "keuzes": [
+        {
+          "label": "Met hem de toren in gaan (Kracht 9)",
+          "test": {
+            "kenmerk": "kracht",
+            "moeilijkheid": 9
+          },
+          "gelukt": {
+            "tekst": "Je klimt driehonderd treden. Hij wijst, jij trekt. Het tandwiel komt los, en de hele toren zucht. Penrose glimlacht, en is weg. Hij was al veel langer weg dan je dacht.",
+            "effect": [
+              {
+                "trofee": 2
+              },
+              {
+                "mist": 1
+              },
+              {
+                "wisVlag": "penrose-dagboek"
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Halverwege slaat de klok. Je valt van de trap, en Penrose is verdwenen.",
+            "effect": [
+              {
+                "lichaam": -2
+              },
+              {
+                "wisVlag": "penrose-dagboek"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Hem laten uitleggen hoe het moet",
+          "tekst": "Hij tekent het uurwerk voor je op een servet, tot in het kleinste tandwiel. Dan valt zijn hand door het tafelblad. 'Haast u,' zegt hij.",
+          "effect": [
+            {
+              "aanwijzing": 2
+            },
+            {
+              "wisVlag": "penrose-dagboek"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v-our-10",
+      "plek": "westminster",
+      "mistTot": 6,
+      "tekst": "De wijzers van de toren draaien rond, steeds sneller. Op de brug staan mensen die in een paar minuten oud worden en weer jong. Een kind wordt een man en weer een kind, en huilt.",
+      "keuzes": [
+        {
+          "label": "De mensen van de brug halen (Kracht 9)",
+          "test": {
+            "kenmerk": "kracht",
+            "moeilijkheid": 9
+          },
+          "gelukt": {
+            "tekst": "Wie van de brug af is, blijft zoals hij is. Je haalt er twintig weg voordat je zelf grijze haren krijgt.",
+            "effect": [
+              {
+                "trofee": 2
+              },
+              {
+                "lichaam": -1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Je staat te lang op de brug. Je handen zijn ouder dan ze waren.",
+            "effect": [
+              {
+                "lichaam": -2
+              },
+              {
+                "geest": -1
+              }
+            ]
+          }
+        },
+        {
+          "label": "Naar de wijzers kijken en tellen (Kennis 9)",
+          "test": {
+            "kenmerk": "kennis",
+            "moeilijkheid": 9
+          },
+          "gelukt": {
+            "tekst": "In het draaien zit een patroon: twaalf rondes snel, één langzaam. In die ene ronde is de toren kwetsbaar.",
+            "effect": [
+              {
+                "aanwijzing": 3
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Je telt mee tot je niet meer weet welk jaar het is.",
+            "effect": [
+              {
+                "geest": -2
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "scheur": [
+    {
+      "id": "scheur-our-1",
+      "tekst": "Je staat in een kamer vol klokken, zo groot als een kathedraal. Ze slaan allemaal tegelijk, maar elk een ander uur. Tussen de slingers loopt een kind met een sleutel, dat ze een voor een opwindt.",
+      "keuzes": [
+        {
+          "label": "Het kind de sleutel afnemen (Kracht 8)",
+          "test": {
+            "kenmerk": "kracht",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Het kind laat los en kijkt verbaasd. De klokken lopen langzamer. De sleutel is warm en gaat mee terug.",
+            "effect": [
+              {
+                "trek": "artefacten"
+              },
+              {
+                "trofee": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Het kind steekt de sleutel in jouw rug en draait één keer.",
+            "effect": [
+              {
+                "geest": -2
+              },
+              {
+                "lichaam": -1
+              }
+            ]
+          }
+        },
+        {
+          "label": "De klokken tellen (Kennis 9)",
+          "test": {
+            "kenmerk": "kennis",
+            "moeilijkheid": 9
+          },
+          "gelukt": {
+            "tekst": "Er zijn er 1888. Elke klok is een jaar. Die van dit jaar staat het dichtst bij de deur, en hij tikt het hardst.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Bij de vierhonderdste raak je de tel kwijt, en een stukje van jezelf.",
+            "effect": [
+              {
+                "geest": -2
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "scheur-our-2",
+      "tekst": "Een straat in Londen, maar honderd jaar terug. Mensen in pruiken lopen langs zonder je te zien. Op een muur hangt een aanplakbiljet: de elf dagen van 1752 worden overgeslagen. Iemand heeft eronder geschreven: 'Wie krijgt ze?'",
+      "keuzes": [
+        {
+          "label": "De schrijver zoeken (Waarneming 8)",
+          "test": {
+            "kenmerk": "scherpte",
+            "moeilijkheid": 8
+          },
+          "gelukt": {
+            "tekst": "Het is een klokkenmaker met een Franse naam en een loep in zijn oog. Hij lijkt op Penrose, maar ouder. Hij geeft je een tandwiel met dertien tanden.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              },
+              {
+                "trofee": 1
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "De straat schuift verder, een jaar, tien jaar.",
+            "effect": [
+              {
+                "geest": -1
+              }
+            ]
+          }
+        },
+        {
+          "label": "Snel terug naar de Scheur",
+          "tekst": "Je haalt hem net. Op je jas zit een laagje stof van honderd jaar.",
+          "effect": [
+            {
+              "geest": -1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scheur-our-3",
+      "tekst": "Je staat tussen twee seconden in. Alles staat stil: een vogel in de lucht, een regendruppel, een man die struikelt. Alleen jij beweegt. In de verte tikt iets, heel langzaam, steeds dichterbij.",
+      "keuzes": [
+        {
+          "label": "De struikelende man opvangen",
+          "tekst": "Je zet hem rechtop en loopt verder. Als de tijd weer gaat lopen, zal hij niet vallen. Het voelt als iets goeds.",
+          "effect": [
+            {
+              "geest": 2
+            },
+            {
+              "trofee": 1
+            }
+          ]
+        },
+        {
+          "label": "Naar het tikken toe lopen (Kennis 9)",
+          "test": {
+            "kenmerk": "kennis",
+            "moeilijkheid": 9
+          },
+          "gelukt": {
+            "tekst": "Het is een uurwerk zo groot als een stad, en het staat op het punt dertien te slaan. Je ziet waar het zwak is.",
+            "effect": [
+              {
+                "aanwijzing": 3
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Het tikken komt naar jou toe.",
+            "effect": [
+              {
+                "geest": -2
+              },
+              {
+                "monster": 1
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "aanwijzing": [
+    {
+      "id": "aanw-our-1",
+      "actie": "Het zakhorloge openen",
+      "test": {
+        "kenmerk": "kennis",
+        "moeilijkheid": 7
+      },
+      "tekst": "In de goot ligt een zakhorloge met dertien uren op de wijzerplaat. Aan de binnenkant van het deksel staat een naam gegraveerd, en een adres in Spitalfields."
+    },
+    {
+      "id": "aanw-our-2",
+      "actie": "De opwinder volgen",
+      "test": {
+        "kenmerk": "scherpte",
+        "moeilijkheid": 7
+      },
+      "tekst": "Een man met een grote sleutel loopt door de straat en blijft bij elke klok staan om hem een paar minuten te verzetten. Niemand houdt hem tegen.",
+      "mislukt": {
+        "tekst": "Hij draait zich om en verzet jouw horloge.",
+        "effect": [
+          {
+            "geest": -1
+          }
+        ]
+      }
+    }
+  ],
+  "onheil": [
+    {
+      "id": "o-our-1",
+      "naam": "Een gestolen uur",
+      "mist": 1,
+      "scheur": 0,
+      "monster": 1,
+      "extra": "Elke held verliest 1 Geest.",
+      "tekst": "Heel Londen wordt om acht uur wakker, terwijl het negen uur is. Niemand weet waar het uur is gebleven. In Spitalfields ligt een man op straat die al twintig jaar vermist was, en die denkt dat het zijn verjaardag is.",
+      "acties": [
+        {
+          "type": "geestAlle",
+          "waarde": -1
+        }
+      ]
+    },
+    {
+      "id": "o-our-2",
+      "naam": "De toren slaat verkeerd",
+      "persoon": "ignatius-fell",
+      "mist": 1,
+      "scheur": 1,
+      "monster": 0,
+      "extra": "Er verschijnt een Opwindsoldaat in Westminster.",
+      "tekst": "Ignatius Fell klimt de toren in, buiten zijn dienst. Een uur later slaat de klok zeven keer om twaalf uur. Bij de zevende slag marcheert er iets de trappen af.",
+      "acties": [
+        {
+          "type": "monsterOp",
+          "plek": "westminster",
+          "id": "opwindsoldaat"
+        }
+      ]
+    },
+    {
+      "id": "o-our-3",
+      "naam": "Een bericht van morgen",
+      "persoon": "dora-whitby",
+      "mist": 0,
+      "scheur": 0,
+      "monster": 0,
+      "extra": "Elke held in Westminster of Whitehall krijgt 1 Aanwijzing. Leg 1 Aanwijzing op Spitalfields.",
+      "tekst": "Dora Whitby stuurt een jongen met een strook telegrafiepapier. Het bericht is van morgen, en het beschrijft waar jullie zullen zijn. Daar kun je je voordeel mee doen.",
+      "acties": [
+        {
+          "type": "aanwijzingOpHelden",
+          "plekken": [
+            "westminster",
+            "whitehall"
+          ],
+          "aantal": 1
+        },
+        {
+          "type": "aanwijzingOp",
+          "plek": "spitalfields",
+          "aantal": 1
+        }
+      ]
+    },
+    {
+      "id": "o-our-4",
+      "naam": "Gerucht: de opwindnacht",
+      "persoon": "ignatius-fell",
+      "mist": 0,
+      "scheur": 0,
+      "monster": 0,
+      "gerucht": "Er opent een Scheur in Westminster. Is die na 2 rondes niet gesloten, dan daalt de Mist met 2.",
+      "tekst": "Dora Whitby ontvangt een bericht van overmorgen: 'Toren volledig opgewonden. Dertiende slag om middernacht.' Ze weet niet wie het stuurde. Ze weet wel dat elk bericht tot nu toe is uitgekomen.",
+      "acties": [
+        {
+          "type": "gerucht",
+          "soort": "sluiten",
+          "plek": "westminster",
+          "rondes": 3,
+          "straf": 2
+        }
+      ]
+    }
+  ],
+  "expeditie": [
+    {
+      "id": "himalaya-our",
+      "plek": "himalaya",
+      "tekst": "In het klooster hangen geen klokken. De monniken weten hoe laat het is aan de schaduw van een berg en de geur van de wind. De oudste lama vraagt of je een horloge draagt. Als je het hem laat zien, legt hij het op een steen en slaat het met een andere steen kapot. 'Nu kun je luisteren,' zegt hij.",
+      "keuzes": [
+        {
+          "label": "Leren tellen zonder klok (Kennis 9)",
+          "test": {
+            "kenmerk": "kennis",
+            "moeilijkheid": 9
+          },
+          "gelukt": {
+            "tekst": "Na drie dagen weet je hoe laat het is zonder te kijken. En je weet hoe je de tijd kunt vasthouden, even, als je adem.",
+            "effect": [
+              {
+                "aanwijzing": 2
+              },
+              {
+                "trek": "spreuken"
+              }
+            ]
+          },
+          "mislukt": {
+            "tekst": "Je mist je horloge meer dan je had gedacht.",
+            "effect": [
+              {
+                "geest": -1
+              },
+              {
+                "aanwijzing": 1
+              }
+            ]
+          }
+        },
+        {
+          "label": "Mediteren met de monniken",
+          "tekst": "Je zit een dag stil. De tijd gaat voorbij zoals water. Als je opstaat, voel je je uitgerust als na een maand slaap.",
+          "effect": [
+            {
+              "geest": 3
+            },
+            {
+              "lichaam": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
