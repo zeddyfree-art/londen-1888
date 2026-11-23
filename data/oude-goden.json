@@ -3,7 +3,7 @@
     "id": "vathrun",
     "naam": "Vathrûn",
     "titel": "Die onder de rivier ademt",
-    "mist": 12,
+    "mist": 11,
     "verhaal": "Al eeuwen ligt er iets in het slib onder de Theems. Elke vloed brengt een beetje van zijn adem mee: de gele mist die over de kades kruipt. Sinds de nieuwe riolen zijn gegraven, heeft die adem een weg naar boven gevonden. Wie de mist inademt, droomt van groene diepten en wordt met natte voeten wakker.",
     "regel": "Elke keer dat er een Scheur opengaat op een plek aan de rivier, verschijnt daar ook een monster.",
     "verdachten": "Het Genootschap van het Zevende Zegel: rivierwerkers en rioolmannen die offeren aan de vloed.",
@@ -39,6 +39,14 @@
         "voorwerp": "het rapport van Penhallow",
         "kenmerk": "scherpte",
         "moeilijkheid": 8
+      },
+      {
+        "naam": "Het getij keren",
+        "doel": "Reis naar Westminster en overtuig de ingenieurs van de Metropolitan Board of Works om de sluizen van de nieuwe riolen te sluiten (Charisma 8).",
+        "type": "test",
+        "plek": "westminster",
+        "kenmerk": "overtuiging",
+        "moeilijkheid": 8
       }
     ],
     "ontwaken": "De Theems treedt buiten haar oevers en de mist slokt Londen op. Jullie verliezen.",
@@ -63,10 +71,10 @@
     "mysteries": [
       {
         "naam": "Bereken de baan",
-        "doel": "Breng samen 4 Aanwijzingen naar Hampstead en doe daar een Kennis-test (9).",
+        "doel": "Breng samen 3 Aanwijzingen naar Hampstead en doe daar een Kennis-test (9).",
         "type": "aanwijzingen",
         "plek": "hampstead",
-        "aantal": 4,
+        "aantal": 3,
         "kenmerk": "kennis",
         "moeilijkheid": 9
       },
@@ -97,6 +105,13 @@
         "voorwerp": "Lucan Vey",
         "kenmerk": "overtuiging",
         "moeilijkheid": 8
+      },
+      {
+        "naam": "Een lens voor de sterrenwacht",
+        "doel": "Breng een Artefact naar Hampstead. Door een vreemd glas ziet de sterrenwacht waar de Orde naar kijkt.",
+        "type": "artefacten",
+        "plek": "hampstead",
+        "aantal": 1
       }
     ],
     "ontwaken": "De ster staat in de hele nacht en Londen kijkt omhoog. Niemand kijkt ooit nog weg. Jullie verliezen.",
@@ -149,6 +164,16 @@
         "voorwerp": "de getuigenis van Hamdi",
         "kenmerk": "overtuiging",
         "moeilijkheid": 6
+      },
+      {
+        "naam": "De poorten van de Dodenstad",
+        "doel": "Sluit een Scheur in St Katharine Docks of Bloomsbury, en nog één ergens anders.",
+        "type": "scheuren",
+        "aantal": 2,
+        "minstensEen": [
+          "st-katharine-docks",
+          "bloomsbury"
+        ]
       }
     ],
     "ontwaken": "De farao neemt het gezicht van de koningin aan en het rijk buigt. Jullie verliezen.",
@@ -173,12 +198,12 @@
     "mysteries": [
       {
         "naam": "Het aftelrijmpje",
-        "doel": "Breng samen 4 Aanwijzingen naar Covent Garden, waar Oude Nan Mossop het rijmpje met je ontcijfert (Charisma 9).",
+        "doel": "Breng samen 3 Aanwijzingen naar Covent Garden, waar Oude Nan Mossop het rijmpje met je ontcijfert (Charisma 8).",
         "type": "aanwijzingen",
         "plek": "covent-garden",
-        "aantal": 4,
+        "aantal": 3,
         "kenmerk": "overtuiging",
-        "moeilijkheid": 9
+        "moeilijkheid": 8
       },
       {
         "naam": "De doornpoorten",
@@ -205,6 +230,14 @@
         "doel": "Versla het epische monster De Groene Jager, dat op Hampstead verschijnt.",
         "type": "episch",
         "plek": "hampstead"
+      },
+      {
+        "naam": "Het verbroken wiegelied",
+        "doel": "Zoek in de leeszaal van het British Museum in Bloomsbury het oude wiegelied dat de Doornkoningin ooit bond (Kennis 8).",
+        "type": "test",
+        "plek": "bloomsbury",
+        "kenmerk": "kennis",
+        "moeilijkheid": 8
       }
     ],
     "ontwaken": "Uit elke straatsteen breekt een doorn. Binnen een nacht is Londen een woud, en de kinderen dansen het in. Jullie verliezen.",
@@ -261,6 +294,13 @@
         "doel": "Versla het epische monster De Anatoom, dat in Southwark verschijnt, in het oude operatietheater van Guy's.",
         "type": "episch",
         "plek": "southwark"
+      },
+      {
+        "naam": "Een kruis voor de putten",
+        "doel": "Breng een Artefact naar Spitalfields, zodat de broeders van de gaarkeuken de oude pestputten kunnen zegenen.",
+        "type": "artefacten",
+        "plek": "spitalfields",
+        "aantal": 1
       }
     ],
     "ontwaken": "De doden van zeven eeuwen staan op uit de putten en lopen de straten in. Londen wordt een stad van de doden, en jullie lopen mee. Jullie verliezen.",

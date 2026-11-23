@@ -2,7 +2,21 @@
 
 Deze lijst werken we aan het einde van elk gesprek bij. Zet bij elke update die spelers merken een nieuw bericht bovenaan `data/nieuws.json` (met een hoger `id`): dat verschijnt één keer als "Wat is er nieuw" als de app opent.
 
-*Laatst bijgewerkt: 22 november 2026 (dertiende sessie)*
+*Laatst bijgewerkt: 23 november 2026 (veertiende sessie)*
+
+## Gemeten na de veertiende sessie (vijfde mysterie, ontmoetingen 1 zwaarder, uitputting, Arjan Singh)
+
+Met `node tools/testbot.js 80` en `MODUS=lang node tools/testbot.js 80`, plus het analysescript (50 potjes per vakje, normaal). Ontmoetingstests 1 zwaarder; Mist ontspannen +1, normaal −1, genadeloos −3; Vathrûn Mist 11; vijf mysteries per god; De Lange Nacht 2 mysteries meer en Mist +5; uitputting vanaf de helft van de Mist. Daarna nog *Het aftelrijmpje* naar Charisma 8 (niet opnieuw gemeten).
+
+| God | Gewoon normaal 2 / 4 | Lange Nacht normaal 2 / 4 | Gewoon genadeloos 2 / 4 |
+|---|---|---|---|
+| Vathrûn | 65% / 76% | 66% / 79% | 28% / 15% |
+| Azh-Ilareth | 70% / 64% | 44% / 78% | 19% / 9% |
+| Nebet-Ankhu | 65% / 81% | 55% / 64% | 36% / 30% |
+| Ysmara | 64% / 78% | 38% / 85% | 21% / 15% |
+| Morghast | 68% / 70% | 64% / 83% | 24% / 9% |
+
+Ontspannen gewoon 80 tot 99%, Lange Nacht 74 tot 99%. Rondes met 2 helden: gewoon ~8, Lange Nacht 12,5 tot 14. Tests gelukt 78 tot 85% (was 85 tot 88%). Waanzin 1,0 tot 2,3 per potje (was 0,3), gevallen helden 0,1 tot 0,4. Het klokkenmodel is bijgewerkt uit `balans.json`.
 
 ## Gemeten na de dertiende sessie (overslag, buit, De Lange Nacht; vóór het samenvoegen met de twaalfde)
 
@@ -159,6 +173,11 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [ ] Na een paar potjes: welke ★-keuzes (heldkeuzes) en vervolgverhalen vallen op, en willen we er meer?
 - [ ] Ysmara en Morghast hebben 10 verhaalkaarten elk, de oude goden 16 tot 17. Na een paar potjes kijken of er meer nodig zijn.
 
+### Veertiende sessie
+- [ ] Testers vragen naar het tikken: `testvraag-klikken.md`.
+- [ ] De Lange Nacht met 2 helden is zwaar tegen Ysmara (38%) en Azh-Ilareth (44%). Na echte potjes bekijken.
+- [ ] Startplekken: er zijn 25 helden en 20 plekken, dus 5 plekken hebben er twee (Leicester Square, Bloomsbury, Marylebone, Soho, Pall Mall). Geen gelijke profielen meer op één plek.
+
 ### De Lange Nacht en de proefregels (dertiende sessie)
 - [ ] Analyserapport *Londen 1888 — Speelbaarheid, winkansen en flow* (22 november): na het samenvoegen gemeten, normaal gewoon ~73%, Lange Nacht ~71%, genadeloos ~20% en ~12%. Aanbevelingen: tests 1 zwaarder met Mist 1 ruimer, meer schade aan helden, snelle worpen en buit in één scherm, *Bereken de baan* en *Het aftelrijmpje* versoepelen, een vijfde mysterie voor De Lange Nacht.
 - [ ] Testbot leren artefacten en spreuken buiten gevechten te gebruiken (Kam van de Banshee, Horloge, Wekroep laten de Mist stijgen en zijn nu niet gemeten).
@@ -180,6 +199,12 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [ ] Testen: voelen de nieuwe geruchten (Scheur sluiten, monster verslaan) haalbaar?
 
 ## Klaar
+
+- [x] Beelden voor Daffadar Arjan Singh (portret, Tulwar van de Guides, Khaki-tuniek) in het spel en in `tools/art-drive.json`
+
+- [x] Albert Gosling: Charisma 4 en Verdwijntruc (Scheuren sluiten met Charisma); nieuwe held Daffadar Arjan Singh (Kracht 4, Stalen zenuwen); Aggie en Khalil een eigen profiel, Khalil naar Bloomsbury
+- [x] Vijfde mysterie per god; De Lange Nacht 2 mysteries meer; ontmoetingen 1 zwaarder; uitputting vanaf de helft van de Mist; flessenhalzen versoepeld
+- [x] Morghast-sfeer zonder schrapen; vier nieuwe muzieknummers (muziek-2 uit ElevenLabs, muziek-3 tot 5: Somber Shadows, The Music Box Sleeps, Umbrarum), de muziek speelt als afspeellijst
 
 - [x] Wekroep van de klokken werkt nog maar één keer per potje (was elke beurt herhaalbaar)
 - [x] De 64 beelden voor De Lange Nacht staan in het spel en in `tools/art-drive.json`

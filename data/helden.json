@@ -129,16 +129,16 @@
     "start": "Leicester Square",
     "achtergrond": "Achter het Italiaanse toneelpak zit een jongen uit Bermondsey die als kind al kaarten kon laten verdwijnen. Op een avond verdween zijn assistente midden in een truc echt. Sinds die avond oefent hij met trucs die hij nooit op het toneel zou durven tonen.",
     "kenmerken": {
-      "kennis": 2,
+      "kennis": 1,
       "scherpte": 3,
       "kracht": 2,
-      "overtuiging": 3
+      "overtuiging": 4
     },
     "lichaam": 6,
     "geest": 6,
     "vermogen": {
-      "naam": "Handigheid",
-      "tekst": "Eén keer per ronde mag je een voorwerp ruilen met een held op een andere plek in Londen."
+      "naam": "Verdwijntruc",
+      "tekst": "Je sluit Scheuren met Charisma in plaats van Kennis: wat de Grote Orsini laat verdwijnen, blijft weg. Eén keer per ronde mag je ook een voorwerp ruilen met een held op een andere plek in Londen."
     },
     "eigenaardigheid": "Kan niet tegen applaus dat te lang duurt.",
     "uitrusting": [
@@ -529,8 +529,8 @@
     "start": "King's Cross",
     "achtergrond": "Aggie is groter dan de meeste mannen en breder dan de deur van haar woonwagen. Op de kermis aan de Caledonian Road stoot ze een kogel van zestien pond verder dan wie ook, en tilt ze twee smidsknechten tegelijk op. Na de voorstelling breit ze sjaals voor de kinderen van de kermis. Sinds de kleine Tommy van de schiettent 's nachts wegliep in de richting van het spoor, gaat ze elke avond zelf de rails langs, met een lantaarn en haar kogel in een netje over haar schouder.",
     "kenmerken": {
-      "kennis": 1,
-      "scherpte": 2,
+      "kennis": 2,
+      "scherpte": 1,
       "kracht": 4,
       "overtuiging": 3
     },
@@ -644,12 +644,12 @@
     "leeftijd": 52,
     "beroep": "Hoogleraar oude talen aan Dar al-Ulum in Cairo, te gast bij King's College",
     "rol": "Leraar",
-    "start": "Strand",
+    "start": "Bloomsbury",
     "achtergrond": "Zijn familie telt haar voorouders terug tot een priestergeslacht uit Thebe, en zijn grootmoeder zei altijd dat het bloed van de farao's door hun aderen stroomt. Khalil lachte erom, tot de slangen in zijn dromen kwamen. Op zijn onderarm staat een cobra waarvan hij zich niet herinnert dat hij hem liet zetten. In zijn dromen leert de slang hem tekens die in geen enkel boek staan. Sinds hij in Londen is, ziet hij ze terug op de muren.",
     "kenmerken": {
       "kennis": 4,
-      "scherpte": 2,
-      "kracht": 1,
+      "scherpte": 1,
+      "kracht": 2,
       "overtuiging": 3
     },
     "lichaam": 5,
@@ -697,5 +697,33 @@
     ],
     "bondgenoot": null,
     "prompt": "gaunt former priest in his mid-forties, 1888 London, tired kind eyes and hollow cheeks, close-cropped greying hair, black frock coat without a clerical collar, a faded purple stole around his neck, his right hand raised palm outward and glowing faintly, a brass mesmerist's pendulum hanging from his other hand, a shabby gaslit hall with rows of empty wooden chairs behind him"
+  },
+  {
+    "id": "arjan-singh",
+    "naam": "Daffadar Arjan Singh",
+    "leeftijd": 38,
+    "beroep": "Lijfwacht en particulier speurder, Pall Mall",
+    "rol": "Grensverkenner",
+    "start": "Pall Mall",
+    "achtergrond": "Twaalf jaar reed hij voor het Corps of Guides langs de noordwestgrens: nachtelijke verkenningen in de bergen, hinderlagen in ravijnen, terugkeren als niemand anders terugkwam. Hij kwam naar Londen met de Indiase escorte voor het jubileum van de koningin, en bleef. Nu bewaakt hij heren van de Army and Navy Club, en speurt hij voor wie hem betaalt. In de mist van Londen herkent hij iets wat hij in de bergen ook zag, en waar hij toen al niet voor wegliep.",
+    "kenmerken": {
+      "kennis": 1,
+      "scherpte": 4,
+      "kracht": 4,
+      "overtuiging": 1
+    },
+    "lichaam": 7,
+    "geest": 5,
+    "vermogen": {
+      "naam": "Stalen zenuwen",
+      "tekst": "Jij en elke held op jouw plek gooien bij Gruwel-tests één dobbelsteen extra. Wie bij de Khyberpas heeft gestaan, deinst niet meer terug."
+    },
+    "eigenaardigheid": "Zegt nooit hoeveel hij weet, en weet altijd meer dan hij zegt.",
+    "uitrusting": [
+      "Tulwar van de Guides",
+      "Khaki-tuniek"
+    ],
+    "bondgenoot": null,
+    "prompt": "tall broad-shouldered Sikh man in his late thirties, 1888 London, dark brown skin, full dark beard neatly tied, deep blue turban, calm watchful eyes and a faint scar on one cheek, a faded khaki cavalry tunic of the Corps of Guides with a red sash under a dark civilian greatcoat, a curved tulwar sword at his hip, standing on the steps of a Pall Mall gentlemen's club under a gas lamp, fog behind him"
   }
 ]

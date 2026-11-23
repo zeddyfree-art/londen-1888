@@ -24,7 +24,7 @@ Alles over de wereld van ons spel: wat er aan de hand is, wie erbij betrokken is
 
 ## In cijfers
 
-- 5 oude goden, 24 helden, 17 vaste personages
+- 5 oude goden, 25 helden, 17 vaste personages
 - 94 algemene stadskaarten en 69 verhaalkaarten
 - 53 onheilskaarten, waarvan 10 geruchten
-- 17 monsters en 5 epische monsters, 9 artefacten, 14 spreuken
+- 17 monsters en 5 epische monsters, 27 artefacten, 27 spreuken

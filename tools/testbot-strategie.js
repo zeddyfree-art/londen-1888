@@ -91,7 +91,7 @@ window.__testbot = async function speel(godId, moeilijkheid, heldIds, seed) {
     if (m.type === "scheuren") return dichtsbij(h, p => st.plekken[p].scheur && (!m.rivier || D.bord.rivier.includes(p))) || dichtsbij(h, p => st.plekken[p].aanw > 0);
     const epischOp = Object.keys(st.plekken).find(p => st.plekken[p].monsters.some(x => D.epische.some(e => e.id === x.id)));
     if (m.type === "episch") return h.L >= h.maxL - 1 && h.G >= 3 ? (epischOp || m.plek) : (h.aanw < 2 ? dichtsbij(h, p => st.plekken[p].aanw > 0) : null);
-    if (m.type === "test") return geld(h) || A.isOverzee(h.plek) ? m.plek : "leicester-square";
+    if (m.type === "test") return isPlek(m.plek) || geld(h) || A.isOverzee(h.plek) ? m.plek : "leicester-square";
     if (m.type === "artefacten") {
       const n = st.helden.reduce((s, x) => s + x.artefacten.length, 0);
       if (n >= m.aantal) return m.plek;

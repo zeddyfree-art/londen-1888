@@ -33,11 +33,13 @@ const DIENSTUITLEG = {
 };
 const COACH_RONDES = 3; /* zoveel rondes geeft de tutorial-coach een uitgewerkte suggestie */
 const STATIONS = ["marylebone", "kings-cross", "city", "westminster"];
-const LANGE_NACHT = { mist: 2 };
+const LANGE_NACHT = { mist: 5, extraMysteries: 2 };
+/* Tests bij ontmoetingen zijn 1 zwaarder: zonder uitrusting of groei haal je ze niet zeker */
+const ONTMOETING_ZWAARDER = 1;
 const MOEILIJKHEID = {
-  ontspannen: { naam: "Ontspannen", mist: 0, nodig: 2, scheuren: 2, test: 0 },
-  normaal: { naam: "Normaal", mist: -3, nodig: 3, scheuren: 2, test: 0, finale: 1 },
-  genadeloos: { naam: "Genadeloos", mist: -4, nodig: 3, scheuren: 3, test: 1 }
+  ontspannen: { naam: "Ontspannen", mist: 1, nodig: 2, scheuren: 2, test: 0 },
+  normaal: { naam: "Normaal", mist: -1, nodig: 3, scheuren: 2, test: 0, finale: 1 },
+  genadeloos: { naam: "Genadeloos", mist: -3, nodig: 3, scheuren: 3, test: 1 }
 };
 
 let D = null;      // speldata
@@ -199,9 +201,11 @@ const Geluid = (() => {
     fetch("data/geluiden.json").then(r => r.ok ? r.json() : []).catch(() => []).then(namen => { for (const naam of namen) laadEen(naam); });
   }
   function laadEen(naam) {
-    const el = new Audio(); el.preload = "auto";
+    /* muziek is groot: alleen de gegevens vooraf laden, het nummer zelf pas als het speelt */
+    const lang = naam.startsWith("muziek");
+    const el = new Audio(); el.preload = lang ? "metadata" : "auto";
     const b = bestand[naam] = { el, ok: false };
-    el.addEventListener("canplaythrough", () => { b.ok = true; if (naam === sfeerNaam) sfeer(sfeerNaam.replace("sfeer-", ""), true); if (naam === "muziek" && muziekGewenst) muziek(true, true); }, { once: true });
+    el.addEventListener(lang ? "loadedmetadata" : "canplaythrough", () => { b.ok = true; if (naam === sfeerNaam) sfeer(sfeerNaam.replace("sfeer-", ""), true); if (naam.startsWith("muziek") && muziekGewenst && !muziekEl) muziek(true, true); }, { once: true });
     el.addEventListener("error", () => { b.ok = false; }, { once: true });
     el.src = `art/geluid/${naam}.mp3`;
   }
@@ -236,20 +240,25 @@ const Geluid = (() => {
     if (!aan || !b?.ok) return;
     sfeerEl = b.el; sfeerEl.loop = true; zetVolume(sfeerEl, sfeerVolume()); sfeerEl.currentTime = 0; sfeerEl.play().catch(() => { sfeerEl = null; });
   }
-  /* achtergrondmuziek: één lange, zachte track onder de sfeer */
-  let muziekGewenst = false, muziekEl = null;
+  /* achtergrondmuziek: een afspeellijst van lange, zachte tracks (muziek, muziek-2, ...) onder de sfeer.
+     Is een track afgelopen, dan begint de volgende. */
+  let muziekGewenst = false, muziekEl = null, muziekNr = Math.floor(Math.random() * 60); /* elke sessie begint bij een ander nummer */
+  const muziekLijst = () => Object.keys(bestand).filter(n => /^muziek(-\d+)?$/.test(n) && bestand[n].ok).sort();
   function muziek(spelen, opnieuw) {
     muziekGewenst = spelen;
-    const b = bestand.muziek;
+    const lijst = muziekLijst(), b = lijst.length ? bestand[lijst.at(muziekNr % lijst.length)] : null;
     if (!spelen || !aan || !muziekAan || !b?.ok) { if (muziekEl) { muziekEl.pause(); muziekEl = null; } if (sfeerEl) zetVolume(sfeerEl, sfeerVolume()); return; }
     if (muziekEl && !opnieuw) return;
-    muziekEl = b.el; muziekEl.loop = true; zetVolume(muziekEl, .18); muziekEl.play().catch(() => { muziekEl = null; if (sfeerEl) zetVolume(sfeerEl, sfeerVolume()); });
+    if (muziekEl && muziekEl !== b.el) muziekEl.pause();
+    muziekEl = b.el; muziekEl.loop = lijst.length < 2; zetVolume(muziekEl, .18);
+    if (!muziekEl.dataset.volgende) { muziekEl.dataset.volgende = "1"; muziekEl.addEventListener("ended", () => { if (muziekEl !== b.el) return; muziekNr++; muziekEl = null; muziek(muziekGewenst, true); }); }
+    muziekEl.currentTime = 0; muziekEl.play().catch(() => { muziekEl = null; if (sfeerEl) zetVolume(sfeerEl, sfeerVolume()); });
     if (sfeerEl) zetVolume(sfeerEl, sfeerVolume());
   }
   return {
     get aan() { return aan; },
     get muziekAan() { return muziekAan; },
-    get heeftMuziek() { return !!bestand.muziek?.ok; },
+    get heeftMuziek() { return muziekLijst().length > 0; },
     laad, sfeer, muziek,
     wisselMuziek() { muziekAan = !muziekAan; try { localStorage.setItem("londen1888-muziek", muziekAan ? "aan" : "uit"); } catch {} muziek(muziekGewenst, true); },
     wissel() { aan = !aan; try { localStorage.setItem("londen1888-geluid", aan ? "aan" : "uit"); } catch {} if (!aan && sfeerEl) { sfeerEl.pause(); sfeerEl = null; } else if (aan && sfeerNaam) sfeer(sfeerNaam.replace("sfeer-", ""), true); muziek(muziekGewenst, true); },
@@ -446,7 +455,7 @@ function rolDobbels(m) {
 }
 /* Wat telt er bij een test op, en met hoeveel stenen gooi je? Gedeeld door test() en kans(). */
 function testOpzet(h, kenmerk, doel, opt = {}) {
-  doel += MOEILIJKHEID[S.moeilijkheid].test + (klok("dertien-slagen") ? 1 : 0) + (window.__doelPlus || 0);
+  doel += MOEILIJKHEID[S.moeilijkheid].test + (klok("dertien-slagen") ? 1 : 0) + (window.__doelPlus || 0) + (opt.context === "ontmoeting" ? ONTMOETING_ZWAARDER : 0);
   let extra = opt.extra || 0;
   if (kenmerk === "kennis" && h.id === "septimus-crane") extra += Math.min(2, h.aanw);
   if (heeft(h, "waanzin-stemmen") && opt.spreuk) extra += 1;
@@ -467,7 +476,7 @@ function kans(h, kenmerk, doel, opt = {}) {
   return Math.round(100 * goed / alle);
 }
 const kansTxt = (h, kenmerk, doel, opt) => ` · ${kans(h, kenmerk, doel, opt)}%`;
-const metStand = doel => doel + MOEILIJKHEID[S.moeilijkheid].test + (klok("dertien-slagen") ? 1 : 0);
+const metStand = (doel, ctx) => doel + MOEILIJKHEID[S.moeilijkheid].test + (klok("dertien-slagen") ? 1 : 0) + (ctx === "ontmoeting" ? ONTMOETING_ZWAARDER : 0);
 async function test(h, kenmerk, doel, titel, opt = {}) {
   const hd = heldDef(h);
   if (S.tutorial) await coach("test");
@@ -739,7 +748,7 @@ async function nieuwBedrijf() {
     const al = alleMonsters().some(({ m }) => m.id === e.id);
     if (!al && mysterie()?.type !== "episch") { const p = kies1(D.bord.plekken.filter(x => !S.plekken[x.id].monsters.length)).id; spawnEpisch(p); regels.push(`${e.naam} waakt over het laatste geheim en verschijnt in ${plekNaam(p)}.`); }
   }
-  const titel = laatste ? "Het laatste bedrijf" : ["", "", "Het tweede bedrijf", "Het derde bedrijf"][S.bedrijf] || `Bedrijf ${S.bedrijf}`;
+  const titel = laatste ? "Het laatste bedrijf" : ["", "", "Het tweede bedrijf", "Het derde bedrijf", "Het vierde bedrijf"][S.bedrijf] || `Bedrijf ${S.bedrijf}`;
   const verhaal = laatste ? "De stad houdt haar adem in. Alles wat jullie verzameld hebben, is nu nodig." : S.bedrijf === 2 ? "Londen merkt dat jullie zoeken. Wat in de mist woont, wordt taaier." : "De stad bloedt. De wezens in de straten slaan harder toe.";
   log(`${titel} begint`);
   await venster({ soort: "De Lange Nacht", titel, verhaal, html: `<ul>${regels.map(t => `<li>${esc(t)}</li>`).join("")}</ul>` });
@@ -811,7 +820,7 @@ function nieuwSpel(godId, moeilijkheid, heldIds, opties = {}) {
     modus: opties.modus === "lang" ? "lang" : "gewoon", bedrijf: 1
   };
   /* De Lange Nacht: één mysterie meer en een ruimere Mist */
-  if (S.modus === "lang") { S.nodig += 1; S.mist += LANGE_NACHT.mist; }
+  if (S.modus === "lang") { S.nodig = Math.min(g.mysteries.length, S.nodig + LANGE_NACHT.extraMysteries); S.mist += LANGE_NACHT.mist; }
   S.kans = schatKans(godId, moeilijkheid, heldIds.length, S.klokken);
   if (klok("dikke-mist")) S.mist -= 2;
   if (klok("ongeduldige-god")) S.nodig += 1;
@@ -959,7 +968,7 @@ async function rondkijken(h) {
     knoppen: [
       { label: "Inkopen: trek 2 spullen, koop er één voor 1 Pond meer", waarde: "inkopen", uit: heeft(h, "gezocht") || !kanDragen(h) || h.pond < 1 },
       { label: "Rijtuigkaartje kopen (1 Pond): later 2 stappen zonder actie", waarde: "kaartje", uit: h.pond < 1 || !kanDragen(h) },
-      { label: `Rondhoren (Waarneming ${metStand(9)}${kansTxt(h, "scherpte", 9, { context: "ontmoeting" })}): 1 Aanwijzing, mislukt −1 Geest`, waarde: "rondhoren" },
+      { label: `Rondhoren (Waarneming ${metStand(9, "ontmoeting")}${kansTxt(h, "scherpte", 9, { context: "ontmoeting" })}): 1 Aanwijzing, mislukt −1 Geest`, waarde: "rondhoren" },
       { label: "Toch niet", waarde: null, ghost: true }] });
   if (!k) return;
   const voor = JSON.stringify(S);
@@ -1565,7 +1574,7 @@ async function vecht(h, plek, m) {
   const bonus = (kenmerk === "kracht" || zwaard ? wapenBonus(h, d.mens) : 0) + nebet + kogels + terrier;
   const voorbereid = h.ronde.voorbereid ? 1 : 0;
   const gruwel = S.plekken[plek]?.belRonde === S.ronde ? 0 : d.gruwel;
-  const gruwelOpt = () => ({ extra: h.ronde.pentagram ? 1 : 0, bonus: (h.artefacten.includes("jade-masker") ? 2 : 0) + artBonus(h, "gruwel") + h.spullen.reduce((t, id) => t + (spulDef(id)?.bonus?.gruwel || 0), 0) });
+  const gruwelOpt = () => ({ extra: (h.ronde.pentagram ? 1 : 0) + (S.helden.some(x => x.id === "arjan-singh" && x.plek === plek && !x.uit) ? 1 : 0), bonus: (h.artefacten.includes("jade-masker") ? 2 : 0) + artBonus(h, "gruwel") + h.spullen.reduce((t, id) => t + (spulDef(id)?.bonus?.gruwel || 0), 0) });
   const kansen = [gruwel > 0 && !h.ronde.wake ? `gruwel weerstaan ${kans(h, "kennis", 8, gruwelOpt())}%` : "", `raken ${kans(h, kenmerk, d.taaiheid, { bonus, extra: voorbereid })}%`].filter(Boolean).join(" · ");
   if (h.spreuken.includes("verbanning")) opties.find(o => o.waarde === "verban").label += kansTxt(h, "kennis", d.taaiheid, { bonus: nebet, spreuk: true, extra: voorbereid });
   const k = await venster({ soort: ep ? "Episch monster" : "Gevecht", thema: "monster", titel: d.naam, beeld: `art/monsters/${d.id}.jpg`, zij: true, achterkant: "monster", geluid: "monster", verhaal: d.eigenschap,
@@ -1719,7 +1728,7 @@ async function ontmoeting(h) {
     await overgang("scheur", `${naam} stapt door de Scheur`);
     await speelKaart(h, kaart, "Aan de andere kant", scheurBeeld(), "scheur");
     if ((h.plek !== plek && !h.ronde.astraal) || !p.scheur) return;
-    const lens = h.artefacten.includes("vuurtoren-lens") && h.kenm.scherpte > h.kenm.kennis ? "scherpte" : "kennis";
+    const lens = h.id === "albert-gosling" ? "overtuiging" : h.artefacten.includes("vuurtoren-lens") && h.kenm.scherpte > h.kenm.kennis ? "scherpte" : "kennis";
     const k = await venster({ soort: "Scheur", thema: "scheur", portaal: true, beeld: scheurBeeld(), titel: `De Scheur in ${plekNaam(plek)}`, html: `<p>Probeer je hem te sluiten? (${KNAAM[lens]})</p>` + middelenHtml(h, { kenmerk: lens }),
       knoppen: [{ label: `Sluiten met 1 Aanwijzing (${metStand(8)}${kansTxt(h, lens, 8, { bonus: sluitBonus(h) })})`, waarde: "a", uit: h.aanw < 1 }, { label: `Sluiten zonder Aanwijzing (${metStand(10)}${kansTxt(h, lens, 10, { bonus: sluitBonus(h) })})`, waarde: "z" }, { label: "Laten", waarde: null, ghost: true }] });
     if (k) {
@@ -1734,7 +1743,7 @@ async function ontmoeting(h) {
     await overgang("aanwijzing", "Een spoor");
     /* een aanwijzingskaart kan een eigen test hebben (een getuige: Charisma, een geheimschrift: Kennis); anders Waarneming 7 */
     const t = kaart.test || { kenmerk: "scherpte", moeilijkheid: 7 };
-    const k = await venster({ soort: "Aanwijzing", thema: "aanwijzing", titel: plekNaam(plek), beeld: `art/plekken/${plek}.jpg`, achterkant: "mysterie", verhaal: kaart.tekst, html: middelenHtml(h, { kenmerk: t.kenmerk }), knoppen: [{ label: `${kaart.actie || "Onderzoeken"} (${KNAAM[t.kenmerk]} ${metStand(t.moeilijkheid)}${kansTxt(h, t.kenmerk, t.moeilijkheid, { context: "ontmoeting" })})`, waarde: true }] });
+    const k = await venster({ soort: "Aanwijzing", thema: "aanwijzing", titel: plekNaam(plek), beeld: `art/plekken/${plek}.jpg`, achterkant: "mysterie", verhaal: kaart.tekst, html: middelenHtml(h, { kenmerk: t.kenmerk }), knoppen: [{ label: `${kaart.actie || "Onderzoeken"} (${KNAAM[t.kenmerk]} ${metStand(t.moeilijkheid, "ontmoeting")}${kansTxt(h, t.kenmerk, t.moeilijkheid, { context: "ontmoeting" })})`, waarde: true }] });
     if (k && await test(h, t.kenmerk, t.moeilijkheid, "Een spoor volgen", { context: "ontmoeting" })) { p.aanw--; h.aanw++; log(`${naam} vindt een Aanwijzing in ${plekNaam(plek)}`); }
     else if (k && kaart.mislukt) await venster({ soort: "Mislukt", titel: naam, thema: "aanwijzing", verhaal: kaart.mislukt.tekst, html: await pasToe(h, kaart.mislukt.effect || []) }), await controleerHeld(h);
     return;
@@ -1760,7 +1769,7 @@ async function speelKaart(h, kaart, soort, beeld, rug) {
     /* een keuze met "held" verschijnt alleen voor die helden, een keuze met "spul" alleen als je het bij je hebt */
     const mag = k => (!k.held || k.held.includes(h.id)) && (!k.spul || h.spullen.includes(k.spul) || h.eigen.some(e => e.id === k.spul));
     const teKort = k => !k.test && (k.effect || []).some(e => (e.pond < 0 && -e.pond > h.pond) || (e.aanwijzing < 0 && -e.aanwijzing > h.aanw));
-    const i = await venster({ ...kop, html: metWie + `<p class="muted">Wat doe je?</p>` + middelenHtml(h), knoppen: kaart.keuzes.map((k, i) => [k, i]).filter(([k]) => mag(k)).map(([k, i]) => ({ label: (k.held || k.spul ? "★ " : "") + (k.test ? k.label.replace(/\((\w+) (\d+)\)/, (_, kn, n) => `(${kn} ${metStand(+n)}${kansTxt(h, k.test.kenmerk, k.test.moeilijkheid, { context: "ontmoeting" })})`) : k.label), waarde: i, uit: teKort(k) })) });
+    const i = await venster({ ...kop, html: metWie + `<p class="muted">Wat doe je?</p>` + middelenHtml(h), knoppen: kaart.keuzes.map((k, i) => [k, i]).filter(([k]) => mag(k)).map(([k, i]) => ({ label: (k.held || k.spul ? "★ " : "") + (k.test ? k.label.replace(/\((\w+) (\d+)\)/, (_, kn, n) => `(${kn} ${metStand(+n, "ontmoeting")}${kansTxt(h, k.test.kenmerk, k.test.moeilijkheid, { context: "ontmoeting" })})`) : k.label), waarde: i, uit: teKort(k) })) });
     const k = kaart.keuzes[i ?? 0];
     if (!k.test) return uitkomst(null, { tekst: k.tekst, effect: k.effect });
     const ok = await doeTest(k.test);
@@ -1771,7 +1780,7 @@ async function speelKaart(h, kaart, soort, beeld, rug) {
     await venster({ ...kop, html: metWie + (kaart.slot ? `<p class="verhaal">${esc(kaart.slot)}</p>` : "") + html });
     await controleerHeld(h); return;
   }
-  await venster({ ...kop, html: metWie + middelenHtml(h, { kenmerk: kaart.test.kenmerk }), knoppen: [{ label: `${KNAAM[kaart.test.kenmerk]}-test (${metStand(kaart.test.moeilijkheid)}${kansTxt(h, kaart.test.kenmerk, kaart.test.moeilijkheid, { context: "ontmoeting" })})`, waarde: true }] });
+  await venster({ ...kop, html: metWie + middelenHtml(h, { kenmerk: kaart.test.kenmerk }), knoppen: [{ label: `${KNAAM[kaart.test.kenmerk]}-test (${metStand(kaart.test.moeilijkheid, "ontmoeting")}${kansTxt(h, kaart.test.kenmerk, kaart.test.moeilijkheid, { context: "ontmoeting" })})`, waarde: true }] });
   const ok = await doeTest(kaart.test);
   await uitkomst(ok, ok ? kaart.gelukt : kaart.mislukt);
 }
@@ -1857,7 +1866,11 @@ async function onheilsfase() {
   /* vaste gevolgen elke ronde */
   beweegMonsters(false);
   for (const { plek, m } of alleMonsters()) { const d = monsterDef(m.id); if (d.aura) for (const h of S.helden) if (h.plek === plek) h.G += d.aura.geest; }
+  /* De Mist kruipt in je hoofd: is de Mist tot de helft gezakt, dan verliest elke held in Londen elke ronde 1 Geest */
+  const uitputting = S.mist <= Math.floor((S.mistStart ?? S.mist) / 2);
+  if (uitputting && !S.uitputtingGemeld) { S.uitputtingGemeld = true; await melding("De Mist kruipt in je hoofd", "De Mist is tot de helft gezakt. Vanaf nu verliest elke held in Londen aan het eind van elke ronde 1 Geest. Rust, vlugzout en genezing worden kostbaar."); }
   for (const h of S.helden) {
+    if (uitputting && !isOverzee(h.plek) && !h.uit) { h.G--; }
     if (S.god === "nebet-ankhu" && h.artefacten.length) h.G--;
     if (S.god === "azh-ilareth" && h.plek === "hampstead") h.G = Math.min(h.maxG, h.G + 1);
     if (S.god === "ysmara" && !isOverzee(h.plek) && S.helden.filter(x => x.plek === h.plek).length === 1) { h.G--; log(`${korteNaam(heldDef(h).naam)} staat alleen en hoort de Doornkoningin roepen: −1 Geest`); }
@@ -2641,8 +2654,8 @@ function tekenStart() {
     ${opgeslagen && !opgeslagen.einde ? `<div class="hint">Er is een spel bezig tegen ${esc(byId(D.goden, opgeslagen.god)?.naam)}, ronde ${opgeslagen.ronde}. <button class="btn small" data-act="verder">Verder spelen</button></div>` : ""}
     <section><h2>Tegen wie?</h2><div class="goden">${D.goden.map(g => `<button class="optie" data-god="${g.id}" aria-pressed="${u.god === g.id}">${art(`art/goden/${g.id}.jpg`) ? `<img class="godbeeld" src="art/goden/${g.id}.jpg" alt="">` : ""}<b>${esc(g.naam)}</b><span class="muted">${esc(g.titel)}</span><span>${esc(g.regel)}</span></button>`).join("")}</div></section>
     <section><h2>Moeilijkheid</h2><div class="opties">${Object.entries(MOEILIJKHEID).map(([k, m]) => `<button class="optie" data-moeilijk="${k}" aria-pressed="${u.moeilijkheid === k}">${m.naam}: ${m.nodig} mysteries</button>`).join("")}</div></section>
-    <section><h2>Speelduur</h2><div class="opties"><button class="optie" data-modus="gewoon" aria-pressed="${u.modus !== "lang"}">Gewoon: ongeveer 45 minuten</button><button class="optie" data-modus="lang" aria-pressed="${u.modus === "lang"}">De Lange Nacht: ongeveer 75 tot 90 minuten</button></div>
-      ${u.modus === "lang" ? `<p class="muted">Eén mysterie meer en een ruimere Mist. Na elk mysterie een beloningsronde, en Londen wordt per bedrijf grimmiger.</p>` : ""}</section>
+    <section><h2>Speelduur</h2><div class="opties"><button class="optie" data-modus="gewoon" aria-pressed="${u.modus !== "lang"}">Gewoon: ongeveer 45 minuten</button><button class="optie" data-modus="lang" aria-pressed="${u.modus === "lang"}">De Lange Nacht: 90 tot 120 minuten</button></div>
+      ${u.modus === "lang" ? `<p class="muted">Twee mysteries meer en een veel ruimere Mist. Na elk mysterie een beloningsronde, en Londen wordt per bedrijf grimmiger.</p>` : ""}</section>
     <section><h2>Hoeveel helden?</h2><div class="opties">${[2, 4].map(n => `<button class="optie" data-aantal="${n}" aria-pressed="${u.aantal === n}">${n} helden</button>`).join("")}</div></section>
     <section><h2>Kies ${u.aantal} helden <span class="muted" style="font-size:16px">(${u.helden.length} gekozen)</span></h2>
       <div class="opties"><button class="btn small ghost" data-act="willekeurig">Willekeurig kiezen</button></div>
