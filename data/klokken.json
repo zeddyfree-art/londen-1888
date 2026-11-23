@@ -40,8 +40,8 @@
         "4": 0.856
       },
       "genadeloos": {
-        "2": 0.362,
-        "4": 0.431
+        "2": 0.232,
+        "4": 0.193
       }
     },
     "ysmara": {
@@ -316,7 +316,7 @@
     }
   ],
   "basisDatum": "2026-11-22",
-  "basisBron": "ontwerp/balans.json en ontwerp/balans-lang.json (testbot, 80 potjes per instelling, 23 november 2026: Lange Nacht naar aantal helden, geen dubbele Geest-straf, Azh-Ilareth Mist 11)",
+  "basisBron": "ontwerp/balans.json en ontwerp/balans-lang.json (testbot, 80 potjes per instelling, 23 november 2026: Lange Nacht naar aantal helden, geen dubbele Geest-straf, Azh-Ilareth Mist 11); Nebet-Ankhu genadeloos opnieuw gemeten met Mist 1 lager (120 potjes)",
   "basisLang": {
     "vathrun": {
       "ontspannen": {
@@ -356,8 +356,8 @@
         "4": 0.796
       },
       "genadeloos": {
-        "2": 0.233,
-        "4": 0.302
+        "2": 0.272,
+        "4": 0.183
       }
     },
     "ysmara": {

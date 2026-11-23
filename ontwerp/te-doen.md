@@ -189,7 +189,6 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 
 ### Veertiende sessie
 - [ ] Testers vragen naar het tikken: `testvraag-klikken.md`.
-- [ ] Nebet-Ankhu op genadeloos is makkelijk (36 tot 43%). Na echte potjes bekijken, eventueel 1 Mist lager.
 - [ ] Startplekken: er zijn 25 helden en 20 plekken, dus 5 plekken hebben er twee (Leicester Square, Bloomsbury, Marylebone, Soho, Pall Mall). Geen gelijke profielen meer op één plek.
 
 ### De Lange Nacht en de proefregels (dertiende sessie)
@@ -213,6 +212,8 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [ ] Testen: voelen de nieuwe geruchten (Scheur sluiten, monster verslaan) haalbaar?
 
 ## Klaar
+
+- [x] Nebet-Ankhu op genadeloos 1 Mist lager (`mistPerStand` in `oude-goden.json`): gewoon 23% / 19% (was 36% / 43%), Lange Nacht 27% / 18%
 
 - [x] De Lange Nacht: Mist naar aantal helden, geen dubbele Geest-straf, Azh-Ilareth Mist 11; twee mysteries met een extra stap; zwaarte per god op het startscherm
 
