@@ -15,7 +15,7 @@ const lees = f => JSON.parse(fs.readFileSync(path.join(root, f), "utf8"));
 
 (async () => {
   const k = lees("data/klokken.json");
-  const model = { basis: k.basis, klokken: k.klokken.map(x => ({ id: x.id, logit: x.logit })), standen: ["ontspannen", "normaal", "genadeloos"], helden: lees("data/helden.json").map(h => h.id) };
+  const model = { basis: k.basis, basisLang: k.basisLang, plafond: k.plafond, klokken: k.klokken.map(x => ({ id: x.id, zwaarte: x.zwaarte })), standen: ["ontspannen", "normaal", "genadeloos"], helden: lees("data/helden.json").map(h => h.id) };
   for (const g of lees("data/oude-goden.json")) if (!model.basis[g.id]) throw new Error(`Geen basis voor ${g.id} in data/klokken.json`);
   const code = fs.readFileSync(path.join(root, "cloud/scorebord/worker.js"), "utf8").replace("/*MODEL*/ null", JSON.stringify(model));
 

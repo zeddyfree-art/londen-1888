@@ -1,6 +1,6 @@
 [
   {
-    "id": 20,
+    "id": 22,
     "datum": "23 november 2026",
     "titel": "Zeven nieuwe oude goden",
     "punten": [
@@ -13,6 +13,26 @@
       "Gul-Marrach, de Onzichtbare Hand: de koers maakt alles duurder, en zonder Pond verlies je Geest.",
       "Elke nieuwe god heeft vijf mysteries, een episch monster, drie nieuwe monsters, drie personages en ruim twintig eigen kaarten. De handleiding heeft een nieuw hoofdstuk: De oude goden.",
       "De zeven goden en hun epische monsters hebben al een schilderij. De andere beelden volgen; tot die er zijn, zie je een kleurvlak."
+    ]
+  },
+  {
+    "id": 21,
+    "datum": "23 november 2026",
+    "titel": "Betere winkans bij de Klokken van Westminster",
+    "punten": [
+      "De winkans bij de klokken is opnieuw berekend uit 40.000 potjes van de testspeler, met allerlei combinaties van klokken. De oude schatting was met een paar klokken veel te somber: bij drie klokken zei hij vaak 15% waar het echt rond de 35% lag.",
+      "Elke klok weegt nu per moeilijkheid anders, en klokken samen tellen iets minder hard op dan los. De streepjes per klok zijn bijgewerkt.",
+      "Daardoor leveren zware combinaties wat minder punten op dan eerst; dat is eerlijker. Overwinningen die al op het scorebord staan, houden hun punten."
+    ]
+  },
+  {
+    "id": 20,
+    "datum": "23 november 2026",
+    "titel": "Je tas: weggooien en waarschuwingen",
+    "punten": [
+      "Bij je tableau zie je hoeveel plekken van je tas in gebruik zijn, bijvoorbeeld 4 van 6. Is hij vol, dan kleurt de teller rood.",
+      "Tik op een spul of spreuk en kies Weggooien. Het spel vraagt eerst of je het zeker weet, en je kunt het in je beurt ongedaan maken.",
+      "Is je tas vol, dan waarschuwt het spel al voordat je koopt. Wil je toch kopen, dan kies je wat je weggooit, of je ziet ervan af."
     ]
   },
   {

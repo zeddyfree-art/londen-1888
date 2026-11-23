@@ -188,7 +188,7 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [ ] Beelden voor de zeven nieuwe goden: 25 van de 63 staan in het spel (alle goden en epische monsters). Nog nodig (prompts in `ontwerp/beeldopdracht-nieuwe-goden.md`): `monsters/reliekjager`, `personen/horace-quill`, `personen/amelia-fenwick`, `scheur/ulvereth`, `monsters/rijpwicht`, `monsters/smogslang`, `monsters/bliksemvanger`, `personen/ephraim-gale`, `personen/nell-bligh`, `personen/tom-pennock`, `scheur/sirrhae`, `monsters/bewonderaar`, `monsters/maskerdanser`, `monsters/betoverde-dichter`, `personen/edmund-haversham`, `personen/lucien-marchetti`, `personen/rosalind-ashe`, `scheur/ouroch`, `monsters/opwindsoldaat`, `monsters/tijdverlorene`, `monsters/slingerhond`, `personen/obadiah-penrose`, `personen/dora-whitby`, `personen/ignatius-fell`, `scheur/yth-nemora`, `monsters/krantenjongen`, `monsters/leugenaar`, `monsters/gerucht`, `personen/horatio-vance`, `personen/kitty-lark`, `personen/fennimore-blight`, `scheur/gul-marrach`, `monsters/deurwaarder`, `monsters/schuldspook`, `monsters/goudworm`, `personen/reginald-kettering`, `personen/edwin-pratt`, `personen/bessie-doyle`.
 - [ ] Sfeergeluiden voor de zeven nieuwe goden: zie `ontwerp/geluidsopdracht.md` (`sfeer-ommeth.mp3` tot `sfeer-gul-marrach.mp3`). Tot ze er zijn, klinkt de sfeer van het startscherm.
 - [ ] Het gedeelde scorebord kent de nieuwe goden pas als de Worker opnieuw online staat: `NODE_USE_ENV_PROXY=1 node tools/zet-scorebord-online.js`. Tot dan worden overwinningen tegen de nieuwe goden geweigerd (onbekende god).
-- [ ] Het klokkenmodel heeft voor de nieuwe goden een eigen basis, maar de klokeffecten zijn gemeten met de oude vijf. Bij de volgende volledige meting (`node tools/meet-klokken.js 100`) gaan alle twaalf mee.
+- [ ] Het klokkenmodel (versie 2, gefit op 40.000 potjes) kent de zeven nieuwe goden alleen via hun testbotmeting zonder klokken. Bij de volgende meting met `node tools/meet-klokken.js` gaan alle twaalf goden mee.
 - [ ] Testen met echte potjes: Sirrhae. Nemen spelers gunsten aan, en is de prijs dan te laag of te hoog? Voelt Betoverd niet als straf zonder uitweg?
 - [ ] Testen: Ulvereth. Is de spreiding tussen goede en slechte rondes leuk? Zijn bevroren plekken duidelijk genoeg op het bord?
 - [ ] Testen: Yth-Nemora. Wordt natrekken gebruikt, of gokken spelers? Is een op de drie vals niet te frustrerend?
@@ -198,8 +198,8 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [ ] Testen: Ouroch. Voelt de klokslag eerlijk, of als straf voor iets wat je niet kon tegenhouden?
 - [ ] De drie losse ideeën uit de stemronde (de Ondergrondse, twee fronten overzee, de slaper die meedroomt) kregen ook een 4. Uitwerken als de zeven nieuwe goden getest zijn.
 ### Balans en tests (zie `tests-en-geluk.md`)
-- [ ] Klokkenmodel opnieuw meten als de balans verandert: `node tools/meet-klokken.js 100`, en daarna `NODE_USE_ENV_PROXY=1 node tools/zet-scorebord-online.js`, zodat de server met hetzelfde model rekent. (Laatst gedaan in de negende sessie.)
-- [ ] Twee klokken doen bijna niets: *Zware benen* (75% naar 76%) en *Zwijgende getuigen* (75% naar 74%). Sterker maken of minder slagen geven.
+- [ ] Klokkenmodel opnieuw meten als de balans verandert: `node tools/meet-klokken.js 40000` (ruim 5 minuten), en daarna `NODE_USE_ENV_PROXY=1 node tools/zet-scorebord-online.js`, zodat de server met hetzelfde model rekent. (Laatst gedaan op 23 november 2026.)
+- [ ] Twee klokken zijn het lichtst: *Zware benen* en *Zwijgende getuigen* (op normaal 0,2 logit, ongeveer 4 procentpunt). Ze doen wel iets, maar mogen sterker.
 - [ ] Ontspannen (en volgens Dieuwertje ook normaal) is makkelijk. Geparkeerd: de klokken maken het zwaarder.
 - [ ] Testen met echte potjes: voelt Voorbereiden nuttig, en is de zwakke plek (Aanwijzing in een gevecht) niet te sterk?
 - [ ] Gedeeld scorebord: namen modereren als dat nodig wordt (verwijderen kan in de D1-database `londen1888-scorebord`).
@@ -325,3 +325,5 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [x] Legenda compact en inklapbaar; op de iPad eerst bekijken, dan reizen; Ongedaan maken voor reizen en rusten
 - [x] Speltestfeedback 22-11: portret van de held aan het begin van elke beurt en ontmoeting; overzicht van inzetbare middelen bij gevechten en ontmoetingen; verslagen monsters vechten niet nog eens mee; stations bovenop de kaart; grotere plekken en plaatsnamen; helden sorteren op naam of kenmerk op het startscherm
 - [x] Alleen nog de donkere modus; de knop voor de lichte modus is weg
+- [x] Tas: teller (4 van 6), weggooien met bevestiging, waarschuwing vóór kopen met een volle tas
+- [x] Klokkenmodel opnieuw gefit op 40.000 potjes met willekeurige klokcombinaties: zwaarte per stand, klokken samen minder dan los, eigen basis voor De Lange Nacht. Het oude model zat met 3 of meer klokken 15 tot 20 procentpunt te laag (`ontwerp/klokkenmodel.md`)
