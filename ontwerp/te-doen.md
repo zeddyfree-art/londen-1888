@@ -174,7 +174,6 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [ ] Ysmara en Morghast hebben 10 verhaalkaarten elk, de oude goden 16 tot 17. Na een paar potjes kijken of er meer nodig zijn.
 
 ### Veertiende sessie
-- [ ] Beelden voor Daffadar Arjan Singh (portret, Tulwar van de Guides, Khaki-tuniek) maken met `beeldopdracht-lange-nacht.md`, in `tools/art-drive.json` zetten en ophalen.
 - [ ] Testers vragen naar het tikken: `testvraag-klikken.md`.
 - [ ] De Lange Nacht met 2 helden is zwaar tegen Ysmara (38%) en Azh-Ilareth (44%). Na echte potjes bekijken.
 - [ ] Startplekken: er zijn 25 helden en 20 plekken, dus 5 plekken hebben er twee (Leicester Square, Bloomsbury, Marylebone, Soho, Pall Mall). Geen gelijke profielen meer op één plek.
@@ -200,6 +199,8 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [ ] Testen: voelen de nieuwe geruchten (Scheur sluiten, monster verslaan) haalbaar?
 
 ## Klaar
+
+- [x] Beelden voor Daffadar Arjan Singh (portret, Tulwar van de Guides, Khaki-tuniek) in het spel en in `tools/art-drive.json`
 
 - [x] Albert Gosling: Charisma 4 en Verdwijntruc (Scheuren sluiten met Charisma); nieuwe held Daffadar Arjan Singh (Kracht 4, Stalen zenuwen); Aggie en Khalil een eigen profiel, Khalil naar Bloomsbury
 - [x] Vijfde mysterie per god; De Lange Nacht 2 mysteries meer; ontmoetingen 1 zwaarder; uitputting vanaf de helft van de Mist; flessenhalzen versoepeld
