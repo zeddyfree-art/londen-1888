@@ -131,6 +131,9 @@
     "naam": "Nebet-Ankhu",
     "titel": "De farao zonder gezicht",
     "mist": 12,
+    "mistPerStand": {
+      "genadeloos": -1
+    },
     "verhaal": "In de vallei bij Thebe ligt een graf dat geen farao ooit heeft gebouwd. Expedities brengen de kisten naar Londen, en de egyptomanie doet de rest: elke salon wil een mummie, elke loge een scarabee. In de pakhuizen van de dokken breekt iets de zegels van binnenuit. Het draagt steeds een ander gezicht, telkens van iemand die je kent.",
     "regel": "Wie een Artefact heeft, krijgt +1 bij gevechten, maar verliest 1 Geest aan het begin van elke Onheilsfase.",
     "verdachten": "Een rivaliserende expeditie onder leiding van de vermogende verzamelaar Sir Lucius Harrowgate.",

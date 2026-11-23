@@ -823,7 +823,7 @@ function scheurGesloten(plek) {
 function nieuwSpel(godId, moeilijkheid, heldIds, opties = {}) {
   const mo = MOEILIJKHEID[moeilijkheid], g = byId(D.goden, godId);
   S = {
-    versie: 1, god: godId, moeilijkheid, ronde: 1, mist: g.mist + mo.mist - (heldIds.length === 4 ? 3 : 0), nodig: mo.nodig, opgelost: 0, teller: 0,
+    versie: 1, god: godId, moeilijkheid, ronde: 1, mist: g.mist + mo.mist + (g.mistPerStand?.[moeilijkheid] || 0) - (heldIds.length === 4 ? 3 : 0), nodig: mo.nodig, opgelost: 0, teller: 0,
     mysterieVolgorde: schud(g.mysteries.map((_, i) => i)), mysterieIndex: 0, voortgang: { scheuren: [] },
     plekken: Object.fromEntries(D.bord.plekken.map(p => [p.id, { aanw: 0, scheur: false, monsters: [] }])),
     overzee: Object.fromEntries(D.bord.overzee.map(o => [o.id, { artefact: false }])),

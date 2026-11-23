@@ -183,7 +183,7 @@ Een langere spelmodus van ongeveer 90 tot 120 minuten (zo'n 12 tot 14 rondes met
 | Normaal | 1 lager | 3 | 2 | normaal, laatste nacht zwaarder |
 | Genadeloos | 3 lager | 3 | 3 | 1 moeilijker, geen laatste nacht |
 
-Met 4 helden begint de Mist 3 lager en is er één Scheur extra, want vier helden doen meer per ronde.
+Met 4 helden begint de Mist 3 lager en is er één Scheur extra, want vier helden doen meer per ronde. Nebet-Ankhu begint op genadeloos nog 1 Mist lager.
 
 **Niet elke god is even zwaar.** Op het beginscherm staat bij elke god of hij zwaarder, gemiddeld of makkelijker is, met de winkans voor de gekozen stand, speelduur en het aantal helden. Is een god met 4 helden een stuk makkelijker dan met 2 (of andersom), dan staat dat er ook bij. De winkansen komen uit duizenden potjes van een voorzichtige testspeler.
 
