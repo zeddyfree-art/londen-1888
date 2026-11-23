@@ -185,10 +185,10 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 
 ## Open taken
 
-- [ ] Beelden voor Kaarten van de Oude Wereld: 42 stuks in `ontwerp/beeldopdracht-oude-wereld.md` (27 plekken, 6 schatten, 3 helden en 6 persoonlijke spullen). Tot ze er zijn, toont het spel een kleurvlak.
+- [x] Beelden voor Kaarten van de Oude Wereld: alle 42 binnen (27 plekken, 6 schatten, 3 helden en 6 persoonlijke spullen), in `tools/art-drive.json`.
 - [ ] Testen met echte potjes: Kaarten van de Oude Wereld. Is de Gevaarstapel spannend? Komen spelers in het hart? Voelt Post naar huis nuttig? Is de Mist-beloning (terug uit de tweede ring +1, het hart +2) te sterk voor spelers die het goed doen?
 - [ ] Kaarten van de Oude Wereld in De Lange Nacht op normaal met 2 helden: winkans 8 procentpunt lager dan zonder uitbreiding (testbot, 40 potjes per god). Bij gewoon spel is het hoogstens 4. Na de echte testpotjes kijken of de Mist-beloning of de gevaren hier zachter moeten. Ook nog niet gemeten: de uitbreiding samen met klokken.
-- [ ] Sfeergeluiden voor de zeven nieuwe goden: zie `ontwerp/geluidsopdracht.md` (`sfeer-ommeth.mp3` tot `sfeer-gul-marrach.mp3`). Tot ze er zijn, klinkt de sfeer van het startscherm.
+- [ ] Geluiden maken: 14 staan klaar in de ElevenLabs-flow "Londen 1888 – geluiden Oude Wereld en nieuwe goden" (`ontdekt`, `gevaar`, `ramp`, `schat`, de drie regiosferen en de sferen van de zeven nieuwe goden). ElevenLabs had geen ruimte om ze te starten. `zee.mp3` is al gemaakt en staat in het spel. Kies per geluid een variant en zet die als `art/geluid/<naam>.mp3`.
 - [ ] Het gedeelde scorebord kent de nieuwe goden pas als de Worker opnieuw online staat: `NODE_USE_ENV_PROXY=1 node tools/zet-scorebord-online.js`. Tot dan worden overwinningen tegen de nieuwe goden geweigerd (onbekende god).
 - [ ] Het klokkenmodel (versie 2, gefit op 40.000 potjes) kent de zeven nieuwe goden alleen via hun testbotmeting zonder klokken. Bij de volgende meting met `node tools/meet-klokken.js` gaan alle twaalf goden mee.
 - [ ] Testen met echte potjes: Sirrhae. Nemen spelers gunsten aan, en is de prijs dan te laag of te hoog? Voelt Betoverd niet als straf zonder uitweg?
