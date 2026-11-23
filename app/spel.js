@@ -640,11 +640,10 @@ async function controleerHeld(h) {
     log(`${naam} krijgt waanzin: ${w}`);
     await melding(`${naam} verliest grip`, `Je krijgt de waanzin "${w}". Je Geest gaat terug naar ${h.G}.`, "Geest op 0");
   }
-  while (telBagage(h) > 6 + h.spullen.reduce((t, id) => t + (spulDef(id)?.bonus?.draag || 0), 0)) {
-    const k = await venster({ soort: "Te veel bagage", titel: `${naam} draagt te veel`, html: "<p>Je kunt maximaal 6 spullen en spreuken dragen (7 met een Gladstonetas). Wat leg je af?</p>",
-      knoppen: [...h.spullen.filter(id => !spulDef(id).persoonlijk).map(id => ({ label: spulDef(id).naam, waarde: ["spullen", id] })), ...h.spreuken.map(id => ({ label: spreukDef(id).naam, waarde: ["spreuken", id], ghost: true }))] });
-    const [soort, id] = k || ["spullen", h.spullen[0]];
-    h[soort] = h[soort].filter(x => x !== id); log(`${naam} legt ${soort === "spullen" ? spulDef(id).naam : spreukDef(id).naam} af`);
+  while (telBagage(h) > maxBagage(h)) {
+    const k = await kiesAfleggen(h, { titel: `${naam} draagt te veel`, tekst: `Je kunt maximaal ${maxBagage(h)} spullen en spreuken dragen. Wat gooi je weg?` });
+    if (!k) break;
+    legAf(h, ...k);
   }
 }
 async function valtAf(h, oorzaak) {
@@ -978,14 +977,15 @@ async function journalist(h) {
 async function rondkijken(h) {
   if (isOverzee(h.plek)) return;
   const k = await venster({ soort: "Rondkijken", titel: plekNaam(h.plek), beeld: `art/plekken/${h.plek}.jpg`,
-    html: `<p class="muted">Je hebt ${h.pond} Pond. Kies één ding; het kost een actie.</p>`,
+    html: `<p class="muted">Je hebt ${h.pond} Pond. Tas: ${tasTxt(h)}. Kies één ding; het kost een actie.</p>${kanDragen(h) ? "" : `<p class="tasvol-melding">Je tas is vol. Koop je iets, dan moet je iets anders weggooien.</p>`}`,
     knoppen: [
-      { label: "Inkopen: trek 2 spullen, koop er één voor 1 Pond meer", waarde: "inkopen", uit: heeft(h, "gezocht") || !kanDragen(h) || h.pond < 1 },
-      { label: "Rijtuigkaartje kopen (1 Pond): later 2 stappen zonder actie", waarde: "kaartje", uit: h.pond < 1 || !kanDragen(h) },
+      { label: "Inkopen: trek 2 spullen, koop er één voor 1 Pond meer", waarde: "inkopen", uit: heeft(h, "gezocht") || h.pond < 1 },
+      { label: "Rijtuigkaartje kopen (1 Pond): later 2 stappen zonder actie", waarde: "kaartje", uit: h.pond < 1 },
       { label: `Rondhoren (Waarneming ${metStand(9, "ontmoeting")}${kansTxt(h, "scherpte", 9, { context: "ontmoeting" })}): 1 Aanwijzing, mislukt −1 Geest`, waarde: "rondhoren" },
       { label: "Toch niet", waarde: null, ghost: true }] });
   if (!k) return;
   const voor = JSON.stringify(S);
+  if (k === "kaartje" && !await maakRuimte(h, "een rijtuigkaartje")) return;
   gebruikActie(h, "rondkijken");
   const naam = korteNaam(heldDef(h).naam);
   if (k === "inkopen") {
@@ -1016,8 +1016,44 @@ async function rust(h) {
   log(`${korteNaam(heldDef(h).naam)} rust uit`);
   opslaan(); teken();
 }
+/* De tas: spullen (zonder persoonlijk bezit) en spreuken tellen mee. 6 plekken, plus 1 per Gladstonetas of sjouwer. */
 const telBagage = h => h.spullen.filter(id => !spulDef(id)?.persoonlijk).length + h.spreuken.length;
-function kanDragen(h) { return telBagage(h) < 6 + (h.spullen.includes("gladstonetas") ? 1 : 0); }
+const maxBagage = h => 6 + h.spullen.reduce((t, id) => t + (spulDef(id)?.bonus?.draag || 0), 0);
+function kanDragen(h) { return telBagage(h) < maxBagage(h); }
+const tasTxt = h => `${telBagage(h)} van ${maxBagage(h)}`;
+const bagageNaam = (soort, id) => soort === "spreuken" ? spreukDef(id).naam : spulDef(id).naam;
+function legAf(h, soort, id) {
+  h[soort] = h[soort].filter(x => x !== id);
+  log(`${korteNaam(heldDef(h).naam)} gooit ${bagageNaam(soort, id)} weg`);
+  if (id === "dier-raaf") { S.mist--; log("De raaf vliegt weg. De Mist daalt met 1."); }
+}
+/* Laat de speler kiezen wat er uit de tas gaat. Met annuleren mag de speler ook niets kiezen (dan null). */
+async function kiesAfleggen(h, { titel, tekst, annuleren = false }) {
+  const items = [...h.spullen.filter(id => !spulDef(id).persoonlijk).map(id => ["spullen", id]), ...h.spreuken.map(id => ["spreuken", id])];
+  const knoppen = items.map(([soort, id]) => ({ label: bagageNaam(soort, id), waarde: [soort, id], verberg: true }));
+  if (annuleren) knoppen.push({ label: "Toch niet", waarde: null, ghost: true });
+  const html = `<p>${esc(tekst)}</p><p class="muted">Tas: <b>${tasTxt(h)}</b>. Tik op wat je weggooit.${items.some(([, id]) => id === "dier-raaf") ? " Let op: laat je de raaf gaan, dan daalt de Mist met 1." : ""}</p><div class="winkelraster">${items.map(([soort, id], i) => keuzeTegel(soort === "spreuken" ? "spreuk" : "spul", id, i, { prijs: "weggooien" })).join("")}</div>`;
+  const k = await venster({ soort: "Tas vol", titel, html, knoppen: annuleren ? knoppen : [...knoppen, { label: "Verder", waarde: items[0], verberg: true }] });
+  return k || (annuleren ? null : items[0]);
+}
+/* Vóór iets nieuws: is er plek? Zo niet, waarschuw en laat iets anders weggooien. Geeft false als de speler afziet. */
+async function maakRuimte(h, nieuw) {
+  if (kanDragen(h)) return true;
+  const k = await kiesAfleggen(h, { titel: `Je tas is vol (${tasTxt(h)})`, tekst: `Wil je ${nieuw} toch nemen, dan moet je iets anders weggooien.`, annuleren: true });
+  if (!k) return false;
+  legAf(h, ...k);
+  return true;
+}
+async function gooiWeg(h, soort, id) {
+  const naam = bagageNaam(soort, id);
+  const ok = await venster({ soort: "Weggooien", titel: `${naam} weggooien?`, html: `<p>${esc(korteNaam(heldDef(h).naam))} raakt ${esc(naam)} kwijt. Je tas gaat van ${tasTxt(h)} naar ${telBagage(h) - 1} van ${maxBagage(h) - (spulDef(id)?.bonus?.draag || 0)}.</p>${id === "dier-raaf" ? "<p><b>Let op:</b> laat je de raaf gaan, dan daalt de Mist met 1.</p>" : ""}`,
+    knoppen: [{ label: "Ja, weggooien", waarde: true }, { label: "Nee, houden", waarde: false, ghost: true }] });
+  if (!ok) return;
+  const voor = JSON.stringify(S);
+  legAf(h, soort, id);
+  if (S.fase === "helden" && h === actief()) terugPunt(voor, `${naam} weggooien`);
+  await controleerHeld(h); opslaan();
+}
 /* Geeft de namen van wat je kocht terug, of "" als je niets kocht. */
 async function winkel(h, kaarten, soortNaam, prijsVan) {
   let gekocht = false; const namen = [];
@@ -1027,16 +1063,17 @@ async function winkel(h, kaarten, soortNaam, prijsVan) {
     const knoppen = rest.map(id => {
       const d = soortNaam === "spreuk" ? spreukDef(id) : spulDef(id);
       const p = prijsVan(d);
-      return { label: `Koop ${d.naam} (${p} Pond)`, waarde: id, uit: p > h.pond || !kanDragen(h), verberg: true };
+      return { label: `Koop ${d.naam} (${p} Pond)`, waarde: id, uit: p > h.pond, verberg: true };
     });
     knoppen.push({ label: gekocht ? "Klaar" : "Niets kopen", waarde: null, ghost: true });
-    const html = `<p class="muted">Je hebt <b>${h.pond} Pond</b>.${kanDragen(h) ? " Tik op een kaart om hem te kopen." : " Je kunt niets meer dragen."}</p><div class="winkelraster">` + rest.map((id, i) => {
+    const html = `<p class="muted">Je hebt <b>${h.pond} Pond</b>. Tas: <b>${tasTxt(h)}</b>.${kanDragen(h) ? " Tik op een kaart om hem te kopen." : ""}</p>${kanDragen(h) ? "" : `<p class="tasvol-melding">Je tas is vol. Koop je toch iets, dan kies je daarna wat je weggooit.</p>`}<div class="winkelraster">` + rest.map((id, i) => {
       const d = soortNaam === "spreuk" ? spreukDef(id) : spulDef(id), k = knoppen[i];
       return keuzeTegel(soortNaam, id, i, { prijs: `${prijsVan(d)} Pond${k.uit ? (prijsVan(d) > h.pond ? " · te duur" : "") : " · kopen"}`, uit: k.uit });
     }).join("") + `</div>`;
     const keuze = await venster({ soort: "Winkelen", titel: plekNaam(h.plek), beeld: `art/plekken/${h.plek}.jpg`, html, knoppen });
     if (!keuze) break;
     const d = soortNaam === "spreuk" ? spreukDef(keuze) : spulDef(keuze);
+    if (!await maakRuimte(h, d.naam)) continue;
     h.pond -= prijsVan(d); (soortNaam === "spreuk" ? h.spreuken : h.spullen).push(keuze);
     kaarten[kaarten.indexOf(keuze)] = null; gekocht = true; namen.push(d.naam); log(`${korteNaam(heldDef(h).naam)} koopt ${d.naam}`);
   }
@@ -1867,8 +1904,9 @@ async function onheilsfase() {
     if (a.type === "gezochtRijkste") { const h = [...S.helden].sort((x, y) => y.pond - x.pond)[0]; geefToestand(h, "gezocht"); log(`${korteNaam(heldDef(h).naam)} wordt gezocht`); }
     if (a.type === "monstersBewegen") beweegMonsters(true);
     if (a.type === "keuzeSpreukAanwijzing") for (const h of S.helden) {
-      const k = await venster({ soort: "Hulp van de Bleke Lantaarn", titel: korteNaam(heldDef(h).naam), knoppen: [{ label: "Een spreuk", waarde: "s", uit: !kanDragen(h) }, { label: "Een Aanwijzing", waarde: "a" }] });
+      const k = await venster({ soort: "Hulp van de Bleke Lantaarn", titel: korteNaam(heldDef(h).naam), html: kanDragen(h) ? "" : `<p class="tasvol-melding">Je tas is vol (${tasTxt(h)}). Kies je een spreuk, dan gooi je daarna iets anders weg.</p>`, knoppen: [{ label: "Een spreuk", waarde: "s" }, { label: "Een Aanwijzing", waarde: "a" }] });
       await pasToe(h, [k === "s" ? { trek: "spreuken" } : { aanwijzing: 1 }]);
+      if (k === "s") await controleerHeld(h);
     }
     if (a.type === "gerucht") {
       S.geruchten.push({ ...a, naam: c.naam });
@@ -2564,7 +2602,7 @@ function tekenPaneel() {
       ${d.bondgenoot ? `<div class="vermogen"><b>${esc(d.bondgenoot.naam)}</b> (${esc(d.bondgenoot.soort)}). ${esc(d.bondgenoot.tekst)}
         ${h.id === "bridie-kavanagh" && isActief && !h.ronde.molly && !heeft(h, "waanzin-paranoia") ? `<div><button class="btn small" data-act="molly">Molly sturen</button></div>` : ""}
         ${h.id === "albert-gosling" && isActief && !h.garibaldiGebruikt && !isOverzee(h.plek) ? `<div><button class="btn small" data-act="garibaldi">Garibaldi loslaten</button></div>` : ""}</div>` : ""}
-      <div class="sectie"><h3>Tableau <span class="muted">· tik op een kaart</span></h3><div class="tableau">
+      <div class="sectie"><h3>Tableau <span class="muted">· tik op een kaart</span><span class="tas${kanDragen(h) ? "" : " vol"}" title="Spullen en spreuken in je tas. Persoonlijk bezit en artefacten tellen niet mee.">Tas ${Array.from({ length: maxBagage(h) }, (_, i) => `<i class="${i < telBagage(h) ? "aan" : ""}"></i>`).join("")} <b>${tasTxt(h)}</b>${kanDragen(h) ? "" : " · vol"}</span></h3><div class="tableau">
         ${h.eigen.map((e, i) => tegel("eigen", i, h)).join("")}${h.spullen.map(id => tegel("spullen", id, h)).join("")}${h.spreuken.map(id => tegel("spreuken", id, h)).join("")}${h.artefacten.map(id => tegel("artefacten", id, h)).join("")}
         ${h.mysterieVoorwerp ? `<div class="tegel mysterie"><span class="tegel-leeg">✦</span><span class="tegel-naam">${esc(mysterie()?.voorwerp || "")}</span><span class="tegel-tag">Mysterie</span></div>` : ""}
       </div></div>
@@ -2608,6 +2646,8 @@ async function toonKaart(h, soort, id) {
     extra = `<p class="verhaal">${esc(d.herkomst)}.</p>`;
     if (["zwarte-spiegel", "klokkenbel", "sterrenkaart", "verzegelde-kruik"].includes(id) || d.gebruik) knoppen.push({ label: "Gebruik", waarde: "artefact" });
   }
+  const magWeg = !S.einde && ((soort === "spullen" && !d.persoonlijk) || soort === "spreuken") && !h.uit;
+  if (magWeg) knoppen.push({ label: "Weggooien", waarde: "weg", ghost: true });
   knoppen.push({ label: "Sluiten", waarde: null, ghost: true });
   const k = await venster({ soort: soort === "eigen" ? "Startuitrusting" : { spullen: "Spul", spreuken: "Spreuk", artefacten: "Artefact" }[soort], titel: d.naam, beeld: kaartArt(soort, id), zij: true, html: extra + `<p>${esc(d.tekst)}</p>`, knoppen });
   if (k === "gebruik") await gebruikSpul(h, id);
@@ -2615,6 +2655,7 @@ async function toonKaart(h, soort, id) {
   if (k === "artefact") await gebruikArtefact(h, id);
   if (k === "raaf") await raaf(h);
   if (k === "journalist") await journalist(h);
+  if (k === "weg") await gooiWeg(h, soort, id);
 }
 const sectie = (titel, inhoud) => inhoud ? `<div class="sectie"><h3>${titel}</h3><div class="kaartjes">${inhoud}</div></div>` : "";
 function tekenAanpas(h) {

@@ -296,3 +296,4 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [x] Legenda compact en inklapbaar; op de iPad eerst bekijken, dan reizen; Ongedaan maken voor reizen en rusten
 - [x] Speltestfeedback 22-11: portret van de held aan het begin van elke beurt en ontmoeting; overzicht van inzetbare middelen bij gevechten en ontmoetingen; verslagen monsters vechten niet nog eens mee; stations bovenop de kaart; grotere plekken en plaatsnamen; helden sorteren op naam of kenmerk op het startscherm
 - [x] Alleen nog de donkere modus; de knop voor de lichte modus is weg
+- [x] Tas: teller (4 van 6), weggooien met bevestiging, waarschuwing vóór kopen met een volle tas
