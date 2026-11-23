@@ -4,72 +4,72 @@
   "basis": {
     "vathrun": {
       "ontspannen": {
-        "2": 0.954,
-        "4": 0.994
+        "2": 0.944,
+        "4": 0.984
       },
       "normaal": {
-        "2": 0.836,
-        "4": 0.895
+        "2": 0.648,
+        "4": 0.757
       },
       "genadeloos": {
-        "2": 0.332,
-        "4": 0.164
+        "2": 0.283,
+        "4": 0.154
       }
     },
     "azh-ilareth": {
       "ontspannen": {
-        "2": 0.954,
-        "4": 0.984
+        "2": 0.796,
+        "4": 0.944
       },
       "normaal": {
-        "2": 0.638,
-        "4": 0.609
+        "2": 0.698,
+        "4": 0.638
       },
       "genadeloos": {
         "2": 0.194,
-        "4": 0.046
+        "4": 0.095
       }
     },
     "nebet-ankhu": {
       "ontspannen": {
-        "2": 0.905,
-        "4": 0.974
+        "2": 0.875,
+        "4": 0.944
       },
       "normaal": {
-        "2": 0.777,
-        "4": 0.796
+        "2": 0.648,
+        "4": 0.806
       },
       "genadeloos": {
-        "2": 0.332,
-        "4": 0.214
+        "2": 0.362,
+        "4": 0.302
       }
     },
     "ysmara": {
       "ontspannen": {
-        "2": 0.925,
-        "4": 0.984
+        "2": 0.944,
+        "4": 0.954
       },
       "normaal": {
-        "2": 0.549,
-        "4": 0.688
+        "2": 0.638,
+        "4": 0.777
       },
       "genadeloos": {
-        "2": 0.194,
-        "4": 0.204
+        "2": 0.214,
+        "4": 0.154
       }
     },
     "morghast": {
       "ontspannen": {
-        "2": 0.984,
-        "4": 0.994
+        "2": 0.826,
+        "4": 0.895
       },
       "normaal": {
-        "2": 0.747,
+        "2": 0.678,
         "4": 0.698
       },
       "genadeloos": {
-        "2": 0.214,
-        "4": 0.105
+        "2": 0.243,
+        "4": 0.095
       }
     }
   },
@@ -316,5 +316,5 @@
     }
   ],
   "basisDatum": "2026-11-22",
-  "basisBron": "ontwerp/balans.json (testbot, 80 potjes per instelling, samengevoegde versie met overslag)"
+  "basisBron": "ontwerp/balans.json (testbot, 80 potjes per instelling, 23 november 2026: ontmoetingen 1 zwaarder, vijf mysteries, uitputting)"
 }

@@ -68,9 +68,9 @@ Achter het Italiaanse toneelpak zit een jongen uit Bermondsey die als kind al ka
 
 | Kennis | Waarneming | Kracht | Charisma | Lichaam | Geest |
 |---|---|---|---|---|---|
-| 2 | 3 | 2 | 3 | 6 | 6 |
+| 1 | 3 | 2 | 4 | 6 | 6 |
 
-- **Handigheid.** Eén keer per ronde mag je een voorwerp ruilen met een held op een andere plek in Londen.
+- **Verdwijntruc.** Je sluit Scheuren met Charisma in plaats van Kennis: wat de Grote Orsini laat verdwijnen, blijft weg. Eén keer per ronde mag je ook een voorwerp ruilen met een held op een andere plek in Londen.
 - **Garibaldi** (witte duif). Eén keer per spel: Garibaldi brengt een bericht en je mag direct naar een willekeurige plek in Londen reizen.
 - **Eigenaardigheid:** Kan niet tegen applaus dat te lang duurt.
 - **Uitrusting:** Wandelstok met verborgen lemmet (+1 bij gevechten. Niemand ziet dat het een wapen is); 1 spreuk
@@ -266,7 +266,7 @@ Aggie is groter dan de meeste mannen en breder dan de deur van haar woonwagen. O
 
 | Kennis | Waarneming | Kracht | Charisma | Lichaam | Geest |
 |---|---|---|---|---|---|
-| 1 | 2 | 4 | 3 | 8 | 4 |
+| 2 | 1 | 4 | 3 | 8 | 4 |
 
 - **Brede schouders.** Verliest een andere held op jouw plek Lichaam in een gevecht, dan mag jij de klap opvangen: jij verliest het Lichaam in zijn plaats.
 - **Eigenaardigheid:** Breit sjaals voor iedereen die ze tegenkomt, ook voor de agenten die haar wegsturen.
@@ -317,13 +317,13 @@ Ze kwam via Darjeeling naar Londen met de kring rond Madame Blavatsky, die haar 
 
 ## Professor Khalil Nasr (al-Mu'allim)
 
-**Leraar** · 52 jaar · Hoogleraar oude talen aan Dar al-Ulum in Cairo, te gast bij King's College · begint in Strand
+**Leraar** · 52 jaar · Hoogleraar oude talen aan Dar al-Ulum in Cairo, te gast bij King's College · begint in Bloomsbury
 
 Zijn familie telt haar voorouders terug tot een priestergeslacht uit Thebe, en zijn grootmoeder zei altijd dat het bloed van de farao's door hun aderen stroomt. Khalil lachte erom, tot de slangen in zijn dromen kwamen. Op zijn onderarm staat een cobra waarvan hij zich niet herinnert dat hij hem liet zetten. In zijn dromen leert de slang hem tekens die in geen enkel boek staan. Sinds hij in Londen is, ziet hij ze terug op de muren.
 
 | Kennis | Waarneming | Kracht | Charisma | Lichaam | Geest |
 |---|---|---|---|---|---|
-| 4 | 2 | 1 | 3 | 5 | 7 |
+| 4 | 1 | 2 | 3 | 5 | 7 |
 
 - **Les geven.** Kost een actie, één keer per beurt: een andere held op jouw plek verhoogt één kenmerk met 1, als jouw waarde in dat kenmerk hoger is. Elke held kan twee keer per spel les van je krijgen.
 - **De slang uit de droom** (cobratatoeage). Elk Boek dat je draagt, geeft +1 bij Kennis-tests (samen maximaal +2). Als je leest, beweegt de slang op je arm.
@@ -343,3 +343,17 @@ Twaalf jaar lang dreef hij in opdracht van de Kerk duivels uit, in boerderijen i
 - **Handoplegging.** Kost een actie, één keer per beurt: een held op jouw plek (ook jijzelf) herstelt 2 Lichaam of 2 Geest. Genees je een ander, dan herstel jij ook 1 Geest.
 - **Eigenaardigheid:** Draagt nog altijd zijn brevier bij zich, maar slaat het nooit open.
 - **Uitrusting:** Stola van de exorcist (+1 bij het sluiten van een Scheur: je weet hoe je een deur dichtdoet die open hoort te blijven); Mesmeristenpenning (Eén keer per spel: breng een menselijke tegenstander op jouw plek in trance. Hij loopt weg en verdwijnt van het bord)
+
+## Daffadar Arjan Singh
+
+**Grensverkenner** · 38 jaar · Lijfwacht en particulier speurder, Pall Mall · begint in Pall Mall
+
+Twaalf jaar reed hij voor het Corps of Guides langs de noordwestgrens: nachtelijke verkenningen in de bergen, hinderlagen in ravijnen, terugkeren als niemand anders terugkwam. Hij kwam naar Londen met de Indiase escorte voor het jubileum van de koningin, en bleef. Nu bewaakt hij heren van de Army and Navy Club, en speurt hij voor wie hem betaalt. In de mist van Londen herkent hij iets wat hij in de bergen ook zag, en waar hij toen al niet voor wegliep.
+
+| Kennis | Waarneming | Kracht | Charisma | Lichaam | Geest |
+|---|---|---|---|---|---|
+| 1 | 4 | 4 | 1 | 7 | 5 |
+
+- **Stalen zenuwen.** Jij en elke held op jouw plek gooien bij Gruwel-tests één dobbelsteen extra. Wie bij de Khyberpas heeft gestaan, deinst niet meer terug.
+- **Eigenaardigheid:** Zegt nooit hoeveel hij weet, en weet altijd meer dan hij zegt.
+- **Uitrusting:** Tulwar van de Guides (+2 bij gevechten. Het staal is ouder dan hij, en heeft meer gezien); Khaki-tuniek (+1 bij Waarneming-tests tijdens ontmoetingen. De kleur van stof en mist: niemand ziet je aankomen)

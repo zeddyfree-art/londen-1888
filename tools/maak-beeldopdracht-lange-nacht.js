@@ -1,5 +1,5 @@
-// Bouwt ontwerp/beeldopdracht-lange-nacht.md: de beelden voor alle spullen, spreuken en artefacten
-// die nog geen afbeelding in art/ hebben (de uitbreiding voor De Lange Nacht en de proefregels).
+// Bouwt ontwerp/beeldopdracht-lange-nacht.md: de beelden voor alle helden, persoonlijke spullen, spullen,
+// spreuken en artefacten die nog geen afbeelding in art/ hebben.
 // Gebruik: node tools/maak-beeldopdracht-lange-nacht.js
 const fs = require("fs"), path = require("path");
 const root = path.join(__dirname, "..");
@@ -9,11 +9,12 @@ const NEG = "no text, no letters, no captions, no watermark, no signature, no fr
 const F = {
   object: ["1:1", "1024 × 1024", "single object still life, centred, filling about 70 percent of the frame, dark velvet or wooden tabletop, soft vignette"],
   spreuk: ["1:1", "1024 × 1024", "close-up of hands and ritual objects performing the spell, glowing effect as the focal point, dark background"],
+  held: ["3:4", "1536 × 2048", "half-length portrait, figure centred, head in upper third, plain dark background that fades out at the edges"],
   episch: ["1:1", "1024 × 1024", "single legendary object still life, centred, filling about 70 percent of the frame, a faint supernatural glow and drifting motes of light around it, dark vignette"],
 };
 const heeftBeeld = (map, id) => fs.existsSync(path.join(root, "art", map, `${id}.jpg`));
-const r = ["# Beeldopdracht: De Lange Nacht en de proefregels", "",
-  "Een aanvulling op `beeldopdracht.md`: alle spullen, spreuken en artefacten die nog geen afbeelding hebben. Gebruik dezelfde stijlregel, zodat de nieuwe beelden in de reeks passen. Zolang een beeld ontbreekt, toont het spel een kleurvlak met een ster.", "",
+const r = ["# Beeldopdracht: wat nog ontbreekt", "",
+  "Een aanvulling op `beeldopdracht.md`: alle helden, persoonlijke spullen, spullen, spreuken en artefacten die nog geen afbeelding hebben. Gebruik dezelfde stijlregel, zodat de nieuwe beelden in de reeks passen. Zolang een beeld ontbreekt, toont het spel een kleurvlak met een ster.", "",
   "## Instructies voor de AI", "",
   "1. Maak elk beeld precies in het opgegeven formaat.", "2. Gebruik de volledige prompt, inclusief de stijlregel aan het eind.", "3. Zet nooit tekst in een afbeelding.",
   "4. Lever PNG-bestanden op met precies de bestandsnaam die erbij staat, in de juiste submap van de Drive-map `Londen1888-art`.",
@@ -24,11 +25,15 @@ const sp = lees("spullen.json").filter(s => !heeftBeeld("spullen", s.id));
 const spr = lees("spreuken.json").filter(s => !heeftBeeld("spreuken", s.id));
 const art = lees("artefacten.json").filter(s => !heeftBeeld("artefacten", s.id));
 for (const x of [...sp, ...spr, ...art]) if (!x.prompt) throw new Error("Geen prompt voor " + x.id);
-r.push(`## Artefacten (${art.length})`, "");
+const helden = lees("helden.json").filter(h => !heeftBeeld("helden", h.id));
+const pers = lees("persoonlijk.json").filter(x => !fs.existsSync(path.join(root, "art", "persoonlijk", `${x.id}.jpg`)));
+if (helden.length) { r.push(`## Helden (${helden.length})`, ""); for (const h of helden) blok(h.naam, `helden/${h.id}.png`, "held", h.prompt); }
+if (pers.length) { r.push(`## Persoonlijke spullen (${pers.length})`, ""); for (const x of pers) blok(x.naam, `persoonlijk/${x.id}.png`, "object", x.prompt); }
+if (art.length) r.push(`## Artefacten (${art.length})`, "");
 for (const a of art) blok(`${a.naam}${a.episch ? " (Episch)" : ""}`, `artefacten/${a.id}.png`, a.episch ? "episch" : "object", a.prompt);
-r.push(`## Spullen (${sp.length})`, "");
+if (sp.length) r.push(`## Spullen (${sp.length})`, "");
 for (const s of sp) blok(`${s.naam} (${s.soort})`, `spullen/${s.id}.png`, "object", s.prompt);
-r.push(`## Spreuken (${spr.length})`, "");
+if (spr.length) r.push(`## Spreuken (${spr.length})`, "");
 for (const s of spr) blok(s.naam, `spreuken/${s.id}.png`, "spreuk", s.prompt);
 fs.writeFileSync(path.join(root, "ontwerp", "beeldopdracht-lange-nacht.md"), r.join("\n"));
 console.log(`ontwerp/beeldopdracht-lange-nacht.md: ${r.filter(x => x.startsWith("### ")).length} beelden`);

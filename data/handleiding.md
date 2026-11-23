@@ -7,7 +7,7 @@ Londen, 1888. Onder de stad roert zich een oude god. Jullie spelen **samen** teg
 - **Jullie winnen** als jullie genoeg **mysteries** oplossen: 2 in de ontspannen stand, 3 in de normale en de genadeloze stand.
 - Komt de **Mist** op 0, dan ontwaakt de oude god. Dan volgt nog **de laatste nacht**: één laatste kans (zie hieronder). In de genadeloze stand is het dan meteen voorbij.
 
-Een gewoon potje duurt ongeveer 45 minuten. **De Lange Nacht** duurt ongeveer 75 tot 90 minuten (zie verderop).
+Een gewoon potje duurt ongeveer 45 minuten. **De Lange Nacht** duurt ongeveer 90 tot 120 minuten (zie verderop).
 
 ## Een spel beginnen
 
@@ -49,7 +49,7 @@ Het spel speelt voor elke held één ontmoeting op zijn plek, in deze volgorde:
 
 1. **Monster:** je vecht met elk monster op je plek.
 2. **Scheur:** je stapt erdoor naar een andere wereld. Daarna mag je proberen hem te sluiten.
-3. **Aanwijzing:** je volgt het spoor met een Waarneming-test (7).
+3. **Aanwijzing:** je volgt het spoor met een Waarneming-test (8).
 4. **Anders:** een verhaal van die wijk, met een keuze of test. Overzee is het een expeditie.
 
 Een paar dingen om op te letten bij de verhalen:
@@ -67,7 +67,7 @@ Het spel trekt een **Onheilskaart**. De Mist daalt, Scheuren gaan open, monsters
 
 Gooi **2 dobbelstenen** en tel je **kenmerk** erbij: Kennis, Waarneming, Kracht of Charisma. Haal je het getal dat nodig is, dan lukt het.
 
-Bij de knop van een test staat je kans, bijvoorbeeld *Kennis 8 · 72%*. Dat is de kans dat je eerste worp lukt, met je kenmerk en spullen meegerekend. Herworpen tellen niet mee, dus je echte kans is vaak iets hoger. In een gevecht staat de kans bij het monster.
+Het getal op de knop is altijd het getal dat je echt moet halen; tests bij ontmoetingen zijn 1 zwaarder dan het getal dat in de verhaaltekst staat. Bij de knop van een test staat je kans, bijvoorbeeld *Kennis 8 · 72%*. Dat is de kans dat je eerste worp lukt, met je kenmerk en spullen meegerekend. Herworpen tellen niet mee, dus je echte kans is vaak iets hoger. In een gevecht staat de kans bij het monster.
 
 - **Extra dobbelsteen:** je gooit er één meer en de twee hoogste tellen.
 - **Aanwijzing uitgeven:** bij een mislukte Kennis- of Waarneming-test, of in een gevecht, gooi je je laagste steen opnieuw. In een gevecht ken je dan de zwakke plek van het monster.
@@ -99,7 +99,7 @@ Zelf een Scheur openen kan ook, met alle risico's: in de logementen van **Whitec
 
 ## Mysteries
 
-Het huidige mysterie staat rechts in het groene kader. Elke oude god heeft vier mysteries. Elk potje doen er willekeurig drie mee, in een willekeurige volgorde. Een paar voorbeelden:
+Het huidige mysterie staat rechts in het groene kader. Elke oude god heeft vijf mysteries. Elk potje doen er willekeurig drie mee (in De Lange Nacht vijf), in een willekeurige volgorde. Een paar voorbeelden:
 
 - Breng samen genoeg **Aanwijzingen** naar een plek en doe daar een test.
 - **Sluit** een aantal Scheuren.
@@ -110,6 +110,8 @@ Het huidige mysterie staat rechts in het groene kader. Elke oude god heeft vier 
 **Buit.** Na elk opgelost mysterie (behalve het laatste) kiest elke held: **een spul trekken** of **+1 Trofee**. Het team krijgt ook één **artefact**; jullie kiezen samen wie het meeneemt.
 
 ## Lichaam, Geest en waanzin
+
+- **De Mist kruipt in je hoofd.** Is de Mist tot de helft van zijn begin gezakt, dan verliest elke held in Londen aan het eind van elke ronde 1 Geest. Overzee ben je er veilig voor. Rusten, vlugzout en genezers worden dan belangrijk.
 
 - **Lichaam op 0:** je wordt Gewond naar het ziekenhuis in The City gebracht. Met Gewond heb je 1 actie per ronde, tot je het daar laat verwijderen.
 - **Geest op 0:** je krijgt een **Waanzin**-kaart en je Geest gaat terug naar de helft. In Chelsea kun je een waanzin laten wegschilderen.
@@ -154,12 +156,12 @@ Met **3 Trofeeën** tik je op **Groeien**: +1 op een kenmerk (maximaal 5), +1 ma
 
 ## De Lange Nacht
 
-Een langere spelmodus van ongeveer 75 tot 90 minuten (zo'n 10 rondes met 2 helden), voor als je je held echt wilt zien groeien. Kies hem op het beginscherm bij **Speelduur**.
+Een langere spelmodus van ongeveer 90 tot 120 minuten (zo'n 12 tot 14 rondes met 2 helden), voor als je je held echt wilt zien groeien. Kies hem op het beginscherm bij **Speelduur**.
 
-- Jullie moeten **1 mysterie meer** oplossen, en de Mist begint **2 hoger**.
+- Jullie moeten **2 mysteries meer** oplossen (ontspannen 4, normaal en genadeloos 5), en de Mist begint **5 hoger**.
 - Het spel heeft **bedrijven**. Na elk opgelost mysterie begint een nieuw bedrijf, en Londen wordt grimmiger:
   - Tweede bedrijf: gewone monsters hebben 1 Leven meer.
-  - Derde bedrijf: gewone monsters doen ook 1 Schade meer.
+  - Derde bedrijf en later: gewone monsters doen ook 1 Schade meer.
   - Laatste bedrijf: het epische monster van de god verschijnt en waakt over het laatste geheim.
 - Na elk mysterie is er een **beloningsronde**: elke held kiest één kaart uit drie, een spul, een spreuk of een artefact.
 - Overwinningen in De Lange Nacht staan op het scorebord van dit apparaat, maar nog niet op het gedeelde scorebord.
@@ -177,9 +179,9 @@ Een langere spelmodus van ongeveer 75 tot 90 minuten (zo'n 10 rondes met 2 helde
 
 | Stand | Mist | Mysteries nodig | Scheuren bij de start | Tests |
 |---|---|---|---|---|
-| Ontspannen | normaal | 2 | 2 | normaal |
-| Normaal | 3 lager | 3 | 2 | normaal, laatste nacht zwaarder |
-| Genadeloos | 4 lager | 3 | 3 | 1 moeilijker, geen laatste nacht |
+| Ontspannen | 1 hoger | 2 | 2 | normaal |
+| Normaal | 1 lager | 3 | 2 | normaal, laatste nacht zwaarder |
+| Genadeloos | 3 lager | 3 | 3 | 1 moeilijker, geen laatste nacht |
 
 Met 4 helden begint de Mist 3 lager en is er één Scheur extra, want vier helden doen meer per ronde.
 

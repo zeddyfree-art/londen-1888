@@ -1,6 +1,6 @@
 # De verhaallijnen
 
-Elke oude god heeft een eigen verhaallijn. De verhaalkaarten in het spel horen bij één van deze lijnen en vertellen samen het verhaal. Je ziet ze alleen in een potje tegen die god. De vier mysteries per god zijn de hoofdstukken. Elk potje speel je er drie, dus elk potje vertelt het verhaal net anders.
+Elke oude god heeft een eigen verhaallijn. De verhaalkaarten in het spel horen bij één van deze lijnen en vertellen samen het verhaal. Je ziet ze alleen in een potje tegen die god. De vijf mysteries per god zijn de hoofdstukken. Een gewoon potje speelt er drie, De Lange Nacht alle vijf, dus elk gewoon potje vertelt het verhaal net anders.
 
 ## Vathrûn: de deur onder de rivier
 
@@ -17,6 +17,7 @@ Elke oude god heeft een eigen verhaallijn. De verhaalkaarten in het spel horen b
 2. *Sluit de oude riolen.* Sluit de scheuren langs de rivier, waar Vathrûns adem naar boven komt.
 3. *De verdronken bisschop.* Versla de Bisschop van het Slib voordat hij de deur voor Brine opent.
 4. *Het verloren rapport.* Het rapport dat Josiah Penhallow schreef, is nooit aangekomen: het Genootschap heeft het onderschept. Vind het in Southwark en breng het naar Hoofdinspecteur Voss. Daarin staat wat Penhallow achter de deur hoorde.
+5. *Het getij keren.* Overtuig de ingenieurs van de Metropolitan Board of Works in Westminster om de sluizen van de nieuwe riolen dicht te zetten, zodat Vathrûns adem niet meer naar boven kan.
 
 ## Azh-Ilareth: de ster die te veel is
 
@@ -33,6 +34,7 @@ Elke oude god heeft een eigen verhaallijn. De verhaalkaarten in het spel horen b
 2. *De spiegels van Mayfair.* Sluit de scheuren die de Orde met haar spiegels heeft geopend.
 3. *Het licht uit het oosten.* Reis naar het Klooster van de Witte Wolken en ontcijfer de oude sterrenkaart.
 4. *De Dichter zonder Ogen.* Haal Lucan Vey weg uit de salons van Mayfair en breng hem naar de kerk in Westminster, voordat de Orde hem tot de stem van de ster maakt.
+5. *Een lens voor de sterrenwacht.* Breng een vreemd glas, een Artefact, naar Hampstead. Daardoor ziet de sterrenwacht waar de Orde naar kijkt.
 
 ## Nebet-Ankhu: de farao zonder gezicht
 
@@ -49,6 +51,7 @@ Elke oude god heeft een eigen verhaallijn. De verhaalkaarten in het spel horen b
 2. *De gestolen zegels.* Breng een van de zegels (een Artefact) in veiligheid in het British Museum.
 3. *De man met duizend gezichten.* Versla de Gemaskerde Hogepriester voordat de farao een vast gezicht kiest.
 4. *Het verhaal van de voorman.* Raïs Youssef Hamdi is de kisten naar Londen gevolgd en woont in een logement in Whitechapel. Win zijn vertrouwen en breng zijn getuigenis naar Dr. Moss. Zijn verhaal vertelt hoe de koning zonder gezicht de eerste keer werd opgesloten.
+5. *De poorten van de Dodenstad.* Sluit een Scheur in St Katharine Docks of Bloomsbury, waar de kisten uit Thebe hun poorten openden, en nog één ergens anders.
 
 ## Ysmara: de Doornkoningin
 
@@ -65,6 +68,7 @@ Elke oude god heeft een eigen verhaallijn. De verhaalkaarten in het spel horen b
 2. *De doornpoorten.* Sluit de poorten van het hof: een Scheur in Hampstead of Chelsea, en nog één.
 3. *Het weggelopen meisje.* Haal de kleine Ada uit het weeshuis van Mrs. Greaves en breng haar naar de kerk in Westminster.
 4. *De jacht op de heide.* Versla de Groene Jager.
+5. *Het verbroken wiegelied.* Zoek in de leeszaal van het British Museum het oude wiegelied dat de Doornkoningin ooit bond.
 
 **Wat speciaal is.** Wie aan het eind van een ronde alleen op een plek staat, hoort haar roepen en verliest Geest. Tegen Ysmara blijf je dus liever bij elkaar, en dat maakt verspreiden duur.
 
@@ -83,6 +87,7 @@ Elke oude god heeft een eigen verhaallijn. De verhaalkaarten in het spel horen b
 2. *Dicht de knekelputten.* Sluit een Scheur in The City of Spitalfields, en nog één.
 3. *De bekentenis van Sallow.* Breng de lijkenrover veilig naar Hoofdinspecteur Voss.
 4. *De Anatoom.* Versla wat er van Dr. Grieve over is, in het oude operatietheater van Guy's.
+5. *Een kruis voor de putten.* Breng een Artefact naar Spitalfields, zodat de broeders van de gaarkeuken de oude pestputten kunnen zegenen.
 
 **Wat speciaal is.** Een verslagen monster kan weer opstaan: bij een 1 op de dobbelsteen staat het ergens anders in de stad weer op.
 
