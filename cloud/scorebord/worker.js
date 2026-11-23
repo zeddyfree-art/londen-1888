@@ -20,14 +20,14 @@ const kop = origin => ({
 });
 const json = (data, status, origin) => new Response(JSON.stringify(data), { status, headers: { "Content-Type": "application/json; charset=utf-8", ...kop(origin) } });
 
-function kansVoor(god, stand, aantal, klokken) {
-  const b = MODEL.basis[god][stand][aantal];
-  let l = Math.log(b / (1 - b));
-  for (const id of klokken) {
-    if (id === "geen-genade" && stand === "genadeloos") continue;
-    l += Math.min(0, MODEL.klokken.find(k => k.id === id).logit);
-  }
-  return 1 / (1 + Math.exp(-l));
+/* Zelfde formule als schatKans in app/spel.js */
+function kansVoor(god, stand, aantal, klokken, modus) {
+  const basis = modus === "lang" && MODEL.basisLang ? MODEL.basisLang : MODEL.basis;
+  const b = basis[god][stand][aantal];
+  let T = 0;
+  for (const id of klokken) if (!(id === "geen-genade" && stand === "genadeloos")) T += Math.max(0, MODEL.klokken.find(k => k.id === id).zwaarte[stand] || 0);
+  const A = MODEL.plafond[stand];
+  return 1 / (1 + Math.exp(-(Math.log(b / (1 - b)) - A * (1 - Math.exp(-T / A)))));
 }
 const puntenVoor = (kans, nipt) => Math.max(1, Math.round(100 * Math.log(1 / Math.max(kans, 0.002)) * (nipt ? 0.75 : 1)));
 const schoon = t => String(t || "").replace(/[\u0000-\u001f\u007f<>]/g, "").replace(/\s+/g, " ").trim().slice(0, 30);
@@ -64,7 +64,7 @@ async function instuur(request, env, origin) {
   const { n } = await env.DB.prepare("SELECT COUNT(*) AS n FROM scores WHERE bron = ? AND ingestuurd > ?").bind(bron, uurGeleden).first();
   if (n >= LIMIET_PER_UUR) return json({ fout: "Te veel inzendingen. Probeer het over een uur opnieuw." }, 429, origin);
 
-  const kans = kansVoor(e.god, e.stand, e.helden.length, e.klokken);
+  const kans = kansVoor(e.god, e.stand, e.helden.length, e.klokken, e.modus === "lang" ? "lang" : "gewoon");
   const punten = puntenVoor(kans, e.uitslag === "nipt");
   try {
     await env.DB.prepare("INSERT INTO scores (ingestuurd, datum, naam, god, stand, helden, klokken, ronde, uitslag, kans, punten, sleutel, bron) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")
