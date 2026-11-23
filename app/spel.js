@@ -201,9 +201,11 @@ const Geluid = (() => {
     fetch("data/geluiden.json").then(r => r.ok ? r.json() : []).catch(() => []).then(namen => { for (const naam of namen) laadEen(naam); });
   }
   function laadEen(naam) {
-    const el = new Audio(); el.preload = "auto";
+    /* muziek is groot: alleen de gegevens vooraf laden, het nummer zelf pas als het speelt */
+    const lang = naam.startsWith("muziek");
+    const el = new Audio(); el.preload = lang ? "metadata" : "auto";
     const b = bestand[naam] = { el, ok: false };
-    el.addEventListener("canplaythrough", () => { b.ok = true; if (naam === sfeerNaam) sfeer(sfeerNaam.replace("sfeer-", ""), true); if (naam.startsWith("muziek") && muziekGewenst && !muziekEl) muziek(true, true); }, { once: true });
+    el.addEventListener(lang ? "loadedmetadata" : "canplaythrough", () => { b.ok = true; if (naam === sfeerNaam) sfeer(sfeerNaam.replace("sfeer-", ""), true); if (naam.startsWith("muziek") && muziekGewenst && !muziekEl) muziek(true, true); }, { once: true });
     el.addEventListener("error", () => { b.ok = false; }, { once: true });
     el.src = `art/geluid/${naam}.mp3`;
   }
@@ -240,7 +242,7 @@ const Geluid = (() => {
   }
   /* achtergrondmuziek: een afspeellijst van lange, zachte tracks (muziek, muziek-2, ...) onder de sfeer.
      Is een track afgelopen, dan begint de volgende. */
-  let muziekGewenst = false, muziekEl = null, muziekNr = 0;
+  let muziekGewenst = false, muziekEl = null, muziekNr = Math.floor(Math.random() * 60); /* elke sessie begint bij een ander nummer */
   const muziekLijst = () => Object.keys(bestand).filter(n => /^muziek(-\d+)?$/.test(n) && bestand[n].ok).sort();
   function muziek(spelen, opnieuw) {
     muziekGewenst = spelen;

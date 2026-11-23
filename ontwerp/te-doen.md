@@ -204,7 +204,7 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 
 - [x] Albert Gosling: Charisma 4 en Verdwijntruc (Scheuren sluiten met Charisma); nieuwe held Daffadar Arjan Singh (Kracht 4, Stalen zenuwen); Aggie en Khalil een eigen profiel, Khalil naar Bloomsbury
 - [x] Vijfde mysterie per god; De Lange Nacht 2 mysteries meer; ontmoetingen 1 zwaarder; uitputting vanaf de helft van de Mist; flessenhalzen versoepeld
-- [x] Morghast-sfeer zonder schrapen; tweede muzieknummer, de muziek speelt nu als afspeellijst
+- [x] Morghast-sfeer zonder schrapen; vier nieuwe muzieknummers (muziek-2 uit ElevenLabs, muziek-3 tot 5: Somber Shadows, The Music Box Sleeps, Umbrarum), de muziek speelt als afspeellijst
 
 - [x] Wekroep van de klokken werkt nog maar één keer per potje (was elke beurt herhaalbaar)
 - [x] De 64 beelden voor De Lange Nacht staan in het spel en in `tools/art-drive.json`
