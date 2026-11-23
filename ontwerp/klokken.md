@@ -5,8 +5,8 @@
 ## Zoals gebouwd
 
 - **Keuze:** op het startscherm, op een wijzerplaat met dertien uren (I tot XIII) en in een lijst. De keuze wordt onthouden.
-- **Dreigingsmeter en winkans:** uit `data/klokken.json`, gemeten met `node tools/meet-klokken.js 100` (bijna 12.000 potjes). Per god, stand en aantal helden staat daar de winkans zonder klokken, en per klok het effect als logit. Effecten worden opgeteld. Controle met `--controle`: het model zit meestal binnen 5 procentpunt van echte potjes.
-- **Slagen:** de streepjes per klok, afgeleid uit het gemeten effect (1 slag per 0,35 logit, 1 tot 4).
+- **Dreigingsmeter en winkans:** uit `data/klokken.json`, gefit met `node tools/meet-klokken.js 40000`: de testspeler speelt tienduizenden potjes met willekeurige god, stand, aantal helden, speelduur en klokken. Per god, stand, aantal helden en speelduur staat daar de winkans zonder klokken, en per klok een zwaarte per stand (in logit). De zwaartes tellen op, maar samen iets minder hard dan los: `logit(kans) = logit(basis) − plafond · (1 − e^(−T / plafond))`, met T de som van de zwaartes. Controle en de tabellen staan in `ontwerp/klokkenmodel.md`; het model zit per aantal klokken binnen 3 procentpunt van echte potjes.
+- **Slagen:** de streepjes per klok, afgeleid uit de zwaarte op normaal (1 slag per 0,35 logit, 1 tot 4).
 - **Punten:** 100 × ln(1 / winkans vooraf). Op het nippertje telt voor driekwart.
 - **Scorebord:** in `localStorage` van de browser, sleutel `londen1888-scores`. Potjes met handmatig aangepaste waarden tellen niet mee.
 

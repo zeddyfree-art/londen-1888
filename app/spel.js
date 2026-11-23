@@ -90,15 +90,20 @@ function godZwaarte(god, stand, aantal, modus) {
   return { kans: k, cls: label[0], label: label[1], noot };
 }
 const ROMEINS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII"];
-/* Uit data/klokken.json (gemeten met tools/meet-klokken.js): de winkans zonder klokken en het effect van elke klok, als logit. */
-const klokEffect = (id, stand) => { if (id === "geen-genade" && stand === "genadeloos") return 0; return Math.min(0, D.klokmodel?.klokken.find(k => k.id === id)?.logit || 0); };
-const klokSlagen = id => Math.max(1, Math.min(4, Math.round(-klokEffect(id, "normaal") / 0.35)));
+/* Zwaarte van een klok in een stand (logit, ≥ 0). Geen genade doet niets op Genadeloos. */
+const klokZwaarte = (id, stand) => id === "geen-genade" && stand === "genadeloos" ? 0 : Math.max(0, D.klokmodel?.klokken.find(k => k.id === id)?.zwaarte?.[stand] || 0);
+const klokEffect = (id, stand) => -klokZwaarte(id, stand);
+const klokSlagen = id => Math.max(1, Math.min(4, Math.round(klokZwaarte(id, "normaal") / 0.35)));
+/* Winkans uit het klokkenmodel (data/klokken.json, gefit met tools/meet-klokken.js op tienduizenden potjes):
+   logit(kans) = logit(basis) − plafond · (1 − e^(−T / plafond)), met T de som van de zwaarte van de klokken.
+   Klokken tellen dus op, maar samen iets minder hard dan los. Zonder god: het gemiddelde over de goden. */
 function schatKans(god, stand, aantal, klokken, modus) {
-  const m = D.klokmodel; if (!m) return null;
-  /* De Lange Nacht heeft een eigen basis (uit ontwerp/balans-lang.json); de klokken werken daar hetzelfde */
+  const m = D.klokmodel; if (!m?.plafond) return null;
   const basis = modus === "lang" && m.basisLang ? m.basisLang : m.basis;
   const goden = god && basis[god] ? [god] : Object.keys(basis);
-  const ps = goden.map(g => { const b = basis[g][stand][aantal]; let l = Math.log(b / (1 - b)); for (const id of klokken) l += klokEffect(id, stand); return 1 / (1 + Math.exp(-l)); });
+  const T = klokken.reduce((t, id) => t + klokZwaarte(id, stand), 0), A = m.plafond[stand];
+  const straf = A * (1 - Math.exp(-T / A));
+  const ps = goden.map(g => { const b = basis[g][stand][aantal]; return 1 / (1 + Math.exp(-(Math.log(b / (1 - b)) - straf))); });
   return ps.reduce((a, b) => a + b, 0) / ps.length;
 }
 /* Punten bij winst: hoe kleiner de kans vooraf, hoe meer punten. Op het nippertje (laatste nacht) telt voor driekwart. */
@@ -114,7 +119,7 @@ async function haalGedeeld() {
 }
 async function deelUitslag(e) {
   try {
-    const r = await fetch(SCOREBORD_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ naam: e.naam, god: e.god, stand: e.stand, helden: e.helden, klokken: e.klokken, ronde: e.ronde, uitslag: e.uitslag, datum: e.datum, sleutel: `${apparaat()}-${e.id}` }) });
+    const r = await fetch(SCOREBORD_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ naam: e.naam, god: e.god, stand: e.stand, helden: e.helden, klokken: e.klokken, modus: e.modus || "gewoon", ronde: e.ronde, uitslag: e.uitslag, datum: e.datum, sleutel: `${apparaat()}-${e.id}` }) });
     const d = await r.json().catch(() => ({}));
     return r.ok ? d : { fout: d.fout || `Het scorebord antwoordt niet (${r.status}).` };
   } catch { return { fout: "Geen verbinding met het gedeelde scorebord. Probeer het later opnieuw." }; }

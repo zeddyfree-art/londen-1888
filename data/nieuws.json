@@ -1,5 +1,15 @@
 [
   {
+    "id": 21,
+    "datum": "23 november 2026",
+    "titel": "Betere winkans bij de Klokken van Westminster",
+    "punten": [
+      "De winkans bij de klokken is opnieuw berekend uit 40.000 potjes van de testspeler, met allerlei combinaties van klokken. De oude schatting was met een paar klokken veel te somber: bij drie klokken zei hij vaak 15% waar het echt rond de 35% lag.",
+      "Elke klok weegt nu per moeilijkheid anders, en klokken samen tellen iets minder hard op dan los. De streepjes per klok zijn bijgewerkt.",
+      "Daardoor leveren zware combinaties wat minder punten op dan eerst; dat is eerlijker. Overwinningen die al op het scorebord staan, houden hun punten."
+    ]
+  },
+  {
     "id": 20,
     "datum": "23 november 2026",
     "titel": "Je tas: weggooien en waarschuwingen",
