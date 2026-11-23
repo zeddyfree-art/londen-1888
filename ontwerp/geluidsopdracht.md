@@ -38,6 +38,11 @@ Ze klinken bij een actie in het spel. Kort en duidelijk.
 | `mysterie.mp3` | Een mysterie is opgelost | 3 s | `a short hopeful swell of a distant church choir and organ chord, Victorian, resolving` |
 | `winst.mp3` | Het spel is gewonnen | 5 s | `church bells ringing at dawn over a waking city, birds, fog lifting, hopeful, no music` |
 | `verlies.mp3` | Het spel is verloren | 5 s | `a deep subterranean rumble rising into a vast inhuman groan, city bells stopping one by one, horror ending` |
+| `zee.mp3` | Een held vaart op expeditie (uitbreiding) | 2 s | `a steamship horn far away, waves against a wooden hull, gulls, a rope creaking, short, no music` |
+| `ontdekt.mp3` | Een nieuwe plek op de regiokaart (uitbreiding) | 1,5 s | `a heavy old map unrolled on a table, paper rustle, then a faint wind gust, short, no music` |
+| `gevaar.mp3` | Een Gevaarkaart met gevaar (uitbreiding) | 1,5 s | `a sudden low tense string stab with a pebble falling into a deep shaft, short, dark` |
+| `ramp.mp3` | Een expeditie gaat mis (uitbreiding) | 3 s | `a rumbling stone collapse in a cave with dust and falling rocks, then silence, dramatic, no music` |
+| `schat.mp3` | Een schat in het hart van een regio (uitbreiding) | 3 s | `a stone lid sliding open in an ancient tomb, then a soft golden shimmering chime, wonder, no music` |
 
 ## Sfeerlussen
 
@@ -58,6 +63,9 @@ Ze spelen zacht op de achtergrond zolang het potje duurt, één per oude god, pl
 | `sfeer-ouroch.mp3` | Potje tegen Ouroch | 22 s | `seamless loop, many clocks ticking slightly out of sync in a dark room, a slow heavy pendulum, gears turning, a distant tower bell striking very slowly, tense and mechanical, no music` |
 | `sfeer-yth-nemora.mp3` | Potje tegen Yth-Nemora | 22 s | `seamless loop, a printing press thumping rhythmically in a basement, paper rustling, newsboys shouting indistinct words in the street far away, many whispering voices overlapping, uneasy, no music` |
 | `sfeer-gul-marrach.mp3` | Potje tegen Gul-Marrach | 22 s | `seamless loop, coins clinking and being counted in a quiet marble banking hall, a pen scratching in a ledger, a heavy vault door creaking far away, a slow deep heartbeat underneath, cold and ominous, no music` |
+| `sfeer-ow-thebe.mp3` | Held aan de beurt in Thebe (uitbreiding) | 22 s | `seamless loop, hot desert wind over limestone cliffs, distant call to prayer, a donkey bell, sand trickling into a tomb shaft, faint echo, mysterious, no music` |
+| `sfeer-ow-himalaya.mp3` | Held aan de beurt in de Himalaya (uitbreiding) | 22 s | `seamless loop, high mountain wind, prayer flags flapping, a distant monastery bell and deep monk chant very faint, crunching snow, cold and vast, no music` |
+| `sfeer-ow-yucatan.mp3` | Held aan de beurt in Yucatán (uitbreiding) | 22 s | `seamless loop, dense tropical jungle at night, rain dripping on broad leaves, insects and frogs, distant howler monkeys, water in a cave, humid and eerie, no music` |
 
 ## Achtergrondmuziek
 
@@ -83,6 +91,8 @@ Kies bij Music voor **instrumental**. Eén take van 3 minuten kost ongeveer 2.70
 Je hoeft niet alles in één keer te maken. Begin bijvoorbeeld met `onheil`, `monster`, `dobbel` en de vier sfeerlussen: die hoor je het vaakst.
 
 ## Hoe het spel ze gebruikt
+
+Met de uitbreiding *Kaarten van de Oude Wereld* klinkt de sfeerlus van de regio (`sfeer-ow-...`) zolang de held aan de beurt daar op expeditie is. Ontbreekt die lus, dan blijft de sfeer van de god klinken.
 
 - **Volume:** effecten spelen op 50–80%, sfeerlussen op 25% en de muziek op 18%. Met de knop *Muziek uit* zet je alleen de muziek uit. Zo komen ze nooit boven de rest uit.
 - **Snel:** via de ElevenLabs-connector kan Claude ze ook zelf maken en ophalen, in de flow "Londen 1888 geluiden".

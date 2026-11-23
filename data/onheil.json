@@ -1521,5 +1521,79 @@
       }
     ],
     "god": "gul-marrach"
+  },
+  {
+    "id": "o-ow-1",
+    "naam": "Storm op het Kanaal",
+    "uitbreiding": "oude-wereld",
+    "mist": 1,
+    "scheur": 0,
+    "monster": 0,
+    "extra": "Volgende ronde vaart er geen boot. Elke held overzee verliest 1 Lichaam.",
+    "tekst": "Een storm uit het zuidwesten jaagt de schepen terug naar de Theems. In de dokken liggen ze drie rijen dik. Wie al onderweg is, merkt het ook: ver weg, in een ander land, slaat dezelfde wind tegen zijn tent.",
+    "acties": [
+      {
+        "type": "geenBoot"
+      },
+      {
+        "type": "lichaamOverzee",
+        "waarde": -1
+      }
+    ]
+  },
+  {
+    "id": "o-ow-2",
+    "naam": "Een telegram uit Caïro",
+    "uitbreiding": "oude-wereld",
+    "mist": 0,
+    "scheur": 0,
+    "monster": 0,
+    "extra": "Elke held overzee krijgt 1 Aanwijzing. Leg 1 Aanwijzing op St Katharine Docks.",
+    "tekst": "Het telegraafkantoor in de dokken krijgt een lang bericht van een Egyptische ambtenaar, die vertelt wat hij heeft gezien. Wie overzee is, hoort het ook: bij de haven, van een gids, van een monnik.",
+    "acties": [
+      {
+        "type": "aanwijzingOverzee",
+        "aantal": 1
+      },
+      {
+        "type": "aanwijzingOp",
+        "plek": "st-katharine-docks",
+        "aantal": 1
+      }
+    ]
+  },
+  {
+    "id": "o-ow-3",
+    "naam": "Grafrovers aan boord",
+    "uitbreiding": "oude-wereld",
+    "mist": 1,
+    "scheur": 0,
+    "monster": 1,
+    "extra": "Wie een kist bij zich heeft, raakt er één ding uit kwijt.",
+    "tekst": "In elke haven tussen Alexandrië en Londen zitten mannen die weten wat een expeditiekist waard is. Vannacht zijn ze slimmer dan de bewakers.",
+    "acties": [
+      {
+        "type": "kistVerlies"
+      }
+    ]
+  },
+  {
+    "id": "o-ow-4",
+    "naam": "Gerucht: een vermiste expeditie",
+    "uitbreiding": "oude-wereld",
+    "mist": 0,
+    "scheur": 0,
+    "monster": 0,
+    "gerucht": "Bezoek de tempel in het oerwoud in Yucatán. Lukt dat niet binnen 2 rondes, dan daalt de Mist met 1.",
+    "tekst": "Een Duitse expeditie in Yucatán heeft al drie weken niets van zich laten horen. Hun laatste telegram ging over een trap die naar beneden leidt, onder de tempel. Iemand moet gaan kijken.",
+    "acties": [
+      {
+        "type": "gerucht",
+        "soort": "bezoek",
+        "plek": "yucatan",
+        "rondes": 3,
+        "straf": 1
+      }
+    ]
   }
 ]

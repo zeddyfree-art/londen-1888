@@ -454,5 +454,36 @@
       }
     }
   ],
-  "basisNieuweGoden": "De basis van de zeven nieuwe goden komt uit de testbot (80 potjes per instelling, zonder klokken), nog niet uit het gefitte model. Bij de volgende meting met tools/meet-klokken.js gaan ze mee."
+  "basisNieuweGoden": "De basis van de zeven nieuwe goden komt uit de testbot (80 potjes per instelling, zonder klokken), nog niet uit het gefitte model. Bij de volgende meting met tools/meet-klokken.js gaan ze mee.",
+  "oudeWereld": {
+    "gewoon": {
+      "ontspannen": {
+        "2": 0.13,
+        "4": -0.06
+      },
+      "normaal": {
+        "2": -0.18,
+        "4": -0.12
+      },
+      "genadeloos": {
+        "2": -0.12,
+        "4": 0.02
+      }
+    },
+    "lang": {
+      "ontspannen": {
+        "2": -0.15,
+        "4": -0.47
+      },
+      "normaal": {
+        "2": -0.37,
+        "4": -0.18
+      },
+      "genadeloos": {
+        "2": 0.14,
+        "4": -0.42
+      }
+    }
+  },
+  "oudeWereldUitleg": "Verschil in logit van de winkans met de uitbreiding Kaarten van de Oude Wereld aan, per stand en aantal helden: gemiddelde over twaalf goden, testbot met 80 (gewoon) en 40 (De Lange Nacht) potjes per instelling."
 }

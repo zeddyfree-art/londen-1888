@@ -81,10 +81,10 @@ const klok = id => !!S?.klokken?.includes(id) || !!S?.godKlokken?.includes(id);
 const bootPrijs = () => prijs(klok("gesloten-lijnen") ? 4 : 2);
 /* Hoe zwaar is een god in de gekozen stand, met het gekozen aantal helden? Uit het klokkenmodel (testbotmetingen).
    Niet elke god is even zwaar; dat is zo bedoeld. De kaart op het startscherm laat het zien. */
-function godZwaarte(god, stand, aantal, modus) {
-  const k = schatKans(god, stand, aantal, [], modus); if (k == null) return null;
-  const alle = D.goden.map(g => schatKans(g.id, stand, aantal, [], modus)).filter(x => x != null);
-  const gem = alle.reduce((a, b) => a + b, 0) / alle.length, ander = schatKans(god, stand, aantal === 2 ? 4 : 2, [], modus);
+function godZwaarte(god, stand, aantal, modus, ow) {
+  const k = schatKans(god, stand, aantal, [], modus, ow); if (k == null) return null;
+  const alle = D.goden.map(g => schatKans(g.id, stand, aantal, [], modus, ow)).filter(x => x != null);
+  const gem = alle.reduce((a, b) => a + b, 0) / alle.length, ander = schatKans(god, stand, aantal === 2 ? 4 : 2, [], modus, ow);
   const label = k <= gem - 0.06 ? ["zwaar", "Zwaarder"] : k >= gem + 0.06 ? ["licht", "Makkelijker"] : ["midden", "Gemiddeld"];
   const noot = ander != null && ander - k >= 0.1 ? (aantal === 2 ? "Met 4 helden een stuk makkelijker dan met 2." : "Met 2 helden een stuk makkelijker dan met 4.") : "";
   return { kans: k, cls: label[0], label: label[1], noot };
@@ -97,13 +97,16 @@ const klokSlagen = id => Math.max(1, Math.min(4, Math.round(klokZwaarte(id, "nor
 /* Winkans uit het klokkenmodel (data/klokken.json, gefit met tools/meet-klokken.js op tienduizenden potjes):
    logit(kans) = logit(basis) − plafond · (1 − e^(−T / plafond)), met T de som van de zwaarte van de klokken.
    Klokken tellen dus op, maar samen iets minder hard dan los. Zonder god: het gemiddelde over de goden. */
-function schatKans(god, stand, aantal, klokken, modus) {
+/* ow: met de uitbreiding Kaarten van de Oude Wereld. Het gemeten effect (in logit, gemiddeld over de goden) staat in het klokkenmodel. */
+const owEffect = (modus, stand, aantal) => D.klokmodel?.oudeWereld?.[modus === "lang" ? "lang" : "gewoon"]?.[stand]?.[aantal] || 0;
+function schatKans(god, stand, aantal, klokken, modus, ow) {
   const m = D.klokmodel; if (!m?.plafond) return null;
   const basis = modus === "lang" && m.basisLang ? m.basisLang : m.basis;
   const goden = god && basis[god] ? [god] : Object.keys(basis);
   const T = klokken.reduce((t, id) => t + klokZwaarte(id, stand), 0), A = m.plafond[stand];
   const straf = A * (1 - Math.exp(-T / A));
-  const ps = goden.map(g => { const b = basis[g][stand][aantal]; return 1 / (1 + Math.exp(-(Math.log(b / (1 - b)) - straf))); });
+  const extra = ow ? owEffect(modus, stand, aantal) : 0;
+  const ps = goden.map(g => { const b = basis[g][stand][aantal]; return 1 / (1 + Math.exp(-(Math.log(b / (1 - b)) + extra - straf))); });
   return ps.reduce((a, b) => a + b, 0) / ps.length;
 }
 /* Punten bij winst: hoe kleiner de kans vooraf, hoe meer punten. Op het nippertje (laatste nacht) telt voor driekwart. */
@@ -119,7 +122,7 @@ async function haalGedeeld() {
 }
 async function deelUitslag(e) {
   try {
-    const r = await fetch(SCOREBORD_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ naam: e.naam, god: e.god, stand: e.stand, helden: e.helden, klokken: e.klokken, modus: e.modus || "gewoon", ronde: e.ronde, uitslag: e.uitslag, datum: e.datum, sleutel: `${apparaat()}-${e.id}` }) });
+    const r = await fetch(SCOREBORD_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ naam: e.naam, god: e.god, stand: e.stand, helden: e.helden, klokken: e.klokken, modus: e.modus || "gewoon", oudeWereld: !!e.oudeWereld, ronde: e.ronde, uitslag: e.uitslag, datum: e.datum, sleutel: `${apparaat()}-${e.id}` }) });
     const d = await r.json().catch(() => ({}));
     return r.ok ? d : { fout: d.fout || `Het scorebord antwoordt niet (${r.status}).` };
   } catch { return { fout: "Geen verbinding met het gedeelde scorebord. Probeer het later opnieuw." }; }
@@ -213,7 +216,7 @@ const Geluid = (() => {
     const g = a.createGain(); g.gain.value = vol; src.connect(f).connect(g).connect(a.destination); src.start(t);
   };
   /* Geluidsbestanden: art/geluid/<naam>.mp3. Ontbreekt een bestand, dan klinkt de ingebouwde klank. */
-  const EFFECTEN = { klik: .5, reis: .6, kaart: .6, dobbel: .7, goed: .7, slecht: .7, monster: .8, onheil: .8, mysterie: .8, scheur: .8, winst: .8, verlies: .8 };
+  const EFFECTEN = { klik: .5, reis: .6, kaart: .6, dobbel: .7, goed: .7, slecht: .7, monster: .8, onheil: .8, mysterie: .8, scheur: .8, winst: .8, verlies: .8, zee: .6, ontdekt: .7, gevaar: .8, ramp: .8, schat: .8 };
   const bestand = {};
   function laad() {
     if (window.__bot || typeof Audio === "undefined") return;
@@ -292,7 +295,15 @@ const Geluid = (() => {
     scheur() { speel("scheur", () => ruis(0, 1.4, 120, .3, 1.5, 900)); },
     winst() { speel("winst", () => { toon(523, 0, .5, "triangle", .12); toon(659, .2, .5, "triangle", .12); toon(784, .4, 1.2, "triangle", .12); }); },
     verlies() { speel("verlies", () => { toon(147, 0, 2.5, "sine", .2, 98); }); },
-    klik() { speel("klik", () => ruis(0, .03, 1800, .2, 3)); }
+    klik() { speel("klik", () => ruis(0, .03, 1800, .2, 3)); },
+    /* Kaarten van de Oude Wereld */
+    zee() { speel("zee", () => { ruis(0, 1.6, 400, .22, .7, 150); toon(110, .3, 1.2, "sine", .08); }); },
+    ontdekt() { speel("ontdekt", () => { ruis(0, .5, 1200, .15, .8, 3000); toon(330, .15, .6, "triangle", .08); }); },
+    gevaar() { speel("gevaar", () => { toon(196, 0, .5, "triangle", .1); toon(185, .2, .7, "triangle", .1); }); },
+    ramp() { speel("ramp", () => { ruis(0, 1.5, 90, .35, 1, 60); toon(98, 0, 1.6, "sawtooth", .05, 55); }); },
+    schat() { speel("schat", () => { toon(659, 0, .4, "triangle", .1); toon(880, .12, .4, "triangle", .1); toon(1175, .24, 1, "triangle", .1); }); },
+    /* bestaat er een (geladen) geluidsbestand met deze naam? */
+    heeft(naam) { return !!bestand[naam]?.ok; }
   };
 })();
 
@@ -1061,6 +1072,8 @@ async function godInfo() {
 const OW_KNOPEN = { aankomst: { x: 60, y: 130, ring: 0 }, r1a: { x: 170, y: 62, ring: 1 }, r1b: { x: 170, y: 198, ring: 1 }, r2a: { x: 320, y: 50, ring: 2 }, r2b: { x: 320, y: 210, ring: 2 }, r2c: { x: 425, y: 130, ring: 2 }, hart: { x: 535, y: 90, ring: 3 } };
 const OW_PADEN = [["aankomst", "r1a"], ["aankomst", "r1b"], ["r1a", "r1b"], ["r1a", "r2a"], ["r1b", "r2b"], ["r2a", "r2c"], ["r2b", "r2c"], ["r2a", "hart"], ["r2c", "hart"]];
 const OW_OPSLAG = "londen1888-oude-wereld";
+/* Is de held aan de beurt op expeditie, en is er een sfeerlus voor die regio? */
+const owSfeer = () => { const r = S?.ow && S.helden?.[S.actief]?.exp?.regio; return r && Geluid.heeft(`sfeer-ow-${r}`) ? `ow-${r}` : null; };
 const owRegio = id => D.oudeWereld?.regios.find(r => r.id === id);
 const owBuren = k => OW_PADEN.flatMap(([a, b]) => a === k ? [b] : b === k ? [a] : []);
 const owStapel = r => schud([...r.gevaren.flatMap(g => [g.id, g.id]), ...r.leeg.map((_, i) => "leeg-" + i)]);
@@ -1115,12 +1128,12 @@ async function owGevaar(h) {
     const n = h.exp.kist.length, regio = owRegio(h.exp.regio).naam;
     const html = await pasToe(h, g.effect);
     log(`${korteNaam(heldDef(h).naam)}: de expeditie gaat mis (${g.naam})`); owTel("rampen");
-    h.exp = null; h.plek = "st-katharine-docks";
+    h.exp = null; h.plek = "st-katharine-docks"; Geluid.ramp();
     await venster({ soort: "De expeditie gaat mis", titel: g.naam, verhaal: g.tekst, html: `${html}<p>Voor de tweede keer. Wie nog kan lopen, keert om. Je wordt teruggebracht naar St Katharine Docks${n ? `, en wat in je kist zat, blijft achter in ${esc(regio)}` : ""}.</p>` });
     await controleerHeld(h);
     return true;
   }
-  h.exp.gezien.push(id);
+  h.exp.gezien.push(id); Geluid.gevaar();
   const html = await pasToe(h, g.effect);
   await venster({ soort: "Gevaarkaart", titel: g.naam, verhaal: g.tekst, html: `${html}<p class="muted">Trek je ${esc(g.naam)} in deze expeditie nog eens, dan gaat het mis.</p>` });
   await controleerHeld(h);
@@ -1136,6 +1149,7 @@ async function owReis(h, doel) {
   log(`${korteNaam(heldDef(h).naam)} trekt naar ${owNaam(h.exp.regio, doel)}`);
   if (nieuw) {
     const t = owTegel(h.exp.regio, doel);
+    Geluid.ontdekt();
     await venster({ soort: "Ontdekt", titel: t.naam, beeld: owBeeld(h.exp.regio, doel), verhaal: t.tekst });
     await owGevaar(h);
   }
@@ -1204,7 +1218,7 @@ async function owHart(h) {
     await venster({ soort: "Mislukt", titel: hart.naam, verhaal: hart.mislukt, html: await pasToe(h, [{ lichaam: -2 }, { geest: -1 }]) });
     await controleerHeld(h); return;
   }
-  s.hart = true; owTel("harten");
+  s.hart = true; owTel("harten"); Geluid.schat();
   const id = await venster({ soort: "De schat", titel: "Wat neem je mee?", verhaal: hart.gelukt, html: `<div class="winkelraster">${hart.schatten.map((x, i) => keuzeTegel("artefact", x, i)).join("")}</div>`, knoppen: hart.schatten.map(x => ({ label: artDef(x).naam, waarde: x, verberg: true })) });
   h.exp.kist.push({ schat: id ?? hart.schatten[0] }, { trofee: 1 });
   let extra = "";
@@ -1252,14 +1266,14 @@ function nieuwSpel(godId, moeilijkheid, heldIds, opties = {}) {
     plekken: Object.fromEntries(D.bord.plekken.map(p => [p.id, { aanw: 0, scheur: false, monsters: [] }])),
     overzee: Object.fromEntries(D.bord.overzee.map(o => [o.id, { artefact: false }])),
     scheurStapel: schud(D.bord.plekken.map(p => p.id)),
-    onheil: schud(D.onheil.filter(o => !o.god || o.god === godId).map(o => o.id)), onheilAfleg: [],
+    onheil: schud(D.onheil.filter(o => (!o.god || o.god === godId) && (!o.uitbreiding || (opties.oudeWereld && !opties.tutorial))).map(o => o.id)), onheilAfleg: [],
     geruchten: [], rondeGebruikt: {}, fase: "helden", actief: 0, log: [], einde: null, voorgevoel: false,
     tutorial: !!opties.tutorial, coachGezien: [], klokken: (opties.klokken || []).filter(id => KLOKKEN.some(k => k.id === id)),
     modus: opties.modus === "lang" ? "lang" : "gewoon", bedrijf: 1
   };
   /* De Lange Nacht: één mysterie meer en een ruimere Mist */
   if (S.modus === "lang") { S.nodig = Math.min(g.mysteries.length, S.nodig + LANGE_NACHT.extraMysteries); S.mist += LANGE_NACHT.mist[heldIds.length] ?? LANGE_NACHT.mist[2]; }
-  S.kans = schatKans(godId, moeilijkheid, heldIds.length, S.klokken, S.modus);
+  S.kans = schatKans(godId, moeilijkheid, heldIds.length, S.klokken, S.modus, !!(opties.oudeWereld && !opties.tutorial));
   if (klok("dikke-mist")) S.mist -= 2;
   if (klok("ongeduldige-god")) S.nodig += 1;
   S.mistStart = S.mist;
@@ -1664,10 +1678,10 @@ async function dienst(h) {
       break;
     }
     case "haven": {
-      if (weer("storm")) { await melding("De dokken", "Het stormt. Geen kapitein vaart vandaag uit."); geefActieTerug(h); break; }
+      if (weer("storm") || S.geenBoot === S.ronde) { await melding("De dokken", "Het stormt op het Kanaal. Geen kapitein vaart vandaag uit."); geefActieTerug(h); break; }
       if (h.pond < bootPrijs()) { await melding("De dokken", `Een bootkaartje kost ${bootPrijs()} Pond.`); geefActieTerug(h); break; }
       const d = await venster({ soort: `Bootkaartje (${bootPrijs()} Pond)`, titel: "Op expeditie", knoppen: [...D.bord.overzee.map(o => ({ label: o.naam, waarde: o.id })), { label: "Toch niet", waarde: null, ghost: true }] });
-      if (d) { h.pond -= bootPrijs(); h.plek = d; if (S.ow) owExpeditie(h, d); log(`${naam} vaart naar ${plekNaam(d)}`); terugPunt(voor, `de boot naar ${plekNaam(d)}`); } else geefActieTerug(h);
+      if (d) { h.pond -= bootPrijs(); h.plek = d; if (S.ow) { owExpeditie(h, d); Geluid.zee(); } log(`${naam} vaart naar ${plekNaam(d)}`); terugPunt(voor, `de boot naar ${plekNaam(d)}`); } else geefActieTerug(h);
       break;
     }
     case "rivierpolitie": {
@@ -2394,6 +2408,11 @@ async function onheilsfase() {
     if (a.type === "artefactKlaar") S.overzee[kies1(D.bord.overzee).id].artefact = true;
     if (a.type === "gezochtRijkste") { const h = [...S.helden].sort((x, y) => y.pond - x.pond)[0]; geefToestand(h, "gezocht"); log(`${korteNaam(heldDef(h).naam)} wordt gezocht`); }
     if (a.type === "monstersBewegen") beweegMonsters(true);
+    /* Kaarten van de Oude Wereld */
+    if (a.type === "lichaamOverzee") for (const h of S.helden) if (isOverzee(h.plek) && !h.uit) verliesLichaam(h, -a.waarde);
+    if (a.type === "aanwijzingOverzee") for (const h of S.helden) if (isOverzee(h.plek) && !h.uit) h.aanw += a.aantal;
+    if (a.type === "kistVerlies") for (const h of S.helden) if (h.exp?.kist.length) { const e = h.exp.kist.splice(Math.floor(rng() * h.exp.kist.length), 1)[0]; log(`${korteNaam(heldDef(h).naam)} raakt uit de kist kwijt: ${buitTxt(e)}`); }
+    if (a.type === "geenBoot") S.geenBoot = S.ronde + 1;
     if (a.type === "keuzeSpreukAanwijzing") for (const h of S.helden) {
       const k = await venster({ soort: "Hulp van de Bleke Lantaarn", titel: korteNaam(heldDef(h).naam), html: kanDragen(h) ? "" : `<p class="tasvol-melding">Je tas is vol (${tasTxt(h)}). Kies je een spreuk, dan gooi je daarna iets anders weg.</p>`, knoppen: [{ label: "Een spreuk", waarde: "s" }, { label: "Een Aanwijzing", waarde: "a" }] });
       await pasToe(h, [k === "s" ? { trek: "spreuken" } : { aanwijzing: 1 }]);
@@ -2895,7 +2914,7 @@ async function toonHeld(id) {
 /* ---------- tekenen ---------- */
 function teken() {
   if (!D || window.__bot) return;
-  Geluid.sfeer(!S ? "start" : S.einde ? null : S.god);
+  Geluid.sfeer(!S ? "start" : S.einde ? null : owSfeer() || S.god);
   Geluid.muziek(!S || !S.einde);
   if (!S) return tekenStart();
   if (S.einde) { if (UI.eindeGeluid !== S.einde) { UI.eindeGeluid = S.einde; S.einde === "verlies" ? Geluid.verlies() : Geluid.winst(); } return tekenEinde(); }
@@ -3226,7 +3245,7 @@ function tekenStart() {
     <div><span class="muted">Een coöperatief spel voor 2 of 4 helden</span><h1>Londen, 1888</h1></div>
     <div class="opties"><button class="btn" data-act="tutorial">Leer spelen (tutorial)</button><button class="btn ghost" data-act="handboek">Handleiding</button><a class="btn ghost" href="lore/index.html">Lore-boek</a><button class="btn ghost" data-act="nieuws">Wat is er nieuw</button><button class="btn ghost" data-act="scorebord">Scorebord</button></div>
     ${opgeslagen && !opgeslagen.einde ? `<div class="hint">Er is een spel bezig tegen ${esc(byId(D.goden, opgeslagen.god)?.naam)}, ronde ${opgeslagen.ronde}. <button class="btn small" data-act="verder">Verder spelen</button></div>` : ""}
-    <section><h2>Tegen wie?</h2><div class="goden">${D.goden.map(g => `<button class="optie" data-god="${g.id}" aria-pressed="${u.god === g.id}">${art(`art/goden/${g.id}.jpg`) ? `<img class="godbeeld" src="art/goden/${g.id}.jpg" alt="">` : ""}<b>${esc(g.naam)}</b><span class="muted">${esc(g.titel)}</span><span>${esc(g.regel)}</span>${(() => { const z = godZwaarte(g.id, u.moeilijkheid, u.aantal, u.modus); return z ? `<span class="zwaarte z-${z.cls}"><b>${z.label}</b> · winkans ongeveer ${Math.round(100 * z.kans)}% met ${u.aantal} helden${z.noot ? `<br><small>${esc(z.noot)}</small>` : ""}</span>` : ""; })()}</button>`).join("")}</div>
+    <section><h2>Tegen wie?</h2><div class="goden">${D.goden.map(g => `<button class="optie" data-god="${g.id}" aria-pressed="${u.god === g.id}">${art(`art/goden/${g.id}.jpg`) ? `<img class="godbeeld" src="art/goden/${g.id}.jpg" alt="">` : ""}<b>${esc(g.naam)}</b><span class="muted">${esc(g.titel)}</span><span>${esc(g.regel)}</span>${(() => { const z = godZwaarte(g.id, u.moeilijkheid, u.aantal, u.modus, u.oudeWereld); return z ? `<span class="zwaarte z-${z.cls}"><b>${z.label}</b> · winkans ongeveer ${Math.round(100 * z.kans)}% met ${u.aantal} helden${z.noot ? `<br><small>${esc(z.noot)}</small>` : ""}</span>` : ""; })()}</button>`).join("")}</div>
       <p class="muted">Niet elke god is even zwaar, en dat is zo bedoeld. De winkans komt uit duizenden potjes van een voorzichtige testspeler, voor de gekozen stand, speelduur en het aantal helden. Echte spelers doen het vaak beter.</p></section>
     <section><h2>Moeilijkheid</h2><div class="opties">${Object.entries(MOEILIJKHEID).map(([k, m]) => `<button class="optie" data-moeilijk="${k}" aria-pressed="${u.moeilijkheid === k}">${m.naam}: ${m.nodig} mysteries</button>`).join("")}</div></section>
     <section><h2>Speelduur</h2><div class="opties"><button class="optie" data-modus="gewoon" aria-pressed="${u.modus !== "lang"}">Gewoon: ongeveer 45 minuten</button><button class="optie" data-modus="lang" aria-pressed="${u.modus === "lang"}">De Lange Nacht: 90 tot 120 minuten</button></div>
@@ -3290,7 +3309,7 @@ function klokSvg(aan, laatst) {
   </svg>`;
 }
 function klokSectie(u) {
-  const kans = schatKans(u.god, u.moeilijkheid, u.aantal, u.klokken, u.modus), basis = schatKans(u.god, u.moeilijkheid, u.aantal, [], u.modus);
+  const kans = schatKans(u.god, u.moeilijkheid, u.aantal, u.klokken, u.modus, u.oudeWereld), basis = schatKans(u.god, u.moeilijkheid, u.aantal, [], u.modus, u.oudeWereld);
   const pct = kans == null ? null : Math.round(kans * 100), dreig = kans == null ? 0 : 1 - kans;
   const slagen = u.klokken.reduce((t, id) => t + klokSlagen(id), 0);
   const pips = n => `<span class="klokpips" aria-label="${n} ${n === 1 ? "slag" : "slagen"}">${"<i></i>".repeat(n)}</span>`;
@@ -3328,7 +3347,7 @@ async function toonKlokkenInfo() {
 function bewaarUitslag() {
   if (!S?.einde || S.uitslagId || S.tutorial || window.__bot) return;
   const winst = S.einde === "winst" || S.einde === "nipt";
-  const kans = S.kans ?? schatKans(S.god, S.moeilijkheid, S.helden.length, S.klokken || [], S.modus);
+  const kans = S.kans ?? schatKans(S.god, S.moeilijkheid, S.helden.length, S.klokken || [], S.modus, !!S.ow);
   let naam = ""; try { naam = localStorage.getItem(SPELERNAAM) || ""; } catch {}
   const e = { id: Date.now(), datum: new Date().toISOString().slice(0, 10), naam, god: S.god, stand: S.moeilijkheid, helden: S.helden.map(h => h.id), klokken: S.klokken || [], oudeWereld: !!S.ow,
     ronde: S.ronde, uitslag: S.einde, modus: S.modus || "gewoon", kans: kans == null ? null : +kans.toFixed(3), punten: winst && kans != null ? puntenVoor(kans, S.einde === "nipt") : 0, aangepast: !!S.aangepast };
