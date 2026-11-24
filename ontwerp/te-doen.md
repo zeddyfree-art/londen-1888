@@ -193,6 +193,7 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 ## Open taken
 
 - [x] Beelden voor Kaarten van de Oude Wereld: alle 42 binnen (27 plekken, 6 schatten, 3 helden en 6 persoonlijke spullen), in `tools/art-drive.json`.
+- [ ] Nieuwe godbeelden voor Ouroch, Yth-Nemora en Gul-Marrach: de eerste drie leken te veel op elkaar. Opdracht in `ontwerp/beeldopdracht-goden-herzien.md` (elk een eigen standpunt, plek en kleur, met paars).
 - [ ] Testen met echte potjes: Kaarten van de Oude Wereld. Is de Gevaarstapel spannend? Komen spelers in het hart? Voelt Post naar huis nuttig? Is de Mist-beloning (terug uit de tweede ring +1, het hart +2) te sterk voor spelers die het goed doen?
 - [ ] Kaarten van de Oude Wereld in De Lange Nacht op normaal met 2 helden: winkans 8 procentpunt lager dan zonder uitbreiding (testbot, 40 potjes per god). Bij gewoon spel is het hoogstens 4. Na de echte testpotjes kijken of de Mist-beloning of de gevaren hier zachter moeten. Ook nog niet gemeten: de uitbreiding samen met klokken.
 - [x] Alle geluiden gemaakt met ElevenLabs (flow "Londen 1888 – geluiden Oude Wereld en nieuwe goden"): de vijf effecten van de uitbreiding, de drie regiosferen en de sferen van de zeven nieuwe goden. Bij Ouroch, Yth-Nemora en Gul-Marrach staan nog drie andere varianten in de flow, als de gekozen versie niet bevalt.
