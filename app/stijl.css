@@ -703,3 +703,8 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);ou
 .owsvg .owvignet{fill:rgba(6,10,12,.28)}
 .owsvg.metkaart .owpaden line{stroke:#e8d9b0;opacity:.85}
 .owsvg.metkaart .owk .ownaam{fill:#f4ead2;stroke:#0b1012;stroke-width:5px}
+/* Op een geschilderde kaart: ontdekte plekken doorzichtig, zodat het schilderij (en het hart) zichtbaar blijft */
+.owsvg.metkaart .owk.open circle:first-child{fill:rgba(11,16,18,.18)}
+.owsvg.metkaart .owk.dicht circle:first-child{fill:rgba(11,16,18,.6)}
+.owsvg.metkaart .owk.bereik:hover circle:first-child,.owsvg.metkaart .owk.bereik:focus-visible circle:first-child{fill:color-mix(in srgb,var(--good) 30%,transparent)}
+.owsvg.metkaart .owk .owq{fill:#d8cfb8}
