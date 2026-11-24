@@ -2378,6 +2378,15 @@ function geruchtDoel(g) {
   const p = plekNaam(g.plek);
   return { bezoek: `Bezoek ${p}.`, ophalen: `Haal de Aanwijzingen in ${p} op.`, sluiten: `Sluit de Scheur in ${p}.`, verslaan: `Versla het monster in ${p}.` }[g.soort] || "";
 }
+/* Een gerucht begint: zet het doel klaar (Aanwijzingen, een Scheur of een monster op de plek) */
+function startGerucht(a, naam) {
+  const g = { ...a, naam };
+  S.geruchten.push(g);
+  if (a.soort === "ophalen") S.plekken[a.plek].aanw += a.aantal;
+  if (a.soort === "sluiten" && !S.plekken[a.plek].scheur) openScheurOp(a.plek);
+  if (a.soort === "verslaan") { const p = beschermd(a.plek) ? null : a.plek; if (p) S.plekken[p].monsters.push({ uid: ++S.teller, id: a.id, leven: monsterDef(a.id).leven }); else spawnMonster(a.plek, a.id); }
+  return g;
+}
 function geruchtBezoek(plek) { S.geruchten = S.geruchten.filter(g => !(g.soort === "bezoek" && g.plek === plek)); }
 async function onheilsfase() {
   S.fase = "onheil"; opslaan(); teken();
@@ -2435,12 +2444,7 @@ async function onheilsfase() {
       await pasToe(h, [k === "s" ? { trek: "spreuken" } : { aanwijzing: 1 }]);
       if (k === "s") await controleerHeld(h);
     }
-    if (a.type === "gerucht") {
-      S.geruchten.push({ ...a, naam: c.naam });
-      if (a.soort === "ophalen") S.plekken[a.plek].aanw += a.aantal;
-      if (a.soort === "sluiten" && !S.plekken[a.plek].scheur) openScheurOp(a.plek);
-      if (a.soort === "verslaan") { const p = beschermd(a.plek) ? null : a.plek; if (p) S.plekken[p].monsters.push({ uid: ++S.teller, id: a.id, leven: monsterDef(a.id).leven }); else spawnMonster(a.plek, a.id); }
-    }
+    if (a.type === "gerucht") startGerucht(a, c.naam);
   }
   /* vaste gevolgen elke ronde */
   if (S.god === "ommeth") await ommethRonde();
@@ -3638,5 +3642,5 @@ function toonUpdate() {
   document.body.appendChild(el);
 }
 window.__spel = { KLOKKEN, get S() { return S; }, get D() { return D; }, get bezig() { return bezig; },
-  api: { owReis, owTerug, owBuren, owRisico, OW_KNOPEN, teken, rondkijken, voorbereiden, bootPrijs, metroDoelen, overgang, venster, scheurBeeld, toonUpdate, kans, speelKaart, onheilsfase, nieuwSpel, zaai, reis, rust, dienst, doeMysterie, mysterieActie, beurtKlaar, gebruikActie, gebruikSpul, zoekWeg, bereikbaar, burenVan, afstanden, stapNaar, actief, groei, mysterie, heeft, isOverzee, spulDef, monsterDef, wapenBonus, plekDef } };
+  api: { startGerucht, owReis, owTerug, owBuren, owRisico, OW_KNOPEN, teken, rondkijken, voorbereiden, bootPrijs, metroDoelen, overgang, venster, scheurBeeld, toonUpdate, kans, speelKaart, onheilsfase, nieuwSpel, zaai, reis, rust, dienst, doeMysterie, mysterieActie, beurtKlaar, gebruikActie, gebruikSpul, zoekWeg, bereikbaar, burenVan, afstanden, stapNaar, actief, groei, mysterie, heeft, isOverzee, spulDef, monsterDef, wapenBonus, plekDef } };
 })();

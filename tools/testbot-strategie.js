@@ -90,6 +90,14 @@ window.__testbot = async function speel(godId, moeilijkheid, heldIds, seed) {
     const st = S(), m = A.mysterie();
     if (h.L <= 2 || A.heeft(h, "gewond")) return "city";
     if (h.G <= 2) return "spitalfields";
+    /* Geruchten hebben voorrang: wie het dichtst bij is, gaat erheen; bij Aanwijzingen ophalen gaan er meer helden */
+    for (const g of st.geruchten) {
+      if (g.rondes <= 0 || (g.soort === "bezoek" && !isPlek(g.plek))) continue;
+      if (g.soort === "verslaan" && h.kenm.kracht + A.wapenBonus(h, false) < 3 && h.kenm.kennis < 4) continue;
+      const nodig = g.soort === "ophalen" ? Math.min(st.helden.length, st.plekken[g.plek].aanw) : 1;
+      const volgorde = st.helden.filter(x => !x.uit && !x.exp).sort((a, b) => dist(a.plek, g.plek) - dist(b.plek, g.plek));
+      if (volgorde.slice(0, nodig).includes(h)) return g.plek;
+    }
     const scheuren = Object.keys(st.plekken).filter(p => st.plekken[p].scheur);
     if (st.god === "ommeth" && (h.kenm.kracht + A.wapenBonus(h, false) >= 4 || h.kenm.overtuiging >= 3)) {
       const kudde = dichtsbij(h, p => st.plekken[p].monsters.filter(x => x.id === "cultist").length >= 2);
@@ -217,18 +225,25 @@ window.__testbot = async function speel(godId, moeilijkheid, heldIds, seed) {
     }
   }
 
+  /* meting (tools/meet-geruchten.js): zet aan het begin van ronde __gerucht.ronde een gerucht klaar,
+     zoals een onheilskaart dat aan het eind van de ronde ervoor doet (de eerste ronde is dan al afgeteld) */
+  let testGerucht = null, geruchtUit = null;
   let stappen = 0;
   while (!S().einde && stappen++ < 400) {
     const st = S();
     if (st.fase !== "helden") break;
+    const tg = window.__gerucht;
+    if (tg && !testGerucht && st.ronde === tg.ronde && st.actief === 0) { testGerucht = A.startGerucht({ ...tg.actie, rondes: tg.actie.rondes - 1 }, tg.naam); testGerucht.test = true; }
+    if (testGerucht && geruchtUit == null && !st.geruchten.includes(testGerucht)) geruchtUit = st.log.some(l => l.includes(`Gerucht "${testGerucht.naam}" loopt slecht af`)) ? "mislukt" : "gelukt";
     await beurt(huidig());
     if (S().einde) break;
     await A.beurtKlaar();
   }
+  if (testGerucht && geruchtUit == null && !S().geruchten.includes(testGerucht)) geruchtUit = S().log.some(l => l.includes(`Gerucht "${testGerucht.naam}" loopt slecht af`)) ? "mislukt" : "gelukt";
   const st = S();
   window.__bot = null;
   const g = D.goden.find(x => x.id === st.god);
   const actiefM = g.mysteries[st.mysterieVolgorde[Math.min(st.mysterieIndex, st.nodig - 1)]];
   return { opgelostNamen: st.mysterieVolgorde.slice(0, st.opgelost).map(i => g.mysteries[i].naam), vastOp: st.opgelost < st.nodig ? actiefM.naam : null, einde: st.einde, ronde: st.ronde, opgelost: st.opgelost, nodig: st.nodig, mist: st.mist, gevallen: st.gevallen || 0, verzet: st.verzet ?? null,
-    owTel: st.owTel || null, waanzin: st.helden.reduce((s, h) => s + h.toestanden.filter(t => t.startsWith("waanzin")).length, 0) };
+    owTel: st.owTel || null, gerucht: geruchtUit, waanzin: st.helden.reduce((s, h) => s + h.toestanden.filter(t => t.startsWith("waanzin")).length, 0) };
 };
