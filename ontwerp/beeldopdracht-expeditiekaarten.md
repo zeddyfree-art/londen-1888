@@ -16,9 +16,9 @@ Je maakt schilderijen voor een bordspel uit 1888. Werk de lijst hieronder beeld 
 
 ## Afvinklijst
 
-- [ ] `oude-wereld/kaart-thebe.png` · Thebe, Egypte
-- [ ] `oude-wereld/kaart-himalaya.png` · Klooster van de Witte Wolken, Himalaya
-- [ ] `oude-wereld/kaart-yucatan.png` · Tempel in het oerwoud, Yucatán
+- [x] `oude-wereld/kaart-thebe.png` · Thebe, Egypte
+- [x] `oude-wereld/kaart-himalaya.png` · Klooster van de Witte Wolken, Himalaya
+- [x] `oude-wereld/kaart-yucatan.png` · Tempel in het oerwoud, Yucatán
 
 ## Waar de plekken op de kaart komen
 
