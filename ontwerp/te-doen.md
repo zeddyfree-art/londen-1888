@@ -334,3 +334,5 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [x] Alleen nog de donkere modus; de knop voor de lichte modus is weg
 - [x] Tas: teller (4 van 6), weggooien met bevestiging, waarschuwing vóór kopen met een volle tas
 - [x] Klokkenmodel opnieuw gefit op 40.000 potjes met willekeurige klokcombinaties: zwaarte per stand, klokken samen minder dan los, eigen basis voor De Lange Nacht. Het oude model zat met 3 of meer klokken 15 tot 20 procentpunt te laag (`ontwerp/klokkenmodel.md`)
+- [x] Startscherm in kiesvolgorde (moeilijkheid, speelduur, uitbreiding, aantal, helden, god, klokken); helden standaard op alfabet; vegen tussen helden, ook in de handleiding; Beurt klaar licht op zonder acties
+- [ ] Achtergronden voor de drie expeditiekaarten maken met `ontwerp/beeldopdracht-expeditiekaarten.md` (het spel gebruikt `art/oude-wereld/kaart-<regio>.jpg` vanzelf)

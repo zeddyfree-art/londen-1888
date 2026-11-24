@@ -689,3 +689,17 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);ou
 .owstatus{display:grid;gap:3px;font-size:14px;color:var(--muted)}
 .owstatus b{color:var(--ink);font-weight:600}
 .owtip{font-size:13px;margin:6px 0 0}
+/* ===== Beurt klaar licht op als de acties op zijn ===== */
+.btn.oplichten{border-color:var(--accent);color:var(--accent);box-shadow:0 0 0 2px var(--accent),0 0 18px color-mix(in srgb,var(--accent) 55%,transparent)}
+@media (prefers-reduced-motion:no-preference){.btn.oplichten{animation:oplichten 1.6s ease-in-out infinite}}
+@keyframes oplichten{50%{box-shadow:0 0 0 2px var(--accent),0 0 30px color-mix(in srgb,var(--accent) 85%,transparent);background:color-mix(in srgb,var(--accent) 16%,transparent)}}
+/* ===== Helden in de handleiding: tikbaar ===== */
+.kaartje.hbheld{font:inherit;color:inherit;text-align:left;cursor:pointer;width:100%}
+.kaartje.hbheld:hover{border-color:var(--accent)}
+.veeghint{font-size:13px;margin-top:10px}
+@media (hover:hover) and (pointer:fine){.veeghint{display:none}}
+/* ===== Expeditiekaart met geschilderde achtergrond ===== */
+.owsvg.metkaart{border-radius:6px}
+.owsvg .owvignet{fill:rgba(6,10,12,.28)}
+.owsvg.metkaart .owpaden line{stroke:#e8d9b0;opacity:.85}
+.owsvg.metkaart .owk .ownaam{fill:#f4ead2;stroke:#0b1012;stroke-width:5px}

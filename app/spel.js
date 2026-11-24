@@ -367,7 +367,7 @@ function stapNaar(van, doel) {
 
 /* ---------- modaal venster ---------- */
 let modalResolve = null;
-function venster({ soort = "", titel = "", beeld = null, zij = false, verhaal = "", html = "", breed = false, achterkant = null, animeer = null, geluid = null, terug = false, thema = "", portaal = false, knoppen = [{ label: "Verder", waarde: true }] }) {
+function venster({ soort = "", titel = "", beeld = null, zij = false, verhaal = "", html = "", breed = false, achterkant = null, animeer = null, geluid = null, terug = false, thema = "", portaal = false, veeg = null, knoppen = [{ label: "Verder", waarde: true }] }) {
   if (knoppen.length && knoppen.every(k => k.uit)) knoppen = [...knoppen, { label: "Verder", waarde: null, ghost: true }];
   if (window.__bot) return Promise.resolve(window.__bot.kies({ soort, titel, knoppen: knoppen.filter(k => !k.uit) }));
   return new Promise(res => {
@@ -390,10 +390,19 @@ function venster({ soort = "", titel = "", beeld = null, zij = false, verhaal = 
       m.querySelector(".knoppen [data-knop]:not([disabled])")?.focus();
     };
     m.hidden = false;
+    /* vegen (veeg: { volgende, vorige }): naar links is volgende, naar rechts is vorige; pijltjestoetsen doen hetzelfde */
+    const sluitMet = w => { m.hidden = true; m.innerHTML = ""; m.ontouchstart = m.ontouchend = null; document.removeEventListener("keydown", toets); res(w); };
+    const toets = e => { if (!veeg || m.hidden) return; if (e.key === "ArrowLeft") sluitMet(veeg.vorige); else if (e.key === "ArrowRight") sluitMet(veeg.volgende); };
+    let veegStart = null;
+    m.ontouchstart = veeg ? e => { veegStart = e.touches.length === 1 ? { x: e.touches[0].clientX, y: e.touches[0].clientY } : null; } : null;
+    m.ontouchend = veeg ? e => {
+      if (!veegStart) return; const t = e.changedTouches[0], dx = t.clientX - veegStart.x, dy = t.clientY - veegStart.y; veegStart = null;
+      if (Math.abs(dx) > 60 && Math.abs(dx) > 1.5 * Math.abs(dy)) sluitMet(dx < 0 ? veeg.volgende : veeg.vorige);
+    } : null;
+    if (veeg) document.addEventListener("keydown", toets);
     m.onclick = e => {
       const b = e.target.closest("[data-knop]"); if (!b || b.disabled || m.querySelector("[data-wacht]")) return;
-      m.hidden = true; m.innerHTML = "";
-      res(b.dataset.knop === "terug" ? null : knoppen[+b.dataset.knop].waarde);
+      sluitMet(b.dataset.knop === "terug" ? null : knoppen[+b.dataset.knop].waarde);
     };
     if (rug) { m.innerHTML = `<div class="kaartrug" aria-hidden="true"><img src="${esc(rug)}" alt=""></div>`; Geluid.kaart(); setTimeout(toon, 700); }
     else toon();
@@ -1245,7 +1254,7 @@ function owPaneel(h, isActief) {
   const risico = Math.round(100 * owRisico(h));
   const knop = (act, label, aan, uitleg) => `<button class="btn${act === "ow-terug" ? " breed" : ""}" data-act="${act}" ${aan ? "" : "disabled"} data-uitleg="${esc(uitleg)}">${label}</button>`;
   return `<div class="owkaart"><div class="owkop"><b>${esc(r.naam)}</b><span class="muted">${esc(owNaam(regio, h.exp.plek))}</span></div>
-    <svg viewBox="0 -10 600 290" class="owsvg" role="group" aria-label="Kaart van ${esc(r.naam)}"><g class="owpaden">${lijnen}</g>${knopen}</svg>
+    <svg viewBox="0 -10 600 290" class="owsvg${art(`art/oude-wereld/kaart-${regio}.jpg`) ? " metkaart" : ""}" role="group" aria-label="Kaart van ${esc(r.naam)}">${art(`art/oude-wereld/kaart-${regio}.jpg`) ? `<image href="${art(`art/oude-wereld/kaart-${regio}.jpg`)}" x="0" y="-10" width="600" height="290" preserveAspectRatio="xMidYMid slice"/><rect class="owvignet" x="0" y="-10" width="600" height="290"/>` : ""}<g class="owpaden">${lijnen}</g>${knopen}</svg>
     <div class="owstatus"><span>Kist: <b>${h.exp.kist.length ? esc(h.exp.kist.map(buitTxt).join(", ")) : "leeg"}</b></span>
       <span>Gevaren gezien: <b>${gezien.length ? esc(gezien.join(", ")) : "nog geen"}</b>${gezien.length ? ` · kans op een ramp bij de volgende kaart: <b>${risico}%</b>` : ""}</span>
       ${h.exp.gids ? `<span>Je hebt een gids bij je.</span>` : ""}</div>
@@ -2815,7 +2824,7 @@ function tekenHandleiding() {
   const kaart = (kind, titel, body, kk = "") => `<div class="kaartje${kk ? ` kleurkaart ${kk}` : ""}"><span class="muted">${esc(kind)}</span><b>${esc(titel)}</b>${body}</div>`;
   const views = {
     handleiding: () => `<article class="tekst">${md(D.handleiding)}</article>`,
-    helden: () => `<div class="raster">${D.helden.map(h => `<div class="kaartje">${art(`art/helden/${h.id}.jpg`) ? `<img class="mini-portret" src="art/helden/${h.id}.jpg" alt="">` : ""}<b>${esc(h.naam)}</b><span class="muted">${esc(h.rol)} · start ${esc(h.start)} · Lichaam ${h.lichaam} · Geest ${h.geest}</span><span>${KENMERKEN.map(([k, l]) => `${l} ${h.kenmerken[k]}`).join(" · ")}</span><span><b>${esc(h.vermogen.naam)}.</b> ${esc(h.vermogen.tekst)}</span>${h.bondgenoot ? `<span><b>${esc(h.bondgenoot.naam)}.</b> ${esc(h.bondgenoot.tekst)}</span>` : ""}</div>`).join("")}</div>`,
+    helden: () => `${sorteerKnoppen(heldSortering())}<p class="muted">Tik op een held voor het hele profiel; daar veeg je naar de volgende.</p><div class="raster">${gesorteerdeHelden(heldSortering(), true).map(h => `<button class="kaartje hbheld" data-hbheld="${h.id}">${art(`art/helden/${h.id}.jpg`) ? `<img class="mini-portret" src="art/helden/${h.id}.jpg" alt="">` : ""}<b>${esc(h.naam)}</b><span class="muted">${esc(h.rol)} · start ${esc(h.start)} · Lichaam ${h.lichaam} · Geest ${h.geest}</span><span>${KENMERKEN.map(([k, l]) => `${l} ${h.kenmerken[k]}`).join(" · ")}</span><span><b>${esc(h.vermogen.naam)}.</b> ${esc(h.vermogen.tekst)}</span>${h.bondgenoot ? `<span><b>${esc(h.bondgenoot.naam)}.</b> ${esc(h.bondgenoot.tekst)}</span>` : ""}</button>`).join("")}</div>`,
     plekken: () => `<div class="raster">${D.bord.plekken.map(p => kaart(DIENSTLABEL[p.dienst] || p.dienst, p.naam, `<span>${esc(D.bord.diensten[p.dienst])}</span><span class="muted">${esc(p.sfeer)}</span>`)).join("")}${D.bord.overzee.map(o => kaart("Overzee", o.naam, `<span class="muted">${esc(o.sfeer)}</span>`)).join("")}</div>`,
     monsters: () => `<div class="raster">${[...D.epische, ...D.monsters].map(m => kaart(byId(D.epische, m.id) ? "Episch" : "Monster", m.naam, `<span>Gruwel ${m.gruwel} · Taaiheid ${m.taaiheid} · Schade ${m.schade} · Leven ${m.leven}</span><span>${esc(m.eigenschap)}</span>`)).join("")}</div>`,
     spreuken: () => `<div class="raster">${D.spreuken.map(x => kaart(x.soort, x.naam, `<span class="muted">${KNAAM[x.test]} ${x.moeilijkheid} · prijs: ${esc(x.prijs)}</span><span>${esc(x.tekst)}</span>`, "k-spreuk")).join("")}</div>`,
@@ -2894,18 +2903,19 @@ function profielHtml(h) {
       <p><b>Eigenaardigheid:</b> ${esc(h.eigenaardigheid)}</p>
     </div></div>`;
 }
-async function toonHeld(id) {
+async function toonHeld(id, { bekijk = false } = {}) {
   const u = UI.start;
   while (id) {
-    const h = byId(D.helden, id), i = D.helden.indexOf(h);
+    const lijst = gesorteerdeHelden(heldSortering(), bekijk), h = byId(D.helden, id), i = Math.max(0, lijst.indexOf(h));
     const gekozen = u.helden.includes(id), vol = u.helden.length >= u.aantal;
-    const keuze = await venster({ soort: `Held ${i + 1} van ${D.helden.length}`, titel: h.naam, html: profielHtml(h), breed: true, knoppen: [
-      gekozen ? { label: "Niet meer kiezen", waarde: "uit", ghost: true } : { label: vol ? `Al ${u.aantal} helden gekozen` : "Kies deze held", waarde: "kies", uit: vol },
-      { label: "‹ Vorige", waarde: "vorige", ghost: true }, { label: "Volgende ›", waarde: "volgende", ghost: true }, { label: "Sluiten", waarde: null, ghost: true }] });
+    const vorige = lijst[(i - 1 + lijst.length) % lijst.length].id, volgende = lijst[(i + 1) % lijst.length].id;
+    const knoppen = [{ label: "‹ Vorige", waarde: "vorige", ghost: true }, { label: "Volgende ›", waarde: "volgende", ghost: true }, { label: "Sluiten", waarde: null, ghost: true }];
+    if (!bekijk) knoppen.unshift(gekozen ? { label: "Niet meer kiezen", waarde: "uit", ghost: true } : { label: vol ? `Al ${u.aantal} helden gekozen` : "Kies deze held", waarde: "kies", uit: vol });
+    const keuze = await venster({ soort: `Held ${i + 1} van ${lijst.length}`, titel: h.naam, html: profielHtml(h) + `<p class="muted veeghint">Veeg naar links of rechts voor de volgende of vorige held.</p>`, breed: true, veeg: { volgende: "volgende", vorige: "vorige" }, knoppen });
     if (keuze === "kies") { u.helden = [...u.helden, id]; teken(); }
     else if (keuze === "uit") { u.helden = u.helden.filter(x => x !== id); teken(); }
-    else if (keuze === "vorige") id = D.helden[(i - 1 + D.helden.length) % D.helden.length].id;
-    else if (keuze === "volgende") id = D.helden[(i + 1) % D.helden.length].id;
+    else if (keuze === "vorige") id = vorige;
+    else if (keuze === "volgende") id = volgende;
     else id = null;
     if (keuze === "kies" && u.helden.length >= u.aantal) id = null;
   }
@@ -3117,7 +3127,7 @@ function tekenPaneel() {
       </div>
       <div class="kenm">${KENMERKEN.map(([k, l]) => `<div title="${esc(KUITLEG[k])}">${l}<b>${h.kenm[k]}${bonusVoor(h, k) ? `<small>+${bonusVoor(h, k)}</small>` : ""}</b></div>`).join("")}</div>
       ${owPaneel(h, isActief)}
-      ${isActief && heeft(h, "verdwaald") ? `<div class="acties"><button class="btn breed" data-act="zoekweg" ${h.acties > 0 ? "" : "disabled"} data-uitleg="Kost al je acties. Lukt het, dan sta je op een willekeurige plek in Londen.">Zoek de weg terug (Waarneming 8)</button><button class="btn ghost breed" data-act="klaar">Beurt klaar</button></div>` : isActief ? `<div class="acties">
+      ${isActief && heeft(h, "verdwaald") ? `<div class="acties"><button class="btn breed" data-act="zoekweg" ${h.acties > 0 ? "" : "disabled"} data-uitleg="Kost al je acties. Lukt het, dan sta je op een willekeurige plek in Londen.">Zoek de weg terug (Waarneming 8)</button><button class="btn ghost breed${h.acties <= 0 ? " oplichten" : ""}" data-act="klaar">Beurt klaar</button></div>` : isActief ? `<div class="acties">
         <button class="btn" data-act="rust" ${kanActie("rusten") ? "" : "disabled"} data-uitleg="+1 Lichaam en +1 Geest. Niet als er een monster op je plek is.">Rusten</button>
         <button class="btn" data-act="voorbereiden" ${kanActie("voorbereiden") && !h.ronde.voorbereid ? "" : "disabled"} data-uitleg="+1 dobbelsteen in je gevechten tot het eind van de ronde.">${h.ronde.voorbereid ? "Voorbereid" : "Voorbereiden"}</button>
         <button class="btn" data-act="dienst" ${kanActie("dienst") && dienstNaam ? "" : "disabled"} data-uitleg="${esc(dienstNaam ? DIENSTUITLEG[dienstNaam] || "" : "Hier is geen dienst. Kijk rond of reis verder.")}">${dienstNaam ? esc(DIENSTLABEL[dienstNaam] || dienstNaam) : "Geen dienst"}</button>
@@ -3126,7 +3136,7 @@ function tekenPaneel() {
         ${isOverzee(h.plek) && h.exp ? "" : isOverzee(h.plek) ? `<button class="btn" data-act="terug" ${isActief && h.acties > 0 ? "" : "disabled"} data-uitleg="Kost een actie: je vaart terug naar St Katharine Docks.">Terug naar de dokken</button>` : `<button class="btn" data-act="groei" ${h.trofee >= 3 ? "" : "disabled"} data-uitleg="Lever 3 trofeeën in om je held sterker te maken. Kost geen actie.">Groeien (3 trofeeën)</button>`}
         ${ma ? `<button class="btn breed" data-act="mysterie" ${ma.kan && h.acties > 0 && !h.gebruikt.includes("mysterie") ? "" : "disabled"} data-uitleg="Werk aan het huidige mysterie. Kost een actie.">${esc(ma.label)}${ma.uitleg ? ` (${esc(ma.uitleg)})` : ""}</button>` : ""}
         ${UI.undo.length && UI.undo.at(-1).ronde === S.ronde && UI.undo.at(-1).actief === S.actief ? `<button class="btn ghost breed terugknop" data-act="undo" data-uitleg="Maak je laatste actie ongedaan. Dat kan alleen bij acties zonder dobbelstenen of nieuwe kaarten.">↶ Ongedaan maken: ${esc(UI.undo.at(-1).label)}</button>` : ""}
-        <button class="btn ghost breed" data-act="klaar" data-uitleg="Beëindig je beurt. Acties die je over hebt, vervallen.">Beurt klaar</button>
+        <button class="btn ghost breed${h.acties <= 0 ? " oplichten" : ""}" data-act="klaar" data-uitleg="Beëindig je beurt. Acties die je over hebt, vervallen.">Beurt klaar</button>
       </div>` : ""}
       <div class="vermogen"><b>${esc(d.vermogen.naam)}.</b> ${esc(d.vermogen.tekst)}
         ${h.id === "ambrose-pell" && isActief && !h.ronde.sterrenkaart ? `<div><button class="btn small" data-act="pell">Gebruik</button></div>` : ""}
@@ -3228,25 +3238,25 @@ function tekenEinde() {
 }
 /* Volgorde van de helden op het startscherm: standaard, op naam, of op een kenmerk (hoogste eerst) */
 const HELDSORTERING = "londen1888-heldsortering";
-function gesorteerdeHelden(sort) {
+function gesorteerdeHelden(sort, alle = false) {
   const naam = h => korteNaam(h.naam);
-  const l = D.helden.filter(h => UI.start.oudeWereld || !h.uitbreiding);
-  if (sort === "naam") return l.sort((a, b) => naam(a).localeCompare(naam(b), "nl"));
+  const l = D.helden.filter(h => alle || UI.start.oudeWereld || !h.uitbreiding);
   if (KNAAM[sort]) return l.sort((a, b) => b.kenmerken[sort] - a.kenmerken[sort] || naam(a).localeCompare(naam(b), "nl"));
-  return l;
+  return l.sort((a, b) => naam(a).localeCompare(naam(b), "nl"));
 }
+const heldSortering = () => { const u = UI.start; if (!u.sort || u.sort === "standaard") { try { u.sort = localStorage.getItem(HELDSORTERING) || "naam"; } catch { u.sort = "naam"; } if (u.sort === "standaard") u.sort = "naam"; } return u.sort; };
+const sorteerKnoppen = sort => `<div class="sorteer" role="group" aria-label="Helden sorteren"><span class="muted">Sorteren:</span>${[["naam", "A–Z"], ...KENMERKEN.map(([k, l]) => [k, l.slice(0, 3)])].map(([k, l]) => `<button class="optie klein" data-sorteer="${k}" aria-pressed="${sort === k}"${KNAAM[k] ? ` title="${esc(KNAAM[k])}, hoogste eerst"` : ""}>${l}</button>`).join("")}</div>`;
 function tekenStart() {
   const opgeslagen = laden();
   const u = UI.start;
-  if (u.sort === undefined) { try { u.sort = localStorage.getItem(HELDSORTERING) || "standaard"; } catch { u.sort = "standaard"; } }
+  if (u.sort === undefined) { try { u.sort = localStorage.getItem(HELDSORTERING) || "naam"; } catch { u.sort = "naam"; } }
+  if (u.sort === "standaard") u.sort = "naam";
   const titel = art("art/scherm/titel.jpg");
   app.innerHTML = `<div class="start">
     ${titel ? `<img class="hero-art" src="${titel}" alt="">` : ""}
     <div><span class="muted">Een coöperatief spel voor 2 of 4 helden</span><h1>Londen, 1888</h1></div>
     <div class="opties"><button class="btn" data-act="tutorial">Leer spelen (tutorial)</button><button class="btn ghost" data-act="handboek">Handleiding</button><a class="btn ghost" href="lore/index.html">Lore-boek</a><button class="btn ghost" data-act="nieuws">Wat is er nieuw</button><button class="btn ghost" data-act="scorebord">Scorebord</button></div>
     ${opgeslagen && !opgeslagen.einde ? `<div class="hint">Er is een spel bezig tegen ${esc(byId(D.goden, opgeslagen.god)?.naam)}, ronde ${opgeslagen.ronde}. <button class="btn small" data-act="verder">Verder spelen</button></div>` : ""}
-    <section><h2>Tegen wie?</h2><div class="goden">${D.goden.map(g => `<button class="optie" data-god="${g.id}" aria-pressed="${u.god === g.id}">${art(`art/goden/${g.id}.jpg`) ? `<img class="godbeeld" src="art/goden/${g.id}.jpg" alt="">` : ""}<b>${esc(g.naam)}</b><span class="muted">${esc(g.titel)}</span><span>${esc(g.regel)}</span>${(() => { const z = godZwaarte(g.id, u.moeilijkheid, u.aantal, u.modus, u.oudeWereld); return z ? `<span class="zwaarte z-${z.cls}"><b>${z.label}</b> · winkans ongeveer ${Math.round(100 * z.kans)}% met ${u.aantal} helden${z.noot ? `<br><small>${esc(z.noot)}</small>` : ""}</span>` : ""; })()}</button>`).join("")}</div>
-      <p class="muted">Niet elke god is even zwaar, en dat is zo bedoeld. De winkans komt uit duizenden potjes van een voorzichtige testspeler, voor de gekozen stand, speelduur en het aantal helden. Echte spelers doen het vaak beter.</p></section>
     <section><h2>Moeilijkheid</h2><div class="opties">${Object.entries(MOEILIJKHEID).map(([k, m]) => `<button class="optie" data-moeilijk="${k}" aria-pressed="${u.moeilijkheid === k}">${m.naam}: ${m.nodig} mysteries</button>`).join("")}</div></section>
     <section><h2>Speelduur</h2><div class="opties"><button class="optie" data-modus="gewoon" aria-pressed="${u.modus !== "lang"}">Gewoon: ongeveer 45 minuten</button><button class="optie" data-modus="lang" aria-pressed="${u.modus === "lang"}">De Lange Nacht: 90 tot 120 minuten</button></div>
       ${u.modus === "lang" ? `<p class="muted">Twee mysteries meer en een veel ruimere Mist. Na elk mysterie een beloningsronde, en Londen wordt per bedrijf grimmiger.</p>` : ""}</section>
@@ -3255,13 +3265,15 @@ function tekenStart() {
     <section><h2>Hoeveel helden?</h2><div class="opties">${[2, 4].map(n => `<button class="optie" data-aantal="${n}" aria-pressed="${u.aantal === n}">${n} helden</button>`).join("")}</div></section>
     <section><h2>Kies ${u.aantal} helden <span class="muted" style="font-size:16px">(${u.helden.length} gekozen)</span></h2>
       <div class="opties"><button class="btn small ghost" data-act="willekeurig">Willekeurig kiezen</button></div>
-      <p class="muted">Tik op een held om het verhaal, de kenmerken, het vermogen en de uitrusting te bekijken.</p>
-      <div class="sorteer" role="group" aria-label="Helden sorteren"><span class="muted">Sorteren:</span>${[["standaard", "Standaard"], ["naam", "A–Z"], ...KENMERKEN.map(([k, l]) => [k, l.slice(0, 3)])].map(([k, l]) => `<button class="optie klein" data-sorteer="${k}" aria-pressed="${u.sort === k}"${KNAAM[k] ? ` title="${esc(KNAAM[k])}, hoogste eerst"` : ""}>${l}</button>`).join("")}</div>
+      <p class="muted">Tik op een held om het verhaal, de kenmerken, het vermogen en de uitrusting te bekijken. Daar veeg je naar de volgende of vorige held.</p>
+      ${sorteerKnoppen(u.sort)}
       <div class="heldenkeus">${gesorteerdeHelden(u.sort).map(h => `<button class="optie heldkaart" data-held="${h.id}" aria-pressed="${u.helden.includes(h.id)}">
         ${art(`art/helden/${h.id}.jpg`) ? `<img class="mini" src="art/helden/${h.id}.jpg" alt="">` : `<span class="mini leeg">${esc(initialen(h.naam))}</span>`}
         <span class="info"><b>${esc(h.naam)}</b><small>${esc(h.rol)} · ${esc(h.start)}</small>
         <small class="getallen">${KENMERKEN.map(([k, l]) => k === u.sort ? `<b>${l.slice(0, 3)} ${h.kenmerken[k]}</b>` : `${l.slice(0, 3)} ${h.kenmerken[k]}`).join(" · ")}<br>Lichaam ${h.lichaam} · Geest ${h.geest}${h.bondgenoot ? ` · met ${esc(h.bondgenoot.soort)}` : ""}</small></span>
         ${u.helden.includes(h.id) ? `<span class="gekozen" aria-label="Gekozen">✓</span>` : ""}</button>`).join("")}</div></section>
+    <section><h2>Tegen wie?</h2><div class="goden">${D.goden.map(g => `<button class="optie" data-god="${g.id}" aria-pressed="${u.god === g.id}">${art(`art/goden/${g.id}.jpg`) ? `<img class="godbeeld" src="art/goden/${g.id}.jpg" alt="">` : ""}<b>${esc(g.naam)}</b><span class="muted">${esc(g.titel)}</span><span>${esc(g.regel)}</span>${(() => { const z = godZwaarte(g.id, u.moeilijkheid, u.aantal, u.modus, u.oudeWereld); return z ? `<span class="zwaarte z-${z.cls}"><b>${z.label}</b> · winkans ongeveer ${Math.round(100 * z.kans)}% met ${u.aantal} helden${z.noot ? `<br><small>${esc(z.noot)}</small>` : ""}</span>` : ""; })()}</button>`).join("")}</div>
+      <p class="muted">Niet elke god is even zwaar, en dat is zo bedoeld. De winkans komt uit duizenden potjes van een voorzichtige testspeler, voor de gekozen stand, speelduur en het aantal helden. Echte spelers doen het vaak beter.</p></section>
     ${klokSectie(u)}
     <div><button class="btn" data-act="begin" ${u.god && u.helden.length === u.aantal ? "" : "disabled"}>Begin het spel${u.klokken.length ? ` · ${u.klokken.length} ${u.klokken.length === 1 ? "klok" : "klokken"}` : ""}</button></div>
   </div>`;
@@ -3475,6 +3487,10 @@ app.addEventListener("click", e => {
 app.addEventListener("keydown", e => { if (e.key === "Enter" && e.target.id === "spelernaam") { e.preventDefault(); app.querySelector('[data-act="deel-score"]')?.click(); } });
 document.addEventListener("keydown", e => { if (e.key === "Escape" && UI.handboek) { UI.handboek = null; tekenHandleiding(); } });
 document.getElementById("handboek").addEventListener("click", e => {
+  const so = e.target.closest("[data-sorteer]");
+  if (so) { UI.start.sort = so.dataset.sorteer; try { localStorage.setItem(HELDSORTERING, UI.start.sort); } catch {} tekenHandleiding(); if (!S) teken(); return; }
+  const hh = e.target.closest("[data-hbheld]");
+  if (hh) return veilig(() => toonHeld(hh.dataset.hbheld, { bekijk: true }));
   const b = e.target.closest("[data-hb]"); if (!b) return;
   UI.handboek = b.dataset.hb === "sluit" ? null : b.dataset.hb; tekenHandleiding();
   if (UI.handboek) document.querySelector("#handboek .hb-inhoud")?.scrollTo(0, 0);
