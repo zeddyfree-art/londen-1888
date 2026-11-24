@@ -336,3 +336,4 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [x] Klokkenmodel opnieuw gefit op 40.000 potjes met willekeurige klokcombinaties: zwaarte per stand, klokken samen minder dan los, eigen basis voor De Lange Nacht. Het oude model zat met 3 of meer klokken 15 tot 20 procentpunt te laag (`ontwerp/klokkenmodel.md`)
 - [x] Startscherm in kiesvolgorde (moeilijkheid, speelduur, uitbreiding, aantal, helden, god, klokken); helden standaard op alfabet; vegen tussen helden, ook in de handleiding; Beurt klaar licht op zonder acties
 - [x] Achtergronden voor de drie expeditiekaarten (`ontwerp/beeldopdracht-expeditiekaarten.md`), opgehaald uit Drive en in het spel
+- [x] Theater: het extra nummer is een gok (mislukt −1 Pond, gelukt +1, 3 boven het doel +2), zodat het niet meer risicoloos is

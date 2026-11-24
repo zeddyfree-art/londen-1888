@@ -57,7 +57,7 @@
 
 *Het Alhambra, gaslicht, affiches van goochelaars en mesmeristen.*
 
-- **Dienst (Theater):** Werken: krijg 2 Pond. Wie meer wil, mag een Charisma-test (9) doen voor 1 Pond extra.
+- **Dienst (Theater):** Werken: krijg 2 Pond. Wie meer wil, waagt een extra nummer (Charisma 9): mislukt −1 Pond, gelukt +1, ruim gehaald (3 boven het doel) +2.
 - 3 algemene ontmoetingen, verhaalkaarten: Azh-Ilareth, Sirrhae, Yth-Nemora, Gul-Marrach.
 
 ### Pall Mall

@@ -19,7 +19,7 @@ const DIENSTUITLEG = {
   "occulte-boekwinkel": "Bekijk 3 spreuken van 2 Pond. Koop je niets, dan kost het geen actie.",
   markt: "Bekijk de spullen en koop wat je wilt. Koop je niets, dan kost het geen actie.",
   salon: "Charisma 8: lukt het, dan krijg je 2 Pond of een bondgenoot.",
-  theater: "+2 Pond. Daarna kun je een extra nummer wagen (Charisma 9) voor 1 Pond meer.",
+  theater: "+2 Pond. Daarna kun je een extra nummer wagen (Charisma 9): mislukt −1 Pond, gelukt +1, ruim gehaald (3 boven het doel) +2.",
   club: "Betaal 3 Pond: bij je volgende expeditie overzee vind je zeker een artefact.",
   universiteit: "Heb je een Boek of Artefact? Dan krijg je 1 Aanwijzing.",
   ziekenhuis: "Verzorgen (1 Pond), Gewond laten verwijderen, geld lenen of je schuld aflossen.",
@@ -1620,8 +1620,16 @@ async function dienst(h) {
     case "theater": {
       const loon = S.god === "gul-marrach" ? 3 : 2;
       await pasToe(h, [{ pond: loon }]);
-      const k = await venster({ soort: "Theater", titel: `Je verdient ${loon} Pond`, html: "<p>Wil je een extra nummer doen voor 1 Pond meer? (Charisma 9)</p>", knoppen: [{ label: "Ja", waarde: true }, { label: "Nee", waarde: false, ghost: true }] });
-      if (k && await test(h, "overtuiging", 9, "Een extra nummer")) await pasToe(h, [{ pond: 1 }]);
+      /* een extra nummer is een gok: de zaal kan je uitjouwen (−1), applaudisseren (+1) of uit zijn dak gaan (+2 bij 3 boven het doel) */
+      const k = await venster({ soort: "Theater", titel: `Je verdient ${loon} Pond`, html: `<p>Waag je een extra nummer? (Charisma ${metStand(9)}${kansTxt(h, "overtuiging", 9)})</p><ul class="theaterloon"><li>Mislukt: de zaal jouwt je uit, <b>−1 Pond</b> (je houdt ${loon - 1})</li><li>Gelukt: <b>+1 Pond</b> (samen ${loon + 1})</li><li>Ruim gehaald, 3 boven het doel: <b>+2 Pond</b> (samen ${loon + 2})</li></ul>`, knoppen: [{ label: "Extra nummer", waarde: true }, { label: "Nee, ik neem mijn loon", waarde: false, ghost: true }] });
+      if (k) {
+        const ok = await test(h, "overtuiging", 9, "Een extra nummer");
+        const ruim = ok && laatsteWorp.totaal - laatsteWorp.doel >= 3;
+        const extra = !ok ? -1 : ruim ? 2 : 1;
+        h.pond = Math.max(0, h.pond + extra);
+        log(`${korteNaam(heldDef(h).naam)} doet een extra nummer: ${extra > 0 ? "+" : "−"}${Math.abs(extra)} Pond`);
+        await melding(!ok ? "Uitgejouwd" : ruim ? "Een staande ovatie" : "Applaus", !ok ? "Een rotte tomaat, gefluit vanaf het schellinkje. De directeur houdt 1 Pond in voor de schade." : ruim ? "De zaal staat op de stoelen. De directeur stopt je 2 Pond extra toe en vraagt of je morgen terugkomt." : "Een warm applaus en een fooi van de directeur: 1 Pond extra.", "Theater");
+      }
       break;
     }
     case "club": {
