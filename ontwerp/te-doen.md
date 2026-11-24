@@ -337,3 +337,4 @@ Minder dringend: expeditiekaarten (je gaat zelden overzee), aanwijzingsteksten (
 - [x] Startscherm in kiesvolgorde (moeilijkheid, speelduur, uitbreiding, aantal, helden, god, klokken); helden standaard op alfabet; vegen tussen helden, ook in de handleiding; Beurt klaar licht op zonder acties
 - [x] Achtergronden voor de drie expeditiekaarten (`ontwerp/beeldopdracht-expeditiekaarten.md`), opgehaald uit Drive en in het spel
 - [x] Theater: het extra nummer is een gok (mislukt −1 Pond, gelukt +1, 3 boven het doel +2), zodat het niet meer risicoloos is
+- [x] Geruchten: haalkans per gerucht gemeten (`tools/meet-geruchten.js`, `ontwerp/geruchten.md`); de testspeler jaagt nu op geruchten; ophalen, sluiten en verslaan krijgen 3 tot 4 rondes in plaats van 2

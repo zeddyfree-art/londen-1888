@@ -222,7 +222,7 @@
     "mist": 0,
     "scheur": 1,
     "monster": 0,
-    "gerucht": "Leg 3 Aanwijzingen op Covent Garden. Zijn die na 2 rondes niet allemaal opgehaald, dan daalt de Mist met 2.",
+    "gerucht": "Leg 3 Aanwijzingen op Covent Garden. Zijn die na 4 rondes niet allemaal opgehaald, dan daalt de Mist met 2.",
     "tekst": "Overal in de stad neuriën mensen dezelfde melodie zonder te weten waarom.",
     "acties": [
       {
@@ -230,7 +230,7 @@
         "soort": "ophalen",
         "plek": "covent-garden",
         "aantal": 3,
-        "rondes": 3,
+        "rondes": 5,
         "straf": 2
       }
     ]
@@ -355,14 +355,14 @@
     "mist": 0,
     "scheur": 0,
     "monster": 0,
-    "gerucht": "Er opent een Scheur in Wapping. Is die na 2 rondes niet gesloten, dan daalt de Mist met 2.",
+    "gerucht": "Er opent een Scheur in Wapping. Is die na 4 rondes niet gesloten, dan daalt de Mist met 2.",
     "tekst": "Op de muur van een rioolschacht in Wapping staat een nieuwe aantekening, in het handschrift van Josiah Penhallow. 'De vierde naad geeft mee. Ik hoor haar ademen.' De inkt is nog nat, al is hij al maanden vermist. Rioolwerkers weigeren nog af te dalen, en uit de putten stijgt een warme, zoute damp.",
     "acties": [
       {
         "type": "gerucht",
         "soort": "sluiten",
         "plek": "wapping",
-        "rondes": 3,
+        "rondes": 5,
         "straf": 2
       }
     ]
@@ -413,14 +413,14 @@
     "mist": 0,
     "scheur": 0,
     "monster": 0,
-    "gerucht": "Er opent een Scheur in Marylebone. Is die na 2 rondes niet gesloten, dan daalt de Mist met 2.",
+    "gerucht": "Er opent een Scheur in Marylebone. Is die na 3 rondes niet gesloten, dan daalt de Mist met 2.",
     "tekst": "Onder je deur ligt een sterrenkaart, met potlood bijgetekend in een fijne, bevende hand. Ivy Lisle schrijft dat Magister Croft over drie nachten in Marylebone een ritueel houdt om 'het venster open te zetten'. Ze durft er zelf niet heen. 'Als jullie niets doen,' schrijft ze, 'zal ik moeten kijken. Ze laten niemand weg die niet kijkt.'",
     "acties": [
       {
         "type": "gerucht",
         "soort": "sluiten",
         "plek": "marylebone",
-        "rondes": 3,
+        "rondes": 4,
         "straf": 2
       }
     ]
@@ -467,7 +467,7 @@
     "mist": 0,
     "scheur": 0,
     "monster": 0,
-    "gerucht": "Er verschijnt een Shabti-wachter in St Katharine Docks. Staat daar na 2 rondes nog een monster, dan daalt de Mist met 2.",
+    "gerucht": "Er verschijnt een Shabti-wachter in St Katharine Docks. Staat daar na 4 rondes nog een monster, dan daalt de Mist met 2.",
     "tekst": "Sir Lucius Harrowgate heeft zijn pakhuis laten bewaken door iets dat hij uit een kist heeft gehaald. De havenarbeiders zien het 's nachts tussen de balen staan, roerloos en van blauw aardewerk. Morgen gaan de kisten met de zegels aan boord van een schip naar Amsterdam. Wat daar verkocht wordt, krijg je nooit meer terug.",
     "acties": [
       {
@@ -475,7 +475,7 @@
         "soort": "verslaan",
         "plek": "st-katharine-docks",
         "id": "shabti-wachter",
-        "rondes": 3,
+        "rondes": 5,
         "straf": 2
       }
     ]
@@ -487,7 +487,7 @@
     "mist": 0,
     "scheur": 0,
     "monster": 0,
-    "gerucht": "Leg 2 Aanwijzingen op Spitalfields. Zijn die na 2 rondes niet allemaal opgehaald, dan daalt de Mist met 2.",
+    "gerucht": "Leg 2 Aanwijzingen op Spitalfields. Zijn die na 3 rondes niet allemaal opgehaald, dan daalt de Mist met 2.",
     "tekst": "Constable Harris is niet teruggekomen van zijn ronde door Spitalfields. Zijn fluitje ligt in een steeg achter de markthallen, en zijn lantaarn brandt nog. Hoofdinspecteur Voss vraagt jullie in stilte om te gaan kijken voordat de kranten het horen. 'Drie dagen,' zegt hij. 'Daarna wordt het een zaak, en dan kan ik niets meer voor hem doen.'",
     "acties": [
       {
@@ -495,7 +495,7 @@
         "soort": "ophalen",
         "plek": "spitalfields",
         "aantal": 2,
-        "rondes": 3,
+        "rondes": 4,
         "straf": 2
       }
     ]
@@ -638,7 +638,7 @@
     "mist": 0,
     "scheur": 0,
     "monster": 0,
-    "gerucht": "Er verschijnt een monster in The City. Is het na 2 rondes niet verslagen, dan daalt de Mist met 2.",
+    "gerucht": "Er verschijnt een monster in The City. Is het na 3 rondes niet verslagen, dan daalt de Mist met 2.",
     "tekst": "In Barts liggen de zieken op de gangen. De dokters zeggen dat het tyfus is, maar de zusters weten beter: elke nacht loopt er iets langs de bedden dat niemand ziet binnenkomen. De directeur heeft laten weten dat hij het ziekenhuis sluit als het niet ophoudt.",
     "acties": [
       {
@@ -646,7 +646,7 @@
         "soort": "verslaan",
         "plek": "city",
         "id": "mistdwaler",
-        "rondes": 3,
+        "rondes": 4,
         "straf": 2
       }
     ]
@@ -728,7 +728,7 @@
     "mist": 0,
     "scheur": 0,
     "monster": 0,
-    "gerucht": "Leg 2 Aanwijzingen op Covent Garden. Zijn die na 2 rondes niet allemaal opgehaald, dan daalt de Mist met 2.",
+    "gerucht": "Leg 2 Aanwijzingen op Covent Garden. Zijn die na 4 rondes niet allemaal opgehaald, dan daalt de Mist met 2.",
     "tekst": "Overal op straat zingen kinderen een nieuw couplet van het aftelrijmpje, een couplet dat Oude Nan nog nooit heeft gehoord. Ze laat jullie weten dat ze het moet horen van iemand die het kan opschrijven, en snel, voordat de kinderen het weer vergeten.",
     "acties": [
       {
@@ -736,7 +736,7 @@
         "soort": "ophalen",
         "plek": "covent-garden",
         "aantal": 2,
-        "rondes": 3,
+        "rondes": 5,
         "straf": 2
       }
     ]
@@ -813,14 +813,14 @@
     "mist": 0,
     "scheur": 0,
     "monster": 0,
-    "gerucht": "Er opent een Scheur in The City. Is die na 2 rondes niet gesloten, dan daalt de Mist met 2.",
+    "gerucht": "Er opent een Scheur in The City. Is die na 3 rondes niet gesloten, dan daalt de Mist met 2.",
     "tekst": "Jebediah Sallow laat via een straatjongen weten dat het Genootschap vannacht de diepste put opengraaft, onder de kerk van St Giles-without-Cripplegate. 'Als ze daar doorbreken,' schrijft hij in kromme letters, 'dan wordt hij wakker.'",
     "acties": [
       {
         "type": "gerucht",
         "soort": "sluiten",
         "plek": "city",
-        "rondes": 3,
+        "rondes": 4,
         "straf": 2
       }
     ]
@@ -1011,7 +1011,7 @@
     "mist": 0,
     "scheur": 0,
     "monster": 0,
-    "gerucht": "Er verschijnt een Kuddeleider in Limehouse. Is hij na 2 rondes niet verslagen, dan daalt de Mist met 2.",
+    "gerucht": "Er verschijnt een Kuddeleider in Limehouse. Is hij na 4 rondes niet verslagen, dan daalt de Mist met 2.",
     "tekst": "Martha Coyle laat weten dat de kudde vannacht een mis houdt in de kerk zonder dak in Limehouse. Een nieuwe leider zal er gezalfd worden. 'Als jullie iets willen doen,' zegt ze, 'dan nu.'",
     "acties": [
       {
@@ -1019,7 +1019,7 @@
         "soort": "verslaan",
         "plek": "limehouse",
         "id": "kuddeleider",
-        "rondes": 3,
+        "rondes": 5,
         "straf": 2
       }
     ],
@@ -1093,7 +1093,7 @@
     "mist": 0,
     "scheur": 0,
     "monster": 0,
-    "gerucht": "Er verschijnt een Reliekjager in Bloomsbury. Is hij na 2 rondes niet verslagen, dan daalt de Mist met 2.",
+    "gerucht": "Er verschijnt een Reliekjager in Bloomsbury. Is hij na 3 rondes niet verslagen, dan daalt de Mist met 2.",
     "tekst": "Amelia Fenwick laat weten dat het Genootschap vannacht het museum binnengaat, om de vier stukken mee te nemen naar een plek waar niemand ze meer terugvindt.",
     "acties": [
       {
@@ -1101,7 +1101,7 @@
         "soort": "verslaan",
         "plek": "bloomsbury",
         "id": "reliekjager",
-        "rondes": 3,
+        "rondes": 4,
         "straf": 2
       }
     ],
@@ -1185,14 +1185,14 @@
     "mist": 0,
     "scheur": 0,
     "monster": 0,
-    "gerucht": "Er opent een Scheur op Hampstead. Is die na 2 rondes niet gesloten, dan daalt de Mist met 2.",
+    "gerucht": "Er opent een Scheur op Hampstead. Is die na 3 rondes niet gesloten, dan daalt de Mist met 2.",
     "tekst": "Ephraim Gale laat weten dat de Bond van de Windroos vannacht een koperen toren opricht op de heide. 'Ze willen de bliksem roepen,' schrijft hij. 'Allemaal tegelijk.'",
     "acties": [
       {
         "type": "gerucht",
         "soort": "sluiten",
         "plek": "hampstead",
-        "rondes": 3,
+        "rondes": 4,
         "straf": 2
       }
     ],
@@ -1264,7 +1264,7 @@
     "mist": 0,
     "scheur": 0,
     "monster": 0,
-    "gerucht": "Er verschijnt een Maskerdanser in Covent Garden. Is hij na 2 rondes niet verslagen, dan daalt de Mist met 2.",
+    "gerucht": "Er verschijnt een Maskerdanser in Covent Garden. Is hij na 3 rondes niet verslagen, dan daalt de Mist met 2.",
     "tekst": "Lucien Marchetti hoort dat er na de voorstelling in de opera een gemaskerd bal is. Wie er danst, komt er niet meer uit. 'Ze heeft een nieuw portret nodig,' zegt hij. 'Een levend.'",
     "acties": [
       {
@@ -1272,7 +1272,7 @@
         "soort": "verslaan",
         "plek": "covent-garden",
         "id": "maskerdanser",
-        "rondes": 3,
+        "rondes": 4,
         "straf": 2
       }
     ],
@@ -1345,14 +1345,14 @@
     "mist": 0,
     "scheur": 0,
     "monster": 0,
-    "gerucht": "Er opent een Scheur in Westminster. Is die na 2 rondes niet gesloten, dan daalt de Mist met 2.",
+    "gerucht": "Er opent een Scheur in Westminster. Is die na 3 rondes niet gesloten, dan daalt de Mist met 2.",
     "tekst": "Dora Whitby ontvangt een bericht van overmorgen: 'Toren volledig opgewonden. Dertiende slag om middernacht.' Ze weet niet wie het stuurde. Ze weet wel dat elk bericht tot nu toe is uitgekomen.",
     "acties": [
       {
         "type": "gerucht",
         "soort": "sluiten",
         "plek": "westminster",
-        "rondes": 3,
+        "rondes": 4,
         "straf": 2
       }
     ],
@@ -1428,7 +1428,7 @@
     "mist": 0,
     "scheur": 0,
     "monster": 0,
-    "gerucht": "Er verschijnt een Leugenaar in de Strand. Is hij na 2 rondes niet verslagen, dan daalt de Mist met 2.",
+    "gerucht": "Er verschijnt een Leugenaar in de Strand. Is hij na 3 rondes niet verslagen, dan daalt de Mist met 2.",
     "tekst": "Fennimore Blight laat een briefje achter op je stoep: morgen getuigt hij in de rechtbank over iets dat nog moet gebeuren. 'Hou me tegen,' schrijft hij. 'Alsjeblieft.'",
     "acties": [
       {
@@ -1436,7 +1436,7 @@
         "soort": "verslaan",
         "plek": "strand",
         "id": "leugenaar",
-        "rondes": 3,
+        "rondes": 4,
         "straf": 2
       }
     ],
@@ -1508,7 +1508,7 @@
     "mist": 0,
     "scheur": 0,
     "monster": 0,
-    "gerucht": "Er verschijnt een Goudworm in The City. Is hij na 2 rondes niet verslagen, dan daalt de Mist met 2.",
+    "gerucht": "Er verschijnt een Goudworm in The City. Is hij na 3 rondes niet verslagen, dan daalt de Mist met 2.",
     "tekst": "Edwin Pratt laat weten dat het Syndicaat vannacht de kluizen van drie banken leeghaalt. 'Wat eruit komt,' schrijft hij, 'is geen geld. Het kruipt.'",
     "acties": [
       {
@@ -1516,7 +1516,7 @@
         "soort": "verslaan",
         "plek": "city",
         "id": "goudworm",
-        "rondes": 3,
+        "rondes": 4,
         "straf": 2
       }
     ],
