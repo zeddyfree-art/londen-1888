@@ -2,7 +2,14 @@
 
 Deze lijst werken we aan het einde van elk gesprek bij. Zet bij elke update die spelers merken een nieuw bericht bovenaan `data/nieuws.json` (met een hoger `id`): dat verschijnt één keer als "Wat is er nieuw" als de app opent.
 
-*Laatst bijgewerkt: 23 november 2026 (zestiende sessie)*
+*Laatst bijgewerkt: 24 november 2026*
+
+## Muziekspeler
+
+- [x] Muziekspeler (knop *Muziek*, ook op het startscherm): afspeellijst met vinkjes, op volgorde of willekeurig, vorige/afspelen/volgende en een tijdbalk. Titels staan in `data/muziek.json`; keuzes blijven in de browser bewaard.
+- [x] Drie nieuwe nummers uit ElevenLabs (flow "Londen 1888 geluiden", elk 3 minuten): `muziek-6` *Wals in een lege salon*, `muziek-7` *Voetstappen in Whitechapel*, `muziek-8` *Mist op de kade*. In de flow staan nog andere varianten.
+- [ ] Even luisteren of de drie nieuwe nummers echt zonder zang zijn (de prompt vraagt instrumentaal, maar de instelling stond op automatisch).
+- [ ] Eventueel de drie Suno-nummers toevoegen als `muziek-9` tot `muziek-11`, met een titel in `data/muziek.json`.
 
 ## Gemeten na de zestiende sessie (zeven nieuwe goden)
 

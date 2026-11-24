@@ -73,7 +73,12 @@ Ze spelen zacht op de achtergrond zolang het potje duurt, één per oude god, pl
 |---|---|---|---|
 | `muziek.mp3` | Startscherm en tijdens het spel, zacht onder de sfeer | 3 min | `Slow dark Victorian gothic ambient score, eerie and atmospheric, very slow tempo with no drums. A solo cello and muted strings hold long sustained minor chords over a deep drone, with a faint music box melody and a distant harmonium appearing and fading away. The energy stays low and even throughout, subtle swells and quiet passages, so it can loop softly under a game without drawing attention.` |
 
-Kies bij Music voor **instrumental**. Eén take van 3 minuten kost ongeveer 2.700 credits.
+| `muziek-2` tot `muziek-5` | Meer nummers in de afspeellijst | 2–3,5 min | (eerder gemaakt) |
+| `muziek-6` | *Wals in een lege salon* | 3 min | `Instrumental, about 3 minutes. Melancholic Victorian parlour piano waltz played slowly on a slightly out-of-tune upright piano, soft and intimate with a faint room echo and gentle tape hiss. A lonely minor-key melody in 3/4 time, sparse left hand, occasional unresolved chords and long pauses; halfway a quiet violin joins and fades again. Low, even energy throughout with no drums, so it can play softly under a game.` |
+| `muziek-7` | *Voetstappen in Whitechapel* | 3 min | `Instrumental, about 3 minutes. Tense, creeping dark chamber music for string quartet: quiet staccato and pizzicato cello and viola in a slow steady pulse, like careful footsteps, with a nervous violin motif in a minor key and sul ponticello whispers. A muted ticking clock-like rhythm on col legno strings, subtle low timpani rolls far away. Suspenseful but restrained, energy stays low and builds only slightly before settling again, no modern drums.` |
+| `muziek-8` | *Mist op de kade* | 3 min | `Instrumental, about 3 minutes. Slow, haunting folk dirge in a minor mode: a wheezing concertina and a droning hurdy-gurdy play an old sea-shanty melody at half speed, over a low bowed double bass and a soft distant church organ pedal tone. Damp, foggy, melancholic Victorian dockside atmosphere in sound, with sparse, mournful phrasing and long silences between phrases. Very slow tempo, no drums, gentle swells, low and even energy.` |
+
+Kies bij Music voor **instrumental**. Een nieuw nummer heet `muziek-<nummer>.mp3`; zet de titel erbij in `data/muziek.json`, dan verschijnt het in de muziekspeler.
 
 ## Aanleveren
 
@@ -94,7 +99,7 @@ Je hoeft niet alles in één keer te maken. Begin bijvoorbeeld met `onheil`, `mo
 
 Met de uitbreiding *Kaarten van de Oude Wereld* klinkt de sfeerlus van de regio (`sfeer-ow-...`) zolang de held aan de beurt daar op expeditie is. Ontbreekt die lus, dan blijft de sfeer van de god klinken.
 
-- **Volume:** effecten spelen op 50–80%, sfeerlussen op 25% en de muziek op 18%. Met de knop *Muziek uit* zet je alleen de muziek uit. Zo komen ze nooit boven de rest uit.
+- **Volume:** effecten spelen op 50–80%, sfeerlussen op 25% en de muziek op 18%. Met de knop *Muziek* open je de muziekspeler: daar pauzeer je de muziek, vink je nummers uit en kies je op volgorde of willekeurig. Zo komen ze nooit boven de rest uit.
 - **Snel:** via de ElevenLabs-connector kan Claude ze ook zelf maken en ophalen, in de flow "Londen 1888 geluiden".
 - **Geluid uit:** de knop *Geluid uit* zet alles uit, ook de sfeer.
 - **iPad:** Safari laat pas geluid toe na de eerste tik. De sfeer begint dus pas na je eerste tik op het scherm.

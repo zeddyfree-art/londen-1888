@@ -1,5 +1,15 @@
 [
   {
+    "id": 32,
+    "datum": "24 november 2026",
+    "titel": "Een muziekspeler en drie nieuwe nummers",
+    "punten": [
+      "De knop Muziek opent nu een muziekspeler, in het spel en op het startscherm. Je ziet de hele afspeellijst en welk nummer speelt, met een tijdbalk, vorige, afspelen of pauzeren en volgende.",
+      "Vink nummers uit die je niet wilt horen, en kies of de muziek op volgorde of willekeurig speelt. Tik op een titel om dat nummer meteen te spelen. De speler onthoudt je keuzes.",
+      "Drie nieuwe nummers van drie minuten: Wals in een lege salon (een valse piano), Voetstappen in Whitechapel (sluipende strijkers) en Mist op de kade (concertina en draailier)."
+    ]
+  },
+  {
     "id": 31,
     "datum": "24 november 2026",
     "titel": "Meer tijd voor geruchten",
