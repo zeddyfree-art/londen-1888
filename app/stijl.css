@@ -708,3 +708,26 @@ button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);ou
 .owsvg.metkaart .owk.dicht circle:first-child{fill:rgba(11,16,18,.6)}
 .owsvg.metkaart .owk.bereik:hover circle:first-child,.owsvg.metkaart .owk.bereik:focus-visible circle:first-child{fill:color-mix(in srgb,var(--good) 30%,transparent)}
 .owsvg.metkaart .owk .owq{fill:#d8cfb8}
+/* muziekspeler */
+.speler{position:fixed;z-index:30;top:calc(56px + env(safe-area-inset-top,0px));right:max(8px,env(safe-area-inset-right,0px));width:min(380px,calc(100vw - 16px));max-height:calc(100dvh - 72px - env(safe-area-inset-top,0px));overflow:auto;background:var(--paper);border:1px solid var(--line);box-shadow:0 10px 30px rgba(0,0,0,.45);padding:12px 14px 14px;display:grid;gap:10px;align-content:start}
+.speler[hidden]{display:none}
+.speler-kop{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.speler-kop h2{margin:0;font-size:22px}
+.speler-nu{display:grid;gap:2px}.speler-nu span{font-size:13px}.speler-nu b{font-family:var(--display);font-size:18px;line-height:1.25}
+.speler-tijd{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;font-size:13px;font-variant-numeric:tabular-nums}
+.speler-tijd input{width:100%;accent-color:var(--accent);min-height:28px}
+.speler-knoppen{display:flex;justify-content:center;gap:10px}
+.speler-knoppen .btn{width:56px;display:grid;place-items:center;padding:0}
+.speler-knoppen svg{width:22px;height:22px;fill:currentColor}
+.speler-modus{display:grid;grid-template-columns:1fr 1fr;gap:6px}.speler-modus .optie{text-align:center;padding:8px}
+.speler-lijst{list-style:none;margin:0;padding:0;display:grid;border-top:1px solid var(--line)}
+.speler-lijst li{display:grid;grid-template-columns:44px minmax(0,1fr);align-items:center;border-bottom:1px solid var(--line)}
+.speler-lijst input{width:20px;height:20px;margin:0 auto;accent-color:var(--accent);cursor:pointer}
+.speler-nummer{appearance:none;border:0;background:none;color:inherit;font:inherit;text-align:left;display:grid;grid-template-columns:22px minmax(0,1fr) auto;gap:8px;align-items:center;min-height:44px;padding:6px 8px 6px 0;cursor:pointer}
+.speler-nummer .nr{color:var(--muted);font-size:13px;text-align:right;font-variant-numeric:tabular-nums}
+.speler-nummer .duur{font-size:13px;font-variant-numeric:tabular-nums}
+.speler-lijst li.huidig{background:var(--tint)}.speler-lijst li.huidig .titel{color:var(--accent);font-weight:700}
+.speler-lijst li.uit .titel,.speler-lijst li.uit .nr{color:var(--muted);text-decoration:line-through}
+@media (hover:hover){.speler-nummer:hover .titel{color:var(--accent)}}
+.speler .klein{font-size:13px;margin:0}
+.speler .hint{margin:0}
