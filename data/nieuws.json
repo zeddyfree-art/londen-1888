@@ -1,5 +1,17 @@
 [
   {
+    "id": 28,
+    "datum": "24 november 2026",
+    "titel": "Fijner kiezen en vegen",
+    "punten": [
+      "Het startscherm loopt nu in de volgorde van kiezen: moeilijkheid, speelduur, uitbreiding, aantal helden, helden, de oude god en als laatste de klokken.",
+      "Helden staan standaard op alfabet. Sorteren op Kennis, Waarneming, Kracht of Charisma kan nog steeds, en het spel onthoudt je keuze.",
+      "In het profiel van een held veeg je op een touchscreen naar de volgende of vorige held. Met een toetsenbord kan het met de pijltjes.",
+      "In de handleiding kun je de helden ook sorteren, op een held tikken voor het hele profiel en daar vegen.",
+      "Zijn je acties op, dan licht de knop Beurt klaar op."
+    ]
+  },
+  {
     "id": 27,
     "datum": "24 november 2026",
     "titel": "Alle geluiden zijn er",
